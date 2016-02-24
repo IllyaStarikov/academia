@@ -1,0 +1,107 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    color: #384047;
+    background: url("http://www.goodwp.com/pic/201510/2560x1600/goodwp.com-32700.jpg") no-repeat center center;
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+form {
+    min-width: 640px;
+    max-width: 720px;
+    position: relative;
+    margin: 10px auto;
+    padding: 20px 25px 20px 25px;
+    background: #ffffff;
+    opacity: 0.95;
+    box-shadow: 0px 25px 75px rgba(0,0,0,.25);
+    border-radius: .25px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+h1.formtitle {
+    margin: 0 0 30px 0;
+    text-transform: uppercase;
+}
+
+h2.formsubtitle {
+    text-transform: uppercase;
+    width: 100%;
+    text-align: center;
+    font-size: 1em;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea,
+select {
+    border-bottom: 2px solid #e9e9e9;
+    border: none;
+    font-size: 16px;
+    height: auto;
+    margin: 0;
+    outline: 0;
+    padding: 12px;
+    width: 100%;
+    background-color: #e8eeef;
+    color: #8a97a0;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.04) inset;
+    margin-bottom: 30px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin: 0 4px 8px 0;
+}
+
+select {
+    padding: 6px;
+    height: 32px;
+    border-radius: 2px;
+}
+
+button {
+    padding: 20px 40px 20px 40px;
+    color: #FFF;
+    background-color: #0BB5FF;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+fieldset {
+    margin-bottom: 30px;
+    border: none;
+}
+
+legend {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #8a97a0;
+    text-transform: uppercase;
+}
+
+label.light {
+    font-weight: 300;
+    display: inline;
+}
