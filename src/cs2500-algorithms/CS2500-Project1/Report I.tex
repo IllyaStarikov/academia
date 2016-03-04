@@ -1,4 +1,3 @@
-
 \documentclass{article}
 
 \title{Programming Project I, First Report}
@@ -9,6 +8,8 @@
 \hypersetup{
     colorlinks=true,
 }
+
+\usepackage{fancyvrb}
 
 \begin{document}
 
@@ -34,6 +35,29 @@ As stated previously, memory management is solved in a less-than-perfect manner.
 For our project we decided to take a more \href{https://en.wikipedia.org/wiki/Skeuomorph}{skeuomorphic} and object oriented approach, modeling objects after their real world counterparts, such as \texttt{Application} or \texttt{Smartphone}. As for the approaches, we have the following solutions:
 
 \subsection{Brute Force}
+\fvset{numbers=left,numbersep=3pt}
+\begin{Verbatim}
+knapsackBrute(items, napsackSize)
+    max = 0
+    for i = 0 to 2^n - 1
+        subset = binaryToInteger(i)
+        sum = 0
+
+        for i to subset.length
+            sum = sum + item[i].benefit * subset[i]
+            size = size + item[i].weight * subset[i]
+
+        if size <= napsackSize && sum > max
+            max = sum
+            greatestSubset = i
+
+    subset = binaryToInteger(greatestSubset)
+    for i = 0 to subset.size
+        if subset[i] == 1
+            optimalSolution.append(item[i])
+
+    return optimalSolution
+\end{Verbatim}
 \subsection{Dynamic Programming}
 \subsection{Greedy Solution}
 
