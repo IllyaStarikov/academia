@@ -24,9 +24,9 @@
 \section{Abstract}
 Smartphone users launch many apps everyday, however one of the most fundamental things a smartphone does is abstracted away: memory management.
 
-Although smartphones have advance significantly (RAM, architecture, processors) compared to their first predecessor's, deactivation \footnote{The process of ``the operating system needing to choose and remove some apps from the memory'', a subproblem of \href{https://en.wikipedia.org/wiki/Memory_management}{memory management}.} is a solution that is often less-than-perfect. Although Java's \href{http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html}{Garbage Collection} and Swift's \href{https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html}{Automatic Reference Counting} (ARC) have sufficed, there are other methods.
+Although smartphones have advanced significantly in many ways compared to their first predecessors(RAM, architecture, processors), deactivation, or the process of ``the operating system needing to choose and remove some apps from the memory'', a subproblem of \href{https://en.wikipedia.org/wiki/Memory_management}{memory management}. is a solution that is often less-than-perfect. Although Java's \href{http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html}{Garbage Collection} and Swift's \href{https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html}{Automatic Reference Counting} (ARC) have sufficed, there are other methods.
 
-In this project I propose to solve this problem three techniques:
+In this project I propose to solve this problem using three techniques:
 
 \begin{itemize}
     \item Brute Force
@@ -44,7 +44,7 @@ For our project we decided to take a more \href{https://en.wikipedia.org/wiki/Sk
 For the brute force method, we knew that we have to check every possible subset (and for a set of size$n$ )
 
 \begin{lstlisting}[mathescape]
-knapsackBrute(items, napsackSize)
+knapsackBrute(items, knapsackSize)
     max = 0
     for i = 0 to $2^n$ - 1
         subset = binaryToInteger(i)
@@ -54,7 +54,7 @@ knapsackBrute(items, napsackSize)
             sum = sum + item[i].benefit * subset[i]
             size = size + item[i].weight * subset[i]
 
-        if size <= napsackSize && sum > max
+        if size <= knapsackSize && sum > max
             max = sum
             greatestSubset = i
 
