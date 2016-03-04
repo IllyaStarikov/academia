@@ -4,6 +4,7 @@
 \author{Illya Starikov, Claire Trebing, \& Timothy Ott}
 \date{Due Date: March 07, 2016}
 
+\usepackage{amsmath, amssymb}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
@@ -41,8 +42,105 @@ As stated previously, memory management is solved in a less-than-perfect manner.
 For our project we decided to take a more \href{https://en.wikipedia.org/wiki/Skeuomorph}{skeuomorphic} and object oriented approach, modeling objects after their real world counterparts, such as \texttt{Application} or \texttt{Smartphone}. As for the approaches, we have the following solutions:
 
 \subsection{Brute Force}
-For the brute force method, we knew that we have to check every possible subset (and for a set of size$n$ )
+For the brute force method, we knew that we have to check every possible subset (and for a set of size $n$, we know there to be \href{http://mathworld.wolfram.com/Subset.html}{$2^n$ subsets}). We used this to our advantage, creating a lookup table modeled after a truth table. As an example, suppose we have a three items in our knapsack:
 
+\begin{center}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        Items A & Item B & Item C & Item Number  \\ \hline
+        0 & 0 & 0 & 0\\
+        0 & 0 & 1 & 1\\
+        0 & 1 & 0 & 2\\
+        0 & 1 & 1 & 3\\
+        1 & 0 & 0 & 4\\
+        1 & 0 & 1 & 5\\
+        1 & 1 & 0 & 6\\
+        1 & 1 & 1 & 7\\
+        \hline
+    \end{tabular}
+\end{center}
+
+We notice that the knapsack combination can be directly summarized by the $n$-bit binary representation. Using the previous example of three item knapsack:
+
+\begin{eqnarray}
+    \text{Subset \#0}: 0_{10} = 000_{2} = \sim(ABC) & = & \text{No Items} \\
+    \text{Subset \#5}: 5_{10} = 101_{2} = A\sim(B)C & = & \text{Items A, B} \\
+    \text{Subset \#7}: 7_{10} = 111_{2} = ABC & = & \text{Items A, B, C}
+\end{eqnarray}
+
+Now that we have have a represenation of every subset, we can multiply the columns value by the knapsack value to get the item's value into the lookup table. Extending the example, suppose we have the following table:
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        Item & Weight & Benefit \\ \hline
+        A & 2 & 4 \\
+        B & 3 & 6 \\
+        C & 7 & 9 \\
+        \hline
+    \end{tabular}
+\end{center}
+
+Multiplying the columns by the values produces the following results:
+
+\begin{center}
+
+    \begin{tabular}{|c|c|c|}
+        \hline
+        Items A & Item B & Item C   \\ \hline
+        $0 \times 4$ & $0 \times 6$ & $0 \times 9$ \\
+        $0 \times 4$ & $0 \times 6$ & $1 \times 9$ \\
+        $0 \times 4$ & $1 \times 6$ & $0 \times 9$ \\
+        $0 \times 4$ & $1 \times 6$ & $1 \times 9$ \\
+        $1 \times 4$ & $0 \times 6$ & $0 \times 9$ \\
+        $1 \times 4$ & $0 \times 6$ & $1 \times 9$ \\
+        $1 \times 4$ & $1 \times 6$ & $0 \times 9$ \\
+        $1 \times 4$ & $1 \times 6$ & $1 \times 9$ \\
+        \hline
+    \end{tabular} \quad
+    = \quad
+    \begin{tabular}{|c|c|c|}
+        \hline
+        Items A & Item B & Item C \\ \hline
+        0 & 0 & 0\\
+        0 & 0 & 9\\
+        0 & 6 & 0\\
+        0 & 6 & 9\\
+        4 & 0 & 0\\
+        4 & 0 & 9\\
+        4 & 6 & 0\\
+        4 & 6 & 9\\
+        \hline
+    \end{tabular}
+\end{center}
+
+Adding the columns across we produce the following, and factoring the weight:
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        Items A & Item B & Item C & Additive Value & Size \\ \hline
+        0 & 0 & 0 & 0 & 0\\
+        0 & 0 & 9 & 9 & 7\\
+        0 & 6 & 0 & 6 & 3\\
+        0 & 6 & 9 & 15 & 10\\
+        4 & 0 & 0 & 4 & 2\\
+        4 & 0 & 9 & 12 & 9\\
+        4 & 6 & 0 & 10 & 5\\
+        4 & 6 & 9 & 19 & 12\\
+        \hline
+    \end{tabular}
+\end{center}
+
+Now finding the minimal value is straightforward, find the minimal value is traversing down the additive value while looking at the size it frees up. Suppose we have to free up 10 blocks of memory, items $A, B$ would be the most efficient choice.
+
+The pseudocode is as follows, with a few notes:
+
+\begin{itemize}
+    \item Comparison is done while ``generating'' a table.
+    \item A table is not generate, but the binary representation is used instead.
+\end{itemize}
+
+\subsubsection{Pseudocode}
 \begin{lstlisting}[mathescape]
 knapsackBrute(items, knapsackSize)
     max = 0
@@ -65,6 +163,16 @@ knapsackBrute(items, knapsackSize)
 
     return optimalSolution
 \end{lstlisting}
+
+\subsubsection{Time Complexity}
+Analyzing this algorithm, we can see the complexity:
+
+\begin{equation}
+    \sum _{k = 1} ^{n} 2^k \times \sum _{k = 1} ^{n} c = \mathcal{O}(n 2^n)
+\end{equation}
+
+We run in $\mathcal{O}(n 2^n)$ time.
+
 \subsection{Dynamic Programming}
 \subsection{Greedy Solution}
 
