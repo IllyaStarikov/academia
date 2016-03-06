@@ -25,7 +25,7 @@
 \section{Abstract}
 Smartphone users launch many apps everyday, however one of the most fundamental things a smartphone does is abstracted away: memory management.
 
-Although smartphones have advanced significantly in many ways compared to their first predecessors(RAM, architecture, processors), deactivation, or the process of ``the operating system needing to choose and remove some apps from the memory'', a subproblem of \href{https://en.wikipedia.org/wiki/Memory_management}{memory management}. is a solution that is often less-than-perfect. Although Java's \href{http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html}{Garbage Collection} and Swift's \href{https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html}{Automatic Reference Counting} (ARC) have sufficed, there are other methods.
+Although smartphones have advanced significantly in many ways compared to their first predecessors(RAM, architecture, processors), deactivation, (the process of ``the operating system needing to choose and remove some apps from the memory'', a subproblem of \href{https://en.wikipedia.org/wiki/Memory_management}{memory management}) is a solution that is often less-than-perfect. Although Java's \href{http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html}{Garbage Collection} and Swift's \href{https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html}{Automatic Reference Counting} (ARC) have sufficed, there are other methods.
 
 In this project I propose to solve this problem using three techniques:
 
@@ -42,7 +42,7 @@ As stated previously, memory management is solved in a less-than-perfect manner.
 For our project we decided to take a more \href{https://en.wikipedia.org/wiki/Skeuomorph}{skeuomorphic} and object oriented approach, modeling objects after their real world counterparts, such as \texttt{Application} or \texttt{Smartphone}. As for the approaches, we have the following solutions:
 
 \subsection{Brute Force}
-For the brute force method, we knew that we have to check every possible subset (and for a set of size $n$, we know there to be \href{http://mathworld.wolfram.com/Subset.html}{$2^n$ subsets}). We used this to our advantage, creating a lookup table modeled after a truth table. As an example, suppose we have a three items in our knapsack:
+For the brute force method, we knew that we had to check every possible subset (and for a set of size $n$, we know there to be \href{http://mathworld.wolfram.com/Subset.html}{$2^n$ subsets}). We used this to our advantage, creating a lookup table modeled after a truth table. As an example, suppose we have a three items in our knapsack:
 
 \begin{center}
     \begin{tabular}{|c|c|c|c|}
