@@ -209,7 +209,7 @@ We could perhaps introduce a second greedy choice into the algorithm to improve 
 
 \subsubsection{Pseudocode}
 \begin{lstlisting}[mathescape]
-knapsackGreed()
+knapsackGreedy()
     A[] = Array of Apps
     S[] = Array of solution set
     M = Desired amount of memory to be freed
@@ -235,13 +235,26 @@ knapsackGreed()
 Analyzing this algorithm, including both going over the array to produce the ratio that will guide our greedy choices and choosing the actual solution set, we come up with the complexity of:
 
 \begin{equation}
-    \sum _{k = 1} ^{n} k + _{k = 1} ^{n} k = \mathcal{O}(2n)
+    \sum _{k = 1} ^{n} k + \sum _{k = 1} ^{n} k = \mathcal{O}(2n)
 \end{equation}
 
 This algorithm therefore runs in $\mathcal{O}(2n)$ time.
 
 \section{Plan of Experiments}
-The main objective of our experiments is to extrapolate time and efficiency from the algorithms
+The main objective of our experiments is to extrapolate time and efficiency from the algorithms for sufficiently large input, so our plan of experiments is thus:
+
+\begin{enumerate}
+    \item Generate a random array of apps, and a smartphone with $n$ memory.
+    \item Take a date stamp.
+    \item Run the Brute Force algorithm for the random array of apps and the smartphone.
+    \item Take another date stamp, record the difference.
+    \item Return to step 2 and run the Dynamic Programming algorithm.
+    \item Likewise, return to step 2 and run the Greedy algorithm.
+    \item Record the results from the experiment.
+    \item Return to step 1, repeat 9 additional times, take the average.
+    \item Run the algorithm again for a scale factor of $n$ (the input size).
+\end{enumerate}
+
 
 \section{Team Roles}
 \begin{description}

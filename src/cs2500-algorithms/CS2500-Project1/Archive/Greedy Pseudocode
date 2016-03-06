@@ -1,0 +1,21 @@
+
+A[] = Array of Apps
+S[] = Array of solution set
+M = Desired amount of memory to be freed
+sm = Amount of memory freed by solution set
+
+n = A.length
+
+for 0 to n
+  A[i].ratio = A[i].cost/A[i].memory
+  
+mergesort(A)
+
+GreedKnap(A, S)
+  S[0] = A[0]
+  sm = A[0].memory
+  i = 1
+  while (sm < M AND i < n)
+    S[i] = A[i]
+    sm += A[i].memory
+  
