@@ -25,7 +25,7 @@
 \section{Abstract}
 Smartphone users launch many apps everyday, however one of the most fundamental things a smartphone does is abstracted away: memory management.
 
-Although smartphones have advanced significantly in many ways compared to their first predecessors(RAM, architecture, processors), deactivation, (the process of ``the operating system needing to choose and remove some apps from the memory'', a subproblem of \href{https://en.wikipedia.org/wiki/Memory_management}{memory management}) is a solution that is often less-than-perfect. Although Java's \href{http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html}{Garbage Collection} and Swift's \href{https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html}{Automatic Reference Counting} (ARC) have sufficed, there are other methods.
+Although smartphones have advanced significantly in many ways compared to their first predecessors (in terms of RAM, architecture, processors), deactivation, (the process of ``the operating system needing to choose and remove some apps from the memory'', a subproblem of \href{https://en.wikipedia.org/wiki/Memory_management}{memory management}) is a solution that is often less-than-perfect. Although Java's \href{http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html}{Garbage Collection} and Swift's \href{https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html}{Automatic Reference Counting} (ARC) have sufficed, there are other methods.
 
 In this project I propose to solve this problem using three techniques:
 
@@ -118,7 +118,7 @@ Adding the columns across we produce the following, and factoring the weight:
 \begin{center}
     \begin{tabular}{|c|c|c|c|c|}
         \hline
-        Items A & Item B & Item C & Total Memory & Total Cost \\ \hline
+        Items A & Item B & Item C & Total Cost & Total Memory \\ \hline
         0 & 0 & 0 & 0 & 0\\
         0 & 0 & 9 & 9 & 7\\
         0 & 6 & 0 & 6 & 3\\
@@ -131,7 +131,7 @@ Adding the columns across we produce the following, and factoring the weight:
     \end{tabular}
 \end{center}
 
-Now finding the minimal value is straightforward, find the minimal value is traversing down the additive value while looking at the size it frees up. Suppose we have to free up 10 blocks of memory, items $A, C$ would be the most efficient choice.
+Now finding the minimal value is straightforward, find the minimal value is traversing down the additive value while looking at the size it frees up. Suppose we have to free up 10 blocks of memory, items $A, B$ would be the most efficient choice.
 
 The pseudocode is as follows, with a few notes:
 
@@ -203,9 +203,9 @@ We first take the ratio of each item’s cost over the capacity of memory it tak
 
 And now we simply add apps until our memory requirement has been met or exceeded. Suppose we need to free up 9 units of memory, according to this approach the optimal solution would be items C and A.
 
-It is worth noting, however that this solution doesn’t always produce the absolute optimal solution. If we use the previous example of freeing up 10 units of memory this algorithm produces a solution of all the apps, A, B and C as opposed to the actual optimal solution of app C and B.  This inaccuracy is a sacrifice in order to benefit from the much lower run time of the other solutions.
+It is worth noting, however, that this solution doesn’t always produce the absolute optimal solution. If we use the previous example of freeing up 10 units of memory this algorithm produces a solution of all the apps, A, B and C as opposed to the actual optimal solution of app C and B.  This inaccuracy is a sacrifice in order to benefit from a much lower runtime than that of the other solutions.
 
-We could perhaps introduce a second greedy choice into the algorithm to improve the accuracy but we would do so at the cost of performance and the solutions chosen by your initial solution are accurate enough for our purposes.
+We could perhaps introduce a second greedy choice or to further refine our algorithm to improve the accuracy but we would do so at the cost of performance and the solutions chosen by our initial solution are accurate enough for our purposes.
 
 \subsubsection{Pseudocode}
 \begin{lstlisting}[mathescape]
