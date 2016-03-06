@@ -73,7 +73,7 @@ Now that we have have a represenation of every subset, we can multiply the colum
 \begin{center}
     \begin{tabular}{|c|c|c|}
         \hline
-        Item & Weight & Benefit \\ \hline
+        App & Memory & Cost \\ \hline
         A & 2 & 4 \\
         B & 3 & 6 \\
         C & 7 & 9 \\
@@ -87,7 +87,7 @@ Multiplying the columns by the values produces the following results:
 
     \begin{tabular}{|c|c|c|}
         \hline
-        Items A & Item B & Item C   \\ \hline
+        App A & App B & App C   \\ \hline
         $0 \times 4$ & $0 \times 6$ & $0 \times 9$ \\
         $0 \times 4$ & $0 \times 6$ & $1 \times 9$ \\
         $0 \times 4$ & $1 \times 6$ & $0 \times 9$ \\
@@ -101,7 +101,7 @@ Multiplying the columns by the values produces the following results:
     = \quad
     \begin{tabular}{|c|c|c|}
         \hline
-        Items A & Item B & Item C \\ \hline
+        App A & App B & App C \\ \hline
         0 & 0 & 0\\
         0 & 0 & 9\\
         0 & 6 & 0\\
@@ -118,7 +118,7 @@ Adding the columns across we produce the following, and factoring the weight:
 \begin{center}
     \begin{tabular}{|c|c|c|c|c|}
         \hline
-        Items A & Item B & Item C & Additive Value & Size \\ \hline
+        Items A & Item B & Item C & Total Memory & Total Cost \\ \hline
         0 & 0 & 0 & 0 & 0\\
         0 & 0 & 9 & 9 & 7\\
         0 & 6 & 0 & 6 & 3\\
@@ -131,7 +131,7 @@ Adding the columns across we produce the following, and factoring the weight:
     \end{tabular}
 \end{center}
 
-Now finding the minimal value is straightforward, find the minimal value is traversing down the additive value while looking at the size it frees up. Suppose we have to free up 10 blocks of memory, items $A, B$ would be the most efficient choice.
+Now finding the minimal value is straightforward, find the minimal value is traversing down the additive value while looking at the size it frees up. Suppose we have to free up 10 blocks of memory, items $A, C$ would be the most efficient choice.
 
 The pseudocode is as follows, with a few notes:
 
@@ -143,7 +143,7 @@ The pseudocode is as follows, with a few notes:
 \subsubsection{Pseudocode}
 \begin{lstlisting}[mathescape]
 knapsackBrute(items, knapsackSize)
-    max = 0
+    minumum = 0
     for i = 0 to $2^n$ - 1
         subset = binaryToInteger(i)
         sum = 0
@@ -152,8 +152,8 @@ knapsackBrute(items, knapsackSize)
             sum = sum + item[i].benefit * subset[i]
             size = size + item[i].weight * subset[i]
 
-        if size <= knapsackSize && sum > max
-            max = sum
+        if size <= knapsackSize && sum < minumum
+            minumum = sum
             greatestSubset = i
 
     subset = binaryToInteger(greatestSubset)
@@ -175,16 +175,79 @@ We run in $\mathcal{O}(n 2^n)$ time.
 
 \subsection{Dynamic Programming}
 \subsection{Greedy Solution}
+After considering several greedy algorithm solutions we settled on selecting based on a ratio of cost and memory freed by deactivating a particular app. Once each of the apps’ ratio has been evaluated (and the ratio has been stored as a member variable) we sort the array of apps in an ascending order according to this new value. Because the apps are now in order in ascending cost per unit of memory we can now simply add apps to the solution set in the order they appear in the array until our memory requirements are met. For example, if we take our example set of three items:
 
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        App & Memory & Cost \\ \hline
+        A & 2 & 4 \\
+        B & 3 & 6 \\
+        C & 7 & 9 \\
+        \hline
+    \end{tabular}
+\end{center}
+
+We first take the ratio of each item’s cost over the capacity of memory it takes up and sort the elements accordingly. Doing this gives us the following updated table:
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        App & Memory & Cost & Ratio \\ \hline
+        C & 7 & 9 & 1.29 \\
+        A & 2 & 4 & 2 \\
+        B & 3 & 6 & 2 \\
+        \hline
+    \end{tabular}
+\end{center}
+
+And now we simply add apps until our memory requirement has been met or exceeded. Suppose we need to free up 9 units of memory, according to this approach the optimal solution would be items C and A.
+
+It is worth noting, however that this solution doesn’t always produce the absolute optimal solution. If we use the previous example of freeing up 10 units of memory this algorithm produces a solution of all the apps, A, B and C as opposed to the actual optimal solution of app C and B.  This inaccuracy is a sacrifice in order to benefit from the much lower run time of the other solutions.
+
+We could perhaps introduce a second greedy choice into the algorithm to improve the accuracy but we would do so at the cost of performance and the solutions chosen by your initial solution are accurate enough for our purposes.
+
+\subsubsection{Pseudocode}
+\begin{lstlisting}[mathescape]
+knapsackGreed()
+    A[] = Array of Apps
+    S[] = Array of solution set
+    M = Desired amount of memory to be freed
+    sm = Amount of memory freed by solution set
+
+    n = A.length
+
+    for 0 to n
+      A[i].ratio = A[i].cost/A[i].memory
+
+    mergesort(A)
+
+    GreedKnap(A, S)
+      S[0] = A[0]
+      sm = A[0].memory
+      i = 1
+      while (sm < M AND i < n)
+        S[i] = A[i]
+        sm += A[i].memory
+\end{lstlisting}
+
+\subsubsection{Time Complexity}
+Analyzing this algorithm, including both going over the array to produce the ratio that will guide our greedy choices and choosing the actual solution set, we come up with the complexity of:
+
+\begin{equation}
+    \sum _{k = 1} ^{n} k + _{k = 1} ^{n} k = \mathcal{O}(2n)
+\end{equation}
+
+This algorithm therefore runs in $\mathcal{O}(2n)$ time.
 
 \section{Plan of Experiments}
-
+The main objective of our experiments is to extrapolate time and efficiency from the algorithms
 
 \section{Team Roles}
 \begin{description}
-    \item [Illya Starikov] Project Management, Development
-    \item [Timothy Ott] Development (Lead), Architecture
-    \item [Claire Trebing] Development, Quality Assurance,  Documentation
+    \item [Illya Starikov] Project Management, Development (Brute Force)
+    \item [Timothy Ott] Development (Greedy), Architecture
+    \item [Claire Trebing] Development (Dynamic), Quality Assurance,  Documentation
 \end{description}
 
 \end{document}
