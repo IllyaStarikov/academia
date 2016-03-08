@@ -174,6 +174,54 @@ Analyzing this algorithm, we can see the complexity:
 We run in $\mathcal{O}(n 2^n)$ time.
 
 \subsection{Dynamic Programming}
+The approach to dynamic programming came from creating a table of the possible memory and cost combinations. The table would contain rows for the values from 0 to M, the largest possible memory we would have to free up. The program starts by finding the lowest amount of memory an app can take up and the lowest cost. This will act as a base case. For example, if the lowest memory amount is 3 and the cost is 1, then if the user needed to clear out 1, 2, or 3 memory spaces then the phone would close that app. Amounts greater than 4 would be calculated when the program started.
+
+\subsubsection{Pseudocode}
+\begin{lstlisting}[mathescape]
+Create_Delete_Table(numberOfApps, numberToDelete, Memory[], Cost[]){
+	Let d[1 ... M, 3] be new table as shown below
+	Memory To Delete | Nr. of Apps | Cost    |  List of Apps Used
+		0
+		1
+		2
+		3
+		...
+		M
+
+	int low = findMin(d[],Memory[], Cost[]);
+    //This function will find a base case for an app with
+    the lowest memory and lowest cost
+	for (j = 1 to low)
+	{
+		d[j, 0] = d[low, 0];
+		d[j, 1] = d[low, 1];
+		d[j, 2] = d[low, 2];
+		d[j, 3] = d[low, 3];
+	}
+
+	for(j = low to M)
+	{
+		for( i = 1 to N){
+			if(Mi == j && Ci < d[j-low,2] + d[low,2]){
+				d[j, 1] = 1;
+				d[j, 2] = Ci;
+				d[j, 3] = i;
+			}
+
+			else{
+				d[j,1] = d[j-low,1]++;
+				d[j,2] = d[j-low,2] + d[low,2];
+				//add app to the list
+			}
+		}
+	}
+	return;
+}
+\end{lstlisting}
+
+\subsubsection{Time Complexity}
+We can see that this algorithm is $\mathcal{O}(n^2)$.
+
 \subsection{Greedy Solution}
 After considering several greedy algorithm solutions we settled on selecting based on a ratio of cost and memory freed by deactivating a particular app. Once each of the apps’ ratio has been evaluated (and the ratio has been stored as a member variable) we sort the array of apps in an ascending order according to this new value. Because the apps are now in order in ascending cost per unit of memory we can now simply add apps to the solution set in the order they appear in the array until our memory requirements are met. For example, if we take our example set of three items:
 
