@@ -2,41 +2,67 @@
     <head>
         <meta charset="utf-8">
 
-        <title>Trim Fit | Sign Up Form</title>
+        <title>For Fit | Sign Up Form</title>
 
         <!-- Stylesheets and Fonts -->
-        <link rel="stylesheet" href="assets/css/style.css"
-        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/bootstrap.css">
+        <link rel="stylesheet" href="assets/css/bootstrap-theme.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+
         <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 
     </head>
     <body>
 
-    <form action="index.html" method="post">
-            <h1 class="formtitle"> Sign Up Form</h1>
+    <form action="index.html" method="post" class="signup">
+            <h1 class="formtitle">Sign Up Form</h1>
+
             <fieldset>
                 <legend><h2 class="formsubtitle">Personal Information</h2></legend>
 
-                <label id="first_name">First Name</label>
-                <input type="text" name ="firstname" required>
+                <div class="input-group">
+                    <span class="input-group-addon" id="firstname">First Name</span>
+                    <input type="text" class="form-control" placeholder="First Name" required>
+                </div>
 
-                <label id="last_name">Last Name</label>
-                <input type="text" name="lastname" required>
+                <div class="input-group">
+                    <span class="input-group-addon" id="lastname">Last Name</span>
+                    <input type="text" class="form-control" placeholder="Last Name" required>
+                </div>
 
-                <label id="email">Email</label>
-                <input type="email" name="email" multiple required>
+                <div class="input-group">
+                    <span class="input-group-addon" id="email">Email Address</span>
+                    <input type="text" class="form-control" placeholder="Email Address" required>
+                    <span class="input-group-addon"> @mst.edu </span>
+                </div>
 
-                <label id="birthdate">Birth Date</label>
-                <input type="date" name="birthdate" required>
+                <div class="input-group">
+                    <span class="input-group-addon" id="birthdate">Birthday</span>
+                    <input type="date" class="form-control" placeholder="Birthdate" required>
+                </div>
 
-                <label id="username">Username</label>
-                <input type="text" name="username" required>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Username</span>
+                    <input type="text" class="form-control" placeholder="Username" required>
+                </div>
 
-                <label id="password">Password</label>
-                <input type="password" name="password" required>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Password</span>
+                    <input type="password" class="form-control" placeholder="Password" required>
+                </div>
 
-                <label id="password">Confirm Password</label>
-                <input type="password" name="confirmpassword" required>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Confirm Password</span>
+                    <input type="password" class="form-control" placeholder="Confirm Password" required>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-addon"><input type="radio">Male</span>
+                    <span class="input-group-addon"><input type="radio">Female</span>
+                    <span class="input-group-addon"><input type="radio">Other</span>
+
+                </div>
 
                 <label>Gender</label>
                 <input type="radio" name="gender" value="male">
@@ -47,74 +73,113 @@
                 <label id="gender" class="light">Other</label><br>
             </fieldset>
 
-            <fieldset>
-                <legend><h2 class="formsubtitle">Statical Information</h2></legend>
+            <div class="col-lg-6">
+                <fieldset>
+                    <legend><h2 class="formsubtitle">Statical Information</h2></legend>
+                    <div class="input-group">
+                        <span class="input-group-addon">Weight</span>
+                        <input type="number" class="form-control" placeholder="Weight">
+                        <span class="input-group-addon">Inches</span>
+                    </div>
 
-                <label>Units</label>
-                <input type="radio" name="units" value="Inches" checked>
-                <label id="gender" class="light">Inches</label><br>
-                <input type="radio" name="units" value="Centimeters">
-                <label id="gender" class="light">Centimeters</label><br>
+                    <div class="input-group">
+                        <span class="input-group-addon">Height</span>
+                        <input type="number" class="form-control" placeholder="Height">
+                        <span class="input-group-addon">Inches</span>
+                    </div>
 
-                <label id="weight">Weight</label>
-                <input type="number" name="weight">
+                    <div class="input-group">
+                        <span class="input-group-addon">BMI</span>
+                        <input type="number" class="form-control" placeholder="BMI">
+                        <span class="input-group-addon">Inches</span>
+                    </div>
 
-                <label id="height">Height</label>
-                <input type="number" name="height">
+                    <div class="input-group">
+                        <span class="input-group-addon">Neck</span>
+                        <input type="number" class="form-control" placeholder="Neck">
+                        <span class="input-group-addon">Inches</span>
+                    </div>
 
-                <label id="bmi">BMI</label>
-                <input type="number" name="bmi">
+                    <div class="input-group">
+                        <span class="input-group-addon">Arms</span>
+                        <input type="number" class="form-control" placeholder="Arms">
+                        <span class="input-group-addon">Inches</span>
+                    </div>
 
-                <label id="neck">Neck</label>
-                <input type="number" name="neck">
+                    <div class="input-group">
+                        <span class="input-group-addon">Waist</span>
+                        <input type="number" class="form-control" placeholder="Waist">
+                        <span class="input-group-addon">Inches</span>
+                    </div>
 
-                <label id="arms">Arms</label>
-                <input type="number" name="arms">
+                    <div class="input-group">
+                        <span class="input-group-addon">Calves</span>
+                        <input type="number" class="form-control" placeholder="Calves">
+                        <span class="input-group-addon">Inches</span>
+                    </div>
 
-                <label id="waist">Waist</label>
-                <input type="number" name="waist">
+                    <div class="input-group">
+                        <span class="input-group-addon">Hips</span>
+                        <input type="number" class="form-control" placeholder="Calves">
+                        <span class="input-group-addon">Inches</span>
+                    </div>
+                </fieldset>
+            </div>
 
-                <label id="calves">Calves</label>
-                <input type="number" name="calves">
+            <div class="col-lg-6">
+                <fieldset>
+                    <legend><h2 class="formsubtitle">Goal Information</h2></legend>
+                    <div class="input-group">
+                        <span class="input-group-addon">Goal Weight</span>
+                        <input type="number" class="form-control" placeholder="Weight">
+                        <span class="input-group-addon">Inches</span>
+                    </div>
 
-                <label id="hips">Hips</label>
-                <input type="number" name="hips">
-            </fieldset>
+                    <div class="input-group">
+                        <span class="input-group-addon">Goal Height</span>
+                        <input type="number" class="form-control" placeholder="Height">
+                        <span class="input-group-addon">Inches</span>
+                    </div>
 
-            <fieldset>
-                <legend><h2 class="formsubtitle">Goal Information</h2></legend>
+                    <div class="input-group">
+                        <span class="input-group-addon">Goal BMI</span>
+                        <input type="number" class="form-control" placeholder="Goal BMI">
+                        <span class="input-group-addon">Inches</span>
+                    </div>
 
-                <label>Units</label>
-                <input type="radio" name="units" value="Inches" checked>
-                <label id="gender" class="light">Inches</label><br>
-                <input type="radio" name="units" value="Centimeters">
-                <label id="gender" class="light">Centimeters</label><br>
+                    <div class="input-group">
+                        <span class="input-group-addon">Goal Neck</span>
+                        <input type="number" class="form-control" placeholder="Goal Neck">
+                        <span class="input-group-addon">Inches</span>
+                    </div>
 
-                <label id="goal_weight">Goal Weight</label>
-                <input type="number" name="goalweight">
+                    <div class="input-group">
+                        <span class="input-group-addon">Goal Arms</span>
+                        <input type="number" class="form-control" placeholder="Goal Arms">
+                        <span class="input-group-addon">Inches</span>
+                    </div>
 
-                <label id="goal_height">Goal Height</label>
-                <input type="number" name="goal_height">
+                    <div class="input-group">
+                        <span class="input-group-addon">Goal Waist</span>
+                        <input type="number" class="form-control" placeholder="Goal Waist">
+                        <span class="input-group-addon">Inches</span>
+                    </div>
 
-                <label id="goal_bmi">Goal BMI</label>
-                <input type="number" name="goal_bmi">
+                    <div class="input-group">
+                        <span class="input-group-addon">Goal Calves</span>
+                        <input type="number" class="form-control" placeholder="Goal Calves">
+                        <span class="input-group-addon">Inches</span>
+                    </div>
 
-                <label id="goal_neck">Goal Neck</label>
-                <input type="number" name="goal_neck">
+                    <div class="input-group">
+                        <span class="input-group-addon">Goal Hips</span>
+                        <input type="number" class="form-control" placeholder="Goal Calves">
+                        <span class="input-group-addon">Inches</span>
+                    </div>
+                </fieldset>
+            </div>
 
-                <label id="goal_arms">Goal Arms</label>
-                <input type="number" name="goal_arms">
 
-                <label id="goal_waist">Goal Waist</label>
-                <input type="number" name="goal_waist">
-
-                <label id="goal_calves">Goal Calves</label>
-                <input type="number" name="goal_calves">
-
-                <label id="goal_hips">Goal Hips</label>
-                <input type="number" name="goal_hips">
-
-            </fieldset>
             <button type="submit">Sign Up!</button>
         </form>
     </body>
