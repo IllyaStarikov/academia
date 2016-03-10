@@ -1,6 +1,6 @@
 from __future__ import division
 import random
-import math
+from math import pow
 import time
 
 """Stuff to do:
@@ -22,6 +22,41 @@ class App:
         self.memory = random.randrange(32, 1029)
         self.cost = self.memory * random.uniform(.2, .5)
         self.number = num                   #To make identifying Apps easier
+
+def bruteForce(smartphone, memoryGoal):
+    # Make the minimum the sum of all, just for an initial value
+    minimum = 0
+    for Apps in smartphone:
+        minimum += Apps.cost
+
+    # Iterate over the 2^n subsets
+    for i in range(0, int(pow(2,len(smartphone)))):
+        subset = bin(i) # A binary representation of the binary
+
+        totalMemory = 0
+        totalCost = 0
+
+        for i in range(len(subset)):
+            totalMemory += smartphone[i].memory * ord(subset[i])
+            totalCost += smartphone[i].cost * ord(subset[i])
+
+        if totalMemory >= memoryGoal and totalCost < minimum:
+            minimum = totalCost
+            greatestSubset = i
+
+    subset = bin(greatestSubset)
+
+    totalCost = 0
+    totalMemory = 0
+
+    for i in range(len(subset)):
+        if subset[i] == '1':
+            optimalSolution.append(smartphone[i])
+            totalCost += smartphone[i].cost
+            totalMemory += smartphone[i].memory
+
+
+    return (optimalSolution, totalCost, totalMemory)
 
 def GreedKnap(Phone, MemGoal):
     Solution = []
@@ -53,14 +88,6 @@ def PrintOut(Alg, inputsize, Answer, Time, MemGoal):
     f.write("""Solution Set: {0}\n
             Cost of Solution: {1} Freed Memory: {2}
             Average Time: {3}\n\n""".format(a, b, c, d))
-baseinput = 10, 25, 50
-
-
-def timed(f, x, y):
-  start = time.time()
-  ret = f(x, y)
-  elapsed = time.time() - start
-  return ret, elapsed
     
 baseinput = 10, 25, 50
 n=-1
@@ -68,7 +95,7 @@ n=-1
 while (True):
     n+=1
     for i in baseinput:
-        inputsize = int(i*math.pow(10,n))
+        inputsize = int(i*pow(10,n))
         print "Input size:", inputsize
     
         Smartphone = []
@@ -81,8 +108,16 @@ while (True):
         MemGoal = TotalMem * .2
 
 
-#Sorting by ratio
-Smartphone.sort(key=lambda x: x.ratio)
+        #Sorting by ratio
+        Smartphone.sort(key=lambda x: x.ratio)
+
+        for i in range(10):
+            t0 = time.clock()
+            data = bruteForce(Smartphone, MemGoal)
+            elapsed = time.clock() - t0
+            Time.append(elapsed)
+        averagetime = sum(Time)/len(Time)
+        PrintOut(1, inputsize, data, averagetime, MemGoal)
 
         for i in range(10):
             t0 = time.clock()
