@@ -53,6 +53,8 @@ def PrintOut(Alg, inputsize, Answer, Time, MemGoal):
     f.write("""Solution Set: {0}\n
             Cost of Solution: {1} Freed Memory: {2}
             Average Time: {3}\n\n""".format(a, b, c, d))
+baseinput = 10, 25, 50
+
 
 def timed(f, x, y):
   start = time.time()
@@ -78,8 +80,9 @@ while (True):
             TotalMem += Smartphone[i].memory
         MemGoal = TotalMem * .2
 
-        #Sorting by ratio                                                              
-        Smartphone.sort(key=lambda x: x.ratio,)
+
+#Sorting by ratio
+Smartphone.sort(key=lambda x: x.ratio)
 
         for i in range(10):
             t0 = time.clock()
@@ -87,5 +90,4 @@ while (True):
             elapsed = time.clock() - t0
             Time.append(elapsed)
         averagetime = sum(Time)/len(Time)
-        #print "AvgTime:", averagetime
         PrintOut(3, inputsize, data, averagetime, MemGoal)
