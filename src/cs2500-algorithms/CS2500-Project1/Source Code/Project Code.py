@@ -98,6 +98,7 @@ def PrintOut(Alg, inputsize, Answer, Time, MemGoal):
     elif (Alg == 3):
         f.write("Greedy Solution:\n")
     f.write("Cost of Solution: {0} Freed Memory: {1} Average Time: {2}\n\n".format(b, c, d))
+    f.close()
     
 baseinput = 10, 25, 50
 n=-1
