@@ -23,40 +23,43 @@ class App:
         self.cost = self.memory * random.uniform(.2, .5)
         self.number = num                   #To make identifying Apps easier
 
-##def bruteForce(smartphone, memoryGoal):
-##    # Make the minimum the sum of all, just for an initial value
-##    minimum = 0
-##    for Apps in smartphone:
-##        minimum += Apps.cost
-##
-##    # Iterate over the 2^n subsets
-##    for i in range(0, int(pow(2,len(smartphone)))):
-##        subset = bin(i) # A binary representation of the binary
-##
-##        totalMemory = 0
-##        totalCost = 0
-##
-##        for i in range(len(subset)):
-##            totalMemory += smartphone[i].memory * ord(subset[i])
-##            totalCost += smartphone[i].cost * ord(subset[i])
-##
-##        if totalMemory >= memoryGoal and totalCost < minimum:
-##            minimum = totalCost
-##            greatestSubset = i
-##
-##    subset = bin(greatestSubset)
-##
-##    totalCost = 0
-##    totalMemory = 0
-##
-##    for i in range(len(subset)):
-##        if subset[i] == '1':
-##            optimalSolution.append(smartphone[i])
-##            totalCost += smartphone[i].cost
-##            totalMemory += smartphone[i].memory
-##
-##
-##    return (optimalSolution, totalCost, totalMemory)
+def bruteForce(smartphone, memoryGoal):
+    # Make the minimum the sum of all, just for an initial value
+    minimum = 0
+    greatestSubset = 0
+
+    for Apps in smartphone:
+        minimum += Apps.cost
+
+    # Iterate over the 2^n subsets
+    for i in range(0, int(pow(2,len(smartphone)))):
+        subset = bin(i) # A binary representation of the binary
+
+        totalMemory = 0
+        totalCost = 0
+
+        for i in range(len(subset) - 2):
+            totalMemory += smartphone[i].memory * ord(subset[i])
+            totalCost += smartphone[i].cost * ord(subset[i])
+
+        if totalMemory >= memoryGoal and totalCost < minimum:
+            minimum = totalCost
+            greatestSubset = i
+
+    subset = bin(greatestSubset)
+
+    totalCost = 0
+    totalMemory = 0
+
+    for i in range(len(subset)):
+        optimalSolution = []
+        if subset[i] == '1':
+            optimalSolution.append(smartphone[i])
+            totalCost += smartphone[i].cost
+            totalMemory += smartphone[i].memory
+
+
+    return (optimalSolution, totalCost, totalMemory)
 
 def GreedKnap(Phone, MemGoal):
     Solution = []
