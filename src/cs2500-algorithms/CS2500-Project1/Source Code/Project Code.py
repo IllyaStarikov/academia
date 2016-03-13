@@ -3,12 +3,6 @@ import random
 from math import pow
 import time
 
-"""Stuff to do:
-        implement loop to grow input size (math.pow(x,y))
-        implement loop to add total memory of input
-        MemGoal will be 20% of total memory (or higher)
-        Create tuple with MemFreed, Cost, SolutionSet and return for Greedy
-"""
 
 class App:
     memory = -1
@@ -22,6 +16,10 @@ class App:
         self.memory = random.randrange(32, 1029)
         self.cost = self.memory * random.uniform(.2, .5)
         self.number = num                   #To make identifying Apps easier
+
+    def __str__(self):
+        rep = "#{0}  Memory: {1}  Cost: {2}".format(self.number, self.memory, self.cost)
+        return rep
 
 def bruteForce(smartphone, memoryGoal):
     # Make the minimum the sum of all, just for an initial value
@@ -125,13 +123,17 @@ while (True):
         #Sorting by ratio
         Smartphone.sort(key=lambda x: x.ratio)
 
-##        for i in range(10):
-##            t0 = time.clock()
-##            data = bruteForce(Smartphone, MemGoal)
-##            elapsed = time.clock() - t0
-##            Time.append(elapsed)
-##        averagetime = sum(Time)/len(Time)
-##        PrintOut(1, inputsize, data, averagetime, MemGoal)
+##        #Outputting array for testing purposes
+##        for j in Smartphone:
+##            print j, " "
+
+        for i in range(10):
+            t0 = time.clock()
+            data = bruteForce(Smartphone, MemGoal)
+            elapsed = time.clock() - t0
+            Time.append(elapsed)
+        averagetime = sum(Time)/len(Time)
+        PrintOut(1, inputsize, data, averagetime, MemGoal)
 
         for i in range(10):
             t0 = time.clock()
