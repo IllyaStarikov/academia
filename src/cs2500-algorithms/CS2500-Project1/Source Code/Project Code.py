@@ -3,6 +3,9 @@ import random
 from math import pow
 import time
 
+# Illya's Debugging
+import sys
+from pprint import pprint
 
 class App:
     memory = -1
@@ -23,40 +26,45 @@ class App:
 
 def bruteForce(smartphone, memoryGoal):
     # Make the minimum the sum of all, just for an initial value
+    
     minimum = 0
     greatestSubset = 0
 
-    for Apps in smartphone:
-        minimum += Apps.cost
-
+    for App in smartphone:
+        minimum += App.cost
+        
     # Iterate over the 2^n subsets
     for i in range(0, int(pow(2,len(smartphone)))):
-        subset = bin(i) # A binary representation of the binary
-
+        binaryRepresenation = bin(i) # A binary representation of the binary
+        subset = binaryRepresenation.replace("0b", "") #bin returns 0b..., so this returns ..
+        
         totalMemory = 0
         totalCost = 0
-
-        for i in range(len(subset) - 2):
-            totalMemory += smartphone[i].memory * ord(subset[i])
-            totalCost += smartphone[i].cost * ord(subset[i])
-
+        
+        for j in range(len(subset)):
+            if subset[j] == '1':
+                totalMemory += smartphone[j].memory #* ord(subset[i])
+                totalCost += smartphone[j].cost #* ord(subset[i])
+    
         if totalMemory >= memoryGoal and totalCost < minimum:
             minimum = totalCost
             greatestSubset = i
-
-    subset = bin(greatestSubset)
+          
+        
+    binaryRepresenation =  bin(greatestSubset)
+    subset = binaryRepresenation.replace("0b", "")
 
     totalCost = 0
     totalMemory = 0
 
+    optimalSolution = []
+    
     for i in range(len(subset)):
-        optimalSolution = []
         if subset[i] == '1':
             optimalSolution.append(smartphone[i])
             totalCost += smartphone[i].cost
             totalMemory += smartphone[i].memory
-
-
+    
     return (optimalSolution, totalCost, totalMemory)
 
 def GreedKnap(Phone, MemGoal):
@@ -89,7 +97,7 @@ def PrintOut(Alg, inputsize, Answer, Time, MemGoal):
         g.write("Greedy Solution:\n")
     g.write("{}\n".format(a))
     g.close()
-            
+
     f = open('output.txt', 'a')         #Writing data to file
     f.write("Input size: {0}\tMemory to be Freed: {1}\n\n".format(inputsize, MemGoal))
     if (Alg == 1):
@@ -100,45 +108,46 @@ def PrintOut(Alg, inputsize, Answer, Time, MemGoal):
         f.write("Greedy Solution:\n")
     f.write("Cost of Solution: {0} Freed Memory: {1} Average Time: {2}\n\n".format(b, c, d))
     f.close()
-    
+
 baseinput = 10, 25, 50
 n=-1
+# while (True):
+n+=1
+for i in baseinput:
+    inputsize = int(i*pow(10,n))
+    print "Input size:", inputsize
 
-while (True):
-    n+=1
-    for i in baseinput:
-        inputsize = int(i*pow(10,n))
-        print "Input size:", inputsize
-    
-        Smartphone = []
-        Time = []
-        TotalMem = 0
-        for i in range(inputsize):              #Creating 'array' of Apps
-            Smartphone.append(App(i))
-            Smartphone[i].getratio()
-            TotalMem += Smartphone[i].memory
-        MemGoal = TotalMem * .2
+    Smartphone = []
+    Time = []
+    TotalMem = 0
+    for i in range(inputsize):              #Creating 'array' of Apps
+        Smartphone.append(App(i))
+        Smartphone[i].getratio()
+        TotalMem += Smartphone[i].memory
+    MemGoal = TotalMem * .2
 
 
-        #Sorting by ratio
-        Smartphone.sort(key=lambda x: x.ratio)
+    #Sorting by ratio
+    Smartphone.sort(key=lambda x: x.ratio)
 
 ##        #Outputting array for testing purposes
 ##        for j in Smartphone:
 ##            print j, " "
 
-        for i in range(10):
-            t0 = time.clock()
-            data = bruteForce(Smartphone, MemGoal)
-            elapsed = time.clock() - t0
-            Time.append(elapsed)
-        averagetime = sum(Time)/len(Time)
-        PrintOut(1, inputsize, data, averagetime, MemGoal)
+    for i in range(10):
+        t0 = time.clock()
+        data = bruteForce(Smartphone, MemGoal)
+        elapsed = time.clock() - t0
+        Time.append(elapsed)
+    averagetime = sum(Time)/len(Time)
+    PrintOut(1, inputsize, data, averagetime, MemGoal)
 
-        for i in range(10):
-            t0 = time.clock()
-            data = GreedKnap(Smartphone, MemGoal)
-            elapsed = time.clock() - t0
-            Time.append(elapsed)
-        averagetime = sum(Time)/len(Time)
-        PrintOut(3, inputsize, data, averagetime, MemGoal)
+    for i in range(10):
+        t0 = time.clock()
+        data = GreedKnap(Smartphone, MemGoal)
+        elapsed = time.clock() - t0
+        Time.append(elapsed)
+    averagetime = sum(Time)/len(Time)
+    PrintOut(3, inputsize, data, averagetime, MemGoal)
+#    sys.exit("Finished") Illya's Debugging
+    

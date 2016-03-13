@@ -4,3 +4,501 @@ Brute Force Solution:
 Input size: 10
 Greedy Solution:
 [7, 8, 0]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[0, 8]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[8, 4, 3]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[8, 1, 2, 3]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[2, 5]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[1, 2, 9, 4]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[4, 6, 7, 8, 5]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[7, 1, 6]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[4, 3, 2]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[5, 9, 2]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[7, 2, 3, 9, 0]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[5, 2, 8]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[3, 0, 6]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[1, 2, 4]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[5, 4, 2, 7, 9]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[2, 5, 8]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[8, 3, 6, 4]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[2, 0, 3, 7, 1]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[1, 9, 5]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[8, 0, 3]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[9, 8, 1]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[7, 8, 2]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[7, 4, 5, 0]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[5, 3, 8, 6, 4]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[5, 2, 8]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[4, 9, 2, 3]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[8, 1, 2, 0, 5]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[4, 5, 3, 2, 8]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[0, 9, 5]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[3, 1, 7, 6]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[8, 5, 1]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[6, 9, 7]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[0, 9, 4, 5]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[1, 7, 9]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[3, 5, 1]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[8, 6, 9, 3]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[8, 9, 3]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[2, 8, 1]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[6, 5, 4, 2]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[1, 7, 8]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[0, 7, 2, 9]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[8, 0, 2]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[7, 0, 5, 8]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x108642320>, <__main__.App instance at 0x108642488>]
+Input size: 10
+Greedy Solution:
+[0, 4, 7]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x1088ab5a8>, <__main__.App instance at 0x1088ab5f0>]
+Input size: 10
+Greedy Solution:
+[8, 9]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x1060693b0>]
+Input size: 10
+Greedy Solution:
+[1, 7, 0, 3]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x104b5b4d0>, <__main__.App instance at 0x104b5b5a8>]
+Input size: 10
+Greedy Solution:
+[5, 8, 0]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x104ced5a8>, <__main__.App instance at 0x104ced488>]
+Input size: 10
+Greedy Solution:
+[8, 4, 7, 0]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x104952320>]
+Input size: 10
+Greedy Solution:
+[0, 3, 7]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x1038df3b0>]
+Input size: 10
+Greedy Solution:
+[1, 6, 9]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x10f766320>]
+Input size: 10
+Greedy Solution:
+[0, 9]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x1036ef518>, <__main__.App instance at 0x1036ef5a8>]
+Input size: 10
+Greedy Solution:
+[6, 8, 2]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x1044f53f8>]
+Input size: 10
+Greedy Solution:
+[2, 0, 7]
+Input size: 10
+Brute Force Solution:
+[]
+Input size: 10
+Greedy Solution:
+[4, 2, 3]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x10879d440>, <__main__.App instance at 0x10879d4d0>]
+Input size: 10
+Greedy Solution:
+[3, 5, 8, 9]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x10425b5a8>]
+Input size: 10
+Greedy Solution:
+[8, 0, 9, 4]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x103c9a5a8>, <__main__.App instance at 0x103c9a3b0>]
+Input size: 10
+Greedy Solution:
+[8, 2, 1, 4, 3]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x10a6d1488>, <__main__.App instance at 0x10a6d13f8>]
+Input size: 10
+Greedy Solution:
+[4, 5, 6]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x1063c33f8>, <__main__.App instance at 0x1063c3518>, <__main__.App instance at 0x1063c3488>]
+Input size: 10
+Greedy Solution:
+[2, 6, 0]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x10a944320>, <__main__.App instance at 0x10a944518>]
+Input size: 10
+Greedy Solution:
+[0, 6, 4]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x10f4235a8>, <__main__.App instance at 0x10f423518>, <__main__.App instance at 0x10f4235f0>, <__main__.App instance at 0x10f423320>]
+Input size: 10
+Greedy Solution:
+[8, 6, 7, 9]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x10f7dc4d0>, <__main__.App instance at 0x10f7dc518>]
+Input size: 10
+Greedy Solution:
+[5, 8, 4]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x104322488>, <__main__.App instance at 0x1043223f8>, <__main__.App instance at 0x1043225a8>]
+Input size: 10
+Greedy Solution:
+[4, 6, 2, 7]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x10d567518>, <__main__.App instance at 0x10d5673b0>, <__main__.App instance at 0x10d5675f0>, <__main__.App instance at 0x10d5673f8>]
+Input size: 10
+Greedy Solution:
+[6, 0, 1, 9, 4]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x106e8f518>, <__main__.App instance at 0x106e8f560>, <__main__.App instance at 0x106e8f4d0>]
+Input size: 10
+Greedy Solution:
+[6, 7, 9]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x104455560>, <__main__.App instance at 0x1044554d0>]
+Input size: 10
+Greedy Solution:
+[7, 1, 6]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x10ce44518>, <__main__.App instance at 0x10ce44320>]
+Input size: 10
+Greedy Solution:
+[6, 2, 5, 7]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x105535518>, <__main__.App instance at 0x1055353f8>]
+Input size: 10
+Greedy Solution:
+[6, 4, 0]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x107c6d5a8>, <__main__.App instance at 0x107c6d3f8>]
+Input size: 10
+Greedy Solution:
+[8, 1, 0]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x10d4cf518>, <__main__.App instance at 0x10d4cf3b0>]
+Input size: 10
+Greedy Solution:
+[6, 8, 1]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x1066c03b0>, <__main__.App instance at 0x1066c03f8>, <__main__.App instance at 0x1066c05a8>]
+Input size: 10
+Greedy Solution:
+[1, 9, 3]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x103878488>, <__main__.App instance at 0x103878560>, <__main__.App instance at 0x103878518>]
+Input size: 10
+Greedy Solution:
+[4, 7, 3]
+Input size: 10
+Brute Force Solution:
+[<__main__.App instance at 0x10f647440>, <__main__.App instance at 0x10f647320>, <__main__.App instance at 0x10f6473b0>]
+Input size: 10
+Greedy Solution:
+[3, 7, 0]
