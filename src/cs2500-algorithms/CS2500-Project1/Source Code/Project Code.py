@@ -61,7 +61,7 @@ def bruteForce(smartphone, memoryGoal):
     
     for i in range(len(subset)):
         if subset[i] == '1':
-            optimalSolution.append(smartphone[i])
+            optimalSolution.append(smartphone[i].number)
             totalCost += smartphone[i].cost
             totalMemory += smartphone[i].memory
     
@@ -71,12 +71,12 @@ def GreedKnap(Phone, MemGoal):
     Solution = []
     Solution.append(Phone[0].number)
     FreeMem = Phone[0].memory
-    FreeMem = Phone[0].cost
+    SolutionCost = Phone[0].cost
     i = 1
     while (FreeMem < MemGoal and i < len(Phone)):
         Solution.append(Phone[i].number)
         FreeMem += Phone[i].memory
-        SolutionCost = Phone[i].cost
+        SolutionCost += Phone[i].cost
         i += 1
     Answer = (Solution, SolutionCost, FreeMem)
     return Answer
@@ -109,45 +109,46 @@ def PrintOut(Alg, inputsize, Answer, Time, MemGoal):
     f.write("Cost of Solution: {0} Freed Memory: {1} Average Time: {2}\n\n".format(b, c, d))
     f.close()
 
-baseinput = 10, 25, 50
+baseinput = 5, 10, 25
 n=-1
-# while (True):
-n+=1
-for i in baseinput:
-    inputsize = int(i*pow(10,n))
-    print "Input size:", inputsize
+while (True):
+    n += 1
+    for i in baseinput:
+        inputsize = int(i*pow(10,n))
+        print "Input size:", inputsize
 
-    Smartphone = []
-    Time = []
-    TotalMem = 0
-    for i in range(inputsize):              #Creating 'array' of Apps
-        Smartphone.append(App(i))
-        Smartphone[i].getratio()
-        TotalMem += Smartphone[i].memory
-    MemGoal = TotalMem * .2
+        Smartphone = []
+        Time = []
+        TotalMem = 0
+        for i in range(inputsize):              #Creating 'array' of Apps
+            Smartphone.append(App(i))
+            Smartphone[i].getratio()
+            TotalMem += Smartphone[i].memory
+        MemGoal = TotalMem * .2
 
 
     #Sorting by ratio
-    Smartphone.sort(key=lambda x: x.ratio)
+        Smartphone.sort(key=lambda x: x.ratio)
 
-##        #Outputting array for testing purposes
-##        for j in Smartphone:
-##            print j, " "
+        #Outputting array for testing purposes
+        for j in Smartphone:
+            print j, " "
 
-    for i in range(10):
-        t0 = time.clock()
-        data = bruteForce(Smartphone, MemGoal)
-        elapsed = time.clock() - t0
-        Time.append(elapsed)
-    averagetime = sum(Time)/len(Time)
-    PrintOut(1, inputsize, data, averagetime, MemGoal)
+        if (inputsize < 50):
+            for i in range(10):
+                t0 = time.clock()
+                data = bruteForce(Smartphone, MemGoal)
+                elapsed = time.clock() - t0
+                Time.append(elapsed)
+            averagetime = sum(Time)/len(Time)
+            PrintOut(1, inputsize, data, averagetime, MemGoal)
 
-    for i in range(10):
-        t0 = time.clock()
-        data = GreedKnap(Smartphone, MemGoal)
-        elapsed = time.clock() - t0
-        Time.append(elapsed)
-    averagetime = sum(Time)/len(Time)
-    PrintOut(3, inputsize, data, averagetime, MemGoal)
+        for i in range(10):
+            t0 = time.clock()
+            data = GreedKnap(Smartphone, MemGoal)
+            elapsed = time.clock() - t0
+            Time.append(elapsed)
+        averagetime = sum(Time)/len(Time)
+        PrintOut(3, inputsize, data, averagetime, MemGoal)
 #    sys.exit("Finished") Illya's Debugging
     
