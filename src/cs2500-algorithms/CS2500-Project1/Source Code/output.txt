@@ -1,0 +1,20 @@
+Input size: 5	Memory to be Freed: 358.2
+
+Brute Force Solution:
+Cost of Solution: 192.134768424 Freed Memory: 834 Average Time: 6.71e-05
+
+Input size: 5	Memory to be Freed: 358.2
+
+Greedy Solution:
+Cost of Solution: 192.134768424 Freed Memory: 834 Average Time: 3.45e-05
+
+Input size: 10	Memory to be Freed: 1161.4
+
+Brute Force Solution:
+Cost of Solution: 301.325812064 Freed Memory: 1255 Average Time: 0.0028836
+
+Input size: 10	Memory to be Freed: 1161.4
+
+Greedy Solution:
+Cost of Solution: 301.325812064 Freed Memory: 1255 Average Time: 0.00144425
+

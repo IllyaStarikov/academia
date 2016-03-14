@@ -1,0 +1,12 @@
+Input size: 5
+Brute Force Solution:
+[3]
+Input size: 5
+Greedy Solution:
+[3]
+Input size: 10
+Brute Force Solution:
+[9, 3]
+Input size: 10
+Greedy Solution:
+[9, 3]
