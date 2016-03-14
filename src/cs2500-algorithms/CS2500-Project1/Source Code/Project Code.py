@@ -109,7 +109,7 @@ def PrintOut(Alg, inputsize, Answer, Time, MemGoal):
     f.write("Cost of Solution: {0} Freed Memory: {1} Average Time: {2}\n\n".format(b, c, d))
     f.close()
 
-baseinput = 5, 10, 25
+baseinput = 5, 10, 15, 25
 n=-1
 while (True):
     n += 1
