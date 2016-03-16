@@ -133,7 +133,7 @@ def DelTable(Apps, MemoryGoal):
         sumOf += app.cost
         
 #    DelTable[Goals][2]    
-    Answer = (DelTable[Goals][3], sumOf, DelTable[Goals][1]) 
+    Answer = DelTable 
     return Answer
 
 def GreedKnap(Phone, MemGoal):
@@ -150,82 +150,21 @@ def GreedKnap(Phone, MemGoal):
     Answer = (Solution, SolutionCost, FreeMem)
     return Answer
 
-def PrintOut(Alg, inputsize, Answer, Time, MemGoal):
-    if isinstance(Answer[0][0], App):
-        thingy=[]
-        for i in range(0, len(Answer[0])):
-            thingy.append(Answer[0][i].number)
-        a = str(thingy)
-    else:
-        a = str(Answer[0])
-    b = str(Answer[1])
-    c = str(Answer[2])
-    d = str(Time)
-
-    g = open('SolutionSets.txt', 'a')   #Writing Solution Sets to file
-    g.write("Input size: {0}\n".format(inputsize))
-    if (Alg == 1):
-        g.write("Brute Force Solution:\n")
-    elif (Alg == 2):
-        g.write("Dynamic Programming Solution:\n")
-    elif (Alg == 3):
-        g.write("Greedy Solution:\n")
-    g.write("{}\n".format(a))
-    g.close()
-
-    f = open('output.txt', 'a')         #Writing data to file
-    f.write("Input size: {0}\tMemory to be Freed: {1}\n\n".format(inputsize, MemGoal))
-    if (Alg == 1):
-        f.write("Brute Force Solution:\n")
-    elif (Alg == 2):
-        f.write("Dynamic Programming Solution:\n")
-    elif (Alg == 3):
-        f.write("Greedy Solution:\n")
-    f.write("Cost of Solution: {0} Freed Memory: {1} Average Time: {2}\n\n".format(b, c, d))
-    f.close()
-
-baseinput = 5, 10, 15, 25
-n=-1
-while (True):
-    n += 1
-    for i in baseinput:
-        inputsize = int(i*pow(10,n))
-        print "Input size:", inputsize
-
-        Smartphone = []
-        Time = []
-        TotalMem = 0
-        for i in range(inputsize):              #Creating 'array' of Apps
-            Smartphone.append(App(i))
-            Smartphone[i].getratio()
-            TotalMem += Smartphone[i].memory
-        MemGoal = TotalMem * .2
-
-
+def MakeArray(inputsize):
+    Smartphone = []
+    TotalMem = 0
+    for i in range(inputsize):              #Creating 'array' of Apps
+        Smartphone.append(App(i))
+        Smartphone[i].getratio()
+        TotalMem += Smartphone[i].memory
+    MemGoal = TotalMem * .2
     #Sorting by ratio
-        Smartphone.sort(key=lambda x: x.ratio)
-        
-        if (inputsize < 50):
-            for i in range(10):
-                t0 = time.clock()
-                data = bruteForce(Smartphone, MemGoal)
-                elapsed = time.clock() - t0
-                Time.append(elapsed)
-            averagetime = sum(Time)/len(Time)
-            PrintOut(1, inputsize, data, averagetime, MemGoal)
+    Smartphone.sort(key=lambda x: x.ratio)
+    return Smartphone
 
-        for i in range(10):
-            t0 = time.clock()
-            data = DelTable(Smartphone, MemGoal)
-            elapsed = time.clock() - t0
-            Time.append(elapsed)
-        averagetime = sum(Time)/len(Time)
-        PrintOut(2, inputsize, data, averagetime, MemGoal)
-
-        for i in range(10):
-            t0 = time.clock()
-            data = GreedKnap(Smartphone, MemGoal)
-            elapsed = time.clock() - t0
-            Time.append(elapsed)
-        averagetime = sum(Time)/len(Time)
-        PrintOut(3, inputsize, data, averagetime, MemGoal)
+def getMemGoal(array):
+    goal = []
+    for i in range(0,len(array)):
+        goal.append(array[i].memory)
+        memgoal = sum(goal)*.2
+    return memgoal
