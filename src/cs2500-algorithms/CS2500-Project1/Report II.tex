@@ -14,6 +14,7 @@
 \usepackage{hyperref}
 \usepackage{sidecap}
 \usepackage{graphicx}
+\usepackage[binary-units=true]{siunitx}
 
 \hypersetup{
     colorlinks=true,
@@ -115,7 +116,9 @@ When comparing the Time vs. Costs, the trend is also quite exponential. For as o
 
 We also see that Greedy Solution outperformed the Dynamic in not only time but accuracy. We are unsure of the reasoning behind this, for our algorithm seemed certainly correct on paper.
 
-Tying this back into the real world example, none of these solution would be able to work. Assuming a smartphone of $2GB$ RAM, figuring an optimal solution would take a bare minimum of $38$ seconds (not to mention $2$ minutes if we are using the Brute Force.)
+Tying this back into the real world example, none of these solution would be able to work. Assuming a smartphone of $\SI{2}{\giga\byte}$ RAM\footnote{We are assuming our memory is equivalent to $\SI{1}{\mega\byte}$. Therefore, $\SI{2}{\giga\byte} = \SI{2000}{\mega\byte}$}, figuring an optimal solution would take a bare minimum of $38$ seconds (not to mention $2$ minutes if we are using the Brute Force.)
+
+This may not be applicable to the real world, it was interesting thought experiment.
 
 \section{Roles}
 \begin{itemize}
@@ -141,6 +144,22 @@ Tying this back into the real world example, none of these solution would be abl
 \end{itemize}
 
 \section{Interesting Results}
+In the process of going over the data generated in our experiments we noted several interesting results that we would like to highlight here.
+\begin{itemize}
+    \item We noticed that for input sizes under roughly $15$ the Brute Force method was both more accurate, which we expected, but also significantly faster than the other two methods. When we take into consideration that the Brute Force's complexity is $\mathcal{O}(n2^n)$ and the Greedy Solution is $\mathcal{O}(2n)$, this is an excellent highlight to the fact that the growth of the function is far more important than its initial run speeds.
+    \item There is an interesting anomaly in the data set for the input size of $25$. At this point the run times for each algorithm spike noticeably only to then immediately dip once again. What's more interesting is that as we mentioned earlier we ran these experiments twice, independently of one another on two different machines and this anomaly occurred in both rounds of experimentation.  So, what is so special about $25$ inputs? The short answer is we are not sure.  Our best guess is that the increase and subsequent drop are somehow related to the Brute Force algorithm since that is where we stopped testing that particular algorithm. Particularly we think this may have been the fault of the language's garbage collection functionality but without further testing we cannot be sure.
+    \item Also of note is that while initially our dynamic approach was a good deal less accurate than either the Brute Force or even the Greedy approach, as the input sizes increased the accuracy of the dynamic algorithm also increased.
+\end{itemize}
+
 \section{Conclusion}
+Memory management is a complex issue with many interesting solutions of varying effectiveness. With this project we explored three approaches to solve this issue using a smartphone's memory management system as our testing ground. Our solutions took the forms of:
+\begin{itemize}
+    \item A brute force approach, comparing every possible subset of solutions to find an optimal choice at the expense of a high complexity and eventual run-time;
+    \item A dynamic programming solution which built a table of solutions to effectively try every solution but with a lower complexity due to being able to look up values that were already computed; and
+    \item A greedy algorithm approach which took a ratio of the cost and memory and produced a solution that was simply taking the lowest ratio apps until the memory requirements were met, in effect trading the accuracy of the other two approaches for a significant increase in speed.
+\end{itemize}
+
+Through our data gathered during experimentation we see that these early predictions hold fairly consistently, despite some unaccounted for inaccuracy on the part of our dynamic solution. While it is tempting to label one solution as the “best” or “optimal” solution, this would be misleading as each approach shines under different circumstances. For instance, for small input sizes the brute force algorithm seemed to exceed both other solutions in terms of both accuracy and speed. For higher input sets the greedy algorithm was the clear winner in terms of speed but theoretically would lose out on accuracy to the dynamic solution every time. Thus, we see that is important to tailor your solutions to the problem and not simply favor one approach over another arbitrarily.
+
 
 \end{document}
