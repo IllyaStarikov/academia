@@ -260,10 +260,6 @@ while (True):
         averagetime = sum(Time)/len(Time)
         PrintOut(2, inputsize, data, averagetime, MemGoal)
 
-        for i in Smartphone:
-            print i
-        print "\n"
-
         for i in range(10):
             t0 = time.clock()
             data = GreedKnap(Smartphone, MemGoal)

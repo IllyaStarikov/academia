@@ -195,7 +195,7 @@ def DynSol(phone, MemGoal):
                     Table[i-1,j][1] is not 0):
                     Table[i,j] = Table[i-1,j]
                 else:
-                    Table[i,j][0].append([phone[i])
+                    Table[i,j][0].append([phone[i]])
                     Table[i,j].append(phone[i].cost)
                     if Table[i-1, int(ceil(j-phone[i].cost))][0] is not [None]:
                         for k in range(0, len(Table[i-1,int(ceil(j-phone[i].cost))][0])):
@@ -214,5 +214,9 @@ def DynSol(phone, MemGoal):
     Answer.append(Table[len(phone)-1,goal][1])
     Answer.append(FreedMem)
     return Table
-        
-            
+
+def Stuff(inputsize):
+    phone = MakeArray(inputsize)
+    goal = getMemGoal(phone)
+    data = DynSol(phone, goal)
+    return data
