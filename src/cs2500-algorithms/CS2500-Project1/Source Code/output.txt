@@ -1,0 +1,110 @@
+Input size: 5	Memory to be Freed: 432.2
+
+Brute Force Solution:
+Cost of Solution: 226.35633513 Freed Memory: 585 Average Time: 0.000192499872926
+
+Input size: 5	Memory to be Freed: 432.2
+
+Dynamic Programming Solution:
+Cost of Solution: 762.438056806 Freed Memory: 1781 Average Time: 0.0205784602528
+
+Input size: 5	Memory to be Freed: 432.2
+
+Greedy Solution:
+Cost of Solution: 277.094245402 Freed Memory: 790 Average Time: 0.013720854355
+
+Input size: 10	Memory to be Freed: 701.8
+
+Brute Force Solution:
+Cost of Solution: 183.073039036 Freed Memory: 716 Average Time: 0.00742551472032
+
+Input size: 10	Memory to be Freed: 701.8
+
+Dynamic Programming Solution:
+Cost of Solution: 586.776152951 Freed Memory: 1834 Average Time: 0.0445247356274
+
+Input size: 10	Memory to be Freed: 701.8
+
+Greedy Solution:
+Cost of Solution: 288.734737006 Freed Memory: 1229 Average Time: 0.0296847892302
+
+Input size: 15	Memory to be Freed: 1491.4
+
+Brute Force Solution:
+Cost of Solution: 373.257786769 Freed Memory: 1554 Average Time: 0.302493731396
+
+Input size: 15	Memory to be Freed: 1491.4
+
+Dynamic Programming Solution:
+Cost of Solution: 612.290887634 Freed Memory: 2340 Average Time: 0.283918939273
+
+Input size: 15	Memory to be Freed: 1491.4
+
+Greedy Solution:
+Cost of Solution: 373.257786769 Freed Memory: 1554 Average Time: 0.189281562308
+
+Input size: 25	Memory to be Freed: 2916.4
+
+Brute Force Solution:
+Cost of Solution: 645.069421445 Freed Memory: 2918 Average Time: 430.647394933
+
+Input size: 25	Memory to be Freed: 2916.4
+
+Dynamic Programming Solution:
+Cost of Solution: 1103.07936602 Freed Memory: 4490 Average Time: 215.779586993
+
+Input size: 25	Memory to be Freed: 2916.4
+
+Greedy Solution:
+Cost of Solution: 798.069253642 Freed Memory: 3578 Average Time: 143.853062114
+
+Input size: 50	Memory to be Freed: 5074.4
+
+Dynamic Programming Solution:
+Cost of Solution: 1647.1178379 Freed Memory: 6747 Average Time: 2.44678334484
+
+Input size: 50	Memory to be Freed: 5074.4
+
+Greedy Solution:
+Cost of Solution: 1217.99860108 Freed Memory: 5277 Average Time: 1.22339901708
+
+Input size: 100	Memory to be Freed: 11695.8
+
+Dynamic Programming Solution:
+Cost of Solution: 2985.75755602 Freed Memory: 12839 Average Time: 13.154391007
+
+Input size: 100	Memory to be Freed: 11695.8
+
+Greedy Solution:
+Cost of Solution: 2715.3126607 Freed Memory: 11945 Average Time: 6.57720830417
+
+Input size: 150	Memory to be Freed: 15602.6
+
+Dynamic Programming Solution:
+Cost of Solution: 3966.81646861 Freed Memory: 16627 Average Time: 35.1384102999
+
+Input size: 150	Memory to be Freed: 15602.6
+
+Greedy Solution:
+Cost of Solution: 3756.08089203 Freed Memory: 16182 Average Time: 17.5692270673
+
+Input size: 250	Memory to be Freed: 26594.8
+
+Dynamic Programming Solution:
+Cost of Solution: 6652.13387589 Freed Memory: 28532 Average Time: 117.169802888
+
+Input size: 250	Memory to be Freed: 26594.8
+
+Greedy Solution:
+Cost of Solution: 6035.23488073 Freed Memory: 27031 Average Time: 58.5849280247
+
+Input size: 500	Memory to be Freed: 54262.0
+
+Dynamic Programming Solution:
+Cost of Solution: 13215.0911111 Freed Memory: 55399 Average Time: 836.921203619
+
+Input size: 500	Memory to be Freed: 54262.0
+
+Greedy Solution:
+Cost of Solution: 12664.4104725 Freed Memory: 54297 Average Time: 418.460662805
+
