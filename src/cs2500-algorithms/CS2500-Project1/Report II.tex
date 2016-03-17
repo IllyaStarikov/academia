@@ -50,19 +50,19 @@ We implemented our three solutions as one overarching test program that produces
 
 First we specify a list of input sizes that our program will act on, we will discuss this is in more detail further along but for now it should be noted that our first input size is $5$. Our program then creates an array of newly created \texttt{Apps} of the specified input size\footnote{Again, in our first case this is 5.}. These newly created apps have each of their properties randomly assigned by its constructor. Next, because our Greedy Solution requires the inputs be sorted based on its ratio variable and the other solutions do not, we sort the list using Python’s built in sort function.
 
-Now we simply feed the newly sorted list to each of the solution functions in turn, timing the run time of each by taking a timestamp before running the algorithm, again after, then subtracting the two times. We run each program ten times per input and take the average of these for more accuracy. Once each solution algorithm has run ten times the program outputs the data (which includes the solution set, the amount of memory freed by the solution, the combined cost of the solution and the average time it took) to two text files in the directory of the program.
+Now we simply feed the newly sorted list to each of the solution functions in turn, timing the run time of each by taking a timestamp before running the algorithm, again after, then subtracting the two times. We run each program ten times per input and take the average of these times for greater accuracy. Once each solution algorithm has run ten times the program outputs the data (which includes the solution set, the amount of memory freed by the solution, the combined cost of the solution and the average time it took) to two text files in the directory of the program.
 
 It is at this point that our program returns to the top of the loop for the next input. To ensure a adequate spread of input sizes we defined a list of “base inputs” which we initialized as $5, 10, 15$, and $25$. Once the program finishes iterating over this list, testing each solution as mentioned above, the program returns to the beginning of the input list and multiplies each by 10 to the power of $n$, where $n$ is incremented with each new round of the loop back to the beginning of the base inputs. This entire process is placed in a while loop that is set to infinitely repeat so that we are able to get as many data sets as the program can output in the time we have allotted for testing.
 
 \section{Experiment}
-As described above, the tests were run indifferently for a twelve hour period getting our input size to $1,000$. Noting that the for input size of $1,000$ it took the Dynamic Programming approach $1334.81$ seconds, the total time to get accurate results was \textit{3 hours, 42 minutes, and 28 seconds}\footnote{$1334.81$ seconds $\times 10$ iterations $= 13348.1$ seconds = $222.47$ minutes.}. We thought this was a good cut off point.
+As described above, the tests were run for a twelve hour period getting our input size to $1,000$. Noting that the for input size of $1,000$ it took the Dynamic Programming approach $1334.81$ seconds, the total time to get accurate results was \textit{3 hours, 42 minutes, and 28 seconds}\footnote{$1334.81$ seconds $\times 10$ iterations $= 13348.1$ seconds = $222.47$ minutes.}. We thought this was a good cut off point.
 
 To ensure accuracy, we decided to run the tests on two machines. These tests can be seen on the graphs, but not the data sets. The tests were fairly comparable, so we decided that displaying data from one data set was sufficient.
 
-We had noticed that the Brute Force was taking a drastically slow time to run (the complexity being $n \times 2^n$). After a sample run, the Brute Force algorithm returned a \texttt{Memory Error} for an input size of $50$. Seeing as we were not likely to be able to have suffecient enough time, we decided to limit the Brute Force to a maximum of $25$ inputs. Below are the results.
+We noticed that the Brute Force solution was taking a drastically longer time to run (the complexity being $n \times 2^n$). After a sample run, the Brute Force algorithm returned a \texttt{Memory Error} for an input size of $50$. Seeing as we were not likely to be able to have suffecient enough time, we decided to limit the Brute Force to a maximum of $25$ inputs. Below are the results.
 
 \subsection{Results Data Set}
-Below you can find the results from our \textit{one of our test}. As stated above, the Brute Force only goes to 25 inputs. Note that the input column is the Input size of applications, the Algorithm is the type of algorithm we used, the Memory was the goal memory we wanted to produce, the Cost was what we wanted to minimize, the Freed is the memory that was actually freed (because we could go over the goal if it was an optimal solution) and finally the Time is the time taken (strictly of the algorithm) measured in seconds.
+Below you can find the results from \textit{one of our test}. As stated above, the Brute Force only goes to 25 inputs. Note that the input column is the Input size of applications, the Algorithm is the type of algorithm we used, the Memory was the goal memory we wanted to produce, the Cost was what we wanted to minimize, the Freed column is the memory that was actually freed (because we could go over the goal if it was an optimal solution) and finally the Time is the time taken (strictly of the algorithm in question) measured in seconds.
 \begin{adjustwidth}{-.5cm}{}
     \begin{center}
         \begin{tabular}{l|lllll} \toprule
@@ -98,27 +98,27 @@ Below you can find the results from our \textit{one of our test}. As stated abov
 
 
 \subsection{Results}
-While looking at the data we got back, we notice a very noticeable trend immediately: the exponential nature of the quasi-exponential nature of the algorithms. When plotting on an input size vs. graph, we could see even the algorithm with $\mathcal{O}(n)$  (the Greedy Solution) complexity showed some exponential growth. Taking into considering the \href{https://en.wikipedia.org/wiki/Model_of_computation}{RAM Model of Computing} is not completely applicable in this situation, the results are more than staggering.
+While looking at the data we got back, we notice a very noticeable trend immediately: the exponential nature of the quasi-exponential nature of the algorithms. When plotting on an input size vs. time graph, we could see even the algorithm with $\mathcal{O}(n)$  (the Greedy Solution) complexity showed some exponential growth. Taking into consideration the \href{https://en.wikipedia.org/wiki/Model_of_computation}{RAM Model of Computing} is not completely applicable in this situation, the results are more than staggering.
 
 \begin{adjustwidth}{-1.55cm}{}
     \centering
     \includegraphics[page=2,width=1.25\textwidth]{Graphs.pdf}
 \end{adjustwidth}
 
-As can be seen in the above figure, although the input follows the patter of $5n, 10n, 15n, 25n | n \in \mathbb{Z}^+$, the results typically follow a patter of $2\times$ their predecessor.
+As can be seen in the above figure, although the input follows the pattern of $5n, 10n, 15n, 25n | n \in \mathbb{Z}^+$, the results typically follow a pattern of $2\times$ their predecessor.
 
-When comparing the Time vs. Costs, the trend is also quite exponential. For as our algorithms get a larger cost, the time is unquestionably larger. When actually looking at the Time vs. Accuracy, the clear cut winner is Greedy. The time saving are immense compared to Dynamic and Brute Force. On certain cases, Greedy can finish before Dynamic and Brute force combined.
+When comparing the Time vs. Costs, the trend is also quite exponential. For, as our algorithms get a larger cost, the time is unquestionably larger. When actually looking at the Time vs. Accuracy, the clear cut winner is Greedy. The time saving are immense compared to Dynamic and Brute Force. On certain cases, Greedy can finish before Dynamic and Brute force combined.
 
 \begin{adjustwidth}{-1.55cm}{}
     \centering
     \includegraphics[page=1,width=1.25\textwidth]{Graphs.pdf}
 \end{adjustwidth}
 
-We also see that Greedy Solution outperformed the Dynamic in not only time but accuracy. We are unsure of the reasoning behind this, for our algorithm seemed certainly correct on paper.
+We also see that Greedy Solution outperformed the Dynamic in not only time but accuracy. We are unsure of the reasoning behind this, for our algorithm certainly seemed correct on paper.
 
 Tying this back into the real world example, none of these solution would be able to work. Assuming a smartphone of $\SI{2}{\giga\byte}$ RAM\footnote{We are assuming our memory is equivalent to $\SI{1}{\mega\byte}$. Therefore, $\SI{2}{\giga\byte} = \SI{2000}{\mega\byte}$}, figuring an optimal solution would take a bare minimum of $38$ seconds (not to mention $2$ minutes if we are using the Brute Force.)
 
-This may not be applicable to the real world, it was interesting thought experiment.
+While this may not be applicable to the real world, it was interesting thought experiment.
 
 \section{Roles}
 \begin{itemize}
