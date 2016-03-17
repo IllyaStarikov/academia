@@ -46,21 +46,45 @@ def bruteForce(smartphone, memoryGoal):
                 totalMemory += smartphone[j].memory #* ord(subset[i])
                 totalCost += smartphone[j].cost #* ord(subset[i])
 
+
+
         if totalMemory >= memoryGoal and totalCost < minimum:
+
             minimum = totalCost
+
             greatestSubset = i
 
+
+
+
+
     binaryRepresenation =  bin(greatestSubset)
+
     subset = binaryRepresenation.replace("0b", "")
+
+
+
     totalCost = 0
+
     totalMemory = 0
+
+
+
     optimalSolution = []
 
+
+
     for i in range(len(subset)):
+
         if subset[i] == '1':
+
             optimalSolution.append(smartphone[i].number)
+
             totalCost += smartphone[i].cost
+
             totalMemory += smartphone[i].memory
+
+
 
     return (optimalSolution, totalCost, totalMemory)
 
@@ -73,36 +97,31 @@ def bruteForce(smartphone, memoryGoal):
 
 def DelTable(Apps, MemoryGoal):
 
-    numofApps = len(Apps) #This is the number of apps we have open 
+    numofApps = len(Apps)
     maxMem = 0
     for i in range(0,numofApps):
-        maxMem += Apps[i].memory #this calculates the maximum memory we could be asked to clear 
+        maxMem += Apps[i].memory
 
-    DelTable = [[0 for j in range(5)] for i in range(maxMem)] #This creates a table for reference 
-    #Columns are: Memory to Delete | Apps Used | Total Memory Deleted | Total Cost | Over flow  
-
-    #Set Up Table 
-    #Column 0: Label Rows 0 - maxMem for easy reference 
+    DelTable = [[0 for j in range(5)] for i in range(maxMem)]
+   
+    #label rows
     for j in range(0, maxMem):
         DelTable[j][0] = j
 
-    #Column 1: Set the Apps Used list to empty 
     for j in range(0, maxMem):
-        DelTable[j][1] = []
+        DelTable[j][2] = 0 
 
-    #Column 2: Set the Total Mem to 0 
     for j in range(0, maxMem):
-        DelTable[j][2] = 0
+        DelTable[j][3] = []
 
-    #Column 3: Set the Total Cost to 0 
-    for j in range(0, maxMem):
-        DelTable[j][3] = 0
+        
 
-    #Column 4: Set the overflow to Opposite of memory   
-    for j in range(0, maxMem):
-        DelTable[j][4] = -DelTable[j][0]
-    
-    #Base Case
+    DelTable[0][0] = 0
+    DelTable[0][1] = 0
+    DelTable[0][4] = 0
+
+
+    #base case
     #Asssume the first app has the smallest memory and the lowest cost 
     BaseCase = Apps[0].number
     BaseMem = Apps[0].memory
@@ -115,60 +134,45 @@ def DelTable(Apps, MemoryGoal):
                 BaseCost = round(Apps[i].cost)
                 BaseMem = round(Apps[i].memory)
                 BaseCase = round(Apps[i].number)
-    #Base Case now holds the app with the lowest memory and the lowest cost 
 
-    #Fill in Base Case Line first 
-    intBaseCase = int(round(BaseCase)) #Because apparently sometimes it's a float... *shrug*
-    DelTable[intBaseCase][1].append(Apps[intBaseCase].number)  
-    DelTable[intBaseCase][2] = Apps[intBaseCase].memory
-    DelTable[intBaseCase][3] = Apps[intBaseCase].cost 
-    DelTable[intBaseCase][4] = 0 #No over flow becuase it is exact
+
 
     #FIll up to the base case line
-    for i in range(1, intBaseCase): #Start at 1 because 0 will be empty
-        DelTable[i][1].append(Apps[intBaseCase].number)
-        DelTable[i][2] = Apps[intBaseCase].memory
-        DelTable[i][3] = Apps[intBaseCase].cost
-        DelTable[i][4] = Apps[intBaseCase].memory - i #To calculate how much larger the Base Case memory is from the memory we're asked to delete 
+    illyaisawesome = int(round(BaseCase))
+
+    for i in range(1, illyaisawesome):
+        DelTable[i][1] = Apps[illyaisawesome].memory
+        DelTable[i][2] = BaseCost # ILLYA CHANGED THIS
+        DelTable[i][3].append(Apps[i])
+#        DelTable[i][3].append(Apps[i].number)
+
+        
 
     #Fill the rest of the table
-    for j in range (intBaseCase, maxMem):
-        #First, search the existing apps for one with that cost 
-        for i in range (0, numofApps):
-            if Apps[i].memory == DelTable[j][0]: 
-                if DelTable[j][3] == 0: #If this is the first app with this memory size found 
-                    DelTable[j][1].append(Apps[i].number)
-                    DelTable[j][2] = Apps[i].memory
-                    DelTable[j][3] = Apps[i].cost 
-                    DelTable[j][4] = 0 #Because it is an exact match 
-                else: 
-                    if Apps[i].cost < DelTable[j][3]: #If the cost of the new app is samller, replace the data
-                        DelTable[j][1] = [] #Clear Table 
-                        DelTable[j][1].append(Apps[intBaseCase].number)
-                        DelTable[j][2] = Apps[i].memory
-                        DelTable[j][3] = Apps[i].cost
-                        DelTable[j][4] = 0 #Because it is an exact match 
-        #If no exact match can be found, use the base case 
-        while (DelTable[j][4] < 0): #This will keep going until a set of apps deletes enough memory 
-            if DelTable[j][2] == 0 and i not in DelTable[j][1]:
-                #Insert Base Case 
-                DelTable[j][1].append(Apps[intBaseCase].number)
-                DelTable[j][2] = Apps[intBaseCase].memory
-                DelTable[j][3] = Apps[intBaseCase].cost
-                DelTable[j][4] += Apps[intBaseCase].memory
+    for j in range (illyaisawesome, maxMem):
+        for i in range(0, numofApps):
+            if(Apps[i].memory == j and Apps[i].cost < DelTable[j-1][2] + DelTable[illyaisawesome][2]):
+                DelTable[j][1] = Apps[i].memory
+                DelTable[j][2] = Apps[i].cost
+                DelTable[j][3].append(Apps[i])
+#                DelTable[j][3].append(Apps[i].number) # ILLYA CHANGED THIS
+                DelTable[j][4] = 0
 
-                #Look for another app to finish it up 
-            for i in range (0, numofApps): 
-                if (Apps[i].memory >= DelTable[j][4]) and i not in DelTable[j][1]: #This probably won't get the optimal solution, but it should make it work enough for testing... 
-                    DelTable[j][1].append(Apps[i].number)
-                    DelTable[j][2] += Apps[i].memory
-                    DelTable[j][3] += Apps[i].cost
-                    DelTable[j][4] += Apps[i].memory
+        if DelTable[j][2] == 0:
+                DelTable[j][1] = DelTable[j-1][1]+1
+                PlaceHolder = j - BaseCost
+                claireisawesome = int(round(PlaceHolder))
+                Sum1 = DelTable[claireisawesome][2]
+                Sum2 = DelTable[illyaisawesome][2]
+                DelTable[j][2] = Sum1 + Sum2
+                DelTable[j][3].append(Apps[i])
+#                DelTable[j][3].append(Apps[i].number) # ILLYA CHANGED THIS
 
     Goals = int(round(MemoryGoal))
-    
-    Answer = (DelTable[Goals][1], DelTable[Goals][3], DelTable[Goals][2]) 
-
+    sumOf = 0 
+    for i in DelTable[int(MemoryGoal)][3]: 
+        sumOf += i.cost
+    Answer = (DelTable[Goals][3], sumOf, DelTable[Goals][1]) 
     return Answer
 
 def GreedKnap(Phone, MemGoal):
@@ -186,6 +190,8 @@ def GreedKnap(Phone, MemGoal):
         i += 1
     Answer = (Solution, SolutionCost, FreeMem)
     return Answer
+
+
 
 def PrintOut(Alg, inputsize, Answer, Time, MemGoal):
 
@@ -224,6 +230,47 @@ def PrintOut(Alg, inputsize, Answer, Time, MemGoal):
         f.write("Greedy Solution:\n")
     f.write("Cost of Solution: {0} Freed Memory: {1} Average Time: {2}\n\n".format(b, c, d))
     f.close()
+    
+##def DynSol(phone, MemGoal):
+##    total = 0
+##    goal = int(ceil(MemGoal))
+##    for i in range(0, len(phone)):
+##        total += phone[i].memory
+##        print total,"\n"
+##        print goal,"\n"
+##    Table = {}
+##    for j in range(0, total):
+##        Table[0,j] = []
+##        if phone[0].memory <= j:
+##            Table[0,j].append(phone[0])
+##            Table[0,j].append(phone[0].cost)
+##        else:
+##            Table[0,j].append(None)
+##            Table[0,j].append(0)
+##    for i in range(1,len(phone)):
+##        for j in range(1, total):
+##            Table[i,j] = []
+##            if phone[i].memory <= j:
+##                if (Table[i-1,j][1] < (phone[i].cost + Table[i-1, int(ceil(j - phone[i].cost))][1]) and
+##                    Table[i-1,j][1] is not 0):
+##                    Table[i,j] = Table[i-1,j]
+##                else:
+##                    Table[i,j].append(phone[i])
+##                    Table[i,j].append(phone[i].cost)
+##                    for k in Table[i-1,int(ceil(j-phone[i].cost))][0]:
+##                        Table[i,j][0].append(k)
+##                    Table[i,j][1] = Table[i,j][1] + Table[i-1,int(ceil(j-phone[i].cost))][1]                
+##            else:
+##                Table[i,j] = Table[i-1,j]
+##    FreedMem = 0
+##    for i in Table[len(phone)-1,goal][0]:
+##        FreedMem += i.memory
+##
+##    Answer = []
+##    Answer.append(Table[len(phone)-1,goal][0])
+##    Answer.append(Table[len(phone)-1,goal][1])
+##    Answer.append(FreedMem)
+##    return Answer
 
 baseinput = 5, 10, 15, 25
 n=-1

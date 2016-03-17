@@ -1,6 +1,7 @@
 from __future__ import division
 import random
 from math import pow
+from math import ceil
 import time
 
 # Illya's Debugging
@@ -168,3 +169,50 @@ def getMemGoal(array):
         goal.append(array[i].memory)
         memgoal = sum(goal)*.2
     return memgoal
+
+def DynSol(phone, MemGoal):
+    total = 0
+    goal = int(ceil(MemGoal))
+    print goal,"\n"
+    for i in range(0, len(phone)):
+        total += phone[i].memory
+    print total
+    Table = {}
+    for j in range(0, total):
+        Table[0,j] = []
+        if phone[0].memory <= j:
+            Table[0,j].append([phone[0]])
+            Table[0,j].append(phone[0].cost)
+        else:
+            Table[0,j].append([None])
+            Table[0,j].append(0)
+#        print '0',',',j,':', Table[0,j]
+    for i in range(1,len(phone)-1):
+        for j in range(1, total):
+            Table[i,j] = []
+            if phone[i].memory <= j:
+                if (Table[i-1,j][1] < (phone[i].cost + Table[i-1, int(ceil(j - phone[i].cost))][1]) and
+                    Table[i-1,j][1] is not 0):
+                    Table[i,j] = Table[i-1,j]
+                else:
+                    Table[i,j][0].append([phone[i])
+                    Table[i,j].append(phone[i].cost)
+                    if Table[i-1, int(ceil(j-phone[i].cost))][0] is not [None]:
+                        for k in range(0, len(Table[i-1,int(ceil(j-phone[i].cost))][0])):
+                            Table[i,j][0].append(Table[i-1, int(ceil(j-phone[i].cost))][0][k])
+                            Table[i,j][1] = Table[i,j][1] + Table[i-1,int(ceil(j-phone[i].cost))][1]                      
+            else:
+                Table[i,j] = Table[i-1,j]
+#            print i,",",j,":", Table[i,j]
+    FreedMem = 0
+    length = len(phone)-1
+    for i in range(0, len(Table[length,goal][0])):
+        FreedMem += Table[len(phone)-1, goal][0][i].memory
+
+    Answer = []
+    Answer.append(Table[len(phone)-1,goal][0])
+    Answer.append(Table[len(phone)-1,goal][1])
+    Answer.append(FreedMem)
+    return Table
+        
+            
