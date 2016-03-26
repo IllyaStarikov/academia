@@ -1,0 +1,69 @@
+\documentclass{article}
+\title{Homework \#2}
+\author{Claire Trebing, Jason Young, Illya Starikov}
+\date{February 25, 2016}
+\usepackage{enumitem, amsmath, amssymb}
+
+\newcommand{\Rho}{\mathrm{P}}
+\begin{document}
+\maketitle
+
+\section*{Question \#1}
+\begin{enumerate}[label=\alph*.]
+    \item Valid Operation
+    \item Valid Operation
+    \item Key Constraint (Key \#4 is already taken)
+    \item Key Constraint, Not Null Constraint (Key cannot be null)
+    \item Valid Operation
+    \item Valid Operation
+    \item Integrity Constraint (Did not update \begin{verb} WORKS_ON \end{verb} or \begin{verb} DEPENDANT \end{verb})
+    \item Integrity Constraint (Did not update
+    \begin{verb} WORK_ON \end{verb})
+    \item Valid Operation
+    \item Integrity Constraint (Did not update \begin{verb} WORKS_ON \end{verb})
+    \item Valid Operation
+\end{enumerate}
+
+\section*{Question \#2}
+Grader note: the rho ($\rho$) is too small in \LaTeX to be distinguished from a subscript, so instead $\Rho$ is used in it's place.
+
+\begin{enumerate}[label=\alph*.]
+    \item $\Pi _{\text{Fname, Minit, Lname}}(\sigma_{\text{Dno = `5'} \wedge \text{hours = } > 10} (\begin{verb} Project \end{verb} \bowtie _{\text{Dname = `ProjectX'}} \begin{verb} Works_On \end{verb}) )$
+
+    \item $\Pi _{\text{Fname = Dependent\_Name}} (\begin{verb} Employee \end{verb} \bowtie \begin{verb} Dependent \end{verb})$
+
+    \item $\Pi _{\text{Fname, LName}} (\begin{verb} Employee \end{verb} \div \Pi_{\text{Super\_SSN}}(\sigma _{\text{Fname = `Frankline'} \wedge \text{Lname = `Wong'}} \begin{verb} DEPARTMENT \end{verb}))$
+
+    \item $\Pi _{\text{Lname, Sum\_Hours}} ( s_{\text{name}} \mathcal{F} _{\text{sum hours}}(\begin{verb} PROJECT \end{verb} \bowtie \rho_{\text{ESSN = SSN}} \begin{verb} Works_On \end{verb}))$
+
+    \item $\begin{verb} Employee1 \end{verb} \leftarrow \begin{verb} Employee \end{verb}  \bowtie \rho _{\text{ESSN = SSN}} \begin{verb} Work_On \end{verb}$ \\
+    $\Pi _{\text{Lname, PNo}} \begin{verb} Employee1 \end{verb} \div \Pi _{\text{Pno}} \begin{verb} Employee1 \end{verb}$
+
+    \item $\Pi _{Lname} (\Pi _{\text{Lname, SSN}} \begin{verb} Employee \end{verb} - \Pi _{\text{Lname, SSN}} (\begin{verb} Employee \end{verb} \bowtie \rho _{\text{ESSN = SSN}} \begin{verb} Works_On \end{verb} ))$
+
+    \item $\Pi _{\text{Fname, Average Salary}} ( _{\text{DName}}
+    \mathcal{F} _{\text{average salary}} \Rho _{\text{Dno = Dnumber}} \begin{verb} Employee \end{verb} \bowtie (\begin{verb} Department \end{verb} \bowtie \begin{verb} Works_On \end{verb} ))$
+
+    \item $_{\text{Sex}} \mathcal{F} _{\text{average salary}} (\sigma _{\text{sex = `female'}} \begin{verb} Employee \end{verb})$
+
+    \item $\begin{verb} Department1 \end{verb} \leftarrow \Rho _{\text{DNumber = DNo}} \begin{verb} Project \end{verb} \bowtie \Rho _{\text{ESSN = SSN}} \begin{verb} Works_On \end{verb}$ \\
+    $\Pi _{\text{Fname , Address}} ((\begin{verb} Employee \end{verb} \bowtie \begin{verb} Department1 \end{verb} - \sigma _{\text{Dlocation = `Houston'}} \begin{verb} Department1 \end{verb}) \bowtie (\sigma _{\text{Dlocation = `Houston'}} \Rho _{\text{DNumber = DNo}}(\begin{verb} Department \end{verb} \bowtie \begin{verb} Dept_Locations \end{verb})))$
+
+    \item $\Pi _{\text{Lname}} (\begin{verb} Employee \end{verb} \bowtie _{\text{SSN = MGR\_SSN}} \begin{verb} Department \end{verb} \bowtie \Rho _{\text{ESSN = SSN}}) - \Pi _{\text{Lname}} \begin{verb} Employee \end{verb}$
+
+\end{enumerate}
+
+\section*{Question \#3}
+\begin{itemize}
+    \item \begin{verb} Cust# \end{verb} (\begin{verb} ORDER \end{verb})
+    \item \begin{verb} Order \end{verb} (\begin{verb} ORDER_ITEM \end{verb}, \begin{verb} SHIPMENT \end{verb})
+    \item \begin{verb} Item# \end{verb} (\begin{verb} ORDER \end{verb}, \begin{verb} ITEM \end{verb})
+    \item \begin{verb} Warehouse# \end{verb} (\begin{verb} SHIPMENT \end{verb})
+\end{itemize}
+
+\subsubsection*{Assumptions}
+\begin{itemize}
+    \item Table headers with the same name are not unique.
+\end{itemize}
+
+\end{document}
