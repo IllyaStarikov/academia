@@ -1,0 +1,67 @@
+\documentclass{scrartcl}
+\title{End of Semester Material}
+\author{Illya Starikov}
+\date{March 24, 2016}
+
+\usepackage{xcolor}
+\usepackage{nicefrac}
+
+\newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{#1}}}
+\begin{document}
+\maketitle
+
+Because it is the end of the semester and we have gotten off track with the assignment, I have decided to clarify expectations and rework some things.
+
+\section{Changelog}
+The follow noticeable changes have occurred:
+\begin{description}
+    \item [Dropbox] Is no longer going to suffice. Everything is moved to \shellcmd{git}.
+    \begin{itemize}
+        \item Contact me if there is any issue with the transition.
+    \end{itemize}
+    \item [Subsystems] Are now going to be split different. They are listed below.
+    \begin{description}
+        \item[Front-End Development] \textit{Jason Young and Illya Starikov}. This will most likely \nicefrac{2}{3} to \nicefrac{1}{3}, being heavy on Jason.
+        \item[Back-End Development] \textit{Jason Young.} I am very unfamiliar with Django so it will be up to Jason for the extensive part of the backend development.
+        \item[Database Development] \textit{Claire Trebing and Illya Starikov}. The work load will be mostly be a \nicefrac{1}{2} to \nicefrac{1}{2}.
+    \end{description}
+\end{description}
+
+\section{Meetings}
+Meetings have been wishy-washy the last few months, but as we are approaching the end of the semester we are going to need to more frequently meet to discuss how the project is going. \textbf{Until the your subsystem is finished, meetings will occur.}
+
+\section{Project Phase III}
+Project Phase III has three parts:
+
+\begin{description}
+    \item [Source Code] This will be covered by the Database subsystem.
+    \item [Report] This will be covered by Claire and I.
+    \begin{itemize}
+        \item The revisions will be made by me.
+        \item The user manual will be made by Claire.
+    \end{itemize}
+\end{description}
+
+For the user manual, the deliverable is a PDF, Word Document or Google Document. It \textbf{must be able to render in plain text} (i.e. I have to be able to paste it into \texttt{Sublime Text} without any formatting issues). Please account for this. The document will be gutted and reformatted to \LaTeX.
+
+The manual must be broken down into sections, subsection, and subsection or subsections (or, subsubsection). Please indicate these in some manner (whether it be verbosely written or through formatting). This is used for a table of contents, to keep in mind.
+
+Formatting such as \textit{italicizing}, \textbf{boldfacing} and the like are encouraged. I will take care of make sure they render correctly. Equations of any form (from $\sum \vec{F} = m\vec{a}$ to $\frac{\hbar^2}{2m}\nabla^2\Psi + V(\mathbf{r})\Psi = -i\hbar \frac{\partial\Psi}{\partial t}$) are encouraged but must be easily readable. Any tables, figures, images and the like must be coherent and easy to interpret.
+
+\section{Homework \#3 \& \#4 }
+The last two homeworks are SQL-based, so for the last two homeworks:
+
+\begin{itemize}
+    \item Everyone will finish their own homework.
+    \begin{itemize}
+        \item Upon completion, email to me.
+        \item I will run it through a \shellcmd{diff} utility.
+        \begin{itemize}
+            \item Any noticeable disparities will be discussed with respective authors.
+        \end{itemize}
+    \end{itemize}
+    \item When everyone's homework matches, \textit{Claire} will submit the SQL file.
+    \item Have the homework ready at least two days in advance.
+\end{itemize}
+
+\end{document}
