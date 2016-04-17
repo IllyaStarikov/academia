@@ -9,19 +9,15 @@
 #ifndef Groups_hpp
 #define Groups_hpp
 
-#include <stdio.h>
 #include <iostream>
 
-#include "Functions.hpp"
-#include "Constants.h"
-
-class Group  {
+class Group {
     std::string title, startDate;
-    
-    Group(const int numberToGetNameFrom) {
-        title = importFromFile(GROUPS, numberToGetNameFrom);
 
-    }
+public:
+    Group();
+    void printInsert();
+    void printAttributes(bool isLastPrint);
 };
 
 #endif /* Groups_hpp */

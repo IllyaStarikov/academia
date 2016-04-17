@@ -253,6 +253,7 @@
 				49432D151CBB1BD100E878A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

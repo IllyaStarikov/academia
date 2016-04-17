@@ -13,26 +13,10 @@
 #include <fstream>
 #include <sstream>
 
-#include "Constants.h"
-int randomArbitrary(const int floor, const int ceiling) {
-    return floor + rand() % (ceiling - floor + 1);
-}
-
 std::string importFromFile(const std::string filename, const int lineNumber);
+std::string sqlDate();
 
-
-std::string sqlDate() {
-    std::ostringstream ss;
-    
-    // YEAR
-    ss << randomArbitrary(START_YEAR, CURRENT_YEAR);
-    ss << DELIMITER;
-    
-    ss << 
-    
-    
-    return ss.str();
-}
-
+int daysInMonth(const int year, const int month);
+int randomArbitrary(const int floor, const int ceiling);
 
 #endif /* Functions_hpp */
