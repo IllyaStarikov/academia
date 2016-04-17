@@ -9,16 +9,15 @@
 #include <iostream>
 
 #include "Groups.hpp"
+#include "Workout.hpp"
+
 #include "Functions.hpp"
 #include "Constants.h"
 
-
-
 int main(int argc, const char * argv[]) {
-    Group group[GROUP_COUNT];
+    Group groups[GROUP_COUNT];
+    Workout workouts[WORKOUT_COUNT];
     
-    group[0].printInsert();
-    for (int i = 0; i < GROUP_COUNT; i++) {
-        group[i].printAttributes(i == GROUP_COUNT - 1);
-    }
+    printInsertAndAttributes(groups, GROUP_COUNT);
+    printInsertAndAttributes(workouts, WORKOUT_COUNT);
 }

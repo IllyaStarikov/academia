@@ -10,6 +10,8 @@
 		49432D101CBB1BD100E878A3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49432D0F1CBB1BD100E878A3 /* main.cpp */; };
 		49432D181CBB1C8300E878A3 /* Groups.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49432D161CBB1C8300E878A3 /* Groups.cpp */; };
 		49432D1B1CBB372600E878A3 /* Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49432D191CBB372600E878A3 /* Functions.cpp */; };
+		49FCF6CF1CC43BEF002F42CF /* Workout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49FCF6CD1CC43BEF002F42CF /* Workout.cpp */; };
+		49FCF6D21CC45040002F42CF /* Duration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49FCF6D01CC45040002F42CF /* Duration.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,6 +34,10 @@
 		49432D191CBB372600E878A3 /* Functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Functions.cpp; sourceTree = "<group>"; };
 		49432D1A1CBB372600E878A3 /* Functions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Functions.hpp; sourceTree = "<group>"; };
 		49432D1C1CBB38D000E878A3 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		49FCF6CD1CC43BEF002F42CF /* Workout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Workout.cpp; sourceTree = "<group>"; };
+		49FCF6CE1CC43BEF002F42CF /* Workout.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Workout.hpp; sourceTree = "<group>"; };
+		49FCF6D01CC45040002F42CF /* Duration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Duration.cpp; sourceTree = "<group>"; };
+		49FCF6D11CC45040002F42CF /* Duration.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Duration.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +76,10 @@
 				49432D161CBB1C8300E878A3 /* Groups.cpp */,
 				49432D171CBB1C8300E878A3 /* Groups.hpp */,
 				49432D1C1CBB38D000E878A3 /* Constants.h */,
+				49FCF6CD1CC43BEF002F42CF /* Workout.cpp */,
+				49FCF6CE1CC43BEF002F42CF /* Workout.hpp */,
+				49FCF6D01CC45040002F42CF /* Duration.cpp */,
+				49FCF6D11CC45040002F42CF /* Duration.hpp */,
 			);
 			path = "Random SQL Generator";
 			sourceTree = "<group>";
@@ -132,7 +142,9 @@
 			files = (
 				49432D1B1CBB372600E878A3 /* Functions.cpp in Sources */,
 				49432D101CBB1BD100E878A3 /* main.cpp in Sources */,
+				49FCF6D21CC45040002F42CF /* Duration.cpp in Sources */,
 				49432D181CBB1C8300E878A3 /* Groups.cpp in Sources */,
+				49FCF6CF1CC43BEF002F42CF /* Workout.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
