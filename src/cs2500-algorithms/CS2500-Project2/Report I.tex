@@ -5,9 +5,12 @@
             citecolor = blue,
             anchorcolor = blue]{hyperref}
 
-\title{Programming Project I, First Report}
+\title{Programming Project II, First Report}
 \author{Illya Starikov, Claire Trebing, Timothy Ott}
 \date{Due Date: April 22, 2016}
+
+\usepackage{xcolor}
+\newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{#1}}}
 
 \begin{document}
 \maketitle
@@ -23,14 +26,47 @@ Social Networks have revolutionized the way we communicate, meet others, consume
     \item [LinkedIn]: 28\% Adults
 \end{description}
 
-This is unprecedented. To say that if one understands the network, they understand the community is an understatement. In this experiment we would like to put test this theory.
+This is unprecedented. Seeing as an overwhelming majority of adults have some sort of social media account, this can be used to model real world relationships --- through social graphs.
+
+In this experiment we would like to examine the social graph through the follower-followee relationship.
 
 \section{Introduction and Motivation}
-As stated above, social networks play a dominant role in our lives. They are many reasons for this to be valuable.
+As stated above, social networks play a dominant role in our lives. Through social graph's, we can examine real world relationships.
+
+There are many reasons for this to be valuable, such as common interest, community detection, influence amongst followers, etc. For this experiment, we would just like to test on the following measures:
+
+\begin{description}
+    \item [Degree Distribution] Test the direct amount of followers compared to followees a person has.
+    \item [Shortest Path Distribution] Test the degree of separation between a follower-followee.
+    \item [Graph Diameter] Test the breadth of a community.
+    \item [Closeness Centrality] Test the dependence of a degree of separation on a singular person.
+    \item [Betweenness Centrality Distribution] Same as previous.
+    \item [Community Detection] Based on Closeness Centrality, find the diameter of a community.
+\end{description}
+
+This will give us a reasonable dataset for the relationship of a community in a social graph.
 
 \section{Proposed Solutions}
 
 \section{Plan of Experiments}
+The major purpose of our experiment is to dissect and examine networks, so we propose the following plan of experiments:
+
+\begin{enumerate}
+    \item Extrapolate data and store in a relevant data structure --- in our case, a sorted \texttt{map<int, <vector<pair>}
+    \begin{itemize}
+        \item The \texttt{int} is the key to be used, signifying the origin.
+        \item The \texttt{vector<pair>} holds all the adjacent edges.
+    \end{itemize}
+    \item Iterate over the entirety of the data structure to determine degree distribution.
+    \item Detect the shortest path via the \href{https://en.wikipedia.org/wiki/Floyd–Warshall_algorithm}{Floyd-Warshall algorithm} for directed graphs.
+        \begin{itemize}
+            \item Make the graph undirected by making it symmetric.
+            \item Test again.
+        \end{itemize}
+    \item Detect closeness centrality and betweeness.
+    \item Implement community detection.
+    \item Output results to user.
+\end{enumerate}
 
 \section{Team Roles}
 \begin{itemize}
@@ -49,7 +85,6 @@ As stated above, social networks play a dominant role in our lives. They are man
         \item Pseudocode Write-up
         \item Algorithm Analysis
     \end{itemize}
-
 \end{itemize}
 
 \end{document}
