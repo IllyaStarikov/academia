@@ -10,6 +10,7 @@
 
 #include "Groups.hpp"
 #include "Workout.hpp"
+#include "Users.hpp"
 
 #include "Functions.hpp"
 #include "Constants.h"
@@ -17,7 +18,9 @@
 int main(int argc, const char * argv[]) {
     Group groups[GROUP_COUNT];
     Workout workouts[WORKOUT_COUNT];
+	Users users[USER_COUT];
     
     printInsertAndAttributes(groups, GROUP_COUNT);
     printInsertAndAttributes(workouts, WORKOUT_COUNT);
+	printInsertAndAttributes(users, USER_COUNT); 
 }
