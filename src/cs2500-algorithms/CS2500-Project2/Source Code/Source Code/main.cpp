@@ -19,6 +19,9 @@ int main(int argc, const char * argv[]) {
     auto map = parseInput(input);
     
     printMap(map);
+    
     unweightedOutDegree(map);
-
+    weightedOutDegree(map);
+    unweightedInDegree(map);
+    weightedOutDegree(map);
 }

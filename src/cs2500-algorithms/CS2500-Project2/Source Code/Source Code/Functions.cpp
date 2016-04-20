@@ -31,7 +31,6 @@ std::vector<std::string> getInput(std::string filename) {
 AdjacencyMap parseInput(std::vector<std::string> input) {
     auto adjacencyMap = AdjacencyMap();
     auto vertexWeight = std::pair<int, double>();
-    auto currentVector = std::vector<std::pair<int, double>>();
     
     for(auto edge: input) {
         /* Extrapolate data — source, target, weight */
