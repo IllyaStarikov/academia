@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49D845631CC7C56500EBF814 /* Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49D845611CC7C56500EBF814 /* Functions.cpp */; };
+		49D845661CC7E3F200EBF814 /* DegreeDistribution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49D845641CC7E3F200EBF814 /* DegreeDistribution.cpp */; };
 		49FCF6C71CC2D474002F42CF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49FCF6C61CC2D474002F42CF /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +25,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		49D845611CC7C56500EBF814 /* Functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Functions.cpp; sourceTree = "<group>"; };
+		49D845621CC7C56500EBF814 /* Functions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Functions.hpp; sourceTree = "<group>"; };
+		49D845641CC7E3F200EBF814 /* DegreeDistribution.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DegreeDistribution.cpp; sourceTree = "<group>"; };
+		49D845651CC7E3F200EBF814 /* DegreeDistribution.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DegreeDistribution.hpp; sourceTree = "<group>"; };
+		49D845671CC7E40B00EBF814 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		49FCF6C31CC2D474002F42CF /* Source Code */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Source Code"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FCF6C61CC2D474002F42CF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +65,11 @@
 			isa = PBXGroup;
 			children = (
 				49FCF6C61CC2D474002F42CF /* main.cpp */,
+				49D845611CC7C56500EBF814 /* Functions.cpp */,
+				49D845621CC7C56500EBF814 /* Functions.hpp */,
+				49D845641CC7E3F200EBF814 /* DegreeDistribution.cpp */,
+				49D845651CC7E3F200EBF814 /* DegreeDistribution.hpp */,
+				49D845671CC7E40B00EBF814 /* Constants.h */,
 			);
 			path = "Source Code";
 			sourceTree = "<group>";
@@ -119,6 +131,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				49FCF6C71CC2D474002F42CF /* main.cpp in Sources */,
+				49D845661CC7E3F200EBF814 /* DegreeDistribution.cpp in Sources */,
+				49D845631CC7C56500EBF814 /* Functions.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +253,7 @@
 				49FCF6CC1CC2D474002F42CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

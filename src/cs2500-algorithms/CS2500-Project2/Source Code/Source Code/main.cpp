@@ -8,8 +8,17 @@
 
 #include <iostream>
 
+#include "Functions.hpp"
+#include "Constants.h"
+#include "DegreeDistribution.hpp"
+
+
+
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+    auto input = getInput(FILENAME);
+    auto map = parseInput(input);
+    
+    printMap(map);
+    unweightedOutDegree(map);
+
 }
