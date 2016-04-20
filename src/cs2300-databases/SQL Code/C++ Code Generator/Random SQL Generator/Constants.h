@@ -12,7 +12,7 @@
 #include <iostream>
 
 const std::string GROUPS_FILENAME = "groups.txt";
-const std::string USER_USERNAMEFILENAME = "usernames.txt";
+const std::string USER_USERNAME_FILENAME = "usernames.txt";
 const std::string USER_FFIRSTNAME_FILENAME = "FFName.txt";
 const std::string USER_MFIRSTNAME_FILENAME = "MFname.txt";
 const std::string USER_LNAME_FILENAME = "LName.txt";
@@ -42,6 +42,7 @@ const std::string USER_LNAME_ATTRIBUTE = "LName";
 const std::string SEPERATOR = ", ";
 
 const int GROUPS_NAME_TO_GO_TO = 1000;
+const int USERS_USERNAME_TO_GO_TO = 58;
 const int USERS_FFIRST_NAME_TO_GO_TO = 17650;
 const int USERS_MFIRST_NAME_TO_GO_TO = 12100;
 const int USERS_LNAME_TO_GO_TO = 720;  

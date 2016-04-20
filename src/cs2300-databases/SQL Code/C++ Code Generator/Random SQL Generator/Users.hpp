@@ -11,8 +11,9 @@
 #include <iostream>
 
 class Users {
-	int Uid, Height, Weight, Goal; 
+	int Uid, HeightFeet, HeightInches; 
 	std::string Username, Birthdate, Password, JoinDate, FName, LName;
+	float Weight, Goal; 
 	char Gender, MInit; 
 	
 public:

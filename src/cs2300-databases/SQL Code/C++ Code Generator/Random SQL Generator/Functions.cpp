@@ -29,9 +29,9 @@ std::string importFromFile(const std::string filename, const int lineNumber) {
     return toReturn;
 }
 
-std::string sqlDate() {
+std::string sqlDate(int syear = START_YEAR, int cyear = CURRENT_YEAR) {
     std::ostringstream ss;
-    int year = randomArbitrary(START_YEAR, CURRENT_YEAR),
+    int year = randomArbitrary(syear, cyear);
     month = randomArbitrary(1, MONTHS_IN_YEAR);
     
     ss << year;
