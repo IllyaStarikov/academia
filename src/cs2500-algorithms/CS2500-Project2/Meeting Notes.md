@@ -30,3 +30,6 @@ should be represented in a graphical form as well as discussed in the writing.
 - *Role*
 - **Conclusions**: Summary of the work and final considerations.
 
+## C++11
+- Do not use using namespace std;
+- 

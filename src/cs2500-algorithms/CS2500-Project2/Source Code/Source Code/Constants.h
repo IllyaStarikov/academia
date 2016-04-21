@@ -20,4 +20,10 @@ using AdjacencyMap = std::map<int, std::vector<std::pair<int, double>>>;
 const std::string MAP = "Map";
 
 const std::string FILENAME = "Project2.csv";
+
+const std::string UNWEIGHT_OUT_DEGREE = "Unweighted Out Degree";
+const std::string WEIGHT_OUT_DEGREE = "Weighted Out Degree";
+const std::string UNWEIGHT_IN_DEGREE = "Unweighted In Degree";
+const std::string WEIGHT_IN_DEGREE = "Weighted In Degree";
+
 #endif /* Constants_h */

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49964E8D1CC91A3000406768 /* ShortestPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49964E8B1CC91A3000406768 /* ShortestPath.cpp */; };
 		49D845631CC7C56500EBF814 /* Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49D845611CC7C56500EBF814 /* Functions.cpp */; };
 		49D845661CC7E3F200EBF814 /* DegreeDistribution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49D845641CC7E3F200EBF814 /* DegreeDistribution.cpp */; };
 		49FCF6C71CC2D474002F42CF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49FCF6C61CC2D474002F42CF /* main.cpp */; };
@@ -25,6 +26,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		49964E8B1CC91A3000406768 /* ShortestPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShortestPath.cpp; sourceTree = "<group>"; };
+		49964E8C1CC91A3000406768 /* ShortestPath.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShortestPath.hpp; sourceTree = "<group>"; };
 		49D845611CC7C56500EBF814 /* Functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Functions.cpp; sourceTree = "<group>"; };
 		49D845621CC7C56500EBF814 /* Functions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Functions.hpp; sourceTree = "<group>"; };
 		49D845641CC7E3F200EBF814 /* DegreeDistribution.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DegreeDistribution.cpp; sourceTree = "<group>"; };
@@ -69,6 +72,8 @@
 				49D845621CC7C56500EBF814 /* Functions.hpp */,
 				49D845641CC7E3F200EBF814 /* DegreeDistribution.cpp */,
 				49D845651CC7E3F200EBF814 /* DegreeDistribution.hpp */,
+				49964E8B1CC91A3000406768 /* ShortestPath.cpp */,
+				49964E8C1CC91A3000406768 /* ShortestPath.hpp */,
 				49D845671CC7E40B00EBF814 /* Constants.h */,
 			);
 			path = "Source Code";
@@ -132,6 +137,7 @@
 			files = (
 				49FCF6C71CC2D474002F42CF /* main.cpp in Sources */,
 				49D845661CC7E3F200EBF814 /* DegreeDistribution.cpp in Sources */,
+				49964E8D1CC91A3000406768 /* ShortestPath.cpp in Sources */,
 				49D845631CC7C56500EBF814 /* Functions.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

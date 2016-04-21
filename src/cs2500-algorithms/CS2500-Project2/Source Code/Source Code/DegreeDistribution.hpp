@@ -19,6 +19,8 @@
 #include <map>
 #include <tuple>
 
+void degreeDistribution(const AdjacencyMap & map);
+
 void unweightedOutDegree(const AdjacencyMap & map);
 void weightedOutDegree(const AdjacencyMap & map);
 void unweightedInDegree(const AdjacencyMap & map);

@@ -11,17 +11,13 @@
 #include "Functions.hpp"
 #include "Constants.h"
 #include "DegreeDistribution.hpp"
-
-
+#include "ShortestPath.hpp"
 
 int main(int argc, const char * argv[]) {
     auto input = getInput(FILENAME);
     auto map = parseInput(input);
     
     printMap(map);
-    
-    unweightedOutDegree(map);
-    weightedOutDegree(map);
-    unweightedInDegree(map);
-    weightedOutDegree(map);
+    degreeDistribution(map);
+    shortestPaths(map);
 }

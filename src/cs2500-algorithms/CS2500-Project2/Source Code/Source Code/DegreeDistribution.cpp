@@ -7,10 +7,14 @@
 //
 
 #include "DegreeDistribution.hpp"
-const std::string UNWEIGHT_OUT_DEGREE = "Unweighted Out Degree";
-const std::string WEIGHT_OUT_DEGREE = "Weighted Out Degree";
-const std::string UNWEIGHT_IN_DEGREE = "Unweighted In Degree";
-const std::string WEIGHT_IN_DEGREE = "Weighted In Degree";
+
+
+void degreeDistribution(const AdjacencyMap & map) {
+    unweightedOutDegree(map);
+    weightedOutDegree(map);
+    unweightedInDegree(map);
+    weightedOutDegree(map);
+}
 
 void unweightedOutDegree(const AdjacencyMap & map) {
     printHeader(UNWEIGHT_OUT_DEGREE);
@@ -51,7 +55,7 @@ void unweightedInDegree(const AdjacencyMap & map) {
 
 void weightedInDegree(const AdjacencyMap & map) {
     printHeader(WEIGHT_IN_DEGREE);
-    auto weightMap = std::map<int, int>();
+    auto weightMap = std::map<int, double>();
     int index;
     double total;
     
