@@ -15,16 +15,16 @@
 
 
 void shortestPaths(const AdjacencyMap & map) {
-    printHeader(SHORTEST_PATH_UNWEIGHTED_DIRECTED);
+    if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_UNWEIGHTED_DIRECTED); }
     shortestPath(map, false, true);
     
-    printHeader(SHORTEST_PATH_WEIGHTED_DIRECTED);
+    if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_WEIGHTED_DIRECTED); }
     shortestPath(map, false, false);
     
-    printHeader(SHORTEST_PATH_WEIGHTED_UNDIRECTED);
+    if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_WEIGHTED_UNDIRECTED); }
     shortestPath(map, true, false);
     
-    printHeader(SHORTEST_PATH_UNWEIGHTED_UNDIRECTED);
+    if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_UNWEIGHTED_UNDIRECTED); }
     shortestPath(map, true, true);
 }
 

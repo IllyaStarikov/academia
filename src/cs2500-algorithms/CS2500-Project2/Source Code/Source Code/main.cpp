@@ -17,9 +17,13 @@ int main(int argc, const char * argv[]) {
     auto input = getInput(FILENAME);
     auto map = parseInput(input);
     
-    printHeader(MAP);
-    printMap(map);
+    if (PRINT_SOLUTIONS) {
+        printHeader(MAP);
+        printMap(map);
+    }
     
     degreeDistribution(map);
     shortestPaths(map);
+    
+    
 }

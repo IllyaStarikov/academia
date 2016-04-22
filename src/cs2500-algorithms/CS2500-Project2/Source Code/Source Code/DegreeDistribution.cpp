@@ -10,23 +10,23 @@
 
 
 void degreeDistribution(const AdjacencyMap & map) {
-    printHeader(UNWEIGHT_OUT_DEGREE);
+    if (PRINT_SOLUTIONS) { printHeader(UNWEIGHT_OUT_DEGREE); }
     unweightedOutDegree(map);
     
-    printHeader(WEIGHT_OUT_DEGREE);
+    if (PRINT_SOLUTIONS) { printHeader(WEIGHT_OUT_DEGREE); }
     weightedOutDegree(map);
     
-    printHeader(UNWEIGHT_IN_DEGREE);
+    if (PRINT_SOLUTIONS) { printHeader(UNWEIGHT_IN_DEGREE); }
     inDegree(map, false);
     
-    printHeader(WEIGHT_IN_DEGREE);
+    if (PRINT_SOLUTIONS) { printHeader(WEIGHT_IN_DEGREE); } 
     inDegree(map, true);
 
 }
 
 void unweightedOutDegree(const AdjacencyMap & map) {
     for (const auto &vector : map) {
-        std::cout << vector.first << ": " << vector.second.size() << std::endl;
+        if (PRINT_SOLUTIONS) { std::cout << vector.first << ": " << vector.second.size() << std::endl; }
     }
 }
 
@@ -38,7 +38,7 @@ void weightedOutDegree(const AdjacencyMap & map) {
         for (const auto &pair : elements.second) {
             sum += pair.second;
         }
-        std::cout << elements.first << ": " << sum << std::endl;
+        if (PRINT_SOLUTIONS) { std::cout << elements.first << ": " << sum << std::endl; }
     }
 }
 
@@ -54,6 +54,6 @@ void inDegree(const AdjacencyMap & map, const bool weighted) {
     }
     
     for (const auto & element : weightMap) {
-        std::cout << element.first << ": " << element.second << std::endl;
+        if (PRINT_SOLUTIONS) { std::cout << element.first << ": " << element.second << std::endl; }
     }
 }

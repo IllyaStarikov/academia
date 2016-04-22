@@ -15,7 +15,7 @@
 
 #include <iostream>
 
-const bool PRINT_SOLUTIONS = false;
+const bool PRINT_SOLUTIONS = true;
 
 using AdjacencyMap = std::map<int, std::vector<std::pair<int, double>>>;
 
