@@ -1,0 +1,102 @@
+Directed Degree Distribution 
+void Unweighted_InDegree_Diribution(&int arrayMax[]) 
+{
+	N = the number of vertices 
+	int * total; 
+	total = new int [maxVertice];
+	
+	for(i = 0 to N){  
+		total[origin of i]++; 
+	}
+	int degreeMax = total[0];
+	
+	for(i = 1 to maxVertice){
+		if(total[i] > degreeMax){
+			degreeMax = total[i]; 
+			clear arrayMax
+			add i to arrayMax
+		}
+		if(total[i] == degreeMax){
+			add i to arrayMax 
+		}
+	}
+	delete[] total; 	
+	return; 	
+}
+
+void Unweighted_OutDegree_Distribution(&int arrayMax[])
+{
+	N = the number of vertices 
+	int * total; 
+	total = new int [maxDestination];
+	
+	for(i = 0 to N){  
+		total[Destination of i]++; 
+	}
+	int degreeMax = total[0];
+	
+	for(i = 1 to maxOrigin){
+		if(total[i] > degreeMax){
+			degreeMax = total[i]; 
+			clear arrayMax
+			add i to arrayMax
+		}
+		if(total[i] == degreeMax){
+			add i to arrayMax 
+		}
+	}
+	delete[] total; 	
+	return; 	
+} 
+
+void Weighted_InDegree_Diribution(&int arrayMax[]) 
+{
+	N = the number of vertices 
+	int * total; 
+	total = new int [maxOrigin];
+	
+	for(i = 0 to N){  
+		total[Origin of i]+= (Weight of i); 
+	}
+	int degreeMax = total[0];
+	
+	for(i = 1 to maxOrigin){
+		if(total[i] > degreeMax){
+			degreeMax = total[i]; 
+			clear arrayMax
+			add i to arrayMax
+		}
+		if(total[i] == degreeMax){
+			add i to arrayMax 
+		}
+	}
+	delete[] total; 	
+	return; 	
+}
+
+void Weighted_OutDegree_Diribution(&int arrayMax[]) 
+{
+	N = the number of vertices 
+	int * total; 
+	total = new int [maxDestionation];
+	
+	for(i = 0 to N){  
+		total[Destination of i]+= (Weight of i); 
+	}
+	int degreeMax = total[0];
+	
+	for(i = 1 to maxDestination){
+		if(total[i] > degreeMax){
+			degreeMax = total[i]; 
+			clear arrayMax
+			add i to arrayMax
+		}
+		if(total[i] == degreeMax){
+			add i to arrayMax 
+		}
+	}
+	delete[] total; 	
+	return; 	
+}
+
+
