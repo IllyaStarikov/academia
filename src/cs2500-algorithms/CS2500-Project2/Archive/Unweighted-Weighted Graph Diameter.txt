@@ -1,0 +1,75 @@
+Unweighted Graph Diameter{
+	N = the number of vertices
+	distance = new array[N][N]
+	all distances start at -1 
+
+	for(i = 0 to N){
+		for(j = i+1 to N){ 
+			distance[i][j] = shortest path(i, j)
+		}
+	}
+	
+	max = Diameter[0][1]
+	Add (0,1) to GraphDiameterList				
+	
+	for(i = 0 to N){
+		for(j = 1 to N){
+			if(distance[i][j] > max){ 
+				clear GraphDiameterList
+				max = distance[i][j]
+				add (i,j) to GraphDiameterList
+			}
+			if(distance[i][j] = max){ 
+				add (i,j) to GraphDiameterList
+			}
+	}
+	return GraphDiameterList 
+}
+
+This functions first created an N by N array to hold all of the shortest paths from each vertex to every other
+vertex. For an unweighted graph the shortes path from i -> j is equal to the shortest path from j -> i. After
+creating and filling the matrix, the function assumes that the value at distance[0][1]. The function then tests
+every value in the matrix and compares it to the max. If the value is greater than the max then the max is replaced 
+with distance[i][j]. Clear the GraphDiameterList and then add (i,j) to the graph diameter list. If distance[i][j] is 
+equal to max then add (i,j) to the GraphDiameterList. 
+
+The time complexity of this code is O(n^2). You must go through the matrix twice to complete this function. 
+
+Weighted Graph Diameter{
+	N = the number of vertices
+	distance = new array[N][N]
+	all distances start at -1 
+
+	for(i = 0 to N){
+		for(j = 0 to N){
+			if(i != j){ 
+				distance[i][j] = shortest path(i, j)
+			}
+		}
+	}
+	
+	max = Diameter[0][1]
+	Add (0,1) to GraphDiameterList				
+	
+	for(i = 0 to N){
+		for(j = 0 to N){
+			if(i != j)
+			if(distance[i][j] > max){ 
+				clear GraphDiameterList
+				max = distance[i][j]
+				add (i,j) to GraphDiameterList
+			}
+			if(distance[i][j] = max){ 
+				add (i,j) to GraphDiameterList
+			}
+	}
+	return GraphDiameterList 
+}
+
+This functions first created an N by N array to hold all of the shortest paths from each vertex to every other
+vertex. After creating and filling the matrix, the function assumes that the value at distance[0][1]. The function then tests
+every value in the matrix and compares it to the max. If the value is greater than the max then the max is replaced 
+with distance[i][j]. Clear the GraphDiameterList and then add (i,j) to the graph diameter list. If distance[i][j] is 
+equal to max then add (i,j) to the GraphDiameterList. 
+
+The time complexity of this code is O(n^2). You must go through the matrix twice to complete this function. 
