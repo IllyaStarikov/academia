@@ -9,6 +9,9 @@
 \author{Illya Starikov, Claire Trebing, Timothy Ott}
 \date{Due Date: April 22, 2016}
 
+\usepackage{amsmath}
+\usepackage{amssymb}
+
 \usepackage{xcolor}
 \newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{#1}}}
 
@@ -52,18 +55,22 @@ This will give us a reasonable dataset for the relationship of a community in a 
 The major purpose of our experiment is to dissect and examine networks, so we propose the following plan of experiments:
 
 \begin{enumerate}
-    \item Extrapolate data and store in a relevant data structure --- in our case, a sorted \texttt{map<int, <vector<pair>}
+    \item Extrapolate data and store in a relevant data structure --- in our case, a sorted \texttt{map<int, vector<pair<int, double>>>}
     \begin{itemize}
         \item The \texttt{int} is the key to be used, signifying the origin.
         \item The \texttt{vector<pair>} holds all the adjacent edges.
     \end{itemize}
     \item Iterate over the entirety of the data structure to determine degree distribution.
+    \begin{itemize}
+        \item For \emph{weighted and unweighted out degree}, it is simply counting the the \texttt{vector} size with respect to each key.
+        \item For \emph{weighted and unweighted in degree}, making an efficient algorithm is still difficult --- not only is by default $\mathcal{O}(n)$ but there is an efficient way of finding where the edges lead to. We accomplish this by a \href{https://en.wikipedia.org/wiki/Binary_search_tree}{Binary Search Tree}. By iterating over every vertex and storing their destination in a binary search tree, we have achieved a sufficient algorithm.
+    \end{itemize}
     \item Detect the shortest path via the \href{https://en.wikipedia.org/wiki/Floyd–Warshall_algorithm}{Floyd-Warshall algorithm} for directed graphs.
         \begin{itemize}
-            \item Make the graph undirected by making it symmetric.
+            \item Make the graph undirected by making it symmetric about the $a _{i, i}$ elements $\forall i \in \text{edges}$.
             \item Test again.
         \end{itemize}
-    \item Detect closeness centrality and betweeness.
+    \item Detect closeness centrality and betweenness.
     \item Implement community detection.
     \item Output results to user.
 \end{enumerate}

@@ -32,6 +32,7 @@ void makeUndirected(std::vector<std::vector<int>> & vector, bool deleteSelfLoops
 }
 
 void shortestPath(const AdjacencyMap & map, bool isDirected) {
+    // Floyd - Walsh algorithm
     const int size = static_cast<int>(map.size()) + 2; // One for the index of map, other for index of solution vector
     auto solution = std::vector<std::vector<int>>(size, std::vector<int>(size, INFINITY)); // 2D Adjacency Matrix with size of map and default values of infinity
     // Copy the map to the two dimensional matrix
