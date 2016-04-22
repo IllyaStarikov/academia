@@ -1,0 +1,69 @@
+Shortest Path Distribution
+
+V = the number of vertices
+distance = new array[V][V]
+Initialize distance to -1   //since there are no negative weights this will
+                            //represent infinity
+Floyd(V):
+    for each vertex v:
+        distance[v][v] = 0
+    for each edge (u,v)
+        distance[u][v] = w(u,v) //the weight of the edge (u,v)
+    for k from 1 to V
+        for i from 1 to V
+            for j from 1 to V
+              if distance[i][j] > distance[i][k] + distance[k][j]
+                distance[i][j] = distance[i][k] + distance[k][j]         
+
+shortest = new array[100]
+initialize shortest to 0
+for i from 1 to V
+    for j from 1 to V
+        if distance[i][j] > 0
+          if distance[i][j] > shortest.length
+              temp = new array[distance[i][j]+10]
+              for i from 0 to shortest.length
+                  temp[i] = distance[i]
+              delete distance
+              distance = temp
+          shortest[distance[i][j]]++
+
+for i from 1 to shortest.length
+    if shortest[i] > 0
+        output shortest[i]
+
+COMPLEXITY: As we know, the Floyd-Warshall algorith operates on n^3 time. Combining this with the algorith to iterate over the resulting V x V matrix results in a n^2 + n^3 complexity.
+
+        
+Closeness Centrality
+
+sum = 0
+closeness = new array[100]
+initialize closeness to 0
+for i from 0 to V
+    for j from 1 to V
+        sum += distance[i][j]
+    closeness[i] = 1/sum
+    output closeness[i]
+    sum = 0
+    
+COMPLEXITY: Because we are iterating over the entire matrix resulting from the Floyd-Warshall algorithm of V x V size. We arrive at a complexity of n^2.
+
+
+Community Detection
+
+UWBetween[] = Unweighted Betweenness Centrality Edges
+V = Original Network
+
+For k from 0 to 4:
+	DescendSort(UWBetween)
+	UWBetween[0] = x
+  while (UWBetween[0] == x)
+      V.remove(UWBetween[i])
+      UWBetween.remove(UWBetween[0])
+  Floyd(V)            //Run Floyd-Warshall Algorithm on revised data set
+  Diameter(V)         //Calculate and output max diameter based on new matrix from above
+  Betweenness(V)      //Calculate Betweenness centrality based on new matrix giving us a new UWBetween array
+
+  
+COMPLEXITY: Because the Community detection algorithm calls the algorithms to find all shortest paths, the diameter and the unweighted betweenness centrality edges within it and since we are executing this algorithm a total of five times, the complexity of this algorithm is ive times the sum of the complexities of these algorithms.
