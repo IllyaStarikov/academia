@@ -32,6 +32,8 @@ void Unweighted_InDegree_Distribution(&int arrayMax[])
 	return; 	
 }
 
+The time complexity of this function is 2n = O(n). The function must traverse through the array twice before finishing. 
+
 Unweighted Out Degree Distribution goes through each entry to determine what the destination of each edge is. An array with cells for each possible vertex (total) is created 
 and once the destination is deterimined the respecitve cell in total is increased by one. After all of the entries have been checked, the function goes through the totals. 
 The functions begins by assuming total[0] is the maximum number of Out Degree edges and 0 is added to arrayMax. arrayMax is the array which holds all of the vertexes with the
@@ -64,6 +66,8 @@ void Unweighted_OutDegree_Distribution(&int arrayMax[])
 	delete[] total; 	
 	return; 	
 } 
+The time complexity of this function is 2n = O(n). The function must traverse through the array twice before finishing. 
+
 
 Weighted In Degree Distribution goes through each entry to determine what the origin of each edge is and the sum of the weighted edges. An array with cells for each possible vertex (total) 
 is created and once the origin is deterimined the respecitve cell in total is increased by weight of that edge. After all of the entries have been checked, the function goes through the totals. 
@@ -97,6 +101,7 @@ void Weighted_InDegree_Diribution(&int arrayMax[])
 	delete[] total; 	
 	return; 	
 }
+The time complexity of this function is 2n = O(n). The function must traverse through the array twice before finishing. 
 
 Weighted Out Degree Distribution goes through each entry to determine what the destination of each edge is and the weight of those edges. An array with cells for each possible vertex (total) 
 is created and once the destination is deterimined the respecitve cell in total is increased by the value of that edge. After all of the entries have been checked, the function goes through 
@@ -130,5 +135,6 @@ void Weighted_OutDegree_Diribution(&int arrayMax[])
 	delete[] total; 	
 	return; 	
 }
+The time complexity of this function is 2n = O(n). The function must traverse through the array twice before finishing. 
 
 
