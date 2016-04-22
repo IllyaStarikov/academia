@@ -1,5 +1,12 @@
 Directed Degree Distribution 
-void Unweighted_InDegree_Diribution(&int arrayMax[]) 
+Unweighted In Degree Distribution goes through each entry to determine what the origin of each edge is. An array with cells for each possible vertex (total) is created 
+and once the origin is deterimined the respecitve cell in total is increased by one. After all of the entries have been checked, the function goes through the totals. 
+The functions begins by assuming total[0] is the maximum number of In Degree edges and 0 is added to arrayMax. arrayMax is the array which holds all of the vertexes with the
+maximum number of in degree edges. Each entry in total is compared to max. If the total entry is larger than the current max, then the current max is replaced with current 
+total. The arrayMax list is cleared and the current total origin is added to the arrayMax. If the current total is equal to the max, then the origin of current total is added 
+to the arrayMax. 
+
+void Unweighted_InDegree_Distribution(&int arrayMax[]) 
 {
 	N = the number of vertices 
 	int * total; 
@@ -9,7 +16,8 @@ void Unweighted_InDegree_Diribution(&int arrayMax[])
 		total[origin of i]++; 
 	}
 	int degreeMax = total[0];
-	
+	add 0 to arrayMax 
+
 	for(i = 1 to maxVertice){
 		if(total[i] > degreeMax){
 			degreeMax = total[i]; 
@@ -24,6 +32,13 @@ void Unweighted_InDegree_Diribution(&int arrayMax[])
 	return; 	
 }
 
+Unweighted Out Degree Distribution goes through each entry to determine what the destination of each edge is. An array with cells for each possible vertex (total) is created 
+and once the destination is deterimined the respecitve cell in total is increased by one. After all of the entries have been checked, the function goes through the totals. 
+The functions begins by assuming total[0] is the maximum number of Out Degree edges and 0 is added to arrayMax. arrayMax is the array which holds all of the vertexes with the
+maximum number of out degree edges. Each entry in total is compared to max. If the total entry is larger than the current max, then the current max is replaced with current 
+total. The arrayMax list is cleared and the current total destination is added to the arrayMax. If the current total is equal to the max, then the destination of current total is added 
+to the arrayMax.
+
 void Unweighted_OutDegree_Distribution(&int arrayMax[])
 {
 	N = the number of vertices 
@@ -34,7 +49,8 @@ void Unweighted_OutDegree_Distribution(&int arrayMax[])
 		total[Destination of i]++; 
 	}
 	int degreeMax = total[0];
-	
+	add 0 to arrayMax
+
 	for(i = 1 to maxOrigin){
 		if(total[i] > degreeMax){
 			degreeMax = total[i]; 
@@ -49,6 +65,13 @@ void Unweighted_OutDegree_Distribution(&int arrayMax[])
 	return; 	
 } 
 
+Weighted In Degree Distribution goes through each entry to determine what the origin of each edge is and the sum of the weighted edges. An array with cells for each possible vertex (total) 
+is created and once the origin is deterimined the respecitve cell in total is increased by weight of that edge. After all of the entries have been checked, the function goes through the totals. 
+The functions begins by assuming total[0] is the maximum number of Weighted In Degree edges and 0 is added to arrayMax. arrayMax is the array which holds all of the vertexes with the
+maximum number of weighted in degree edges. Each entry in total is compared to max. If the total entry is larger than the current max, then the current max is replaced with current 
+total. The arrayMax list is cleared and the current total origin is added to the arrayMax. If the current total is equal to the max, then the origin of current total is added 
+to the arrayMax. 
+
 void Weighted_InDegree_Diribution(&int arrayMax[]) 
 {
 	N = the number of vertices 
@@ -59,7 +82,8 @@ void Weighted_InDegree_Diribution(&int arrayMax[])
 		total[Origin of i]+= (Weight of i); 
 	}
 	int degreeMax = total[0];
-	
+	add 0 to arrayMax
+
 	for(i = 1 to maxOrigin){
 		if(total[i] > degreeMax){
 			degreeMax = total[i]; 
@@ -74,6 +98,13 @@ void Weighted_InDegree_Diribution(&int arrayMax[])
 	return; 	
 }
 
+Weighted Out Degree Distribution goes through each entry to determine what the destination of each edge is and the weight of those edges. An array with cells for each possible vertex (total) 
+is created and once the destination is deterimined the respecitve cell in total is increased by the value of that edge. After all of the entries have been checked, the function goes through 
+the totals. The functions begins by assuming total[0] is the maximum number of Weighted Out Degree edges and 0 is added to arrayMax. arrayMax is the array which holds all of the vertexes 
+with the maximum number of weighted out degree edges. Each entry in total is compared to max. If the total entry is larger than the current max, then the current max is replaced with current 
+total. The arrayMax list is cleared and the current total destination is added to the arrayMax. If the current total is equal to the max, then the destination of current total is added 
+to the arrayMax.
+
 void Weighted_OutDegree_Diribution(&int arrayMax[]) 
 {
 	N = the number of vertices 
@@ -84,7 +115,8 @@ void Weighted_OutDegree_Diribution(&int arrayMax[])
 		total[Destination of i]+= (Weight of i); 
 	}
 	int degreeMax = total[0];
-	
+	add 0 to arrayMax
+
 	for(i = 1 to maxDestination){
 		if(total[i] > degreeMax){
 			degreeMax = total[i]; 
