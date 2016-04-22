@@ -23,7 +23,7 @@ void degreeDistribution(const AdjacencyMap & map);
 
 void unweightedOutDegree(const AdjacencyMap & map);
 void weightedOutDegree(const AdjacencyMap & map);
-void unweightedInDegree(const AdjacencyMap & map);
-void unweightedInDegree(const AdjacencyMap & map);
+
+void inDegree(const AdjacencyMap & map, const bool weighted);
 
 #endif /* DegreeDistribution_hpp */

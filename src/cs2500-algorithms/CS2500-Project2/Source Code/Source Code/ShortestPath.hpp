@@ -13,9 +13,8 @@
 
 #include "Constants.h"
 
-void makeUndirected(std::vector<std::vector<int>> & vector, bool deleteSelfLoops = false);
-
-void shortestPath(const AdjacencyMap & map, bool isDirected);
 void shortestPaths(const AdjacencyMap & map);
 
+void makeUndirected(std::vector<std::vector<int>> & vector, bool deleteSelfLoops = false);
+void shortestPath(const AdjacencyMap & map, const bool _makeUndirected, const bool makeUnweighted);
 #endif /* ShortestPath_hpp */

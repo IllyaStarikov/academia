@@ -7,14 +7,25 @@
 //
 
 #include "ShortestPath.hpp"
+#include "Functions.hpp"
+
 #include <map>
 #include <vector>
 
-const int INFINITY = 999999;
+
 
 void shortestPaths(const AdjacencyMap & map) {
-    shortestPath(map, true);
-    shortestPath(map, false);
+    printHeader(SHORTEST_PATH_UNWEIGHTED_DIRECTED);
+    shortestPath(map, false, true);
+    
+    printHeader(SHORTEST_PATH_WEIGHTED_DIRECTED);
+    shortestPath(map, false, false);
+    
+    printHeader(SHORTEST_PATH_WEIGHTED_UNDIRECTED);
+    shortestPath(map, true, false);
+    
+    printHeader(SHORTEST_PATH_UNWEIGHTED_UNDIRECTED);
+    shortestPath(map, true, true);
 }
 
 void makeUndirected(std::vector<std::vector<int>> & vector, bool deleteSelfLoops) {
@@ -31,18 +42,18 @@ void makeUndirected(std::vector<std::vector<int>> & vector, bool deleteSelfLoops
     }
 }
 
-void shortestPath(const AdjacencyMap & map, bool isDirected) {
+void shortestPath(const AdjacencyMap & map, const bool _makeUndirected, const bool makeUnweighted) {
     // Floyd - Walsh algorithm
     const int size = static_cast<int>(map.size()) + 2; // One for the index of map, other for index of solution vector
     auto solution = std::vector<std::vector<int>>(size, std::vector<int>(size, INFINITY)); // 2D Adjacency Matrix with size of map and default values of infinity
     // Copy the map to the two dimensional matrix
     for (auto element : map) {
         for (auto pair : element.second) {
-            solution[element.first][pair.first] = pair.second;
+            solution[element.first][pair.first] = makeUnweighted ? DEFAULT_WEIGHT_FOR_PATH : pair.second;
         }
     }
     
-    if (!isDirected) { makeUndirected(solution); }
+    if (!_makeUndirected) { makeUndirected(solution); }
     
     for (int k = 0; k < size; k++) {
         for (int i = 0; i < size; i++) {
@@ -53,11 +64,13 @@ void shortestPath(const AdjacencyMap & map, bool isDirected) {
             }
         }
     }
-
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-            if (solution[i][j] != INFINITY) {
-                std::cout << i << " -> " << j << ": " << solution[i][j] << std::endl;
+    
+    if (PRINT_SOLUTIONS) {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (solution[i][j] != INFINITY) {
+                    std::cout << i << " -> " << j << ": " << solution[i][j] << std::endl;
+                }
             }
         }
     }

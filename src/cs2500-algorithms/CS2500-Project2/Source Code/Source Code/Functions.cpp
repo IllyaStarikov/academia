@@ -52,9 +52,7 @@ AdjacencyMap parseInput(std::vector<std::string> input) {
     return adjacencyMap;
 }
 
-void printMap(std::map<int, std::vector<std::pair<int, double>>> map) {
-    printHeader(MAP);
-    
+void printMap(std::map<int, std::vector<std::pair<int, double>>> map) {    
     for(auto const &t : map) {
         std::cout << t.first << " ";
         for (auto const &element : t.second) {
