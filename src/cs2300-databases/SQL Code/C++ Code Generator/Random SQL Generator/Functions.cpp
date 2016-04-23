@@ -32,7 +32,7 @@ std::string importFromFile(const std::string filename, const int lineNumber) {
 std::string sqlDate(int syear = START_YEAR, int cyear = CURRENT_YEAR) {
     std::ostringstream ss;
     int year = randomArbitrary(syear, cyear);
-    month = randomArbitrary(1, MONTHS_IN_YEAR);
+    int month = randomArbitrary(1, MONTHS_IN_YEAR);
     
     ss << year;
     ss << DELIMITER;
@@ -43,6 +43,19 @@ std::string sqlDate(int syear = START_YEAR, int cyear = CURRENT_YEAR) {
     ss << daysInMonth(year, month);
     
     return ss.str();
+}
+
+std::string sqlTime(){
+    std::ostringstream gentime; 
+    int Hour = randomArbitrary(0,23); 
+    int Minute = randomArbitrary(0,59); 
+
+    gentime << Hour;  
+    gentime << ":"
+
+    gentime << Minute 
+
+    return gentime.str(); 
 }
 
 int daysInMonth(const int year, const int month) {

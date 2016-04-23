@@ -23,6 +23,7 @@ void printInsertAndAttributes(T relation[], int size) {
 
 std::string importFromFile(const std::string filename, const int lineNumber);
 std::string sqlDate();
+std::string sqlTime(); 
 
 int daysInMonth(const int year, const int month);
 int randomArbitrary(const int floor, const int ceiling);

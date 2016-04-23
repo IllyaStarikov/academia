@@ -28,7 +28,8 @@ const std::string GROUP_DATE_ATTRIBUTE = "startDate";
 const std::string USER_TABLE_NAME_ATTRIBUTE = "USERS";
 const std::string USER_UID_ATTRIBUTE = "UiD"; 
 const std::string USER_USERNAME_ATTRIBUTE = "Username"; 
-const std::string USER_HEIGHT_ATTRIBUTE = "Height";
+const std::string USER_HEIGHT_FEET_ATTRIBUTE = "HeightFeet";
+const std::string USER_HEIGTH_INCHES_ATTRIBUTE = "HeightInches";
 const std::string USER_BIRTHDATE_ATTRIBUTE = "Birthdate"; 
 const std::string USER_STARTING_WEIGHT_ATTRIBUTE = "Weight"; 
 const std::string USER_GOAL_WEIGHT_ATTRIBUTE = "Goal"; 
@@ -39,17 +40,37 @@ const std::string USER_FNAME_ATTRIBUTE = "FName";
 const std::string USER_MINIT_ATTRIBUTE = "MInti";
 const std::string USER_LNAME_ATTRIBUTE = "LName";
 
+const std::string MEASUREMENT_WEIGHT_TABLE_NAME = "WEIGHT";
+const std::string MEASUREMENT_ARM_TABLE_NAME = "ARM"; 
+const std::string MEASUREMENT_CHEST_TABLE_NAME = "CHEST"; 
+const std::string MEASUREMENT_UID_ATTRIBUTE = "UiD";
+const std::string MEASUREMENT_DATE_ATTRIBUTE = "Date";  
+const std::string MEASUREMENT_TIME_ATTRIBUTE = "Time"; 
+const std::string MEASUREMENT_WEIGHT_ATTRIBUTE = "Weight"; 
+const std::string MEASURMENT_ARM_ATTRIBUTE = "Arm"; 
+const std::string MEASURMENT_CHEST_ATTRIBUTE = "Chest"; 
+
 const std::string SEPERATOR = ", ";
 
 const int GROUPS_NAME_TO_GO_TO = 1000;
-const int USERS_USERNAME_TO_GO_TO = 58;
+const int USERS_USERNAME_TO_GO_TO = 60;
 const int USERS_FFIRST_NAME_TO_GO_TO = 17650;
 const int USERS_MFIRST_NAME_TO_GO_TO = 12100;
 const int USERS_LNAME_TO_GO_TO = 720;  
 
+const int MAX_WEIGHT = 300; 
+const int MIN_WEIGHT = 90; 
+const int MAX_ARM = 29; 
+const int MIN_ARM = 23; 
+const int MAX_CHEST = 42;
+const int MIN_CHEST = 36;
+
 const int GROUP_COUNT = 1000;
 const int WORKOUT_COUNT = 1000;
 const int USER_COUNT = 1000; 
+const int WEIGHT_COUNT = 1000; 
+const int ARM_COUNT = 1000; 
+const int CHEST_COUNT = 1000; 
 
 const int CURRENT_YEAR = 2016;
 const int START_YEAR = 1900; 

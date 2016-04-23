@@ -10,7 +10,7 @@
 #include "Constants.h"
 
 #include <iomanip> 
-#include <iostream> ]
+#include <iostream> 
 #include <string> 
 
 using namespace std; 
@@ -18,7 +18,8 @@ using namespace std;
 Users::Users () { 
 	int RandNum, PasswordNum; 
 	//UiD
-	
+	UiD = createID(); 
+
 	//Username
 	RandNum = randomArbitrary(0,USERS_USERNAME_TO_GO_TO);
 	Username = importFromFile(USER_USERNAME_FILENAME, RandNum);
@@ -31,7 +32,6 @@ Users::Users () {
 	
 	RandNum = rand()%2;
 	if(RandNum == 0){Username.append(randomArbitrary(0,999));} 
-
 
 	//HeightFeet
 	HeightFeet = randomArbitrary(4, 6); // All users will be between 4 and 6 ft tall
@@ -96,4 +96,28 @@ Users::Users () {
 	//Last Name 
 	NameNum = randomArbitrary(0,USERS_LNAME_TO_GO_TO);
 	Lname = importFromFile(USER_LNAME_FILE, NameNum);
+}
+
+void Users::printInsert(){
+	cout << "INSERT INTO " << USER_TABLE_NAME_ATTRIBUTE << "("; 
+	cout << USER_UID_ATTRIBUTE << "," << USER_USERNAME_ATTRIBUTE << ","; 
+	cout << USER_HEIGHT_FEET_ATTRIBUTE << "," << USER_HEIGHT_INCHES_ATTRIBUTE << ","; 
+	cout << USER_BIRTHDATE_ATTRIBUTE << "," << USER_STARTING_WEIGHT_ATTRIBUTE << ","; 
+	cout << USER_GOAL_WEIGHT_ATTRIBUTE << "," << USER_PASSWORD_ATTRIBUTE << ",";
+	cout << USER_JOINDATE_ATTRIBUTE << "," << USER_GENDER_ATTRIBUTE << ",";
+	cout << USER_FNAME_ATTRIBUTE << "," << USER_MINIT_ATTRIBUTE << "," << USER_LNAME_ATTRIBUTE;
+	cout << ") VALUES";  
+}
+void Users::printAttributes(bool isLastPrint){
+	cout << setw(TAB_LENGTH) << "(" << UiD << "," << Username << ","; 
+	cout << setw(TAB_LENGTH) << HeightFeet << "," << HeightInches << ","; 
+	cout << setw(TAB_LENGTH) << Birthdate << "," << Weight << "," << Goal << ",";
+	cout << setw(TAB_LENGTH) << Password << "," << JoinDate << "," << Gender << ",";
+	cout << setw(TAB_LENGTH) << FName << "," << Minit << "<" << Lname << ")";
+	isLastPrint ? (cout << "; \n";):(cout << ", \n";); 
+}
+
+int Users::createID(){
+	static int ID = 0; 
+	return ID++;
 }
