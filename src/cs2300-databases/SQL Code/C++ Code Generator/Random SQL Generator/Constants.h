@@ -11,19 +11,21 @@
 
 #include <iostream>
 
-const std::string GROUPS_FILENAME = "groups.txt";
-const std::string USER_USERNAME_FILENAME = "usernames.txt";
-const std::string USER_FFIRSTNAME_FILENAME = "FFName.txt";
-const std::string USER_MFIRSTNAME_FILENAME = "MFname.txt";
-const std::string USER_LNAME_FILENAME = "LName.txt";
+const std::string GROUPS_FILENAME = "data/groups.txt";
+const std::string USER_USERNAME_FILENAME = "data/usernames.txt";
+const std::string USER_FFIRSTNAME_FILENAME = "data/FFName.txt";
+const std::string USER_MFIRSTNAME_FILENAME = "data/MFname.txt";
+const std::string USER_LNAME_FILENAME = "data/LName.txt";
 
 const std::string WORKOUT_TABLE_NAME_ATTRIBUTE = "WORKOUT";
 const std::string WORKOUT_INTENSITY_CALORIES_BURNED = "caloriesBurned";
 const std::string WORKOUT_INTESITY = "intensity";
+const std::string WORKOUT_ID = "WiD";
 
 const std::string GROUP_TABLE_NAME_ATTRIBUTE = "GROUP";
 const std::string GROUP_TITLE_ATTRIBUTE = "title";
 const std::string GROUP_DATE_ATTRIBUTE = "startDate";
+const std::string GROUP_ID = "GiD";
 
 const std::string USER_TABLE_NAME_ATTRIBUTE = "USERS";
 const std::string USER_UID_ATTRIBUTE = "UiD"; 

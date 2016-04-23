@@ -118,6 +118,12 @@ void Users::printAttributes(bool isLastPrint){
 }
 
 int Users::createID(){
+<<<<<<< HEAD
 	static int ID = 0;
 	return ID++;
 }
+=======
+	static int ID = 0; 
+	return ++ID;
+}
+>>>>>>> b20e17f6081c2429f8c7710b39efc7b9a81de710

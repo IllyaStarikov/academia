@@ -1,0 +1,69 @@
+\documentclass{scrartcl}
+\title{Homework \#4}
+\subtitle{Databases and File Structures}
+\date{Due Date: April 21, 2016}
+\author{Illya Starikov, Jason Young, Claire Trebing}
+
+\usepackage{soul}
+
+\begin{document}
+\maketitle
+
+\section{Closures, Candidate Keys}
+\begin{itemize}
+    \item $A^+ = \{ A \}$
+    \item $AB^+ = \{ A, B, C, D, E \}$ \textbf{Candidate Key}
+    \item $AC^+ = \{ A, B, D, C, E \}$ \textbf{Candidate Key}
+    \item $ACD^+ = \{ A, B, C, D, E \}$ \textbf{Candidate Key}
+    \item $B^+ = \{ B, D \}$
+    \item $BC^+ = \{ A, B, C, D, E\}$ \textbf{Candidate Key}
+    \item $C^+ = \{ C \}$
+    \item $CD^+ = \{ A, B, C, D, E \}$ \textbf{Candidate Key}
+    \item $E^+ = \{ A, B, C, D, E \}$ \textbf{Candidate Key}
+    \item $DE^+ = \{ A, B, C, D, E \}$ \textbf{Candidate Key}
+\end{itemize}
+
+\section{Functional Dependence Equivalence}
+No, because there is no occurrence of $C \rightarrow D$ in $G$, but there is one in $F$.
+
+
+\section{Minimal Cover}
+\subsection*{Step 1}
+\begin{itemize}
+    \item $A \rightarrow B, A \rightarrow C, A \rightarrow D$
+    \item $E \rightarrow G, E \rightarrow H$
+    \item $C \rightarrow D$
+    \item $AE \rightarrow J$
+\end{itemize}
+
+\subsection*{Step 2}
+\begin{itemize}
+    \item $A \rightarrow B, A \rightarrow C, A \rightarrow D$
+    \item $E \rightarrow G, E \rightarrow H$
+    \item $C \rightarrow D$
+    \item $AE \rightarrow J$
+\end{itemize}
+
+\subsection*{Step 3}
+\begin{itemize}
+    \item $A \rightarrow B, A \rightarrow C$
+    \item $E \rightarrow G, E \rightarrow H$
+    \item $C \rightarrow D$
+    \item $AE \rightarrow J$
+\end{itemize}
+
+\section{3NF and BCNF}
+\begin{enumerate}
+    \item  $F = \{ AB \rightarrow C, C \rightarrow D, C \rightarrow A \}$, \textit{Candidate Keys}: $(AB), (BC)$
+    \begin{itemize}
+        \item No, because the in the functional dependency $C \rightarrow D$, $D$ is not a part of any candidate key and $A$ is not a super key.
+        \item No, because $\{ C \rightarrow D \}$ is neither trivial nor a superkey.
+    \end{itemize}
+    \item $F = {ACE \rightarrow BD, B \rightarrow C}$, \textit{Candidate Key}: $(ACE)$
+    \begin{itemize}
+        \item Yes, because $ACE$ is a super key and $C$ is part of the candidate key.
+        \item No, because $\{B \rightarrow C \}$ is neither trivial nor a superkey.
+    \end{itemize}
+\end{enumerate}
+
+\end{document}

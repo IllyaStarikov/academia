@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4920109A1CC570C4006F2BB3 /* Strength.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 492010981CC570C4006F2BB3 /* Strength.cpp */; };
 		49432D101CBB1BD100E878A3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49432D0F1CBB1BD100E878A3 /* main.cpp */; };
 		49432D181CBB1C8300E878A3 /* Groups.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49432D161CBB1C8300E878A3 /* Groups.cpp */; };
 		49432D1B1CBB372600E878A3 /* Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49432D191CBB372600E878A3 /* Functions.cpp */; };
+		4960DAEE1CCBFB200049B06D /* Measurements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4960DAEC1CCBFB200049B06D /* Measurements.cpp */; };
+		49D8456A1CC82B5000EBF814 /* Users.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49D845691CC82B5000EBF814 /* Users.cpp */; };
 		49FCF6CF1CC43BEF002F42CF /* Workout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49FCF6CD1CC43BEF002F42CF /* Workout.cpp */; };
 		49FCF6D21CC45040002F42CF /* Duration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49FCF6D01CC45040002F42CF /* Duration.cpp */; };
 /* End PBXBuildFile section */
@@ -27,6 +30,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		492010981CC570C4006F2BB3 /* Strength.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Strength.cpp; sourceTree = "<group>"; };
+		492010991CC570C4006F2BB3 /* Strength.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Strength.hpp; sourceTree = "<group>"; };
 		49432D0C1CBB1BD100E878A3 /* Random SQL Generator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Random SQL Generator"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49432D0F1CBB1BD100E878A3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		49432D161CBB1C8300E878A3 /* Groups.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Groups.cpp; sourceTree = "<group>"; };
@@ -34,6 +39,10 @@
 		49432D191CBB372600E878A3 /* Functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Functions.cpp; sourceTree = "<group>"; };
 		49432D1A1CBB372600E878A3 /* Functions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Functions.hpp; sourceTree = "<group>"; };
 		49432D1C1CBB38D000E878A3 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		4960DAEC1CCBFB200049B06D /* Measurements.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Measurements.cpp; sourceTree = "<group>"; };
+		4960DAED1CCBFB200049B06D /* Measurement.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Measurement.hpp; sourceTree = "<group>"; };
+		49D845681CC82B5000EBF814 /* Users.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Users.hpp; sourceTree = "<group>"; };
+		49D845691CC82B5000EBF814 /* Users.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Users.cpp; sourceTree = "<group>"; };
 		49FCF6CD1CC43BEF002F42CF /* Workout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Workout.cpp; sourceTree = "<group>"; };
 		49FCF6CE1CC43BEF002F42CF /* Workout.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Workout.hpp; sourceTree = "<group>"; };
 		49FCF6D01CC45040002F42CF /* Duration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Duration.cpp; sourceTree = "<group>"; };
@@ -70,6 +79,10 @@
 		49432D0E1CBB1BD100E878A3 /* Random SQL Generator */ = {
 			isa = PBXGroup;
 			children = (
+				4960DAEC1CCBFB200049B06D /* Measurements.cpp */,
+				4960DAED1CCBFB200049B06D /* Measurement.hpp */,
+				49D845681CC82B5000EBF814 /* Users.hpp */,
+				49D845691CC82B5000EBF814 /* Users.cpp */,
 				49432D0F1CBB1BD100E878A3 /* main.cpp */,
 				49432D191CBB372600E878A3 /* Functions.cpp */,
 				49432D1A1CBB372600E878A3 /* Functions.hpp */,
@@ -78,6 +91,8 @@
 				49432D1C1CBB38D000E878A3 /* Constants.h */,
 				49FCF6CD1CC43BEF002F42CF /* Workout.cpp */,
 				49FCF6CE1CC43BEF002F42CF /* Workout.hpp */,
+				492010981CC570C4006F2BB3 /* Strength.cpp */,
+				492010991CC570C4006F2BB3 /* Strength.hpp */,
 				49FCF6D01CC45040002F42CF /* Duration.cpp */,
 				49FCF6D11CC45040002F42CF /* Duration.hpp */,
 			);
@@ -142,8 +157,11 @@
 			files = (
 				49432D1B1CBB372600E878A3 /* Functions.cpp in Sources */,
 				49432D101CBB1BD100E878A3 /* main.cpp in Sources */,
+				4960DAEE1CCBFB200049B06D /* Measurements.cpp in Sources */,
+				4920109A1CC570C4006F2BB3 /* Strength.cpp in Sources */,
 				49FCF6D21CC45040002F42CF /* Duration.cpp in Sources */,
 				49432D181CBB1C8300E878A3 /* Groups.cpp in Sources */,
+				49D8456A1CC82B5000EBF814 /* Users.cpp in Sources */,
 				49FCF6CF1CC43BEF002F42CF /* Workout.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

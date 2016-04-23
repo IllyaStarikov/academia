@@ -13,11 +13,13 @@
 
 class Group {
     std::string title, startDate;
-
+    int groupID;
+    
 public:
     Group();
     void printInsert();
     void printAttributes(bool isLastPrint);
+    int generateID();
 };
 
 #endif /* Groups_hpp */

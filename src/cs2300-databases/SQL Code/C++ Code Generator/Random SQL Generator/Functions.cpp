@@ -9,7 +9,6 @@
 #include "Functions.hpp"
 #include "Constants.h"
 
-
 std::string importFromFile(const std::string filename, const int lineNumber) {
     std::ifstream readin;
     readin.open(filename.c_str());

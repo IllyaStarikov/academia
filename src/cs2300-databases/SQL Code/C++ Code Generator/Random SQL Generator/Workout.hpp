@@ -19,14 +19,14 @@
 class Workout {
     Duration duration;
     std::string title;
-    int intensity;
+    int intensity, workoutID;
     double caloriesBurned;
     
 public:
     Workout();
     void printInsert();
     void printAttributes(bool isLastPrint);
-    
+    int generateID();
 };
 
 #endif /* Workout_hpp */
