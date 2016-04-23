@@ -192,6 +192,8 @@ void Weighted_OutDegree_Diribution(&int arrayMax[])
 The time complexity of this function is $2n = O(n)$. The function must traverse through the array twice before finishing.
 
 \subsection{Shortest Path}
+For our Shortest Path algorithm we decided to implement the Floyd-Warshall algorithm. We chose this algorithm because of the need to examine the shortest path for all pairs of vertices as well as the lower complexity of the dynamic programming solution. The Floyd-Warshall algorithm creates an array of VxV size keeping a running tally of the shortest path while adding verticies to the list of possible intermediate points on those paths.
+
 \begin{verbatim}
 V = the number of vertices
 distance = new array[V][V]
@@ -312,6 +314,8 @@ Weighted Graph Diameter{
 The time complexity of this code is $\mathcal{O}(n^2)$. You must go through the matrix twice to complete this function.
 
 \subsection{Closeness Centrality}
+The Closeness Centrality is defined as $C_c(i) =[ \sum_{j=1}^{N} d(i,j)]^-1$. So in order to find the Closeness Centrality we first must find the sum of all the shortest paths for each vertices. Once we find this sum we simply record it as a float by dividing one by the sum and storing it in an array of Closeness values.
+
 \begin{verbatim}
 sum = 0
 closeness = new array[100]
@@ -462,6 +466,8 @@ This algorithms takes an edge $e$ from the main function. The function then look
 This function has a complexity of $n^2$. Each vertex must check every other vertex to determine all of the shortest paths. This gives it a complexity of $\mathcal{O}(n^2)$.
 
 \subsection{Community Detection}
+To detect communities of vertices within the data set we set out to remove those edges that are most likely between those communities to make those communities more apparent. To do this we take the betweenness centrality of edges and sort them in decending order. Then we remove the edge with the highest value \(or edges if there are more than one of the same value\). Once this is complete we simply recalculate the matrix of shortest paths using the Floyd-Warshall algorithm and the graph diameter using the algorithm detailed above. We repeat this for a total of five times and the resulting diameters are our likely communities.
+
 \begin{verbatim}
 UWBetween[] = Unweighted Betweenness Centrality Edges
 V = Original Network

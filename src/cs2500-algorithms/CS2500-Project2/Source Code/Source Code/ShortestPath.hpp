@@ -15,6 +15,6 @@
 
 void shortestPaths(const AdjacencyMap & map);
 
-void makeUndirected(std::vector<std::vector<int>> & vector, bool deleteSelfLoops = false);
+void makeUndirected(std::vector<std::vector<int>> & vector, bool deleteSelfLoops = true);
 void shortestPath(const AdjacencyMap & map, const bool _makeUndirected, const bool makeUnweighted);
 #endif /* ShortestPath_hpp */
