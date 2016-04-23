@@ -50,6 +50,147 @@ There are many reasons for this to be valuable, such as common interest, communi
 This will give us a reasonable dataset for the relationship of a community in a social graph.
 
 \section{Proposed Solutions}
+\subsection{Uweighted In Degree Distribution}
+Unweighted In Degree Distribution goes through each entry to determine what the origin of each edge is. An array with cells for each possible vertex (total) is created and once the origin is determined the respective cell in total is increased by one. After all of the entries have been checked, the function goes through the totals.
+
+The functions begins by assuming \texttt{total[0]} is the maximum number of In Degree edges and $0$ is added to \texttt{arrayMax}. \texttt{arrayMax} is the array which holds all of the vertexes with the maximum number of in degree edges. Each entry in total is compared to max. If the total entry is larger than the current max, then the current max is replaced with current total. The \texttt{arrayMax} list is cleared and the current total origin is added to the \texttt{arrayMax}. If the current total is equal to the max, then the origin of current total is added to \texttt{arrayMax}.
+
+\begin{verbatim}
+void Unweighted_InDegree_Distribution(&int arrayMax[])
+{
+    N = the number of vertices
+    int * total;
+    total = new int [maxVertice];
+
+    for(i = 0 to N){
+        total[origin of i]++;
+    }
+    int degreeMax = total[0];
+    add 0 to arrayMax
+
+    for(i = 1 to maxVertice){
+        if(total[i] > degreeMax){
+            degreeMax = total[i];
+            clear arrayMax
+            add i to arrayMax
+        }
+        if(total[i] == degreeMax){
+            add i to arrayMax
+        }
+    }
+    delete[] total;
+    return;
+}
+\end{verbatim}
+
+The time complexity of this function is $2n = \mathcal{O}(n)$. The function must traverse through the array twice before finishing.
+
+\subsection{Unweighted Out Degree Distribution}
+Unweighted Out Degree Distribution goes through each entry to determine what the destination of each edge is. An array with cells for each possible vertex (total) is created
+and once the destination is determined the respective cell in total is increased by one. After all of the entries have been checked, the function goes through the totals.
+The functions begins by assuming \texttt{total[0]} is the maximum number of Out Degree edges and $0$ is added to \texttt{arrayMax}. \texttt{arrayMax} is the array which holds all of the vertexes with the maximum number of out degree edges. Each entry in total is compared to max. If the total entry is larger than the current max, then the current max is replaced with current
+total. The \texttt{arrayMax} list is cleared and the current total destination is added to the \texttt{arrayMax}. If the current total is equal to the max, then the destination of current total is added to the \texttt{arrayMax}.
+
+\begin{verbatim}
+void Unweighted_OutDegree_Distribution(&int arrayMax[])
+{
+    N = the number of vertices
+    int * total;
+    total = new int [maxDestination];
+
+    for(i = 0 to N){
+        total[Destination of i]++;
+    }
+    int degreeMax = total[0];
+    add 0 to arrayMax
+
+    for(i = 1 to maxOrigin){
+        if(total[i] > degreeMax){
+            degreeMax = total[i];
+            clear arrayMax
+            add i to arrayMax
+        }
+        if(total[i] == degreeMax){
+            add i to arrayMax
+        }
+    }
+    delete[] total;
+    return;
+}
+\end{verbatim}
+
+\subsubsection{Complexity Analysis}
+The time complexity of this function is $2n = \mathcal{O}(n)$. The function must traverse through the array twice before finishing.
+
+\subsection{Weighted In Degree Distribution}
+Weighted In Degree Distribution goes through each entry to determine what the origin of each edge is and the sum of the weighted edges. An array with cells for each possible vertex (total) is created and once the origin is determined the respective cell in total is increased by weight of that edge. After all of the entries have been checked, the function goes through the totals.
+
+The functions begins by assuming \texttt{total[0]} is the maximum number of Weighted In Degree edges and $0$ is added to \texttt{arrayMax}. \texttt{arrayMax} is the array which holds all of the vertexes with the maximum number of weighted in degree edges. Each entry in total is compared to max. If the total entry is larger than the current max, then the current max is replaced with current total. The \texttt{arrayMax} list is cleared and the current total origin is added to the arrayMax. If the current total is equal to the max, then the origin of current total is added to the \texttt{arrayMax}.
+
+\begin{verbatim}
+void Weighted_InDegree_Diribution(&int arrayMax[])
+{
+    N = the number of vertices
+    int * total;
+    total = new int [maxOrigin];
+
+    for(i = 0 to N){
+        total[Origin of i]+= (Weight of i);
+    }
+    int degreeMax = total[0];
+    add 0 to arrayMax
+
+    for(i = 1 to maxOrigin){
+        if(total[i] > degreeMax){
+            degreeMax = total[i];
+            clear arrayMax
+            add i to arrayMax
+        }
+        if(total[i] == degreeMax){
+            add i to arrayMax
+        }
+    }
+    delete[] total;
+    return;
+}
+\end{verbatim}
+
+\subsubsection{Complexity Analysis}
+The time complexity of this function is $2n = \mathcal{O}(n)$. The function must traverse through the array twice before finishing.
+
+\subsection{Weighted Out Degree Distribution}
+Weighted Out Degree Distribution goes through each entry to determine what the destination of each edge is and the weight of those edges. An array with cells for each possible vertex (total) is created and once the destination is determined the respective cell in total is increased by the value of that edge. After all of the entries have been checked, the function goes through the totals. The functions begins by assuming \texttt{total[0]} is the maximum number of Weighted Out Degree edges and $0$ is added to \texttt{arrayMax}. \texttt{arrayMax} is the array which holds all of the vertexes with the maximum number of weighted out degree edges. Each entry in total is compared to max. If the total entry is larger than the current max, then the current max is replaced with current total. The \texttt{arrayMax} list is cleared and the current total destination is added to the arrayMax. If the current total is equal to the max, then the destination of current total is added to the \texttt{arrayMax}.
+
+\begin{verbatim}
+void Weighted_OutDegree_Diribution(&int arrayMax[])
+{
+    N = the number of vertices
+    int * total;
+    total = new int [maxDestionation];
+
+    for(i = 0 to N){
+        total[Destination of i]+= (Weight of i);
+    }
+    int degreeMax = total[0];
+    add 0 to arrayMax
+
+    for(i = 1 to maxDestination){
+        if(total[i] > degreeMax){
+            degreeMax = total[i];
+            clear arrayMax
+            add i to arrayMax
+        }
+        if(total[i] == degreeMax){
+            add i to arrayMax
+        }
+    }
+    delete[] total;
+    return;
+}
+\end{verbatim}
+
+The time complexity of this function is $2n = O(n)$. The function must traverse through the array twice before finishing.
+
 \subsection{Shortest Path}
 \begin{verbatim}
 V = the number of vertices
@@ -88,6 +229,88 @@ for i from 1 to shortest.length
 \subsubsection{Complexity Analysis}
 As we know, the Floyd-Warshall algorithm operates on $n^3$ time. Combining this with the algorithm to iterate over the resulting V x V matrix results in a $n^2 + n^3$ complexity --- or, $\mathcal{O}(n^3)$ time.
 
+\subsection{Unweighted Graph Diameter}
+Our solution first creats an $N \times N$ array to hold all of the shortest paths from each vertex to every other
+vertex. For an unweighted graph the shortest path from $i \rightarrow j$ is equal to the shortest path from $j \rightarrow i$. After creating and filling the matrix, the function assumes that the value at \texttt{distance[0][1]}. The function then tests every value in the matrix and compares it to the max. If the value is greater than the max then the max is replaced
+with \texttt{distance[i][j]}. Clear the \texttt{GraphDiameterList} and then add $(i,j)$ to the graph diameter list. If \texttt{distance[i][j]} is equal to max then add $(i,j)$ to the \texttt{GraphDiameterList}.
+
+The pseudocode is as follows.
+
+\begin{verbatim}
+Unweighted Graph Diameter {
+    N = the number of vertices
+    distance = new array[N][N]
+    all distances start at -1
+
+    for(i = 0 to N){
+        for(j = i+1 to N){
+            distance[i][j] = shortest path(i, j)
+        }
+    }
+
+    max = Diameter[0][1]
+    Add (0,1) to GraphDiameterList
+
+    for(i = 0 to N){
+        for(j = 1 to N){
+            if(distance[i][j] > max){
+                clear GraphDiameterList
+                max = distance[i][j]
+                add (i,j) to GraphDiameterList
+            }
+            if(distance[i][j] = max){
+                add (i,j) to GraphDiameterList
+            }
+    }
+    return GraphDiameterList
+}
+\end{verbatim}
+
+\subsubsection{Complexity Analysis}
+The time complexity of this code is $\mathcal{O}(n^2)$. You must go through the matrix twice to complete this function.
+
+\subsection{Weighted Graph Diameter}
+This functions first created an $N \times N$ array to hold all of the shortest paths from each vertex to every other
+vertex. After creating and filling the matrix, the solution assumes that the value at \texttt{distance[0][1]}. The function then tests every value in the matrix and compares it to the max. If the value is greater than the max then the max is replaced
+with \texttt{distance[i][j]}. Clear the \texttt{GraphDiameterList} and then add $(i, j)$ to the graph diameter list. If \texttt{distance[i][j]} is equal to max then add $(i, j)$ to the \texttt{GraphDiameterList}.
+
+The pseudocode is as follows:
+
+\begin{verbatim}
+Weighted Graph Diameter{
+    N = the number of vertices
+    distance = new array[N][N]
+    all distances start at -1
+
+    for(i = 0 to N){
+        for(j = 0 to N){
+            if(i != j){
+                distance[i][j] = shortest path(i, j)
+            }
+        }
+    }
+
+    max = Diameter[0][1]
+    Add (0,1) to GraphDiameterList
+
+    for(i = 0 to N){
+        for(j = 0 to N){
+            if(i != j)
+            if(distance[i][j] > max){
+                clear GraphDiameterList
+                max = distance[i][j]
+                add (i,j) to GraphDiameterList
+            }
+            if(distance[i][j] = max){
+                add (i,j) to GraphDiameterList
+            }
+    }
+    return GraphDiameterList
+\end{verbatim}
+
+\subsubsection{Complexity Analysis}
+The time complexity of this code is $\mathcal{O}(n^2)$. You must go through the matrix twice to complete this function.
+
 \subsection{Closeness Centrality}
 \begin{verbatim}
 sum = 0
@@ -103,6 +326,140 @@ for i from 0 to V
 
 \subsubsection{Complexity Analysis}
 Because we are iterating over the entire matrix resulting from the Floyd-Warshall algorithm of $V \times V$ size. We arrive at a complexity of $\mathcal{O}(n^2)$.
+
+\subsection{Undirected Betweenness Centrality Distribution}
+This algorithms takes a vertex $i$ from the main function. The function then looks at every shortest path possible. Starting at vertex $0$ the function and going to the largest vertex. If $i$ is the starting point $(j)$ or the ending point $(k)$ it is ignored. $K$ is defined as $j + 1$ If the shortest path because in undirected graphs, the shortest distance from $j \rightarrow k$ == the shortest distance from $k \rightarrow j$. If the shortest distance from j to k includes the vertex i, the value of the betweenness is increased by 1. The total betweens is then returned to the main function.
+
+\begin{verbatim}
+Undirected Betweenness Centrality Distribution of Vetex i(vertex i){
+    N = max vertex
+    B = betweenses = 0
+    for(j = 0 to N){
+        if(i != j){
+            for(k = j+1 to N){
+                if(i != k){
+                    shortestpath between j and k
+                    if i is included, increase betweeneses by 1
+                }
+            }
+        }
+    }
+
+    return B;
+}
+\end{verbatim}
+
+This function has a complexity of $n$. Each vertex check every vertex larger than itself to determine all of the shortest paths. The first vertex must check nearly other ever vertex, except $i$. This gives it a complexity of $\mathcal{O}(n)$.
+
+\subsection{Directed Betweenness Centrality Distribution}
+This algorithm takes a vertex $i$ from the main function. The function then looks at every shortest path possible. Starting at vertex $0$ the function and going to the largest vertex. If i is the starting point $(j)$ or the ending point $(k)$ it is ignored. The path is also ignored if j and k are equal. If the shortest distance from j to k includes i, then the betweenness is increased by $1$. The total betweenness is then returned to the main function.
+
+\begin{verbatim}
+Directed Betweenness Centrality Distribution of Vertex i(vertex i){
+    N = max vertex
+    B = betweenses = 0
+    for(j = 0 to N){
+        if(i != j){
+            for(k = 0 to N){
+                if(i != k && j != k){
+                    shortest path between j and k
+                    if i is included, increase betweenses by 1
+                }
+            }
+        }
+    }
+}
+\end{verbatim}
+
+\subsubsection{Complexity Analysis}
+This function has a complexity of $n^2$. Each vertex must check every other vertex to determine
+all of the shortest paths. This gives it a complexity of $\mathcal{O}(n^2)$.
+
+\subsection{Undirected Unweighted Betweenness Centrality Distribution}
+This algorithm takes an edge e from the main function. The function then looks at every shortest path possible. Starting at vertex 0 the function and going to the largest vertex. K is defined as j + 1 because the shortest path in undirected graphs, the shortest distance from j -> k == the shortest distance from k -> j. If the shortest distance from j to k includes the edge e, the value of the betweenness is increased by 1. The total betweenness is then returned to the main function.
+
+\begin{verbatim}
+Undirected Unweighted Betweenness Centrality Distribution of Edge e(edge e){
+    N = max vertex
+    B = betweenses = 0
+    for(j = 0 to N){
+        for(k = j+1 to N){
+            shortest path between j and k
+            if e is included, increase betweeneses by 1
+            }
+        }
+    }
+    return B;
+}
+\end{verbatim}
+
+\subsubsection{Complexity Analysis}
+This function has a complexity of $n$. Each vertex check every vertex larger than itself to determine all of the shortest paths. The first vertex must check nearly other ever vertex. This gives it a complexity of $n$.
+
+\subsection{Directed Unweighted Betweenness Centrality Distribution of Edge}
+This algorithm takes an edge $e$ from the main function. The function then looks at every shortest path possible. Starting at vertex $0$ the function and going to the largest vertex. If the shortest distance from $j$ to $k$ includes the edge $e$, the value of the betweenness is increased by 1. The total betweenness is then returned to the main function.
+
+\begin{verbatim}
+Directed Unweighted Betweenness Centrality Distribution of Edge e(edge e){
+    N = max vertex
+    B = betweenses = 0
+    for(j = 0 to N){
+        for(k = 0 to N){
+            if(j != k){
+                shortest path between j and k
+                if e is included, increase betweeneses by 1
+            }
+        }
+    }
+    return B;
+}
+\end{verbatim}
+
+\subsubsection{Complexity Analysis}
+This function has a complexity of $n^2$. Each vertex must check every other vertex to determine
+all of the shortest paths. This gives it a complexity of $\mathcal{O}(n^2)$.
+
+\subsection{Undirected Weighted Betweenness Centrality Distribution of Edge e}
+This algorithm takes an edge e from the main function. The function then looks at every shortest path possible. Starting at vertex $0$ the function and going to the largest vertex. $K$ is defined as j + 1 because the shortest path in undirected graphs, the shortest distance from $j \rightarrow k$ == the shortest distance from $k \rightarrow j$. If the shortest distance from $j$ to $k$ includes the edge $e$, the value of the betweenness is increased by $1$. The total betweenness is then returned to the main function divided by the weight of e.
+
+\begin{verbatim}
+Undirected Weighted Betweenness Centrality Distribution of Edge e(edge e){
+    N = max vertex
+    B = betweenness = 0
+    for(j = 0 to N){
+        for(k = j+1 to N){
+            shortest path between j and k
+            if e is included, increase betweenness by 1
+            }
+        }
+    }
+    return B/(weight of e);
+}
+\end{verbatim}
+
+\subsubsection{Complexity Analysis}
+This function has a complexity of $n$. Each vertex check every vertex larger than itself to determine all of the shortest paths. The first vertex must check nearly other ever vertex. This gives it a complexity of $\mathcal{O}(n)$.
+
+\begin{verbatim}
+Directed Weighted Betweenness Centrality Distribution of Edge e(edge e){
+    N = max vertex
+    B = betweenness = 0
+    for(j = 0 to N){
+        for(k = 0 to N){
+            if(j != k){
+                shortest path between j and k
+                if e is included, increase betweeneses by 1
+            }
+        }
+    }
+    return B/(weight of edge e);
+}
+\end{verbatim}
+
+This algorithms takes an edge $e$ from the main function. The function then looks at every shortest path possible. Starting at vertex $0$ the function and going to the largest vertex. If the shortest distance from j to k includes the edge e, the value of the betweenness is increased by $1$. The total betweenness is then returned to the main function divided by the edge $e$.
+
+\subsubsection{Complexity Analysis}
+This function has a complexity of $n^2$. Each vertex must check every other vertex to determine all of the shortest paths. This gives it a complexity of $\mathcal{O}(n^2)$.
 
 \subsection{Community Detection}
 \begin{verbatim}

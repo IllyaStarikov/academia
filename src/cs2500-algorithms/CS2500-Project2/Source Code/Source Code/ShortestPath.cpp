@@ -49,12 +49,14 @@ void shortestPath(const AdjacencyMap & map, const bool _makeUndirected, const bo
     // Copy the map to the two dimensional matrix
     for (auto element : map) {
         for (auto pair : element.second) {
-            solution[element.first][pair.first] = makeUnweighted ? DEFAULT_WEIGHT_FOR_PATH : pair.second;
+            solution[element.first][pair.first] = makeUnweighted ? DEFAULT_WEIGHT_FOR_PATH : pair.second; // Make directed / undirected
         }
     }
     
     if (!_makeUndirected) { makeUndirected(solution); }
     
+    // Iterate over entirety of matrices
+    // Essentially, a glorified bubble sort
     for (int k = 0; k < size; k++) {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {

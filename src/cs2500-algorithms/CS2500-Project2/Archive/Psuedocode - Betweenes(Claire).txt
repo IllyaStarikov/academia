@@ -1,6 +1,10 @@
+\subsection{Undirected Betweenness Centrality Distribution}
+This algorithms takes a vertex $i$ from the main function. The function then looks at every shortest path possible. Starting at vertex $0$ the function and going to the largest vertex. If $i$ is the starting point $(j)$ or the ending point $(k)$ it is ignored. $K$ is defined as $j + 1$ If the shortest path because in undirected graphs, the shortest distance from $j \rightarrow k$ == the shortest distance from $k \rightarrow j$. If the shortest distance from j to k includes the vertex i, the value of the betweenness is increased by 1. The total betweens is then returned to the main function.
+
+\begin{verbatim}
 Undirected Betweenness Centrality Distribution of Vetex i(vertex i){
 	N = max vertex
-	B = betweenses = 0 
+	B = betweenses = 0
 	for(j = 0 to N){
 		if(i != j){
 			for(k = j+1 to N){
@@ -12,23 +16,18 @@ Undirected Betweenness Centrality Distribution of Vetex i(vertex i){
 		}
 	}
 
-	return B; 
+	return B;
 }
+\end{verbatim}
 
-This algorithms takes a vertex i from the main function. The function then looks at every 
-shortest path possible. Starting at vertex 0 the function and going to the largest vertex. 
-If i is the starting point (j) or the ending point (k) it is ignored. K is defined as j + 1 
-If the shortest path because in undirected graphs, the shortest distance from j -> k == the 
-shortest distance from k -> j. If the shortest distance from j to k includes the vertex i, 
-the value of the betweeness is increased by 1. The total betweenes is then returned to the 
-main function. 
+This function has a complexity of $n$. Each vertex check every vertex larger than itself to determine all of the shortest paths. The first vertex must check nearly other ever vertex, except $i$. This gives it a complexity of $\mathcal{O}(n)$.
 
-This function has a complexity of n. Each vertex check every vertex larger than itself
-to determine all of the shortest paths. The first vertex must check nearly other ever vertex, 
-except i. This gives it a complexity of n.
+\subsection{Directed Betweenness Centrality Distribution}
+This algorithm takes a vertex $i$ from the main function. The function then looks at every shortest path possible. Starting at vertex $0$ the function and going to the largest vertex. If i is the starting point $(j)$ or the ending point $(k)$ it is ignored. The path is also ignored if j and k are equal. If the shortest distance from j to k includes i, then the betweenness is increased by $1$. The total betweenness is then returned to the main function.
 
+\begin{verbatim}
 Directed Betweenness Centrality Distribution of Vertex i(vertex i){
-	N = max vertex 
+	N = max vertex
 	B = betweenses = 0
 	for(j = 0 to N){
 		if(i != j){
@@ -41,18 +40,19 @@ Directed Betweenness Centrality Distribution of Vertex i(vertex i){
 		}
 	}
 }
-This algorithm takes a vertex i from the main function. The function then looks at every 
-shortest path possible. Starting at vertex 0 the function and going to the largest vertex. 
-If i is the starting point (j) or the ending point (k) it is ignored. The path is also ignored
-if j and k are equal. If the shortes distance from j to k includes i, then the betweenes is 
-increased by 1. The total betweenes is then returned to the main function. 
+\end{verbatim}
 
-This function has a complexity of n^2. Each vertex must check every other vertex to determine 
-all of the shortest paths. This gives it a complexity of n^2.
+\subsubsection{Complexity Analysis}
+This function has a complexity of $n^2$. Each vertex must check every other vertex to determine
+all of the shortest paths. This gives it a complexity of $\mathcal{O}(n^2)$.
 
+\subsection{Undirected Unweighted Betweenness Centrality Distribution}
+This algorithm takes an edge e from the main function. The function then looks at every shortest path possible. Starting at vertex 0 the function and going to the largest vertex. K is defined as j + 1 because the shortest path in undirected graphs, the shortest distance from j -> k == the shortest distance from k -> j. If the shortest distance from j to k includes the edge e, the value of the betweenness is increased by 1. The total betweenness is then returned to the main function.
+
+\begin{verbatim}
 Undirected Unweighted Betweenness Centrality Distribution of Edge e(edge e){
 	N = max vertex
-	B = betweenses = 0 
+	B = betweenses = 0
 	for(j = 0 to N){
 		for(k = j+1 to N){
 			shortest path between j and k
@@ -60,22 +60,20 @@ Undirected Unweighted Betweenness Centrality Distribution of Edge e(edge e){
 			}
 		}
 	}
-	return B; 
+	return B;
 }
-This algoriths takes an edge e from the main function. The function then looks at every 
-shortest path possible. Starting at vertex 0 the function and going to the largest vertex. 
-K is defined as j + 1 because the shortest path in undirected graphs, the shortest distance 
-from j -> k == the shortest distance from k -> j. If the shortest distance from j to k includes 
-the edge e, the value of the betweeness is increased by 1. The total betweenes is then returned 
-to the main function. 
+\end{verbatim}
 
-This function has a complexity of n. Each vertex check every vertex larger than itself
-to determine all of the shortest paths. The first vertex must check nearly other ever vertex. 
-This gives it a complexity of n.
+\subsubsection{Complexity Analysis}
+This function has a complexity of $n$. Each vertex check every vertex larger than itself to determine all of the shortest paths. The first vertex must check nearly other ever vertex. This gives it a complexity of $n$.
 
+\subsection{Directed Unweighted Betweenness Centrality Distribution of Edge}
+This algorithm takes an edge $e$ from the main function. The function then looks at every shortest path possible. Starting at vertex $0$ the function and going to the largest vertex. If the shortest distance from $j$ to $k$ includes the edge $e$, the value of the betweenness is increased by 1. The total betweenness is then returned to the main function.
+
+\begin{verbatim}
 Directed Unweighted Betweenness Centrality Distribution of Edge e(edge e){
 	N = max vertex
-	B = betweenses = 0 
+	B = betweenses = 0
 	for(j = 0 to N){
 		for(k = 0 to N){
 			if(j != k){
@@ -84,42 +82,39 @@ Directed Unweighted Betweenness Centrality Distribution of Edge e(edge e){
 			}
 		}
 	}
-	return B; 
+	return B;
 }
-This algoriths takes an edge e from the main function. The function then looks at every 
-shortest path possible. Starting at vertex 0 the function and going to the largest vertex. 
-If the shortest distance from j to k includes the edge e, the value of the betweeness is increased by 1. 
-The total betweenes is then returned to the main function. 
+\end{verbatim}
 
-This function has a complexity of n^2. Each vertex must check every other vertex to determine 
-all of the shortest paths. This gives it a complexity of n^2.
+\subsubsection{Complexity Analysis}
+This function has a complexity of $n^2$. Each vertex must check every other vertex to determine
+all of the shortest paths. This gives it a complexity of $\mathcal{O}(n^2)$.
 
+\subsection{Undirected Weighted Betweenness Centrality Distribution of Edge e}
+This algorithm takes an edge e from the main function. The function then looks at every shortest path possible. Starting at vertex $0$ the function and going to the largest vertex. $K$ is defined as j + 1 because the shortest path in undirected graphs, the shortest distance from $j \rightarrow k$ == the shortest distance from $k \rightarrow j$. If the shortest distance from $j$ to $k$ includes the edge $e$, the value of the betweenness is increased by $1$. The total betweenness is then returned to the main function divided by the weight of e.
+
+\begin{verbatim}
 Undirected Weighted Betweenness Centrality Distribution of Edge e(edge e){
 	N = max vertex
-	B = betweenses = 0 
+	B = betweenness = 0
 	for(j = 0 to N){
 		for(k = j+1 to N){
 			shortest path between j and k
-			if e is included, increase betweeneses by 1
+			if e is included, increase betweenness by 1
 			}
 		}
 	}
-	return B/(weight of e); 
+	return B/(weight of e);
 }
-This algoriths takes an edge e from the main function. The function then looks at every 
-shortest path possible. Starting at vertex 0 the function and going to the largest vertex. 
-K is defined as j + 1 because the shortest path in undirected graphs, the shortest distance 
-from j -> k == the shortest distance from k -> j. If the shortest distance from j to k includes 
-the edge e, the value of the betweeness is increased by 1. The total betweenes is then returned 
-to the main function divided by the weight of e. 
+\end{verbatim}
 
-This function has a complexity of n. Each vertex check every vertex larger than itself
-to determine all of the shortest paths. The first vertex must check nearly other ever vertex. 
-This gives it a complexity of n.
+\subsubsection{Complexity Analysis}
+This function has a complexity of $n$. Each vertex check every vertex larger than itself to determine all of the shortest paths. The first vertex must check nearly other ever vertex. This gives it a complexity of $\mathcal{O}(n)$.
+
 
 Directed Weighted Betweenness Centrality Distribution of Edge e(edge e){
 	N = max vertex
-	B = betweenses = 0 
+	B = betweenness = 0
 	for(j = 0 to N){
 		for(k = 0 to N){
 			if(j != k){
@@ -128,12 +123,13 @@ Directed Weighted Betweenness Centrality Distribution of Edge e(edge e){
 			}
 		}
 	}
-	return B/(weight of edge e); 
+	return B/(weight of edge e);
 }
-This algoriths takes an edge e from the main function. The function then looks at every 
-shortest path possible. Starting at vertex 0 the function and going to the largest vertex. 
-If the shortest distance from j to k includes the edge e, the value of the betweeness is increased by 1. 
-The total betweenes is then returned to the main function divided by the edge e. 
+This algoriths takes an edge e from the main function. The function then looks at every
+shortest path possible. Starting at vertex 0 the function and going to the largest vertex.
+If the shortest distance from j to k includes the edge e, the value of the betweeness is increased by 1.
+The total betweenes is then returned to the main function divided by the edge e.
 
-This function has a complexity of n^2. Each vertex must check every other vertex to determine 
-all of the shortest paths. This gives it a complexity of n^2.
+\subsubsection{Complexity Analysis}
+This function has a complexity of $n^2$. Each vertex must check every other vertex to determine
+all of the shortest paths. This gives it a complexity of $\mathcal{O}(n^2)$.
