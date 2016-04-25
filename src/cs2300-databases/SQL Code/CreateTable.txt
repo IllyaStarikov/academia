@@ -1,0 +1,116 @@
+CREATE TABLE USERS(
+	UiD character(9), 
+	Username varchar(30) NOT NULL, 
+	HeightFeet int(1), 
+	HeightInches int(1), 
+	Birthdate date NOT NULL, 
+	Weight int, 
+	Goal int, 
+	Password varchar(15) NOT NULL, 
+	JoinDate date NOT NULL, 
+	Gender char,
+	FName varchar(15), 
+	Minit char, 
+	LName varchar(15)
+	PRIMARY KEY(UiD),
+);
+
+CREATE TABLE GROUPS(
+	GiD character(9),
+	Moderator varchar(25),
+	Title varchar(30) NOT NULL, 
+	StartDate date NOT NULL, 
+	PRIMARY KEY(GiD),
+	FOREIGN KEY(Moderator) REFERENCES USERS(UiD),
+);
+
+CREATE TABLE MEMBERS(
+	UiD character(9), 
+	GiD character(9),
+	ModeratorStatus bit NOT NULL, 
+	PRIMARY KEY(UiD), 
+	FOREIGN KEY(UiD) REFERENCES USERS(UiD), 
+	FOREIGN KEY(GiD) REFERENCES GROUPS(GiD), 
+);
+
+CREATE TABLE CHEST(
+	UiD character(9), 
+	TimeStamp time NOT NULL, 
+	Chest int, 
+	PRIMARY KEY(TimeStamp, UiD),
+	FOREIGN KEY(UiD) REFERENCES USERS(UiD),
+);
+
+CREATE TABLE ARM(
+	UiD character(9), 
+	TimeStamp time NOT NULL, 
+	Arm int, 
+	PRIMARY KEY(TimeStamp, UiD),
+	FOREIGN KEY(UiD) REFERENCES USERS(UiD),
+);
+
+CREATE TABLE WEIGHT(
+	UiD character(9), 
+	TimeStamp time NOT NULL, 
+	Weight int, 
+	PRIMARY KEY(TimeStamp, UiD),
+	FOREIGN KEY(UiD) REFERENCES USERS(UiD),
+);
+
+CREATE TABLE CARDIO(
+	WiD charcter(9), 
+	Duration time NOT NULL, 
+	Title varchar(25) NOT NULL, 
+	IntensityLevel int(1) CHECK(IntensityLevel <= 5 OR IntensityLevel >= 1),
+	CaloriesBurned int CHECK(CaloriesBurned > 0)
+	UiD character(9),  
+	AverageHeartRate int, 
+	AverageSpeed int,
+	DistanceCovered int 
+	PRIMARY KEY (WiD), 
+	FOREIGN KEY(UiD) REFERENCES USERS(UiD), 
+);
+
+CREATE TABLE STRENGTH(
+	WiD charcter(9), 
+	Duration time NOT NULL, 
+	Title varchar(25) NOT NULL, 
+	IntensityLevel int(1) CHECK(IntensityLevel <= 5 OR IntensityLevel >= 1),
+	CaloriesBurned int CHECK(CaloriesBurned > 0)
+	UiD character(9),  
+	Exercise varchar(35), 
+	TargetZone varchar(35), 
+	PRIMARY KEY (WiD), 
+	FOREIGN KEY(UiD) REFERENCES USERS(UiD), 
+);
+
+CREATE TABLE WORKOUTS(
+	WiD character(9)
+	Duration time NOT NULL, 
+	Title varchar(25) NOT NULL, 
+	IntensityLevel int(1) CHECK(IntensityLevel <= 5 OR IntensityLevel >= 1),
+	CaloriesBurned int CHECK(CaloriesBurned > 0)
+	UiD character(9), 
+	PRIMARY KEY(WiD), 
+	FOREIGN KEY(UiD) REFERENCES USERS(UiD),
+);
+
+CREATE TABLE FORUM(
+	FiD character(9), 
+	GiD character(9),
+	Title varchar(30) NOT NULL, 
+	DateCreated date NOT NULL, 
+	PublicorPrivate bit NOT NULL,
+	PRIMARY KEY(FiD),
+	FOREIGN KEY(GiD) REFERENCES GROUPS(FiD),
+); 		
+
+CREATE TABLE POST(
+	PiD character(9), 
+	FiD character(9),
+	Message varchar(500) NOT NULL, 
+	DateStamp date NOT NULL, 
+	Title varchar(35) NOT NULL, 
+	PRIMARY KEY (PiD)
+	FOREIGN KEY (FiD) REFERENCES FORUM(FiD),
+);
