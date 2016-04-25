@@ -19,8 +19,8 @@ const std::string USER_LNAME_FILENAME = "data/LName.txt";
 const std::string CARDIO_FILENAME = "data/cardio.txt";
 
 const std::string WORKOUT_TABLE_NAME_ATTRIBUTE = "WORKOUT";
-const std::string WORKOUT_INTENSITY_CALORIES_BURNED = "caloriesBurned";
-const std::string WORKOUT_INTESITY = "intensity";
+const std::string WORKOUT_INTENSITY_CALORIES_BURNED = "CaloriesBurned";
+const std::string WORKOUT_INTESITY = "Intensity";
 const std::string WORKOUT_ID = "WiD";
 const std::string WORKOUT_DURATION = "Duration";
 const std::string WORKOUT_TITLE = "Title";
@@ -32,7 +32,7 @@ const std::string CARDIO_DISTANCE_COVERED = "DistanceCovered";
 
 const std::string STRENGTH_TABLE_NAME_ATTRIBUTE = "STRENGTH";
 
-const std::string GROUP_TABLE_NAME_ATTRIBUTE = "GROUP";
+const std::string GROUP_TABLE_NAME_ATTRIBUTE = "GROUPS";
 const std::string GROUP_TITLE_ATTRIBUTE = "title";
 const std::string GROUP_DATE_ATTRIBUTE = "startDate";
 const std::string GROUP_ID = "GiD";
@@ -66,8 +66,8 @@ const std::string SEPERATOR = ", ";
 
 const int GROUPS_NAME_TO_GO_TO = 1000;
 const int USERS_USERNAME_TO_GO_TO = 60;
-const int USERS_FFIRST_NAME_TO_GO_TO = 17650;
-const int USERS_MFIRST_NAME_TO_GO_TO = 12100;
+const int USERS_FFIRST_NAME_TO_GO_TO = 2000;
+const int USERS_MFIRST_NAME_TO_GO_TO = 2000;
 const int USERS_LNAME_TO_GO_TO = 720;  
 
 const int MAX_WEIGHT = 300; 
@@ -92,7 +92,7 @@ const int TAB_LENGTH = 4;
 const char DELIMITER = '-';
 
 const int WORKOUT_MAX_HOURS = 2;
-const int WORKOUT_MAX_MINS = 60;
+const int WORKOUT_MAX_MINS = 59;
 
 const int INTENSITY_MAX = 10;
 
@@ -114,4 +114,8 @@ const std::string STRENGTH_FILENAME_PREFIX = "data/strength/";
 const std::string FILENAME_EXTENSION = ".txt";
 const int NUMBER_OF_STRENGTH_FILES = 3;
 const std::string STRENGTH_FILES[NUMBER_OF_STRENGTH_FILES] = { "Arms", "Legs", "Back" };
+
+const std::string GROUP_MODERATOR = "Moderator";
+const std::string DELIMETER = "'";
+
 #endif /* Constants_h */

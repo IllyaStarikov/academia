@@ -22,6 +22,6 @@ void CardioWorkout::printInsert() {
 }
 
 void CardioWorkout::printAttributes(bool isLastPrint) {
-    std::cout << std::setw(TAB_LENGTH) << "(" << workoutID << SEPERATOR << duration << SEPERATOR  << title << SEPERATOR << intensity << SEPERATOR << caloriesBurned << SEPERATOR << userID << SEPERATOR << averageHeartRate << SEPERATOR << averageSpeed << SEPERATOR << distanceCovered << ")";
+    std::cout << std::setw(TAB_LENGTH) << "(" << workoutID << SEPERATOR << DELIMETER << duration << DELIMETER << SEPERATOR  << DELIMETER << title << DELIMETER << SEPERATOR << intensity << SEPERATOR << caloriesBurned << SEPERATOR << userID << SEPERATOR << averageHeartRate << SEPERATOR << averageSpeed << SEPERATOR << distanceCovered << ")";
     isLastPrint ? std::cout << ";"  << std::endl : std::cout << "," << std::endl;
 }

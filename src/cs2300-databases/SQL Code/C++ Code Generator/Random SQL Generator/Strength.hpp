@@ -23,14 +23,8 @@ class StrengthWorkout : Workout {
     
 public:
     StrengthWorkout();
-    void printInsert() {
-        std::cout << "INSERT INTO " << STRENGTH_TABLE_NAME_ATTRIBUTE << "(" << WORKOUT_ID <<  SEPERATOR << WORKOUT_DURATION << SEPERATOR << WORKOUT_TITLE << SEPERATOR << WORKOUT_INTESITY << SEPERATOR << WORKOUT_INTENSITY_CALORIES_BURNED << SEPERATOR << USER_UID_ATTRIBUTE << SEPERATOR << SEPERATOR << STRENGTH_TARGET_ZONE << ") VALUES" << std::endl;
-    }
-    
-    void printAttributes(bool isLastPrint) {
-        std::cout << std::setw(TAB_LENGTH) << "(" << workoutID << SEPERATOR << duration << SEPERATOR  << title << SEPERATOR << intensity << SEPERATOR << caloriesBurned << SEPERATOR << userID << SEPERATOR << targetZone << ")";
-        isLastPrint ? std::cout << ";"  << std::endl : std::cout << "," << std::endl;
-    }
+    void printInsert();
+    void printAttributes(bool isLastPrint);
 };
 
 #endif /* Strength_hpp */

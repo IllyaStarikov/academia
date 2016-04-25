@@ -15,7 +15,6 @@
 #include "Strength.hpp"
 #include "Cardio.hpp"
 
-
 #include "Functions.hpp"
 #include "Constants.h"
 

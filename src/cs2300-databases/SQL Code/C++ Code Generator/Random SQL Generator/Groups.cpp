@@ -13,7 +13,6 @@
 #include <iomanip>
 #include <iostream>
 
-const std::string GROUP_MODERATOR = "Moderator";
 Group::Group() {
     const int numberToGetNameFrom = randomArbitrary(0, GROUPS_NAME_TO_GO_TO);
     title = importFromFile(GROUPS_FILENAME, numberToGetNameFrom);
@@ -27,7 +26,7 @@ void Group::printInsert() {
 }
 
 void Group::printAttributes(bool isLastPrint) {
-    std::cout << std::setw(TAB_LENGTH) << "(" << groupID << SEPERATOR << moderatorID << SEPERATOR << title << SEPERATOR << startDate << ")";
+    std::cout << std::setw(TAB_LENGTH) << "(" << groupID << SEPERATOR << moderatorID << SEPERATOR << DELIMETER << title << DELIMETER << SEPERATOR << DELIMETER << startDate << DELIMETER << ")";
     isLastPrint ? std::cout << ";"  << std::endl : std::cout << "," << std::endl;
 }
 

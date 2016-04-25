@@ -18,6 +18,7 @@ using namespace std;
 Users::Users () {
 	int RandNum, PasswordNum;
 	//UiD
+    FName = "";
 	Uid = createID();
 
 	//Username
@@ -62,7 +63,7 @@ Users::Users () {
 		Weight = randomArbitrary(140, 180); //The average weight of an american female is 166.2 
 		Weight = Weight + randomArbitrary(0,9)/10.0; //Possible weights range from 140 and 180.9
 	}
-	else{
+	else {
 		Weight = randomArbitrary(180, 215); //The average weight of an american male is 195.2 lbs
 		Weight = Weight + randomArbitrary(0,9)/10.0; //Possible weights range from 180.0 to 215.9
 	}
@@ -71,12 +72,12 @@ Users::Users () {
 	Goal = Weight - randomArbitrary(0, 30) + randomArbitrary(0,9)/10.0; //Possible goals range from losing 0.0 to 30.9 lbs
 
 	//First Name
-	if(RandNum == 0) {
+	if (RandNum == 0) {
 		RandNum = randomArbitrary(0, USERS_FFIRST_NAME_TO_GO_TO);
-		FName = importFromFile(USER_FFIRSTNAME_FILENAME,RandNum);
-	} else{
+		FName = string(importFromFile(GROUPS_FILENAME, RandNum));
+	} else {
 		RandNum = randomArbitrary(0, USERS_MFIRST_NAME_TO_GO_TO); 
-		FName = importFromFile(USER_MFIRSTNAME_FILENAME, RandNum);
+		FName = string(importFromFile(GROUPS_FILENAME, RandNum));
 	}
 	
 	//Middle Initial 
@@ -97,13 +98,15 @@ void Users::printInsert(){
     cout << USER_FNAME_ATTRIBUTE << SEPERATOR << USER_MINIT_ATTRIBUTE << SEPERATOR << USER_LNAME_ATTRIBUTE;
     cout << ") VALUES" << endl;
 }
-void Users::printAttributes(bool isLastPrint){
-    cout << setw(TAB_LENGTH) << "(" << Uid << SEPERATOR << Username << SEPERATOR
+
+void Users::printAttributes(bool isLastPrint) {
+    std::cout <<  std::setw(TAB_LENGTH) << "(" << Uid << SEPERATOR << Username << SEPERATOR
     << HeightFeet << SEPERATOR << HeightInches << SEPERATOR
     << Birthdate << SEPERATOR << Weight << SEPERATOR << Goal << SEPERATOR
-    << Password << SEPERATOR << JoinDate << SEPERATOR << Gender << SEPERATOR
-    << FName << SEPERATOR << MInit << SEPERATOR << LName << ")";
-    isLastPrint ? (cout << "; \n"):(cout << ", \n");
+    << Password << SEPERATOR << JoinDate << SEPERATOR << Gender << SEPERATOR;
+    cout << flush << flush << FName << SEPERATOR << MInit << SEPERATOR << LName << ")";
+    isLastPrint ? std::cout << ";"  << std::endl : std::cout << "," << std::endl;
+    
 }
 
 int Users::createID() {
