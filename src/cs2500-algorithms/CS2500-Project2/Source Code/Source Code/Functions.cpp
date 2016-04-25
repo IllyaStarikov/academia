@@ -53,10 +53,10 @@ AdjacencyMap parseInput(std::vector<std::string> input) {
 }
 
 void printMap(std::map<int, std::vector<std::pair<int, double>>> map) {    
-    for(auto const &t : map) {
-        std::cout << t.first << " ";
-        for (auto const &element : t.second) {
-            std::cout << "<" << element.first << ", " << element.second << ">";
+    for (auto const &element : map) { // Iterate over the key and the map's vector, of type vector and pairs
+        std::cout << element.first << " "; // Print the key, which is the first part of the map
+        for (auto const &pairs : element.second) { // Iterate over all pairs in the vector of pairs
+            std::cout << "<" << pairs.first << ", " << pairs.second << ">"; // Print off target (first) and weight (second)
         }
         std::cout << std::endl;
     }

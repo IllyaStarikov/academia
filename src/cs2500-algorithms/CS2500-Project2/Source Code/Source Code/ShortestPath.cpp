@@ -13,7 +13,6 @@
 #include <vector>
 
 
-
 void shortestPaths(const AdjacencyMap & map) {
     if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_UNWEIGHTED_DIRECTED); }
     shortestPath(map, false, true);
@@ -42,7 +41,7 @@ void makeUndirected(std::vector<std::vector<int>> & vector, bool deleteSelfLoops
     }
 }
 
-void shortestPath(const AdjacencyMap & map, const bool _makeUndirected, const bool makeUnweighted) {
+std::vector<std::vector<int>> shortestPath(const AdjacencyMap & map, const bool _makeUndirected, const bool makeUnweighted) {
     // Floyd - Walsh algorithm
     const int size = static_cast<int>(map.size()) + 2; // One for the index of map, other for index of solution vector
     auto solution = std::vector<std::vector<int>>(size, std::vector<int>(size, INFINITY)); // 2D Adjacency Matrix with size of map and default values of infinity
@@ -60,7 +59,9 @@ void shortestPath(const AdjacencyMap & map, const bool _makeUndirected, const bo
     for (int k = 0; k < size; k++) {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (solution[i][j] > solution[i][k] + solution[k][j]) {
+                if (i == j) {
+                    solution[i][j] = 0;
+                } else if (solution[i][j] > solution[i][k] + solution[k][j]) {
                     solution[i][j] = solution[i][k] + solution[k][j];
                 }
             }
@@ -76,4 +77,6 @@ void shortestPath(const AdjacencyMap & map, const bool _makeUndirected, const bo
             }
         }
     }
+    
+    return solution;
 }

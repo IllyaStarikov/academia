@@ -28,7 +28,6 @@ void unweightedOutDegree(const AdjacencyMap & map) {
     int index;
     
     for (const auto &element : map) {
-//                if (PRINT_SOLUTIONS) { std::cout << element.first << ": " << element.second.size() << std::endl; }
         index = static_cast<int>(element.second.size());
         degree[index]++;
     }
