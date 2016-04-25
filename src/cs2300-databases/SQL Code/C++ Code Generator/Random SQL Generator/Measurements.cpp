@@ -14,73 +14,73 @@
 using namespace std; 
 
 Weight::Weight(){
-	DateStamp = sqlDate();
+	DateStamp = sqlDate(CURRENT_YEAR - 5, CURRENT_YEAR);
 	TimeStamp = sqlTime(); 
-	Weight = randomArbitary(MIN_WEIGHT, MAX_WEIGHT);
+	weight = randomArbitrary(MIN_WEIGHT, MAX_WEIGHT);
 	UiD = createID();  
 }
 
-Weight::printInsert(){
-	cout << "INSERT INTO " << MEASUREMENT_WEIGHT_TABLE_NAME << "(" << MESUREMENT_UID_ATTRIBUTE << SEPERATOR << MEASUREMENT_DATE_ATTRIBUTE << SEPERATOR; 
-	cout << MEASUREMENT_TIME_ATTRIBUTE << SEPERATOR << MEASUREMENT_WEIGHT_ATTRIBUTE << ") VALUES"; 
+void Weight::printInsert(){
+	cout << "INSERT INTO " << MEASUREMENT_WEIGHT_TABLE_NAME << "(" << MEASUREMENT_UID_ATTRIBUTE << SEPERATOR << MEASUREMENT_DATE_ATTRIBUTE << SEPERATOR;
+	cout << MEASUREMENT_TIME_ATTRIBUTE << SEPERATOR << MEASUREMENT_WEIGHT_ATTRIBUTE << ") VALUES" << endl;
 	return; 
 }
 
-Weight::printAttribute(bool isLastPrint){
-	cout << setw(TAB_LENGTH) << "(" << UiD << SEPERATOR << DateStamp << SEPERATOR << TimeStamp << SEPERATOR << Weight << ")"; 
-	isLastPrint ? (cout << "; \n";):(cout << ", \n");
+void Weight::printAttributes(bool isLastPrint){
+	cout << setw(TAB_LENGTH) << "(" << UiD << SEPERATOR << DateStamp << SEPERATOR << TimeStamp << SEPERATOR << weight << ")";
+    isLastPrint ? (cout << "; \n"):(cout << ", \n");
 	return; 
 }
 
-Weight::createID(){
-	static cast IDcreated = 0; 
-	return IDcreated++;
+int Weight::createID(){
+	static int IDcreated = 0;
+	return ++IDcreated;
 }
 
 Arm::Arm(){
-	DateStamp = sqlDate();
+	DateStamp = sqlDate(CURRENT_YEAR - 5, CURRENT_YEAR);
 	TimeStamp = sqlTime(); 
-	Arm = randomArbitary(MIN_ARM, MAX_ARM);
+	arm = randomArbitrary(MIN_ARM, MAX_ARM);
 	UiD = createID();  
 }
 
-Arm::printInsert(){
-	cout << "INSERT INTO " << MEASUREMENT_ARM_TABLE_NAME << "(" << MESUREMENT_UID_ATTRIBUTE << SEPERATOR << MEASUREMENT_DATE_ATTRIBUTE << SEPERATOR; 
-	cout << MEASUREMENT_TIME_ATTRIBUTE << SEPERATOR << MEASUREMENT_ARM_ATTRIBUTE << ") VALUES"; 
+void Arm::printInsert(){
+	cout << "INSERT INTO " << MEASUREMENT_ARM_TABLE_NAME << "(" << MEASUREMENT_UID_ATTRIBUTE << SEPERATOR << MEASUREMENT_DATE_ATTRIBUTE << SEPERATOR;
+	cout << MEASUREMENT_TIME_ATTRIBUTE << SEPERATOR << MEASURMENT_ARM_ATTRIBUTE << ") VALUES" << endl;
 	return; 
 }
 
-Arm::printAttribute(bool isLastPrint){
-	cout << setw(TAB_LENGTH) << "(" << UiD << SEPERATOR << DateStamp << SEPERATOR << TimeStamp << SEPERATOR << Arm << ")"; 
-	isLastPrint ? (cout << "; \n";):(cout << ", \n");
+void Arm::printAttributes(bool isLastPrint){
+	cout << setw(TAB_LENGTH) << "(" << UiD << SEPERATOR << DateStamp << SEPERATOR << TimeStamp << SEPERATOR << arm << ")";
+	isLastPrint ? (cout << "; \n"):(cout << ", \n");
 	return; 
 }
 
-Arm::createID(){
-	static cast IDcreated = 0; 
-	return IDcreated++;
+int Arm::createID(){
+	static int IDcreated = 0;
+	return ++IDcreated;
 }
 
 Chest::Chest(){
-	DateStamp = sqlDate();
+	DateStamp = sqlDate(CURRENT_YEAR - 5, CURRENT_YEAR);
 	TimeStamp = sqlTime();
-	Chest = randomArbitary(MIN_CHEST, MAX_CHEST);
+	chest = randomArbitrary(MIN_CHEST, MAX_CHEST);
 	UiD = createID();  
 }
 
-Chestt::printInsert(){
-	cout << "INSERT INTO " << MEASUREMENT_CHEST_TABLE_NAME << "(" << MESUREMENT_UID_ATTRIBUTE << SEPERATOR << MEASUREMENT_DATE_ATTRIBUTE << SEPERATOR; 
-	cout << MEASUREMENT_TIME_ATTRIBUTE << SEPERATOR << MEASUREMENT_CHEST_ATTRIBUTE << ") VALUES"; 
+void Chest::printInsert(){
+	cout << "INSERT INTO " << MEASUREMENT_CHEST_TABLE_NAME << "(" << MEASUREMENT_UID_ATTRIBUTE << SEPERATOR << MEASUREMENT_DATE_ATTRIBUTE << SEPERATOR;
+	cout << MEASUREMENT_TIME_ATTRIBUTE << SEPERATOR << MEASURMENT_CHEST_ATTRIBUTE << ") VALUES" << endl;
 	return; 
 }
 
-Chestt::printAttribute(bool isLastPrint){
-	cout << setw(TAB_LENGTH) << "(" << UiD << SEPERATOR << DateStamp << SEPERATOR << TimeStamp << SEPERATOR << Chest << ")"; 
-	isLastPrint ? (cout << "; \n";):(cout << ", \n");
+void Chest::printAttributes(bool isLastPrint){
+	cout << setw(TAB_LENGTH) << "(" << UiD << SEPERATOR << DateStamp << SEPERATOR << TimeStamp << SEPERATOR << chest << ")";
+	isLastPrint ? (cout << "; \n"):(cout << ", \n");
 	return; 
 }
 
-Chestt::createID(){
-	static cast IDcreated = 0; 
-	return IDcreated++;
+int Chest::createID(){
+	static int IDcreated = 0;
+	return ++IDcreated;
 }

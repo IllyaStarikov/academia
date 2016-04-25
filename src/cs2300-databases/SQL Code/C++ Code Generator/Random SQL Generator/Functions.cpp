@@ -19,6 +19,7 @@ std::string importFromFile(const std::string filename, const int lineNumber) {
         if (readin.eof() == true) {
             readin.clear();
             readin.seekg(0, std::ios::beg);
+            getline(readin, toReturn);
         } else {
             getline(readin, toReturn);
         }
@@ -28,7 +29,23 @@ std::string importFromFile(const std::string filename, const int lineNumber) {
     return toReturn;
 }
 
-std::string sqlDate(int syear = START_YEAR, int cyear = CURRENT_YEAR) {
+std::string sqlDate() {
+    std::ostringstream ss;
+    int year = randomArbitrary(START_YEAR, CURRENT_YEAR);
+    int month = randomArbitrary(1, MONTHS_IN_YEAR);
+    
+    ss << year;
+    ss << DELIMITER;
+    
+    ss << month;
+    ss << DELIMITER;
+    
+    ss << daysInMonth(year, month);
+    
+    return ss.str();
+}
+
+std::string sqlDate(int syear, int cyear){
     std::ostringstream ss;
     int year = randomArbitrary(syear, cyear);
     int month = randomArbitrary(1, MONTHS_IN_YEAR);
@@ -44,15 +61,16 @@ std::string sqlDate(int syear = START_YEAR, int cyear = CURRENT_YEAR) {
     return ss.str();
 }
 
+
 std::string sqlTime(){
     std::ostringstream gentime; 
     int Hour = randomArbitrary(0,23); 
     int Minute = randomArbitrary(0,59); 
 
     gentime << Hour;  
-    gentime << ":"
+    gentime << ":" ;
 
-    gentime << Minute 
+    gentime << Minute;
 
     return gentime.str(); 
 }
@@ -79,4 +97,10 @@ int daysInMonth(const int year, const int month) {
 
 int randomArbitrary(const int floor, const int ceiling) {
     return floor + rand() % (ceiling - floor + 1);
+}
+
+
+char randomLetter(bool uppercase) {
+    static const std::string letters = "abcdefghijklmnopqrstuvwxyz";
+    return uppercase ? toupper(letters[randomArbitrary(0, 26)]) : letters[randomArbitrary(0, 26)];
 }

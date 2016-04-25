@@ -17,10 +17,11 @@
 #include "Duration.hpp"
 
 class Workout {
+protected:
     Duration duration;
-    std::string title;
-    int intensity, workoutID;
+    int intensity, workoutID, userID;
     double caloriesBurned;
+    std::string title;
     
 public:
     Workout();

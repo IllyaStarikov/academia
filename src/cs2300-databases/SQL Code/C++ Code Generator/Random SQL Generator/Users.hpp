@@ -20,8 +20,7 @@ public:
     Users(); 
     void printInsert();
     void printAttributes(bool isLastPrint);
-    int createID(); 
-
+    int createID();
 };
 
 #endif /* Users_hpp */

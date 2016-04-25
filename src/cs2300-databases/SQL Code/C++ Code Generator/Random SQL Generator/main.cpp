@@ -12,24 +12,29 @@
 #include "Workout.hpp"
 #include "Users.hpp"
 #include "Measurement.hpp"
+#include "Strength.hpp"
+#include "Cardio.hpp"
+
 
 #include "Functions.hpp"
 #include "Constants.h"
 
 int main(int argc, const char * argv[]) {
+    srand(static_cast<int>(time(NULL)));
+    
     Group groups[GROUP_COUNT];
-    Workout workouts[WORKOUT_COUNT];
-<<<<<<< HEAD
+    CardioWorkout cardio[WORKOUT_COUNT];
+    StrengthWorkout strength[WORKOUT_COUNT];
     Users users[USER_COUNT];
-=======
-	Users users[USER_COUNT];
-
->>>>>>> b20e17f6081c2429f8c7710b39efc7b9a81de710
 	Weight weight[WEIGHT_COUNT];
 	Arm arm[ARM_COUNT];
 	Chest chest[CHEST_COUNT];
-
+    
     printInsertAndAttributes(groups, GROUP_COUNT);
-    printInsertAndAttributes(workouts, WORKOUT_COUNT);
-	printInsertAndAttributes(users, USER_COUNT);
+    printInsertAndAttributes(cardio, WORKOUT_COUNT);
+    printInsertAndAttributes(strength, WORKOUT_COUNT);
+    printInsertAndAttributes(users, USER_COUNT);
+    printInsertAndAttributes(weight, WEIGHT_COUNT);
+    printInsertAndAttributes(arm, ARM_COUNT);
+    printInsertAndAttributes(chest,CHEST_COUNT);
 }

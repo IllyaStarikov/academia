@@ -14,16 +14,19 @@ Workout::Workout() {
     intensity = randomArbitrary(0, INTENSITY_MAX);
     caloriesBurned = static_cast<double>(duration.totalMinutes()) * WORKOUTS_CALORIES_PER_MINUTE;
     workoutID = generateID();
+    title = "";
+    userID = randomArbitrary(1, USER_COUNT);
 }
 
 void Workout::printInsert() {
-    std::cout << "INSERT INTO " << WORKOUT_TABLE_NAME_ATTRIBUTE << "(" << workoutID << SEPERATOR << title << SEPERATOR << duration << SEPERATOR << intensity << SEPERATOR << caloriesBurned << ") VALUES" << std::endl;
+    std::cout << "INSERT INTO " << WORKOUT_TABLE_NAME_ATTRIBUTE << "(" << WORKOUT_ID <<  SEPERATOR << WORKOUT_DURATION << SEPERATOR << WORKOUT_TITLE << SEPERATOR << WORKOUT_INTESITY << SEPERATOR << WORKOUT_INTENSITY_CALORIES_BURNED << SEPERATOR  << USER_UID_ATTRIBUTE << ") VALUES" << std::endl;
 }
 
 void Workout::printAttributes(bool isLastPrint) {
-    std::cout << std::setw(TAB_LENGTH) << "(" << title << SEPERATOR << duration << SEPERATOR << intensity << SEPERATOR << caloriesBurned << ")";
+    std::cout << std::setw(TAB_LENGTH) << "(" << workoutID << SEPERATOR << duration << SEPERATOR  << title << SEPERATOR << intensity << SEPERATOR << caloriesBurned << SEPERATOR << userID << ")";
     isLastPrint ? std::cout << ";"  << std::endl : std::cout << "," << std::endl;
 }
+
 
 int Workout::generateID() {
     static int ID = 0;

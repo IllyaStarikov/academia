@@ -13,39 +13,39 @@
 
 using namespace std; 
 
-class Weight{ 
+class Weight {
 	int UiD; 
-	float Weight; 
+	float weight;
 	string TimeStamp, DateStamp; 
 
 public: 
-	Weight(); 
+	Weight() ;
 	void printInsert(); 
-	void printAttribute(bool isLastPrint);
-	int createID)(); 
+	void printAttributes(bool isLastPrint);
+	int createID();
 };
 
-class Arm{ 
+class Arm {
 	int UiD; 
-	float Arm; 
+	float arm;
 	string TimeStamp, DateStamp; 
 
 public: 
-	Arm(); 
+	Arm() ;
 	void printInsert(); 
-	void printAttribute(bool isLastPrint);
-	int createID)(); 
+	void printAttributes(bool isLastPrint);
+	int createID();
 };
 
-class Chest{ 
+class Chest { 
 	int UiD; 
-	float Chest; 
+	float chest;
 	string TimeStamp, DateStamp; 
 
 public: 
-	Chest(); 
+	Chest() ;
 	void printInsert(); 
-	void printAttribute(bool isLastPrint);
-	int createID)(); 
+	void printAttributes(bool isLastPrint);
+	int createID();
 };
 #endif /* Measurements_hpp */

@@ -13,7 +13,7 @@
 
 class Group {
     std::string title, startDate;
-    int groupID;
+    int groupID, moderatorID;
     
 public:
     Group();

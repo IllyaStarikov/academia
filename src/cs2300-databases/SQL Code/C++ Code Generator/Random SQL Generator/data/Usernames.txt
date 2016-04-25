@@ -1,4 +1,4 @@
-Playboy    
+Playboy
 Giga
 Deadly
 Eater
@@ -18,11 +18,11 @@ Evil
 Fire
 Flame
 Sniper
-God   
-Talk   
+God
+Talk
 Wish
 Snake
-Arrow 
+Arrow
 Assasin
 Avenger
 Blaze
@@ -39,12 +39,14 @@ Fallen
 Fate
 Flame
 Frozen
-Ghost 
+Ghost
 Great
 Infinite
 Killer
 Knight
 Mist
+Moon
+Companion
 Neo
 Nightmare
 Ninja
@@ -54,6 +56,6 @@ Shadow
 Silver
 Sinister
 Slayer
-Sniper   
-WebTool   
+Sniper
+WebTool
 

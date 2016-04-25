@@ -45,8 +45,6 @@ Infinite
 Killer
 Knight
 Mist
-Moon
-Companion
 Neo
 Nightmare
 Ninja
