@@ -1,0 +1,102 @@
+\subsection{Relational Set}
+Please note primary keys are signified by \pk \ and foreign keys are signified by \fk.
+
+%-------------------- Post --------------------%
+\subsection*{Post}
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\underline{PiD} \pk & \underline{FiD} \fk & Message & DateStamp & Title & Date \\
+\hline
+\end{tabular}
+
+%-------------------- Forum --------------------%
+\subsection*{Forum}
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\underline{FiD} \pk & Title & DateCreated & PublicOrPrivate & GiD \fk \\
+\hline
+\end{tabular}
+
+%-------------------- Groups --------------------%
+\subsection*{Groups}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\underline{GiD} \pk & Moderator \fk & Title & StartDate  \\
+\hline
+\end{tabular}
+
+%-------------------- Workout --------------------%
+\subsection*{Workouts}
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\underline{WiD} \pk & Duration & Title & IntensityLevel & CaloriesBurned & UiD \fk \\
+\hline
+\end{tabular}
+
+%-------------------- Strength --------------------%
+\subsection*{Strength}
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
+\underline{WiD} \pk & Duration & Title & IntensityLevel & CaloriesBurned & UiD \fk & Exercise & Target Zone \\
+\hline
+\end{tabular}
+
+%-------------------- Cardio --------------------%
+\subsection*{Cardio}
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+\underline{WiD} \pk & Duration & Title & IntensityLevel & CaloriesBurned & UiD \fk & AverageHeartRate \\
+\hline
+\end{tabular}
+\begin{tabular}{|l|l|}
+\hline
+AverageSpeed & DistanceCovered \\
+\hline
+\end{tabular}
+
+%-------------------- Cardio --------------------%
+\subsection*{Users}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+\hline
+\underline{UiD} \pk & Username & Height & Birthdate & Goal & Password & JoinDate & Gender\\
+\hline
+\end{tabular}
+\begin{tabular}{|l|l|l|}
+\hline
+FirstName & MiddleName & LastName \\
+\hline
+\end{tabular}
+
+\begin{multicols}{2}
+%-------------------- Weight --------------------%
+\subsection*{Weight}
+\begin{tabular}{|l|l|l|}
+\hline
+\underline{UiD} \pfk & \underline{TimeStamp} \pk & Weight \\
+\hline
+\end{tabular}
+
+%-------------------- Chest Size --------------------%
+\subsection*{Chest Size}
+\begin{tabular}{|l|l|l|}
+\hline
+\underline{UiD} \pfk & \underline{TimeStamp} \pk & ChestSize\\
+\hline
+\end{tabular}
+
+%-------------------- Arm Size --------------------%
+\subsection*{Arm Size}
+\begin{tabular}{|l|l|l|}
+\hline
+\underline{UiD} \pfk & \underline{TimeStamp} \pk & Arm Size \\
+\hline
+\end{tabular}
+\end{multicols}
+
+%-------------------- Group Members --------------------%
+\subsection*{Group Members}
+\begin{tabular}{|l|l|l|}
+\hline
+\underline{UiD} \pk & \underline{GiD} \fk & ModeratorStatus \\
+\hline
+\end{tabular}

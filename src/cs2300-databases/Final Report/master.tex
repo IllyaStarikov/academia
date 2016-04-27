@@ -1,0 +1,36 @@
+\documentclass[oneside]{scrbook}
+\title{ForFit}
+\subtitle{Never Quit Again}
+\author{Illya Starikov, Jason Young, Claire Trebing}
+\date{\today}
+
+\usepackage{booktabs}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage[shortlabels]{enumitem}
+
+\newcommand{\pk}{$^{\text{\textbf{PK}}}$}
+\newcommand{\fk}{$^{\text{\textit{FK}}}$}
+\newcommand{\pfk}{$^{\text{\textit{\textbf{PK, FK}}}}$}
+
+\newcommand{\br}{\multicolumn{2}{c}{} \\}
+
+\begin{document}
+\maketitle
+
+\chapter{The Database Design Manual}
+\section{Revised Problem Statement}
+\input{include/design_manual/ProblemStatement}
+
+\section{Conceptual Database Design}
+\includepdf[pages=-,width=1.35\textwidth]{include/assets/ConceptualDatabaseDesign.pdf}
+
+\section{Logical Database Design}
+\input{include/design_manual/LogicalDatabaseDesign}
+
+\section{Application Program Design}
+\input{include/design_manual/ApplicationProgramDesign}
+
+\end{document}

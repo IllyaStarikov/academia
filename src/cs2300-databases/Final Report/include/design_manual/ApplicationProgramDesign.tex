@@ -1,0 +1,116 @@
+%-------------------- Create New User --------------------%
+\subsection{Create a New User}
+This function creates a new user, accessing only the \texttt{user} table. \\
+
+\noindent
+\begin{tabular}{l|p{9.5cm}}
+\textsc{Input} & \texttt{Username, Height, Birthdate, Goal, Password, Gender}. \\
+\br
+\textsc{Steps} & \begin{enumerate}[topsep=0pt]
+\item Check to see if the \texttt{username} is available. If available, proceed. If not, display appropriate message to notify the user.
+\item Insert appropriate information to the User table. (Username to \texttt{username}, height to \texttt{height})
+\item Generate a user ID, assign it to the \texttt{UiD} attribute.
+\item Take a time stamp, assign it to the \texttt{JoinDate} attribute.
+\item Calculate the age based on the \texttt{BirthDate} attribute.
+\end{enumerate}
+\\
+\br
+\textsc{Output} & A new \texttt{User} entity will be inserted into the table, with appropriate data into proper columns (along with computed properties and derived properties).\\
+\br
+\textsc{Assumptions} &\texttt{Username, Height, Birthdate, Goal, Password, Gender} are all correct (this will be validated in the sign up form).
+\end{tabular}
+
+%-------------------- Delete Group --------------------%
+\subsection{Delete A Group}
+This function deletes a group by updating information in \texttt{Forum}, and removing the \texttt{Group} and \texttt{Group Members} tables. \\
+
+\noindent
+\begin{tabular}{l|p{9.5cm}}
+\textsc{Input} & The Group ID (\texttt{GiD}) that is to be deleted. \\
+\br
+\textsc{Steps} & \begin{enumerate}[topsep=0pt]
+\item Check to see if the request is made by the moderator via the \texttt{Moderator} column in the \texttt{Groups} table. If true, approve the request. If not, cancel the request and notify the user.
+\item Remove the row that has a matching \texttt{GiD} that was provided for deletion in the \texttt{Groups} table.
+\item Query the \texttt{Group} Members table, removing any row that match the GiD provided for deletion.
+\item Query the \texttt{Forum} table for any matching Group Ids (\texttt{GiD}), setting the \texttt{GiD} to \texttt{null} if matching.
+\end{enumerate}
+\\
+\br
+\textsc{Output} & The groups are deleted, the group members within that group are deleted, and any reference to the group is deallocated. \\
+\br
+\textsc{Assumptions} & None.
+\end{tabular}
+
+%-------------------- Modify User Statics --------------------%
+\subsection{Modifying User Statistics}
+Our user statistics have the ability to fluctuate. We would like to accommodate for this fluctuation by allowing users to update their respective statics; specifically, we would like to let users update \texttt{Username, Height, Goal, Password, Gender} in the \texttt{Users} table. \\
+
+\noindent
+\begin{tabular}{l|p{9.5cm}}
+\textsc{Input} & The specific attribute(s) of the set \texttt{Username, Height, Goal, Password, Gender} that would like to be updated with the new value. \\
+\br
+\textsc{Steps} & \begin{enumerate}[topsep=0pt]
+\item Ensure the data is valid (e.g. is not \texttt{null} when applicable, in the proper domain). If it is valid, continue. If not, prompt the user with an error message and try again.
+\item Modify the attribute to reflect the new value.
+\item Repeat for any additional attributes provided.
+\end{enumerate}
+\\
+\br
+\textsc{Output} & The attribute(s) should now reflect the new value provided. \\
+\br
+\textsc{Assumptions} & The data is within a proper range (will not overflow).
+\end{tabular}
+
+
+%-------------------- Query Other Users --------------------%
+\subsection{Query Other Users}
+This function allows for users to query other users; this can be done via \texttt{Username} or \texttt{FirstName, MiddleName}, and \texttt{LastName} from the \texttt{Users} table. \\
+
+\noindent
+\begin{tabular}{l|p{9.5cm}}
+\textsc{Input} & Either a \texttt{Username} xor any subset of \texttt{FirstName, MiddleName}, or \texttt{LastName}.\\
+\br
+\textsc{Steps} & \begin{enumerate}[topsep=0pt]
+\item Check to see if input is valid. If is, proceed. If not, display error message to the user.
+\item Query the \texttt{Users} table to see if the user exists. If the user exists, proceed. If not, display appropriate message to the user.
+\item Project the profile.
+\end{enumerate} \\
+\br
+\textsc{Output} & Either the search user will be projected or an error message is the user does not exist. \\
+\br
+\textsc{Assumptions} & The first, middle and last name are all provided. The names are unique (solely for the testing purposes).
+\end{tabular}
+
+%-------------------- User Leader --------------------%
+\subsection{User Leaderboards}
+Generate the leaderboard based on the workouts accomplished; specifically aggregating data from the \texttt{Strength} and \texttt{Cardio} table. \textit{Note this is the function that requires multiple tables.}\\
+
+\noindent
+\begin{tabular}{l|p{9.5cm}}
+\textsc{Input} & None. \\
+\br
+\textsc{Steps} & \begin{enumerate}[topsep=0pt]
+\item Merge the \texttt{User} and \texttt{Workouts} table, call the new table \texttt{Merged}.
+\item Add up the total duration (call the new property \texttt{TotalDuration}) in the \texttt{Merged} table based on the \texttt{UiD} attribute, making a new table named \texttt{Sums}.
+\item Sort the \texttt{Sums} by the \texttt{TotalDuration} attribute.
+\item Display the top 10 on the sorted \texttt{Sums} table to the user.
+\item Display the user their current rank.
+\end{enumerate} \\
+\br
+\textsc{Output} & An eleven-row table displaying the top 10 leaderboards and the user’s current rank. \\
+\br
+\textsc{Assumptions} & There is a bare minimum of eleven users.
+\end{tabular}
+
+% \subsection{}
+% \\
+
+% \noindent
+% \begin{tabular}{l|p{9.5cm}}
+% \textsc{Input} & - \\
+% \br
+% \textsc{Steps} & \begin{enumerate}[topsep=0pt]
+% \end{enumerate} \\
+% \br
+% \textsc{Output} & - \\
+% \end{tabular}
