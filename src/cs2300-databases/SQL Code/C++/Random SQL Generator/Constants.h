@@ -119,4 +119,7 @@ const std::string STRENGTH_FILES[NUMBER_OF_STRENGTH_FILES] = { "Arms", "Legs", "
 const std::string GROUP_MODERATOR = "Moderator";
 const std::string DELIMETER = "'";
 
+const std::string MAIL_PROVIDERS[] = { "gmail.com", "mst.edu", "iCloud.com", "yahoo.com", "apple.com", "google.com" };
+const int NUMBER_OF_MAIL_PROVIDERS = 6;
+
 #endif /* Constants_h */

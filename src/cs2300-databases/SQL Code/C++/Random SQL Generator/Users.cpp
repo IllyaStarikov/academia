@@ -19,7 +19,7 @@ Users::Users () {
 	int RandNum, PasswordNum;
 	//UiD
 	Uid = createID();
-
+    
 	//Username
 	RandNum = randomArbitrary(0,USERS_USERNAME_TO_GO_TO);
 	Username = importFromFile(USER_USERNAME_FILENAME, RandNum);
@@ -73,10 +73,10 @@ Users::Users () {
 	//First Name
 	if (RandNum == 0) {
 		RandNum = randomArbitrary(0, USERS_FFIRST_NAME_TO_GO_TO);
-		FName = string(importFromFile(GROUPS_FILENAME, RandNum));
+		FName = string(importFromFile("data/FName.txt", RandNum));
 	} else {
 		RandNum = randomArbitrary(0, USERS_MFIRST_NAME_TO_GO_TO); 
-		FName = string(importFromFile(GROUPS_FILENAME, RandNum));
+		FName = string(importFromFile("data/FName.txt", RandNum));
 	}
 	
 	//Middle Initial 
@@ -85,11 +85,17 @@ Users::Users () {
 	//Last Name 
 	RandNum = randomArbitrary(0,USERS_LNAME_TO_GO_TO);
 	LName = importFromFile(USER_LNAME_FILENAME, RandNum);
+    
+    RandNum = randomArbitrary(0, NUMBER_OF_MAIL_PROVIDERS - 1);
+    
+    email = FName + LName + std::to_string(Uid) + "@" + MAIL_PROVIDERS[RandNum];
 }
+const std::string USER_EMAIL = "Email";
 
 void Users::printInsert(){
     cout << "INSERT INTO " << USER_TABLE_NAME_ATTRIBUTE << "(";
     cout << USER_UID_ATTRIBUTE << SEPERATOR << USER_USERNAME_ATTRIBUTE << SEPERATOR;
+    cout << USER_EMAIL << SEPERATOR;
     cout << USER_HEIGHT_FEET_ATTRIBUTE << SEPERATOR << USER_HEIGTH_INCHES_ATTRIBUTE << SEPERATOR;
     cout << USER_BIRTHDATE_ATTRIBUTE << SEPERATOR << USER_STARTING_WEIGHT_ATTRIBUTE << SEPERATOR;
     cout << USER_GOAL_WEIGHT_ATTRIBUTE << SEPERATOR << USER_PASSWORD_ATTRIBUTE << SEPERATOR;
@@ -99,7 +105,7 @@ void Users::printInsert(){
 }
 
 void Users::printAttributes(bool isLastPrint) {
-    std::cout <<  std::setw(TAB_LENGTH) << "(" << Uid << SEPERATOR << DELIMETER << Username << DELIMETER << SEPERATOR
+    std::cout <<  std::setw(TAB_LENGTH) << "(" << Uid << SEPERATOR << DELIMETER << Username << DELIMETER << SEPERATOR << DELIMETER << email << DELIMETER << SEPERATOR
     << HeightFeet << SEPERATOR << HeightInches << SEPERATOR
     << DELIMETER << Birthdate  << DELIMETER << SEPERATOR << Weight << SEPERATOR << Goal << SEPERATOR
     << DELIMETER << Password << DELIMETER << SEPERATOR << DELIMETER << JoinDate << DELIMETER << SEPERATOR << DELIMETER << Gender << DELIMETER << SEPERATOR;

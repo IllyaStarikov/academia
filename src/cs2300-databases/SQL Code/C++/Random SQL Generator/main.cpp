@@ -21,7 +21,7 @@
 
 int main(int argc, const char * argv[]) {
     srand(static_cast<int>(time(NULL)));
-    
+
     Group groups[GROUP_COUNT];
     CardioWorkout cardio[WORKOUT_COUNT];
     StrengthWorkout strength[WORKOUT_COUNT];
