@@ -5,23 +5,10 @@
 - Messages are unlimited length
 */
 
--- drop table POST cascade;
--- drop table FORUM cascade;
--- drop table USERS cascade;
--- drop table GROUPS cascade;
--- drop table MEMBERS cascade;
--- drop table CHEST cascade;
--- drop table ARM cascade;
--- drop table WEIGHT cascade;
--- drop table CARDIO cascade;
--- drop table STRENGTH cascade;
--- drop table WORKOUTS cascade;
--- drop table FORUM cascade;
--- drop table POST cascade;
-
 create table USERS (
     UiD numeric(9, 0),
-    Username varchar(30) NOT NULL,
+    Username varchar(50) NOT NULL,
+    Email varchar(50) NOT NULL,
     HeightFeet numeric(1, 0),
     HeightInches numeric(2, 0),
     Birthdate date NOT NULL,

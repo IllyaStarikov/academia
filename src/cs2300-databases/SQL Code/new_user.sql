@@ -1,0 +1,31 @@
+CREATE FUNCTION new_user(
+    id numeric(9, 0),
+    username varchar(30) NOT NULL,
+    heightInches numeric(1, 0),
+    heightInches numeric(2, 0),
+    birthdate date NOT NULL,
+    weight int,
+    goal int,
+    password varchar(50) NOT NULL,
+    joinDate date NOT NULL,
+    gender char,
+    firstName varchar(50),
+    mInitial char,
+    lastName varchar(50),
+)
+
+
+
+-- id numeric(9, 0),
+-- username varchar(30) NOT NULL,
+-- heightInches numeric(1, 0),
+-- heightInches numeric(2, 0),
+-- birthdate date NOT NULL,
+-- weight int,
+-- goal int,
+-- password varchar(50) NOT NULL,
+-- joinDate date NOT NULL,
+-- gender char,
+-- firstName varchar(50),
+-- mInitial char,
+-- lastName varchar(50),
