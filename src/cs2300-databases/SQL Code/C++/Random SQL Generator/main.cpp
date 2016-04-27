@@ -14,6 +14,7 @@
 #include "Measurement.hpp"
 #include "Strength.hpp"
 #include "Cardio.hpp"
+#include "Members.hpp"
 
 #include "Functions.hpp"
 #include "Constants.h"
@@ -28,11 +29,13 @@ int main(int argc, const char * argv[]) {
 	Weight weight[WEIGHT_COUNT];
 	Arm arm[ARM_COUNT];
 	Chest chest[CHEST_COUNT];
+    Members members[MEMBERS_COUNT];
     
+    printInsertAndAttributes(users, USER_COUNT);
     printInsertAndAttributes(groups, GROUP_COUNT);
+    printInsertAndAttributes(members, MEMBERS_COUNT);
     printInsertAndAttributes(cardio, WORKOUT_COUNT);
     printInsertAndAttributes(strength, WORKOUT_COUNT);
-    printInsertAndAttributes(users, USER_COUNT);
     printInsertAndAttributes(weight, WEIGHT_COUNT);
     printInsertAndAttributes(arm, ARM_COUNT);
     printInsertAndAttributes(chest,CHEST_COUNT);

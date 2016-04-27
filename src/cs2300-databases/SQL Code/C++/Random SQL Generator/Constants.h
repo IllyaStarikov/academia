@@ -13,8 +13,8 @@
 
 const std::string GROUPS_FILENAME = "data/groups.txt";
 const std::string USER_USERNAME_FILENAME = "data/usernames.txt";
-const std::string USER_FFIRSTNAME_FILENAME = "data/FFName.txt";
-const std::string USER_MFIRSTNAME_FILENAME = "data/MFname.txt";
+const std::string USER_FFIRSTNAME_FILENAME = "data/FName.txt";
+const std::string USER_MFIRSTNAME_FILENAME = "data/Fname.txt";
 const std::string USER_LNAME_FILENAME = "data/LName.txt";
 const std::string CARDIO_FILENAME = "data/cardio.txt";
 
@@ -49,15 +49,15 @@ const std::string USER_PASSWORD_ATTRIBUTE = "Password";
 const std::string USER_JOINDATE_ATTRIBUTE = "JoinDate"; 
 const std::string USER_GENDER_ATTRIBUTE = "Gender";
 const std::string USER_FNAME_ATTRIBUTE = "FName";
-const std::string USER_MINIT_ATTRIBUTE = "MInti";
+const std::string USER_MINIT_ATTRIBUTE = "Minit";
 const std::string USER_LNAME_ATTRIBUTE = "LName";
 
 const std::string MEASUREMENT_WEIGHT_TABLE_NAME = "WEIGHT";
 const std::string MEASUREMENT_ARM_TABLE_NAME = "ARM"; 
 const std::string MEASUREMENT_CHEST_TABLE_NAME = "CHEST"; 
 const std::string MEASUREMENT_UID_ATTRIBUTE = "UiD";
-const std::string MEASUREMENT_DATE_ATTRIBUTE = "Date";  
-const std::string MEASUREMENT_TIME_ATTRIBUTE = "Time"; 
+const std::string MEASUREMENT_DATE_ATTRIBUTE = "Date_stamp";
+const std::string MEASUREMENT_TIME_ATTRIBUTE = "Time_stamp"; 
 const std::string MEASUREMENT_WEIGHT_ATTRIBUTE = "Weight"; 
 const std::string MEASURMENT_ARM_ATTRIBUTE = "Arm"; 
 const std::string MEASURMENT_CHEST_ATTRIBUTE = "Chest"; 
@@ -77,12 +77,13 @@ const int MIN_ARM = 21;
 const int MAX_CHEST = 42;
 const int MIN_CHEST = 36;
 
-const int GROUP_COUNT = 5;
-const int WORKOUT_COUNT = 5;
-const int USER_COUNT = 5;
-const int WEIGHT_COUNT = 5;
-const int ARM_COUNT = 5;
-const int CHEST_COUNT = 5;
+const int GROUP_COUNT = 50;
+const int WORKOUT_COUNT = 50;
+const int USER_COUNT = 50;
+const int WEIGHT_COUNT = 50;
+const int ARM_COUNT = 50;
+const int CHEST_COUNT = 50;
+const int MEMBERS_COUNT = 50;
 
 const int CURRENT_YEAR = 2016;
 const int START_YEAR = 1900; 

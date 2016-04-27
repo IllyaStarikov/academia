@@ -27,7 +27,7 @@ void Weight::printInsert(){
 }
 
 void Weight::printAttributes(bool isLastPrint){
-	cout << setw(TAB_LENGTH) << "(" << UiD << SEPERATOR << DELIMETER << DateStamp << DELIMETER << SEPERATOR << TimeStamp << SEPERATOR << weight << ")";
+	cout << setw(TAB_LENGTH) << "(" << UiD << SEPERATOR << DELIMETER << DateStamp << DELIMETER << SEPERATOR << DELIMETER << TimeStamp << DELIMETER << SEPERATOR << weight << ")";
     isLastPrint ? (cout << "; \n"):(cout << ", \n");
 	return; 
 }
@@ -51,7 +51,7 @@ void Arm::printInsert(){
 }
 
 void Arm::printAttributes(bool isLastPrint){
-	cout << setw(TAB_LENGTH) << "(" << UiD << SEPERATOR << DELIMETER << DateStamp << DELIMETER << SEPERATOR << TimeStamp << SEPERATOR << arm << ")";
+	cout << setw(TAB_LENGTH) << "(" << UiD << SEPERATOR << DELIMETER << DateStamp << DELIMETER << SEPERATOR << DELIMETER << TimeStamp << DELIMETER << SEPERATOR << arm << ")";
 	isLastPrint ? (cout << "; \n"):(cout << ", \n");
 	return; 
 }
@@ -75,7 +75,7 @@ void Chest::printInsert(){
 }
 
 void Chest::printAttributes(bool isLastPrint){
-	cout << setw(TAB_LENGTH) << "(" << UiD << SEPERATOR << DELIMETER << DateStamp << DELIMETER << SEPERATOR << TimeStamp << SEPERATOR << chest << ")";
+	cout << setw(TAB_LENGTH) << "(" << UiD << SEPERATOR << DELIMETER << DateStamp << DELIMETER << SEPERATOR << DELIMETER << TimeStamp << DELIMETER << SEPERATOR << chest << ")";
 	isLastPrint ? (cout << "; \n"):(cout << ", \n");
 	return; 
 }

@@ -18,7 +18,6 @@ using namespace std;
 Users::Users () {
 	int RandNum, PasswordNum;
 	//UiD
-    FName = "";
 	Uid = createID();
 
 	//Username
@@ -100,11 +99,11 @@ void Users::printInsert(){
 }
 
 void Users::printAttributes(bool isLastPrint) {
-    std::cout <<  std::setw(TAB_LENGTH) << "(" << Uid << SEPERATOR << Username << SEPERATOR
+    std::cout <<  std::setw(TAB_LENGTH) << "(" << Uid << SEPERATOR << DELIMETER << Username << DELIMETER << SEPERATOR
     << HeightFeet << SEPERATOR << HeightInches << SEPERATOR
-    << Birthdate << SEPERATOR << Weight << SEPERATOR << Goal << SEPERATOR
-    << Password << SEPERATOR << JoinDate << SEPERATOR << Gender << SEPERATOR;
-    cout << flush << flush << FName << SEPERATOR << MInit << SEPERATOR << LName << ")";
+    << DELIMETER << Birthdate  << DELIMETER << SEPERATOR << Weight << SEPERATOR << Goal << SEPERATOR
+    << DELIMETER << Password << DELIMETER << SEPERATOR << DELIMETER << JoinDate << DELIMETER << SEPERATOR << DELIMETER << Gender << DELIMETER << SEPERATOR;
+    cout << flush << flush << DELIMETER << FName << DELIMETER << SEPERATOR << DELIMETER << MInit << DELIMETER << SEPERATOR << DELIMETER << LName << DELIMETER << ")";
     isLastPrint ? std::cout << ";"  << std::endl : std::cout << "," << std::endl;
     
 }
