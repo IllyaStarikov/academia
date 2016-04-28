@@ -19,6 +19,8 @@ const bool PRINT_SOLUTIONS = true;
 
 using AdjacencyMap = std::map<int, std::vector<std::pair<int, double>>>;
 
+using VectArray = std::vector<std::vector<int>>
+
 const std::string MAP = "Map";
 
 const std::string FILENAME = "Project2.csv";

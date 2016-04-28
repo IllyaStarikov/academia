@@ -16,6 +16,10 @@
 int main(int argc, const char * argv[]) {
     auto input = getInput(FILENAME);
     auto map = parseInput(input);
+    auto UWUDshort;
+    auto UWDshort;
+    auto WUDshort;
+    auto WDshort;
     
     if (PRINT_SOLUTIONS) {
         printHeader(MAP);
@@ -23,7 +27,7 @@ int main(int argc, const char * argv[]) {
     }
     
     degreeDistribution(map);
-    shortestPaths(map);
+    shortestPaths(map, UWUDshort, UWDshort, WUDshort, WDshort);
     
     
 }

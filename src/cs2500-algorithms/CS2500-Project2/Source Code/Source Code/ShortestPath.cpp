@@ -13,18 +13,18 @@
 #include <vector>
 
 
-void shortestPaths(const AdjacencyMap & map) {
+void shortestPaths(const AdjacencyMap & map, VectArray & UWUDshort, VectArray & UWDshort, VectArray & WUDshort, VectArray & WDshort) {
     if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_UNWEIGHTED_DIRECTED); }
-    shortestPath(map, false, true);
+    UWDshort = shortestPath(map, false, true);
     
     if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_WEIGHTED_DIRECTED); }
-    shortestPath(map, false, false);
+    WDshort = shortestPath(map, false, false);
     
     if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_WEIGHTED_UNDIRECTED); }
-    shortestPath(map, true, false);
+    WUDshort = shortestPath(map, true, false);
     
     if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_UNWEIGHTED_UNDIRECTED); }
-    shortestPath(map, true, true);
+    UWUDshort = shortestPath(map, true, true);
 }
 
 void makeUndirected(std::vector<std::vector<int>> & vector, bool deleteSelfLoops) {
