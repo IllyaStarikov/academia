@@ -21,9 +21,11 @@
 
 void degreeDistribution(const AdjacencyMap & map);
 
-void unweightedOutDegree(const AdjacencyMap & map);
-void weightedOutDegree(const AdjacencyMap & map);
+std::map<int, double> unweightedOutDegree(const AdjacencyMap & map);
+std::map<int, double> weightedOutDegree(const AdjacencyMap & map);
 
-void inDegree(const AdjacencyMap & map, const bool weighted);
+std::map<int, double> inDegree(const AdjacencyMap & map, const bool weighted);
+
+void totalDistribution(const std::tuple<std::map<int, double>, std::map<int, double>> &maps);
 
 #endif /* DegreeDistribution_hpp */

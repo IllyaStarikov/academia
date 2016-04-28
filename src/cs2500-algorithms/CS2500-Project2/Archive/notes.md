@@ -1,0 +1,1 @@
+- To run a makefile, when you SSH into the school machines, and in the directory that has the source code, run 'make production', 'make clean'

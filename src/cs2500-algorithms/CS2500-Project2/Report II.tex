@@ -1,0 +1,192 @@
+\documentclass{article}
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
+
+\title{Programming Project II, Second Report}
+\author{Illya Starikov, Claire Trebing, Timothy Ott}
+\date{Due Date: May 1st, 2016}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.12}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{ifthen}
+\newboolean{showGraphs}
+
+\usepackage{xcolor}
+\newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{#1}}}
+
+% Paramters Are As Follows:
+% 1. Title
+% 2. x-axis Label
+% 3. y-axis Label
+% 4. Data
+% 5. Legend
+
+\newcommand{\graph}[5]{%
+\begin{tikzpicture}
+\begin{axis}[
+    scale only axis,
+    width=\textwidth,
+    height = 5cm,
+    title={#1},
+    xlabel={#2},
+    ylabel={#3},
+    legend pos=north west,
+    ymajorgrids=true,
+    grid style=dashed,
+]
+
+\addplot [color=blue, mark = square] table [x=a, y=b, col sep=comma] {#4};
+
+\legend{#5}
+\end{axis}
+\end{tikzpicture}
+}
+
+\begin{document}
+\maketitle
+
+\setboolean{showGraphs}{true}
+
+\section{Abstract}
+As stated in the prior report, social networks have revolutionized the way we communicate. Seeing as social \textit{networks} are a real-life representation of a graph, we would like to more closely examine them. Particularly, we would like to test
+
+\begin{itemize}
+    \item Degree Distribution
+    \item Shortest Path Distribution
+    \item Graph Diameter
+    \item Closeness Centrality
+    \item Betweenness Centrality Distribution
+    \item Community Detection
+\end{itemize}
+
+This report will showcase our results --- more specifically, we would like to discuss, in detail, our implementation and experiments. Also, we will list any relevant, interesting results we obtain.
+
+\section{Implementation}
+Our implementation is as follows, from a higher level:
+
+\begin{enumerate}
+    \item Get and parse graph input.
+    \begin{itemize}
+        \item Because our data was given in the form of a \texttt{csv}, we decided to just pipe that input directly to a \shellcmd{vector<string>}.
+        \item We then pass said \shellcmd{vector<string>} to a function that parses using C++ \href{http://www.cplusplus.com/reference/string/string/}{string functions}.
+        \item We pipe the parsed data to a data structure of \\ \shellcmd{map<int, vector<pair<int, double>>>}
+        \begin{itemize}
+            \item The \texttt{int} is the key for retrieval of the \shellcmd{vector}
+            \item The \shellcmd{vector<pair<int, double>>} stores a \texttt{vector} of the edges, in pairs --- where the pair \shellcmd{<int, double>} are proportional to the target vertex and weight.
+        \end{itemize}
+    \end{itemize}
+
+    \item Move on to calculating the out degree of the vertexes.
+    \begin{itemize}
+        \item Initialize a \shellcmd{map} of \shellcmd{<int, int>} for unweighted and \shellcmd{<int, double>} for unweighted.
+        \item For both weighted and unweighted simply use the source as the \texttt{key}.
+        \item For unweighted, use the \shellcmd{size()} method of the vector class to determine the out degree\footnote{Remember, the key return the a \shellcmd{vector} of pairs. The number of pairs are directly proportional the out degree.}.
+        \item For weighted, sum the \shellcmd{second} property of the \shellcmd{pair}s in the \shellcmd{vector} --- note that the second property of \shellcmd{pair} is the weight. This gives a total weight.
+     \end{itemize}
+
+    \item Move to calculating the in degree of the vertexes.
+    \begin{itemize}
+        \item This is done almost the same way, except there is a weight \shellcmd{map}.
+        \item Iterate over the entirety of our data structure\footnote{An adjacency map of sorts, \shellcmd{map<int, vector<pair<int, double>>>}.}, and store where the target vertex points to in all the edges in the weight \shellcmd{map}.
+    \end{itemize}
+
+    \item Calculate shortest path via the Floyd-Warshall algorithm.
+    \begin{itemize}
+        \item Initialize an adjacency matrix --- a \shellcmd{vector<vector<int>>}
+        \begin{itemize}
+            \item Default all values to infinity --- in our case, $999999$.
+        \end{itemize}
+        \item Copy over data from our \shellcmd{map} to said adjacency matrix.
+        \begin{itemize}
+            \item If unweighted and an edge exists, default to $1$.
+        \end{itemize}
+        \item If requested an undirected shortest path, make the graph indirected.
+        \begin{itemize}
+            \item This is done by making a mirror image of the adjacency matrix $A$, by setting $\forall i, j \in A, A_{i, j} = A_{j, i}$. Just copying over the diagonal.
+        \end{itemize}
+        \item Run the Floyd-Warshall algorithm, with triple C-Style \shellcmd{for} loops.
+    \end{itemize}
+\end{enumerate}
+
+\ifthenelse{\boolean{showGraphs}}{
+\section{Experiments}
+\subsection{Degree Distribution}
+\subsubsection{Unweighted In Degree}
+\graph{Unweighted In Degree}{Degree}{Number of Vertices}{Data/degree/UnweightedInDegree.csv}{Trendline}
+
+\subsubsection{Unweighted Out Degree}
+\graph{Unweighted Out Degree}{Degree}{Number of Vertices}{Data/degree/UnweightedOutDegree.csv}{Trendline}
+
+\subsubsection{Weighted In Degree}
+\graph{Weighted In Degree}{Degree}{Number of Vertices}{Data/degree/WeightedInDegree.csv}{Trendline}
+
+\subsubsection{Weighted Out Degree}
+\graph{Weighted Out Degree}{Degree}{Number of Vertices}{Data/degree/WeightedOutDegree.csv}{Trendline}
+
+\subsubsection{Weighted Total Distribution}
+\graph{Weighted Total Distribution}{Degree}{Number of Vertices}{Data/degree/WeightedTotalDistribution.csv}{Trendline}
+
+\subsubsection{Unweighted Total Distribution}
+\graph{Unweighted Total Distribution}{Degree}{Number of Vertices}{Data/degree/UnweightedTotalDistribution.csv}{Trendline}
+
+
+
+\subsection{Shortest Path}
+Please not that $-1$ corresponds to a path between two vertices not existing.
+
+\subsection{Shortest Path, Unweighted Directed}
+\graph{Shortest Path, Unweighted Directed}{Shortest Path Length}{Number of Paths}{Data/shortest_path/ShortestPathUnweightedDirected.csv}{Trendline}
+
+\subsection{Shortest Path, Unweighted Undirected}
+\graph{Shortest Path, Unweighted Undirected}{Shortest Path Length}{Number of Paths}{Data/shortest_path/ShortestPathUnweightedUndirected.csv}{Trendline}
+
+\subsection{Shortest Path, Weighted Directed}
+\graph{Shortest Path, Weighted Directed}{Shortest Path Length}{Number of Paths}{Data/shortest_path/ShortestPathWeightedDirected.csv}{Trendline}
+
+\subsection{Shortest Path, Weighted Undirected}
+\graph{Shortest Path, Weighted Undirected}{Shortest Path Length}{Number of Paths}{Data/shortest_path/ShortestPathWeightedUndirected.csv}{Trendline}
+}
+
+\section{Team Roles}
+\begin{itemize}
+    \item Illya Starikov
+    \begin{itemize}
+        \item Project Manager
+        \item Implementation
+        \begin{itemize}
+            \item Weight Distribution
+            \item Shortest Path
+        \end{itemize}
+    \end{itemize}
+
+    \item Timothy Ott
+    \begin{itemize}
+        \item Report Writeup
+        \item Implementation
+        \begin{itemize}
+            \item Closeness Centrality
+            \item Community Detection
+        \end{itemize}
+    \end{itemize}
+
+    \item Claire Trebing
+    \begin{itemize}
+        \item Report Writeup
+        \item Implementation
+        \begin{itemize}
+            \item Unweighted/Weighted Graph Diameter
+            \item Betweenness Centrality Distribution
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\section{Conclusions}
+
+\end{document}

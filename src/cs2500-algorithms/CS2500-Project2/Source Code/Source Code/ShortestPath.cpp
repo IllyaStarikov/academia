@@ -13,18 +13,28 @@
 #include <vector>
 
 
-void shortestPaths(const AdjacencyMap & map, VectArray & UWUDshort, VectArray & UWDshort, VectArray & WUDshort, VectArray & WDshort) {
+void shortestPaths(const AdjacencyMap & map) {
+    auto matrix = AdjacencyMatrix();
+    
     if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_UNWEIGHTED_DIRECTED); }
-    UWDshort = shortestPath(map, false, true);
+    matrix = shortestPath(map, false, true);
+    countMatrixOccurence(matrix);
+    CloseCent(matrix);
     
     if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_WEIGHTED_DIRECTED); }
-    WDshort = shortestPath(map, false, false);
+    matrix = shortestPath(map, false, false);
+    countMatrixOccurence(matrix);
+    CloseCent(matrix);
     
     if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_WEIGHTED_UNDIRECTED); }
-    WUDshort = shortestPath(map, true, false);
+    matrix = shortestPath(map, true, false);
+    countMatrixOccurence(matrix);
+    CloseCent(matrix);
     
     if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_UNWEIGHTED_UNDIRECTED); }
-    UWUDshort = shortestPath(map, true, true);
+    matrix = shortestPath(map, true, true);
+    countMatrixOccurence(matrix);
+    CloseCent(matrix);
 }
 
 void makeUndirected(std::vector<std::vector<int>> & vector, bool deleteSelfLoops) {
@@ -68,7 +78,9 @@ std::vector<std::vector<int>> shortestPath(const AdjacencyMap & map, const bool 
         }
     }
     
-    if (PRINT_SOLUTIONS) {
+    
+    /* FOR DEBUGGING PURPOSES
+     if (PRINT_SOLUTIONS) {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (solution[i][j] != INFINITY) {
@@ -76,7 +88,7 @@ std::vector<std::vector<int>> shortestPath(const AdjacencyMap & map, const bool 
                 }
             }
         }
-    }
+    } */
     
     return solution;
 }

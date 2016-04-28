@@ -17,9 +17,8 @@
 
 const bool PRINT_SOLUTIONS = true;
 
+using AdjacencyMatrix = std::vector<std::vector<int>>;
 using AdjacencyMap = std::map<int, std::vector<std::pair<int, double>>>;
-
-using VectArray = std::vector<std::vector<int>>
 
 const std::string MAP = "Map";
 

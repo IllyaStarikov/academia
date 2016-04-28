@@ -8,7 +8,7 @@
 
 #include "CloseCent.hpp"
 
-void CloseCent(const VectArray & input){
+void CloseCent(const AdjacencyMatrix & input){
     vector<double> Close;
     vector<int> High1;
     vector<int> High2;
@@ -110,20 +110,20 @@ void CloseGraph(const vector<double> & Close){
   }
 }
 
-void AllCloseCent(VectArray & UWUDshort, VectArray & UWDshort, VectArray & WUDshort, VectArray & WDshort){
+// void AllCloseCent(VectArray & UWUDshort, VectArray & UWDshort, VectArray & WUDshort, VectArray & WDshort){
   
-    if (PRINT_SOLUTIONS) { std::cout << "CLOSENESS CENTRALITY: " << std::endl; }
+    // if (PRINT_SOLUTIONS) { std::cout << "CLOSENESS CENTRALITY: " << std::endl; }
   
-    if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_UNWEIGHTED_DIRECTED); }
-    CloseCent(UWDshort);
+    // if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_UNWEIGHTED_DIRECTED); }
+    // CloseCent(UWDshort);
     
-    if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_WEIGHTED_DIRECTED); }
-    CloseCent(WDshort);
+    // if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_WEIGHTED_DIRECTED); }
+    // CloseCent(WDshort);
     
-    if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_WEIGHTED_UNDIRECTED); }
-    CloseCent(WUDshort);
+    // if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_WEIGHTED_UNDIRECTED); }
+    // CloseCent(WUDshort);
     
-    if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_UNWEIGHTED_UNDIRECTED); }
-    CloseCent(UWUDshort);
+    // if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_UNWEIGHTED_UNDIRECTED); }
+    // CloseCent(UWUDshort);
   
-}
+// }

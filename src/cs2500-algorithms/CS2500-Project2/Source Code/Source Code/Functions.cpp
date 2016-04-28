@@ -72,3 +72,28 @@ std::string substring(std::string string, std::string delimeter, bool afterDelim
 void printHeader(std::string title) {
     std::cout << "/*-------------------- "<< title << "--------------------*/" << std::endl;
 }
+
+void countMatrixOccurence(const AdjacencyMatrix &matrix) {
+    if (matrix.size() != matrix[0].size()) { std::cerr << "Matrix isn't perfect square"; }
+    auto weight = std::map<int, int>();
+    
+    
+    for (int i = 0; i < matrix.size(); i++) {
+        for (int j = 0; j < matrix[i].size(); j++) {
+            weight[matrix[i][j]]++;
+        }
+    }
+    
+    if (PRINT_SOLUTIONS) {
+        for (auto const &element : weight) {
+            std::cout << element.first << ": " << element.second << std::endl;
+        }
+        
+        std::cout << std::endl;
+    }
+}
+
+int maxVertexPossible(const AdjacencyMap& map){
+    int 
+    return max; 
+}
