@@ -20,6 +20,7 @@ const bool PRINT_SOLUTIONS = true;
 using AdjacencyMatrix = std::vector<std::vector<int>>;
 using AdjacencyMap = std::map<int, std::vector<std::pair<int, double>>>;
 
+
 const std::string MAP = "Map";
 
 const std::string FILENAME = "Project2.csv";
@@ -36,4 +37,6 @@ const std::string SHORTEST_PATH_WEIGHTED_DIRECTED = "Shortest Path, Weighted Dir
 
 const int INFINITY = 999999;
 const int DEFAULT_WEIGHT_FOR_PATH = 1;
+
+const int MAX_VERTEX = 100;
 #endif /* Constants_h */

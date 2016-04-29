@@ -93,7 +93,9 @@ void countMatrixOccurence(const AdjacencyMatrix &matrix) {
     }
 }
 
+/*
 int maxVertexPossible(const AdjacencyMap& map){
     int 
     return max; 
 }
+*/

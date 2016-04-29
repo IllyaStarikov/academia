@@ -27,5 +27,5 @@ std::string substring(std::string string, std::string delimeter, bool afterDelim
 void printMap(std::map<int, std::vector<std::pair<int, double>>> map);
 void printHeader(std::string title);
 void countMatrixOccurence(const AdjacencyMatrix &matrix);
-int maxVertexPossible(const AdjacencyMap & map);
+
 #endif /* Functions_hpp */

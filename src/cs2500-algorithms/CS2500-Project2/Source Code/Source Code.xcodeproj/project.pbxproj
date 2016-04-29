@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		49964E8D1CC91A3000406768 /* ShortestPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49964E8B1CC91A3000406768 /* ShortestPath.cpp */; };
+		49BF79501CD3B341002C4268 /* CloseCent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49BF794D1CD3B341002C4268 /* CloseCent.cpp */; };
+		49BF79511CD3B341002C4268 /* Betweeness.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49BF794F1CD3B341002C4268 /* Betweeness.cpp */; };
 		49D845631CC7C56500EBF814 /* Functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49D845611CC7C56500EBF814 /* Functions.cpp */; };
 		49D845661CC7E3F200EBF814 /* DegreeDistribution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49D845641CC7E3F200EBF814 /* DegreeDistribution.cpp */; };
 		49FCF6C71CC2D474002F42CF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49FCF6C61CC2D474002F42CF /* main.cpp */; };
@@ -28,6 +30,10 @@
 /* Begin PBXFileReference section */
 		49964E8B1CC91A3000406768 /* ShortestPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShortestPath.cpp; sourceTree = "<group>"; };
 		49964E8C1CC91A3000406768 /* ShortestPath.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShortestPath.hpp; sourceTree = "<group>"; };
+		49BF794C1CD3B341002C4268 /* CloseCent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CloseCent.hpp; sourceTree = "<group>"; };
+		49BF794D1CD3B341002C4268 /* CloseCent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CloseCent.cpp; sourceTree = "<group>"; };
+		49BF794E1CD3B341002C4268 /* Betweeness.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Betweeness.hpp; sourceTree = "<group>"; };
+		49BF794F1CD3B341002C4268 /* Betweeness.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Betweeness.cpp; sourceTree = "<group>"; };
 		49D845611CC7C56500EBF814 /* Functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Functions.cpp; sourceTree = "<group>"; };
 		49D845621CC7C56500EBF814 /* Functions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Functions.hpp; sourceTree = "<group>"; };
 		49D845641CC7E3F200EBF814 /* DegreeDistribution.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DegreeDistribution.cpp; sourceTree = "<group>"; };
@@ -75,6 +81,10 @@
 				49964E8B1CC91A3000406768 /* ShortestPath.cpp */,
 				49964E8C1CC91A3000406768 /* ShortestPath.hpp */,
 				49D845671CC7E40B00EBF814 /* Constants.h */,
+				49BF794C1CD3B341002C4268 /* CloseCent.hpp */,
+				49BF794D1CD3B341002C4268 /* CloseCent.cpp */,
+				49BF794E1CD3B341002C4268 /* Betweeness.hpp */,
+				49BF794F1CD3B341002C4268 /* Betweeness.cpp */,
 			);
 			path = "Source Code";
 			sourceTree = "<group>";
@@ -135,6 +145,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49BF79511CD3B341002C4268 /* Betweeness.cpp in Sources */,
+				49BF79501CD3B341002C4268 /* CloseCent.cpp in Sources */,
 				49FCF6C71CC2D474002F42CF /* main.cpp in Sources */,
 				49D845661CC7E3F200EBF814 /* DegreeDistribution.cpp in Sources */,
 				49964E8D1CC91A3000406768 /* ShortestPath.cpp in Sources */,

@@ -9,92 +9,96 @@
 #include "CloseCent.hpp"
 
 void CloseCent(const AdjacencyMatrix & input){
-    vector<double> Close;
-    vector<int> High1;
-    vector<int> High2;
-    vector<int> High3;
-    vector<int> High4;
+    auto Close = std::vector<double>();
+    std::vector<int> High1;
+    std::vector<int> High2;
+    std::vector<int> High3;
+    std::vector<int> High4;
     double High1Val = 0;
     double High2Val = 0;
     double High3Val = 0;
     double High4Val = 0;
     int sum = 0;
+    int i = 0;
+            std::cout << "FOO BAR";
     for (auto const &vertex : input){
       for (auto const &edge : vertex){
         sum += edge;
       }
-      Close[vertex] = 1.0/sum;
-      if (Close[vertex] == High1Val)
-         High1.push_back(vertex);
-      else if (Close[vertex] == High2Val)
-         High2.push_back(vertex);
-      else if (Close[vertex] == High3Val)
-        High3.push_back(vertex);
-      else if (Close[vertex] == High4Val)
-        High4.push_back(vertex);
-      else if (Close[vertex] > High1Val){
+
+      Close[i] = 1.0/sum;
+      if (Close[i] == High1Val)
+         High1.push_back(i);
+      else if (Close[i] == High2Val)
+         High2.push_back(i);
+      else if (Close[i] == High3Val)
+        High3.push_back(i);
+      else if (Close[i] == High4Val)
+        High4.push_back(i);
+      else if (Close[i] > High1Val){
          High4 = High3;
          High4Val = High3Val;
          High3 = High2;
          High3Val = High2Val;
          High2 = High1;
          High2Val = High1Val;
-         High1Val = Close[vertex];
+         High1Val = Close[i];
          High1.clear();
-         High1.push_back(vertex);
+         High1.push_back(i);
       }
-      else if (Close[vertex] > High2Val){
+      else if (Close[i] > High2Val){
          High4 = High3;
          High4Val = High3Val;
          High3 = High2;
          High3Val = High2Val;
-         High2Val = Close[vertex];
+         High2Val = Close[i];
          High2.clear();
-         High2.push_back(vertex);
+         High2.push_back(i);
       }
-      else if (Close[vertex] > High3Val){
+      else if (Close[i] > High3Val){
          High4 = High3;
          High4Val = High3Val;
-         High3Val = Close[vertex];
+         High3Val = Close[i];
          High3.clear();
-         High3.push_back(vertex);
+         High3.push_back(i);
       }
-      else if (Close[vertex > High4Val){
-        High4Val = Close[vertex];
+      else if (Close[i] > High4Val){
+        High4Val = Close[i];
         High4.clear();
-        High4.push_back(vertex);
+        High4.push_back(i);
       }
       sum = 0;
+      i++;
     }
     std::cout<<"Highest Closeness Values"<<std::endl;
     std::cout<<"Value: "<<High1Val<<" Vertices: ";
     for (auto const &element : High1){
-      cout<<element<<", ";
+      std::cout<<element<<", ";
     }
-    cout<<std::endl;
+    std::cout<<std::endl;
     
     std::cout<<"Value: "<<High2Val<<" Vertices: ";
     for (auto const &element : High2){
-      cout<<element<<", ";
+      std::cout<<element<<", ";
     }
-    cout<<std::endl;
+    std::cout<<std::endl;
 
     std::cout<<"Value: "<<High3Val<<" Vertices: ";
     for (auto const &element : High3){
-      cout<<element<<", ";
+      std::cout<<element<<", ";
     }
-    cout<<std::endl;
+    std::cout<<std::endl;
     
     std::cout<<"Value: "<<High4Val<<" Vertices: ";
     for (auto const &element : High4){
-      cout<<element<<", ";
+      std::cout<<element<<", ";
     }
     std::cout<<std::endl;
     
     CloseGraph(Close);
 }
 
-void CloseGraph(const vector<double> & Close){
+void CloseGraph(std::vector<double> & Close){
   auto GraphSol = std::map<double, int>();
   double index;
   

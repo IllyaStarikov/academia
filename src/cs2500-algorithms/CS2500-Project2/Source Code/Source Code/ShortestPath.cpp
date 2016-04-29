@@ -7,6 +7,7 @@
 //
 
 #include "ShortestPath.hpp"
+#include "CloseCent.hpp"
 #include "Functions.hpp"
 
 #include <map>

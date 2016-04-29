@@ -1,3 +1,4 @@
+
 //
 // Betweeness.hpp 
 // Source Code 
@@ -12,9 +13,11 @@
 
 #include "Constants.h"
 #include "Functions.hpp"
+#include "ShortestPath.hpp"
 
 #include <stdio.h> 
 #include <iostream> 
+#include <list> 
 
 #include <map> 
 #include <vector> 
@@ -23,14 +26,9 @@
 //U: weight 
 //V: target 
 
-void PathReconstruction(const AdjacencyMap & map);
-void Path(std::pair<int, double> & edge); 
-int UndirectedUnWeightedBetweenessVertex(int i);
-int UndirectedWeightedBetweenessVertex(int i);
-int DirectedUnWeightedBetweenessVertex(int i);
-int DirectedWeightedBetweenessVertex(int i); 
+void PathReconstruction(const AdjacencyMap & map, std::list<int>** & path, bool Directness, bool Weightness);
+void BetweenessVertex(const AdjacencyMap & map);
+void BetweenessEdge(const AdjacencyMap & map); 
+void Betweeness(const AdjacencyMap & map); 
 
-int UndirectedBetweenessEdge(const std::vector<std::pair<int, double>>>& edge); 
-int DirectedBetweenessEdge(const std::vector<std::pair<int, double>>>& edge); 
-
-#endif /* Betweeness_hpp */
+#endif  /* Betweeness_hpp */
