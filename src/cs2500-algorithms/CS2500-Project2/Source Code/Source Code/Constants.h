@@ -36,5 +36,4 @@ const std::string SHORTEST_PATH_WEIGHTED_DIRECTED = "Shortest Path, Weighted Dir
 
 const int INFINITY = 999999;
 const int DEFAULT_WEIGHT_FOR_PATH = 1;
-
 #endif /* Constants_h */
