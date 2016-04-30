@@ -1,28 +1,28 @@
+////
+////  CloseCent.hpp
+////  Source Code
+////
+////  Created by Timothy Ott on 4/27/16.
+////  Copyright © 2016 Timothy Ott. All rights reserved.
+////
 //
-//  CloseCent.hpp
-//  Source Code
+//#ifndef CloseCent_hpp
+//#define CloseCent_hpp
 //
-//  Created by Timothy Ott on 4/27/16.
-//  Copyright © 2016 Timothy Ott. All rights reserved.
+//#include <stdio.h>
+//#include <iostream>
+//#include <fstream>
 //
-
-#ifndef CloseCent_hpp
-#define CloseCent_hpp
-
-#include <stdio.h>
-#include <iostream>
-#include <fstream>
-
-#include <vector>
-#include <map>
-#include <tuple>
-
-#include "Constants.h"
-
-void CloseCent(const AdjacencyMatrix & input);
-
-void CloseGraph(std::vector<double> & Close);
-
-//void AllCloseCent(VectArray & UWUDshort, VectArray & UWDshort, VectArray & WUDshort, VectArray & WDshort);
-
-#endif /* CloseCent_hpp */
+//#include <vector>
+//#include <map>
+//#include <tuple>
+//
+//#include "Constants.h"
+//
+//void CloseCent(const AdjacencyMatrix & input);
+//
+//void CloseGraph(std::vector<double> & Close);
+//
+////void AllCloseCent(VectArray & UWUDshort, VectArray & UWDshort, VectArray & WUDshort, VectArray & WDshort);
+//
+//#endif /* CloseCent_hpp */

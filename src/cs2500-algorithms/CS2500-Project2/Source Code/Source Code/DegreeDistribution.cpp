@@ -32,6 +32,9 @@ void degreeDistribution(const AdjacencyMap & map) {
     degrees = make_tuple(inDegreeMap, outDegreeMap);
     totalDistribution(degrees);
     
+    /*--------------------Max In, Out Degree--------------------*/
+    maxDistribution(map);
+    
 }
 
 std::map<int, double> unweightedOutDegree(const AdjacencyMap & map) {
@@ -55,7 +58,7 @@ std::map<int, double> unweightedOutDegree(const AdjacencyMap & map) {
 std::map<int, double> weightedOutDegree(const AdjacencyMap & map) {
     auto sum = double();
     auto degree = std::map<int, double>();
-     
+    
     for (const auto &elements : map) {
         sum = 0;
         for (const auto &pair : elements.second) {
@@ -104,4 +107,83 @@ void totalDistribution(const std::tuple<std::map<int, double>, std::map<int, dou
     for (const auto & element : sum) {
         std::cout << element.first << ": " << element.second << std::endl;
     }
+}
+
+void maxDistribution(const AdjacencyMap & map) {
+    if (!PRINT_SOLUTIONS) { return; }
+    
+    printHeader("Maximum Distribution");
+    auto max = findMaximumUnweightedOutDegree(map);
+    printMaximumDistribution(max);
+    
+    max = findMaximumWeightedOutDegree(map);
+    printMaximumDistribution(max);
+    
+    auto maxDouble = findMaximumInDegree(map, false);
+    printMaximumDistribution(maxDouble);
+    
+    maxDouble = findMaximumInDegree(map, true);
+    printMaximumDistribution(maxDouble);
+}
+
+
+std::tuple<int, std::vector<int>> findMaximumUnweightedOutDegree(const AdjacencyMap & map) {
+    auto maxOutVertices = std::vector<int>();
+    int sizeofMax = 0;
+    for (auto const &element : map) {
+        if (sizeofMax < element.second.size()) {
+            maxOutVertices.clear();
+            
+            maxOutVertices.push_back(element.first);
+            sizeofMax = static_cast<int>(element.second.size());
+        } else if (sizeofMax == element.second.size()) {
+            maxOutVertices.push_back(element.first);
+        }
+    }
+    
+    return std::make_tuple(sizeofMax, maxOutVertices);
+}
+
+std::tuple<int, std::vector<int>> findMaximumWeightedOutDegree(const AdjacencyMap & map) {
+    auto maxOutVertices = std::vector<int>();
+    int sizeofMax = 0, totalWeightOfElement = 0;
+    
+    for (auto const &element : map) {
+        for (auto const &weightTuples : element.second) {
+            totalWeightOfElement += weightTuples.second;
+        }
+        
+        if (sizeofMax < totalWeightOfElement) {
+            maxOutVertices.clear();
+            
+            maxOutVertices.push_back(element.first);
+            sizeofMax = static_cast<int>(totalWeightOfElement);
+        } else if (sizeofMax == totalWeightOfElement) {
+            maxOutVertices.push_back(element.first);
+        }
+        
+        totalWeightOfElement = 0;
+    }
+    
+    return std::make_tuple(sizeofMax, maxOutVertices);
+    
+}
+
+std::tuple<int, std::vector<double>> findMaximumInDegree(const AdjacencyMap & map, bool weighted) {
+    double index = 0;
+    auto maxOutVertices = std::vector<int>();
+    
+    auto weightMap = std::map<int, double>();
+    auto weights = std::map<int, std::vector<double>>();
+    
+    for (const auto & element : map) {
+        for (const auto & pair : element.second) {
+            index = pair.first;
+            weighted ? weightMap[index] += pair.second : weightMap[index]++;
+        }
+        weights[weightMap[index]].push_back(element.first);
+    }
+    
+    auto itr = weights.rbegin();
+    return std::make_tuple(itr -> first, itr -> second);
 }
