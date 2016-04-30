@@ -12,6 +12,7 @@
 #include "Constants.h"
 #include "DegreeDistribution.hpp"
 #include "ShortestPath.hpp"
+#include "Betweeness.hpp"
 
 int main(int argc, const char * argv[]) {
     auto input = getInput(FILENAME);
@@ -25,6 +26,8 @@ int main(int argc, const char * argv[]) {
     
     degreeDistribution(map);
     shortestPaths(map);
+		Betweeness(map); 
+		
     
     
 }

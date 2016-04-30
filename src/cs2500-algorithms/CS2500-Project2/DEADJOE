@@ -1,0 +1,75 @@
+
+*** These modified files were found in JOE when it aborted on Wed Apr 27 16:17:49 2016
+*** JOE was aborted by UNIX signal 1
+
+*** File '/nethome/users/cltbqb/Spring2016/Algorithms/CS2500-Project2/.git/COMMIT_EDITMSG'
+More betweeness! (actually less cause I'm debugging and need to move form location A to B...)
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Committer: Trebing <cltbqb@rc13xcs213.managed.mst.edu>
+#
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   Betweeness.cpp
+#	modified:   Betweeness.hpp
+#	modified:   Constants.h
+#	modified:   Functions.cpp
+#	modified:   main
+#
+
+*** File '(Unnamed)'
+{
+
+*** File '(Unnamed)'
+mybstree.h
+mybstreefunctions.hpp
+mybstreefunctions.hpp
+mybstree.h
+mybstree.h
+mybstreefunctions.hpp
+mybstreefunctions.hpp
+mybstreefunctions.hpp
+mybstreefunctions.hpp
+mybstree.h
+/nethome/users/cltbqb/Spring2016/Algorithms/CS2500-Project2/.git/COMMIT_EDITMSG
+
+*** These modified files were found in JOE when it aborted on Fri Apr 29 08:48:49 2016
+*** JOE was aborted by UNIX signal 1
+
+*** File '/nethome/users/cltbqb/Spring2016/Algorithms/CS2500-Project2/.git/COMMIT_EDITMSG'
+Betweeness vertex completed, betweeness edge asap
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Committer: Trebing <cltbqb@rc11xcs213.managed.mst.edu>
+#
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	new file:   DEADJOE
+#	modified:   Source Code/Source Code/Betweeness.cpp
+#	modified:   Source Code/Source Code/Betweeness.hpp
+#	modified:   Source Code/Source Code/Constants.h
+#	modified:   Source Code/Source Code/main
+#	modified:   Source Code/Source Code/main.cpp
+#
+
+*** File '(Unnamed)'
+{
+
+*** File '(Unnamed)'
+mybstree.h
+mybstreefunctions.hpp
+mybstreefunctions.hpp
+mybstree.h
+mybstree.h
+mybstreefunctions.hpp
+mybstreefunctions.hpp
+mybstreefunctions.hpp
+mybstreefunctions.hpp
+mybstree.h
+/nethome/users/cltbqb/Spring2016/Algorithms/CS2500-Project2/.git/COMMIT_EDITMSG

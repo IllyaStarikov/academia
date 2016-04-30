@@ -35,6 +35,16 @@ const std::string SHORTEST_PATH_WEIGHTED_UNDIRECTED = "Shortest Path, Weighted U
 const std::string SHORTEST_PATH_UNWEIGHTED_DIRECTED = "Shortest Path, Unweighted Directed";
 const std::string SHORTEST_PATH_WEIGHTED_DIRECTED = "Shortest Path, Weighted Directed";
 
+const std::string BETWEENESS_VERTEX_UNWEIGHTED_UNDIRECTED = "Betweeness Vertex, Unweighted Undirected"; 
+const std::string BETWEENESS_VERTEX_UNWEIGHTED_DIRECTED = "Betweeness Vertex, Unweighted Directed"; 
+const std::string BETWEENESS_VERTEX_WEIGHTED_UNDIRECTED = "Betweeness Vertex, Weighted Undirected"; 
+const std::string BETWEENESS_VERTEX_WEIGHTED_DIRECTED = "Betweeness Vertex, Weighted Directed"; 
+
+const std::string BETWEENESS_EDGE_UNWEIGHTED_UNDIRECTED = "Betweeness Edge, Unweighted Undirected";
+const std::string BETWEENESS_EDGE_UNWEIGHTED_DIRECTED = "Betweeness Edge, Unweighted Directed";
+const std::string BETWEENESS_EDGE_WEIGHTED_UNDIRECTED = "Betweeness Edge, Weighted Undirected";
+const std::string BETWEENESS_EDGE_WEIGHTED_DIRECTED = "Betweeness Edge, Weighted Directed";
+
 const int INFINITY = 999999;
 const int DEFAULT_WEIGHT_FOR_PATH = 1;
 
