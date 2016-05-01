@@ -1,10 +1,10 @@
-////
-//// Betweeness.cpp 
-//// Source Code 
-////
-//// Claire Trebing 
-//// April 26, 2016
-////
+/* //
+// Betweeness.cpp 
+// Source Code 
+//
+// Claire Trebing 
+// April 26, 2016
+//
 #include "Betweeness.hpp"
 
 void VertexPathReconstruction(const AdjacencyMap & map, int (&betweeness)[MAX_VERTEX], bool Directness, bool Weightness){
@@ -159,3 +159,4 @@ void Betweeness(const AdjacencyMap & map){
 int UndirectedBetweenessEdge(const std::pair<int, double>& edge){
 	return 1; 
 }
+ */

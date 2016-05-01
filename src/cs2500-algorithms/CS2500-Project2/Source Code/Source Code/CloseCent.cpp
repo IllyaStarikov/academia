@@ -20,7 +20,6 @@ void CloseCent(const AdjacencyMatrix & input){
     double High4Val = 0;
     int sum = 0;
     int i = 0;
-            std::cout << "FOO BAR";
     for (auto const &vertex : input){
       for (auto const &edge : vertex){
         sum += edge;

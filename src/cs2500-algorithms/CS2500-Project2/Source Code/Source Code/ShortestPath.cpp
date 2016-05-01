@@ -20,22 +20,22 @@ void shortestPaths(const AdjacencyMap & map) {
     if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_UNWEIGHTED_DIRECTED); }
     matrix = shortestPath(map, false, true);
     countMatrixOccurence(matrix);
-//    CloseCent(matrix);
+    CloseCent(matrix);
     
     if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_WEIGHTED_DIRECTED); }
     matrix = shortestPath(map, false, false);
     countMatrixOccurence(matrix);
-//    CloseCent(matrix);
+    CloseCent(matrix);
     
     if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_WEIGHTED_UNDIRECTED); }
     matrix = shortestPath(map, true, false);
     countMatrixOccurence(matrix);
-//    CloseCent(matrix);
+    CloseCent(matrix);
     
     if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_UNWEIGHTED_UNDIRECTED); }
     matrix = shortestPath(map, true, true);
     countMatrixOccurence(matrix);
-//    CloseCent(matrix);
+    CloseCent(matrix);
 }
 
 void makeUndirected(std::vector<std::vector<int>> & vector, bool deleteSelfLoops) {
