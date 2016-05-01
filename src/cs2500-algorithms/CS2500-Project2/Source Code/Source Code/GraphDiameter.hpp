@@ -14,6 +14,7 @@
 #include "Functions.hpp"
 #include "Constants.h"
 
-
+void GraphDiameter(const AdjacencyMap &map);
+void ShortestPath(const AdjacencyMap &map, bool Directed, bool Weightness);
 
 #endif /* GraphDiameter_hpp */

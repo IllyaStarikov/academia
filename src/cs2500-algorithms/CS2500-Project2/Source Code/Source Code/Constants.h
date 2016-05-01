@@ -45,6 +45,11 @@ const std::string BETWEENESS_EDGE_UNWEIGHTED_DIRECTED = "Betweeness Edge, Unweig
 const std::string BETWEENESS_EDGE_WEIGHTED_UNDIRECTED = "Betweeness Edge, Weighted Undirected";
 const std::string BETWEENESS_EDGE_WEIGHTED_DIRECTED = "Betweeness Edge, Weighted Directed";
 
+const std::string GRAPHDIAMETER_UNWEIGHTED_UNDIRECTED = "Graph Diameber, Unweighted, Undirected";
+const std::string GRAPHDIAMETER_WEIGHTED_UNDIRECTED = "Graph Diameber, Weighted, Undirected";
+const std::string GRAPHDIAMETER_UNWEIGHTED_DIRECTED = "Graph Diameber, Unweighted, Directed";
+const std::string GRAPHDIAMETER_WEIGHTED_DIRECTED = "Graph Diameber, Weighted, Directed";
+
 const int INFINITY = 999999;
 const int DEFAULT_WEIGHT_FOR_PATH = 1;
 
