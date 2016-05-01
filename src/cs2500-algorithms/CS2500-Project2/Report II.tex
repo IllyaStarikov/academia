@@ -20,6 +20,7 @@
 
 \usepackage{xcolor}
 \newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{#1}}}
+\newcommand{\placeholder}[1]{\textbf{\colorbox{red!50}{#1}}}
 
 \newcommand{\br}{\multicolumn{2}{c}{} \\}
 
@@ -75,7 +76,7 @@ Our implementation is as follows, from a higher level:
 
 \begin{enumerate}
     \item Get and parse graph input.
-    \begin{itemize}
+    \begin{enumerate}
         \item Because our data was given in the form of a \texttt{csv}, we decided to just pipe that input directly to a \shellcmd{vector<string>}.
         \item We then pass said \shellcmd{vector<string>} to a function that parses using C++ \href{http://www.cplusplus.com/reference/string/string/}{string functions}.
         \item We pipe the parsed data to a data structure of \\ \shellcmd{map<int, vector<pair<int, double>>>}
@@ -83,24 +84,24 @@ Our implementation is as follows, from a higher level:
             \item The \texttt{int} is the key for retrieval of the \shellcmd{vector}
             \item The \shellcmd{vector<pair<int, double>>} stores a \texttt{vector} of the edges, in pairs --- where the pair \shellcmd{<int, double>} are proportional to the target vertex and weight.
         \end{itemize}
-    \end{itemize}
+    \end{enumerate}
 
     \item Move on to calculating the out degree of the vertexes.
-    \begin{itemize}
+    \begin{enumerate}
         \item Initialize a \shellcmd{map} of \shellcmd{<int, int>} for unweighted and \shellcmd{<int, double>} for unweighted.
         \item For both weighted and unweighted simply use the source as the \texttt{key}.
         \item For unweighted, use the \shellcmd{size()} method of the vector class to determine the out degree\footnote{Remember, the key return the a \shellcmd{vector} of pairs. The number of pairs are directly proportional the out degree.}.
         \item For weighted, sum the \shellcmd{second} property of the \shellcmd{pair}s in the \shellcmd{vector} --- note that the second property of \shellcmd{pair} is the weight. This gives a total weight.
-     \end{itemize}
+     \end{enumerate}
 
     \item Move to calculating the in degree of the vertexes.
-    \begin{itemize}
+    \begin{enumerate}
         \item This is done almost the same way, except there is a weight \shellcmd{map}.
         \item Iterate over the entirety of our data structure\footnote{An adjacency map of sorts, \shellcmd{map<int, vector<pair<int, double>>>}.}, and store where the target vertex points to in all the edges in the weight \shellcmd{map}.
-    \end{itemize}
+    \end{enumerate}
 
     \item Calculate shortest path via the Floyd-Warshall algorithm.
-    \begin{itemize}
+    \begin{enumerate}
         \item Initialize an adjacency matrix --- a \shellcmd{vector<vector<int>>}
         \begin{itemize}
             \item Default all values to infinity --- in our case, $999999$.
@@ -114,7 +115,18 @@ Our implementation is as follows, from a higher level:
             \item This is done by making a mirror image of the adjacency matrix $A$, by setting $\forall i, j \in A, A_{i, j} = A_{j, i}$. Just copying over the diagonal.
         \end{itemize}
         \item Run the Floyd-Warshall algorithm, with triple C-Style \shellcmd{for} loops.
-    \end{itemize}
+    \end{enumerate}
+
+    \item \placeholder{Graph Diamater}
+
+    \item Next we endeavor to find the various closeness centrality of the vertices.
+    \begin{enumerate}
+        \item Initialize one vector to hold the solutions set and four separate vectors to contain the vertices that correspond to the four vertices with the highest closeness centrality values.
+        \item Add each edge weight for each vertex together (iterating over each vertex and each edge) and pushing the result into the solution set vector.
+        \item After this has been pushed we check the value against the recorded highest four values to see if this vertex either equals or exceeds those four values and change our recorded values/vertices accordingly.
+        \item Finally, we output both our results for highest closeness centrality values and the data needed to construct the graph.
+     \end{enumerate}
+
 \end{enumerate}
 
 \ifthenelse{\boolean{showGraphs}}{
@@ -228,5 +240,6 @@ Please not that $-1$ corresponds to a path between two vertices not existing.
 \end{itemize}
 
 \section{Conclusions}
+The experiments detailed above seek to find meaning in what would ordinarily be only raw data, the results of which, while being open to some interpretation, describe the small subsection of a social community that is given by the data set we were provided. For instance, the distribution of degrees is a measure of how interconnected individual nodes or ‘profiles’ are to the rest of the graph. Because this graph is directed, it closely resembles a social network such as Tumblr where individuals can ‘follow’ another profile but that profile is not required to follow back. From our results, particularly those of the unweighted distribution, we can tell that most of our nodes are followed by under 5 profiles and in turn follow between 2 and 8 profiles. The algorithms for Shortest Path are also a test of interconnectedness, though this time measuring the degrees of separation between nodes. From our results we can see that on average the nodes of our network are no more than two or three connections away from each other. The Graph Diameter measurements are meant to give an idea of the outliers in this community or to define the size of the outward edges of this network. \placeholder{INSERT SOME CRAP ABOUT DIAMETER RESULTS}.  Centrality metrics seek to identify the most important nodes within the network, using a variety of qualifications to define what is most ‘important’.  A measure of Closeness centrality is effectively the inverse of a nodes ‘farness’ or distance from other nodes. As we can see from the results nodes \placeholder{INSERT NODES} are the four nodes with the highest Closeness Centrality and in general \placeholder{MORE CRAP ABOUT CENTRALITY}. The next centrality metric that we tested for was the Betweenness Centrality which attempts to determine those nodes that most often act as a bridge between two other nodes. This measurement has applications within social networks to determine which individual (or in our social network examples, profile) has the most influence on communication between other individuals. \placeholder{BETWEENNESS CRAP}.  Lastly we attempted to locate and determine the smaller communities within our social network. One way to accomplish this is to locate those edges that have the highest betweenness centrality and eliminate them from the network. These edges are most likely to be used as bridges between communities so by eliminating them we are able to separate and identify those communities.  Once we have eliminated those edges we simply recalculate the shortest paths and diameters of the network to see how the network has changed. \placeholder{COMMUNITY CRAP}.  As we can see, these experiments and algorithms are of great use to us to sift through a large quantity of raw data and attribute meaning to them where there originally was little to none. After all, after applying these algorithms to a simple adjacency list we are now able to infer a large amount of information about the underlying situation that is being represented by this graph.
 
 \end{document}
