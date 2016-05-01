@@ -26,7 +26,7 @@ void CloseCent(const AdjacencyMatrix & input){
         sum += edge;
       }
 
-      Close[i].push_back(1.0/sumO);
+      Close.push_back(1.0/sum);
       if (Close[i] == High1Val)
          High1.push_back(i);
       else if (Close[i] == High2Val)
@@ -131,4 +131,3 @@ void CloseGraph(std::vector<double> & Close){
     // CloseCent(UWUDshort);
   
 // }
->>>>>>> d68b68ce086d893051914380586422ff2029fdeb

@@ -18,7 +18,7 @@ void degreeDistribution(const AdjacencyMap & map) {
     
     if (PRINT_SOLUTIONS) { printHeader("Unweighted Total Distribution"); }
     auto degrees = make_tuple(inDegreeMap, outDegreeMap);
-    totalDistribution(degrees);
+    if (PRINT_SOLUTIONS) { totalDistribution(degrees); }
     
     
     /*--------------------Weighted--------------------*/
@@ -30,7 +30,7 @@ void degreeDistribution(const AdjacencyMap & map) {
     
     if (PRINT_SOLUTIONS) { printHeader("Weighted Total Distribution"); }
     degrees = make_tuple(inDegreeMap, outDegreeMap);
-    totalDistribution(degrees);
+    if (PRINT_SOLUTIONS) { totalDistribution(degrees); }
     
     /*--------------------Max In, Out Degree--------------------*/
     maxDistribution(map);
@@ -114,16 +114,22 @@ void maxDistribution(const AdjacencyMap & map) {
     
     printHeader("Maximum Distribution");
     auto max = findMaximumUnweightedOutDegree(map);
-    printMaximumDistribution(max);
+    printMaximumDistribution(max, false, false);
     
     max = findMaximumWeightedOutDegree(map);
-    printMaximumDistribution(max);
+    printMaximumDistribution(max, true, false);
     
     auto maxDouble = findMaximumInDegree(map, false);
-    printMaximumDistribution(maxDouble);
+    printMaximumDistribution(maxDouble, false, true);
     
     maxDouble = findMaximumInDegree(map, true);
-    printMaximumDistribution(maxDouble);
+    printMaximumDistribution(maxDouble, true, true);
+    
+    maxDouble = maxTotalDistribution(map, false);
+    printMaximumDistribution(maxDouble, false, true);
+    
+    maxDouble = maxTotalDistribution(map, true);
+    printMaximumDistribution(maxDouble, true, true);
 }
 
 
@@ -185,5 +191,58 @@ std::tuple<int, std::vector<double>> findMaximumInDegree(const AdjacencyMap & ma
     }
     
     auto itr = weights.rbegin();
+    return std::make_tuple(itr -> first, itr -> second);
+}
+
+std::tuple<int, std::vector<double>> maxTotalDistribution(const AdjacencyMap & map, bool weighted) {
+    double index = 0, sum = 0;
+    auto maxOutVertices = std::vector<int>();
+    
+    auto weightMap = std::map<int, double>();
+    auto weights = std::map<int, std::vector<double>>();
+    auto sumMap = std::map<int, std::vector<double>>();
+    
+    for (const auto & element : map) {
+        for (const auto & pair : element.second) {
+            index = pair.first;
+            weighted ? weightMap[index] += pair.second : weightMap[index]++;
+        }
+        weights[weightMap[index]].push_back(element.first);
+    }
+    
+//    for (const auto & weight : weights) {
+//        std::cout << weight.first << ": ";
+//        for (const auto & cell : weight.second) {
+//            std::cout << cell << ",";
+//        }
+//        std::cout << std::endl;
+//    }
+//    
+    for (const auto & element : weights) {
+        for (const auto & vertix : element.second) {
+            if (weighted) {
+                for (const auto & edge : map.at(vertix)) {
+                    sum += edge.second;
+            }
+                
+                index = element.first + sum;
+                sumMap[index].push_back(vertix);
+                sum = 0;
+            } else {
+                index = element.first + map.at(vertix).size();
+                sumMap[index].push_back(vertix);
+            }
+        }
+    }
+    
+//    for (const auto & weight : sumMap) {
+//        std::cout << weight.first << ": ";
+//        for (const auto & cell : weight.second) {
+//            std::cout << cell << ",";
+//        }
+//        std::cout << std::endl;
+//    }
+
+    auto itr = sumMap.rbegin();
     return std::make_tuple(itr -> first, itr -> second);
 }

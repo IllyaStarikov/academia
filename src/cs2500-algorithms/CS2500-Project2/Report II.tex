@@ -21,6 +21,8 @@
 \usepackage{xcolor}
 \newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{#1}}}
 
+\newcommand{\br}{\multicolumn{2}{c}{} \\}
+
 % Paramters Are As Follows:
 % 1. Title
 % 2. x-axis Label
@@ -136,24 +138,61 @@ Our implementation is as follows, from a higher level:
 \subsubsection{Unweighted Total Distribution}
 \graph{Unweighted Total Distribution}{Degree}{Number of Vertices}{Data/degree/UnweightedTotalDistribution.csv}{Trendline}
 
+\subsubsection{Highest In Degree}
+\begin{tabular}{l|p{9.5cm}}
+    \textsc{Out Degree, Unweighted: \textbf{21}} & \begin{itemize}
+        \item 5
+        \item 7
+    \end{itemize} \\
 
+    \br
+
+    \textsc{Out Degree, Weighted: \textbf{223}} & \begin{itemize}
+        \item 3
+    \end{itemize} \\
+
+    \br
+
+    \textsc{In Degree, Unweighted: \textbf{15}} & \begin{itemize}
+        \item 70
+        \item 78
+    \end{itemize} \\
+
+    \br
+
+    \textsc{In Degree, Weighted: \textbf{125}} & \begin{itemize}
+        \item 70
+    \end{itemize} \\
+
+    \br
+
+    \textsc{Total Degree, Unweighted: \textbf{22}} & \begin{itemize}
+        \item 5
+        \item 7
+    \end{itemize} \\
+
+    \br
+
+    \textsc{Total Degree, Weighted: \textbf{226}} & \begin{itemize}
+        \item 3
+    \end{itemize} \\
+\end{tabular}
 
 \subsection{Shortest Path}
 Please not that $-1$ corresponds to a path between two vertices not existing.
 
-\subsection{Shortest Path, Unweighted Directed}
+\subsubsection{Shortest Path, Unweighted Directed}
 \graph{Shortest Path, Unweighted Directed}{Shortest Path Length}{Number of Paths}{Data/shortest_path/ShortestPathUnweightedDirected.csv}{Trendline}
 
-\subsection{Shortest Path, Unweighted Undirected}
+\subsubsection{Shortest Path, Unweighted Undirected}
 \graph{Shortest Path, Unweighted Undirected}{Shortest Path Length}{Number of Paths}{Data/shortest_path/ShortestPathUnweightedUndirected.csv}{Trendline}
 
-\subsection{Shortest Path, Weighted Directed}
+\subsubsection{Shortest Path, Weighted Directed}
 \graph{Shortest Path, Weighted Directed}{Shortest Path Length}{Number of Paths}{Data/shortest_path/ShortestPathWeightedDirected.csv}{Trendline}
-}
 
-\subsection{Shortest Path, Weighted Undirected}
+\subsubsection{Shortest Path, Weighted Undirected}
 \graph{Shortest Path, Weighted Undirected}{Shortest Path Length}{Number of Paths}{Data/shortest_path/ShortestPathWeightedUndirected.csv}{Trendline}
-
+}
 
 \section{Team Roles}
 \begin{itemize}

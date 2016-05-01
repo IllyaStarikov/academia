@@ -35,10 +35,18 @@ void maxDistribution(const AdjacencyMap & map);
 std::tuple<int, std::vector<int>> findMaximumUnweightedOutDegree(const AdjacencyMap & map);
 std::tuple<int, std::vector<int>> findMaximumWeightedOutDegree(const AdjacencyMap & map);
 std::tuple<int, std::vector<double>> findMaximumInDegree(const AdjacencyMap & map, bool weighted);
+std::tuple<int, std::vector<double>> maxTotalDistribution(const AdjacencyMap & map, bool weighted);
 
 template <typename T>
-void printMaximumDistribution(const std::tuple<int, std::vector<T>> & distribution) {
-    std::cout << "Maximum Out Degree: " << std::get<0>(distribution) << " With Vertices:" << std::endl;
+void printMaximumDistribution(const std::tuple<int, std::vector<T>> & distribution, bool weighted, bool inDegree) {
+    std::cout << "Maximum ";
+    
+    inDegree ? std::cout << "In" : std::cout << "Out";
+    std::cout << " Degree: " << std::get<0>(distribution) << " With";
+    
+    weighted ? std::cout << "Weighted " : std::cout << "Unweighted ";
+    std::cout << "Vertices:" << std::endl;
+    
     for (auto const & vertice : std::get<1>(distribution)) {
         std::cout << std::setw(4) << vertice << std::endl;
     }
