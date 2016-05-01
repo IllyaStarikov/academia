@@ -1,31 +1,18 @@
-CREATE FUNCTION new_user(
+CREATE OR REPLACE FUNCTION new_user(
     id numeric(9, 0),
-    username varchar(30) NOT NULL,
-    heightInches numeric(1, 0),
+    username varchar(30),
+    email varchar(50),
+    heightFeet numeric(1, 0),
     heightInches numeric(2, 0),
-    birthdate date NOT NULL,
+    birthdate date,
     weight int,
     goal int,
-    password varchar(50) NOT NULL,
-    joinDate date NOT NULL,
+    password varchar(50),
+    joinDate date,
     gender char,
     firstName varchar(50),
     mInitial char,
-    lastName varchar(50),
+    lastName varchar(50)
 )
-
-
-
--- id numeric(9, 0),
--- username varchar(30) NOT NULL,
--- heightInches numeric(1, 0),
--- heightInches numeric(2, 0),
--- birthdate date NOT NULL,
--- weight int,
--- goal int,
--- password varchar(50) NOT NULL,
--- joinDate date NOT NULL,
--- gender char,
--- firstName varchar(50),
--- mInitial char,
--- lastName varchar(50),
+    INSERT INTO USERS(UiD, Username, Email, HeightFeet, HeightInches, Birthdate, Weight, Goal, Password, JoinDate, Gender, FName, Minit, LName) VALUES
+        (id, username, email, heightFeet, heightInches, birthdate, weight, goal, password, joinDate, gender, firstName, mInitial, lastName);
