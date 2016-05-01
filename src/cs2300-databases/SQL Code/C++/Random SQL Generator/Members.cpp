@@ -14,10 +14,8 @@
 
 
 Members::Members() {
-    do {
-        groupID = randomArbitrary(1, GROUP_COUNT);
-        userID = randomArbitrary(1, USER_COUNT);
-    } while (groupID == userID);
+    groupID = randomArbitrary(1, GROUP_COUNT);
+    userID = getUserID();
 }
 
 const std::string MEMBERS_TABLE_NAME = "MEMBERS";
@@ -33,4 +31,9 @@ void Members::printInsert() {
 void Members::printAttributes(bool isLastPrint) {
     std::cout << std::setw(TAB_LENGTH) << "(" << userID << SEPERATOR << groupID << ")";
     isLastPrint ? std::cout << ";"  << std::endl : std::cout << "," << std::endl;
+}
+
+int Members::getUserID() {
+    static int id = 0;
+    return ++id;
 }

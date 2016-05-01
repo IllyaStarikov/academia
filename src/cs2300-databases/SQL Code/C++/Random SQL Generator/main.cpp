@@ -34,6 +34,10 @@ int main(int argc, const char * argv[]) {
     printInsertAndAttributes(users, USER_COUNT);
     printInsertAndAttributes(groups, GROUP_COUNT);
     printInsertAndAttributes(members, MEMBERS_COUNT);
+    
+    printInsertAndAttributesWorkout(cardio, WORKOUT_COUNT);
+    printInsertAndAttributesWorkout(strength, WORKOUT_COUNT);
+    
     printInsertAndAttributes(cardio, WORKOUT_COUNT);
     printInsertAndAttributes(strength, WORKOUT_COUNT);
     printInsertAndAttributes(weight, WEIGHT_COUNT);

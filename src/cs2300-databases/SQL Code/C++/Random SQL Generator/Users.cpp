@@ -56,19 +56,9 @@ Users::Users () {
 	RandNum = randomArbitrary(0, 1);
 	if(RandNum == 0){ Gender = 'F'; }
 	else{ Gender = 'M';}
-	
-	//Weight 
-	if(RandNum == 0){
-		Weight = randomArbitrary(140, 180); //The average weight of an american female is 166.2 
-		Weight = Weight + randomArbitrary(0,9)/10.0; //Possible weights range from 140 and 180.9
-	}
-	else {
-		Weight = randomArbitrary(180, 215); //The average weight of an american male is 195.2 lbs
-		Weight = Weight + randomArbitrary(0,9)/10.0; //Possible weights range from 180.0 to 215.9
-	}
 
 	//Goal
-	Goal = Weight - randomArbitrary(0, 30) + randomArbitrary(0,9)/10.0; //Possible goals range from losing 0.0 to 30.9 lbs
+	Goal = randomArbitrary(MIN_WEIGHT, MAX_WEIGHT); //Possible goals range from losing 0.0 to 30.9 lbs
 
 	//First Name
 	if (RandNum == 0) {
@@ -97,8 +87,8 @@ void Users::printInsert(){
     cout << USER_UID_ATTRIBUTE << SEPERATOR << USER_USERNAME_ATTRIBUTE << SEPERATOR;
     cout << USER_EMAIL << SEPERATOR;
     cout << USER_HEIGHT_FEET_ATTRIBUTE << SEPERATOR << USER_HEIGTH_INCHES_ATTRIBUTE << SEPERATOR;
-    cout << USER_BIRTHDATE_ATTRIBUTE << SEPERATOR << USER_STARTING_WEIGHT_ATTRIBUTE << SEPERATOR;
-    cout << USER_GOAL_WEIGHT_ATTRIBUTE << SEPERATOR << USER_PASSWORD_ATTRIBUTE << SEPERATOR;
+    cout << USER_BIRTHDATE_ATTRIBUTE << SEPERATOR << USER_GOAL_WEIGHT_ATTRIBUTE << SEPERATOR;
+    cout << USER_PASSWORD_ATTRIBUTE << SEPERATOR;
     cout << USER_JOINDATE_ATTRIBUTE << SEPERATOR << USER_GENDER_ATTRIBUTE << SEPERATOR;
     cout << USER_FNAME_ATTRIBUTE << SEPERATOR << USER_MINIT_ATTRIBUTE << SEPERATOR << USER_LNAME_ATTRIBUTE;
     cout << ") VALUES" << endl;
@@ -107,7 +97,7 @@ void Users::printInsert(){
 void Users::printAttributes(bool isLastPrint) {
     std::cout <<  std::setw(TAB_LENGTH) << "(" << Uid << SEPERATOR << DELIMETER << Username << DELIMETER << SEPERATOR << DELIMETER << email << DELIMETER << SEPERATOR
     << HeightFeet << SEPERATOR << HeightInches << SEPERATOR
-    << DELIMETER << Birthdate  << DELIMETER << SEPERATOR << Weight << SEPERATOR << Goal << SEPERATOR
+    << DELIMETER << Birthdate  << DELIMETER << SEPERATOR << Goal << SEPERATOR
     << DELIMETER << Password << DELIMETER << SEPERATOR << DELIMETER << JoinDate << DELIMETER << SEPERATOR << DELIMETER << Gender << DELIMETER << SEPERATOR;
     cout << flush << flush << DELIMETER << FName << DELIMETER << SEPERATOR << DELIMETER << MInit << DELIMETER << SEPERATOR << DELIMETER << LName << DELIMETER << ")";
     isLastPrint ? std::cout << ";"  << std::endl : std::cout << "," << std::endl;

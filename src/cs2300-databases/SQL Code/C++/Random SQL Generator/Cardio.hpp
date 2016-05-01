@@ -22,7 +22,9 @@ public:
     CardioWorkout();
     void printInsert();
     void printAttributes(bool isLastPrint);
-    
+
+    void printInsertWorkout();
+    void printAttributesWorkout(bool isLastPrint);
 };
 
 #endif /* Cardio_hpp */

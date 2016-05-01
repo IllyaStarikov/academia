@@ -19,6 +19,8 @@ public:
     Members();
     void printInsert();
     void printAttributes(bool isLastPrint);
+    
+    int getUserID();
 };
 
 #endif /* Members_hpp */

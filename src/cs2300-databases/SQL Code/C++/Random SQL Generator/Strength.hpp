@@ -23,6 +23,9 @@ class StrengthWorkout : Workout {
     
 public:
     StrengthWorkout();
+    void printInsertWorkout();
+    void printAttributesWorkout(bool isLastPrint);
+
     void printInsert();
     void printAttributes(bool isLastPrint);
 };

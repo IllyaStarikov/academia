@@ -25,6 +25,16 @@ void printInsertAndAttributes(T relation[], int size) {
     std::cout << std::endl;
 }
 
+template <typename T>
+void printInsertAndAttributesWorkout(T relation[], int size) {
+    relation[0].printInsertWorkout();
+    for (int i = 0; i < size; i++) {
+        relation[i].printAttributesWorkout(i == size - 1);
+    }
+    
+    std::cout << std::endl;
+}
+
 
 std::string importFromFile(const std::string filename, const int lineNumber);
 std::string sqlDate();

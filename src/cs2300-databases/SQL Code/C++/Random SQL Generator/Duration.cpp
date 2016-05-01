@@ -19,7 +19,7 @@ Duration::Duration(int _hours, int _minutes) {
 }
 
 Duration Duration::randomDuration() {
-    Duration toReturn(randomArbitrary(0, WORKOUT_MAX_HOURS), randomArbitrary(0, WORKOUT_MAX_MINS));
+    Duration toReturn(randomArbitrary(1, WORKOUT_MAX_HOURS), randomArbitrary(1, WORKOUT_MAX_MINS));
     return toReturn;
 }
 

@@ -1,4 +1,2 @@
-Barbell Squat
-Leg Press
-Standing Calf Raises
-Lunges
+FreeWeights
+Crunches

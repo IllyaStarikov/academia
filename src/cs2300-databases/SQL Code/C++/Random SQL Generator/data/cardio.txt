@@ -1,3 +1,4 @@
+Walk
 Run
 Bike
 Swim
