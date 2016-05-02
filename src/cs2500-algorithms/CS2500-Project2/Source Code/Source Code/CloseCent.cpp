@@ -113,7 +113,7 @@ void CloseGraph(std::vector<double> & Close){
     
   if (PRINT_SOLUTIONS) {
     for (const auto &element : GraphSol) {
-        std::cout << element.first << ": " << element.second << std::endl;
+        std::cout << std::fixed << element.first << ": " << element.second << std::endl;
     }
   }
 }
