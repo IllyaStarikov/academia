@@ -22,15 +22,6 @@ create table USERS (
     PRIMARY KEY(UiD)
 );
 
-create table POST (
-    PiD numeric(9, 0) not null,
-    FiD numeric(9, 0) not null,
-    Message text not null,
-    DateStamp date not null,
-    Title varchar(20) not null,
-    primary key(PiD, FiD)
-);
-
 create table GROUPS (
     GiD numeric(9, 0),
     Moderator  numeric(9, 0),
@@ -82,7 +73,7 @@ create table WORKOUTS (
 
 
 create table CARDIO (
-    WiD numeric(9, 0) REFERENCES WORKOUTS,
+    WiD numeric(9, 0) REFERENCES WORKOUTS on delete cascade on update cascade,
     AverageHeartRate int,
     AverageSpeed int,
     DistanceCovered int,
@@ -90,21 +81,29 @@ create table CARDIO (
 );
 
 create table STRENGTH (
-    WiD numeric(9, 0) REFERENCES WORKOUTS,
+    WiD numeric(9, 0) REFERENCES WORKOUTS on delete cascade on update cascade,
     TargetZone varchar(50),
     PRIMARY KEY (WiD)
 );
 
 create table FORUM (
-    FiD numeric(9, 0),
-    GiD numeric(9, 0),
+    FiD numeric(9, 0) UNIQUE,
+    GiD numeric(9, 0) REFERENCES GROUPS,
     Title varchar(30) NOT NULL,
-    DateCreated date NOT NULL,
-    PublicorPrivate bit NOT NULL,
-    PRIMARY KEY(FiD)
+    DateCreated timestamp NOT NULL,
+    PRIMARY KEY(FiD, GiD)
 );
 
-ALTER TABLE GROUPS ADD CONSTRAINT fk_grou_user FOREIGN KEY (Moderator) REFERENCES USERS(UiD);
-ALTER TABLE MEMBERS ADD CONSTRAINT fk_mem_user FOREIGN KEY (UiD) REFERENCES USERS(UiD);
-ALTER TABLE CHEST ADD CONSTRAINT fk_chest_user FOREIGN KEY (UiD) REFERENCES USERS(UiD);
-ALTER TABLE WEIGHT ADD CONSTRAINT fk_weight_user FOREIGN KEY (UiD) REFERENCES USERS(UiD);
+create table POST (
+    PiD numeric(9, 0) not null,
+    FiD numeric(9, 0) not null REFERENCES FORUM(FiD),
+    Message text not null,
+    DateStamp timestamp not null,
+    Title varchar(20) not null,
+    primary key(PiD, FiD)
+);
+
+ALTER TABLE GROUPS ADD CONSTRAINT fk_grou_user FOREIGN KEY (Moderator) REFERENCES USERS(UiD) on delete cascade on update cascade;
+ALTER TABLE MEMBERS ADD CONSTRAINT fk_mem_user FOREIGN KEY (UiD) REFERENCES USERS(UiD) on delete cascade on update cascade;
+ALTER TABLE CHEST ADD CONSTRAINT fk_chest_user FOREIGN KEY (UiD) REFERENCES USERS(UiD) on delete cascade on update cascade;
+ALTER TABLE WEIGHT ADD CONSTRAINT fk_weight_user FOREIGN KEY (UiD) REFERENCES USERS(UiD) on delete cascade on update cascade;
