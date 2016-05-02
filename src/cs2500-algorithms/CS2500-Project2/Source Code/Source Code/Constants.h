@@ -50,6 +50,12 @@ const std::string GRAPHDIAMETER_WEIGHTED_UNDIRECTED = "Graph Diameber, Weighted,
 const std::string GRAPHDIAMETER_UNWEIGHTED_DIRECTED = "Graph Diameber, Unweighted, Directed";
 const std::string GRAPHDIAMETER_WEIGHTED_DIRECTED = "Graph Diameber, Weighted, Directed";
 
+const std::string COMMUNITY_DETECTION1 = "Community Detection, First Run";
+const std::string COMMUNITY_DETECTION2 = "Community Detection, Second Run";
+const std::string COMMUNITY_DETECTION3 = "Community Detection, Third Run";
+const std::string COMMUNITY_DETECTION4 = "Community Detection, Fourth Run";
+const std::string COMMUNITY_DETECTION5 = "Community Detection, Fifth Run";
+
 const int INFINITY = 999999;
 const int DEFAULT_WEIGHT_FOR_PATH = 1;
 

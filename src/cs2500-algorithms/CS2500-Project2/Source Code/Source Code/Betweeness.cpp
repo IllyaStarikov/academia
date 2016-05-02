@@ -1,4 +1,4 @@
-/* //
+//
 // Betweeness.cpp 
 // Source Code 
 //
@@ -155,8 +155,3 @@ void Betweeness(const AdjacencyMap & map){
 	BetweenessEdge(map); 
 	return;
 }
-
-int UndirectedBetweenessEdge(const std::pair<int, double>& edge){
-	return 1; 
-}
- */
