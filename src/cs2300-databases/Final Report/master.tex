@@ -9,6 +9,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{multicol}
+\usepackage{changepage}
 \usepackage[shortlabels]{enumitem}
 
 \newcommand{\pk}{$^{\text{\textbf{PK}}}$}
@@ -16,21 +17,32 @@
 \newcommand{\pfk}{$^{\text{\textit{\textbf{PK, FK}}}}$}
 
 \newcommand{\br}{\multicolumn{2}{c}{} \\}
+\newcommand{\placeholder}[1]{\textbf{\colorbox{red!50}{#1}}}
 
 \begin{document}
 \maketitle
 
-\chapter{The Database Design Manual}
-\section{Revised Problem Statement}
+\part{The Database Design Manual}
+\chapter{Problem Statement}
 \input{include/design_manual/ProblemStatement}
 
-\section{Conceptual Database Design}
+\chapter{Conceptual Database Design}
 \includepdf[pages=-,width=1.35\textwidth]{include/assets/ConceptualDatabaseDesign.pdf}
 
-\section{Logical Database Design}
+\chapter{Logical Database Design}
 \input{include/design_manual/LogicalDatabaseDesign}
 
-\section{Application Program Design}
+\chapter{Application Program Design}
 \input{include/design_manual/ApplicationProgramDesign}
+
+\part{User Manual}
+
+\chapter{Functions}
+\input{include/user_manual/functions/delete_group}
+\input{include/user_manual/functions/modify_user}
+\input{include/user_manual/functions/new_user}
+\input{include/user_manual/functions/query_user}
+\input{include/user_manual/functions/total_users}
+\input{include/user_manual/functions/user_leaderboards}
 
 \end{document}

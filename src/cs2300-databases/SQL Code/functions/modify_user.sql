@@ -18,6 +18,7 @@ CREATE OR REPLACE FUNCTION modify_user(
     newPassword varchar(50),
     newGender char
 )
+
 returns setof record as $$
 BEGIN
     IF (newUsername != '0') THEN
