@@ -8,16 +8,20 @@
 
 #include "CloseCent.hpp"
 
+#include <limits>
+
+typedef std::numeric_limits< double > dbl;
+
 void CloseCent(const AdjacencyMatrix & input){
     auto Close = std::vector<double>();
     std::vector<int> High1;
     std::vector<int> High2;
     std::vector<int> High3;
     std::vector<int> High4;
-    double High1Val = 0;
-    double High2Val = 0;
-    double High3Val = 0;
-    double High4Val = 0;
+    long double High1Val = 0;
+    long double High2Val = 0;
+    long double High3Val = 0;
+    long double High4Val = 0;
     int sum = 0;
     int i = 0;
     for (auto const &vertex : input){
@@ -105,10 +109,11 @@ void CloseGraph(std::vector<double> & Close){
     index = element;
     GraphSol[index]++;
   }
-  
+        std::cout.precision(dbl::max_digits10);
+    
   if (PRINT_SOLUTIONS) {
     for (const auto &element : GraphSol) {
-      std::cout << element.first << ": " << element.second << std::endl;
+        std::cout << element.first << ": " << element.second << std::endl;
     }
   }
 }
