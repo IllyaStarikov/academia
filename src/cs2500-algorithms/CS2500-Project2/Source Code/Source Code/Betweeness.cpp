@@ -30,7 +30,9 @@ void VertexPathReconstruction(const AdjacencyMap & map, int betweeness[], bool D
                 } else if (solution[i][j] > solution[i][k] + solution[k][j]) {
                     solution[i][j] = solution[i][k] + solution[k][j];
 					if(Weightness){
-						betweeness[k] += pair.second; 
+                        for (const auto & pairs : map.at(k)) {
+                            betweeness[k] += pairs.second;
+                        }
 					}
 					else{
 						betweeness[k]++; //Since k is involved in the path, up it's betweenness value 
@@ -65,7 +67,9 @@ void EdgePathReconstruction(const AdjacencyMap & map, int (&betweeness)[MAX_VERT
                 } else if (solution[i][j] > solution[i][k] + solution[k][j]) {
                     solution[i][j] = solution[i][k] + solution[k][j];
 					if(Weightness){
-						betweeness[i][k] += pair.second;
+                        for (const auto & pairs : map.at(k)) {
+                            betweeness[i][k] += pairs.second;
+                        }
 					}
 					else{
 						betweeness[i][k] ++; 
