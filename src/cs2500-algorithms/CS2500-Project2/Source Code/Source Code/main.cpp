@@ -13,6 +13,7 @@
 #include "DegreeDistribution.hpp"
 #include "ShortestPath.hpp"
 #include "Betweeness.hpp"
+#include "CloseCent.hpp"
 
 int main(int argc, const char * argv[]) {
     auto input = getInput(FILENAME);

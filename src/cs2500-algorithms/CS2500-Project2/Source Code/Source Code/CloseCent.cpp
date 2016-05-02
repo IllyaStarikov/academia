@@ -13,24 +13,25 @@
 typedef std::numeric_limits< double > dbl;
 
 void CloseCent(const AdjacencyMatrix & input){
-    auto Close = std::vector<double>();
-    std::vector<int> High1;
+    auto Close = std::vector<double>();  //vector to hold the solution set
+    std::vector<int> High1;				// these are vectors to hold the vertices that correspond to the "Highest Centrality"
     std::vector<int> High2;
     std::vector<int> High3;
     std::vector<int> High4;
-    long double High1Val = 0;
+
+    long double High1Val = 0;     //variables to hold the actual values for the highest value of closeness
     long double High2Val = 0;
     long double High3Val = 0;
     long double High4Val = 0;
     int sum = 0;
     int i = 0;
-    for (auto const &vertex : input){
+    for (auto const &vertex : input){			//for each vertex, and each edge in that vertex, add the edge weight to sum.
       for (auto const &edge : vertex){
         sum += edge;
       }
 
-      Close.push_back(1.0/sum);
-      if (Close[i] == High1Val)
+      Close.push_back(1.0/sum);					//push that value into solution set
+      if (Close[i] == High1Val)					//checking if it falls into the highest 4.
          High1.push_back(i);
       else if (Close[i] == High2Val)
          High2.push_back(i);
@@ -38,7 +39,7 @@ void CloseCent(const AdjacencyMatrix & input){
         High3.push_back(i);
       else if (Close[i] == High4Val)
         High4.push_back(i);
-      else if (Close[i] > High1Val){
+      else if (Close[i] > High1Val){			//checking if it replaces one of the highest 4.
          High4 = High3;
          High4Val = High3Val;
          High3 = High2;
@@ -70,10 +71,10 @@ void CloseCent(const AdjacencyMatrix & input){
         High4.clear();
         High4.push_back(i);
       }
-      sum = 0;
+      sum = 0;									//resetting values for next test
       i++;
     }
-    std::cout<<"Highest Closeness Values"<<std::endl;
+    std::cout<<"Highest Closeness Values"<<std::endl;		//outputting results
     std::cout<<"Value: "<<High1Val<<" Vertices: ";
     for (auto const &element : High1){
       std::cout<<element<<", ";
@@ -101,7 +102,7 @@ void CloseCent(const AdjacencyMatrix & input){
     CloseGraph(Close);
 }
 
-void CloseGraph(std::vector<double> & Close){
+void CloseGraph(std::vector<double> & Close){					//outputting the needed results for the graph
   auto GraphSol = std::map<double, int>();
   double index;
   
