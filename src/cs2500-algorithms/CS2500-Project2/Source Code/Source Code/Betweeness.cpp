@@ -111,7 +111,7 @@ void BetweenessVertex(const AdjacencyMap & map){
 }
 
 void BetweenessEdge(const AdjacencyMap & map){
-	int beweeness[MAX_VERTEX][MAX_VERTEX] = {(0,0)};
+	int betweeness[MAX_VERTEX][MAX_VERTEX] = {(0,0)};
 	//Undirected, unweighted
 	VertexPathReconstruction(map, betweeness, false, false);
 	printHeader(BETWEENESS_EDGE_UNWEIGHTED_UNDIRECTED); 
