@@ -113,7 +113,7 @@ void BetweenessVertex(const AdjacencyMap & map){
 void BetweenessEdge(const AdjacencyMap & map){
 	int betweeness[MAX_VERTEX][MAX_VERTEX] = {(0,0)};
 	//Undirected, unweighted
-	VertexPathReconstruction(map, betweeness, false, false);
+	EdgePathReconstruction(map, betweeness, false, false);
 	printHeader(BETWEENESS_EDGE_UNWEIGHTED_UNDIRECTED); 
 	for(int i = 0; i < MAX_VERTEX; ++i){
 		for(int j = 0; j < MAX_VERTEX; ++j){
@@ -122,7 +122,7 @@ void BetweenessEdge(const AdjacencyMap & map){
 	}
 	
 	//directed, unweighted
-	VertexPathReconstruction(map, betweeness, true, false);
+	EdgePathReconstruction(map, betweeness, true, false);
 	printHeader(BETWEENESS_EDGE_UNWEIGHTED_DIRECTED);
 	for(int i = 0; i < MAX_VERTEX; ++i){
 		for(int j = 0; j < MAX_VERTEX; ++j){
@@ -131,7 +131,7 @@ void BetweenessEdge(const AdjacencyMap & map){
 	}
 	
 	//undirected, weighted
-	VertexPathReconstruction(map, betweeness, false, true);
+	EdgePathReconstruction(map, betweeness, false, true);
 	printHeader(BETWEENESS_EDGE_WEIGHTED_UNDIRECTED);
 	for(int i = 0; i < MAX_VERTEX; ++i){
 		for(int j = 0; j < MAX_VERTEX; ++j){
@@ -140,7 +140,7 @@ void BetweenessEdge(const AdjacencyMap & map){
 	}
 	
 	//directed, weighted 
-	VertexPathReconstruction(map, betweeness, true, true);
+	EdgePathReconstruction(map, betweeness, true, true);
 	printHeader(BETWEENESS_EDGE_WEIGHTED_DIRECTED);
 	for(int i = 0; i < MAX_VERTEX; ++i){
 		for(int j = 0; j < MAX_VERTEX; ++j){
