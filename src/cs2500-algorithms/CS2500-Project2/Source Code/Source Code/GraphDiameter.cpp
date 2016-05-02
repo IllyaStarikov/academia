@@ -37,7 +37,7 @@ void ShortestPath(const AdjacencyMap &map, bool Directed, bool Weightness){
     // Copy the map to the two dimensional matrix
     for (auto element : map) {
         for (auto pair : element.second) {
-            solution[element.first][pair.first] = makeUnweighted ? DEFAULT_WEIGHT_FOR_PATH : pair.second; // Make directed / undirected
+            solution[element.first][pair.first] = Weightness ? pair.second : DEFAULT_WEIGHT_FOR_PATH; // Make directed / undirected
         }
     }
     
@@ -50,7 +50,8 @@ void ShortestPath(const AdjacencyMap &map, bool Directed, bool Weightness){
             for (int j = 0; j < size; j++) {
                 if (i == j) {
                     solution[i][j] = 0;
-                } else if (solution[i][j] > solution[i][k] + solution[k][j]) {
+                } 
+                else if (solution[i][j] > solution[i][k] + solution[k][j]) {
                     solution[i][j] = solution[i][k] + solution[k][j];
                 }
             }
@@ -59,24 +60,26 @@ void ShortestPath(const AdjacencyMap &map, bool Directed, bool Weightness){
 
     std::vector<std::pair<int, int>> GraphDiameterList;
     //Find the maximum value 
-    int max = solution[0][0]
+    int max = solution[0][0];
     for(int i = 0; i < MAX_VERTEX; i++){
     	for(int j = 0; j < MAX_VERTEX; j++){
     		if(solution[i][j] > max){
     			max = solution[i][j]; 
-    			GraphDiameterList.erase(); 
-    			GraphDiameterList.push_back(<i,j>); 	
+    			GraphDiameterList.clear(); 
+    			GraphDiameterList.push_back(std::make_pair(i,j)); 	
     		}
     		if(solution[i][j] == max){
-    			GraphDiameterList.push_back(<i,j>);
+    			GraphDiameterList.push_back(std::make_pair(i,j));
     		}
     	}
     }
 
-    for(std::vector<std::pair<int,int>> i = GraphDiameterList.begin(); i != GraphDiameterList.end(); ++i){
-    	cout << "( " << *i.first << "," << *i.second << ")" << ":" <<max <<std:endl; 
+    if (PRINT_SOLUTIONS) {
+        for (const auto &element : GraphDiameterList) {
+            std::cout << element.first << ": " << element.second << std::endl;
+        }
     }
-
+    
     return; 
 }
  
