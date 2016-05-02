@@ -88,28 +88,28 @@ void BetweenessVertex(const AdjacencyMap & map){
 	VertexPathReconstruction(map, betweeness, false, false);
 	printHeader(BETWEENESS_VERTEX_UNWEIGHTED_UNDIRECTED); 
 	for(int i = 0; i < MAX_VERTEX; ++i){
-		std::cout << i << ":" << betweeness[i];
+		std::cout << i << ":" << betweeness[i] << std::endl;
 	}
 	
 	//directed, unweighted
 	VertexPathReconstruction(map, betweeness, true, false);
 	printHeader(BETWEENESS_VERTEX_UNWEIGHTED_DIRECTED);
 	for(int i = 0; i < MAX_VERTEX; ++i){
-		std::cout << i << ":" << betweeness[i]; 
+		std::cout << i << ":" << betweeness[i] << std::endl; 
 	}
 	
 	//undirected, weighted
 	VertexPathReconstruction(map, betweeness, false, true);
 	printHeader(BETWEENESS_VERTEX_WEIGHTED_UNDIRECTED);
 	for(int i = 0; i < MAX_VERTEX; ++i){
-		std::cout << i << ":" << betweeness[i]; 
+		std::cout << i << ":" << betweeness[i] << std::endl; 
 	}
 	
 	//directed, weighted 
 	VertexPathReconstruction(map, betweeness, true, true);
 	printHeader(BETWEENESS_VERTEX_WEIGHTED_DIRECTED);
 	for(int i = 0; i < MAX_VERTEX; ++i){
-		std::cout << i << ":" << betweeness[i];
+		std::cout << i << ":" << betweeness[i] << std::endl;
 	}
 	return;	
 }
@@ -121,7 +121,7 @@ void BetweenessEdge(const AdjacencyMap & map){
 	printHeader(BETWEENESS_EDGE_UNWEIGHTED_UNDIRECTED); 
 	for(int i = 0; i < MAX_VERTEX; ++i){
 		for(int j = 0; j < MAX_VERTEX; ++j){
-			std::cout << "(" << i  << "," << j << ")" << ":" << betweeness[i][j] <<std::endl;
+			std::cout << i << ":" << betweeness[i][j] <<std::endl;
 		}
 	}
 	
@@ -130,7 +130,7 @@ void BetweenessEdge(const AdjacencyMap & map){
 	printHeader(BETWEENESS_EDGE_UNWEIGHTED_DIRECTED);
 	for(int i = 0; i < MAX_VERTEX; ++i){
 		for(int j = 0; j < MAX_VERTEX; ++j){
-			std::cout << "(" << i  << "," << j << ")" << ":" << betweeness[i][j] << std::endl;
+			std::cout << i << ":" << betweeness[i][j] <<std::endl;
 		} 
 	}
 	
@@ -139,7 +139,7 @@ void BetweenessEdge(const AdjacencyMap & map){
 	printHeader(BETWEENESS_EDGE_WEIGHTED_UNDIRECTED);
 	for(int i = 0; i < MAX_VERTEX; ++i){
 		for(int j = 0; j < MAX_VERTEX; ++j){
-			std::cout << "(" << i  << "," << j << ")" << ":" << betweeness[i][j] << std::endl;
+			std::cout << i << ":" << betweeness[i][j] <<std::endl;
 		} 
 	}
 	
@@ -148,7 +148,7 @@ void BetweenessEdge(const AdjacencyMap & map){
 	printHeader(BETWEENESS_EDGE_WEIGHTED_DIRECTED);
 	for(int i = 0; i < MAX_VERTEX; ++i){
 		for(int j = 0; j < MAX_VERTEX; ++j){
-			std::cout << "(" << i  << "," << j << ")" << ":" << betweeness[i][j] << std::endl;
+			std::cout << i << ":" << betweeness[i][j] <<std::endl;
 		}
 	}
 	return; 
