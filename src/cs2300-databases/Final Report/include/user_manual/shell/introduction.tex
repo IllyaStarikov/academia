@@ -1,0 +1,7 @@
+We know doing tasks such as creating the database, generating a new set of random inputs, or even running all the function files to makes sure all of the function are created can tedious. Forunatly, we have a solution --- that solution is \href{http://www.freeos.com/guides/lsst/}{Shell scripting}.
+
+We quickly realized that repetitively running the same commands\footnote{Like running \texttt{`/Applications/Postgres.app/Contents/Versions/9.5/bin'/psql -p5432 -f} to create every file!} could get tedious, so we have provided multiple shell scripts that automate most of the monotonous tasks.
+
+To run a shell script, first you must give it privileges to be able to run \texttt{Bash} commands. This is accomplished by \shellcmd{chmod -x /path/to/file.sh}. This give read/write access to the shell script, which then allows the shell script to be run via \shellcmd{./path/to/file.sh}. This then allows the user to do tasks like setting up the entirety of the database (which spans multiple files!) one file path away.
+
+Below are the shell scripts we provide.

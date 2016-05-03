@@ -1,0 +1,11 @@
+\section{Random Input}
+Let face it, every social network occasionally needs some help. That is why we have a shell script that executes our C++ codebase to auto-populate the table. The shell script runs like so:
+
+\begin{enumerate}
+    \item Change to the directory of the C++ codebase.
+    \item Run the makefile
+    \item Run the executable, pipe that to an output file.
+    \item Move the shell script to the directory of all the other \texttt{sql} files.
+\end{enumerate}
+
+This makes for easily produced, new data.

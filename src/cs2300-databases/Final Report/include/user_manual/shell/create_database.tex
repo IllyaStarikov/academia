@@ -1,0 +1,12 @@
+\section{Create Database}
+A lot of testing requires the use of setting up the database from scratch. Unfortunately, this usually means creating the database scheme, followed by inserting the data, followed by inserting the functions, and so forth. Although an easy fix would be to have all the code in a single file, this would combine concerns. We would rather have a lot of function specific files apposed to one giant file. Our solution: \shellcmd{./create\_database.sh}
+
+The create database script works like so:
+
+\begin{enumerate}
+    \item Create the database schema by \shellcmd{create}ing all the tables and \shellcmd{modify}ing all for foreign key constraints.
+    \item Insert data, which is artifically generated (as will be mentioned below).
+    \item Go through the \textit{entirety} of the functions directory, and running each function \texttt{sql} script to ensure all functions are inserted into the database.
+\end{enumerate}
+
+This allows for easily bringing a database back up after it has been reset.

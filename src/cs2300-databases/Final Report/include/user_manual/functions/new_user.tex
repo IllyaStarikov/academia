@@ -1,13 +1,13 @@
 \section{New User}
-\placeholder{Summary of what modify user does.}
+New User creates new users in the database. The user must input a username, email, height, birthdate, goal, and password. If any of those are not provided, an error message will be generated.
 
-\subsection{Parameters}
+\subsection*{Parameters}
 \begin{description}
     \item [id, username, email, heightFeet, heightInches, birthdate, goal, password] All the attributes that can be inserted into user table.
     \item [joinDate, gender, firstName, mInitial, lastName] See above.
 \end{description}
 
-\subsection{Results}
+\subsection*{Results}
 Provided all the attributes meet database constraints, a new user will be inserted into the database. If a constraint is not meant, there will be a message outputting the error and the insert will be rejected.
 
 \begin{center}

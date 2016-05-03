@@ -6,6 +6,13 @@
 
 \usepackage{booktabs}
 \usepackage{pdfpages}
+
+\usepackage[colorlinks = black,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
+
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{multicol}
@@ -17,10 +24,12 @@
 \newcommand{\pfk}{$^{\text{\textit{\textbf{PK, FK}}}}$}
 
 \newcommand{\br}{\multicolumn{2}{c}{} \\}
-\newcommand{\placeholder}[1]{\textbf{\colorbox{red!50}{#1}}}
 
+\newcommand{\placeholder}[1]{\textbf{\colorbox{red!50}{#1}}}
+\newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{#1}}}
 \begin{document}
 \maketitle
+\tableofcontents
 
 \part{The Database Design Manual}
 \chapter{Problem Statement}
@@ -36,6 +45,11 @@
 \input{include/design_manual/ApplicationProgramDesign}
 
 \part{User Manual}
+\chapter{A Brief Introduction To ForFit}
+\input{include/user_manual/introduction}
+
+\chapter{How It Works}
+\input{include/user_manual/how_it_works}
 
 \chapter{Functions}
 \input{include/user_manual/functions/delete_group}
@@ -44,5 +58,11 @@
 \input{include/user_manual/functions/query_user}
 \input{include/user_manual/functions/total_users}
 \input{include/user_manual/functions/user_leaderboards}
+
+\chapter{Shell}
+\input{include/user_manual/shell/introduction}
+\input{include/user_manual/shell/create_database}
+\input{include/user_manual/shell/random_input}
+\input{include/user_manual/shell/drop_database}
 
 \end{document}
