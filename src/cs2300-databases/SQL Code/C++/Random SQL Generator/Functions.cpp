@@ -75,6 +75,10 @@ std::string sqlTime(){
     return gentime.str(); 
 }
 
+std::string sqlTimeStamp() {
+    return sqlDate() + " " + sqlTime();
+}
+
 int daysInMonth(const int year, const int month) {
     int numberOfDays = 0;
     

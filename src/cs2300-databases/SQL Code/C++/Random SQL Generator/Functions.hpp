@@ -40,6 +40,7 @@ std::string importFromFile(const std::string filename, const int lineNumber);
 std::string sqlDate();
 std::string sqlDate(int syear, int cyear);
 std::string sqlTime(); 
+std::string sqlTimeStamp();
 
 int daysInMonth(const int year, const int month);
 int randomArbitrary(const int floor, const int ceiling);
