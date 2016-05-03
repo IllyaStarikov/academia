@@ -76,13 +76,13 @@ const int MIN_ARM = 21;
 const int MAX_CHEST = 42;
 const int MIN_CHEST = 36;
 
-const int GROUP_COUNT = 50;
-const int WORKOUT_COUNT = 50;
-const int USER_COUNT = 50;
-const int WEIGHT_COUNT = 50;
-const int ARM_COUNT = 50;
-const int CHEST_COUNT = 50;
-const int MEMBERS_COUNT = 50;
+const int GROUP_COUNT = 500;
+const int WORKOUT_COUNT = 500;
+const int USER_COUNT = 500;
+const int WEIGHT_COUNT = 500;
+const int ARM_COUNT = 500;
+const int CHEST_COUNT = 500;
+const int MEMBERS_COUNT = 500;
 
 const int CURRENT_YEAR = 2016;
 const int START_YEAR = 1900; 

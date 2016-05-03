@@ -106,5 +106,5 @@ int randomArbitrary(const int floor, const int ceiling) {
 
 char randomLetter(bool uppercase) {
     static const std::string letters = "abcdefghijklmnopqrstuvwxyz";
-    return uppercase ? toupper(letters[randomArbitrary(0, 26)]) : letters[randomArbitrary(0, 26)];
+    return uppercase ? toupper(letters[randomArbitrary(0, 25)]) : letters[randomArbitrary(0, 25)];
 }

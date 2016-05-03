@@ -4,7 +4,7 @@ cd C++/
 cd Random\ SQL\ Generator
 make production
 ./build -lR / | tee output.sql
-# make clean
+make clean
 cd ..
 cd ..
 mv C++/Random\ SQL\ Generator/output.sql ./
