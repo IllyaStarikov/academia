@@ -1,3 +1,4 @@
+#This function creates a new user to add to the database
 CREATE OR REPLACE FUNCTION new_user(
     id numeric(9, 0),
     username varchar(30),

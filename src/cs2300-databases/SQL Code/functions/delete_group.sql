@@ -1,3 +1,4 @@
+#This function deletes a group from the database 
 CREATE OR REPLACE FUNCTION delete_group(groupID numeric(9, 0))
 returns setof record as $$
 BEGIN
