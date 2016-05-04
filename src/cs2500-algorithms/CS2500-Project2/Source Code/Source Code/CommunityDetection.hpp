@@ -19,8 +19,8 @@
 #include <map>
 #include <tuple>
 
-std::pair<int, int> BetweenessEdgeDetection(const AdjacencyMap & map);
-void CommunityDetection(); 
+std::pair<int,int> BetweenessEdgeDetection(const AdjacencyMap & map);
+void CommunityDetection(AdjacencyMap & map);
 
 
 #endif /* CommunityDetection_hpp

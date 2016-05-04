@@ -7,7 +7,7 @@
 
 std::pair<int, int> BetweenessEdgeDetection(const AdjacencyMap & map, int (&betweeness) [MAX_VERTEX][MAX_VERTEX], AdjacencyMatrix & matrix){
 	int max; 
-	std::pair toRemove; 
+	std::pair<int, int> toRemove; 
 	//Undirected, unweighted
 	matrix = CommunityPathReconstruction(map, betweeness, false, false); 
 
@@ -42,11 +42,10 @@ int BetweenessVertexDetection(const AdjacencyMap & map, int (&betweeness) [MAX_V
 		}
 	}
 	
-	return vertexMax; 
+	return vertexMax;
 }
 
 AdjacencyMap CommunityDetection(AdjacencyMap & map){
-	
 	AdjacencyMatrix solutions; 
 	int beweeness[MAX_VERTEX][MAX_VERTEX] = {(0,0)};
 	int x, y;
@@ -62,8 +61,5 @@ AdjacencyMap CommunityDetection(AdjacencyMap & map){
 		y = ToRemove.second;
 	}
 
-	
-	
-
-
+  return;
 } 

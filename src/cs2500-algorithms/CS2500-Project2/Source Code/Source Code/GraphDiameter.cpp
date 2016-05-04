@@ -82,5 +82,30 @@ void ShortestPath(const AdjacencyMap &map, bool Directed, bool Weightness){
     
     return; 
 }
- 
+
+void SimpleDiam(const AdjacencyMatrix & matrix){
+	std::vector<std::pair<int, int>> GraphDiameterList;
+    //Find the maximum value 
+    int max = matrix[0][0];
+    for(int i = 0; i < MAX_VERTEX; i++){
+    	for(int j = 0; j < MAX_VERTEX; j++){
+    		if(matrix[i][j] > max){
+    			max = matrix[i][j]; 
+    			GraphDiameterList.clear(); 
+    			GraphDiameterList.push_back(std::make_pair(i,j)); 	
+    		}
+    		if(matrix[i][j] == max){
+    			GraphDiameterList.push_back(std::make_pair(i,j));
+    		}
+    	}
+    }
+    
+    if (PRINT_SOLUTIONS) {
+    	std::cout <<"Diameter: "<<max<<std::endl;
+        for (const auto &element : GraphDiameterList) {
+            std::cout << element.first << ": " << element.second << std::endl;
+        }
+    }
+    return;
+}
 

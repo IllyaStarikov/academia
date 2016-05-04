@@ -16,5 +16,6 @@
 
 void GraphDiameter(const AdjacencyMap &map);
 void ShortestPath(const AdjacencyMap &map, bool Directed, bool Weightness);
+void SimpleDiam(const AdjacencyMatrix & matrix);
 
 #endif /* GraphDiameter_hpp */

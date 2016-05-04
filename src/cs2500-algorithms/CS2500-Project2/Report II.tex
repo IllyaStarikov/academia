@@ -118,6 +118,7 @@ Our implementation is as follows, from a higher level:
         \item Run the Floyd-Warshall algorithm, with triple C-Style \shellcmd{for} loops.
     \end{enumerate}
 
+<<<<<<< HEAD
     \item Implemented Graph Diameter
     \begin{enumerate}
         \item Took the map and using the Floyd Walsh algorithm, found the shortest paths between each vertex
@@ -125,6 +126,14 @@ Our implementation is as follows, from a higher level:
         \item Compare each other path to the longest path. If a longer path is found, replace the longest path with that path. If a path of equal length is found, add the path to the list of paths.
         \item Output the list of all paths of the maximum length.
     \end{enumerate}
+=======
+    \item Now we must calculate the Graph Diameter.
+    \begin{enumerate}
+        \item Find the max value of the shortest path matrix
+        \item Simply output this value and the vertices that this path corresponds to.
+    \end{enumerate}
+        
+>>>>>>> 7409d2cda84936f57f2fc39143607d44b000d3ca
 
     \item Next we endeavor to find the various closeness centrality of the vertices.
     \begin{enumerate}
@@ -132,6 +141,7 @@ Our implementation is as follows, from a higher level:
         \item Add each edge weight for each vertex together (iterating over each vertex and each edge) and pushing the result into the solution set vector.
         \item After this has been pushed we check the value against the recorded highest four values to see if this vertex either equals or exceeds those four values and change our recorded values/vertices accordingly.
         \item Finally, we output both our results for highest closeness centrality values and the data needed to construct the graph.
+<<<<<<< HEAD
     \end{enumerate}
 
     \item Calculate Betweenness Centrality
@@ -151,6 +161,20 @@ Our implementation is as follows, from a higher level:
             \item Go through the array of betweenness values and find the one with the maximum value. If two are equal betweenness, record them both.
         \end{enumerate}
     \end{itemize}
+=======
+     \end{enumerate}
+     
+     \item \placeholder{BETWEENESS}
+     
+     \item Lastly we must run an algorithm to detect the communities present within the graph.
+     \begin{enumerate}
+        \item Take the results from the Unweighted Edge Betweeness algorithm and take the maximum value.
+        \item Remove the edge that corresponds to this result from the original network.
+        \item Re-run the Shortest Path and Graph Diameter Algorithms on the new network.
+        \item Repeat these steps until a total of five deletions from the original network have been completed.
+        
+     
+>>>>>>> 7409d2cda84936f57f2fc39143607d44b000d3ca
 
         \item Lastly we must run an algorithm to detect the communities present within the graph.
         \begin{enumerate}

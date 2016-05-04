@@ -29,5 +29,6 @@ void PathReconstruction(const AdjacencyMap & map, int (&betweeness)[MAX_VERTEX],
 void BetweenessVertex(const AdjacencyMap & map);
 void BetweenessEdge(const AdjacencyMap & map); 
 void Betweeness(const AdjacencyMap & map); 
+AdjacencyMatrix CommunityPathReconstruction(const AdjacencyMap & map, int (&betweeness)[MAX_VERTEX][MAX_VERTEX], bool Directness, bool Weightness);
 
 #endif  /* Betweeness_hpp */

@@ -118,21 +118,3 @@ void CloseGraph(std::vector<double> & Close){					//outputting the needed result
     }
   }
 }
-
-// void AllCloseCent(VectArray & UWUDshort, VectArray & UWDshort, VectArray & WUDshort, VectArray & WDshort){
-  
-    // if (PRINT_SOLUTIONS) { std::cout << "CLOSENESS CENTRALITY: " << std::endl; }
-  
-    // if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_UNWEIGHTED_DIRECTED); }
-    // CloseCent(UWDshort);
-    
-    // if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_WEIGHTED_DIRECTED); }
-    // CloseCent(WDshort);
-    
-    // if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_WEIGHTED_UNDIRECTED); }
-    // CloseCent(WUDshort);
-    
-    // if (PRINT_SOLUTIONS) { printHeader(SHORTEST_PATH_UNWEIGHTED_UNDIRECTED); }
-    // CloseCent(UWUDshort);
-  
-// }

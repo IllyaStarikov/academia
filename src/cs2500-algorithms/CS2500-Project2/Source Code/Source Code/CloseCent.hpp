@@ -23,6 +23,4 @@ void CloseCent(const AdjacencyMatrix & input);
 
 void CloseGraph(std::vector<double> & Close);
 
-//void AllCloseCent(VectArray & UWUDshort, VectArray & UWDshort, VectArray & WUDshort, VectArray & WDshort);
-
 #endif /* CloseCent_hpp */

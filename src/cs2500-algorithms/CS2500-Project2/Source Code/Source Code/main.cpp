@@ -14,8 +14,11 @@
 #include "ShortestPath.hpp"
 #include "Betweeness.hpp"
 #include "CloseCent.hpp"
+#include "GraphDiameter.hpp"
+#include "CommunityDetection.hpp"
 
-int main(int argc, const char * argv[]) {
+
+int main(int argc, const char * argv[]){
     auto input = getInput(FILENAME);
     auto map = parseInput(input);
 
@@ -28,4 +31,6 @@ int main(int argc, const char * argv[]) {
     degreeDistribution(map);
     shortestPaths(map);
     Betweeness(map);
+    CommunityDetection(map);
+    
 }
