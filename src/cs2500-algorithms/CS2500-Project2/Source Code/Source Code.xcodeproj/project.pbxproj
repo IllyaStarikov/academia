@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		495C41E61CD6E5D20052D371 /* GraphDiameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 495C41E51CD6E5D20052D371 /* GraphDiameter.cpp */; };
+		499191DB1CDA909B00CD01DB /* CommunityDetection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 499191DA1CDA909B00CD01DB /* CommunityDetection.cpp */; };
 		49964E8D1CC91A3000406768 /* ShortestPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49964E8B1CC91A3000406768 /* ShortestPath.cpp */; };
 		49BF79501CD3B341002C4268 /* CloseCent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49BF794D1CD3B341002C4268 /* CloseCent.cpp */; };
 		49BF79511CD3B341002C4268 /* Betweeness.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49BF794F1CD3B341002C4268 /* Betweeness.cpp */; };
@@ -28,6 +30,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		495C41E41CD6E5D20052D371 /* GraphDiameter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GraphDiameter.hpp; sourceTree = "<group>"; };
+		495C41E51CD6E5D20052D371 /* GraphDiameter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GraphDiameter.cpp; sourceTree = "<group>"; };
+		499191D91CDA909B00CD01DB /* CommunityDetection.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CommunityDetection.hpp; sourceTree = "<group>"; };
+		499191DA1CDA909B00CD01DB /* CommunityDetection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommunityDetection.cpp; sourceTree = "<group>"; };
 		49964E8B1CC91A3000406768 /* ShortestPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShortestPath.cpp; sourceTree = "<group>"; };
 		49964E8C1CC91A3000406768 /* ShortestPath.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShortestPath.hpp; sourceTree = "<group>"; };
 		49BF794C1CD3B341002C4268 /* CloseCent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CloseCent.hpp; sourceTree = "<group>"; };
@@ -73,6 +79,10 @@
 		49FCF6C51CC2D474002F42CF /* Source Code */ = {
 			isa = PBXGroup;
 			children = (
+				499191D91CDA909B00CD01DB /* CommunityDetection.hpp */,
+				499191DA1CDA909B00CD01DB /* CommunityDetection.cpp */,
+				495C41E41CD6E5D20052D371 /* GraphDiameter.hpp */,
+				495C41E51CD6E5D20052D371 /* GraphDiameter.cpp */,
 				49FCF6C61CC2D474002F42CF /* main.cpp */,
 				49D845611CC7C56500EBF814 /* Functions.cpp */,
 				49D845621CC7C56500EBF814 /* Functions.hpp */,
@@ -147,6 +157,8 @@
 			files = (
 				49BF79511CD3B341002C4268 /* Betweeness.cpp in Sources */,
 				49BF79501CD3B341002C4268 /* CloseCent.cpp in Sources */,
+				495C41E61CD6E5D20052D371 /* GraphDiameter.cpp in Sources */,
+				499191DB1CDA909B00CD01DB /* CommunityDetection.cpp in Sources */,
 				49FCF6C71CC2D474002F42CF /* main.cpp in Sources */,
 				49D845661CC7E3F200EBF814 /* DegreeDistribution.cpp in Sources */,
 				49964E8D1CC91A3000406768 /* ShortestPath.cpp in Sources */,

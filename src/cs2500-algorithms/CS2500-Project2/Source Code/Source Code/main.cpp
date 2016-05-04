@@ -28,7 +28,4 @@ int main(int argc, const char * argv[]) {
     degreeDistribution(map);
     shortestPaths(map);
     Betweeness(map);
-		
-    
-    
 }

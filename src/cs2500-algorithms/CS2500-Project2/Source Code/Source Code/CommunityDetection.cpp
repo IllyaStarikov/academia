@@ -5,11 +5,11 @@
 //  Created by Claire Trebing on 5/1/2016
 //  
 
-std::pair BetweenessEdgeDetection(const AdjacencyMap & map, int (&betweeness) [MAX_VERTEX][MAX_VERTEX]){
+std::pair<int, int> BetweenessEdgeDetection(const AdjacencyMap & map, int (&betweeness) [MAX_VERTEX][MAX_VERTEX], AdjacencyMatrix & matrix){
 	int max; 
 	std::pair toRemove; 
 	//Undirected, unweighted
-	VertexPathReconstruction(map, betweeness, false, false); 
+	matrix = CommunityPathReconstruction(map, betweeness, false, false); 
 
 	max = betweeness[0][0]; 
 	toRemove.first = 0; 
@@ -44,6 +44,26 @@ int BetweenessVertexDetection(const AdjacencyMap & map, int (&betweeness) [MAX_V
 	
 	return vertexMax; 
 }
-void CommunityDetection(AdjacencyMap map){
+
+AdjacencyMap CommunityDetection(AdjacencyMap & map){
+	
+	AdjacencyMatrix solutions; 
+	int beweeness[MAX_VERTEX][MAX_VERTEX] = {(0,0)};
+	int x, y;
+	auto ToRemove = BetweenessEdgeDetection(map, betweeness, matrix);
+	x = ToRemove.first;
+	y = ToRemove.second;
+	for (int i = 0; i < 5; i++){
+		map[x][y].erase();
+		std::cout<<"Betweeness of Edge Removed: "<<betweeness[x][y]<<std::endl;
+		ToRemove = BetweenessEdgeDetection(map, betweeness, matrix);
+		SimpleDiam(matrix);
+		x = ToRemove.first;
+		y = ToRemove.second;
+	}
+
+	
+	
+
 
 } 

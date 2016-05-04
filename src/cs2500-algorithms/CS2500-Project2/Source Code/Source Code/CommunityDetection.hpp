@@ -1,4 +1,3 @@
-//
 //  CommunityDetection.hpp
 //  Source Code
 //
@@ -11,12 +10,17 @@
 
 #include <stdio.h>
 #include <iostream> 
+
 #include "Functions.hpp"
 #include "Constants.h"
 #include "GraphDiameter.hpp"
 
-std::pair BetweenessEdgeDetection(const AdjacencyMap & map);
+#include <vector>
+#include <map>
+#include <tuple>
+
+std::pair<int, int> BetweenessEdgeDetection(const AdjacencyMap & map);
 void CommunityDetection(); 
 
 
-#endif /* CommunityDetection_hpp */
+#endif /* CommunityDetection_hpp
