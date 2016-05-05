@@ -8,11 +8,10 @@
 #include "CommunityDetection.hpp"
 
 
-void BetweenessEdgeDetection(std::map<int, std::vector<std::pair<int, double>>> & map, int (&betweeness) [MAX_VERTEX][MAX_VERTEX]){
+std::pair<int,int> BetweenessEdgeDetection(std::map<int, std::vector<std::pair<int, double>>> & map, int (&betweeness) [MAX_VERTEX][MAX_VERTEX], AdjacencyMatrix & matrix){
 	int max; 
 	std::pair<int, int> toRemove;
-  AdjacencyMatrix matrix;
-	Undirected, unweighted
+	//Undirected, unweighted
 	EdgeReconstruction(map, betweeness, false, false, matrix); 
 
 	max = betweeness[0][0]; 
@@ -70,14 +69,14 @@ void EdgeReconstruction(const AdjacencyMap & map, int (&betweeness)[MAX_VERTEX][
 
 void CommunityDetection(AdjacencyMap & map){
 	
-	AdjacencyMatrix solutions; 
-	int beweeness[MAX_VERTEX][MAX_VERTEX] = {(0,0)};
+	AdjacencyMatrix matrix; 
+	int betweeness[MAX_VERTEX][MAX_VERTEX] = {(0,0)};
 	int x, y;
 	auto ToRemove = BetweenessEdgeDetection(map, betweeness, matrix);
 	x = ToRemove.first;
 	y = ToRemove.second;
 	for (int i = 0; i < 5; i++){
-		map[x].erase(map.begin() + y);
+		map[x].erase(map[x].begin() + y);
 		std::cout<<"Betweeness of Edge Removed: "<<betweeness[x][y]<<std::endl;
 		ToRemove = BetweenessEdgeDetection(map, betweeness, matrix);
 		SimpleDiam(matrix);

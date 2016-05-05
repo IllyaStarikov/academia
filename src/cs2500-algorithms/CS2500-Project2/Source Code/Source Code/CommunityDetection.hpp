@@ -19,7 +19,7 @@
 using AdjacencyMatrix = std::vector<std::vector<int>>;
 using AdjacencyMap = std::map<int, std::vector<std::pair<int, double>>>;
 
-std::pair<int, int> BetweenessEdgeDetection(const AdjacencyMap & map, int (&betweeness) [MAX_VERTEX][MAX_VERTEX]);
+std::pair<int, int> BetweenessEdgeDetection(const AdjacencyMap & map, int (&betweeness) [MAX_VERTEX][MAX_VERTEX], AdjacencyMatrix & matrix);
 void CommunityDetection(AdjacencyMap & map);
 void EdgeReconstruction(const AdjacencyMap & map, int (&betweeness)[MAX_VERTEX][MAX_VERTEX], bool Directness, bool Weightness, AdjacencyMatrix & matrix);
 
