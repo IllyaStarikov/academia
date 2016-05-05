@@ -1,4 +1,4 @@
-#Number of users in the entire database 
+-- Number of users in the entire database
 CREATE OR REPLACE FUNCTION total_users()
 RETURNS integer AS $total$
 declare

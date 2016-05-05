@@ -1,0 +1,19 @@
+To setup the website you only need to place the website files inside of an apache server and then rewrite the config.php file.
+
+For the config.php file you need to modify the variables;
+
+\begin{verbatim}
+"
+   date_default_timezone_set('America/Chicago');
+   define('DB_SERVER', 'localhost:3306');
+   define('DB_USERNAME', 'JasonY');
+   define('DB_PASSWORD', 'Servant83');
+   define('DB_DATABASE', 'forfit');
+"
+\end{verbatim}
+
+to fit the website's database.
+
+The website is a blend of PHP and HTML. It allows you to sign up, logout, view groups and forums.
+
+The main page contains the link to signup. After signing up or logging in you can open the menu and view the groups which contain forums. You may also enter your personal information in the profile which tracks your exercises and gains.

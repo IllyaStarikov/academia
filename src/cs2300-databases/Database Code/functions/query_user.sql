@@ -1,4 +1,4 @@
-#This allows users to find other users based on first and last name 
+-- This allows users to find other users based on first and last name
 CREATE OR REPLACE FUNCTION query_user(firstName varchar(50), lastName varchar(50))
 RETURNS record AS $foundUser$
 declare

@@ -8,7 +8,7 @@
 --     newPassword varchar(50),
 --     newGender char
 -- );
-#This allows the user to modify their own data 
+-- This allows the user to modify their own data
 CREATE OR REPLACE FUNCTION modify_user(
     userID numeric(9, 0),
     newUsername varchar(50),

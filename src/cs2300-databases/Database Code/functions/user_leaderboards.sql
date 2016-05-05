@@ -1,6 +1,6 @@
 -- DEBUG PURPOSES
 -- drop FUNCTION user_leaderboards();
-#This function finds the users with the largest number of workouts and displays them 
+-- This function finds the users with the largest number of workouts and displays them
 CREATE OR REPLACE FUNCTION user_leaderboards()
 RETURNS TABLE(FName varchar(50), LName varchar(50), count bigint) as $$
 BEGIN
