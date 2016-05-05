@@ -183,7 +183,9 @@ AdjacencyMatrix CommunityPathReconstruction(const AdjacencyMap & map, int (&betw
                 } else if (solution[i][j] > solution[i][k] + solution[k][j]) {
                     solution[i][j] = solution[i][k] + solution[k][j];
 					if(Weightness){
-						betweeness[i][k] += pair.second;
+                        for (const auto & pairs : map.at(k)) {
+                            betweeness[i][k] += pairs.second;
+                        }
 					}
 					else{
 						betweeness[i][k] ++; 

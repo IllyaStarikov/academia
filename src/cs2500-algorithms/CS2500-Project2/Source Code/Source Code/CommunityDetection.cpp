@@ -70,13 +70,16 @@ void EdgeReconstruction(const AdjacencyMap & map, int (&betweeness)[MAX_VERTEX][
 void CommunityDetection(AdjacencyMap & map){
 	
 	AdjacencyMatrix matrix; 
-	int betweeness[MAX_VERTEX][MAX_VERTEX] = {(0,0)};
+    int betweeness[MAX_VERTEX][MAX_VERTEX];
 	int x, y;
 	auto ToRemove = BetweenessEdgeDetection(map, betweeness, matrix);
 	x = ToRemove.first;
 	y = ToRemove.second;
+//    map[x].erase(map[x].begin());
 	for (int i = 0; i < 5; i++){
-		map[x].erase(map[x].begin() + y);
+//		map[x].erase(map[x].begin() + y);
+        map.erase(x);
+        std::cout << "EDGE: " << x  << ": " << y << std::endl;
 		std::cout<<"Betweeness of Edge Removed: "<<betweeness[x][y]<<std::endl;
 		ToRemove = BetweenessEdgeDetection(map, betweeness, matrix);
 		SimpleDiam(matrix);
