@@ -19,9 +19,10 @@
 using AdjacencyMatrix = std::vector<std::vector<int>>;
 using AdjacencyMap = std::map<int, std::vector<std::pair<int, double>>>;
 
-std::pair<int, int> BetweenessEdgeDetection(const AdjacencyMap & map, int (&betweeness) [MAX_VERTEX][MAX_VERTEX], AdjacencyMatrix & matrix);
+std::pair<int, int> BetweenessEdgeDetection(const AdjacencyMap & map, int (&betweeness) [MAX_VERTEX][MAX_VERTEX]);
 void CommunityDetection(AdjacencyMap & map);
-void EdgeReconstruction(const AdjacencyMap & map, int (&betweeness)[MAX_VERTEX][MAX_VERTEX], bool Directness, bool Weightness, AdjacencyMatrix & matrix);
+void EdgeReconstruction(const AdjacencyMap & map, int (&betweeness)[MAX_VERTEX][MAX_VERTEX], bool Directness, bool Weightness);
+void SimpleDiam(const int (&betweeness)[MAX_VERTEX][MAX_VERTEX]);
 
 
 #endif /* CommunityDetection_hpp */
