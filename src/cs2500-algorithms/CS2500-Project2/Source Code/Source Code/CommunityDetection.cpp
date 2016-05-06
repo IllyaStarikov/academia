@@ -8,11 +8,11 @@
 #include "CommunityDetection.hpp"
 
 
-std::pair<int,int> BetweenessEdgeDetection(std::map<int, std::vector<std::pair<int, double>>> & map, int (&betweeness) [MAX_VERTEX][MAX_VERTEX], AdjacencyMatrix & matrix){
+std::pair<int,int> BetweenessEdgeDetection(std::map<int, std::vector<std::pair<int, double>>> & map, int (&betweeness) [MAX_VERTEX][MAX_VERTEX]){
 	int max; 
 	std::pair<int, int> toRemove;
 	//Undirected, unweighted
-	EdgeReconstruction(map, betweeness, false, false, matrix); 
+	EdgeReconstruction(map, betweeness, false, false); 
 
 	max = betweeness[0][0]; 
 	toRemove.first = 0; 
@@ -30,14 +30,14 @@ std::pair<int,int> BetweenessEdgeDetection(std::map<int, std::vector<std::pair<i
 	return toRemove; 
 }
 
-void EdgeReconstruction(const AdjacencyMap & map, int (&betweeness)[MAX_VERTEX][MAX_VERTEX], bool Directness, bool Weightness, AdjacencyMatrix & matrix){
+void EdgeReconstruction(const AdjacencyMap & map, int (&betweeness)[MAX_VERTEX][MAX_VERTEX], bool Directness, bool Weightness){
 		// Floyd - Walsh algorithm
     const int size = static_cast<int>(map.size()) + 2; // One for the index of map, other for index of solution vector
-    matrix = std::vector<std::vector<int>>(size, std::vector<int>(size, INFINITY)); // 2D Adjacency Matrix with size of map and default values of infinity
+    solution = std::vector<std::vector<int>>(size, std::vector<int>(size, INFINITY)); // 2D Adjacency Matrix with size of map and default values of infinity
     // Copy the map to the two dimensional matrix
     for (auto element : map) {
         for (auto pair : element.second) {
-            matrix[element.first][pair.first] = Weightness ? DEFAULT_WEIGHT_FOR_PATH : pair.second; // Make directed / undirected
+            solution[element.first][pair.first] = Weightness ? DEFAULT_WEIGHT_FOR_PATH : pair.second; // Make directed / undirected
         }
     }
     
@@ -49,9 +49,9 @@ void EdgeReconstruction(const AdjacencyMap & map, int (&betweeness)[MAX_VERTEX][
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (i == j) {
-                    matrix[i][j] = 0;
-                } else if (matrix[i][j] > matrix[i][k] + matrix[k][j]) {
-                    matrix[i][j] = matrix[i][k] + matrix[k][j];
+                    solution[i][j] = 0;
+                } else if (solution[i][j] > solution[i][k] + solution[k][j]) {
+                    solution[i][j] = solution[i][k] + solution[k][j];
 					if(Weightness){
                         for (const auto & pairs : map.at(k)) {
                             betweeness[i][k] += pairs.second;
@@ -68,11 +68,10 @@ void EdgeReconstruction(const AdjacencyMap & map, int (&betweeness)[MAX_VERTEX][
 }
 
 void CommunityDetection(AdjacencyMap & map){
-	
-	AdjacencyMatrix matrix; 
+	 
     int betweeness[MAX_VERTEX][MAX_VERTEX];
 	int x, y;
-	auto ToRemove = BetweenessEdgeDetection(map, betweeness, matrix);
+	auto ToRemove = BetweenessEdgeDetection(map, betweeness);
 	x = ToRemove.first;
 	y = ToRemove.second;
 //    map[x].erase(map[x].begin());
@@ -81,7 +80,7 @@ void CommunityDetection(AdjacencyMap & map){
         map.erase(x);
         std::cout << "EDGE: " << x  << ": " << y << std::endl;
 		std::cout<<"Betweeness of Edge Removed: "<<betweeness[x][y]<<std::endl;
-		ToRemove = BetweenessEdgeDetection(map, betweeness, matrix);
+		ToRemove = BetweenessEdgeDetection(map, betweeness);
 		SimpleDiam(matrix);
 		x = ToRemove.first;
 		y = ToRemove.second;
