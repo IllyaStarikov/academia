@@ -1,16 +1,62 @@
 \RequirePackage[l2tabu, orthodox]{nag}
 \documentclass[12pt]{article}
 
-\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs}
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx}
 
 \title{Project \#2}
 \date{Due Date: November 8\textsuperscript{th}, 2016}
 \author{Michael Schoen, Osman Abdirahman, Illya Starikov}
 
+\newcommand{\br}{\\\multicolumn{2}{c}{} \\ }
+
 \begin{document}
 \maketitle
 
 \section{Explanation}
+\subsection{Music}
+We know the frequency of the Philips P89LPC932A1 to be \SI{7.373}{\mega\hertz}, with \SI{2}{cycles} per machine cycle. Therefore,
+
+\begin{equation}
+    \frac{2 \text{ cycles}}{\text{machine cycle}} \cdot \frac{1 \text{ Period}}{\SI{7.373}{\mega\hertz}} = \SI{0.27126}{\nicefrac{\micro\second}{mc}}
+\end{equation}
+
+\noindent We use this calculation as the base of our music.
+
+\begin{center}
+    \begin{tabular}{c|l}
+                    & $f = \SI{659.255}{\hertz} \implies T$ = \SI{1516}{\micro\second} \\
+    \textbf{E5}     & $\SI{1516}{\micro\second} \div \SI{.27126}{\nicefrac{\micro\second}{mc}} = \SI{5589}{mc}$  \\
+                    & $\SI{5589}{mc} \div 4 = \SI{1398}{mc}$ \\
+                    & $\SI{1398}{mc} \implies \num{699} \text{ iterations (with \texttt{DJNZ})}$ \br
+
+                    & $f = \SI{698.456}{\hertz} \implies T$ = \SI{1431}{\micro\second} \\
+    \textbf{F5}     & $\SI{1431}{\micro\second} \div \SI{.27126}{\nicefrac{\micro\second}{mc}} = \SI{5275}{mc}$  \\
+                    & $\SI{5589}{mc} \div 4 = \SI{1318}{mc}$ \\
+                    & $\SI{1318}{mc} \implies \num{569} \text{ iterations (with \texttt{DJNZ})}$ \br
+
+                    & $f = \SI{783.991}{\hertz} \implies T$ = \SI{1275.5}{\micro\second} \\
+    \textbf{G5}     & $\SI{1275.5}{\micro\second} \div \SI{.27126}{\nicefrac{\micro\second}{mc}} = \SI{4702}{mc}$  \\
+                    & $\SI{4702}{mc} \div 4 = \SI{1176}{mc}$ \\
+                    & $\SI{1176}{mc} \implies \num{588} \text{ iterations (with \texttt{DJNZ})}$ \br
+
+                    & $f = \SI{587.330}{\hertz} \implies T$ = \SI{1702.6}{\micro\second} \\
+    \textbf{D5}     & $\SI{1702.6}{\micro\second} \div \SI{.27126}{\nicefrac{\micro\second}{mc}} = \SI{6277}{mc}$  \\
+                    & $\SI{7045}{mc} \div 4 = \SI{1570}{mc}$ \\
+                    & $\SI{1570}{mc} \implies \num{785} \text{ iterations (with \texttt{DJNZ})}$ \br
+
+                    & $f = \SI{523.251}{\hertz} \implies T$ = \SI{1911.1}{\micro\second} \\
+    \textbf{C5}     & $\SI{1911.1}{\micro\second} \div \SI{.27126}{\nicefrac{\micro\second}{mc}} = \SI{7045}{mc}$  \\
+                    & $\SI{7045}{mc} \div 4 = \SI{1760}{mc}$ \\
+                    & $\SI{1760}{mc} \implies \num{880} \text{ iterations (with \texttt{DJNZ})}$ \br
+
+                    & $f = \SI{554.365}{\hertz} \implies T$ = \SI{1803.8}{\micro\second} \\
+    \textbf{Flat D5}& $\SI{1803.8}{\micro\second} \div \SI{.27126}{\nicefrac{\micro\second}{mc}} = \SI{6650}{mc}$  \\
+                    & $\SI{6650}{mc} \div 4 = \SI{1662}{mc}$ \\
+                    & $\SI{1662}{mc} \implies \num{831} \text{ iterations (with \texttt{DJNZ})}$ \br
+
+    \end{tabular}
+\end{center}
+
 \section{Future Work}
 \section{Project Code}
 \section{Work Effort}
