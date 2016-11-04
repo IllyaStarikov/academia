@@ -1,4 +1,7 @@
 	#include<reg932.inc>
+	
+	RANDREG EQU 0X20
+		
 	CSEG AT 0
 	
 	MOV R2, #0
@@ -64,6 +67,26 @@ D1: MOV R2, #10
 D2: DJNZ R2, D2
 	DJNZ R1, D1
 	RET
+
+
+; note this a port from http://pjrc.com/tech/8051/rand.asm
+; returns a random value in the A register from 0 to 9, inclusive.
+; note needs a seed value (equated at the top)
+RNG:
+	MOV	A, RANDREG
+	JNZ	RAND8B
+	CPL	A
+	MOV	RANDREG, A
+RAND8B:	ANL	A, #10111000B
+	MOV	C, PSW.0
+	MOV	A, RANDREG
+	RLC	A
+	MOV	RANDREG, A
+	MOV B, #10D
+	DIV AB
+	MOV A, B
+
+	RET
 	
 	
-END
+	END

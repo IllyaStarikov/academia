@@ -1,14 +1,14 @@
-A51 MACRO ASSEMBLER  PROJECT1                                                             10/29/2016 19:38:25 PAGE     1
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/03/2016 23:16:15 PAGE     1
 
 
 MACRO ASSEMBLER A51 V8.2.5.0
 OBJECT MODULE PLACED IN .\Objects\project1.obj
-ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE project1.a51 NOMOD51 SET(SMALL) PRINT(.\Listings\project1.lst) OBJECT(.
-                      \Objects\project1.obj) EP
+ASSEMBLER INVOKED BY: S:\C51\BIN\A51.EXE project1.a51 NOMOD51 SET(SMALL) PRINT(.\Listings\project1.lst) OBJECT(.\Objects
+                      \project1.obj) EP
 
 LOC  OBJ            LINE     SOURCE
 
-                       1     ;#include <reg932.inc>
+                       1             ;#include <reg932.inc>
 
                 +1     2     ;*******************************************************************
 
@@ -122,7 +122,7 @@ LOC  OBJ            LINE     SOURCE
 
   0084          +1    57     KB4         BIT     0x84
 
-A51 MACRO ASSEMBLER  PROJECT1                                                             10/29/2016 19:38:25 PAGE     2
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/03/2016 23:16:15 PAGE     2
 
   0085          +1    58     KB5         BIT     0x85
 
@@ -256,7 +256,7 @@ LOC  OBJ            LINE     SOURCE
 
   008A          +1   123     TL0         DATA        0x8A
 
-A51 MACRO ASSEMBLER  PROJECT1                                                             10/29/2016 19:38:25 PAGE     3
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/03/2016 23:16:15 PAGE     3
 
   008C          +1   124     TH0         DATA        0x8C
 
@@ -390,7 +390,7 @@ LOC  OBJ            LINE     SOURCE
 
   00D3          +1   189     RTCL    DATA    0xD3
 
-A51 MACRO ASSEMBLER  PROJECT1                                                             10/29/2016 19:38:25 PAGE     4
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/03/2016 23:16:15 PAGE     4
 
   00D2          +1   190     RTCH    DATA    0xD2
 
@@ -512,95 +512,193 @@ LOC  OBJ            LINE     SOURCE
 
                      249     
 
-                     250     
+                     250             
 
-----                 251             CSEG AT 0
+  0020               251             RANDREG EQU 0X20
 
                      252                     
 
-0000 7A00            253             MOV R2, #0
+----                 253             CSEG AT 0
 
-0002 758400          254             MOV P0M1, #0
+                     254             
 
-0005 758500          255             MOV P0M2, #0
+0000 7A00            255             MOV R2, #0
 
-A51 MACRO ASSEMBLER  PROJECT1                                                             10/29/2016 19:38:25 PAGE     5
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/03/2016 23:16:15 PAGE     5
 
-0008 75A400          256             MOV P2M1, #0
+0002 75B100          256             MOV P3M1, #00H
 
-000B 75A500          257             MOV P2M2, #0
+0005 75B200          257         MOV P3M2, #00H
 
-000E                 258     MAIN:
+0008 75A400          258         MOV P2M1, #00H
 
-000E 20A00B          259             JB P2.0, NO_DEC
+000B 75A500          259         MOV P2M2, #00H
 
-                     260     
+000E 759100          260         MOV P1M1, #00H
 
-0011                 261     WAIT1:
+0011 759200          261         MOV P1M2, #00H
 
-0011 30A0FD          262             JNB P2.0, WAIT1
+0014 758400          262         MOV P0M1, #00H
 
-0014 1A              263             DEC R2
+0017 758500          263         MOV P0M2, #00H
 
-0015 BAFF12          264             CJNE R2, #0FFH, LED
+                     264                                     
 
-                     265             ;PLAY SOUND
+001A                 265     MAIN:
 
-0018 7A0F            266             MOV R2, #15
+001A 20A00D          266             JB P2.0, NO_DEC
 
-001A 800E            267             SJMP LED
+                     267     
 
-                     268     
+001D                 268     WAIT1:
 
-001C                 269     NO_DEC:
+001D 30A0FD          269             JNB P2.0, WAIT1
 
-001C 2081EF          270             JB P0.1, MAIN
+0020 1A              270             DEC R2
 
-                     271     
+0021 BAFF16          271             CJNE R2, #0FFH, LED
 
-001F                 272     WAIT2:
+0024 114A            272             ACALL BEEP 
 
-001F 3081FD          273             JNB P0.1, WAIT2
+0026 7A0F            273             MOV R2, #15
 
-0022 0A              274             INC R2
+0028 8010            274             SJMP LED
 
-0023 BA1004          275             CJNE R2, #16, LED
+                     275     
 
-                     276             ;PLAY SOUND
+002A                 276     NO_DEC:
 
-0026 7A00            277             MOV R2, #0
+002A 2081ED          277             JB P0.1, MAIN
 
-0028 8000            278             SJMP LED
+                     278     
 
-                     279             
+002D                 279     WAIT2:
 
-002A                 280     LED:
+002D 3081FD          280             JNB P0.1, WAIT2
 
-002A EA              281             MOV A, R2
+0030 0A              281             INC R2
 
-002B F4              282             CPL A
+0031 BA1006          282             CJNE R2, #16, LED
 
-002C 13              283             RRC A
+0034 114A            283             ACALL BEEP
 
-002D 9286            284             MOV P0.6, C
+0036 7A00            284             MOV R2, #0
 
-002F 13              285             RRC A
+0038 8000            285             SJMP LED
 
-0030 92A7            286             MOV P2.7, C
+                     286             
 
-0032 13              287             RRC A
+003A                 287     LED:
 
-0033 9285            288             MOV P0.5, C
+003A EA              288             MOV A, R2
 
-0035 13              289             RRC A
+003B F4              289             CPL A
 
-0036 92A4            290             MOV P2.4, C
+003C 13              290             RRC A
 
-0038 80D4            291             SJMP MAIN
+003D 9286            291             MOV P0.6, C
 
-                     292     END
+003F 13              292             RRC A
 
-A51 MACRO ASSEMBLER  PROJECT1                                                             10/29/2016 19:38:25 PAGE     6
+0040 92A7            293             MOV P2.7, C
+
+0042 13              294             RRC A
+
+0043 9285            295             MOV P0.5, C
+
+0045 13              296             RRC A
+
+0046 92A4            297             MOV P2.4, C
+
+0048 80D0            298             SJMP MAIN
+
+                     299             
+
+                     300             
+
+                     301     ; this mostly came from trial and error
+
+                     302     ; and seeing what sounded good for a beep
+
+                     303     ; reference canvas tutorial for this
+
+004A                 304     BEEP: 
+
+004A 7864            305             MOV R0, #100
+
+004C B297            306     S1:     CPL P1.7
+
+004E 1153            307             ACALL SDELAY
+
+0050 D8FA            308             DJNZ R0, S1
+
+                     309             
+
+0052 22              310             RET
+
+                     311             
+
+0053                 312     SDELAY: 
+
+0053 7964            313             MOV R1, #100
+
+0055 7A0A            314     D1: MOV R2, #10
+
+0057 DAFE            315     D2: DJNZ R2, D2
+
+0059 D9FA            316             DJNZ R1, D1
+
+005B 22              317             RET
+
+                     318     
+
+                     319     
+
+                     320     ; note this a port from http://pjrc.com/tech/8051/rand.asm
+
+                     321     ; returns a random value in the A register from 0 to 9, inclusive.
+
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/03/2016 23:16:15 PAGE     6
+
+                     322     ; note needs a seed value (equated at the top)
+
+005C                 323     RNG:
+
+005C E520            324             MOV     A, RANDREG
+
+005E 7003            325             JNZ     RAND8B
+
+0060 F4              326             CPL     A
+
+0061 F520            327             MOV     RANDREG, A
+
+0063 54B8            328     RAND8B: ANL     A, #10111000B
+
+0065 A2D0            329             MOV     C, PSW.0
+
+0067 E520            330             MOV     A, RANDREG
+
+0069 33              331             RLC     A
+
+006A F520            332             MOV     RANDREG, A
+
+006C 75F00A          333             MOV B, #10D
+
+006F 84              334             DIV AB
+
+0070 E5F0            335             MOV A, B
+
+                     336     
+
+0072 22              337             RET
+
+                     338             
+
+                     339             
+
+                     340             END
+
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/03/2016 23:16:15 PAGE     7
 
 SYMBOL TABLE LISTING
 ------ ----- -------
@@ -615,6 +713,7 @@ ALTAB. . . . . . .  B ADDR   00C8H.3 A
 ALTCD. . . . . . .  B ADDR   00C8H.4 A   
 AUXR1. . . . . . .  D ADDR   00A2H   A   
 B. . . . . . . . .  D ADDR   00F0H   A   
+BEEP . . . . . . .  C ADDR   004AH   A   
 BRGCON . . . . . .  D ADDR   00BDH   A   
 BRGR0. . . . . . .  D ADDR   00BEH   A   
 BRGR1. . . . . . .  D ADDR   00BFH   A   
@@ -633,6 +732,8 @@ CMP2O. . . . . . .  B ADDR   0080H.0 A
 CMPREF . . . . . .  B ADDR   0080H.5 A   
 CRSEL. . . . . . .  B ADDR   00D8H.0 A   
 CY . . . . . . . .  B ADDR   00D0H.7 A   
+D1 . . . . . . . .  C ADDR   0055H   A   
+D2 . . . . . . . .  C ADDR   0057H   A   
 DEEADR . . . . . .  D ADDR   00F3H   A   
 DEECON . . . . . .  D ADDR   00F1H   A   
 DEEDAT . . . . . .  D ADDR   00F2H   A   
@@ -665,11 +766,11 @@ I2CON. . . . . . .  D ADDR   00D8H   A
 I2DAT. . . . . . .  D ADDR   00DAH   A   
 I2EN . . . . . . .  B ADDR   00D8H.6 A   
 I2SCLH . . . . . .  D ADDR   00DDH   A   
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/03/2016 23:16:15 PAGE     8
+
 I2SCLL . . . . . .  D ADDR   00DCH   A   
 I2STAT . . . . . .  D ADDR   00D9H   A   
 ICA. . . . . . . .  B ADDR   00A0H.7 A   
-A51 MACRO ASSEMBLER  PROJECT1                                                             10/29/2016 19:38:25 PAGE     7
-
 ICB. . . . . . . .  B ADDR   00A0H.0 A   
 ICRAH. . . . . . .  D ADDR   00ABH   A   
 ICRAL. . . . . . .  D ADDR   00AAH   A   
@@ -698,11 +799,11 @@ KB7. . . . . . . .  B ADDR   0080H.7 A
 KBCON. . . . . . .  D ADDR   0094H   A   
 KBMASK . . . . . .  D ADDR   0086H   A   
 KBPATN . . . . . .  D ADDR   0093H   A   
-LED. . . . . . . .  C ADDR   002AH   A   
-MAIN . . . . . . .  C ADDR   000EH   A   
+LED. . . . . . . .  C ADDR   003AH   A   
+MAIN . . . . . . .  C ADDR   001AH   A   
 MISO . . . . . . .  B ADDR   00A0H.3 A   
 MOSI . . . . . . .  B ADDR   00A0H.2 A   
-NO_DEC . . . . . .  C ADDR   001CH   A   
+NO_DEC . . . . . .  C ADDR   002AH   A   
 OCA. . . . . . . .  B ADDR   00A0H.6 A   
 OCB. . . . . . . .  B ADDR   0090H.6 A   
 OCC. . . . . . . .  B ADDR   0090H.7 A   
@@ -733,11 +834,11 @@ PB0. . . . . . . .  B ADDR   00B8H.5 A
 PCCU . . . . . . .  B ADDR   00F8H.4 A   
 PCL. . . . . . . .  B ADDR   00F8H.2 A   
 PCON . . . . . . .  D ADDR   0087H   A   
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/03/2016 23:16:15 PAGE     9
+
 PCONA. . . . . . .  D ADDR   00B5H   A   
 PI2C . . . . . . .  B ADDR   00F8H.0 A   
 PIEE . . . . . . .  B ADDR   00F8H.7 A   
-A51 MACRO ASSEMBLER  PROJECT1                                                             10/29/2016 19:38:25 PAGE     8
-
 PKBI . . . . . . .  B ADDR   00F8H.1 A   
 PLLEN. . . . . . .  B ADDR   00C8H.7 A   
 PS . . . . . . . .  B ADDR   00B8H.4 A   
@@ -751,9 +852,12 @@ PT1. . . . . . . .  B ADDR   00B8H.3 A
 PWDRT. . . . . . .  B ADDR   00B8H.6 A   
 PX0. . . . . . . .  B ADDR   00B8H.0 A   
 PX1. . . . . . . .  B ADDR   00B8H.2 A   
+RAND8B . . . . . .  C ADDR   0063H   A   
+RANDREG. . . . . .  N NUMB   0020H   A   
 RB8. . . . . . . .  B ADDR   0098H.2 A   
 REN. . . . . . . .  B ADDR   0098H.4 A   
 RI . . . . . . . .  B ADDR   0098H.0 A   
+RNG. . . . . . . .  C ADDR   005CH   A   
 RS0. . . . . . . .  B ADDR   00D0H.3 A   
 RS1. . . . . . . .  B ADDR   00D0H.4 A   
 RST. . . . . . . .  B ADDR   0090H.5 A   
@@ -762,12 +866,14 @@ RTCCON . . . . . .  D ADDR   00D1H   A
 RTCH . . . . . . .  D ADDR   00D2H   A   
 RTCL . . . . . . .  D ADDR   00D3H   A   
 RXD. . . . . . . .  B ADDR   0090H.1 A   
+S1 . . . . . . . .  C ADDR   004CH   A   
 SADDR. . . . . . .  D ADDR   00A9H   A   
 SADEN. . . . . . .  D ADDR   00B9H   A   
 SBUF . . . . . . .  D ADDR   0099H   A   
 SCL. . . . . . . .  B ADDR   0090H.2 A   
 SCON . . . . . . .  D ADDR   0098H   A   
 SDA. . . . . . . .  B ADDR   0090H.3 A   
+SDELAY . . . . . .  C ADDR   0053H   A   
 SI . . . . . . . .  B ADDR   00D8H.3 A   
 SM0. . . . . . . .  B ADDR   0098H.7 A   
 SM1. . . . . . . .  B ADDR   0098H.6 A   
@@ -796,6 +902,8 @@ TH1. . . . . . . .  D ADDR   008DH   A
 TH2. . . . . . . .  D ADDR   00CDH   A   
 TI . . . . . . . .  B ADDR   0098H.1 A   
 TICR2. . . . . . .  D ADDR   00C9H   A   
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/03/2016 23:16:15 PAGE    10
+
 TIFR2. . . . . . .  D ADDR   00E9H   A   
 TISE2. . . . . . .  D ADDR   00DEH   A   
 TL0. . . . . . . .  D ADDR   008AH   A   
@@ -804,8 +912,6 @@ TL2. . . . . . . .  D ADDR   00CCH   A
 TMOD . . . . . . .  D ADDR   0089H   A   
 TMOD20 . . . . . .  B ADDR   00C8H.0 A   
 TMOD21 . . . . . .  B ADDR   00C8H.1 A   
-A51 MACRO ASSEMBLER  PROJECT1                                                             10/29/2016 19:38:25 PAGE     9
-
 TOR2H. . . . . . .  D ADDR   00CFH   A   
 TOR2L. . . . . . .  D ADDR   00CEH   A   
 TPCR2H . . . . . .  D ADDR   00CBH   A   
@@ -814,8 +920,8 @@ TR0. . . . . . . .  B ADDR   0088H.4 A
 TR1. . . . . . . .  B ADDR   0088H.6 A   
 TRIM . . . . . . .  D ADDR   0096H   A   
 TXD. . . . . . . .  B ADDR   0090H.0 A   
-WAIT1. . . . . . .  C ADDR   0011H   A   
-WAIT2. . . . . . .  C ADDR   001FH   A   
+WAIT1. . . . . . .  C ADDR   001DH   A   
+WAIT2. . . . . . .  C ADDR   002DH   A   
 WDCON. . . . . . .  D ADDR   00A7H   A   
 WDL. . . . . . . .  D ADDR   00C1H   A   
 WFEED1 . . . . . .  D ADDR   00C2H   A   
