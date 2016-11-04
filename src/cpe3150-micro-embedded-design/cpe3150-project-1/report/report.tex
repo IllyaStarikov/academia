@@ -1,18 +1,90 @@
 \RequirePackage[l2tabu, orthodox]{nag}
 \documentclass[12pt]{article}
 
-\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx}
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,hyperref}
+\setcounter{secnumdepth}{2}
 
 \title{Project \#2}
 \date{Due Date: November 8\textsuperscript{th}, 2016}
-\author{Michael Schoen, Osman Abdirahman, Illya Starikov}
+\author{Michael Schoen, Abdirahman Osman, Illya Starikov}
 
 \newcommand{\br}{\\\multicolumn{2}{c}{} \\ }
 
 \begin{document}
 \maketitle
 
+\noindent For our project, we have decided to implement a memory matching game. The game will start off by enabling a single light. If the user correctly presses said light, the user will move onto the next level and enable a light sequence. For every successive level, an additional light have to be kept in mind (i.e. for the $n$\textsuperscript{th} level, there will be $n$ lights that will have to be pressed).
+
+This will continue for \num{15} games, where upon a successful finish, a special light sequence and a song will asynchronously play. From here, the user can choose to play another game if they so choose.
+
 \section{Explanation}
+Below we will take a more in-depth look into the implementation of our project.
+
+\subsection{Random Number Generation}
+Because we want our game to be different every round, we have to have some form of random number generation. Initially, we had tried to implement a \textit{linear congruential generator}; unfortunately, we were unsuccessful. We instead went with a different implementation.
+
+Both implementations require a seed value (and to have different results, we need a different seed value) --- we ``cheat'' to get this. During our input, we not only check to see if the user initiated a game, but we also increment the register the seed is stored in. This way, there is only a $\nicefrac{1}{255}$ chance the user will get the same game\footnote{Although this is a significant value (\num{.39}\%), it serves well for demo purposes.}.
+
+\subsubsection{Failed Attempt}
+The basic summary is as follows: beginning with a seed value (named $X_n$), a new linear, psuedo-random number can be calculated via:
+
+\begin{equation}
+    X_{n + 1} = (a X_n + c) \mod m
+\end{equation}
+
+\noindent where the follow conditions hold
+
+\begin{enumerate}
+    \item $a, X_n, c, m \in \mathbb{Z}^+$
+    \item $0 \leq X_n, c < m$
+    \item $0 < a < m$
+    \item $m \neq 0$
+\end{enumerate}
+
+The issue we face is it is \textit{highly} recommended that $m$ be quite large (most popular implementations range from $2^{31}$ to $2^{48}$); unfortunately, we only have $2^8$ available to us. Because of this, we either get a cycle roughly every \num{10} iterations or the same number produced. As one might imagine, this is a game-breaking bug; we decided to go with something different.
+
+Our failed attempt for a linear congruential generator is as follows.
+
+\begin{verbatim}
+; Check writeup for how this works
+; For now, the formula is
+
+; X_n+1 = aX_n + c mod m
+
+; For our purposes, a = 7, c = incrementor, m = 72
+; for our purposes, incrementor can't be a multiple of 7
+; X_n is stored in R7, incrementor in R6
+
+; Result will be stored in A
+RNG:
+                MOV A, R7
+                MOV B, #7D
+                DIV AB
+                MOV A, B
+
+                JNZ SKIP1
+                INC R6
+SKIP1:          MOV A,  #7D
+                MOV B, R7
+                MUL AB                      ; A = aX_n
+
+                ADD A, R6
+                MOV B, #72D
+                DIV AB
+
+                MOV R7, B
+
+                MOV A, B
+                MOV B, #10D
+                DIV AB
+
+                MOV A, B
+                RET
+\end{verbatim}
+
+\subsubsection{Successful Attempt}
+For our successful attempt, we ported a random number generating from an open source code base\footnote{\url{https://www.pjrc.com/tech/8051/}}. It similar to the linear congruential generator in the sense that it linearly produces a psuedo-random number; however, it is a different formula (one that can't be eloquently described in an equation).
+
 \subsection{Music}
 We know the frequency of the Philips P89LPC932A1 to be \SI{7.373}{\mega\hertz}, with \SI{2}{cycles} per machine cycle. Therefore,
 
@@ -58,12 +130,26 @@ We know the frequency of the Philips P89LPC932A1 to be \SI{7.373}{\mega\hertz}, 
 \end{center}
 
 \section{Future Work}
-\section{Project Code}
 \section{Work Effort}
 \begin{itemize}
     \item Michael Schoen
+    \begin{itemize}
+        \item Programmed binary counter.
+        \item Programmed game logic.
+    \end{itemize}
+
     \item Osman Abdirahman
+    \begin{itemize}
+        \item Programmed initial beep.
+        \item Programmed song implementation.
+    \end{itemize}
+
     \item Illya Starikov
+    \begin{itemize}
+        \item Programmed initial beep.
+        \item Programmed random number renerator.
+        \item Programmed light sequence.
+    \end{itemize}
 \end{itemize}
 
 \end{document}
