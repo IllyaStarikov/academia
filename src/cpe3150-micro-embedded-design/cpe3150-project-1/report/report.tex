@@ -1,8 +1,9 @@
 \RequirePackage[l2tabu, orthodox]{nag}
 \documentclass[12pt]{article}
 
-\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,hyperref,tikz,wrapfig,xcolor}
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,hyperref,tikz,wrapfig,xcolor,pgfplots}
 \usepackage[margin=10pt, font=small, labelfont=bf, labelsep=endash]{caption}
+\pgfplotsset{compat=1.12}
 
 \setcounter{secnumdepth}{2}
 
@@ -12,6 +13,35 @@
 
 \newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{#1}}}
 \newcommand{\br}{\\\multicolumn{2}{c}{} \\ }
+
+% Paramters Are As Follows:
+% 1. Title
+% 2. x-axis Label
+% 3. y-axis Label
+% 4. Data
+% 5. Legend
+
+\newcommand{\graph}[5]{%
+    \begin{tikzpicture}
+    \begin{axis}[
+        scale only axis,
+        width=.8\textwidth,
+        height = 5cm,
+        title={#1},
+        xlabel={#2},
+        ylabel={#3},
+        legend pos=north west,
+        ymajorgrids=true,
+        grid style=dashed,
+    ]
+
+    \addplot[color=blue, mark = square] table [x=a, y=b, col sep=comma] {#4};
+
+    \legend{#5}
+    \end{axis}
+    \end{tikzpicture}
+}
+
 
 \definecolor{amber}{rgb}{1.0, 0.75, 0.0}
 \makeatletter
@@ -91,7 +121,12 @@ SKIP1:          MOV A,  #7D
 \end{verbatim}
 
 \subsubsection{Successful Attempt}
-For our successful attempt, we ported a random number generating from an open source code base\footnote{\url{https://www.pjrc.com/tech/8051/}}. It similar to the linear congruential generator in the sense that it linearly produces a psuedo-random number; however, it is a different formula (one that can't be eloquently described in an equation).
+For our successful attempt, we ported a random number generating from an open source code base\footnote{\url{https://www.pjrc.com/tech/8051/}}. It similar to the linear congruential generator in the sense that it linearly produces a psuedo-random number; however, it is a different formula (one that can't be eloquently described in an equation). Below is a graph that shows the distribution of numbers up to \num{100} iterations.
+
+\begin{center}
+    \graph{Random Numbers Generated (Seed: $7$)}{Iteration}{Number Produced}{rng.csv}{Trendline}
+\end{center}
+
 
 \subsection{Light Show}
 When programming the lights, we notice there to be \num{9} lights; which just so happens to be the exact size of register $A$ and the carry bit $C$ in the \texttt{sfr}. So we decided to map every bit in $A$ and $C$ to a particular light. For simplicity, we used a $1_{2}$ to represent an `on' state and a $0_{2}$ for the `off' state.
@@ -229,7 +264,6 @@ We know the frequency of the Philips P89LPC932A1 to be \SI{7.373}{\mega\hertz}, 
 
     \item Illya Starikov
     \begin{itemize}
-        \item Programmed initial beep.
         \item Programmed random number renerator.
         \item Programmed light sequence.
     \end{itemize}
