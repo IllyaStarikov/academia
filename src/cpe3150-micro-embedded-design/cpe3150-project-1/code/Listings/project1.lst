@@ -1,4 +1,4 @@
-A51 MACRO ASSEMBLER  PROJECT1                                                             11/04/2016 21:34:35 PAGE     1
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/05/2016 17:55:35 PAGE     1
 
 
 MACRO ASSEMBLER A51 V8.2.5.0
@@ -122,7 +122,7 @@ LOC  OBJ            LINE     SOURCE
 
   0084          +1    57     KB4         BIT     0x84
 
-A51 MACRO ASSEMBLER  PROJECT1                                                             11/04/2016 21:34:35 PAGE     2
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/05/2016 17:55:35 PAGE     2
 
   0085          +1    58     KB5         BIT     0x85
 
@@ -256,7 +256,7 @@ LOC  OBJ            LINE     SOURCE
 
   008A          +1   123     TL0         DATA        0x8A
 
-A51 MACRO ASSEMBLER  PROJECT1                                                             11/04/2016 21:34:35 PAGE     3
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/05/2016 17:55:35 PAGE     3
 
   008C          +1   124     TH0         DATA        0x8C
 
@@ -390,7 +390,7 @@ LOC  OBJ            LINE     SOURCE
 
   00D3          +1   189     RTCL    DATA    0xD3
 
-A51 MACRO ASSEMBLER  PROJECT1                                                             11/04/2016 21:34:35 PAGE     4
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/05/2016 17:55:35 PAGE     4
 
   00D2          +1   190     RTCH    DATA    0xD2
 
@@ -524,7 +524,7 @@ LOC  OBJ            LINE     SOURCE
 
 0000 7A00            255             MOV R2, #0
 
-A51 MACRO ASSEMBLER  PROJECT1                                                             11/04/2016 21:34:35 PAGE     5
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/05/2016 17:55:35 PAGE     5
 
 0002 75B100          256             MOV P3M1, #00H
 
@@ -544,921 +544,969 @@ LOC  OBJ            LINE     SOURCE
 
                      264             
 
-001A 11DC            265             ACALL WINNER
+001A 752007          265             MOV RANDREG, #7D
 
-                     266             
+001D                 266     HERE:
 
-001C                 267     MAIN:
+001D 1164            267             ACALL RNG
 
-001C 20A00D          268             JB P2.0, NO_DEC
+001F F8              268             MOV R0, A
 
-                     269     
+0020 80FB            269             SJMP HERE
 
-001F                 270     WAIT1:
+                     270     
 
-001F 30A0FD          271             JNB P2.0, WAIT1
+0022                 271     MAIN:
 
-0022 1A              272             DEC R2
+0022 20A00D          272             JB P2.0, NO_DEC
 
-0023 BAFF16          273             CJNE R2, #0FFH, LED
+                     273     
 
-0026 114C            274             ACALL BEEP 
+0025                 274     WAIT1:
 
-0028 7A0F            275             MOV R2, #15
+0025 30A0FD          275             JNB P2.0, WAIT1
 
-002A 8010            276             SJMP LED
+0028 1A              276             DEC R2
 
-                     277     
+0029 BAFF16          277             CJNE R2, #0FFH, LED
 
-002C                 278     NO_DEC:
+002C 1152            278             ACALL BEEP 
 
-002C 2081ED          279             JB P0.1, MAIN
+002E 7A0F            279             MOV R2, #15
 
-                     280     
+0030 8010            280             SJMP LED
 
-002F                 281     WAIT2:
+                     281     
 
-002F 3081FD          282             JNB P0.1, WAIT2
+0032                 282     NO_DEC:
 
-0032 0A              283             INC R2
+0032 2081ED          283             JB P0.1, MAIN
 
-0033 BA1006          284             CJNE R2, #16, LED
+                     284     
 
-0036 114C            285             ACALL BEEP
+0035                 285     WAIT2:
 
-0038 7A00            286             MOV R2, #0
+0035 3081FD          286             JNB P0.1, WAIT2
 
-003A 8000            287             SJMP LED
+0038 0A              287             INC R2
 
-                     288             
+0039 BA1006          288             CJNE R2, #16, LED
 
-003C                 289     LED:
+003C 1152            289             ACALL BEEP
 
-003C EA              290             MOV A, R2
+003E 7A00            290             MOV R2, #0
 
-003D F4              291             CPL A
+0040 8000            291             SJMP LED
 
-003E 13              292             RRC A
+                     292             
 
-003F 9286            293             MOV P0.6, C
+0042                 293     LED:
 
-0041 13              294             RRC A
+0042 EA              294             MOV A, R2
 
-0042 92A7            295             MOV P2.7, C
+0043 F4              295             CPL A
 
 0044 13              296             RRC A
 
-0045 9285            297             MOV P0.5, C
+0045 9286            297             MOV P0.6, C
 
 0047 13              298             RRC A
 
-0048 92A4            299             MOV P2.4, C
+0048 92A7            299             MOV P2.7, C
 
-004A 80D0            300             SJMP MAIN
+004A 13              300             RRC A
 
-                     301             
+004B 9285            301             MOV P0.5, C
 
-                     302             
+004D 13              302             RRC A
 
-                     303     ; this mostly came from trial and error
+004E 92A4            303             MOV P2.4, C
 
-                     304     ; and seeing what sounded good for a beep
+0050 80D0            304             SJMP MAIN
 
-                     305     ; reference canvas tutorial for this
+                     305             
 
-004C                 306     BEEP: 
+                     306             
 
-004C 7864            307             MOV R0, #100
+                     307     ; this mostly came from trial and error
 
-004E B297            308     S1:     CPL P1.7
+                     308     ; and seeing what sounded good for a beep
 
-0050 1155            309             ACALL SDELAY
+                     309     ; reference canvas tutorial for this
 
-0052 D8FA            310             DJNZ R0, S1
+0052                 310     BEEP: 
 
-                     311             
+0052 7864            311             MOV R0, #100
 
-0054 22              312             RET
+0054 B297            312     S1:     CPL P1.7
 
-                     313             
+0056 115B            313             ACALL SDELAY
 
-0055                 314     SDELAY: 
+0058 D8FA            314             DJNZ R0, S1
 
-0055 7964            315             MOV R1, #100
+                     315             
 
-0057 7A0A            316     D1: MOV R2, #10
+005A 22              316             RET
 
-0059 DAFE            317     D2: DJNZ R2, D2
+                     317             
 
-005B D9FA            318             DJNZ R1, D1
+005B                 318     SDELAY: 
 
-005D 22              319             RET
+005B 7964            319             MOV R1, #100
 
-                     320     
+005D 7A0A            320     D1: MOV R2, #10
 
-                     321     
+005F DAFE            321     D2: DJNZ R2, D2
 
-A51 MACRO ASSEMBLER  PROJECT1                                                             11/04/2016 21:34:35 PAGE     6
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/05/2016 17:55:35 PAGE     6
 
-                     322     ; note this a port from http://pjrc.com/tech/8051/rand.asm
+0061 D9FA            322             DJNZ R1, D1
 
-                     323     ; returns a random value in the A  register from 0 to 9, inclusive.
+0063 22              323             RET
 
-                     324     ; note needs a seed value (equated at the top)
+                     324     
 
-005E                 325     RNG:
+                     325     
 
-005E E520            326             MOV     A, RANDREG
+                     326     ; note this a port from http://pjrc.com/tech/8051/rand.asm
 
-0060 7003            327             JNZ     RAND8B
+                     327     ; returns a random value in the A  register from 0 to 9, inclusive.
 
-0062 F4              328             CPL     A
+                     328     ; note needs a seed value (equated at the top)
 
-0063 F520            329             MOV     RANDREG, A
+0064                 329     RNG:
 
-0065 54B8            330     RAND8B: ANL     A, #10111000B
+0064 E520            330             MOV     A, RANDREG
 
-0067 A2D0            331             MOV     C, PSW.0
+0066 7003            331             JNZ     RAND8B
 
-0069 E520            332             MOV     A, RANDREG
+0068 F4              332             CPL     A
 
-006B 33              333             RLC     A
+0069 F520            333             MOV     RANDREG, A
 
-006C F520            334             MOV     RANDREG, A
+006B 54B8            334     RAND8B: ANL     A, #10111000B
 
-006E 75F00A          335             MOV B, #10D
+006D A2D0            335             MOV     C, PSW.0
 
-0071 84              336             DIV AB
+006F E520            336             MOV     A, RANDREG
 
-0072 E5F0            337             MOV A, B
+0071 33              337             RLC     A
 
-                     338     
+0072 F520            338             MOV     RANDREG, A
 
-0074 22              339             RET
+0074 75F00A          339             MOV B, #10D
 
-                     340             
+0077 84              340             DIV AB
 
-0075                 341     LIGHTS:
+0078 E5F0            341             MOV A, B
 
-0075 F4              342             CPL A
+                     342     
 
-0076 B3              343             CPL C
+007A 22              343             RET
 
-                     344             
+                     344     
 
-0077 33              345             RLC A
+                     345     ; enables a row of lights with a delay of ~75 ms 
 
-0078 92A4            346             MOV P2.4, C
+                     346     ; read documenation how this works, but for now a quick summary..
 
-                     347             
+                     347     ; mov into A bit-string for the first 8 lights
 
-007A 33              348             RLC A
+                     348     ; move into c for the ninth light
 
-007B 9285            349             MOV P0.5, C
+                     349     ; i.e. A = 10101010 C = 1
 
-                     350             
+                     350     ; enables a huge X of lights
 
-007D 33              351             RLC A
+007B                 351     LIGHTS:
 
-007E 92A7            352             MOV P2.7, C
+007B F4              352             CPL A
 
-                     353             
+007C B3              353             CPL C
 
-0080 33              354             RLC A
+                     354             
 
-0081 9286            355             MOV P0.6, C
+007D 33              355             RLC A
 
-                     356             
+007E 92A4            356             MOV P2.4, C
 
-0083 33              357             RLC A
+                     357             
 
-0084 9296            358             MOV P1.6, C
+0080 33              358             RLC A
 
-                     359             
+0081 9285            359             MOV P0.5, C
 
-0086 33              360             RLC A
+                     360             
 
-0087 9284            361             MOV P0.4, C
+0083 33              361             RLC A
 
-                     362             
+0084 92A7            362             MOV P2.7, C
 
-0089 33              363             RLC A
+                     363             
 
-008A 92A5            364             MOV P2.5, C
+0086 33              364             RLC A
 
-                     365             
+0087 9286            365             MOV P0.6, C
 
-008C 33              366             RLC A
+                     366             
 
-008D 9287            367             MOV P0.7, C
+0089 33              367             RLC A
 
-                     368             
+008A 9296            368             MOV P1.6, C
 
-008F 33              369             RLC A
+                     369             
 
-0090 92A6            370             MOV P2.6, C
+008C 33              370             RLC A
 
-                     371             
+008D 9284            371             MOV P0.4, C
 
-0092 7400            372             MOV A, #00D
+                     372             
 
-0094 75F000          373             MOV B, #00D
+008F 33              373             RLC A
 
-0097 11AC            374             ACALL EDELAY
+0090 92A5            374             MOV P2.5, C
 
                      375             
 
-0099 22              376             RET
+0092 33              376             RLC A
 
-                     377     
+0093 9287            377             MOV P0.7, C
 
-009A                 378     DELAY:
+                     378             
 
-009A 758901          379             MOV TMOD, #01D
+0095 33              379             RLC A
 
-009D F58A            380             MOV TL0, A
+0096 92A6            380             MOV P2.6, C
 
-009F 85F08C          381             MOV TH0, B
+                     381             
 
-                     382             
+0098 7400            382             MOV A, #00D
 
-00A2 D28C            383             SETB TR0
+009A 75F000          383             MOV B, #00D
 
-                     384             
+009D 11B2            384             ACALL EDELAY
 
-00A4                 385     DLLOOP:
+                     385             
 
-00A4 308DFD          386             JNB TF0, DLLOOP
+009F 22              386             RET
 
                      387             
 
-A51 MACRO ASSEMBLER  PROJECT1                                                             11/04/2016 21:34:35 PAGE     7
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/05/2016 17:55:35 PAGE     7
 
-00A7 C28C            388             CLR TR0
+                     388     ; envokes a timer delay
 
-00A9 C28D            389             CLR TF0
+                     389     ; A = high, B = 0
 
-                     390             
+                     390     ; use formula from class to determine dla
 
-00AB 22              391             RET
+00A0                 391     DELAY:
 
-                     392             
+00A0 758901          392             MOV TMOD, #01D
 
-00AC                 393     EDELAY:
+00A3 85F08A          393             MOV TL0, B
 
-                     394             
+00A6 F58C            394             MOV TH0, A
 
-00AC                 395     EDLOOP:
+                     395             
 
-00AC 119A            396             ACALL DELAY
+00A8 D28C            396             SETB TR0
 
-00AE DFFC            397             DJNZ R7, EDLOOP
+                     397             
 
-00B0 22              398             RET
+00AA                 398     DLLOOP:
 
-                     399             
+00AA 308DFD          399             JNB TF0, DLLOOP
 
-00B1                 400     NEXTLEVEL:
+                     400             
 
-00B1 7E02            401             MOV R6, #2D
+00AD C28C            401             CLR TR0
 
-00B3                 402     LLOOP:
+00AF C28D            402             CLR TF0
 
-00B3 74AA            403             MOV A, #10101010B
+                     403             
 
-00B5 D3              404             SETB C
+00B1 22              404             RET
 
-00B6 7F14            405             MOV R7, #20D
+                     405     
 
-00B8 1175            406             ACALL LIGHTS
+                     406     ; Extended delay, uses timers on the 8051
 
-                     407             
+                     407     ; A = high of the timer, B = low of the timer
 
-00BA 74AA            408             MOV A, #10101010B
+                     408     ; And R7 is the multiple of iterations
 
-00BC F4              409             CPL A
+                     409     ; it's basically DELAY * SOME CONSTANT
 
-00BD C3              410             CLR C
+00B2                 410     EDELAY:
 
-00BE 7F14            411             MOV R7, #20D
+00B2                 411     EDLOOP:
 
-00C0 1175            412             ACALL LIGHTS
+00B2 11A0            412             ACALL DELAY
 
-                     413             
+00B4 DFFC            413             DJNZ R7, EDLOOP
 
-00C2 DEEF            414             DJNZ R6, LLOOP
+00B6 22              414             RET
 
-                     415             
+                     415     
 
-00C4 7400            416             MOV A, #0D
+                     416     ; USES REGISTERS A, B, R6, R7
 
-00C6 C3              417             CLR C
+                     417     ; light sequence for the next level
 
-00C7 1175            418             ACALL LIGHTS
+00B7                 418     NEXTLEVEL:
 
-                     419             
+00B7 7E02            419             MOV R6, #2D
 
-00C9 22              420             RET
+00B9                 420     LLOOP:
 
-                     421             
+00B9 74AA            421             MOV A, #10101010B
 
-00CA                 422     LOST:
+00BB D3              422             SETB C
 
-00CA 7E02            423             MOV R6, #2D
+00BC 7F14            423             MOV R7, #20D
 
-                     424     
+00BE 117B            424             ACALL LIGHTS
 
-00CC                 425     LOLOOP:
+                     425             
 
-00CC 74FF            426             MOV A, #0FFH
+00C0 74AA            426             MOV A, #10101010B
 
-00CE D3              427             SETB C
+00C2 F4              427             CPL A
 
-00CF 7F14            428             MOV R7, #20D
+00C3 C3              428             CLR C
 
-00D1 1175            429             ACALL LIGHTS
+00C4 7F14            429             MOV R7, #20D
 
-                     430             
+00C6 117B            430             ACALL LIGHTS
 
-00D3 E4              431             CLR A 
+                     431             
 
-00D4 C3              432             CLR C
+00C8 DEEF            432             DJNZ R6, LLOOP
 
-00D5 7F14            433             MOV R7, #20D
+                     433             
 
-00D7 1175            434             ACALL LIGHTS
+00CA 7400            434             MOV A, #0D
 
-                     435     
+00CC C3              435             CLR C
 
-00D9 DEF1            436             DJNZ R6, LOLOOP
+00CD 117B            436             ACALL LIGHTS
 
                      437             
 
-00DB 22              438             RET
+00CF 22              438             RET
 
-                     439             
+                     439     
 
-00DC                 440     WINNER:
+                     440     ; USES REGISTERS R6, R7, A, B
 
-                     441             
+                     441     ; light sequence for the losing state
 
-00DC 7E03            442             MOV R6, #3D
+                     442     ; bright flash of lights twice
 
-                     443             
+00D0                 443     LOST:
 
-00DE 7400            444             MOV A, #00000000B
+00D0 7E02            444             MOV R6, #2D
 
-00E0 C3              445         CLR C
+                     445     
 
-00E1 AF06            446             MOV R7, 6
+00D2                 446     LOLOOP:
 
-00E3 1175            447             ACALL LIGHTS
+00D2 74FF            447             MOV A, #0FFH
 
-                     448             
+00D4 D3              448             SETB C
 
-00E5 7480            449         MOV A, #10000000B
+00D5 7F14            449             MOV R7, #20D
 
-00E7 C3              450         CLR C
+00D7 117B            450             ACALL LIGHTS
 
-00E8 AF06            451             MOV R7, 6
+                     451             
 
-00EA 1175            452             ACALL LIGHTS
+00D9 E4              452             CLR A 
 
-                     453             
+00DA C3              453             CLR C
 
-A51 MACRO ASSEMBLER  PROJECT1                                                             11/04/2016 21:34:35 PAGE     8
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/05/2016 17:55:35 PAGE     8
 
-00EC 74C0            454         MOV A, #11000000B
+00DB 7F14            454             MOV R7, #20D
 
-00EE C3              455         CLR C
+00DD 117B            455             ACALL LIGHTS
 
-00EF AF06            456             MOV R7, 6
+                     456     
 
-00F1 1175            457             ACALL LIGHTS
+00DF DEF1            457             DJNZ R6, LOLOOP
 
                      458             
 
-00F3 74E0            459         MOV A, #11100000B
+00E1 22              459             RET
 
-00F5 C3              460         CLR C
+                     460     
 
-00F6 AF06            461             MOV R7, 6
+                     461     ; USES REGISTERS R6, R7, A, B
 
-00F8 1175            462             ACALL LIGHTS
+                     462     ; light sequence for the winning state
 
-                     463             
+00E2                 463     WINNER:
 
-00FA 74E4            464         MOV A, #11100100B
+                     464             
 
-00FC C3              465         CLR C
+00E2 7E03            465             MOV R6, #3D
 
-00FD AF06            466             MOV R7, 6
+                     466             
 
-00FF 1175            467             ACALL LIGHTS
+00E4 7400            467             MOV A, #00000000B
 
-                     468             
+00E6 C3              468         CLR C
 
-0101 74E4            469         MOV A, #11100100B
+00E7 AF06            469             MOV R7, 6
 
-0103 D3              470         SETB C
+00E9 117B            470             ACALL LIGHTS
 
-0104 AF06            471             MOV R7, 6
+                     471             
 
-0106 1175            472             ACALL LIGHTS
+00EB 7480            472         MOV A, #10000000B
 
-                     473             
+00ED C3              473         CLR C
 
-0108 74E5            474         MOV A, #11100101B
+00EE AF06            474             MOV R7, 6
 
-010A D3              475         SETB C
+00F0 117B            475             ACALL LIGHTS
 
-010B AF06            476             MOV R7, 6
+                     476             
 
-010D 1175            477             ACALL LIGHTS
+00F2 74C0            477         MOV A, #11000000B
 
-                     478             
+00F4 C3              478         CLR C
 
-010F 74E7            479         MOV A, #11100111B
+00F5 AF06            479             MOV R7, 6
 
-0111 D3              480         SETB C
+00F7 117B            480             ACALL LIGHTS
 
-0112 AF06            481             MOV R7, 6
+                     481             
 
-0114 1175            482             ACALL LIGHTS
+00F9 74E0            482         MOV A, #11100000B
 
-                     483     
+00FB C3              483         CLR C
 
-0116 74F7            484         MOV A, #11110111B
+00FC AF06            484             MOV R7, 6
 
-0118 D3              485         SETB C
+00FE 117B            485             ACALL LIGHTS
 
-0119 AF06            486             MOV R7, 6
+                     486             
 
-011B 1175            487             ACALL LIGHTS
+0100 74E4            487         MOV A, #11100100B
 
-                     488             
+0102 C3              488         CLR C
 
-011D 74FF            489         MOV A, #11111111B
+0103 AF06            489             MOV R7, 6
 
-011F D3              490         SETB C
+0105 117B            490             ACALL LIGHTS
 
-0120 AF06            491             MOV R7, 6
+                     491             
 
-0122 1175            492             ACALL LIGHTS
+0107 74E4            492         MOV A, #11100100B
 
-                     493             
+0109 D3              493         SETB C
 
-                     494             
+010A AF06            494             MOV R7, 6
 
-                     495     
+010C 117B            495             ACALL LIGHTS
 
-0124 7400            496             MOV A, #00000000B
+                     496             
 
-0126 C3              497             CLR C
+010E 74E5            497         MOV A, #11100101B
 
-0127 AF06            498             MOV R7, 6
+0110 D3              498         SETB C
 
-0129 F4              499             CPL A
+0111 AF06            499             MOV R7, 6
 
-012A B3              500             CPL C
+0113 117B            500             ACALL LIGHTS
 
-012B 1175            501             ACALL LIGHTS
+                     501             
 
-                     502     
+0115 74E7            502         MOV A, #11100111B
 
-012D 7480            503             MOV A, #10000000B
+0117 D3              503         SETB C
 
-012F C3              504             CLR C
+0118 AF06            504             MOV R7, 6
 
-0130 AF06            505             MOV R7, 6
+011A 117B            505             ACALL LIGHTS
 
-0132 F4              506             CPL A
+                     506     
 
-0133 B3              507             CPL C
+011C 74F7            507         MOV A, #11110111B
 
-0134 1175            508             ACALL LIGHTS
+011E D3              508         SETB C
 
-                     509     
+011F AF06            509             MOV R7, 6
 
-0136 74C0            510             MOV A, #11000000B
+0121 117B            510             ACALL LIGHTS
 
-0138 C3              511             CLR C
+                     511             
 
-0139 AF06            512             MOV R7, 6
+0123 74FF            512         MOV A, #11111111B
 
-013B F4              513             CPL A
+0125 D3              513         SETB C
 
-013C B3              514             CPL C
+0126 AF06            514             MOV R7, 6
 
-013D 1175            515             ACALL LIGHTS
+0128 117B            515             ACALL LIGHTS
 
-                     516     
+                     516             
 
-013F 74E0            517             MOV A, #11100000B
+                     517             
 
-0141 C3              518             CLR C
+                     518     
 
-0142 AF06            519             MOV R7, 6
+012A 7400            519             MOV A, #00000000B
 
-A51 MACRO ASSEMBLER  PROJECT1                                                             11/04/2016 21:34:35 PAGE     9
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/05/2016 17:55:35 PAGE     9
 
-0144 F4              520             CPL A
+012C C3              520             CLR C
 
-0145 B3              521             CPL C
+012D AF06            521             MOV R7, 6
 
-0146 1175            522             ACALL LIGHTS
+012F F4              522             CPL A
 
-                     523     
+0130 B3              523             CPL C
 
-0148 74E4            524             MOV A, #11100100B
+0131 117B            524             ACALL LIGHTS
 
-014A C3              525             CLR C
+                     525     
 
-014B AF06            526             MOV R7, 6
+0133 7480            526             MOV A, #10000000B
 
-014D F4              527             CPL A
+0135 C3              527             CLR C
 
-014E B3              528             CPL C
+0136 AF06            528             MOV R7, 6
 
-014F 1175            529             ACALL LIGHTS
+0138 F4              529             CPL A
 
-                     530     
+0139 B3              530             CPL C
 
-0151 74E4            531             MOV A, #11100100B
+013A 117B            531             ACALL LIGHTS
 
-0153 D3              532             SETB C
+                     532     
 
-0154 AF06            533             MOV R7, 6
+013C 74C0            533             MOV A, #11000000B
 
-0156 F4              534             CPL A
+013E C3              534             CLR C
 
-0157 B3              535             CPL C
+013F AF06            535             MOV R7, 6
 
-0158 1175            536             ACALL LIGHTS
+0141 F4              536             CPL A
 
-                     537     
+0142 B3              537             CPL C
 
-015A 74E5            538             MOV A, #11100101B
+0143 117B            538             ACALL LIGHTS
 
-015C D3              539             SETB C
+                     539     
 
-015D AF06            540             MOV R7, 6
+0145 74E0            540             MOV A, #11100000B
 
-015F F4              541             CPL A
+0147 C3              541             CLR C
 
-0160 B3              542             CPL C
+0148 AF06            542             MOV R7, 6
 
-0161 1175            543             ACALL LIGHTS
+014A F4              543             CPL A
 
-                     544     
+014B B3              544             CPL C
 
-0163 74E7            545             MOV A, #11100111B
+014C 117B            545             ACALL LIGHTS
 
-0165 D3              546             SETB C
+                     546     
 
-0166 AF06            547             MOV R7, 6
+014E 74E4            547             MOV A, #11100100B
 
-0168 F4              548             CPL A
+0150 C3              548             CLR C
 
-0169 B3              549             CPL C
+0151 AF06            549             MOV R7, 6
 
-016A 1175            550             ACALL LIGHTS
+0153 F4              550             CPL A
 
-                     551     
+0154 B3              551             CPL C
 
-016C 74F7            552             MOV A, #11110111B
+0155 117B            552             ACALL LIGHTS
 
-016E D3              553             SETB C
+                     553     
 
-016F AF06            554             MOV R7, 6
+0157 74E4            554             MOV A, #11100100B
 
-0171 F4              555             CPL A
+0159 D3              555             SETB C
 
-0172 B3              556             CPL C
+015A AF06            556             MOV R7, 6
 
-0173 1175            557             ACALL LIGHTS
+015C F4              557             CPL A
 
-                     558     
+015D B3              558             CPL C
 
-0175 74FF            559             MOV A, #11111111B
+015E 117B            559             ACALL LIGHTS
 
-0177 D3              560             SETB C
+                     560     
 
-0178 AF06            561             MOV R7, 6
+0160 74E5            561             MOV A, #11100101B
 
-017A F4              562             CPL A
+0162 D3              562             SETB C
 
-017B B3              563             CPL C
+0163 AF06            563             MOV R7, 6
 
-017C 1175            564             ACALL LIGHTS
+0165 F4              564             CPL A
 
-                     565             
+0166 B3              565             CPL C
 
-                     566             
+0167 117B            566             ACALL LIGHTS
 
-017E 7E08            567             MOV R6, #8D
+                     567     
 
-0180 7D05            568             MOV R5, #5D
+0169 74E7            568             MOV A, #11100111B
 
-0182                 569     L1:
+016B D3              569             SETB C
 
-0182 74AA            570             MOV A, #10101010B
+016C AF06            570             MOV R7, 6
 
-0184 D3              571             SETB C
+016E F4              571             CPL A
 
-0185 AF06            572             MOV R7, 6
+016F B3              572             CPL C
 
-0187 1175            573             ACALL LIGHTS
+0170 117B            573             ACALL LIGHTS
 
-                     574             
+                     574     
 
-0189 745D            575             MOV A, #01011101B
+0172 74F7            575             MOV A, #11110111B
 
-018B C3              576             CLR C
+0174 D3              576             SETB C
 
-018C AF06            577             MOV R7, 6
+0175 AF06            577             MOV R7, 6
 
-018E 1175            578             ACALL LIGHTS
+0177 F4              578             CPL A
 
-                     579             
+0178 B3              579             CPL C
 
-0190 DDF0            580             DJNZ R5, L1
+0179 117B            580             ACALL LIGHTS
 
-                     581             
+                     581     
 
-                     582             
+017B 74FF            582             MOV A, #11111111B
 
-0192 7E08            583             MOV R6, #8D
+017D D3              583             SETB C
 
-0194 7D07            584             MOV R5, #7D
+017E AF06            584             MOV R7, 6
 
-0196                 585     L2:
+0180 F4              585             CPL A
 
-A51 MACRO ASSEMBLER  PROJECT1                                                             11/04/2016 21:34:35 PAGE    10
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/05/2016 17:55:35 PAGE    10
 
-0196 74F7            586             MOV A, #11110111B
+0181 B3              586             CPL C
 
-0198 D3              587             SETB C
+0182 117B            587             ACALL LIGHTS
 
-0199 AF06            588             MOV R7, 6
+                     588             
 
-019B 1175            589             ACALL LIGHTS
+                     589             
 
-                     590             
+0184 7E08            590             MOV R6, #8D
 
-019D 7408            591             MOV A, #00001000B
+0186 7D05            591             MOV R5, #5D
 
-019F C3              592             CLR C
+0188                 592     L1:
 
-01A0 AF06            593             MOV R7, 6
+0188 74AA            593             MOV A, #10101010B
 
-01A2 1175            594             ACALL LIGHTS
+018A D3              594             SETB C
 
-01A4 DDF0            595             DJNZ R5, L2
+018B AF06            595             MOV R7, 6
 
-                     596             
+018D 117B            596             ACALL LIGHTS
 
                      597             
 
-01A6 74F7            598             MOV A, #11110111B
+018F 745D            598             MOV A, #01011101B
 
-01A8 D3              599             SETB C
+0191 C3              599             CLR C
 
-01A9 AF06            600             MOV R7, 6
+0192 AF06            600             MOV R7, 6
 
-01AB 1175            601             ACALL LIGHTS
+0194 117B            601             ACALL LIGHTS
 
                      602             
 
-                     603             
+0196 DDF0            603             DJNZ R5, L1
 
-01AD 7E06            604             MOV R6, #6D
+                     604             
 
-01AF 7D07            605             MOV R5, #7D
+                     605             
 
-                     606             
+0198 7E08            606             MOV R6, #8D
 
-01B1                 607     L3:
+019A 7D07            607             MOV R5, #7D
 
-01B1 7488            608             MOV A, #10001000B
+019C                 608     L2:
 
-01B3 D3              609             SETB C
+019C 74F7            609             MOV A, #11110111B
 
-01B4 AF06            610             MOV R7, 6
+019E D3              610             SETB C
 
-01B6 1175            611             ACALL LIGHTS
+019F AF06            611             MOV R7, 6
 
-                     612             
+01A1 117B            612             ACALL LIGHTS
 
-01B8 7449            613             MOV A, #01001001B
+                     613             
 
-01BA C3              614             CLR C
+01A3 7408            614             MOV A, #00001000B
 
-01BB AF06            615             MOV R7, 6
+01A5 C3              615             CLR C
 
-01BD 1175            616             ACALL LIGHTS
+01A6 AF06            616             MOV R7, 6
 
-                     617             
+01A8 117B            617             ACALL LIGHTS
 
-01BF 742A            618             MOV A, #00101010B
+01AA DDF0            618             DJNZ R5, L2
 
-01C1 C3              619             CLR C
+                     619             
 
-01C2 AF06            620             MOV R7, 6
+                     620             
 
-01C4 1175            621             ACALL LIGHTS
+01AC 74F7            621             MOV A, #11110111B
 
-                     622             
+01AE D3              622             SETB C
 
-01C6 741C            623             MOV A, #00011100B
+01AF AF06            623             MOV R7, 6
 
-01C8 C3              624             CLR C
+01B1 117B            624             ACALL LIGHTS
 
-01C9 AF06            625             MOV R7, 6
+                     625             
 
-01CB 1175            626             ACALL LIGHTS
+                     626             
 
-                     627             
+01B3 7E06            627             MOV R6, #6D
 
-01CD DDE2            628             DJNZ R5, L3
+01B5 7D07            628             MOV R5, #7D
 
                      629             
 
-                     630             
+01B7                 630     L3:
 
-01CF 7488            631             MOV A, #10001000B
+01B7 7488            631             MOV A, #10001000B
 
-01D1 D3              632             SETB C
+01B9 D3              632             SETB C
 
-01D2 AF06            633             MOV R7, 6
+01BA AF06            633             MOV R7, 6
 
-01D4 1175            634             ACALL LIGHTS
+01BC 117B            634             ACALL LIGHTS
 
                      635             
 
-                     636                     
+01BE 7449            636             MOV A, #01001001B
 
-01D6 7E06            637             MOV R6, #6D
+01C0 C3              637             CLR C
 
-01D8 7D03            638             MOV R5, #3D
+01C1 AF06            638             MOV R7, 6
 
-                     639             
+01C3 117B            639             ACALL LIGHTS
 
-01DA                 640     L4:
+                     640             
 
-01DA 7480            641             MOV A, #10000000B
+01C5 742A            641             MOV A, #00101010B
 
-01DC C3              642             CLR C
+01C7 C3              642             CLR C
 
-01DD AF06            643             MOV R7, 6
+01C8 AF06            643             MOV R7, 6
 
-01DF 1175            644             ACALL LIGHTS
+01CA 117B            644             ACALL LIGHTS
 
                      645             
 
-                     646             
+01CC 741C            646             MOV A, #00011100B
 
-01E1 74D0            647             MOV A, #11010000B
+01CE C3              647             CLR C
 
-01E3 C3              648             CLR C
+01CF AF06            648             MOV R7, 6
 
-01E4 AF06            649             MOV R7, 6
+01D1 117B            649             ACALL LIGHTS
 
-01E6 1175            650             ACALL LIGHTS
+                     650             
 
-                     651             
+01D3 DDE2            651             DJNZ R5, L3
 
-A51 MACRO ASSEMBLER  PROJECT1                                                             11/04/2016 21:34:35 PAGE    11
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/05/2016 17:55:35 PAGE    11
 
                      652             
 
-01E8 74FA            653             MOV A, #11111010B
+                     653             
 
-01EA C3              654             CLR C
+01D5 7488            654             MOV A, #10001000B
 
-01EB AF06            655             MOV R7, 6
+01D7 D3              655             SETB C
 
-01ED 1175            656             ACALL LIGHTS
+01D8 AF06            656             MOV R7, 6
 
-                     657             
+01DA 117B            657             ACALL LIGHTS
 
                      658             
 
-01EF 74FF            659             MOV A, #11111111B
+                     659                     
 
-01F1 C3              660             CLR C
+01DC 7E06            660             MOV R6, #6D
 
-01F2 AF06            661             MOV R7, 6
+01DE 7D03            661             MOV R5, #3D
 
-01F4 1175            662             ACALL LIGHTS
+                     662             
 
-                     663             
+01E0                 663     L4:
 
-                     664             
+01E0 7480            664             MOV A, #10000000B
 
-01F6 74FF            665             MOV A, #11111111B
+01E2 C3              665             CLR C
 
-01F8 D3              666             SETB C
+01E3 AF06            666             MOV R7, 6
 
-01F9 AF06            667             MOV R7, 6
+01E5 117B            667             ACALL LIGHTS
 
-01FB 1175            668             ACALL LIGHTS
+                     668             
 
                      669             
 
-                     670             ; role reversal 
+01E7 74D0            670             MOV A, #11010000B
 
-                     671             
+01E9 C3              671             CLR C
 
-01FD 7480            672             MOV A, #10000000B
+01EA AF06            672             MOV R7, 6
 
-01FF C3              673             CLR C
+01EC 117B            673             ACALL LIGHTS
 
-0200 F4              674             CPL A
+                     674             
 
-0201 B3              675             CPL C
+                     675             
 
-0202 AF06            676             MOV R7, 6
+01EE 74FA            676             MOV A, #11111010B
 
-0204 1175            677             ACALL LIGHTS
+01F0 C3              677             CLR C
 
-                     678             
+01F1 AF06            678             MOV R7, 6
 
-                     679             
+01F3 117B            679             ACALL LIGHTS
 
-0206 74D0            680             MOV A, #11010000B
+                     680             
 
-0208 C3              681             CLR C
+                     681             
 
-0209 F4              682             CPL A
+01F5 74FF            682             MOV A, #11111111B
 
-020A B3              683             CPL C
+01F7 C3              683             CLR C
 
-020B AF06            684             MOV R7, 6
+01F8 AF06            684             MOV R7, 6
 
-020D 1175            685             ACALL LIGHTS
+01FA 117B            685             ACALL LIGHTS
 
                      686             
 
                      687             
 
-020F 74FA            688             MOV A, #11111010B
+01FC 74FF            688             MOV A, #11111111B
 
-0211 C3              689             CLR C
+01FE D3              689             SETB C
 
-0212 F4              690             CPL A
+01FF AF06            690             MOV R7, 6
 
-0213 B3              691             CPL C
+0201 117B            691             ACALL LIGHTS
 
-0214 AF06            692             MOV R7, 6
+                     692             
 
-0216 1175            693             ACALL LIGHTS
+                     693             ; role reversal 
 
                      694             
 
-                     695             
+0203 7480            695             MOV A, #10000000B
 
-0218 74FF            696             MOV A, #11111111B
+0205 C3              696             CLR C
 
-021A C3              697             CLR C
+0206 F4              697             CPL A
 
-021B F4              698             CPL A
+0207 B3              698             CPL C
 
-021C B3              699             CPL C
+0208 AF06            699             MOV R7, 6
 
-021D AF06            700             MOV R7, 6
+020A 117B            700             ACALL LIGHTS
 
-021F 1175            701             ACALL LIGHTS
+                     701             
 
                      702             
 
-                     703             
+020C 74D0            703             MOV A, #11010000B
 
-0221 74FF            704             MOV A, #11111111B
+020E C3              704             CLR C
 
-0223 D3              705             SETB C
+020F F4              705             CPL A
 
-0224 F4              706             CPL A
+0210 B3              706             CPL C
 
-0225 B3              707             CPL C
+0211 AF06            707             MOV R7, 6
 
-0226 AF06            708             MOV R7, 6
+0213 117B            708             ACALL LIGHTS
 
-0228 1175            709             ACALL LIGHTS
+                     709             
 
                      710             
 
-022A DDAE            711             DJNZ R5, L4
+0215 74FA            711             MOV A, #11111010B
 
-                     712             
+0217 C3              712             CLR C
 
-                     713             
+0218 F4              713             CPL A
 
-022C 22              714             RET
+0219 B3              714             CPL C
 
-                     715             END
+021A AF06            715             MOV R7, 6
 
-A51 MACRO ASSEMBLER  PROJECT1                                                             11/04/2016 21:34:35 PAGE    12
+021C 117B            716             ACALL LIGHTS
+
+                     717             
+
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/05/2016 17:55:35 PAGE    12
+
+                     718             
+
+021E 74FF            719             MOV A, #11111111B
+
+0220 C3              720             CLR C
+
+0221 F4              721             CPL A
+
+0222 B3              722             CPL C
+
+0223 AF06            723             MOV R7, 6
+
+0225 117B            724             ACALL LIGHTS
+
+                     725             
+
+                     726             
+
+0227 74FF            727             MOV A, #11111111B
+
+0229 D3              728             SETB C
+
+022A F4              729             CPL A
+
+022B B3              730             CPL C
+
+022C AF06            731             MOV R7, 6
+
+022E 117B            732             ACALL LIGHTS
+
+                     733             
+
+0230 DDAE            734             DJNZ R5, L4
+
+                     735             
+
+                     736             
+
+0232 22              737             RET
+
+                     738             END
+
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/05/2016 17:55:35 PAGE    13
 
 SYMBOL TABLE LISTING
 ------ ----- -------
@@ -1473,7 +1521,7 @@ ALTAB. . . . . . .  B ADDR   00C8H.3 A
 ALTCD. . . . . . .  B ADDR   00C8H.4 A   
 AUXR1. . . . . . .  D ADDR   00A2H   A   
 B. . . . . . . . .  D ADDR   00F0H   A   
-BEEP . . . . . . .  C ADDR   004CH   A   
+BEEP . . . . . . .  C ADDR   0052H   A   
 BRGCON . . . . . .  D ADDR   00BDH   A   
 BRGR0. . . . . . .  D ADDR   00BEH   A   
 BRGR1. . . . . . .  D ADDR   00BFH   A   
@@ -1492,22 +1540,22 @@ CMP2O. . . . . . .  B ADDR   0080H.0 A
 CMPREF . . . . . .  B ADDR   0080H.5 A   
 CRSEL. . . . . . .  B ADDR   00D8H.0 A   
 CY . . . . . . . .  B ADDR   00D0H.7 A   
-D1 . . . . . . . .  C ADDR   0057H   A   
-D2 . . . . . . . .  C ADDR   0059H   A   
+D1 . . . . . . . .  C ADDR   005DH   A   
+D2 . . . . . . . .  C ADDR   005FH   A   
 DEEADR . . . . . .  D ADDR   00F3H   A   
 DEECON . . . . . .  D ADDR   00F1H   A   
 DEEDAT . . . . . .  D ADDR   00F2H   A   
-DELAY. . . . . . .  C ADDR   009AH   A   
+DELAY. . . . . . .  C ADDR   00A0H   A   
 DIVM . . . . . . .  D ADDR   0095H   A   
-DLLOOP . . . . . .  C ADDR   00A4H   A   
+DLLOOP . . . . . .  C ADDR   00AAH   A   
 DPH. . . . . . . .  D ADDR   0083H   A   
 DPL. . . . . . . .  D ADDR   0082H   A   
 EA . . . . . . . .  B ADDR   00A8H.7 A   
 EBO. . . . . . . .  B ADDR   00A8H.5 A   
 EC . . . . . . . .  B ADDR   00E8H.2 A   
 ECCU . . . . . . .  B ADDR   00E8H.4 A   
-EDELAY . . . . . .  C ADDR   00ACH   A   
-EDLOOP . . . . . .  C ADDR   00ACH   A   
+EDELAY . . . . . .  C ADDR   00B2H   A   
+EDLOOP . . . . . .  C ADDR   00B2H   A   
 EI2C . . . . . . .  B ADDR   00E8H.0 A   
 EIEE . . . . . . .  B ADDR   00E8H.7 A   
 EKBI . . . . . . .  B ADDR   00E8H.1 A   
@@ -1523,11 +1571,12 @@ EX1. . . . . . . .  B ADDR   00A8H.2 A
 F0 . . . . . . . .  B ADDR   00D0H.5 A   
 F1 . . . . . . . .  B ADDR   00D0H.1 A   
 FE . . . . . . . .  B ADDR   0098H.7 A   
+HERE . . . . . . .  C ADDR   001DH   A   
 HLTEN. . . . . . .  B ADDR   00C8H.5 A   
 HLTRN. . . . . . .  B ADDR   00C8H.6 A   
-I2ADR. . . . . . .  D ADDR   00DBH   A   
-A51 MACRO ASSEMBLER  PROJECT1                                                             11/04/2016 21:34:35 PAGE    13
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/05/2016 17:55:35 PAGE    14
 
+I2ADR. . . . . . .  D ADDR   00DBH   A   
 I2CON. . . . . . .  D ADDR   00D8H   A   
 I2DAT. . . . . . .  D ADDR   00DAH   A   
 I2EN . . . . . . .  B ADDR   00D8H.6 A   
@@ -1563,20 +1612,20 @@ KB7. . . . . . . .  B ADDR   0080H.7 A
 KBCON. . . . . . .  D ADDR   0094H   A   
 KBMASK . . . . . .  D ADDR   0086H   A   
 KBPATN . . . . . .  D ADDR   0093H   A   
-L1 . . . . . . . .  C ADDR   0182H   A   
-L2 . . . . . . . .  C ADDR   0196H   A   
-L3 . . . . . . . .  C ADDR   01B1H   A   
-L4 . . . . . . . .  C ADDR   01DAH   A   
-LED. . . . . . . .  C ADDR   003CH   A   
-LIGHTS . . . . . .  C ADDR   0075H   A   
-LLOOP. . . . . . .  C ADDR   00B3H   A   
-LOLOOP . . . . . .  C ADDR   00CCH   A   
-LOST . . . . . . .  C ADDR   00CAH   A   
-MAIN . . . . . . .  C ADDR   001CH   A   
+L1 . . . . . . . .  C ADDR   0188H   A   
+L2 . . . . . . . .  C ADDR   019CH   A   
+L3 . . . . . . . .  C ADDR   01B7H   A   
+L4 . . . . . . . .  C ADDR   01E0H   A   
+LED. . . . . . . .  C ADDR   0042H   A   
+LIGHTS . . . . . .  C ADDR   007BH   A   
+LLOOP. . . . . . .  C ADDR   00B9H   A   
+LOLOOP . . . . . .  C ADDR   00D2H   A   
+LOST . . . . . . .  C ADDR   00D0H   A   
+MAIN . . . . . . .  C ADDR   0022H   A   
 MISO . . . . . . .  B ADDR   00A0H.3 A   
 MOSI . . . . . . .  B ADDR   00A0H.2 A   
-NEXTLEVEL. . . . .  C ADDR   00B1H   A   
-NO_DEC . . . . . .  C ADDR   002CH   A   
+NEXTLEVEL. . . . .  C ADDR   00B7H   A   
+NO_DEC . . . . . .  C ADDR   0032H   A   
 OCA. . . . . . . .  B ADDR   00A0H.6 A   
 OCB. . . . . . . .  B ADDR   0090H.6 A   
 OCC. . . . . . . .  B ADDR   0090H.7 A   
@@ -1593,9 +1642,9 @@ OV . . . . . . . .  B ADDR   00D0H.2 A
 P. . . . . . . . .  B ADDR   00D0H.0 A   
 P0 . . . . . . . .  D ADDR   0080H   A   
 P0M1 . . . . . . .  D ADDR   0084H   A   
-P0M2 . . . . . . .  D ADDR   0085H   A   
-A51 MACRO ASSEMBLER  PROJECT1                                                             11/04/2016 21:34:35 PAGE    14
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/05/2016 17:55:35 PAGE    15
 
+P0M2 . . . . . . .  D ADDR   0085H   A   
 P1 . . . . . . . .  D ADDR   0090H   A   
 P1M1 . . . . . . .  D ADDR   0091H   A   
 P1M2 . . . . . . .  D ADDR   0092H   A   
@@ -1625,12 +1674,12 @@ PT1. . . . . . . .  B ADDR   00B8H.3 A
 PWDRT. . . . . . .  B ADDR   00B8H.6 A   
 PX0. . . . . . . .  B ADDR   00B8H.0 A   
 PX1. . . . . . . .  B ADDR   00B8H.2 A   
-RAND8B . . . . . .  C ADDR   0065H   A   
+RAND8B . . . . . .  C ADDR   006BH   A   
 RANDREG. . . . . .  N NUMB   0020H   A   
 RB8. . . . . . . .  B ADDR   0098H.2 A   
 REN. . . . . . . .  B ADDR   0098H.4 A   
 RI . . . . . . . .  B ADDR   0098H.0 A   
-RNG. . . . . . . .  C ADDR   005EH   A   
+RNG. . . . . . . .  C ADDR   0064H   A   
 RS0. . . . . . . .  B ADDR   00D0H.3 A   
 RS1. . . . . . . .  B ADDR   00D0H.4 A   
 RST. . . . . . . .  B ADDR   0090H.5 A   
@@ -1639,14 +1688,14 @@ RTCCON . . . . . .  D ADDR   00D1H   A
 RTCH . . . . . . .  D ADDR   00D2H   A   
 RTCL . . . . . . .  D ADDR   00D3H   A   
 RXD. . . . . . . .  B ADDR   0090H.1 A   
-S1 . . . . . . . .  C ADDR   004EH   A   
+S1 . . . . . . . .  C ADDR   0054H   A   
 SADDR. . . . . . .  D ADDR   00A9H   A   
 SADEN. . . . . . .  D ADDR   00B9H   A   
 SBUF . . . . . . .  D ADDR   0099H   A   
 SCL. . . . . . . .  B ADDR   0090H.2 A   
 SCON . . . . . . .  D ADDR   0098H   A   
 SDA. . . . . . . .  B ADDR   0090H.3 A   
-SDELAY . . . . . .  C ADDR   0055H   A   
+SDELAY . . . . . .  C ADDR   005BH   A   
 SI . . . . . . . .  B ADDR   00D8H.3 A   
 SM0. . . . . . . .  B ADDR   0098H.7 A   
 SM1. . . . . . . .  B ADDR   0098H.6 A   
@@ -1661,9 +1710,9 @@ SSTAT. . . . . . .  D ADDR   00BAH   A
 STA. . . . . . . .  B ADDR   00D8H.5 A   
 STO. . . . . . . .  B ADDR   00D8H.4 A   
 T0 . . . . . . . .  B ADDR   0090H.2 A   
-T1 . . . . . . . .  B ADDR   0080H.7 A   
-A51 MACRO ASSEMBLER  PROJECT1                                                             11/04/2016 21:34:35 PAGE    15
+A51 MACRO ASSEMBLER  PROJECT1                                                             11/05/2016 17:55:35 PAGE    16
 
+T1 . . . . . . . .  B ADDR   0080H.7 A   
 TAMOD. . . . . . .  D ADDR   008FH   A   
 TB8. . . . . . . .  B ADDR   0098H.3 A   
 TCON . . . . . . .  D ADDR   0088H   A   
@@ -1693,13 +1742,13 @@ TR0. . . . . . . .  B ADDR   0088H.4 A
 TR1. . . . . . . .  B ADDR   0088H.6 A   
 TRIM . . . . . . .  D ADDR   0096H   A   
 TXD. . . . . . . .  B ADDR   0090H.0 A   
-WAIT1. . . . . . .  C ADDR   001FH   A   
-WAIT2. . . . . . .  C ADDR   002FH   A   
+WAIT1. . . . . . .  C ADDR   0025H   A   
+WAIT2. . . . . . .  C ADDR   0035H   A   
 WDCON. . . . . . .  D ADDR   00A7H   A   
 WDL. . . . . . . .  D ADDR   00C1H   A   
 WFEED1 . . . . . .  D ADDR   00C2H   A   
 WFEED2 . . . . . .  D ADDR   00C3H   A   
-WINNER . . . . . .  C ADDR   00DCH   A   
+WINNER . . . . . .  C ADDR   00E2H   A   
 XTAL1. . . . . . .  B ADDR   00B0H.1 A   
 XTAL2. . . . . . .  B ADDR   00B0H.0 A   
 
