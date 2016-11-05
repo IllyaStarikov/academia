@@ -1,7 +1,7 @@
 	#include<reg932.inc>
-	
+
 	RANDREG EQU 0X20
-		
+
 	CSEG AT 0
 
 	MOV R2, #0
@@ -13,7 +13,7 @@
     MOV P1M2, #00H
     MOV P0M1, #00H
     MOV P0M2, #00H
-	
+
 MAIN:
 	JB P2.0, NO_DEC
 
@@ -21,7 +21,7 @@ WAIT1:
 	JNB P2.0, WAIT1
 	DEC R2
 	CJNE R2, #0FFH, LED
-	ACALL BEEP 
+	ACALL BEEP
 	MOV R2, #15
 	SJMP LED
 
@@ -35,7 +35,7 @@ WAIT2:
 	ACALL BEEP
 	MOV R2, #0
 	SJMP LED
-	
+
 LED:
 	MOV A, R2
 	CPL A
@@ -48,20 +48,20 @@ LED:
 	RRC A
 	MOV P2.4, C
 	SJMP MAIN
-	
-	
+
+
 ; this mostly came from trial and error
 ; and seeing what sounded good for a beep
 ; reference canvas tutorial for this
-BEEP: 
+BEEP:
 	MOV R0, #100
 S1:	CPL P1.7
 	ACALL SDELAY
 	DJNZ R0, S1
-	
+
 	RET
-	
-SDELAY: 
+
+SDELAY:
 	MOV R1, #100
 D1: MOV R2, #10
 D2: DJNZ R2, D2
@@ -87,66 +87,66 @@ RAND8B:	ANL	A, #10111000B
 	MOV A, B
 
 	RET
-	
+
 LIGHTS:
 	CPL A
 	CPL C
-	
+
 	RLC A
 	MOV P2.4, C
-	
+
 	RLC A
 	MOV P0.5, C
-	
+
 	RLC A
 	MOV P2.7, C
-	
+
 	RLC A
 	MOV P0.6, C
-	
+
 	RLC A
 	MOV P1.6, C
-	
+
 	RLC A
 	MOV P0.4, C
-	
+
 	RLC A
 	MOV P2.5, C
-	
+
 	RLC A
 	MOV P0.7, C
-	
+
 	RLC A
 	MOV P2.6, C
-	
+
 	MOV A, #00D
 	MOV B, #00D
 	ACALL EDELAY
-	
+
 	RET
 
 DELAY:
 	MOV TMOD, #01D
 	MOV TL0, A
 	MOV TH0, B
-	
+
 	SETB TR0
-	
+
 DLLOOP:
 	JNB TF0, DLLOOP
-	
+
 	CLR TR0
 	CLR TF0
-	
+
 	RET
-	
+
 EDELAY:
-	
+
 EDLOOP:
 	ACALL DELAY
 	DJNZ R7, EDLOOP
 	RET
-	
+
 NEXTLEVEL:
 	MOV R6, #2D
 LLOOP:
@@ -154,21 +154,21 @@ LLOOP:
 	SETB C
 	MOV R7, #20D
 	ACALL LIGHTS
-	
+
 	MOV A, #10101010B
 	CPL A
 	CLR C
 	MOV R7, #20D
 	ACALL LIGHTS
-	
+
 	DJNZ R6, LLOOP
-	
+
 	MOV A, #0D
 	CLR C
 	ACALL LIGHTS
-	
+
 	RET
-	
+
 LOST:
 	MOV R6, #2D
 
@@ -177,55 +177,55 @@ LOLOOP:
 	SETB C
 	MOV R7, #20D
 	ACALL LIGHTS
-	
-	CLR A 
+
+	CLR A
 	CLR C
 	MOV R7, #20D
 	ACALL LIGHTS
 
 	DJNZ R6, LOLOOP
-	
+
 	RET
-	
+
 WINNER:
 	/* LIGHT SPIRAL PART I	*/
 	MOV R6, #3D
-	
+
 	MOV A, #00000000B
     CLR C
 	MOV R7, 6
 	ACALL LIGHTS
-	
+
     MOV A, #10000000B
     CLR C
 	MOV R7, 6
 	ACALL LIGHTS
-	
+
     MOV A, #11000000B
     CLR C
 	MOV R7, 6
 	ACALL LIGHTS
-	
+
     MOV A, #11100000B
     CLR C
 	MOV R7, 6
 	ACALL LIGHTS
-	
+
     MOV A, #11100100B
     CLR C
 	MOV R7, 6
 	ACALL LIGHTS
-	
+
     MOV A, #11100100B
     SETB C
 	MOV R7, 6
 	ACALL LIGHTS
-	
+
     MOV A, #11100101B
     SETB C
 	MOV R7, 6
 	ACALL LIGHTS
-	
+
     MOV A, #11100111B
     SETB C
 	MOV R7, 6
@@ -235,12 +235,12 @@ WINNER:
     SETB C
 	MOV R7, 6
 	ACALL LIGHTS
-	
+
     MOV A, #11111111B
     SETB C
 	MOV R7, 6
 	ACALL LIGHTS
-	
+
 	/* LIGHT SPIRAL PART II	*/
 
 	MOV A, #00000000B
@@ -312,7 +312,7 @@ WINNER:
 	CPL A
 	CPL C
 	ACALL LIGHTS
-	
+
 	/* FULL LIGHT SPIRAL */
 	MOV R6, #8D
 	MOV R5, #5D
@@ -321,15 +321,15 @@ L1:
 	SETB C
 	MOV R7, 6
 	ACALL LIGHTS
-	
+
 	MOV A, #01011101B
 	CLR C
 	MOV R7, 6
 	ACALL LIGHTS
-	
+
 	DJNZ R5, L1
-	
-	/* Blowing Os */
+
+	/* Os */
 	MOV R6, #8D
 	MOV R5, #7D
 L2:
@@ -337,129 +337,129 @@ L2:
 	SETB C
 	MOV R7, 6
 	ACALL LIGHTS
-	
+
 	MOV A, #00001000B
 	CLR C
 	MOV R7, 6
 	ACALL LIGHTS
 	DJNZ R5, L2
-	
+
 	/* transitions well into..*/
 	MOV A, #11110111B
 	SETB C
 	MOV R7, 6
 	ACALL LIGHTS
-	
+
 	/* The windmill */
 	MOV R6, #6D
 	MOV R5, #7D
-	
+
 L3:
 	MOV A, #10001000B
 	SETB C
 	MOV R7, 6
 	ACALL LIGHTS
-	
+
 	MOV A, #01001001B
 	CLR C
 	MOV R7, 6
 	ACALL LIGHTS
-	
+
 	MOV A, #00101010B
 	CLR C
 	MOV R7, 6
 	ACALL LIGHTS
-	
+
 	MOV A, #00011100B
 	CLR C
 	MOV R7, 6
 	ACALL LIGHTS
-	
+
 	DJNZ R5, L3
-	
+
 	/* again transition */
 	MOV A, #10001000B
 	SETB C
 	MOV R7, 6
 	ACALL LIGHTS
-	
+
 		/* C'mon Kage, bring the thundaaa */
 	MOV R6, #6D
 	MOV R5, #3D
-	
+
 L4:
 	MOV A, #10000000B
 	CLR C
 	MOV R7, 6
 	ACALL LIGHTS
-	
-	
+
+
 	MOV A, #11010000B
 	CLR C
 	MOV R7, 6
 	ACALL LIGHTS
-	
-	
+
+
 	MOV A, #11111010B
 	CLR C
 	MOV R7, 6
 	ACALL LIGHTS
-	
-	
+
+
 	MOV A, #11111111B
 	CLR C
 	MOV R7, 6
 	ACALL LIGHTS
-	
-	
+
+
 	MOV A, #11111111B
 	SETB C
 	MOV R7, 6
 	ACALL LIGHTS
-	
-	; role reversal 
-	
+
+	; role reversal
+
 	MOV A, #10000000B
 	CLR C
 	CPL A
 	CPL C
 	MOV R7, 6
 	ACALL LIGHTS
-	
-	
+
+
 	MOV A, #11010000B
 	CLR C
 	CPL A
 	CPL C
 	MOV R7, 6
 	ACALL LIGHTS
-	
-	
+
+
 	MOV A, #11111010B
 	CLR C
 	CPL A
 	CPL C
 	MOV R7, 6
 	ACALL LIGHTS
-	
-	
+
+
 	MOV A, #11111111B
 	CLR C
 	CPL A
 	CPL C
 	MOV R7, 6
 	ACALL LIGHTS
-	
-	
+
+
 	MOV A, #11111111B
 	SETB C
 	CPL A
 	CPL C
 	MOV R7, 6
 	ACALL LIGHTS
-	
+
 	DJNZ R5, L4
-	
-	
+
+
 	RET
 	END

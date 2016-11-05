@@ -1,14 +1,22 @@
 \RequirePackage[l2tabu, orthodox]{nag}
 \documentclass[12pt]{article}
 
-\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,hyperref}
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,hyperref,tikz,wrapfig,xcolor}
+\usepackage[margin=10pt, font=small, labelfont=bf, labelsep=endash]{caption}
+
 \setcounter{secnumdepth}{2}
 
 \title{Project \#2}
 \date{Due Date: November 8\textsuperscript{th}, 2016}
 \author{Michael Schoen, Abdirahman Osman, Illya Starikov}
 
+\newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{#1}}}
 \newcommand{\br}{\\\multicolumn{2}{c}{} \\ }
+
+\definecolor{amber}{rgb}{1.0, 0.75, 0.0}
+\makeatletter
+\renewcommand{\boxed}[1]{\text{\fboxsep=.2em\fbox{\m@th$\displaystyle#1$}}}
+\makeatother
 
 \begin{document}
 \maketitle
@@ -84,6 +92,81 @@ SKIP1:          MOV A,  #7D
 
 \subsubsection{Successful Attempt}
 For our successful attempt, we ported a random number generating from an open source code base\footnote{\url{https://www.pjrc.com/tech/8051/}}. It similar to the linear congruential generator in the sense that it linearly produces a psuedo-random number; however, it is a different formula (one that can't be eloquently described in an equation).
+
+\subsection{Light Show}
+When programming the lights, we notice there to be \num{9} lights; which just so happens to be the exact size of register $A$ and the carry bit $C$ in the \texttt{sfr}. So we decided to map every bit in $A$ and $C$ to a particular light. For simplicity, we used a $1_{2}$ to represent an `on' state and a $0_{2}$ for the `off' state.
+
+Our mapping is as follows: we start the MSB of $A$, which represents the top-left light. The proceeding two bits make up the top-most row of the lighting board. The fourth bit represents the middle row, \textit{first} light. We continue with this pattern until we come to the last light. The last light is represented by the carry bit $C$. Fig. \ref{lights} summarizes this lighting schematic.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tikzpicture}
+        \node[draw,circle,minimum size=1cm,fill=red,inner sep=0pt] (1) at (0,4) {$0$};
+        \node[draw,circle,minimum size=1cm,fill=yellow,inner sep=0pt] (2) at (2,4) {$1$};
+        \node[draw,circle,minimum size=1cm,fill=green,inner sep=0pt] (3) at (4,4) {$2$};
+
+        \node[draw,circle,minimum size=1cm,fill=amber,inner sep=0pt] (4) at (0,2) {$3$};
+        \node[draw,circle,minimum size=1cm,fill=blue,inner sep=0pt] (5) at (2,2) {$4$};
+        \node[draw,circle,minimum size=1cm,fill=red,inner sep=0pt] (6) at (4,2) {$5$};
+
+        \node[draw,circle,minimum size=1cm,fill=yellow,inner sep=0pt] (7) at (0,0) {$6$};
+        \node[draw,circle,minimum size=1cm,fill=green,inner sep=0pt] (8) at (2,0) {$7$};
+        \node[draw,circle,minimum size=1cm,fill=amber,inner sep=0pt] (9) at (4,0) {$C$};
+
+         \draw[->, thick] (1) -- (2);
+         \draw[->, thick] (2) -- (3);
+         \draw[->, thick] (3) -- (4);
+
+         \draw[->, thick] (4) -- (5);
+         \draw[->, thick] (5) -- (6);
+
+         \draw[->, thick] (6) -- (7);
+         \draw[->, thick] (7) -- (8);
+         \draw[->, thick] (8) -- (9);
+    \end{tikzpicture}
+    \caption{The lighting schematic for ``lights'' subroutine.}
+    \label{lights}
+\end{figure}
+
+As an example, $\boxed{1}
+\boxed{1}
+\boxed{1}
+\boxed{0}
+\boxed{0}
+\boxed{0}
+\boxed{1}
+\boxed{1}
+\ \boxed{1}$ would enable only the top and bottom lights, leaving the middle row blank. $\boxed{1}
+\boxed{0}
+\boxed{1}
+\boxed{1}
+\boxed{0}
+\boxed{1}
+\boxed{1}
+\boxed{0}
+\ \boxed{1}$ enables the left and right columns. $\boxed{1}
+\boxed{0}
+\boxed{1}
+\boxed{0}
+\boxed{1}
+\boxed{0}
+\boxed{1}
+\boxed{0}
+\ \boxed{1}$ makes an X.
+
+
+As mentioned, to represented an `on' state, we used a $1_{2}$; however, the lights are active low. So, the first thing we do is \shellcmd{CPL A} and \shellcmd{CPL C} to ensure we don't have opposite affect. From there, we rotate through $C$ to enable individual light. Finally, we \shellcmd{CPL} $A$ and $C$ again to bring the data back to its original state.
+
+The individual lighting effects were done through trial and error of what looked aesthetically pleasing. There are three light patterns, one for losing, advancing to the next level, and the winning light sequence. The winning light sequence has five parts, eloquently named:
+
+\begin{enumerate}
+    \item Light Spiral Part I
+    \item Light Spiral Part II
+    \item Full Light Spiral
+    \item Os
+    \item Bring the Thundaaa
+
+\end{enumerate}
 
 \subsection{Music}
 We know the frequency of the Philips P89LPC932A1 to be \SI{7.373}{\mega\hertz}, with \SI{2}{cycles} per machine cycle. Therefore,
