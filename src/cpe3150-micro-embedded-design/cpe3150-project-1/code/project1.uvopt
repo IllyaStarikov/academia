@@ -172,8 +172,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\project1.asm</PathWithFileName>
-      <FilenameWithoutPath>project1.asm</FilenameWithoutPath>
+      <PathWithFileName>.\project1.a51</PathWithFileName>
+      <FilenameWithoutPath>project1.a51</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
