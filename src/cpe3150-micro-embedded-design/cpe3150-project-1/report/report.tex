@@ -64,7 +64,7 @@ Because we want our game to be different every round, we have to have some form 
 Both implementations require a seed value (and to have different results, we need a different seed value) --- we ``cheat'' to get this. During our input, we not only check to see if the user initiated a game, but we also increment the register the seed is stored in. This way, there is only a $\nicefrac{1}{255}$ chance the user will get the same game\footnote{Although this is a significant value (\num{.39}\%), it serves well for demo purposes.}.
 
 \subsubsection{Failed Attempt}
-The basic summary is as follows: beginning with a seed value (named $X_n$), a new linear, psuedo-random number can be calculated via:
+The basic summary is as follows: beginning with a seed value (named $X_n$), a new linear, pseudo-random number can be calculated via:
 
 \begin{equation}
     X_{n + 1} = (a X_n + c) \mod m
@@ -121,7 +121,7 @@ SKIP1:          MOV A,  #7D
 \end{verbatim}
 
 \subsubsection{Successful Attempt}
-For our successful attempt, we ported a random number generating from an open source code base\footnote{\url{https://www.pjrc.com/tech/8051/}}. It similar to the linear congruential generator in the sense that it linearly produces a psuedo-random number; however, it is a different formula (one that can't be eloquently described in an equation). Below is a graph that shows the distribution of numbers up to \num{100} iterations.
+For our successful attempt, we ported a random number generating from an open source code base\footnote{\url{https://www.pjrc.com/tech/8051/}}. It similar to the linear congruential generator in the sense that it linearly produces a pseudo-random number; however, it is a different formula (one that can't be eloquently described in an equation). Below is a graph that shows the distribution of numbers up to \num{100} iterations.
 
 \begin{center}
     \graph{Random Numbers Generated (Seed: $7$)}{Iteration}{Number Produced}{rng.csv}{Trendline}
@@ -204,6 +204,9 @@ The individual lighting effects were done through trial and error of what looked
 \end{enumerate}
 
 \subsection{Music}
+
+Our song of choice is \textit{Ode to joy} by Ludwig van Beethoven because of its satisfying and simple melody. 
+
 We know the frequency of the Philips P89LPC932A1 to be \SI{7.373}{\mega\hertz}, with \SI{2}{cycles} per machine cycle. Therefore,
 
 \begin{equation}
@@ -216,36 +219,38 @@ We know the frequency of the Philips P89LPC932A1 to be \SI{7.373}{\mega\hertz}, 
     \begin{tabular}{c|l}
                     & $f = \SI{659.255}{\hertz} \implies T$ = \SI{1516}{\micro\second} \\
     \textbf{E5}     & $\SI{1516}{\micro\second} \div \SI{.27126}{\nicefrac{\micro\second}{mc}} = \SI{5589}{mc}$  \\
-                    & $\SI{5589}{mc} \div 4 = \SI{1398}{mc}$ \\
-                    & $\SI{1398}{mc} \implies \num{699} \text{ iterations (with \texttt{DJNZ})}$ \br
+                    & $\SI{5589}{mc} \div 2 = \SI{2795}{mc}$ \\
+                    & $\SI{2795}{mc} \implies \num{1398} \text{ iterations (with \texttt{DJNZ})}$ \br
 
                     & $f = \SI{698.456}{\hertz} \implies T$ = \SI{1431}{\micro\second} \\
     \textbf{F5}     & $\SI{1431}{\micro\second} \div \SI{.27126}{\nicefrac{\micro\second}{mc}} = \SI{5275}{mc}$  \\
-                    & $\SI{5589}{mc} \div 4 = \SI{1318}{mc}$ \\
-                    & $\SI{1318}{mc} \implies \num{569} \text{ iterations (with \texttt{DJNZ})}$ \br
+                    & $\SI{5275}{mc} \div 2 = \SI{2637}{mc}$ \\
+                    & $\SI{2637}{mc} \implies \num{1318} \text{ iterations (with \texttt{DJNZ})}$ \br
 
                     & $f = \SI{783.991}{\hertz} \implies T$ = \SI{1275.5}{\micro\second} \\
     \textbf{G5}     & $\SI{1275.5}{\micro\second} \div \SI{.27126}{\nicefrac{\micro\second}{mc}} = \SI{4702}{mc}$  \\
-                    & $\SI{4702}{mc} \div 4 = \SI{1176}{mc}$ \\
-                    & $\SI{1176}{mc} \implies \num{588} \text{ iterations (with \texttt{DJNZ})}$ \br
+                    & $\SI{4702}{mc} \div 2 = \SI{2351}{mc}$ \\
+                    & $\SI{2351}{mc} \implies \num{1176} \text{ iterations (with \texttt{DJNZ})}$ \br
 
                     & $f = \SI{587.330}{\hertz} \implies T$ = \SI{1702.6}{\micro\second} \\
     \textbf{D5}     & $\SI{1702.6}{\micro\second} \div \SI{.27126}{\nicefrac{\micro\second}{mc}} = \SI{6277}{mc}$  \\
-                    & $\SI{7045}{mc} \div 4 = \SI{1570}{mc}$ \\
-                    & $\SI{1570}{mc} \implies \num{785} \text{ iterations (with \texttt{DJNZ})}$ \br
+                    & $\SI{7045}{mc} \div 2 = \SI{3522}{mc}$ \\
+                    & $\SI{3522}{mc} \implies \num{1570} \text{ iterations (with \texttt{DJNZ})}$ \br
 
                     & $f = \SI{523.251}{\hertz} \implies T$ = \SI{1911.1}{\micro\second} \\
     \textbf{C5}     & $\SI{1911.1}{\micro\second} \div \SI{.27126}{\nicefrac{\micro\second}{mc}} = \SI{7045}{mc}$  \\
-                    & $\SI{7045}{mc} \div 4 = \SI{1760}{mc}$ \\
-                    & $\SI{1760}{mc} \implies \num{880} \text{ iterations (with \texttt{DJNZ})}$ \br
+                    & $\SI{7045}{mc} \div 2 = \SI{3522}{mc}$ \\
+                    & $\SI{3522}{mc} \implies \num{1760} \text{ iterations (with \texttt{DJNZ})}$ \br
 
                     & $f = \SI{554.365}{\hertz} \implies T$ = \SI{1803.8}{\micro\second} \\
     \textbf{Flat D5}& $\SI{1803.8}{\micro\second} \div \SI{.27126}{\nicefrac{\micro\second}{mc}} = \SI{6650}{mc}$  \\
-                    & $\SI{6650}{mc} \div 4 = \SI{1662}{mc}$ \\
-                    & $\SI{1662}{mc} \implies \num{831} \text{ iterations (with \texttt{DJNZ})}$ \br
-
+                    & $\SI{6650}{mc} \div 2 = \SI{3325}{mc}$ \\
+                    & $\SI{3325}{mc} \implies \num{1662} \text{ iterations (with \texttt{DJNZ})}$ \br
     \end{tabular}
+
 \end{center}
+
+From here we needed to split the number of iterations into to separate values as to fit into an 8-bit register. To accomplish this we took each iteration value and divided it by 64  allowing us to need only code one of the factors of each note into ROM.
 
 \section{Future Work}
 \section{Work Effort}
@@ -256,7 +261,7 @@ We know the frequency of the Philips P89LPC932A1 to be \SI{7.373}{\mega\hertz}, 
         \item Programmed game logic.
     \end{itemize}
 
-    \item Osman Abdirahman
+    \item Abdirahman Osman
     \begin{itemize}
         \item Programmed initial beep.
         \item Programmed song implementation.
@@ -264,7 +269,7 @@ We know the frequency of the Philips P89LPC932A1 to be \SI{7.373}{\mega\hertz}, 
 
     \item Illya Starikov
     \begin{itemize}
-        \item Programmed random number renerator.
+        \item Programmed random number Generator.
         \item Programmed light sequence.
     \end{itemize}
 \end{itemize}
