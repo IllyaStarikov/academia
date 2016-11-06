@@ -1,51 +1,53 @@
 #include <reg932.inc>
-	CSEG AT 200H // find a safe place to pace db values
-NOTES: db 64,21, 64,21, 64,20, 64,18, 64,18, 64,20, 64,21, 64,24, 64,27, 64,27, 64,24, 64,21, 64,21, 64,24, 64,24
+	CSEG AT 200H // FIND A SAFE PLACE TO PACE DB VALUES
+NOTES: DB 64,21, 64,21, 64,20, 64,18, 64,18, 64,20, 64,21, 64,24, 64,27, 64,27, 64,24, 64,21, 64,21, 64,24, 64,24
 	
-	CSEG AT 0
-	setb PSW.3
-	mov p2m1,#0  			
-start:   			
-mov c,p2.0  		
-SONG: mov DPTR, #200H
-mov R0,#0FH
-read_NOTES: clr A
-	movc A, @A+DPTR
-	mov R1, A
-	clr A
+    LCALL START_MUSIC
+    LCALL DONE
+
+START_MUSIC:   			
+SETB PSW.3
+SETB PSW.4
+MOV C,P2.0  		
+SONG: MOV DPTR, #200H
+MOV R0,#0FH
+READ_NOTES: CLR A
+	MOVC A, @A+DPTR
+	MOV R1, A
+	CLR A
 	INC DPTR
-	movc A, @A+DPTR
-	mov R6, A
-	lcall play_NOTE
-	lcall pause
-	inc DPTR
-	DJNZ R0, read_NOTES
-ret
+	MOVC A, @A+DPTR
+	MOV R6, A
+	LCALL PLAY_NOTE
+	LCALL PAUSE
+	INC DPTR
+	DJNZ R0, READ_NOTES
+    CLR PSW.3 //SWITCH TO REGISTER BANK 0
+    CLR PSW.4
+RET
 
-play_NOTE: 
-	mov 0c, R6
-	mov 0b, R1
-	mov R3, #20
-	time_loop1:
-	mov R7, #10
-	time_loop2:
-	mov R1, 0b
-	freq_loop1:
-	mov R6, 0c
-	freq_loop0:nop
-	djnz R6, freq_loop0
-	djnz R1, freq_loop1
-	cpl P1.7
-	djnz R7, time_loop2
-	djnz R3, time_loop1
-ret
+PLAY_NOTE: 
+	MOV 13, R6
+	MOV 14, R1
+	MOV R3, #20
+	TIME_LOOP1:
+	MOV R7, #10
+	TIME_LOOP2:
+	MOV R1, 14
+	FREQ_LOOP1:
+	MOV R6, 13
+	FREQ_LOOP0:NOP
+	DJNZ R6, FREQ_LOOP0
+	DJNZ R1, FREQ_LOOP1
+	CPL P1.7
+	DJNZ R7, TIME_LOOP2
+	DJNZ R3, TIME_LOOP1
+RET
 
-pause:
-  mov R3, #30
-  time1: mov R7, #20
-  time2: nop
-  djnz R7, time2
-  djnz R3, time1
-ret
-DONE:
-END
+PAUSE:
+  MOV R3, #30
+  TIME1: MOV R7, #20
+  TIME2: NOP
+  DJNZ R7, TIME2
+  DJNZ R3, TIME1
+RET
