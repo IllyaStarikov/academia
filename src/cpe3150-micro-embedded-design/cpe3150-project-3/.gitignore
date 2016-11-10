@@ -1,4 +1,7 @@
-# Object files
+#Mac Ignores
+.DS_Store
+
+#Object files
 *.o
 *.ko
 *.obj
