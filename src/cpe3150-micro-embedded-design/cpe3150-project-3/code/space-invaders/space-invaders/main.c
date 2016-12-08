@@ -91,7 +91,7 @@ int main(int argc, const char * argv[]) {
         }
         
         // For the state of the shot, we only want to update ~every someodd iterations
-        if (i % 40 == 0) {
+        if (i % 25 == 0) {
             stateOfShot = true;
         } else {
             stateOfShot = false;

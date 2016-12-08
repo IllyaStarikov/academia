@@ -286,14 +286,39 @@ void createGameboard(Game *game, char*** aliensAndShields, const bool stateOne, 
 
 void draw(const Game *game, char** header, char*** gameboard, char*** footer) {
     unsigned char i;
-    clear();
+    static const unsigned char heightOfAverageAlien = sizeof(smallInvaderOne)/sizeof(smallInvaderOne[0]); // static because we assume height to never change
     
+    clear();
+    start_color();
+    
+    init_pair(1, COLOR_WHITE, COLOR_BLACK);
+    init_pair(2, COLOR_GREEN, COLOR_BLACK);
+    init_pair(3, COLOR_MAGENTA, COLOR_BLACK);
+    init_pair(4, COLOR_YELLOW, COLOR_BLACK);
+    init_pair(5, COLOR_BLUE, COLOR_BLACK);
+    
+    attron(COLOR_PAIR(1));
     printw("%s\n", *header);
     
+    attron(COLOR_PAIR(2));
     // This is really ugly.. but basically we start with the game height and then subt
-    for (i = 0; i < game -> height - 1 - sizeof(gunner)/sizeof(*gunner); i++) {
+    for (i = 0; i < game -> height - 1 - sizeof(gunner)/sizeof(*gunner) - 3; i++) {
+        if ((i/heightOfAverageAlien + 2) % 3  == 2) {
+            attron(COLOR_PAIR(3));
+        } else if ((i/heightOfAverageAlien + 2) % 3 == 0) {
+            attron(COLOR_PAIR(4));
+        } else {
+            attron(COLOR_PAIR(5));
+        }
         printw("%s\n", (*gameboard)[i]);
     }
+    
+    attron((COLOR_PAIR(2)));
+    for (i = game -> height - 1 - sizeof(gunner)/sizeof(*gunner) - 3; i < game -> height - 1 - sizeof(gunner)/sizeof(*gunner); i++) {
+        
+        printw("%s\n", (*gameboard)[i]);
+    }
+
     
     // no idea why this doesn't return 2, but it doesn't
     // so +1
