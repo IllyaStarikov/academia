@@ -1,5 +1,5 @@
 # Project III — CpE 3150
-This is the third and final project for Computer Engineering 3150, Introduction to Introduction to Microcontrollers and Embedded Systems at Missouri University of Science and Technology. The formal description can be found under *assets/CpE 3150 - Project 3.pdf*. Although this can serve as a reference, because of the teacher’s transfer and hardware being replaced, this code verbatim cannot be used.
+This is the third and final project for Computer Engineering 3150, *Introduction to Microcontrollers and Embedded Systems* at Missouri University of Science and Technology. The formal description can be found under *assets/CpE 3150 - Project 3.pdf*. Although this can serve as a reference, because of the teacher’s transfer and hardware being replaced, this code verbatim cannot be used.
 
 The hardware required to run the code is an [8051 microcontroller](https://en.wikipedia.org/wiki/Intel_MCS-51). The only required software is a GCC compiler; however, to alter code related to the microcontroller, [Kiel](https://www.keil.com) and [Flash Magic](http://www.flashmagictool.com) is required. 
 
@@ -15,7 +15,7 @@ The original intention for Space Invaders was to serially communicate the game l
 
 There are *many* known issues with the game — namely, the aliens don’t shot nor move. We did not have enough time to fix these issues. 
 
-## Penrose and Music
+### Penrose and Music
 The Penrose and music portion of the code prints an elegant menu for selecting different actions that can be performed on microcontroller. The actions are as follows: 
 
 - A musical keyboard that plays different notes that correspond to different buttons.
