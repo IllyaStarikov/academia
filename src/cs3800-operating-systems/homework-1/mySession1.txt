@@ -1,0 +1,116 @@
+Script started on Thu 02 Feb 2017 04:07:29 PM CST
+
+# -----------------------#
+#        Main Menu       #
+# -----------------------#
+
+1. Ancestory Tree
+2. Determine Online Users
+3. Print User Processes
+4. Quit
+
+Option: 1
+
+# -----------------------#
+#     Ancestory Tree     #
+# -----------------------#
+
+	homework-1.s+ 
+		|
+	bash(14094) 
+		|
+	script(14093) 
+		|
+	homework-1.sh(14092) 
+		|
+	bash(9537) 
+		|
+	sshd(9536) 
+		|
+	sshd(9458) 
+		|
+	sshd(10022) 
+		|
+	systemd(1)
+
+Press Space To Continue...
+
+
+# -----------------------#
+#        Main Menu       #
+# -----------------------#
+
+1. Ancestory Tree
+2. Determine Online Users
+3. Print User Processes
+4. Quit
+
+Option: 2
+
+# -----------------------#
+# Determine Users Online #
+# -----------------------#
+
+bmhgxb isgx2 sdcdm3 
+
+Press Space To Continue...
+
+
+# -----------------------#
+#        Main Menu       #
+# -----------------------#
+
+1. Ancestory Tree
+2. Determine Online Users
+3. Print User Processes
+4. Quit
+
+Option: 3
+
+# -----------------------#
+#  Print User Processes  #
+# -----------------------#
+
+1. bmhgxb
+2. isgx2
+3. sdcdm3
+
+Option: 2
+root      9458  0.0  0.2 182304 11020 ?        SLs  14:46   0:00 sshd: isgx2 [priv]
+isgx2     9536  0.0  0.1 182304  4656 ?        S    14:46   0:00 sshd: isgx2@pts/2
+isgx2     9537  0.0  0.1  31812  5816 pts/2    Ss   14:46   0:00 -bash
+isgx2    14092  0.0  0.0  14940  2860 pts/2    S+   15:27   0:00 /bin/bash ./homework-1.sh
+isgx2    14093  0.0  0.0  22328  2308 pts/2    S+   15:27   0:00 script mySession1.txt
+isgx2    14094  0.0  0.1  31624  5444 pts/1    Ss   15:27   0:00 bash -i
+isgx2    14112  0.0  0.0  14940  2832 pts/1    S+   15:27   0:00 /bin/bash ./homework-1.sh
+isgx2    14113  0.0  0.0  22328  2360 pts/1    S+   15:27   0:00 script mySession1.txt
+isgx2    14114  0.0  0.1  31724  5820 pts/4    Ss   15:27   0:00 bash -i
+isgx2    21015  0.0  0.0  22328  2372 pts/4    S+   16:07   0:00 script mySession1.txt
+isgx2    21016  0.3  0.1  31624  5588 pts/6    Ss   16:07   0:00 bash -i
+isgx2    21041  0.0  0.0  14956  2936 pts/6    S+   16:07   0:00 /bin/bash ./homework-1.sh
+isgx2    21061  0.0  0.0  41776  3256 pts/6    R+   16:07   0:00 ps aux
+isgx2    21062  0.0  0.0  16572  2040 pts/6    S+   16:07   0:00 grep isgx2
+isgx2    31007  0.0  0.2  48736 10148 ?        Ss   09:50   0:16 /usr/bin/perl /usr/bin/dfshack /mnt/dfs/isgx2/Users/isgx2 /nethome/users/isgx2 -o nonempty,dev,suid
+isgx2    31018  0.0  0.1  49524  4900 ?        Ss   09:50   0:00 /lib/systemd/systemd --user
+isgx2    31023  0.0  0.0 237700  2432 ?        S    09:50   0:00 (sd-pam)
+
+Press Space To Continue...
+
+
+# -----------------------#
+#        Main Menu       #
+# -----------------------#
+
+1. Ancestory Tree
+2. Determine Online Users
+3. Print User Processes
+4. Quit
+
+Option: 4
+
+Terminating..
+
+]0;isgx2@rc17xcs213: ~/SDRIVEisgx2@rc17xcs213:~/SDRIVE$ exit
+exit
+
+Script done on Thu 02 Feb 2017 04:07:59 PM CST
