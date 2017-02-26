@@ -1,0 +1,89 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{scrartcl}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,xcolor,textcomp}
+
+\newcommand{\req}{\textcolor{red}{*}}
+\newcommand{\reqalt}{\textcolor{blue}{*}}
+
+\title{Protocol Document}
+\subtitle{Introduction to Software Engineering}
+\author{Server Team \#1\thanks{Ian Howell, Hunter Mathews, Illya Starikov, William Thurman, Zachary Wileman}}
+\date{Monday, February 27\textsuperscript{th}, 2017}
+
+\begin{document}
+\maketitle
+
+In essence, our server will act as a IRC-esque chatroom. Because we are starting with the Minimal Viable Product (MVP), it will not particularly have all the features of an IRC server; also, because we have to provide a JSON-based API, that alters the design drastically. This document will provide a sufficient outline on the authentication process, the basic objects (user, channel, message), and other miscellanies. Required fields are marked by a red asterisk (\req), and possibly required items are marked blue a blue asterisk (\reqalt).
+
+
+\section{Authentication}
+At the time of the authentication (i.e. the login process) a few item will have to be provided.
+
+\subsection{Input}
+\begin{description}
+    \item[User\req] The user logging in. Refer to Section \ref{sec:user} for details and input. \textbf{String(s)/Boolean.}
+    \item[Channel] A list of channel that the user wishes to join. At the time of this writing, channels are statically joined, meaning only at the time of authentication can you join channels. If no channels provided, it is advised for the client to play elevator music. Refer to Section \ref{sec:channel} for details and input. \textbf{Array.}
+\end{description}
+
+\subsection{Output}
+\begin{description}
+    \item[Session Key] Will be used in future development. \textbf{Array.}
+    \item[Username] Will be used to verify if submitted username was allowed. \textbf{String.}
+    \item[Channel List Success] Will return an a array of objects to specify the success of joining the channels. \textbf{Array of Objects \texttt{[\{Name, Success Status, [Users, $\cdots$] \}, $\cdots$]}.}
+\end{description}
+
+
+% user:
+% {
+%   'name',
+%   'password',
+%   'is_anon',
+%   'id',
+% }
+\section{User}\label{sec:user}
+The user object will help identify the particular user and session. Because the respective client teams are anarchists, we have the option to specify anonymity. If the anonymity option is selected, a randomized ID will be returned.
+
+\begin{description}
+    \item[Name] The name of the user. \textbf{String.}
+    \item[Password\reqalt] The password of the user. Can have any characters. \textbf{String.}
+    \item[Anonymous\req] An option to allow anonymity when communicating. A randomized username will be returned, and IP will be added to government watch list. \textbf{Boolean.}
+    \item[Username\reqalt] A unique identifier to represent the user. If submitted, and not unique to channel, a randomized one will be returned. Can only consist of a mixture of numbers $[1 \cdots 9]$, letters $([a \cdots z] | [A \cdots Z])$ or underscores ($\_$). \textbf{String.}
+\end{description}
+
+
+% channel:
+% {
+%   'name',
+%   'has_key',
+%   'key',
+%   'users (list)',
+% }
+\section{Channel}\label{sec:channel}
+The channels is the actual location of the chat room. All messages posted by the user(s) will appear here. A channel can act as a direct message mechanism as well, by simply having two users.
+
+\begin{description}
+    \item[Name] The name of the channel. \textbf{String.}
+    \item[Password] If there a password, specify it. If there is no password, any submissions (including \textsc{Sql} injections) will be accepted.
+\end{description}
+
+
+% message:
+% {
+%   'timestamp',
+%   'sender',
+%   'msg',
+%   'channel',
+% }
+\section{Message}
+A message is a simple object with what you'd expect a message to have. Simple message object will be sent and received (with all the contents below).
+
+\begin{description}
+    \item[Timestamp] The time \textit{the client} sent this message. A JavaScript format time object should be sent. \textbf{String.}
+    \item[Sender] The \textit{username} of the sender. \textbf{String.}
+    \item[Message] Actual message contents. No format characters will be accepted (i.e. \texttt{\textbackslash t}, \texttt{\textbackslash n}, or \texttt{\textbackslash r}). \textbf{String.}
+    \item[Channel] What channel the message was posted on. \textbf{String.}
+\end{description}
+
+
+\end{document}
