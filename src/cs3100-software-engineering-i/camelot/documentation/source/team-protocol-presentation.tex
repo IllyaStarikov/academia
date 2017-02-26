@@ -14,7 +14,7 @@
 \begin{document}
 \maketitle
 
-In essence, our server will act as a IRC-esque chatroom. Because we are starting with the Minimal Viable Product (MVP), it will not particularly have all the features of an IRC server; also, because we have to provide a JSON-based API, that alters the design drastically. This document will provide a sufficient outline on the authentication process, the basic objects (user, channel, message), and other miscellanies. Required fields are marked by a red asterisk (\req), and possibly required items are marked blue a blue asterisk (\reqalt).
+In essence, our server will act as an IRC-esque chatroom. Because we are starting with the Minimal Viable Product (MVP), it will not particularly have all the features of an IRC server; also, because we have to provide a JSON-based API, that alters the design drastically. This document will provide a sufficient outline on the authentication process, the basic objects (user, channel, message), and other miscellanies. Required fields are marked by a red asterisk (\req), and possibly required items are marked with a blue asterisk (\reqalt).
 
 
 \section{Authentication}
@@ -23,7 +23,7 @@ At the time of the authentication (i.e. the login process) a few item will have 
 \subsection{Input}
 \begin{description}
     \item[User\req] The user logging in. Refer to Section \ref{sec:user} for details and input. \textbf{String(s)/Boolean.}
-    \item[Channel] A list of channel that the user wishes to join. At the time of this writing, channels are statically joined, meaning only at the time of authentication can you join channels. If no channels provided, it is advised for the client to play elevator music. Refer to Section \ref{sec:channel} for details and input. \textbf{Array.}
+    \item[Channel] A list of channels that the user wishes to join. At the time of this writing, channels are statically joined, meaning only at the time of authentication can you join channels. If no channels provided, it is advised for the client to play elevator music. Refer to Section \ref{sec:channel} for details and input. \textbf{Array.}
 \end{description}
 
 \subsection{Output}
@@ -80,7 +80,7 @@ A message is a simple object with what you'd expect a message to have. Simple me
 
 \begin{description}
     \item[Timestamp] The time \textit{the client} sent this message. A JavaScript format time object should be sent. \textbf{String.}
-    \item[Sender] The \textit{username} of the sender. \textbf{String.}
+    \item[Sender\reqalt] The \textit{username} of the sender. \textbf{String.}
     \item[Message] Actual message contents. No format characters will be accepted (i.e. \texttt{\textbackslash t}, \texttt{\textbackslash n}, or \texttt{\textbackslash r}). \textbf{String.}
     \item[Channel] What channel the message was posted on. \textbf{String.}
 \end{description}
