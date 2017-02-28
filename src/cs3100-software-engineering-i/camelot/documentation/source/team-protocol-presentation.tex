@@ -16,14 +16,18 @@
 
 In essence, our server will act as an IRC-esque chatroom. Because we are starting with the Minimal Viable Product (MVP), it will not particularly have all the features of an IRC server; also, because we have to provide a JSON-based API, that alters the design drastically. This document will provide a sufficient outline on the authentication process, the basic objects (user, channel, message), and other miscellanies. Required fields are marked by a red asterisk (\req), and possibly required items are marked with a blue asterisk (\reqalt).
 
+The server will be asynchronous. The messages can be sent from the client at anytime, and will be handled accordingly. The messages should also be able to be received at anytime. It is up to the client to add listeners to be able to receive said messages.
+
 
 \section{Authentication}
 At the time of the authentication (i.e. the login process) a few item will have to be provided.
 
 \subsection{Input}
 \begin{description}
-    \item[User\req] The user logging in. Refer to Section \ref{sec:user} for details and input. \textbf{String(s)/Boolean.}
-    \item[Channel] A list of channels that the user wishes to join. At the time of this writing, channels are statically joined, meaning only at the time of authentication can you join channels. If no channels provided, it is advised for the client to play elevator music. Refer to Section \ref{sec:channel} for details and input. \textbf{Array.}
+    \item[Server Location\req] The server location must be provided to get access to the server. Duh. \textbf{String.}
+    \item[Server Password\reqalt] An optional password might be required. \textbf{String.}
+    \item[User\req] A unique identifier to represent the user. If submitted, and not unique to channel, a randomized one will be returned. Can only consist of a mixture of numbers $[1 \cdots 9]$, letters $([a \cdots z] | [A \cdots Z])$ or underscores ($\_$). \textbf{String.} \textbf{String.}
+    \item[Channels] \textit{After} authentication (i.e. after successfully joining the server), channels can be joined. Refer to Section~\ref{sec:channel} for details. \textbf{Array of Objects \texttt{[\{ Channel, Password \}, $\cdots$ ]}}
 \end{description}
 
 \subsection{Output}
@@ -34,47 +38,15 @@ At the time of the authentication (i.e. the login process) a few item will have 
 \end{description}
 
 
-% user:
-% {
-%   'name',
-%   'password',
-%   'is_anon',
-%   'id',
-% }
-\section{User}\label{sec:user}
-The user object will help identify the particular user and session. Because the respective client teams are anarchists, we have the option to specify anonymity. If the anonymity option is selected, a randomized ID will be returned.
-
-\begin{description}
-    \item[Name] The name of the user. \textbf{String.}
-    \item[Password\reqalt] The password of the user. Can have any characters. \textbf{String.}
-    \item[Anonymous\req] An option to allow anonymity when communicating. A randomized username will be returned, and IP will be added to government watch list. \textbf{Boolean.}
-    \item[Username\reqalt] A unique identifier to represent the user. If submitted, and not unique to channel, a randomized one will be returned. Can only consist of a mixture of numbers $[1 \cdots 9]$, letters $([a \cdots z] | [A \cdots Z])$ or underscores ($\_$). \textbf{String.}
-\end{description}
-
-
-% channel:
-% {
-%   'name',
-%   'has_key',
-%   'key',
-%   'users (list)',
-% }
 \section{Channel}\label{sec:channel}
 The channels is the actual location of the chat room. All messages posted by the user(s) will appear here. A channel can act as a direct message mechanism as well, by simply having two users.
 
 \begin{description}
-    \item[Name] The name of the channel. \textbf{String.}
+    \item[Name] The name of the channel. The name of the channel must be unique. Can only consist of a mixture of numbers $[1 \cdots 9]$, letters $([a \cdots z] | [A \cdots Z])$ or underscores ($\_$)  \textbf{String.}
     \item[Password] If there a password, specify it. If there is no password, any submissions (including \textsc{Sql} injections) will be accepted. \textbf{String.}
 \end{description}
 
 
-% message:
-% {
-%   'timestamp',
-%   'sender',
-%   'msg',
-%   'channel',
-% }
 \section{Message}
 A message is a simple object with what you'd expect a message to have. Simple message object will be sent and received (with all the contents below).
 
@@ -85,5 +57,11 @@ A message is a simple object with what you'd expect a message to have. Simple me
     \item[Channel] What channel the message was posted on. \textbf{String.}
 \end{description}
 
+
+\section{Edit(s)}
+This section is dedicated compatibilty-breaking edit(s).
+
+\subsection{Illya Starikov -- Anonymity Discontinued}
+Not only is true anonymity hard to implement and frustrating to maintain, a lot of the time it is only a hassle for users and programmers. The only people gaining from anonimity are typically trolls or abusers of the system. From this point forward, the bare minimum one can provide is a username. It is to the clients if they wish to make a randomized ID, but it should be displayed. \textit{Changed on February 28, 2017}.
 
 \end{document}
