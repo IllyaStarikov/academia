@@ -1,0 +1,112 @@
+\chapter{Introduction}\label{introduction}
+
+Camelot is JSON-based server written exclusively in
+\href{https://www.python.org/about/}{Python 3}. The purpose of Camelot
+is to provide IRC-esque chatroom functionality.
+
+\section{Purpose}\label{purpose}
+This document is intended to guide development of Camelot. Not only will
+it provide the requirements (i.e.~system requirements, user
+requirements, and interface requirements), but it will provide a decent
+outline for what the server entails (i.e.~functions, constraints,
+dependencies, etc.). Understanding the system requirements will give a
+more clear and concise understanding of the APIs and their purpose.
+
+\subsection{How to Use This Document}\label{how-to-use-this-document}
+Because this document will be reviewed by various different skill sets,
+this section will break down which parts should be reviewed by which
+type of reader.
+
+\subsection{Types of Reader}\label{types-of-reader}
+This document is going to be aimed at two different type of people
+Client/Server side developers and end-users. The first set,
+Client/Server side developers, will be the Python Programmers,
+Server-Side Programmers, IT Personnel, and other programmers looking to
+broaden their spectrum. These people are going to be the ones who wish
+to build upon or plan to use the code commercially. The other set will
+be the end-users, or students, friends, or family. These people will be
+running the server in order to hold a chat session between the
+previously mentioned set of end-users.
+
+\subsection{Technical Background
+Required}\label{technical-background-required}
+
+Programming competency \emph{is imperative} to understanding the
+documentation. Programming methodology, jargon, and general concepts
+will be assumed in subsequent sections.
+
+Server side programming is recommended, but not required. The document
+will stay to a high level server design.
+
+For the purpose of this document, source code will not appear. Specific
+tools/programming languages capability is not required.
+
+\subsection{Overview Sections}\label{overview-sections}
+
+To get a a general understanding of the document, this following
+sections and subsections should be (chronologically) read:
+
+\begin{enumerate}
+    \item User Characteristics (Section \ref{user-characteristics})
+    \item Assumptions and Dependencies (Section \ref{assumptions-and-dependencies})
+    \item Specific Requirements (Section \ref{specific-requirements})
+\end{enumerate}
+
+\subsection{Reader-Specific Sections}\label{reader-specific-sections}
+
+Types of readers are described as follows.
+
+\begin{itemize}
+    \item Server-side Developers: This would entail anyone interested in working
+    on this particularly instance of the server. All of this document
+    should be read.
+    \item Client-side Developers: This would entail all who would want to get
+    involved in creating a client. The following sections should be read:
+    \begin{enumerate}
+        \item Description (Section \ref{description})
+        \item Specific Requirements (Section \ref{specific-requirements})
+    \end{enumerate}
+
+    \item End Users: This would entail anyone that is generally interested, but
+    has no intentions of truly using it standalone.
+    \begin{enumerate}
+      \item Product Perspective (Section \ref{product-perspective})
+      \item Product Functions (Section \ref{product-functions})
+      \item User Characteristics (Section \ref{user-characteristics})
+    \end{enumerate}
+\end{itemize}
+
+\section{Scope of the Product}\label{scope-of-the-product}
+Truthfully, the intention of this project is to get an A in software
+engineerings. But I actually have to put something here, so.
+
+There is an expectation at the end of the development lifecycle to open
+source this server. After open sourcing, the server team hopes that
+Camelot will serve as a model for server-side programming. Because the
+JSON-based framework would be familiar to people, the team hopes for a
+some market adoption. Overall, this would be a good model for how a
+simple server would be maintained.
+
+\section{Business Case for the Product}\label{business-case-for-the-product}
+There is a real pandemic: there are not enough chat applications. Sure,
+there's
+\href{https://www.messenger.com}{Messenger},
+\href{https://slack.com/}{Slack},
+\href{https://www.skype.com/en/}{Skype},
+\href{https://www.viber.com/en/}{Viber},
+\href{https://web.wechat.com}{WeChat},
+\href{https://www.whatsapp.com}{WhatsApp},
+\href{https://line.me/en/}{Line},
+\href{https://web.groupme.com}{GroupMe},
+\href{https://www.snapchat.com}{Snapchat},
+\href{http://voxer.com}{Voxer},
+but they are garbage. The market needs a
+great server to tackle on these giants, and Camelot will do that.
+
+\section{Overview of the Requirements
+Document}\label{overview-of-the-requirements-document}
+\begin{enumerate}
+    \item Raspberry Pi 3 needed to host the server
+    \item Knowledge of Python to program the server
+    \item JSON based framework
+\end{enumerate}

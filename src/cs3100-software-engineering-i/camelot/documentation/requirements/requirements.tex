@@ -1,0 +1,27 @@
+\documentclass[oneside,12pt]{scrbook}
+
+\input{assets/packages}
+\input{assets/headers}
+\input{assets/macros}
+
+\makeglossaries
+\input{glossary}
+\renewcommand{\glossarysection}[2][]{}
+
+\begin{document}
+\input{assets/titlepage}
+
+\tableofcontents
+\clearpage
+
+\input{introduction}
+\input{description}
+\input{specific-requirements}
+\input{references}
+
+\chapter{Glossary}
+\printglossary
+
+% \chapter{Appendices}
+
+\end{document}

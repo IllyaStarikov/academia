@@ -1,0 +1,89 @@
+\newcommand{\placeholder}[1]{\texttt{\colorbox{red!50}{\uppercase{#1}}}}
+\newcommand{\anchorlink}[2]{\hyperlink{#1}{\color{red}#2}}
+
+\DeclareGraphicsExtensions{.png,.pdf}
+
+\usepackage[colorlinks = true,
+            linkcolor = black,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
+
+
+\newcommand\litem[1]{\item{\bfseries #1.}}
+
+\lstset{
+  mathescape,
+  columns=fullflexible,
+  basicstyle=\fontfamily{AnonymousPro}\selectfont,
+}
+
+% Don't Touch
+\makeatletter
+\newenvironment{CenteredBox}{
+\begin{Sbox}}{
+\end{Sbox}\centerline{\parbox{\wd\@Sbox}{\TheSbox}}}
+\makeatother
+
+% Title Page
+\definecolor{titlepagecolor}{cmyk}{1,.45,0,0}
+\DeclareFixedFont{\titlefont}{T1}{ppl}{b}{it}{0.5in}
+
+\renewcommand\epigraphflush{flushright}
+\renewcommand\epigraphsize{\normalsize}
+\setlength\epigraphwidth{0.7\textwidth}
+
+\makeatletter
+\def\printauthor{%
+    {\large \@author}}
+\makeatother
+\author{%
+    Michael Gosnell \\
+    Immediate Supervisor \\
+    \texttt{\href{mailto:mrghx4@mst.edu}{mrghx4@mst.edu}}\vspace{20pt} \\
+    Status: \textbf{\documentStatus} \\
+    Version: \textbf{\versionNumber}
+}
+
+\newcommand\titlepagedecoration{%
+\begin{tikzpicture}[remember picture,overlay,shorten >= -10pt]
+
+\coordinate (aux1) at ([yshift=-15pt]current page.north east);
+\coordinate (aux2) at ([yshift=-410pt]current page.north east);
+\coordinate (aux3) at ([xshift=-4.5cm]current page.north east);
+\coordinate (aux4) at ([yshift=-150pt]current page.north east);
+
+\begin{scope}[titlepagecolor!40,line width=12pt,rounded corners=12pt]
+\draw
+  (aux1) -- coordinate (a)
+  ++(225:5) --
+  ++(-45:5.1) coordinate (b);
+\draw[shorten <= -10pt]
+  (aux3) --
+  (a) --
+  (aux1);
+\draw[opacity=0.6,titlepagecolor,shorten <= -10pt]
+  (b) --
+  ++(225:2.2) --
+  ++(-45:2.2);
+\end{scope}
+\draw[titlepagecolor,line width=8pt,rounded corners=8pt,shorten <= -10pt]
+  (aux4) --
+  ++(225:0.8) --
+  ++(-45:0.8);
+\begin{scope}[titlepagecolor!70,line width=6pt,rounded corners=8pt]
+\draw[shorten <= -10pt]
+  (aux2) --
+  ++(225:3) coordinate[pos=0.45] (c) --
+  ++(-45:3.1);
+\draw
+  (aux2) --
+  (c) --
+  ++(135:2.5) --
+  ++(45:2.5) --
+  ++(-45:2.5) coordinate[pos=0.3] (d);
+\draw
+  (d) -- +(45:1);
+\end{scope}
+\end{tikzpicture}%
+}
