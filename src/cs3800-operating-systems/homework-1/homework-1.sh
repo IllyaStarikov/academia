@@ -10,8 +10,8 @@
 
 # Problem #1
 ancestory_tree() {
-    printf  "\n"
     printf  "%s\n" \
+            ""                           \
             "# -----------------------#" \
             "#     Ancestory Tree     #" \
             "# -----------------------#" \
@@ -24,8 +24,8 @@ ancestory_tree() {
 
 # Problem #2
 determine_users_online() {
-    printf  "\n"
     printf  "%s\n" \
+            ""                           \
             "# -----------------------#" \
             "# Determine Users Online #" \
             "# -----------------------#" \
@@ -40,8 +40,8 @@ determine_users_online() {
 
 # Problem #3
 print_user_processes() {
-    printf  "\n"
-    printf  "%s\n" \
+    printf  "%s\n"                       \
+            ""                           \
             "# -----------------------#" \
             "#  Print User Processes  #" \
             "# -----------------------#" \
@@ -82,9 +82,9 @@ main() {
                     "#        Main Menu       #" \
                     "# -----------------------#" \
                     ""                           \
-                    "1. Ancestory Tree" \
-                    "2. Determine Online Users" \
-                    "3. Print User Processes" \
+                    "1. Ancestory Tree"          \
+                    "2. Determine Online Users"  \
+                    "3. Print User Processes"    \
                     "4. Quit"
         fi
 
