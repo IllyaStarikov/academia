@@ -1,62 +1,155 @@
 \chapter{Description}\label{description}
-This section will give the reader an overview of the project, including
-why it was conceived, what it will do when complete, and the types of
-people we expect will use it. We also list constraints that were faced
-during development and assumptions we made about how we would proceed.
+This section will give the reader an overview of the project, including why it was conceived, what it will do when complete, and the types of people we expect will use it. We also list constraints that were faced during development and assumptions we made about how we would proceed.
 
-The Camelot Server project will create a means of communication between
-chat clients, in order to allow end users to communicate with each
-other.
+The Camelot Server project will create a means of communication between chat clients, in order to allow end users to communicate with each other.
 
 \section{Product Perspective}\label{product-perspective}
-We have chosen to develop this project in order to create a standard
-form of communication between the chat clients that are being developed
-to use the server. The developers will use this in order to create an
-interface to house the information being transmitted.
+We have chosen to develop this project in order to create a standard form of communication between the chat clients that are being developed to use the server. The developers will use this in order to create an interface to house the information being transmitted.
 
 \section{Product Functions}\label{product-functions}
-The server will have the following capabilities:
+The server will have the following capabilities.
 
-\begin{description}
-    \item[Create channels] The server will be able to create channels that clients can
-        connect to and users can chat in.
+\subsection{User Authentication and Login}
+Users Will have the option to either create an account or to log in with an existing account.
 
-    \item[Monitor channels] The server will be able to connect to all channels and see the messages
-        that have been transmitted, and the users that are currently connected
+Users will be able to create accounts by submitting a username that hasn't been taken. The client will send a \gls{json} encoded file that looks something like:
 
-    \item[Delete channels] The server will be able to remove channels
+\begin{lstlisting}[style=json]
+{
+    "tags": {
+        "create_account": True
+    },
+        "create_account": {
+        "username": "some username",
+            "password": "some password",
+        "server_password": "some server password"
+    }
+}
+\end{lstlisting}
 
-    \item[Host clients] Clients will be able to connect to the server and access different
-        channels on the server
+If the username has already been taken, then the client will receive a \gls{json} encoded file that looks something like:
 
-    \item[Send/Receive messages] The server will be able to send messages to all clients accessing a
-        channel, and receive messages from clients on any channel
+\begin{lstlisting}[style=json]
+{
+    "tags": {
+        "account_creation_success": False
+    },
+        "message": "Some string"
+}
+\end{lstlisting}
+When the client sends a request to login, it should send a \gls{json} encoded package to the server. It should look something like this:
 
-\end{description}
+\begin{lstlisting}[style=json]
+{
+    "tags": {
+        "login": True
+    },
+    "login": {
+        "username": "some username",
+        "password": "some password",
+        "server_password": "some server password"
+    }
+}
+\end{lstlisting}
+
+If the username doesn't exist or if the password the user enters doesn't match the password associated with the user, then the client will receive a \gls{json} encoded file that looks something like:
+
+\begin{lstlisting}[style=json]
+{
+    "tags": {
+        "login_success": False
+    },
+    "message": "Some string"
+}
+\end{lstlisting}
+
+There will also be a server password given to each client that the user doesn't have to enter but the client will have to pass along with the user login so that the client can be authenticated.
+
+\subsection{Channels}
+\subsubsection{Channel Creation}
+As of right now, there will be a set number of channels created by the server that the clients will have the option of joining. Later on in development, we may add the option for users to create channels. Upon creation, the creator will become the admin of that channel. Each user will have a limit on the number of channels they may create.
+
+\subsubsection{Channel Deletion}
+As of this writing, only the server team will have the option of deleting specific channels. When users gain the ability to create channels, they will also gain the ability to delete channels that they have created\footnote{The initial channels will be owned by the server team.}.
+
+\subsubsection{Initial Joining of Channels}
+After a user has logged in, the server will send the client a list of default channels that the user has the option of joining\footnote{Later on, the user will have the option to search for channels based on a keyword.}. It will look something like this:
+
+\begin{lstlisting}[style=json]
+{
+    "tags": {
+        "login-success": True
+    },
+     "channels": [
+        "channel 1",
+        "channel 2",
+        "channel 3"
+  ]
+}
+\end{lstlisting}
+
+The client will then need to send back a \gls{json} encoded file to the server describing what channels the user would like to join. The \gls{json} file should look something like this:
+
+\begin{lstlisting}[style=json]
+{
+    "tags": {
+        "joinChannel": True
+    },
+    "join-channel": [
+        "channel 1",
+        "other channels they may want to join"
+    ]
+}
+\end{lstlisting}
+
+After the user successfully joins the channels, the specified user will have
+access to the channels that they decided to join.
+
+\subsubsection{Joining Channels After Selecting Initial Channels to Join}
+Users will have the option to list the channels when logged in. They will be able to join channels in the same fashion as they did initially\footnote{Later on, the user will have the option to leave channels.}.
+
+\begin{lstlisting}[style=json]
+{
+    "tags": {
+        "newMessage": True
+    },
+    "channel_receiving_message": "some channel name",
+    "message": {
+        "user": "the username",
+        "timestamp": "the time at which the message was received",
+        "message": "the actual message that the user posted"
+    }
+}
+\end{lstlisting}
+
+When a user (client) wishes to send a message to a certain channel, the \gls{json} object should look something like this:
+
+\begin{lstlisting}[style=json]
+{
+    "tags": {
+        "newMessage": True
+    },
+    "channel_receiving_message": "some channel name",
+    "message": {
+        "user": "the username",
+        "timestamp": "the time at which the message was received",
+        "message": "the actual message that the user posted"
+    }
+}
+\end{lstlisting}
+
+Notice that both the \gls{json} file being received by the client and the \gls{json} being sent out by the server look exactly the same. This is done so that the server can simply broadcast messages to all users without having to decode a \gls{json} file server side. This will give the least amount of delay in messages being sent out to each user. Also, the user that sends the message out will also receive the message. It's up to the client in how they want to approach this situation.
+
+\subsection{Send/Receive Messages}
+Whenever the server receives notice that a new message has been posted to a given channel, the server will send out a message to each user who is connected to that given channel. The message will be a \gls{json} file that looks something like this:
 
 
 \section{User Characteristics}\label{user-characteristics}
-Most users will be developers who will make clients to interface with
-the server. They will be mostly of a more technical background, with
-education background involving computer programming. They will be
-interfacing with the server in order to create a client for end users to
-communicate with each other. They may encounter obstacles with reading
-messages if they have no experience with parsing \gls{json}.
+Most users will be developers who will make clients to interface with the server. They will be mostly of a more technical background, with education background involving computer programming. They will be interfacing with the server in order to create a client for end users to communicate with each other. They may encounter obstacles with reading messages if they have no experience with parsing \gls{json}.
 
 \section{General Constraints}\label{general-constraints}
-For the constraints of our server, we didn't have any specific
-constraints as to what \acrfull{ide} each person used or the platform that they
-developed on. The only specific constraints that we have so far is that
-the server is going to be developed with \gls{python}3 using \gls{json} for data
-transfer and also that each person use \gls{git} for collaborating on the
-development of the server. We have not run into any issues with making
-our server compatible with other software as of yet.
+For the constraints of our server, we didn't have any specific constraints as to what \acrfull{ide} each person used or the platform that they developed on. The only specific constraints that we have so far is that the server is going to be developed with \gls{python}3 using \gls{json} for data transfer and also that each person use \gls{git} for collaborating on the development of the server. We have not run into any issues with making our server compatible with other software as of yet.
 
 \section{Assumptions and
 Dependencies}\label{assumptions-and-dependencies}
-The assumptions made with the development of this project is that each
-person that will be working on the server has a working knowledge of
-some programming language (most likely \gls{cpp}) and is willing to learn
-python. Its also assumed that at least some people working on the server
-have some background knowledge as to how to program in python as to help
-others within the server group who aren't as familiar with Python.
+The assumptions made with the development of this project is that each person that will be working on the server has a working knowledge of some programming language (most likely \gls{cpp}) and is willing to learn python. Its also assumed that at least some people working on the server have some background knowledge as to how to program in python as to help others within the server group who aren't as familiar with \gls{python}.

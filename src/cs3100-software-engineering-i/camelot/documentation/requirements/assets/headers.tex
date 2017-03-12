@@ -12,10 +12,24 @@
 
 \newcommand\litem[1]{\item{\bfseries #1.}}
 
+\newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{\strut#1}}}
+
 \lstset{
   mathescape,
   columns=fullflexible,
   basicstyle=\fontfamily{AnonymousPro}\selectfont,
+}
+
+\lstdefinestyle{json}{
+    basicstyle=\footnotesize\ttfamily,
+    string=[s]{"}{"},
+    stringstyle=\color{blue},
+    comment=[l]{:},
+    commentstyle=\color{black},
+    numbers=left,
+    keepspaces=true,
+    tabsize=4,
+    breaklines=true
 }
 
 % Don't Touch
