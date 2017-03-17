@@ -16,12 +16,9 @@ Users will be able to create accounts by submitting a username that hasn't been 
 
 \begin{lstlisting}[style=json]
 {
-    "tags": {
-        "create_account": True
-    },
-        "create_account": {
+    "create_account": {
         "username": "some username",
-            "password": "some password",
+        "password": "some password",
         "server_password": "some server password"
     }
 }
@@ -31,19 +28,13 @@ If the username has already been taken, then the client will receive a \gls{json
 
 \begin{lstlisting}[style=json]
 {
-    "tags": {
-        "account_creation_success": False
-    },
-        "message": "Some string"
+    "error": "That username is already taken."
 }
 \end{lstlisting}
 When the client sends a request to login, it should send a \gls{json} encoded package to the server. It should look something like this:
 
 \begin{lstlisting}[style=json]
 {
-    "tags": {
-        "login": True
-    },
     "login": {
         "username": "some username",
         "password": "some password",
@@ -56,14 +47,11 @@ If the username doesn't exist or if the password the user enters doesn't match t
 
 \begin{lstlisting}[style=json]
 {
-    "tags": {
-        "login_success": False
-    },
-    "message": "Some string"
+    "error": "The username and/or password do not exist in the database."
 }
 \end{lstlisting}
 
-There will also be a server password given to each client that the user doesn't have to enter but the client will have to pass along with the user login so that the client can be authenticated.
+There will also be a server password given to each client (as seen above) that the user doesn't have to enter but the client will have to pass along with the user login so that the client can be authenticated.
 
 \subsection{Channels}
 \subsubsection{Channel Creation}
@@ -77,14 +65,11 @@ After a user has logged in, the server will send the client a list of default ch
 
 \begin{lstlisting}[style=json]
 {
-    "tags": {
-        "login-success": True
-    },
-     "channels": [
-        "channel 1",
-        "channel 2",
-        "channel 3"
-  ]
+    "channels": [
+        "Client Team",
+        "Server Team",
+        "Software Eng."
+    ]
 }
 \end{lstlisting}
 
@@ -92,12 +77,9 @@ The client will then need to send back a \gls{json} encoded file to the server d
 
 \begin{lstlisting}[style=json]
 {
-    "tags": {
-        "joinChannel": True
-    },
-    "join-channel": [
-        "channel 1",
-        "other channels they may want to join"
+    "join_channel": [
+        "Client Team",
+        "Server Team"
     ]
 }
 \end{lstlisting}
@@ -108,15 +90,15 @@ access to the channels that they decided to join.
 \subsubsection{Joining Channels After Selecting Initial Channels to Join}
 Users will have the option to list the channels when logged in. They will be able to join channels in the same fashion as they did initially\footnote{Later on, the user will have the option to leave channels.}.
 
+\subsection{Send/Receive Messages}
+Whenever the server receives notice that a new message has been posted to a given channel, the server will send out a message to each user who is connected to that given channel. The message will be a \gls{json} file that looks something like this:
+
 \begin{lstlisting}[style=json]
 {
-    "tags": {
-        "newMessage": True
-    },
-    "channel_receiving_message": "some channel name",
-    "message": {
-        "user": "the username",
-        "timestamp": "the time at which the message was received",
+    "new_message": {
+        "channel_receiving_message": "Client Team",
+        "user": "username",
+        "timestamp": "2017-03-14 14:11:30",
         "message": "the actual message that the user posted"
     }
 }
@@ -126,22 +108,16 @@ When a user (client) wishes to send a message to a certain channel, the \gls{jso
 
 \begin{lstlisting}[style=json]
 {
-    "tags": {
-        "newMessage": True
-    },
-    "channel_receiving_message": "some channel name",
-    "message": {
-        "user": "the username",
-        "timestamp": "the time at which the message was received",
+    "new_message": {
+        "channel_receiving_message": "Client Team",
+        "user": "username",
+        "timestamp": "2017-03-14 14:11:30",
         "message": "the actual message that the user posted"
     }
 }
 \end{lstlisting}
 
 Notice that both the \gls{json} file being received by the client and the \gls{json} being sent out by the server look exactly the same. This is done so that the server can simply broadcast messages to all users without having to decode a \gls{json} file server side. This will give the least amount of delay in messages being sent out to each user. Also, the user that sends the message out will also receive the message. It's up to the client in how they want to approach this situation.
-
-\subsection{Send/Receive Messages}
-Whenever the server receives notice that a new message has been posted to a given channel, the server will send out a message to each user who is connected to that given channel. The message will be a \gls{json} file that looks something like this:
 
 
 \section{User Characteristics}\label{user-characteristics}

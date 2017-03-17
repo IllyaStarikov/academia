@@ -1,28 +1,32 @@
 \RequirePackage[l2tabu, orthodox]{nag}
-\documentclass[12pt]{scrartcl}
+\documentclass[oneside,12pt]{scrbook}
 
-\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,xcolor,textcomp}
+\input{../template/macros}
+
+\newcommand{\titlepagename}{Protocol Document}
+\newcommand{\titledescript}{A description of how the system protocol will behave}
+\newcommand{\versionNumber}{1.1}
+\newcommand{\lastEditAuthor}{Illya Starikov}
+\newcommand{\documentStatus}{Validated} % Draft, Proposed, Validated, Approved
 
 \newcommand{\req}{\textcolor{red}{*}}
 \newcommand{\reqalt}{\textcolor{blue}{*}}
 
-\title{Protocol Document}
-\subtitle{Introduction to Software Engineering}
-\author{Server Team \#1\thanks{Ian Howell, Hunter Mathews, Illya Starikov, William Thurman, Zachary Wileman}}
-\date{Monday, February 27\textsuperscript{th}, 2017}
-
 \begin{document}
-\maketitle
+\input{../template/titlepage}
+
+\tableofcontents
+\clearpage
 
 In essence, our server will act as an IRC-esque chatroom. Because we are starting with the Minimal Viable Product (MVP), it will not particularly have all the features of an IRC server; also, because we have to provide a JSON-based API, that alters the design drastically. This document will provide a sufficient outline on the authentication process, the basic objects (user, channel, message), and other miscellanies. Required fields are marked by a red asterisk (\req), and possibly required items are marked with a blue asterisk (\reqalt).
 
 The server will be asynchronous. The messages can be sent from the client at anytime, and will be handled accordingly. The messages should also be able to be received at anytime. It is up to the client to add listeners to be able to receive said messages.
 
 
-\section{Authentication}
+\chapter{Authentication}
 At the time of the authentication (i.e. the login process) a few item will have to be provided.
 
-\subsection{Input}
+\section{Input}
 \begin{description}
     \item[Server Location\req] The server location must be provided to get access to the server. Duh. \textbf{String.}
     \item[Server Password\reqalt] An optional password might be required. \textbf{String.}
@@ -30,7 +34,7 @@ At the time of the authentication (i.e. the login process) a few item will have 
     \item[Channels] \textit{After} authentication (i.e. after successfully joining the server), channels can be joined. Refer to Section~\ref{sec:channel} for details. \textbf{Array of Objects \texttt{[\{ Channel, Password \}, $\cdots$ ]}}
 \end{description}
 
-\subsection{Output}
+\section{Output}
 \begin{description}
     \item[Session Key] Will be used in future development. \textbf{Array.}
     \item[Username] Will be used to verify if submitted username was allowed. \textbf{String.}
@@ -38,7 +42,7 @@ At the time of the authentication (i.e. the login process) a few item will have 
 \end{description}
 
 
-\section{Channel}\label{sec:channel}
+\chapter{Channel}\label{sec:channel}
 The channels is the actual location of the chat room. All messages posted by the user(s) will appear here. A channel can act as a direct message mechanism as well, by simply having two users.
 
 \begin{description}
@@ -47,7 +51,7 @@ The channels is the actual location of the chat room. All messages posted by the
 \end{description}
 
 
-\section{Message}
+\chapter{Message}
 A message is a simple object with what you'd expect a message to have. Simple message object will be sent and received (with all the contents below).
 
 \begin{description}
@@ -57,11 +61,10 @@ A message is a simple object with what you'd expect a message to have. Simple me
     \item[Channel] What channel the message was posted on. \textbf{String.}
 \end{description}
 
-
-\section{Edit(s)}
+\chapter{Edit(s)}
 This section is dedicated compatibilty-breaking edit(s).
 
-\subsection{Illya Starikov -- Anonymity Discontinued}
+\section*{Illya Starikov -- Anonymity Discontinued}
 Not only is true anonymity hard to implement and frustrating to maintain, a lot of the time it is only a hassle for users and programmers. The only people gaining from anonimity are typically trolls or abusers of the system. From this point forward, the bare minimum one can provide is a username. It is to the clients if they wish to make a randomized ID, but it should be displayed. \textit{Changed on February 28, 2017}.
 
 \end{document}

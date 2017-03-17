@@ -1,15 +1,19 @@
 \documentclass[oneside,12pt]{scrbook}
 
-\input{assets/packages}
-\input{assets/headers}
-\input{macros}
+\input{../template/macros}
+
+\newcommand{\titlepagename}{System Requirements}
+\newcommand{\titledescript}{All relevant documentation for system requirements}
+\newcommand{\versionNumber}{1.1}
+\newcommand{\lastEditAuthor}{Illya Starikov}
+\newcommand{\documentStatus}{Proposed} % Draft, Proposed, Validated, Approved
 
 \makeglossaries
 \input{glossary}
 \renewcommand{\glossarysection}[2][]{}
 
 \begin{document}
-\input{assets/titlepage}
+\input{../template/titlepage}
 
 \tableofcontents
 \clearpage
