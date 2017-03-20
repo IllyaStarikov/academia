@@ -19,9 +19,9 @@
 \begin{frame}
     \frametitle{About the Camelot Server}
     \begin{itemize}
-        \item Camelot is an asynchronous \textit{Python3} server, using \textit{PostgreSQL} for the database.
-        \item The server is housed on a Rasberry Pi (as provided by Ian Howell) so that the client team will be able to interact and test their code on it (assuming the server is up and running) and also so that interaction with the server can be done remotely.
-        \item The database is being tackled specifically by a module in Python called \textit{psycopg2} which uses \textit{postgreSQL}.
+        \item Camelot is an asynchronous \textit{Python3} server.
+        \item The server is housed on a Raspberry Pi (as provided by Ian Howell) so that the client team will be able to interact and test their code on it (assuming the server is up and running) and also so that interaction with the server can be done remotely.
+        \item The database is being tackled specifically by a module in Python called \textit{psycopg2} which uses \textit{PostgreSQL}.
         \item All communication between the server and client applications is done via \textit{JSON} encoded data.
     \end{itemize}
 \end{frame}
@@ -34,7 +34,7 @@
     \begin{figure}
         \centering
         \includegraphics[width=\textwidth]{images/camelot}
-        \caption{"On second thought, let's not go to Camelot. `Tis a silly place." — Arthur, Monty Python}
+        \caption{``On second thought, let's not go to Camelot. 'Tis a silly place.'' — Arthur, Monty Python}
         \label{fig:camelot}
     \end{figure}
 \end{frame}
@@ -46,8 +46,9 @@
     Below are some of the things that have worked well for us up to this point.
 
     \begin{description}[<+->]
-        \item[Teamwork] Task delegation and team work has made us able to accomplish more, in less time.
-        \item[Teammates] Have a wide array of complementing skills and backgrounds --- we're pretty much the lowkey OP group.
+        \item[Teamwork] Task delegation and team work has made us able to accomplish more, in less time. Having teammates with a wide array of complementing skills and backgrounds.
+        \item[Meetings] Our meetings have been productive, where topics such as documentation, implementation details, and how to change the users this time are discussed.
+        \item[Changes] Sometimes when you innovate, you make mistakes (i.e. choices for users$\ldots$). It is best to admit them quickly, and get on with improving your other innovations. % — Steve Jobs
         \item[Tools] By picking some of the best tools (Github, \LaTeX{}, PostgreSQL), it has made for a much better workflow.
     \end{description}
 \end{frame}
@@ -58,11 +59,29 @@
     \frametitle{Past Changes}
     Below are past decisions that if we could change, we would. \pause
 
+    \begin{itemize}
+        \item
+        \item
+        \item
+        \item
+        \item
+        \item
+        \item
+        \item
+        \item
+        \item
+        \item
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Past Changes}
+    Below are past decisions that if we could change, we would.
+
     % This is intentionally an MLG frog
     \centering
     \animategraphics[loop, controls, width=.75\linewidth]{12}{images/frog-}{0}{39}
 \end{frame}
-
 
 % Illya Starikov
 \begin{frame}
@@ -70,34 +89,27 @@
     A summary of some of the tools we're using/enjoying.
 
     \begin{itemize}
-        \item Written in Python3.
+        \item Server code is written in Python3.
         \begin{itemize}
             \item Documentation is written in Doxygen.
         \end{itemize}
 
         \item All development is on Github.
         \begin{itemize}
-            \item Git for version history.
+            \item This includes meeting notes, documentation, and all production code (i.e. database and server).
             \item Github issues/milestones for task management.
             \item Contributions to make sure even workload.
         \end{itemize}
 
         \item All documentation/presentation is written in \LaTeX{}.
         \item Using ProgreSQL for the database.
-        \item Using Discord for team/client chat.
+        \item Using Discord for team/client chat -- by any memes necessary.
     \end{itemize}
 \end{frame}
 
 
 % Illya Starikov
-\begin{frame}
-    \frametitle{Tools \presentcount{tools}}
-
-    \LaTeX{} makes documentation look professional.
-
-    \centering
-    \frame{\includegraphics[page=1, scale=.25]{../../documentation/requirements.pdf}}
-\end{frame}
+\hugeslide{Documentation Demo}
 
 
 % Ian Howell
@@ -135,15 +147,8 @@
 \hugeslide{Server Demo}
 
 
-% Hunter Matthews
-\begin{frame}
-    \frametitle{Tools \presentcount{tools}}
-
-    Github helps keep track of contributions from each team member.
-
-    \centering
-    \frame{\includegraphics[width=.60\textwidth]{images/github}}
-\end{frame}
+% Illya Starikov
+\hugeslide{Github Demo}
 
 
 % William Thurman
