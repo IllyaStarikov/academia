@@ -1,0 +1,35 @@
+\usetheme{metropolis}
+
+\mode<presentation>{}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,pdfpages,microtype,units,booktabs,upquote,xcolor,siunitx,csquotes,fancyvrb,newverbs,wrapfig,multicol,tikz,textcomp,wrapfig,cutwin}
+\usepackage{fontawesome,setspace,rotchiffre,lipsum,listings,animate}
+
+\hypersetup{
+            colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue}
+
+\newcommand{\hugeslide}[1]{
+\begin{frame}[plain,c]
+    \centering {\usebeamerfont*{frametitle} \textcolor{black}{\fontsize{40}{50}\selectfont\textit{#1}}}
+\end{frame}
+}
+
+\newcommand{\presentcount}[1]{\addtocounter{#1}{1}\Roman{#1}}
+\newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{#1}}}
+
+\lstdefinestyle{cpython}{
+    language=Python,
+    basicstyle=\tiny\ttfamily,
+    otherkeywords={self},
+    keywordstyle=\color{blue},
+    emphstyle=\color{red},
+    stringstyle=\color{green},
+    numbers=left,
+    keepspaces=true,
+    tabsize=4,
+    breaklines=true
+}
