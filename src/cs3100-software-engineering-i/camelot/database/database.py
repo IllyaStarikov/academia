@@ -10,9 +10,8 @@ class Camelot_Database():
     def __init__(self):
         pass
 
-    ## make_connection
+    ## Makes a connection to database
     #
-    #  Makes a connection to database
     #  @return The connection object
     def make_connection(self):
         try:
@@ -22,9 +21,8 @@ class Camelot_Database():
 
         return conn
 
-    ## create_user
+    ## Adds a user to the database
     #
-    #  Adds a user to the database
     #  @param self The object pointer
     #  @param username The name (string) of the user to add
     #  @param password The password (string) to be associated with this user
@@ -47,9 +45,8 @@ class Camelot_Database():
                 "error": "That username is already taken."
             })
 
-    ## check_username_password
+    ## Checks that the username & password are a match in the database
     #
-    #  Checks that the username & password are a match in the database
     #  @param self The object pointer
     #  @param username The name (string) of the user to check
     #  @param password The password (string) to be associated with this user
@@ -93,9 +90,8 @@ class Camelot_Database():
         self.commit_and_close_connection(conn)
         return json.dumps(json_to_be_sent, indent=4)
 
-    ## get_channels
+    ## Gets the current channels in the database
     #
-    #  Gets the current channels in the database
     #  @param self The object pointer
     #  @return A JSON object containing a list of channels on success, or an error code otherwise
     def get_channels(self):
@@ -121,10 +117,9 @@ class Camelot_Database():
         self.commit_and_close_connection(conn)
         return channels
 
-    ## add_channels_to_user_info
-    #
-    #  Adds to "CHANNELS_JOINED" table in the database; adds the
+    ## Adds to "CHANNELS_JOINED" table in the database; adds the
     #  channels that the user wants to join.
+    #
     #  @param self The object pointer
     #  @param username The user to add to the channels
     #  @param channels The list of channels to add the user to
@@ -132,12 +127,14 @@ class Camelot_Database():
         conn = self.make_connection()
         cur = conn.cursor()
         for channel in channels:
+            # TODO ZW 3-20: Need to add an error handler for if the user has already joined
+            # a channel, and is trying to join it again.
+
             cur.execute('''INSERT INTO "CHANNELS_JOINED" VALUES ('{}', '{}')'''.format(username, channel))
         self.commit_and_close_connection(conn)
 
-    ## create_tables
+    ## Creates tables in database
     #
-    #  Creates tables in database
     #  @param self The object pointer
     #  @param filename The SQL file to pull table generation from
     def create_tables(self, filename):
@@ -148,9 +145,8 @@ class Camelot_Database():
         cur.execute(open(filename, 'r').read())
         self.commit_and_close_connection(conn)
 
-    ## insert_data
+    ## Readies initial data for database
     #
-    #  Readies initial data for database
     #  @param self The object pointer
     #  @param filename The SQL file to pull table insertion data from
     def insert_data(self, filename):
@@ -159,9 +155,8 @@ class Camelot_Database():
         cur.execute(open(filename, 'r').read())
         self.commit_and_close_connection(conn)
 
-    ## empty_tables
+    ## Empties all of the current database tables (created by create_tables)
     #
-    #  Empties all of the current database tables (created by create_tables)
     #  @param self The object pointer
     def empty_tables(self, ):
         conn = self.make_connection()
@@ -169,9 +164,8 @@ class Camelot_Database():
         cur.execute("""Truncate "USER", "CHANNEL", "CHANNELS_JOINED", "IS_CONNECTED_TO" CASCADE""")
         self.commit_and_close_connection(conn)
 
-    ## commit_and_close_connection
+    ## Adds data to the database & closes the connection to the database
     #
-    #  Adds data to the database & closes the connection to the database
     #  @param self The object pointer
     #  @param conn The connection to the database to be modified
     def commit_and_close_connection(self, conn):

@@ -7,15 +7,11 @@ import json
 # 'json.loads' decodes the json data
 #########################################
 
-global SERVER_PASSWORD
-SERVER_PASSWORD = 'iheartgosnell'
-
 def test_client_create_account():
     return json.dumps({
         "create_account": {
             "username": "username",
             "password": "password",
-            "server_password": "iheartgosnell"
         }
     }, indent=4)
 
@@ -24,7 +20,6 @@ def test_client_login():
         "login": {
             "username": "username",
             "password": "password",
-            "server_password": "iheartgosnell"
         }
     }, indent=4)
 
@@ -72,45 +67,27 @@ def join_channel(mydb, client_request):
     result = mydb.add_channels_to_user_info(username, channels_user_wants_to_join)
 
 def login(mydb, client_request):
-    global SERVER_PASSWORD
-
     # Makes sure the user is sending valid information
-    if client_request['login']['username'] and client_request['login']['password'] and client_request['login']['server_password']:
+    if client_request['login']['username'] and client_request['login']['password']:
         client_username = client_request['login']['username']
         client_password = client_request['login']['password']
-        server_password = client_request['login']['server_password']
 
-        if server_password == SERVER_PASSWORD:
-            result = mydb.check_username_password(client_username, client_password)
-
-            if result:
-                return result
-        else:
-            return json.dumps({
-                "error": "Your server password is wrong."
-            }, indent=4)
+        result = mydb.check_username_password(client_username, client_password)
+        if result:
+            return result
     else:
         return json.dumps({
             "error": "The JSON file sent didn't contain valid information."
         })
 
 def create_account(mydb, client_request):
-    global SERVER_PASSWORD
-
-    if client_request['create_account']['username'] and client_request['create_account']['password'] and client_request['create_account']['server_password']:
+    if client_request['create_account']['username'] and client_request['create_account']['password']:
         client_username = client_request['create_account']['username']
         client_password = client_request['create_account']['password']
-        server_password = client_request['create_account']['server_password']
 
-        if server_password == SERVER_PASSWORD:
-            result = mydb.create_account(client_username, client_password)
-
-            if result:
-                return result
-        else:
-            return json.dumps({
-                "error": "Your server password is wrong."
-            }, indent=4)
+        result = mydb.create_account(client_username, client_password)
+        if result:
+            return result
     else:
         return json.dumps({
             "error": "The JSON file sent didn't contain valid information."
@@ -129,7 +106,7 @@ if __name__ == '__main__':
     #client_request = json.loads(test_client_create_account())
     #client_request = json.loads(test_client_login())
     #client_request = json.loads(test_client_join_channels())
-    #client_request = json.loads(test_client_new_message())
+    client_request = json.loads(test_client_new_message())
 
     for operation in client_request.keys():
         if operation == 'create_account':
@@ -139,6 +116,8 @@ if __name__ == '__main__':
         elif operation == 'join_channel':
             response = join_channel(mydb, client_request)
         elif operation == 'new_message':
+            # TODO ZW 3-20: Need to add a check that makes sure a client is only getting sent
+            # messages if the user is a part of the specified channel.
             response = json.dumps(client_request, indent=4)
         else:
             response = json.dumps({
