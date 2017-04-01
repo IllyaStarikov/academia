@@ -47,10 +47,20 @@ def parseArguments():
 
     return programlist, commandlist, pagesize, algorithm, paging
 
+def readFromFile(filename):
+    filehandler = open(filename)
+    contents = []
+
+    for line in filehandler:
+       contents += [[int(i) for i in line.split()]]
+
+    return contents
 
 # Usage: python3 main.py programlist commandlist pagesize algorithm --(prepaging|ondemand)
 def main():
     programlist, commandlist, pagesize, algorithm, paging = parseArguments()
+    programlistContents = readFromFile(programlist)
+    commandlistContents = readFromFile(commandlist)
 
 if __name__ == "__main__":
     main()
