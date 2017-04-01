@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 #
 #  main.py
 #  CS3801 — Homework #2
@@ -6,12 +8,15 @@
 #  Copyright 2017. Illya Starikov. All rights reserved.
 #
 
+from functions import *
+
 # Usage: python3 main.py programlist commandlist pagesize algorithm --(prepaging|ondemand)
 def main():
-    programlist, commandlist, pagesize, algorithm, paging = parseArguments()
-    programlistContents = readFromFile(programlist)
-    commandlistContents = readFromFile(commandlist)
-    print(programlist)
+    programList, commandList, pageSize, algorithm, paging = parseArguments()
+    programListContents = readFromFile(programList)
+    commandListContents = readFromFile(commandList)
+
+    programs = loadProgramList(programListContents, pageSize)
 
 if __name__ == "__main__":
     main()
