@@ -19,5 +19,9 @@ def main():
     programs = loadProgramList(programListContents, pageSize)
     memory = loadMemory(programs)
 
+    numberOfFaults = runSimulation(algorithm, commandListContents, pageSize, programs, memory)
+
+    print(numberOfFaults)
+
 if __name__ == "__main__":
     main()

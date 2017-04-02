@@ -18,19 +18,22 @@ class Page(object):
 
         self.loadedCount = self.accessedCount = self.content = 1
         self.owner = None
+        self.clock = False
 
     def updatePage(self, program, word, PC):
         if self.owner is not None:
-            self.owner.pageTable[self.loadedCount] = -1
+            self.owner.pageTable[self.content] = -1
 
         self.owner = program
-        program.pageTable[self.content] = self.__ID
+        program.pageTable[word] = self.__ID
 
         self.content = word
-
         self.loadedCount = PC
         self.accessedCount = PC
 
+        self.clock = True
+
     def access(self, PC):
         self.accessedCount = PC
+        self.clock = True
 

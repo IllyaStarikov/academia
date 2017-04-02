@@ -7,8 +7,6 @@
 #
 
 class Program:
-    pageTable = {}
-
     def __init__(self, ID = None, firstPage = None, numberOfPages = None):
 
         if ID is None:
@@ -17,7 +15,7 @@ class Program:
             self.ID = ID
 
         if firstPage is None:
-            self.pageNumber = 0
+            self.firstPage = 0
         else:
             self.firstPage = firstPage
 
@@ -25,4 +23,9 @@ class Program:
             self.numberOfPages = 0
         else:
             self.numberOfPages = numberOfPages
+
+        self.pageTable = {}
+
+        for i in range(int(self.firstPage), int(self.firstPage + self.numberOfPages + 1)):
+            self.pageTable[i] = -1
 

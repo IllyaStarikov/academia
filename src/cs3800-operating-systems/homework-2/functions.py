@@ -67,8 +67,8 @@ def loadProgramList(programListContents, pageSize):
     programs = []
 
     for identifier, numberOfPages in programListContents:
-        programs += [Program(identifier, pageCount, numberOfPages/pageSize)]
-        pageCount += numberOfPages/pageSize
+        programs += [Program(identifier, pageCount, int(numberOfPages/pageSize))]
+        pageCount += int(numberOfPages/pageSize)
 
     return programs
 
@@ -93,3 +93,38 @@ def loadMemory(programs):
 
     return memory
 
+
+def runSimulation(algorithm, commandList, pageSize, programs, memory):
+    numberOfFaults = 0
+
+    for index, (programNumber, word) in enumerate(commandList):
+        numberOfFaults += accessMemory(programNumber, word, programs, pageSize, algorithm, memory, index)
+
+    return numberOfFaults
+
+def accessMemory(programIndex, word, programs, pageSize, algorithm, memory, PC):
+    program = programs[programIndex]
+    pageFaults = 0
+
+    if programIndex > len(programs):
+        printError("Program requested ({0}) is greater than total number of programs ({1})".format(programNumber, programs))
+        return pageFaults
+
+    # Convert relative to absolute page number
+    word = int(word / pageSize) + program.firstPage
+
+    programTotalPageRange = program.firstPage + program.numberOfPages
+    if not program.firstPage <= word <= programTotalPageRange:
+        printError("Word {0} is not in page range ({1}...{2})".format(word, program.firstPage, programTotalPageRange))
+        return
+
+    if program.pageTable[word] == -1:
+        pageFaults += 1
+        handleFault(algorithm, memory, program, word, PC, pageSize)
+    else:
+        memory[program.pageTable[word]].access(PC)
+    return pageFaults
+
+def handleFault(algorithm, memory, program, word, PC, pageSize):
+    selector = algorithm(memory, pageSize)
+    memory[selector].updatePage(program, word, PC)
