@@ -9,6 +9,7 @@
 #
 
 from functions import *
+from algorithms import *
 
 # Usage: python3 main.py programlist commandlist pagesize algorithm --(prepaging|ondemand)
 def main():
@@ -19,6 +20,7 @@ def main():
     programs = loadProgramList(programListContents, pageSize)
     memory = loadMemory(programs)
 
+    algorithm = clockPageReplacement
     numberOfFaults = runSimulation(algorithm, commandListContents, pageSize, programs, memory)
 
     print(numberOfFaults)
