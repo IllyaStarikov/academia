@@ -17,6 +17,7 @@ def main():
     commandListContents = readFromFile(commandList)
 
     programs = loadProgramList(programListContents, pageSize)
+    memory = loadMemory(programs)
 
 if __name__ == "__main__":
     main()

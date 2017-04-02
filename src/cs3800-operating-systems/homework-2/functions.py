@@ -7,7 +7,11 @@
 #
 
 import sys
+
+from page import *
 from program import *
+
+AVAILABLE_FRAME = 512
 
 def printError(error):
     sys.stdout = sys.stderr
@@ -68,4 +72,24 @@ def loadProgramList(programListContents, pageSize):
 
     return programs
 
+def loadMemory(programs):
+    memory = [Page()]*AVAILABLE_FRAME
+
+    memoryForEachProgram = int(AVAILABLE_FRAME / len(programs))
+
+    for programIndex, program in enumerate(programs):
+        size = 0
+
+        if (program.numberOfPages > memoryForEachProgram):
+            size = memoryForEachProgram
+        else:
+            size = program.numberOfPages
+
+        for i in range(int(size)):
+            mainMemory = programIndex*memoryForEachProgram + i
+            virtualMemory = program.firstPage + i
+
+            memory[mainMemory].updatePage(program, virtualMemory, 0)
+
+    return memory
 

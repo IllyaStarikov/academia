@@ -9,17 +9,17 @@
 class Program:
     pageTable = {}
 
-    def __init__(self, ID = None, pageNumber = None, numberOfPages = None):
+    def __init__(self, ID = None, firstPage = None, numberOfPages = None):
 
         if ID is None:
             self.ID = 0
         else:
             self.ID = ID
 
-        if pageNumber is None:
+        if firstPage is None:
             self.pageNumber = 0
         else:
-            self.pageNumber = pageNumber
+            self.firstPage = firstPage
 
         if numberOfPages is None:
             self.numberOfPages = 0
