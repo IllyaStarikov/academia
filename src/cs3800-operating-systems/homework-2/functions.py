@@ -26,6 +26,10 @@ def representsInt(s):
     except ValueError:
         return False
 
+def isPowerOfTwo(number):
+    return number != 0 and ((number & (number - 1)) == 0)
+
+
 def parseArguments():
     # needs at least 5 parameters (see usage) and main.py
     if len(sys.argv) < 6:
@@ -39,7 +43,7 @@ def parseArguments():
             programlist = argument
         elif "command" in argument:
             commandlist = argument
-        elif representsInt(argument) and 0 <= int(argument) <= 8:
+        elif representsInt(argument) and isPowerOfTwo(int(argument)) and 1 <= int(argument) <= 16:
             pagesize = int(argument)
         elif argument in ["lru", "fifo", "clock"]:
             algorithm = argument
@@ -128,3 +132,4 @@ def accessMemory(programIndex, word, programs, pageSize, algorithm, memory, PC):
 def handleFault(algorithm, memory, program, word, PC, pageSize):
     selector = algorithm(memory, pageSize)
     memory[selector].updatePage(program, word, PC)
+
