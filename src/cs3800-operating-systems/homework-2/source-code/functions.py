@@ -109,15 +109,18 @@ def determineAlgorithm(algorithm):
             "fifo": firstInFirstOutPageReplacement,
     }[algorithm]
 
-def runSimulation(algorithm, commandList, pageSize, programs, memory):
+def determinePaging(string):
+    return True if string == "prepaging" else False
+
+def runSimulation(algorithm, commandList, pageSize, programs, memory, prepaging):
     numberOfFaults = 0
 
     for index, (programNumber, word) in enumerate(commandList):
-        numberOfFaults += accessMemory(programNumber, word, programs, pageSize, algorithm, memory, index)
+        numberOfFaults += accessMemory(programNumber, word, programs, pageSize, algorithm, memory, index, prepaging)
 
     return numberOfFaults
 
-def accessMemory(programIndex, word, programs, pageSize, algorithm, memory, PC):
+def accessMemory(programIndex, word, programs, pageSize, algorithm, memory, PC, prepaging):
     program = programs[programIndex]
     pageFaults = 0
 
@@ -131,17 +134,29 @@ def accessMemory(programIndex, word, programs, pageSize, algorithm, memory, PC):
     programTotalPageRange = program.firstPage + program.numberOfPages
     if not program.firstPage < word < programTotalPageRange:
         printError("Word {0} is not in page range ({1}...{2})".format(word, program.firstPage, programTotalPageRange))
-        return
+        return pageFaults
 
     if program.pageTable[word] == -1:
         pageFaults += 1
-        handleFault(algorithm, memory, program, word, PC, pageSize)
+        handleFault(algorithm, memory, program, word, PC, pageSize, prepaging)
     else:
         memory[program.pageTable[word]].access(PC)
 
     return pageFaults
 
-def handleFault(algorithm, memory, program, word, PC, pageSize):
+def handleFault(algorithm, memory, program, word, PC, pageSize, prepaging):
     selector = algorithm(memory, pageSize)
     memory[selector].updatePage(program, word, PC)
+
+    if prepaging:
+        if word == program.firstPage + program.numberOfPages - 1:
+            word = program.firstPage
+        else:
+            word += 1
+
+        if program.pageTable[word] != -1:
+            return
+
+        handleFault(algorithm, memory, program, word, PC, pageSize, False)
+
 

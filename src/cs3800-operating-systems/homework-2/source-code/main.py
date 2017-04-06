@@ -13,7 +13,7 @@ from algorithms import *
 
 # Usage: python3 main.py programlist commandlist pagesize algorithm --(prepaging|ondemand)
 def main():
-    programList, commandList, pageSize, algorithmName, paging = parseArguments()
+    programList, commandList, pageSize, algorithmName, pagingString = parseArguments()
     programListContents = readFromFile(programList)
     commandListContents = readFromFile(commandList)
 
@@ -24,7 +24,8 @@ def main():
     if algorithm == "None":
         printError("You fucking broke my program")
 
-    numberOfFaults = runSimulation(algorithm, commandListContents, pageSize, programs, memory)
+    prepaging = determinePaging(pagingString)
+    numberOfFaults = runSimulation(algorithm, commandListContents, pageSize, programs, memory, prepaging)
 
     print("Number of Faults: {0}".format(numberOfFaults))
 

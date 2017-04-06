@@ -1,0 +1,40 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{scrartcl}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,xcolor,textcomp,tikz,pgfplots}
+\usepackage[margin=10pt, font=small, labelfont=bf, labelsep=endash]{caption}
+\usepackage[colorlinks=true, pdfborder={0 0 0}]{hyperref}
+\usepackage[utf8]{inputenc}
+
+
+
+\title{Homework \#2}
+\subtitle{Introduction To Operating Systems}
+\date{Due Date: April 6\textsuperscript{th}, 2017}
+\author{Illya Starikov}
+
+\begin{document}
+\maketitle
+
+\begin{tikzpicture}
+    \centering
+    \begin{axis}[
+        scale only axis,
+        width=.75\textwidth,
+        height = 5cm,
+        title=Algorithm Performance,
+        xlabel=Page Size,
+        ylabel=Page Swaps,
+        legend pos=north west,
+        ymajorgrids=true,
+        grid style=dashed,
+        legend entries={Clock (Prepaging)}
+    ]
+
+    \addplot[color=blue, mark = square] table [x=a, y=b, col sep=comma] {data/clock-prepaging.csv};
+
+    \end{axis}
+\end{tikzpicture}
+
+
+\end{document}
