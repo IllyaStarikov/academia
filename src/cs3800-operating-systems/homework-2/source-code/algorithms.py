@@ -8,10 +8,12 @@
 
 from functions import *
 
+AVAILABLE_FRAME = 512
+
 # clock default is a static variable to keep track of clock pointer
 def clockPageReplacement(memory, pageSize, __clockPointer=[0]):
     while True:
-        if __clockPointer[0] >= AVAILABLE_FRAME/pageSize:
+        if __clockPointer[0] >= AVAILABLE_FRAME//pageSize:
             __clockPointer[0] = 0
 
         if memory[__clockPointer[0]].clock:

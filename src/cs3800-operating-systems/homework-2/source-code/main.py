@@ -18,7 +18,7 @@ def main():
     commandListContents = readFromFile(commandList)
 
     programs = loadProgramList(programListContents, pageSize)
-    memory = loadMemory(programs)
+    memory = loadMemory(programs, pageSize)
 
     algorithm = determineAlgorithm(algorithmName)
     if algorithm == "None":

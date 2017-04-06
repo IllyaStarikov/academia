@@ -14,10 +14,12 @@ from algorithms import *
 
 AVAILABLE_FRAME = 512
 
+
 def printError(error):
     sys.stdout = sys.stderr
     print(error)
     sys.stdout = sys.stderr
+
 
 # Thank you http://stackoverflow.com/questions/1265665/python-check-if-a-string-represents-an-int-without-using-try-except
 def representsInt(s):
@@ -27,8 +29,10 @@ def representsInt(s):
     except ValueError:
         return False
 
+
 def isPowerOfTwo(number):
     return number != 0 and ((number & (number - 1)) == 0)
+
 
 def parseArguments():
     # needs at least 5 parameters (see usage) and main.py
@@ -61,6 +65,7 @@ def parseArguments():
 
     return programlist, commandlist, pagesize, algorithm, paging
 
+
 def readFromFile(filename):
     filehandler = open(filename)
     contents = []
@@ -71,25 +76,26 @@ def readFromFile(filename):
     filehandler.close()
     return contents
 
+
 def loadProgramList(programListContents, pageSize):
     pageCount = 0
     programs = []
 
     for identifier, numberOfPages in programListContents:
-        programs += [Program(identifier, pageCount, int(numberOfPages/pageSize))]
-        pageCount += int(numberOfPages/pageSize)
+        programs += [Program(identifier, pageCount, numberOfPages//pageSize)]
+        pageCount += numberOfPages//pageSize
 
     return programs
 
-def loadMemory(programs):
-    memory = [Page()]*AVAILABLE_FRAME
 
-    memoryForEachProgram = int(AVAILABLE_FRAME / len(programs))
+def loadMemory(programs, pageSize):
+    memory = [Page()]*AVAILABLE_FRAME
+    memoryForEachProgram = AVAILABLE_FRAME // len(programs) // pageSize
 
     for programIndex, program in enumerate(programs):
         size = 0
 
-        if (program.numberOfPages > memoryForEachProgram):
+        if program.numberOfPages > memoryForEachProgram:
             size = memoryForEachProgram
         else:
             size = program.numberOfPages
@@ -102,6 +108,7 @@ def loadMemory(programs):
 
     return memory
 
+
 def determineAlgorithm(algorithm):
     return {
             "clock": clockPageReplacement,
@@ -109,8 +116,10 @@ def determineAlgorithm(algorithm):
             "fifo": firstInFirstOutPageReplacement,
     }[algorithm]
 
+
 def determinePaging(string):
     return True if string == "prepaging" else False
+
 
 def runSimulation(algorithm, commandList, pageSize, programs, memory, prepaging):
     numberOfFaults = 0
@@ -119,6 +128,7 @@ def runSimulation(algorithm, commandList, pageSize, programs, memory, prepaging)
         numberOfFaults += accessMemory(programNumber, word, programs, pageSize, algorithm, memory, index, prepaging)
 
     return numberOfFaults
+
 
 def accessMemory(programIndex, word, programs, pageSize, algorithm, memory, PC, prepaging):
     program = programs[programIndex]
@@ -129,10 +139,10 @@ def accessMemory(programIndex, word, programs, pageSize, algorithm, memory, PC, 
         return pageFaults
 
     # Convert relative to absolute page number
-    word = int(word / pageSize) + program.firstPage
+    word = word // pageSize + program.firstPage
 
     programTotalPageRange = program.firstPage + program.numberOfPages
-    if not program.firstPage < word < programTotalPageRange:
+    if word > max(program.pageTable) or word < min(program.pageTable):
         printError("Word {0} is not in page range ({1}...{2})".format(word, program.firstPage, programTotalPageRange))
         return pageFaults
 
@@ -143,6 +153,7 @@ def accessMemory(programIndex, word, programs, pageSize, algorithm, memory, PC, 
         memory[program.pageTable[word]].access(PC)
 
     return pageFaults
+
 
 def handleFault(algorithm, memory, program, word, PC, pageSize, prepaging):
     selector = algorithm(memory, pageSize)
@@ -158,5 +169,3 @@ def handleFault(algorithm, memory, program, word, PC, pageSize, prepaging):
             return
 
         handleFault(algorithm, memory, program, word, PC, pageSize, False)
-
-
