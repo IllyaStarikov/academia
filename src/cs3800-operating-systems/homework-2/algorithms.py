@@ -39,3 +39,17 @@ def leastRecentlyUsedPageReplacement(memory, pageSize):
 
     return selector
 
+def firstInFirstOutPageReplacement(memory, pageSize):
+    minimum = memory[0].loadedCount
+    selector = 0
+
+    for index, memoryBlock in enumerate(memory):
+        if minimum == 0:
+            break
+
+        if memoryBlock.loadedCount < minimum:
+            minimum = memoryBlock.loadedCount
+            selector = index
+
+    return selector
+
