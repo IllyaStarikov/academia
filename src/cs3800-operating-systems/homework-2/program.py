@@ -26,6 +26,6 @@ class Program:
 
         self.pageTable = {}
 
-        for i in range(int(self.firstPage), int(self.firstPage + self.numberOfPages + 1)):
+        for i in range(int(self.firstPage), int(self.firstPage + self.numberOfPages)):
             self.pageTable[i] = -1
 

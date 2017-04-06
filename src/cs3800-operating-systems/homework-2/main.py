@@ -13,17 +13,17 @@ from algorithms import *
 
 # Usage: python3 main.py programlist commandlist pagesize algorithm --(prepaging|ondemand)
 def main():
-    programList, commandList, pageSize, algorithm, paging = parseArguments()
+    programList, commandList, pageSize, algorithmName, paging = parseArguments()
     programListContents = readFromFile(programList)
     commandListContents = readFromFile(commandList)
 
     programs = loadProgramList(programListContents, pageSize)
     memory = loadMemory(programs)
 
-    algorithm = clockPageReplacement
+    algorithm = determineAlgorithm(algorithmName)
     numberOfFaults = runSimulation(algorithm, commandListContents, pageSize, programs, memory)
 
-    print(numberOfFaults)
+    print("Number of Faults: {0}".format(numberOfFaults))
 
 if __name__ == "__main__":
     main()

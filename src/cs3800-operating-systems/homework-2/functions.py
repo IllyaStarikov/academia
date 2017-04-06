@@ -10,6 +10,7 @@ import sys
 
 from page import *
 from program import *
+from algorithms import *
 
 AVAILABLE_FRAME = 512
 
@@ -28,7 +29,6 @@ def representsInt(s):
 
 def isPowerOfTwo(number):
     return number != 0 and ((number & (number - 1)) == 0)
-
 
 def parseArguments():
     # needs at least 5 parameters (see usage) and main.py
@@ -97,6 +97,12 @@ def loadMemory(programs):
 
     return memory
 
+def determineAlgorithm(algorithm):
+    return {
+            "clock": clockPageReplacement,
+            "lru": leastRecentlyUsedPageReplacement,
+            "fifo": firstInFirstOutPageReplacement,
+    }[algorithm]
 
 def runSimulation(algorithm, commandList, pageSize, programs, memory):
     numberOfFaults = 0
@@ -118,7 +124,7 @@ def accessMemory(programIndex, word, programs, pageSize, algorithm, memory, PC):
     word = int(word / pageSize) + program.firstPage
 
     programTotalPageRange = program.firstPage + program.numberOfPages
-    if not program.firstPage <= word <= programTotalPageRange:
+    if not program.firstPage < word < programTotalPageRange:
         printError("Word {0} is not in page range ({1}...{2})".format(word, program.firstPage, programTotalPageRange))
         return
 
@@ -127,6 +133,7 @@ def accessMemory(programIndex, word, programs, pageSize, algorithm, memory, PC):
         handleFault(algorithm, memory, program, word, PC, pageSize)
     else:
         memory[program.pageTable[word]].access(PC)
+
     return pageFaults
 
 def handleFault(algorithm, memory, program, word, PC, pageSize):
