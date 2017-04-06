@@ -21,6 +21,9 @@ def main():
     memory = loadMemory(programs)
 
     algorithm = determineAlgorithm(algorithmName)
+    if algorithm == "None":
+        printError("You fucking broke my program")
+
     numberOfFaults = runSimulation(algorithm, commandListContents, pageSize, programs, memory)
 
     print("Number of Faults: {0}".format(numberOfFaults))

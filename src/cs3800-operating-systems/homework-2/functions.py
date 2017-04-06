@@ -43,8 +43,13 @@ def parseArguments():
             programlist = argument
         elif "command" in argument:
             commandlist = argument
-        elif representsInt(argument) and isPowerOfTwo(int(argument)) and 1 <= int(argument) <= 16:
-            pagesize = int(argument)
+        elif representsInt(argument):
+            if not isPowerOfTwo(int(argument)):
+                printError("Page size must be a power of two (Page Size: {0}".format(argument))
+            elif not 1 <= int(argument) <= 16:
+                printError("Page size not in bound (1 <= {0} <= 16)".format(argument))
+            else:
+                pagesize = int(argument)
         elif argument in ["lru", "fifo", "clock"]:
             algorithm = argument
         elif argument in ["ondemand", "prepaging"]:
