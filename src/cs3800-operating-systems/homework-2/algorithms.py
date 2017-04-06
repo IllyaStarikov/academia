@@ -25,3 +25,17 @@ def clockPageReplacement(memory, pageSize, __clockPointer=[0]):
     __clockPointer[0] += 1
     return selector
 
+def leastRecentlyUsedPageReplacement(memory, pageSize):
+    minimum = memory[0].accessedCount
+    selector = 0
+
+    for index, memoryBlock in enumerate(memory):
+        if minimum == 0:
+            break
+
+        if memoryBlock.loadedCount < minimum:
+            minimum = memoryBlock.accessedCount
+            selector = index
+
+    return selector
+
