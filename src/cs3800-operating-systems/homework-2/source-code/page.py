@@ -16,7 +16,9 @@ class Page(object):
         self.__ID = Page.__nextID
         Page.__nextID += 1
 
-        self.loadedCount = self.accessedCount = self.content = 1
+        self.loadedCount = 1
+        self.accessedCount = 1
+        self.content = 1
         self.owner = None
         self.clock = False
 

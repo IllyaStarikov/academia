@@ -1,40 +1,84 @@
 \RequirePackage[l2tabu, orthodox]{nag}
-\documentclass[12pt]{scrartcl}
+\documentclass[12pt]{article}
 
-\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,xcolor,textcomp,tikz,pgfplots}
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,xcolor,textcomp,tikz,pgfplots,environ}
 \usepackage[margin=10pt, font=small, labelfont=bf, labelsep=endash]{caption}
 \usepackage[colorlinks=true, pdfborder={0 0 0}]{hyperref}
 \usepackage[utf8]{inputenc}
 
+\newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{\strut#1}}}
 
+\makeatletter
+\newsavebox{\measure@tikzpicture}
+\NewEnviron{scaletikzpicturetowidth}[1]{%
+  \def\tikz@width{#1}%
+  \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+  \BODY
+  \end{lrbox}%
+  \pgfmathparse{#1/\wd\measure@tikzpicture}%
+  \edef\tikzscale{\pgfmathresult}%
+  \BODY
+}
+\makeatother
 
 \title{Homework \#2}
-\subtitle{Introduction To Operating Systems}
 \date{Due Date: April 6\textsuperscript{th}, 2017}
 \author{Illya Starikov}
 
 \begin{document}
 \maketitle
+% Write a 1-2 page report detailing your findings, including a discussion of complexity of each algorithm vs. its performance benefit. Also, explain how prepaging affects the performance. Report must be submitted in the .pdf format.
 
-\begin{tikzpicture}
-    \centering
-    \begin{axis}[
-        scale only axis,
-        width=.75\textwidth,
-        height = 5cm,
-        title=Algorithm Performance,
-        xlabel=Page Size,
-        ylabel=Page Swaps,
-        legend pos=north west,
-        ymajorgrids=true,
-        grid style=dashed,
-        legend entries={Clock (Prepaging)}
-    ]
+For this assignment, the tasks were to simulate a memory manager with three page replacement algorithms
 
-    \addplot[color=blue, mark = square] table [x=a, y=b, col sep=comma] {data/clock-prepaging.csv};
+\begin{enumerate}
+    \item Clock Page Replacement
+    \item Least Recently Used Page Replacement
+    \item First In First Out Page Replacement
+\end{enumerate}
 
-    \end{axis}
-\end{tikzpicture}
+\begin{figure}[!ht]
+    \begin{scaletikzpicturetowidth}{\columnwidth}
+    \begin{tikzpicture}[scale=\tikzscale]
+        \centering
+        \begin{axis}[
+            scale only axis,
+            width=16cm,
+            height=8cm,
+            title=Algorithm Performance,
+            xlabel=Page Size,
+            ylabel=Page Swaps,
+            legend pos=north west,
+            ymajorgrids=true,
+            grid style=dashed,
+            legend entries={clock (prepaging),
+            clock,
+            fifo (prepaing),
+            fifo,
+            lru (prepaging),
+            lru}
+        ]
 
+        \addplot[color=blue, mark = square, dashed] table [x=a, y=b, col sep=comma] {data/clock-prepaging.csv};
+        \addplot[color=blue, mark = square] table [x=a, y=b, col sep=comma] {data/clock.csv};
+        \addplot[color=red, mark = square, dashed] table [x=a, y=b, col sep=comma] {data/fifo-prepaing.csv};
+        \addplot[color=red, mark = square] table [x=a, y=b, col sep=comma] {data/fifo.csv};
+        \addplot[color=green, mark = square, dashed] table [x=a, y=b, col sep=comma] {data/lru-prepaging.csv};
+        \addplot[color=green, mark = square] table [x=a, y=b, col sep=comma] {data/lru.csv};
+        \end{axis}
+    \end{tikzpicture}
+    \end{scaletikzpicturetowidth}
+
+    \caption{Page Size vs. Page Swaps}
+    \label{fig:size-vs-swaps}
+\end{figure}
+
+This was accomplished by creating objects for the individual pages (eloquently named \shellcmd{Page}), programs (\shellcmd{Program}), and the memory simulator. The individual algorithms were implemented as methods of the \shellcmd{MemorySimulation} class.
+
+The results can be summarized by Figure~\ref{fig:size-vs-swaps}. For the most part, the page swaps ranged from \num{60 000} to \num{120 000}. The different page sizing affected the algorithms the same, \textit{depending on if there was prepaging}. For prepaging, higher page size increased the page swaps. The inverse also holds, for on demand paging, the algorithms faired better for higher page size. Overall, \textit{Least Recently Used} and \textit{Clock Based Paging} with prepaging worked the best for page sizes of \num{2}, \num{4}, and \num{8}. The worst was \textit{Clock Based Paging} and \textit{First In First Out} with prepaging. The median solution was \textit{Least Recently Used} with prepaging.
+
+In retrospect, one algorithm was no significantly more difficult to implement than another. Conceptually, the \textit{Least Recently Used} algorithm was the most difficult, and even that one was not hard. \textit{First In First Out} was the easiest to implement, but was the worst performance wise. \textit{Clock Based Paging} was the hardest, but had some of the best performance.
+
+Overall, the complexity of the algorithms wasn't the deciding factor on which one to use in day-to-day situations. With very high page swapping happening in an operating system, the deciding factor is the performance.
 
 \end{document}
