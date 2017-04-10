@@ -27,5 +27,5 @@ plt.title("Section {0}.{1}, Problem #{2}".format(chapterNumber, sectionNumber, p
 plt.grid(True)
 plt.ylim(bounds)
 
-plt.savefig("{0}.{1}-problem-{2}.png".format(chapterNumber, sectionNumber, problemNumber))
+plt.savefig("images/{0}.{1}-problem-{2}.eps".format(chapterNumber, sectionNumber, problemNumber), format='eps', dpi=1000)
 plt.show()
