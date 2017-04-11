@@ -37,13 +37,29 @@ def getAllImageFiles():
     return files
 
 
+def getBaseFilenameAndExtension(filename):
+    regex = '(.*)\.(.*)'
+    pattern = re.compile(regex)
+
+    matches = pattern.search(filename)
+
+    if matches:
+        return (matches.group(1), matches.group(2))
+    else:
+        return None
+
+
 def bodyString(imageFile):
+    basename = getBaseFilenameAndExtension(imageFile[0])[0]
+    extension = getBaseFilenameAndExtension(imageFile[0])[1]
+
     return [
+        '\n'
         '\setcounter{{section}}{{{0}}}\n'.format(imageFile[1]),
         '\setcounter{{subsection}}{{{0}}}\n'.format(imageFile[2]),
         '\subsection{{Problem \#{0}}}\n'.format(imageFile[3]),
         '\\begin{center}\n',
-        '    \includegraphics[width=\\textwidth]{{./plotter/images/{{{0}}}}}\n'.format(imageFile[0]),
+        '    \includegraphics[width=\\textwidth]{{./images/{{{0}}}.{1}}}\n'.format(basename, extension),
         '\end{center}\n'
     ]
 
@@ -56,11 +72,3 @@ def exportToLaTeX(filename, header, footer, imageFiles):
         appendToFile(filename, bodyString(imageFile))
 
     appendToFile(filename, footer)
-
-
-header = importFromFile("./latex-boilerplate/header.tex")
-footer = importFromFile("./latex-boilerplate/footer.tex")
-
-images = getAllImageFiles()
-
-exportToLaTeX("assignment.tex", header, footer, images)
