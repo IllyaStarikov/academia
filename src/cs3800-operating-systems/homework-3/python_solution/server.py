@@ -1,3 +1,14 @@
+#################################################################################
+# Created by: Zachary Wileman and Illya Starikov                                #
+# Operating Systems - Section B                                                 #
+# Homework Assignment #3                                                        #
+#                                                                               #
+# Program written using Python3                                                 #
+# Instructions: To run this file, type 'python3 server.py' in the commandline   #
+# Extra Info: The server will print out the hostname for the client to use when #
+#             the server is started.                                            #
+#################################################################################
+
 import socket
 import threading
 from time import sleep
