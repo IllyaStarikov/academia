@@ -9,35 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Messages-->
-        <scene sceneID="0bw-PA-t7P">
-            <objects>
-                <tableViewController id="bj8-0g-wcf" customClass="MessagesTableViewController" customModule="SocketServer" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="JMb-p4-FZa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" id="qJg-xb-K69">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qJg-xb-K69" id="Hji-Pg-TQU">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="bj8-0g-wcf" id="uZV-YU-yN1"/>
-                            <outlet property="delegate" destination="bj8-0g-wcf" id="eGT-W2-b5f"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Messages" id="Agz-Mq-auq"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3R3-KU-GL9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-5122" y="-2006"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="qPF-87-AMK">
             <objects>
@@ -51,12 +22,31 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="bj8-0g-wcf" kind="relationship" relationship="rootViewController" id="hlf-1m-Euh"/>
+                        <segue destination="IwN-l6-Q8l" kind="relationship" relationship="rootViewController" id="dca-My-2tJ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VAj-Y9-cab" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-6074" y="-2006"/>
+        </scene>
+        <!--Initial View Controller-->
+        <scene sceneID="SJD-C7-tYz">
+            <objects>
+                <viewController id="IwN-l6-Q8l" customClass="InitialViewController" customModule="SocketServer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0XA-Hh-8hg"/>
+                        <viewControllerLayoutGuide type="bottom" id="vK7-8l-P5A"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="w6q-si-Zk6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="W77-sM-S4g"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0v3-NP-IVo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5303" y="-2006"/>
         </scene>
     </scenes>
 </document>
