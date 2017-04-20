@@ -3,4 +3,5 @@ use_frameworks!
 
 target 'SocketServer' do
     pod 'SwiftSocket'
+    pod 'JSQMessagesViewController', :git => 'https://github.com/jessesquires/JSQMessagesViewController.git', :branch => 'develop'
 end

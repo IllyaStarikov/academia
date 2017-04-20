@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BEFC0725984E4C868D790C29C83C327C"
+               BlueprintIdentifier = "AD47670C966AA24FDA9C070298AA19C8"
                BuildableName = "Pods_SocketServer.framework"
                BlueprintName = "Pods-SocketServer"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BEFC0725984E4C868D790C29C83C327C"
+            BlueprintIdentifier = "AD47670C966AA24FDA9C070298AA19C8"
             BuildableName = "Pods_SocketServer.framework"
             BlueprintName = "Pods-SocketServer"
             ReferencedContainer = "container:Pods.xcodeproj">

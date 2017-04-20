@@ -1,12 +1,25 @@
 PODS:
+  - JSQMessagesViewController (7.3.4)
   - SwiftSocket (2.0.1)
 
 DEPENDENCIES:
+  - JSQMessagesViewController (from `https://github.com/jessesquires/JSQMessagesViewController.git`, branch `develop`)
   - SwiftSocket
 
+EXTERNAL SOURCES:
+  JSQMessagesViewController:
+    :branch: develop
+    :git: https://github.com/jessesquires/JSQMessagesViewController.git
+
+CHECKOUT OPTIONS:
+  JSQMessagesViewController:
+    :commit: 45fdac769d7354ad19e5990dadbfee285a2e45ee
+    :git: https://github.com/jessesquires/JSQMessagesViewController.git
+
 SPEC CHECKSUMS:
+  JSQMessagesViewController: c11b9e77372ab72c45c67311f6da7342e32df1e8
   SwiftSocket: 2d814afdc97c89217982f86fd036c1874134a63f
 
-PODFILE CHECKSUM: 3a61a9b449e28a3a2c4b92e883e6b9bedc9baca0
+PODFILE CHECKSUM: 0c3e84e7b83795a3ba57b56c6daca05e051b5436
 
 COCOAPODS: 1.2.0

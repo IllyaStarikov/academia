@@ -11,7 +11,7 @@ import SwiftSocket
 
 class MessagesTableViewController: UITableViewController {
     
-    let client = TCPClient(address: "rMBP.local", port: 12345)
+    let client = TCPClient(address: "r01isgx2.device.mst.edu", port: 12345)
     
     var messages = [String]()
     var timer = Timer()
