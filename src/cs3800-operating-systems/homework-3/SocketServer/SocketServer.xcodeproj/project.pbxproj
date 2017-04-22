@@ -17,7 +17,6 @@
 		4989DB771EA81AB400906BCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4989DB751EA81AB400906BCF /* LaunchScreen.storyboard */; };
 		4989DB821EA81AB500906BCF /* SocketServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989DB811EA81AB500906BCF /* SocketServerTests.swift */; };
 		4989DB8D1EA81AB500906BCF /* SocketServerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989DB8C1EA81AB500906BCF /* SocketServerUITests.swift */; };
-		49A17B511EA830F1007F8D49 /* MessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A17B501EA830F1007F8D49 /* MessagesTableViewController.swift */; };
 		6A3714CEB9B16CD5DA816C72 /* Pods_SocketServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C31E592B806E925610B9610 /* Pods_SocketServer.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,7 +54,6 @@
 		4989DB881EA81AB500906BCF /* SocketServerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocketServerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4989DB8C1EA81AB500906BCF /* SocketServerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketServerUITests.swift; sourceTree = "<group>"; };
 		4989DB8E1EA81AB500906BCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		49A17B501EA830F1007F8D49 /* MessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesTableViewController.swift; sourceTree = "<group>"; };
 		68B67A261258D12B17169A80 /* Pods-SocketServer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocketServer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SocketServer/Pods-SocketServer.debug.xcconfig"; sourceTree = "<group>"; };
 		8C31E592B806E925610B9610 /* Pods_SocketServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SocketServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E71A7094422C787F3D5EEA5A /* Pods-SocketServer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocketServer.release.xcconfig"; path = "Pods/Target Support Files/Pods-SocketServer/Pods-SocketServer.release.xcconfig"; sourceTree = "<group>"; };
@@ -114,7 +112,6 @@
 			children = (
 				4989DB6C1EA81AB400906BCF /* AppDelegate.swift */,
 				494157731EA91A54001129CF /* InitialViewController.swift */,
-				49A17B501EA830F1007F8D49 /* MessagesTableViewController.swift */,
 				4989DB701EA81AB400906BCF /* Main.storyboard */,
 				494157751EA91AF5001129CF /* Conversation.swift */,
 				494157771EA91B65001129CF /* ChatViewController.swift */,
@@ -352,7 +349,6 @@
 				494157761EA91AF5001129CF /* Conversation.swift in Sources */,
 				494157741EA91A54001129CF /* InitialViewController.swift in Sources */,
 				4941577A1EA91B81001129CF /* SettingsTableViewController.swift in Sources */,
-				49A17B511EA830F1007F8D49 /* MessagesTableViewController.swift in Sources */,
 				494157781EA91B65001129CF /* ChatViewController.swift in Sources */,
 				4989DB6D1EA81AB400906BCF /* AppDelegate.swift in Sources */,
 			);

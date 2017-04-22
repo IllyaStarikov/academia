@@ -8,111 +8,76 @@
 
 import JSQMessagesViewController
 import UIKit
+import SwiftSocket
 
+// Create avatar with Placeholder Image
+let SenderAvatar = JSQMessagesAvatarImageFactory().avatarImage(withUserInitials: "", backgroundColor: UIColor.gray, textColor: UIColor.white, font: UIFont.systemFont(ofSize: 12))
+let RecieverAvatar = JSQMessagesAvatarImageFactory().avatarImage(withUserInitials: "RE", backgroundColor: UIColor.jsq_messageBubbleBlue(), textColor: UIColor.white, font: UIFont.systemFont(ofSize: 12))
 
-// User Enum to make it easyier to work with.
 enum User: String {
-    case Leonard    = "053496-4509-288"
-    case Squires    = "053496-4509-289"
-    case Jobs       = "707-8956784-57"
-    case Cook       = "468-768355-23123"
-    case Wozniak    = "309-41802-93823"
+    case sender = "1"
+    case reciever = "2"
 }
 
 // Helper Function to get usernames for a secific User.
 func getName(_ user: User) -> String{
-    switch user {
-    case .Squires:
-        return "Jesse Squires"
-    case .Cook:
-        return "Tim Cook"
-    case .Wozniak:
-        return "Steve Wozniak"
-    case .Leonard:
-        return "Dan Leonard"
-    case .Jobs:
-        return "Steve Jobs"
-    }
+    return "" //"Anonymous"
 }
-//// Create Names to display
-//let DisplayNameSquires = "Jesse Squires"
-//let DisplayNameLeonard = "Dan Leonard"
-//let DisplayNameCook = "Tim Cook"
-//let DisplayNameJobs = "Steve Jobs"
-//let DisplayNameWoz = "Steve Wazniak"
 
-
-
-// Create Unique IDs for avatars
-let AvatarIDLeonard = "053496-4509-288"
-let AvatarIDSquires = "053496-4509-289"
-let AvatarIdCook = "468-768355-23123"
-let AvatarIdJobs = "707-8956784-57"
-let AvatarIdWoz = "309-41802-93823"
-
-// Create Avatars Once for performance
-//
-// Create an avatar with Image
-
-let AvatarLeonard = JSQMessagesAvatarImageFactory().avatarImage(withUserInitials: "DL", backgroundColor: UIColor.jsq_messageBubbleGreen(), textColor: UIColor.white, font: UIFont.systemFont(ofSize: 12))
-
-let AvatarCook = JSQMessagesAvatarImageFactory().avatarImage(withUserInitials: "CK", backgroundColor: UIColor.jsq_messageBubbleGreen(), textColor: UIColor.white, font: UIFont.systemFont(ofSize: 12))
-
-// Create avatar with Placeholder Image
-let AvatarJobs = JSQMessagesAvatarImageFactory().avatarImage(withUserInitials: "SJ", backgroundColor: UIColor.jsq_messageBubbleGreen(), textColor: UIColor.white, font: UIFont.systemFont(ofSize: 12))
-
-let AvatarWoz = JSQMessagesAvatarImageFactory().avatarImage(withUserInitials: "SW", backgroundColor: UIColor.jsq_messageBubbleGreen(), textColor: UIColor.white, font: UIFont.systemFont(ofSize: 12))
-
-let AvatarSquires = JSQMessagesAvatarImageFactory().avatarImage(withUserInitials: "SQ", backgroundColor: UIColor.jsq_messageBubbleGreen(), textColor: UIColor.white, font: UIFont.systemFont(ofSize: 12))
 
 // Helper Method for getting an avatar for a specific User.
 func getAvatar(_ id: String) -> JSQMessagesAvatarImage{
-    let user = User(rawValue: id)!
-    
-    switch user {
-    case .Leonard:
-        return AvatarLeonard
-    case .Squires:
-        return AvatarSquires
-    case .Cook:
-        return AvatarCook
-    case .Wozniak:
-        return AvatarWoz
-    case .Jobs:
-        return AvatarJobs
+    switch id {
+    case User.sender.rawValue: return SenderAvatar
+    case User.reciever.rawValue: return RecieverAvatar
+    default: return SenderAvatar
     }
-}
-
-
-
-// INFO: Creating Static Demo Data. This is only for the exsample project to show the framework at work.
-var conversationsList = [Conversation]()
-
-var convo = Conversation(userName:  "Illya", id: "33", latestMessage: "Holy Guacamole, JSQ in swift")
-
-var conversation = [JSQMessage]()
-
-let message = JSQMessage(senderId: AvatarIdCook, displayName: getName(User.Cook), text: "What is this Black Majic?")
-let message2 = JSQMessage(senderId: AvatarIDSquires, displayName: getName(User.Squires), text: "It is simple, elegant, and easy to use. There are super sweet default settings, but you can customize like crazy")
-let message3 = JSQMessage(senderId: AvatarIdWoz, displayName: getName(User.Wozniak), text: "It even has data detectors. You can call me tonight. My cell number is 123-456-7890. My website is www.hexedbits.com.")
-let message4 = JSQMessage(senderId: AvatarIdJobs, displayName: getName(User.Jobs), text: "JSQMessagesViewController is nearly an exact replica of the iOS Messages App. And perhaps, better.")
-let message5 = JSQMessage(senderId: AvatarIDLeonard, displayName: getName(User.Leonard), text: "It is unit-tested, free, open-source, and documented.")
-
-func makeGroupConversation()->[JSQMessage] {
-    conversation = [message, message2,message3, message4, message5]
-    return conversation
 }
 
 
 class InitialViewController: UIViewController {
+    let client = TCPClient(address: "rMBP.local", port: 12345)
+    
+    var messages = [JSQMessage]()
+    var timer = Timer()
+    let chatView = ChatViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let chatView = ChatViewController()
-        chatView.messages = makeGroupConversation()
+        switch client.connect(timeout: 1) {
+        case .success:
+            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {
+                _ in
+                self.getNewMessage()
+            }
+            chatView.sendMethod = { let _ = self.client.send(string: $0) }
+            
+        case .failure(let error):
+            print("\(error)")
+        }
+        
         let chatNavigationController = UINavigationController(rootViewController: chatView)
-        present(chatNavigationController, animated: true, completion: nil)        
+        present(chatNavigationController, animated: true, completion: nil)
     }
 
-
+    
+    
+    func getNewMessage() {
+        DispatchQueue.global(qos: .background).async {
+            let data = self.client.read(1024*10)
+        
+            
+            if let string = String(bytes: data!, encoding: .utf8) {
+                let message = JSQMessage(senderId: (User.reciever.rawValue), displayName: getName(User.reciever), text: string)
+                self.chatView.newMessage(message)
+            } else {
+                print("not a valid UTF-8 sequence")
+            }
+            
+            DispatchQueue.main.async {
+                self.chatView.finishReceivingMessage()
+            }
+        }
+    }
 }
