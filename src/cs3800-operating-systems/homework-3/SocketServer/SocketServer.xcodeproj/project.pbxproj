@@ -507,6 +507,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = K5825K8G3M;
 				INFOPLIST_FILE = SocketServer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = FreneticArray.SocketServer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -521,6 +522,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = K5825K8G3M;
 				INFOPLIST_FILE = SocketServer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = FreneticArray.SocketServer;
 				PRODUCT_NAME = "$(TARGET_NAME)";

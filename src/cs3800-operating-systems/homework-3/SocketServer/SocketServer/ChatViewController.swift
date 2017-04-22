@@ -353,16 +353,20 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, attributedTextForCellTopLabelAt indexPath: IndexPath) -> NSAttributedString? {
-        /**
-         *  This logic should be consistent with what you return from `heightForCellTopLabelAtIndexPath:`
-         *  The other label text delegate methods should follow a similar pattern.
-         *
-         *  Show a timestamp for every 3rd message
-         */
-        if (indexPath.item % 3 == 0) {
-            let message = self.messages[indexPath.item]
+        // If first element or five minutes have passed since the last message, put at date attribute
+        
+        if let lastMessage = messages.first, indexPath.item == 0 {
+            return JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: lastMessage.date)
+        } else if indexPath.item > 0  {
             
-            return JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: message.date)
+            let messageDate = messages[indexPath.item].date
+            let messageDatePlus5Minutes = messageDate.addingTimeInterval(-5*60)
+            
+            let previousMessage = messages[indexPath.item - 1]
+            
+            if previousMessage.date.compare(messageDatePlus5Minutes) == ComparisonResult.orderedAscending  {
+                return JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: messageDate)
+            }
         }
         
         return nil
@@ -389,19 +393,22 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout, heightForCellTopLabelAt indexPath: IndexPath) -> CGFloat {
-        /**
-         *  Each label in a cell has a `height` delegate method that corresponds to its text dataSource method
-         */
+        // If first element or five minutes have passed since the last message, put at date attribute
         
-        /**
-         *  This logic should be consistent with what you return from `attributedTextForCellTopLabelAtIndexPath:`
-         *  The other label height delegate methods should follow similarly
-         *
-         *  Show a timestamp for every 3rd message
-         */
-        if indexPath.item % 3 == 0 {
+        if indexPath.item == 0 {
             return kJSQMessagesCollectionViewCellLabelHeightDefault
+        } else if indexPath.item > 0 {
+            let messageDate = messages[indexPath.item].date
+            let messageDatePlus5Minutes = messageDate.addingTimeInterval(-5*60)
+            
+            let previousMessage = messages[indexPath.item - 1]
+            
+            if previousMessage.date.compare(messageDatePlus5Minutes) == ComparisonResult.orderedAscending  {
+                return kJSQMessagesCollectionViewCellLabelHeightDefault
+            }
         }
+        
+        
         
         return 0.0
     }

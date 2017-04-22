@@ -60,13 +60,13 @@ class InitialViewController: UIViewController {
         let chatNavigationController = UINavigationController(rootViewController: chatView)
         present(chatNavigationController, animated: true, completion: nil)
     }
-
+    
     
     
     func getNewMessage() {
         DispatchQueue.global(qos: .background).async {
             let data = self.client.read(1024*10)
-        
+            
             
             if let string = String(bytes: data!, encoding: .utf8) {
                 let message = JSQMessage(senderId: (User.reciever.rawValue), displayName: getName(User.reciever), text: string)
