@@ -27,7 +27,7 @@ class ChatViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.inputToolbar.contentView?.leftBarButtonItem = nil
         
         
         /**
