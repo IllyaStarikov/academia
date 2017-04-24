@@ -11,6 +11,7 @@
 		494157761EA91AF5001129CF /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494157751EA91AF5001129CF /* Conversation.swift */; };
 		494157781EA91B65001129CF /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494157771EA91B65001129CF /* ChatViewController.swift */; };
 		4941577A1EA91B81001129CF /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494157791EA91B81001129CF /* SettingsTableViewController.swift */; };
+		4976A63D1EAD0EE200F2A892 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4976A63C1EAD0EE200F2A892 /* LoginView.swift */; };
 		4989DB6D1EA81AB400906BCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4989DB6C1EA81AB400906BCF /* AppDelegate.swift */; };
 		4989DB721EA81AB400906BCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4989DB701EA81AB400906BCF /* Main.storyboard */; };
 		4989DB741EA81AB400906BCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4989DB731EA81AB400906BCF /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 		494157751EA91AF5001129CF /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		494157771EA91B65001129CF /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		494157791EA91B81001129CF /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		4976A63C1EAD0EE200F2A892 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4989DB691EA81AB400906BCF /* SocketServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocketServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4989DB6C1EA81AB400906BCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4989DB711EA81AB400906BCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				4989DB6C1EA81AB400906BCF /* AppDelegate.swift */,
 				494157731EA91A54001129CF /* InitialViewController.swift */,
 				4989DB701EA81AB400906BCF /* Main.storyboard */,
+				4976A63C1EAD0EE200F2A892 /* LoginView.swift */,
 				494157751EA91AF5001129CF /* Conversation.swift */,
 				494157771EA91B65001129CF /* ChatViewController.swift */,
 				494157791EA91B81001129CF /* SettingsTableViewController.swift */,
@@ -346,6 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4976A63D1EAD0EE200F2A892 /* LoginView.swift in Sources */,
 				494157761EA91AF5001129CF /* Conversation.swift in Sources */,
 				494157741EA91A54001129CF /* InitialViewController.swift in Sources */,
 				4941577A1EA91B81001129CF /* SettingsTableViewController.swift in Sources */,

@@ -4,12 +4,27 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>FontAwesome.swift-FontAwesome.swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FontAwesome.swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JSQMessagesViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-SocketServer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SkyFloatingLabelTextField.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,17 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>67FF88A4AA5C1237C61C2361CE4E9E54</key>
+		<key>1DA3677386EF12A910E63D431DCC6F5F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AD47670C966AA24FDA9C070298AA19C8</key>
+		<key>77979430716929ED71E6E262A9F9A184</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7AB58ECBBC745B06AE84AC2CA426CB60</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ABF446F8FCFAAB31ECBFE04C4AAD0F7A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>C5EE56BD20640CA71053D1824E09576E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C74D47B051BF84CA30E0723F127F42AD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

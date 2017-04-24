@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mtN-jN-9zs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="39C-5P-to9">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,7 @@
         <scene sceneID="qPF-87-AMK">
             <objects>
                 <navigationController id="mtN-jN-9zs" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hex-Hf-w0u">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Hex-Hf-w0u">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -28,6 +28,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VAj-Y9-cab" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-6074" y="-2006"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="CAG-tD-0yV">
+            <objects>
+                <viewController id="39C-5P-to9" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="esZ-Ya-gnz"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zfo-8q-W7Z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zSD-wz-Qrx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8sL-K0-Wku" customClass="LoginView" customModule="SocketServer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="8sL-K0-Wku" secondAttribute="trailing" id="H9E-Xf-n89"/>
+                            <constraint firstItem="8sL-K0-Wku" firstAttribute="leading" secondItem="zSD-wz-Qrx" secondAttribute="leading" id="JFp-Rd-wfa"/>
+                            <constraint firstItem="8sL-K0-Wku" firstAttribute="top" secondItem="esZ-Ya-gnz" secondAttribute="bottom" id="L1x-IM-Dh8"/>
+                            <constraint firstItem="8sL-K0-Wku" firstAttribute="bottom" secondItem="Zfo-8q-W7Z" secondAttribute="top" id="u1J-PQ-YMP"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rn4-rK-aLf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5724" y="-2698.2008995502251"/>
         </scene>
         <!--Initial View Controller-->
         <scene sceneID="SJD-C7-tYz">

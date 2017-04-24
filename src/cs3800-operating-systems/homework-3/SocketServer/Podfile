@@ -4,4 +4,6 @@ use_frameworks!
 target 'SocketServer' do
     pod 'SwiftSocket'
     pod 'JSQMessagesViewController', :git => 'https://github.com/jessesquires/JSQMessagesViewController.git', :branch => 'develop'
+    pod 'SkyFloatingLabelTextField', '~> 3.0'
+    pod 'FontAwesome.swift'
 end

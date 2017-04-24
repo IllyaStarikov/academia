@@ -45,6 +45,7 @@ class InitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         switch client.connect(timeout: 1) {
         case .success:
             timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {
@@ -58,7 +59,7 @@ class InitialViewController: UIViewController {
         }
         
         let chatNavigationController = UINavigationController(rootViewController: chatView)
-        present(chatNavigationController, animated: true, completion: nil)
+//        present(chatNavigationController, animated: true, completion: nil)
     }
     
     
