@@ -29,10 +29,10 @@
             </objects>
             <point key="canvasLocation" x="-6074" y="-2006"/>
         </scene>
-        <!--View Controller-->
+        <!--Initial View Controller-->
         <scene sceneID="CAG-tD-0yV">
             <objects>
-                <viewController id="39C-5P-to9" sceneMemberID="viewController">
+                <viewController id="39C-5P-to9" customClass="InitialViewController" customModule="SocketServer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="esZ-Ya-gnz"/>
                         <viewControllerLayoutGuide type="bottom" id="Zfo-8q-W7Z"/>
@@ -54,6 +54,9 @@
                             <constraint firstItem="8sL-K0-Wku" firstAttribute="bottom" secondItem="Zfo-8q-W7Z" secondAttribute="top" id="u1J-PQ-YMP"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loginView" destination="8sL-K0-Wku" id="tIh-V6-Z25"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rn4-rK-aLf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

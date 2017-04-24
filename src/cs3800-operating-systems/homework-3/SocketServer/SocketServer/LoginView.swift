@@ -22,8 +22,6 @@ class LoginButton: UIButton {
         self.tintColor = UIColor.black
         
         self.setTitleColor(UIColor.jsq_messageBubbleBlue(), for: [])
-        self.setTitleColor(UIColor.blue, for: [UIControlState.selected])
-        self.setTitleColor(UIColor.blue, for: [UIControlState.highlighted])
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,12 +33,20 @@ class LoginButton: UIButton {
 }
 
 class LoginView: UIView {
-    struct Constants {
-        static let horizontalPaddingPercentage: CGFloat = 0.10
-        static let verticalPadding: CGFloat = 5.0
+    var buttonAction: () -> Void = {}
+    
+    public var usernameLabel = SkyFloatingLabelTextFieldWithIcon(), hostnameLabel = SkyFloatingLabelTextFieldWithIcon(), portLabel = SkyFloatingLabelTextFieldWithIcon()
+    public var loginButton = LoginButton() {
+        didSet {
+            loginButton.addTarget(self, action: #selector(actionSelector), for: .touchDown)
+        }
     }
     
-    func generateLabel(withFrame frame: CGRect, labeled label: String, withIconText icon: String) -> SkyFloatingLabelTextField {
+    @objc private func actionSelector() {
+        buttonAction()
+    }
+    
+    func generateLabel(withFrame frame: CGRect, labeled label: String, withIconText icon: String) -> SkyFloatingLabelTextFieldWithIcon {
         let textField = SkyFloatingLabelTextFieldWithIcon(frame: frame)
         textField.placeholder = label
         textField.title = label
@@ -64,11 +70,6 @@ class LoginView: UIView {
         button.frame = frame
         button.setTitle("Login", for: [])
         
-        
-        //        button.translatesAutoresizingMaskIntoConstraints = false
-        //        button.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        //        button.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        
         return button
     }
     
@@ -76,11 +77,12 @@ class LoginView: UIView {
         let labelWidth = Int(frame.width) - Int(2*Constants.horizontalPaddingPercentage*frame.width)
         let x = Constants.horizontalPaddingPercentage*frame.width
         
-        let usernameLabel = generateLabel(withFrame: CGRect(x: Int(x), y: Int(Constants.verticalPadding), width: labelWidth, height: 45), labeled: "Username", withIconText: "\u{f007}")
-        let hostnameLabel = generateLabel(withFrame: CGRect(x: Int(x), y: Int(Constants.verticalPadding + usernameLabel.frame.maxY), width: Int(0.45*Double(labelWidth)), height: 45), labeled: "Hostname", withIconText: "\u{f233}")
-        let portLabel = generateLabel(withFrame: CGRect(x: Int(hostnameLabel.frame.maxX + 0.1*CGFloat(labelWidth)), y: Int(Constants.verticalPadding + usernameLabel.frame.maxY), width: Int(0.45*Double(labelWidth)), height: 45), labeled: "Port", withIconText: "\u{f108}")
+        usernameLabel = generateLabel(withFrame: CGRect(x: Int(x), y: Int(Constants.verticalPadding), width: labelWidth, height: 45), labeled: "Username", withIconText: "\u{f007}")
+        hostnameLabel = generateLabel(withFrame: CGRect(x: Int(x), y: Int(Constants.verticalPadding + usernameLabel.frame.maxY), width: Int(0.45*Double(labelWidth)), height: 45), labeled: "Hostname", withIconText: "\u{f233}")
+        portLabel = generateLabel(withFrame: CGRect(x: Int(hostnameLabel.frame.maxX + 0.1*CGFloat(labelWidth)), y: Int(Constants.verticalPadding + usernameLabel.frame.maxY), width: Int(0.45*Double(labelWidth)), height: 45), labeled: "Port", withIconText: "\u{f108}")
         
-        let loginButton = generateLoginButton(withFrame: CGRect(x: Int(x), y: Int(Int(4*Constants.verticalPadding + hostnameLabel.frame.maxY)), width: Int(labelWidth), height: 45))
+        loginButton = generateLoginButton(withFrame: CGRect(x: Int(x), y: Int(Int(4*Constants.verticalPadding + hostnameLabel.frame.maxY)), width: Int(labelWidth), height: 45))
+
         
         addSubview(hostnameLabel)
         addSubview(usernameLabel)
@@ -88,5 +90,8 @@ class LoginView: UIView {
         addSubview(loginButton)
     }
     
-    
+    struct Constants {
+        static let horizontalPaddingPercentage: CGFloat = 0.10
+        static let verticalPadding: CGFloat = 5.0
+    }
 }

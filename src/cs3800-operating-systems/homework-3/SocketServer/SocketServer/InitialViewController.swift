@@ -36,30 +36,43 @@ func getAvatar(_ id: String) -> JSQMessagesAvatarImage{
 
 
 class InitialViewController: UIViewController {
-    let client = TCPClient(address: "rMBP.local", port: 12345)
+    var client = TCPClient(address: "", port: 123)
+    
+    @IBOutlet weak var loginView: LoginView!
     
     var messages = [JSQMessage]()
     var timer = Timer()
     let chatView = ChatViewController()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    var username = ""
+    
+    func connect() {
+        let address = self.loginView.hostnameLabel.text
+        let port = Int(self.loginView.portLabel.text!)!
         
+        client = TCPClient(address: address!, port: Int32(UInt32(port)))
         
         switch client.connect(timeout: 1) {
         case .success:
-            timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {
+            self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {
                 _ in
                 self.getNewMessage()
             }
-            chatView.sendMethod = { let _ = self.client.send(string: $0) }
+            self.chatView.sendMethod = { let _ = self.client.send(string: $0) }
+
+            let chatNavigationController = UINavigationController(rootViewController: self.chatView)
+            present(chatNavigationController, animated: true, completion: nil)
             
         case .failure(let error):
             print("\(error)")
         }
         
-        let chatNavigationController = UINavigationController(rootViewController: chatView)
-//        present(chatNavigationController, animated: true, completion: nil)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        loginView.buttonAction = connect
     }
     
     
