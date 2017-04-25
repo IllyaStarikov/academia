@@ -49,11 +49,31 @@ class InitialViewController: UIViewController {
     
     func connect() {
         let address = self.loginView.hostnameLabel.text
-        let port = Int(self.loginView.portLabel.text!)!
-        
+        let port = Int(self.loginView.portLabel.text!)
         username = loginView.usernameLabel.text!
         
-        client = TCPClient(address: address!, port: Int32(UInt32(port)))
+        guard port != nil else {
+            let alert = UIAlertController(title: "Invalid Port", message: "Invalid port number, please try again.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        guard address != "" else {
+            let alert = UIAlertController(title: "Invalid Address", message: "Address cannot be blank.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        guard username != "" else {
+            let alert = UIAlertController(title: "Invalid Username", message: "Address cannot be blank.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        client = TCPClient(address: address!, port: Int32(port!))
         
         switch client.connect(timeout: 1) {
         case .success:
@@ -62,20 +82,22 @@ class InitialViewController: UIViewController {
                 self.getNewMessage()
             }
             self.chatView.sendMethod = { let _ = self.client.send(string: self.username + ": " + $0) }
-
+            
             let chatNavigationController = UINavigationController(rootViewController: self.chatView)
             present(chatNavigationController, animated: true, completion: nil)
             
         case .failure(let error):
-            print("\(error)")
+            let alert = UIAlertController(title: "Cannot Connect", message: "Cannot connect to server. (\(error.localizedDescription))", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
         }
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    
+        
         loginView.buttonAction = connect
     }
     
