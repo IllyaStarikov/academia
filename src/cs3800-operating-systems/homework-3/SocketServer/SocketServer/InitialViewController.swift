@@ -50,6 +50,8 @@ class InitialViewController: UIViewController {
         let address = self.loginView.hostnameLabel.text
         let port = Int(self.loginView.portLabel.text!)!
         
+        username = loginView.usernameLabel.text!
+        
         client = TCPClient(address: address!, port: Int32(UInt32(port)))
         
         switch client.connect(timeout: 1) {
@@ -58,7 +60,7 @@ class InitialViewController: UIViewController {
                 _ in
                 self.getNewMessage()
             }
-            self.chatView.sendMethod = { let _ = self.client.send(string: $0) }
+            self.chatView.sendMethod = { let _ = self.client.send(string: self.username + ": " + $0) }
 
             let chatNavigationController = UINavigationController(rootViewController: self.chatView)
             present(chatNavigationController, animated: true, completion: nil)
