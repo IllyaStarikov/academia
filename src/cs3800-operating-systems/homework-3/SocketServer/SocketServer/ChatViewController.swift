@@ -12,6 +12,7 @@ import SwiftSocket
 
 class ChatViewController: JSQMessagesViewController {
     
+    
     var sendMethod: ((String) -> Void)? = nil
     
     var messages = [JSQMessage]()
@@ -29,21 +30,40 @@ class ChatViewController: JSQMessagesViewController {
         messages.append(message)
     }
     
+    func setupBackButton() {
+        let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(backButtonTapped))
+        navigationItem.leftBarButtonItem = backButton
+    }
+    
+    func setupSettingsButton() {
+        let settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings "), style: UIBarButtonItemStyle.plain, target: self, action: #selector(settingsButtonTapped))
+        navigationItem.rightBarButtonItem = settingsButton
+    }
+    
+    func settingsButtonTapped() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let settingsTableView = storyboard.instantiateViewController(withIdentifier: "Settings")
+        
+        let settingsNavigationController = UINavigationController(rootViewController: settingsTableView)
+        present(settingsNavigationController, animated: true, completion: nil)
+    }
+    
+    func backButtonTapped() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func setupTitle() {
+        navigationItem.title = "Messages"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupBackButton()
+        setupSettingsButton()
+        setupTitle()
+        
         self.inputToolbar.contentView?.leftBarButtonItem = nil
-        
-        
-        if defaults.bool(forKey: Setting.removeBubbleTails.rawValue) {
-            // Make taillessBubbles
-            incomingBubble = JSQMessagesBubbleImageFactory(bubble: UIImage.jsq_bubbleCompactTailless(), capInsets: UIEdgeInsets.zero, layoutDirection: UIApplication.shared.userInterfaceLayoutDirection).incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
-            outgoingBubble = JSQMessagesBubbleImageFactory(bubble: UIImage.jsq_bubbleCompactTailless(), capInsets: UIEdgeInsets.zero, layoutDirection: UIApplication.shared.userInterfaceLayoutDirection).outgoingMessagesBubbleImage(with: UIColor.lightGray)
-        }
-        else {
-            // Bubbles with tails
-            incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
-            outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.lightGray)
-        }
         
 
         collectionView?.collectionViewLayout.outgoingAvatarViewSize = .zero
@@ -54,11 +74,13 @@ class ChatViewController: JSQMessagesViewController {
 //            collectionView?.collectionViewLayout.incomingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height:kJSQMessagesCollectionViewAvatarSizeDefault )
 //            collectionView?.collectionViewLayout.outgoingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height:kJSQMessagesCollectionViewAvatarSizeDefault )
 //        }
-        
-        // Show Button to simulate incoming messages
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage.jsq_defaultTypingIndicator(), style: .plain, target: self, action: #selector(receiveMessagePressed))
+    
         
         // This is a beta feature that mostly works but to make things more stable it is diabled.
+        
+        incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
+        outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.lightGray)
+        
         collectionView?.collectionViewLayout.springinessEnabled = false
         
         automaticallyScrollsToMostRecentMessage = true
@@ -130,11 +152,7 @@ class ChatViewController: JSQMessagesViewController {
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath) -> NSAttributedString? {
         let message = messages[indexPath.item]
-        
-        if defaults.bool(forKey: Setting.removeSenderDisplayName.rawValue) {
-            return nil
-        }
-        
+       
         if message.senderId == self.senderId() {
             return nil
         }
@@ -162,13 +180,7 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout, heightForMessageBubbleTopLabelAt indexPath: IndexPath) -> CGFloat {
-        if defaults.bool(forKey: Setting.removeSenderDisplayName.rawValue) {
-            return 0.0
-        }
-        
-        /**
-         *  iOS7-style sender name labels
-         */
+    
         let currentMessage = self.messages[indexPath.item]
         
         if currentMessage.senderId == self.senderId() {

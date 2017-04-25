@@ -27,9 +27,6 @@ class LoginButton: UIButton {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    
 }
 
 class LoginView: UIView {
@@ -77,12 +74,11 @@ class LoginView: UIView {
         let labelWidth = Int(frame.width) - Int(2*Constants.horizontalPaddingPercentage*frame.width)
         let x = Constants.horizontalPaddingPercentage*frame.width
         
-        usernameLabel = generateLabel(withFrame: CGRect(x: Int(x), y: Int(Constants.verticalPadding), width: labelWidth, height: 45), labeled: "Username", withIconText: "\u{f007}")
+        usernameLabel = generateLabel(withFrame: CGRect(x: Int(x), y: Int(0.25*frame.maxY), width: labelWidth, height: 45), labeled: "Username", withIconText: "\u{f007}")
         hostnameLabel = generateLabel(withFrame: CGRect(x: Int(x), y: Int(Constants.verticalPadding + usernameLabel.frame.maxY), width: Int(0.45*Double(labelWidth)), height: 45), labeled: "Hostname", withIconText: "\u{f233}")
         portLabel = generateLabel(withFrame: CGRect(x: Int(hostnameLabel.frame.maxX + 0.1*CGFloat(labelWidth)), y: Int(Constants.verticalPadding + usernameLabel.frame.maxY), width: Int(0.45*Double(labelWidth)), height: 45), labeled: "Port", withIconText: "\u{f108}")
         
-        loginButton = generateLoginButton(withFrame: CGRect(x: Int(x), y: Int(Int(4*Constants.verticalPadding + hostnameLabel.frame.maxY)), width: Int(labelWidth), height: 45))
-
+        loginButton = generateLoginButton(withFrame: CGRect(x: Int(x), y: Int(Int(3*Constants.verticalPadding + hostnameLabel.frame.maxY)), width: Int(labelWidth), height: 45))
         
         addSubview(hostnameLabel)
         addSubview(usernameLabel)
@@ -92,6 +88,6 @@ class LoginView: UIView {
     
     struct Constants {
         static let horizontalPaddingPercentage: CGFloat = 0.10
-        static let verticalPadding: CGFloat = 5.0
+        static let verticalPadding: CGFloat = 15.0
     }
 }
