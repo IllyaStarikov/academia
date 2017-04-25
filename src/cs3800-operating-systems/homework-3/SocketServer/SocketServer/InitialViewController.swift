@@ -53,23 +53,17 @@ class InitialViewController: UIViewController {
         username = loginView.usernameLabel.text!
         
         guard port != nil else {
-            let alert = UIAlertController(title: "Invalid Port", message: "Invalid port number, please try again.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            presentErrorMessage(titled: "Invalid Port", withMessage: "Invalid port number, please try again.")
             return
         }
         
         guard address != "" else {
-            let alert = UIAlertController(title: "Invalid Address", message: "Address cannot be blank.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            presentErrorMessage(titled: "Invalid Address", withMessage: "Address cannot be blank, please user hostname provided from server.")
             return
         }
         
         guard username != "" else {
-            let alert = UIAlertController(title: "Invalid Username", message: "Address cannot be blank.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            presentErrorMessage(titled: "Invalid Username", withMessage: "Username cannot be blank, please use one.")
             return
         }
         
@@ -87,9 +81,7 @@ class InitialViewController: UIViewController {
             present(chatNavigationController, animated: true, completion: nil)
             
         case .failure(let error):
-            let alert = UIAlertController(title: "Cannot Connect", message: "Cannot connect to server. (\(error.localizedDescription))", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            presentErrorMessage(titled: "Cannot Connect", withMessage: "Cannot connect to server. (\(error.localizedDescription))")
             return
         }
     }
@@ -97,8 +89,13 @@ class InitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         loginView.buttonAction = connect
+    }
+    
+    func presentErrorMessage(titled title: String, withMessage message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     
