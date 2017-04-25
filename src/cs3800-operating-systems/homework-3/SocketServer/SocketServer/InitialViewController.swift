@@ -9,6 +9,7 @@
 import JSQMessagesViewController
 import UIKit
 import SwiftSocket
+import SkyFloatingLabelTextField
 
 // Create avatar with Placeholder Image
 let SenderAvatar = JSQMessagesAvatarImageFactory().avatarImage(withUserInitials: "", backgroundColor: UIColor.gray, textColor: UIColor.white, font: UIFont.systemFont(ofSize: 12))
@@ -74,9 +75,9 @@ class InitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    
         loginView.buttonAction = connect
     }
-    
     
     
     func getNewMessage() {

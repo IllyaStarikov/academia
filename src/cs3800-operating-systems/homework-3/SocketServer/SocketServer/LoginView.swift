@@ -29,10 +29,18 @@ class LoginButton: UIButton {
     }
 }
 
-class LoginView: UIView {
+class LoginView: UIView, UITextFieldDelegate {
     var buttonAction: () -> Void = {}
     
-    public var usernameLabel = SkyFloatingLabelTextFieldWithIcon(), hostnameLabel = SkyFloatingLabelTextFieldWithIcon(), portLabel = SkyFloatingLabelTextFieldWithIcon()
+    public var usernameLabel = SkyFloatingLabelTextFieldWithIcon(), hostnameLabel = SkyFloatingLabelTextFieldWithIcon()
+    
+    public var portLabel = SkyFloatingLabelTextFieldWithIcon() {
+        didSet {
+            portLabel.errorColor = UIColor.red
+            portLabel.delegate = self
+        }
+    }
+    
     public var loginButton = LoginButton() {
         didSet {
             loginButton.addTarget(self, action: #selector(actionSelector), for: .touchDown)
@@ -42,6 +50,7 @@ class LoginView: UIView {
     @objc private func actionSelector() {
         buttonAction()
     }
+    
     
     func generateLabel(withFrame frame: CGRect, labeled label: String, withIconText icon: String) -> SkyFloatingLabelTextFieldWithIcon {
         let textField = SkyFloatingLabelTextFieldWithIcon(frame: frame)
@@ -85,6 +94,30 @@ class LoginView: UIView {
         addSubview(portLabel)
         addSubview(loginButton)
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let text = textField.text {
+            if let floatingLabelTextField = textField as? SkyFloatingLabelTextField {
+                switch floatingLabelTextField.title! {
+                case "Port":
+
+                if Int(text) == nil || Int(text)! <= 0 || Int(text)! >= 70_000 {
+                    floatingLabelTextField.errorMessage = "Invalid Port"
+                } else {
+                    floatingLabelTextField.errorMessage = ""
+                }
+                
+                    break
+                    
+                default:
+                    break
+                }
+            }
+        }
+        return true
+    }
+    
+    
     
     struct Constants {
         static let horizontalPaddingPercentage: CGFloat = 0.10
