@@ -14,6 +14,7 @@ class ChatViewController: JSQMessagesViewController {
     
     
     var sendMethod: ((String) -> Void)? = nil
+    var closeMethod: (() -> Void)? = nil
     
     var messages = [JSQMessage]()
     let defaults = UserDefaults.standard
@@ -49,6 +50,7 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     func backButtonTapped() {
+        closeMethod!()
         dismiss(animated: true, completion: nil)
     }
     
@@ -88,9 +90,6 @@ class ChatViewController: JSQMessagesViewController {
         self.collectionView?.reloadData()
         self.collectionView?.layoutIfNeeded()
     }
-
-    
-    
     
     // MARK: JSQMessagesViewController method overrides
     override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {

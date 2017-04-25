@@ -76,6 +76,7 @@ class InitialViewController: UIViewController {
                 self.getNewMessage()
             }
             self.chatView.sendMethod = { let _ = self.client.send(string: self.username + ": " + $0) }
+            self.chatView.closeMethod = { let _ = self.client.close() }
             
             let chatNavigationController = UINavigationController(rootViewController: self.chatView)
             present(chatNavigationController, animated: true, completion: nil)
