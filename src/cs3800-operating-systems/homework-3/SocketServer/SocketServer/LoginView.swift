@@ -16,12 +16,12 @@ class LoginButton: UIButton {
         super.init(frame: frame)
         
         self.layer.cornerRadius = 4.0;
-        self.layer.borderColor = UIColor.jsq_messageBubbleBlue().cgColor
+        self.layer.borderColor = UIColor.black.cgColor
         self.layer.borderWidth = 1.5
         
-        self.tintColor = UIColor.black
+        self.tintColor = .black
         
-        self.setTitleColor(UIColor.jsq_messageBubbleBlue(), for: [])
+        self.setTitleColor(.black, for: [])
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,7 +36,7 @@ class LoginView: UIView, UITextFieldDelegate {
     
     public var portLabel = SkyFloatingLabelTextFieldWithIcon() {
         didSet {
-            portLabel.errorColor = UIColor.red
+            portLabel.errorColor = .red
             portLabel.delegate = self
         }
     }
@@ -62,10 +62,10 @@ class LoginView: UIView, UITextFieldDelegate {
         textField.iconText = icon
         
         // Pretty colors
-        textField.tintColor = UIColor.jsq_messageBubbleBlue()
-        textField.selectedTitleColor = UIColor.jsq_messageBubbleBlue()
-        textField.selectedLineColor = UIColor.jsq_messageBubbleBlue()
-        textField.selectedIconColor = UIColor.jsq_messageBubbleBlue()
+        textField.tintColor = .black
+        textField.selectedTitleColor = .black
+        textField.selectedLineColor = .black
+        textField.selectedIconColor = .black
         
         return textField
     }

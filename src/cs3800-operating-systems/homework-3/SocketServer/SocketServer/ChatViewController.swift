@@ -33,11 +33,13 @@ class ChatViewController: JSQMessagesViewController {
     
     func setupBackButton() {
         let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(backButtonTapped))
+        backButton.tintColor = .black
         navigationItem.leftBarButtonItem = backButton
     }
     
     func setupSettingsButton() {
         let settingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "settings "), style: UIBarButtonItemStyle.plain, target: self, action: #selector(settingsButtonTapped))
+        settingsButton.tintColor = .black
         navigationItem.rightBarButtonItem = settingsButton
     }
     
@@ -80,8 +82,8 @@ class ChatViewController: JSQMessagesViewController {
         
         // This is a beta feature that mostly works but to make things more stable it is diabled.
         
-        incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
-        outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.lightGray)
+        incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: .black)
+        outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: .black)
         
         collectionView?.collectionViewLayout.springinessEnabled = false
         
