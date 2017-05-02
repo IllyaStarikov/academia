@@ -1,0 +1,146 @@
+\documentclass[9pt,landscape]{memoir}
+\usepackage[landscape]{geometry}
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,setspace,graphicx,enumitem,siunitx,ifthen,calc,multicol,listings,xcolor}
+\usepackage[absolute]{textpos}
+
+\ifthenelse{\lengthtest{\paperwidth=11in}}
+    {\geometry{top=.1in,left=.2in,right=.2in,bottom=.1in}}
+    {\ifthenelse{\lengthtest{\paperwidth=297mm}}
+        {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+        {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+    }
+
+\setlist[description]{%
+ font={\bfseries\sffamily\color{red}}
+}
+
+\usepackage[colorlinks = true,
+            linkcolor = red,
+            urlcolor  = red,
+            citecolor = red,
+            anchorcolor = red]{hyperref}
+
+\lstdefinestyle{cC++}{%
+    language=C++,
+    basicstyle=\tiny\ttfamily,
+    keywordstyle=\color{blue}\ttfamily,
+    stringstyle=\color{red}\ttfamily,
+    commentstyle=\color{gray}\ttfamily,
+    morecomment=[l][\color{magenta}]{\#},
+    showstringspaces=false,
+    keepspaces=true,
+    tabsize=4,
+    breaklines=true,
+    morekeywords={string}
+}
+
+% Answers In Read
+\newcommand{\answer}[1]{\textcolor{red}{#1}}
+
+% Turn off header and footer
+\pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Change lists to take less space
+\setlist[itemize]{leftmargin=0pt, noitemsep, before={\vspace*{-\baselineskip}}, after={\vspace*{-\baselineskip}}}
+\setlist[enumerate]{leftmargin=0pt, noitemsep, before={\vspace*{-\baselineskip}}, after={\vspace*{-\baselineskip}}}
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+% Change Listings Spacing
+\usepackage{etoolbox}
+\makeatletter
+\preto{\lstlisting}{\topsep=4pt \partopsep=2pt}
+\makeatother
+% -----------------------------------------------------------------------
+
+\begin{document}
+
+\raggedright\footnotesize
+\begin{multicols}{6}
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+\tiny
+
+\begin{itemize}
+    \item If a desired page frame is not currently resident in RAM, \answer{A Page Fault} occurs.
+    \item If a memory management system uses dynamic partitioning, \answer{External} fragmentation may occur.
+    \item Since paging system uses \answer{fixed size}-sized pages, \answer{internal} fragmentation may occur.
+    \item Swapping out a piece of a process (i.e.~pages of a process) just before that piece is needed is called \answer{Thrashing}
+    \item The least recently used (LRU) page replacement strategy is based on the principle of \answer{temporal locality}  as opposed to \answer{spatial locality}.
+    \item The top four levels in the memory hierarchy, starting with the fastest, are: \answer{Registers}; \answer{cache memory}; \answer{RAM}; \answer{Disk}
+    \item The two lowest layers in the 7-layer ISO Open Systems Interconnect (OSI) model are \answer{Physical} and \answer{Data Link}  layers and their primary function is to provide \answer{signaling technology} and \answer{frame management}
+    \item Two transport protocols, \answer{Transmission Control Protocol (TCP)} and \answer{User Datagram Protocol (UDP)}, are defined and handled at the Transport Layer
+    \item \answer{DMA (Direct Memory Access)} is a form of I/O in which a special module controls the exchange of data between main memory and an I/O device. During this I/O transfer, CPU is free to do other computation.
+    \item In which one of the following OSI layers Transmission Control Protocol (TCP) and User Datagram Protocol (UDP) are defined and implemented? a. Application b. Physical c. Transport d. Data Link e. Session \answer{c}
+    \item When we compare clusters with SMP (Symmetric Multiprocessors), which of the following are true (circle all that apply)? a. Clusters are easier to manage and configure b. Clusters take up less space and draw less power c. Clusters are better for incremental and absolute scalability d. Clusters are superior in terms of availability e. Clusters have superior price/performance \answer{c, d, e}
+    \item Which of the following are among the direct goals of process scheduling algorithms (circle all that apply): a.~improve response time b.~minimize interrupts c.~improve throughput d.~minimize page faults e.~improve turnaround time for jobs f.~increase memory efficiency \answer{a, c, e}
+    \item Which of the following features are specific to Real-Time OS? (circle all that apply) a.~Small size b. Fast context switch c. Less user control d. Nondeterministic delays e. Fail-safe operation \answer{a, b. e}
+    \item Which of the following malicious software need a host program to operate? (circle all that apply) a. Logic Bomb b. Worm c. Zombie (bots) d. Trojan Horse e. Virus \answer{a, d, e}
+    \item Which of the following scheduling policies may cause starvation for certain jobs? (circle all that apply) a. First Come First Serve (FCFS) b. Feedback c. Round Robin d. Shortest Process Next (SPN) e. Shortest Remaining Time Next (SRT) \answer{b, d, e}
+    \item Which of the following strategies is not used in a Disk Scheduling Algorithm? a) First in first out (FIFO) b) Last in first out (LIFO) c) Shortest service time first (SSTF) d) Longest service time first (LSTF) e) Back and forth over disk (SCAN) \answer{d}
+    \item Which one of the following is not among the 7-layers defined for ISO Open Systems Interconnect (OSI) model ? a) Application b) Routing c) Transport d) Data Link e) Physical \answer{b}
+    \item Which one of the following is not among the set of events that may take place between the time a page fault occurs and the time the faulting process resumes execution? a) OS blocks the process and puts it into a wait queue. b) One of the processes in the ready queue is selected to run. c) A DMA is initiated to load the page from disk into main memory d) A page replacement strategy is used to find a page frame to load the new page e) Page table is updated to reflect the change. f) none of the above \answer{f}
+    \item Which one of the following is not among the set of events that may take place between the time a page fault occurs and the time the faulting process resumes execution? a) OS blocks the process and puts it into a wait queue. b) One of the processes in the ready queue is selected to run. c) A DMA is initiated to load the page from disk into main memory d) The last page that the faulting process was executing is replaced with the newly loaded page. e) Page table is updated to reflect the change. f) none of the above \answer{d}
+    \item What are the three popular strategies for allocating free memory blocks to processes in dynamic memory partitioning? Explain briefly how each strategy works \answer{First-fit: chooses the first free block in the list that is large enough for the request; Best-fit: chooses the free block that is closest in size to the request; Next-fit: chooses the first free block that is large enough for the request and comes after the `Last Allocated Block` in the list}
+    \item What interrupt is created when a desired page frame is not currently resident in RAM?  \answer{Page fault trap}
+    \item How does the hardware know that a desired page frame is not currently resident in RAM?  \answer{Valid bit}
+    \item What precisely does it mean if the dirty bit is set for a page frame?  \answer{The page frame has been modified}
+    \item What is good vs. bad program locality?  \answer{Good locality means that the process executes in clustered pages. Bad locality means that the process executes in scattered pages}
+    \item Explain when/how internal fragmentation may occur \answer{When fixed-sized pages are used, the last page of a program may be partially filled. This is called internal fragmentation}
+    \item Explain when/how external fragmentation may occur \answer{Segmentation system breaks up the memory space into variable-sized pieces. After a sequence of allocation and deallocations, free memory may get fragmented into small pieces. Even if the total size of free memory is large enough to satisfy large memory requests, a large request may not be met due to the lack of continuity between small fragments. This is called external fragmentation. Compaction is needed to put free blocks into one large memory block}
+    \item What is a global allocation scheme?  \answer{Global replacement allows a process to select a replacement frame from the set of all frames, even if that frame is currently allocated to some other process; one process can take a frame from another}
+    \item What is a working set model?  \answer{The working set model assumes that processes execute in localities. The working set is the set of pages in the current locality. Accordingly, each process should be allocated enough frames for its current working set}
+    \item Comparing global allocation vs. working set allocation, which would be more adversely affected by a program with bad locality? and WHY would that be true?  \answer{Working set allocation would be more adversely affected by a program with bad locality. This is because the program with bad locality has poorly defined working sets and therefore, many page faults are likely to occur}
+    \item What is the "largest" program that could execute on a machine with a 24-bit virtual address?  \answer{$2^{24}$ byte}
+    \item What is the "largest" program that could execute on a machine with a 24-bit physical address?  \answer{Can't tell. Need to know the size of the virtual (logical) address}
+    \item The address contained in a TLB entry <PTE> is (physical|logical) \answer{physical}
+    \item List at least 3 flags that are contained in a PTE \answer{Valid bit, Reference bit, Dirty bit}
+    \item Define hit-ratio in a memory management context \answer{in a two-level memory (cache-RAM or RAM-Harddisk), the fraction of all memory accesses that are found in the master memory (i.e. the cache)}
+    \item How does the kernel know where on disk the desired information is for a non-resident frame?  \answer{If valid bit=0, Page Table Entry should contain the Disk address}
+    \item Describe what demand paging means \answer{The technique of only loading virtual pages into memory as they are accessed is known as demand paging. If the demand pages are not in memory, a page fault trap happens, and the operation system swaps them in}
+    \item Describe what prepaging means \answer{Prepaging brings in more consecutive pages than needed. If a virtual page X causes a pagefault, then virtual page (X+1) is also brought in along with X. It is less overhead to bring in pages that reside contiguously on the disk}
+    \item Explain what the following C calls do both when the call is successful and when it is unsuccessful. 1. \texttt{socket( AF\_INET, SOCK\_STREAM, 0 )} 2. \texttt{bind(sd, (struct sockaddr*)\&server\_addr, sizeof(server\_addr))} 3. \texttt{socket( AF\_INET, SOCK\_DGRAM, 0 )} 4. \texttt{accept( sd, (struct sockaddr*)\&client\_addr, \&client\_len )} \answer{1. creates an internet stream (TCP) socket and returns the socket descriptor. If the call fails, it returns -1. 2. Binds the definition of a socket (socket descriptor) to a port number. If the call fails, it returns -1. 3. creates an internet datagram (UDP) socket and returns the socket descriptor. If the call fails, it returns -1. 4. Blocks execution until a client connection is received. When that happens, it returns a descriptor for the connection. If the call fails, it returns -1}
+    \item What does an Internet Protocal do?  \answer{1. Provides a naming scheme which uses a uniform format for host addresses 2. Provides a delivery mechanism by defining a standard packet format}
+    \item What are the possible goals that any scheduling policy might try to accomplish (list at least three)?  \answer{To improve response time, Turnaround time (TAT), Throughput, Processor Efficieny}
+    \item Which decisions are made by Long-term, Medium-term, and Short-term scheduling? Be brief \answer{Long-term scheduling determines which programs are admitted to the system for processing and controls the degree of multiprogramming. Medium-term scheduling determines which programs will be resident. Part of the swapping function. Swapping-in decision is based on the need to manage the degree of multiprogramming Short-term scheduling determines which program will be executed on CPU next. Known as the dispatcher Executes most frequently}
+    \item Name 3 things that are essential to launch a bot attack \answer{1) attack software 2) a large number of vulnerable machines 3) locating these machines (scanning or fingerprinting)}
+    \item \answer{Dennis Richie} and \answer{Ken Thompson} are generally credited with the invention of C/Unix.
+    \item \answer{Bill Gates} and \answer{Paul Allen} started Microsoft in \answer{1975}.
+    \item \answer{Steve Jobs} and \answer{Steve Wozniac} co-founded Apple. \answer{Steve Jobs} then started NeXT, and was the CEO of Pixar.
+    \item MS/DOS was 90% derived from a predecessor product named \answer{QDOS} which was written by \answer{Tim Patterson} and owned by \answer{CL Computer Products}. which in turn had been cloned from \answer{CPM} written by \answer{Gary Kildall}
+    \item What person \answer{Ed Roberts} what company \answer{MITS} built the 1st commercially available personal computer in 1975?
+    \item Gordon Moore is one of the \answer{Intel} founders.
+    \item World's first personal computer, \answer{Altair 8800}, was designed by \answer{Ed Roberts} and was introduced in \answer{1975}
+    \item The first mass market PC company is \answer{Apple}.
+    \item What corp may fairly take credit for inventions like the mouse, windows, pull-down menus etc.? \answer{Xerox/PARC}
+    \item What did Steve Jobs see while visiting PARC that inspired him to build a different kind of computer? \answer{GUI}
+    \item What did Jobs see that he completely ignored? \answer{object oriented programming and E-mail}.
+    \item What was the 1st computer that Jobs built based on this inspiration (that flopped)? \answer{Lisa}.
+    \item What was the 2nd one that didn't flop? \answer{Macintosh}
+    \item What product got Microsoft into the microcomputer software business? \answer{BASIC language interpreter}
+    \item What lucky event got Microsoft into the operating system market? \answer{Gary Kildall didn't eagerly pursue IBM when they requested a new OS. His wife and attorney would not sign a nondisclosure agreement. Bill Gates of Microsoft saw this as an opportunity and jumped in.}
+    \item What company purchased NeXT and their OS NExTStep? What year? \answer{Apple, in 1996}
+    \item What is a killer application? \answer{Software that's so useful that people will buy computers just to run it.}
+    \item What was the killer app for the Apple II? \answer{Visicalc}
+    \item What was the killer app for the IBM PC? \answer{Lotus 1-2-3}
+    \item What was the killer app for the Apple MacIntosh? \answer{Wysiwyg - What you see is what you get -> Desktop Publishing}
+    \item Why didn't IBM create their own OS for their 1st PC? \answer{wanted to manufacture and market it very fast; within one-year "....Once IBM decided to do a personal computer and to do it in a year - they couldn't really design anything, they just had to slap it together, so that's what they did ..."}
+    \item Who should have sold IBM their operating system for the 1st IBM PC? \answer{Gary Kildall of Digital Research} \item What was the one part of the 1st IBM PC that was proprietary (that Compaq had to later reverse engineer)? \answer{ROM-BIOS}
+    \item Why did IBM decide to build the PC using open architecture? \answer{To save time, instead of building a computer from scratch, IBM initially decided to buy PC components off the shelf and assemble them -- in IBM terms, this was called an open architecture. IBM made some changes to this initial decision}. What was the almost immediate result of IBM having made that decision? \answer{IBM had to buy the OS and other software from other companies as well.}
+    \item What was IBM's motivation for designing/building PS-2/OS-2? \answer{IBM planned to steal the market from Gates with a brand new OS called OS/2.}
+\end{itemize}
+
+\end{multicols}
+\end{document}
