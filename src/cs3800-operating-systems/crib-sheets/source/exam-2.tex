@@ -93,7 +93,7 @@
     \item Which one of the following is not among the 7-layers defined for ISO Open Systems Interconnect (OSI) model ? a) Application b) Routing c) Transport d) Data Link e) Physical \answer{b}
     \item Which one of the following is not among the set of events that may take place between the time a page fault occurs and the time the faulting process resumes execution? a) OS blocks the process and puts it into a wait queue. b) One of the processes in the ready queue is selected to run. c) A DMA is initiated to load the page from disk into main memory d) A page replacement strategy is used to find a page frame to load the new page e) Page table is updated to reflect the change. f) none of the above \answer{f}
     \item Which one of the following is not among the set of events that may take place between the time a page fault occurs and the time the faulting process resumes execution? a) OS blocks the process and puts it into a wait queue. b) One of the processes in the ready queue is selected to run. c) A DMA is initiated to load the page from disk into main memory d) The last page that the faulting process was executing is replaced with the newly loaded page. e) Page table is updated to reflect the change. f) none of the above \answer{d}
-    \item What are the three popular strategies for allocating free memory blocks to processes in dynamic memory partitioning? Explain briefly how each strategy works \answer{First-fit: chooses the first free block in the list that is large enough for the request; Best-fit: chooses the free block that is closest in size to the request; Next-fit: chooses the first free block that is large enough for the request and comes after the `Last Allocated Block` in the list}
+    \item What are the three popular strategies for allocating free memory blocks to processes in dynamic memory partitioning? Explain briefly how each strategy works \answer{First-fit: chooses the first free block in the list that is large enough for the request; Best-fit: chooses the free block that is closest in size to the request; Next-fit: chooses the first free block that is large enough for the request and comes after the `Last Allocated Block' in the list}
     \item What interrupt is created when a desired page frame is not currently resident in RAM?  \answer{Page fault trap}
     \item How does the hardware know that a desired page frame is not currently resident in RAM?  \answer{Valid bit}
     \item What precisely does it mean if the dirty bit is set for a page frame?  \answer{The page frame has been modified}
@@ -119,7 +119,7 @@
     \item \answer{Dennis Richie} and \answer{Ken Thompson} are generally credited with the invention of C/Unix.
     \item \answer{Bill Gates} and \answer{Paul Allen} started Microsoft in \answer{1975}.
     \item \answer{Steve Jobs} and \answer{Steve Wozniac} co-founded Apple. \answer{Steve Jobs} then started NeXT, and was the CEO of Pixar.
-    \item MS/DOS was 90% derived from a predecessor product named \answer{QDOS} which was written by \answer{Tim Patterson} and owned by \answer{CL Computer Products}. which in turn had been cloned from \answer{CPM} written by \answer{Gary Kildall}
+    \item MS/DOS was 90\% derived from a predecessor product named \answer{QDOS} which was written by \answer{Tim Patterson} and owned by \answer{CL Computer Products}. which in turn had been cloned from \answer{CPM} written by \answer{Gary Kildall}
     \item What person \answer{Ed Roberts} what company \answer{MITS} built the 1st commercially available personal computer in 1975?
     \item Gordon Moore is one of the \answer{Intel} founders.
     \item World's first personal computer, \answer{Altair 8800}, was designed by \answer{Ed Roberts} and was introduced in \answer{1975}
@@ -141,6 +141,29 @@
     \item Why did IBM decide to build the PC using open architecture? \answer{To save time, instead of building a computer from scratch, IBM initially decided to buy PC components off the shelf and assemble them -- in IBM terms, this was called an open architecture. IBM made some changes to this initial decision}. What was the almost immediate result of IBM having made that decision? \answer{IBM had to buy the OS and other software from other companies as well.}
     \item What was IBM's motivation for designing/building PS-2/OS-2? \answer{IBM planned to steal the market from Gates with a brand new OS called OS/2.}
 \end{itemize}
+
+\begin{description}
+    \item[Base Address] an address that is used as the origin in the calculation of addresses in the execution of a computer program
+    \item[Dynamic Relocation] a process that assigns new absolute addresses to a computer program during execution so that the program may be executed from a different area of main storage
+    \item[Indexed Access] pertaining to the organization and accessing of the records of a storage structure through a separate index to the locations of the stored records
+    \item[Indexed Sequential Access] pertaining to the organization and accessing of the records of a storage structure through an index of the keys that are stored in arbitrarily partitioned sequential files
+    \item[Last In First Out (LIFO)] a queuing technique in which the next item to be retrieved is the item most recently placed in the queue
+    \item[Logical Address] a reference to a memory location independent of the current assignment of data to memory.  A translation must be made to a physical address before the memory access can be achieved.
+    \item[Memory Partitioning] the subdividing of storage into independent sections
+    \item[Page] in virtual storage, a fixed length block that has a virtual address and that is transferred as a unit between main memory and secondary memory
+    \item[Paging] the transfer of pages between main memory and secondary memory
+    \item[Physical Address] the absolute location of a unit of data in memory (e.g., word or byte in main memory, block on secondary memory)
+    \item[Real-Time System] an operating system that must schedule and manage real-time tasks
+    \item[Sequential Access] the capability to enter data into a storage device or a data medium in the same sequence as the data are ordered or to obtain data in the same order as they were entered
+    \item[Sequential File] a file in which records are ordered according to the values of one or more key fields and processed in the same sequence from the beginning of the file
+    \item[Server] (1) a process that responds to request from clients via messages.  (2) In a network, a data station that provides facilities to other station; for example, a file server, a print server, a mail server.
+    \item[Spooling] the use of secondary memory as buffer storage to reduce processing delays when transferring data between peripheral equipment and the processors of a computer
+
+    \item[Trusted System] a computer and operating system that can be verified to implement a given security policy
+    \item[Virtual Address] the address of a storage location in virtual storage
+    \item[Virus] secret undocumented routine embedded within a useful program.  Execution of the program results in execution of the secret routine.
+\end{description}
+
 
 \end{multicols}
 \end{document}
