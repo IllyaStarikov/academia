@@ -1,8 +1,8 @@
-Senior Design Project - Splatoon.io
+# Senior Design Project - Splatoon.io #
 
-Directory Layout:
+### Directory Layout: ###
 
-README.md - this file
-ios       - iOS app code
-android   - Android app code
-server    - server code
+- README.md - this file  
+- ios       - iOS app code  
+- android   - Android app code  
+- server    - server code  
