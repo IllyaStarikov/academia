@@ -9,15 +9,10 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>SpoofedSplatoonio.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>6655C8891F4F8E7C00DF13DE</key>
+		<key>6635C9671F5637B200AC77B7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
