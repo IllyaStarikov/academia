@@ -11,9 +11,10 @@
 \begin{document}
 \input{template/titlepage}
 
+The server sends the current server time in every response.
+
 \begin{itemize}
-    \item The server sends time in every response.
-    \item What are users for leaderboard $x$ for page $y$ of size $z$.
+    \item What are users for leaderboard $x$ for page $y$ of size $z$?
     \item What are the achievements for user?
         \begin{itemize}
             \item Send the \texttt{userID}.
@@ -42,8 +43,8 @@
 
     \item Player $x$ acquired/moved over \texttt{itemID}.
         \begin{itemize}
-            \item Send back true if the requesting player.
-            \item Successfully acquired the item.
+            \item Send \texttt{itemID}
+            \item Send back true if the requesting player successfully acquired the item.
         \end{itemize}
 \end{itemize}
 \end{document}
