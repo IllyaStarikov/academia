@@ -34,3 +34,6 @@ TAGS
 
 # General
 *~
+
+# Mac directory files
+.DS_Store
