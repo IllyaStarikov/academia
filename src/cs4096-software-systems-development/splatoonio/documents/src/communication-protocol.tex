@@ -1,0 +1,49 @@
+\documentclass[oneside,12pt]{scrbook}
+
+\input{template/macros}
+
+\newcommand{\titlepagename}{Communication Protocol}
+\newcommand{\titledescript}{A RESTful guide to the communication of Splatoonio}
+\newcommand{\versionNumber}{1.0}
+\newcommand{\lastEditAuthor}{Illya Starikov}
+\newcommand{\documentStatus}{Draft} % Draft, Proposed, Validated, Approved
+
+\begin{document}
+\input{template/titlepage}
+
+\begin{itemize}
+    \item The server sends time in every response.
+    \item What are users for leaderboard $x$ for page $y$ of size $z$.
+    \item What are the achievements for user?
+        \begin{itemize}
+            \item Send the \texttt{userID}.
+            \item Send back all the achievement information.
+        \end{itemize}
+
+    \item Query for full board (send checksum, if not equal to server's version, get back full board).
+
+    \item User $x$ requests to join a private game (specific \texttt{gameID}).
+    \item User $x$ requests to join ``the'' public game (special \texttt{gameID}).
+        \begin{itemize}
+            \item Send back new \texttt{playerID} for the game (privacy).
+            \item Send back \texttt{gameID}.
+            \item Send back full board data.
+        \end{itemize}
+
+    \item Player queries if the game is ready.
+
+    \item Player $x$ moved to location lat/lon (player updates server and gets back board update).
+        \begin{itemize}
+            \item Send pixels painted and timestamp when each pixel was painted.
+            \item Send player speed --- anti-spoofing handling.
+            \item Send back board diff (list of pixels that changed since last update to this player).
+            \item Send back new items and which items were acquired.
+        \end{itemize}
+
+    \item Player $x$ acquired/moved over \texttt{itemID}.
+        \begin{itemize}
+            \item Send back true if the requesting player.
+            \item Successfully acquired the item.
+        \end{itemize}
+\end{itemize}
+\end{document}
