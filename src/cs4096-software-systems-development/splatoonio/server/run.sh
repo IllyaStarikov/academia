@@ -1,1 +1,1 @@
-gunicorn hello:api
+gunicorn3 hello:api
