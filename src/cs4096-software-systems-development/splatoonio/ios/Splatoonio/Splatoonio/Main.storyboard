@@ -141,7 +141,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="itemPicker" destination="fWF-fp-xq1" id="aiW-XB-86y"/>
-                        <outlet property="mapView" destination="WxB-Ot-U2s" id="ONU-Vl-avF"/>
+                        <outlet property="map" destination="WxB-Ot-U2s" id="Xkt-PB-dE7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G7f-wZ-6Hc" userLabel="First Responder" sceneMemberID="firstResponder"/>

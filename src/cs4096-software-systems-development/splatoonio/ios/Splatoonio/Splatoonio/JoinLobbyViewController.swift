@@ -25,7 +25,7 @@ class JoinLobbyViewController: UIViewController
 	
 	override var prefersStatusBarHidden: Bool
 	{
-		get { return true }
+		return true
 	}
 	
 	// =================================================================================

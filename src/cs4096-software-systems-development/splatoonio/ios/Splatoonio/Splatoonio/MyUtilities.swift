@@ -8,10 +8,13 @@
 
 import UIKit
 import CoreGraphics
+import CoreLocation
 
 
 class MyUtilities
 {
+	// =================================================================================
+	
 	class func circleImageWithColor(color:UIColor, radius:CGFloat) -> UIImage
 	{
 		let size = Int(radius + radius)
@@ -29,4 +32,29 @@ class MyUtilities
 		
 		return UIImage(cgImage: context!.makeImage()!)
 	}
+	
+	// =================================================================================
+	
+	class func normalizedGPSLocation(location:CLLocationCoordinate2D) -> CLLocationCoordinate2D
+	{
+		var answer = CLLocationCoordinate2D(latitude:location.latitude, longitude:location.longitude)
+		
+		var factor = Int((answer.latitude + 90) / 180)
+		answer.latitude -= Double(180 * factor)
+		answer.latitude += 90
+		
+		factor = Int((answer.longitude + 180) / 360)
+		answer.longitude -= Double(360 * factor)
+		answer.longitude += 180
+		
+		return answer;
+	}
+	
+	// =================================================================================
 }
+
+
+
+
+
+

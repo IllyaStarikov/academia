@@ -22,7 +22,7 @@ enum LobbyID
 }
 
 // =================================================================================
-
+// TODO: convert to use UInt8's
 enum TeamColor : Int
 {
 	case red = 0
@@ -31,6 +31,49 @@ enum TeamColor : Int
 	
 	case count
 	case none
+	
+	// =================================================================================
+	
+	func color() -> PaintColor
+	{
+		switch (self)
+		{
+			case .red:		return PaintColor(255, 0,   0)
+			case .green:	return PaintColor(0,   255, 0)
+			case .blue:		return PaintColor(0,   0,   255)
+			default:		return PaintColor(0,   0,   0)
+		}
+	}
+	
+	// =================================================================================
+	
+	func description() -> String
+	{
+		switch (self)
+		{
+			case .red:		return "Red"
+			case .green:	return "Green"
+			case .blue:		return "Blue"
+			case .none:		return "None"
+			case .count:	return "Count"
+		}
+	}
+}
+
+// =================================================================================
+
+struct PaintColor
+{
+	var r:UInt8 = 0
+	var g:UInt8 = 0
+	var b:UInt8 = 0
+	
+	init(_ inr:UInt8, _ ing:UInt8, _ inb:UInt8)
+	{
+		r = inr
+		g = ing
+		b = inb
+	}
 }
 
 // =================================================================================

@@ -23,7 +23,7 @@ class ServerAPI
 	{
 		// TODO: Implement. This dummy code just gives a dummy local rectangle for testing
 		let game = Game()
-		game.board.boundingRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(37.953265, -91.77260), 100, 70)
+		game.board.boundingRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(37.952902, -91.772447), 100, 70)
 		
 		return game
 	}
