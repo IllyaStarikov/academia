@@ -10,7 +10,6 @@ class Users(object):
         self.users = {}
 
     def on_get(self, req, resp):
-        # TODO: This should eventually be privileged
         resp_dict = {
             #TODO: We should use constants for these special protocol strings
             'users': list(self.users.keys())
