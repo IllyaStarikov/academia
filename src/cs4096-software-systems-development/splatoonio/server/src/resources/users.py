@@ -2,26 +2,27 @@
 import falcon
 import json
 
-from src.resources.helpers import read_req_body, expect_fields
+from src.api import Api
+from src.resources.helpers import return_json, expect_fields
 
 class Users(object):
     def __init__(self):
-        # TODO: We should use database for state
         self.users = {}
 
+    @return_json
     def on_get(self, req, resp):
-        resp_dict = {
-            #TODO: We should use constants for these special protocol strings
-            'users': list(self.users.keys())
+        return {
+           Api.user_list: list(self.users.keys())
         }
 
-        resp.body = json.dumps(resp_dict)
-
-    @read_req_body
-    @expect_fields('name') # TODO: We should use constants
-    def on_post(self, req, resp, data, name):
-        if name not in self.users:
-            self.users[name] = None
+    @expect_fields(Api.username)
+    def on_post(self, req, resp, username):
+        if username not in self.users:
+            self.users[username] = None
         else:
-            resp.status = falcon.HTTP_400
+            resp.status = falcon.HTTP_409
+
+    @expect_fields(Api.username)
+    def on_delete(self, req, resp, username):
+        del self.users[username]
 

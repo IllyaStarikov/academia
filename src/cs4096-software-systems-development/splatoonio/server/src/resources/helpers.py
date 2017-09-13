@@ -1,7 +1,8 @@
 
+import falcon
 import json
 
-def read_req_body(func):
+def read_req_data(func):
 
     def wrapper(self, req, resp):
         data = json.loads(req.stream.read().decode('utf8'))
@@ -9,7 +10,7 @@ def read_req_body(func):
 
     return wrapper
 
-def expect_fields(*fields):
+def expect_data_fields(*fields):
     def decorator(func):
 
         def wrapper(self, req, resp, data):
@@ -18,21 +19,29 @@ def expect_fields(*fields):
                 if field in data:
                     args.append(data[field])
                 else:
-                    raise NotImplementedError()
+                    resp.status = falcon.HTTP_400
+                    return
 
             return func(self, req, resp, data, *args)
 
         return wrapper
     return decorator
 
-def expect_data_fields(*fields):
+def expect_fields(*fields):
     def decorator(func):
 
-        @read_req_body
-        @expect_fiels(*fields)
+        @read_req_data
+        @expect_data_fields(*fields)
         def wrapper(self, req, resp, data, *args):
             return func(self, req, resp, *args)
 
         return wrapper
     return decorator
+
+def return_json(func):
+
+    def wrapper(self, req, resp):
+        resp.body = json.dumps(func(self, req, resp))
+
+    return wrapper
 
