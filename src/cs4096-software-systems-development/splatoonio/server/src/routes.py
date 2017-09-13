@@ -2,5 +2,8 @@
 from src.resources.users import Users
 
 def add_routes(api):
-    api.add_route('/users', Users())
+    add_api_route(api, '/users', Users())
+
+def add_api_route(api, uri, handler):
+    api.add_route('/api' + uri, handler)
 
