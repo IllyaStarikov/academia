@@ -1,6 +1,13 @@
 
-import falcon
+from falcon import HTTPBadRequest
 import json
+
+def return_json(func):
+
+    def wrapper(self, req, resp):
+        resp.body = json.dumps(func(self, req, resp))
+
+    return wrapper
 
 def read_req_data(func):
 
@@ -19,8 +26,10 @@ def expect_data_fields(*fields):
                 if field in data:
                     args.append(data[field])
                 else:
-                    resp.status = falcon.HTTP_400
-                    return
+                    raise HTTPBadRequest(
+                        'Bad request',
+                        'Expected data field: {}'.format(field)
+                    )
 
             return func(self, req, resp, data, *args)
 
@@ -37,11 +46,4 @@ def expect_fields(*fields):
 
         return wrapper
     return decorator
-
-def return_json(func):
-
-    def wrapper(self, req, resp):
-        resp.body = json.dumps(func(self, req, resp))
-
-    return wrapper
 
