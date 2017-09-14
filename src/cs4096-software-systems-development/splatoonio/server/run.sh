@@ -1,1 +1,1 @@
-gunicorn3 src.app:api
+gunicorn3 src.app:app
