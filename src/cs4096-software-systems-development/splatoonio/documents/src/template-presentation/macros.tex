@@ -2,6 +2,7 @@
 
 \usepackage{amssymb,amsmath,verbatim,graphicx,pdfpages,microtype,units,booktabs,upquote,xcolor,siunitx,csquotes,fancyvrb,newverbs,wrapfig,multicol,tikz,textcomp,wrapfig,cutwin}
 \usepackage{fontawesome,setspace,rotchiffre,lipsum,listings,animate,listings}
+\usepackage[xspace]{ellipsis}
 
 \hypersetup{%
             colorlinks = true,
@@ -12,7 +13,7 @@
 
 \newcommand{\hugeslide}[1]{%
 \begin{frame}[plain,c]
-    \centering {\usebeamerfont*{frametitle} \textcolor{black}{\fontsize{40}{50}\selectfont\textit{#1}}}
+    \centering {\usebeamerfont*{frametitle} \usebeamercolor[fg]{frametitle}{\fontsize{40}{50}\selectfont\textit{#1}}}
 \end{frame}
 }
 
