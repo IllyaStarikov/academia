@@ -17,6 +17,15 @@
 \end{frame}
 }
 
+\newcommand{\presentby}[2]{%
+    \note{%
+        \topskip0pt
+        \vspace*{\fill}
+        \huge \textbf{#1, \textit{#2} Minute(s)}
+        \vspace*{\fill}
+    }
+}
+
 \newcommand{\presentaddcount}[1]{\addtocounter{#1}{1}\Roman{#1}}
 \newcommand{\presentcount}[1]{\Roman{#1}}
 \newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{#1}}}
