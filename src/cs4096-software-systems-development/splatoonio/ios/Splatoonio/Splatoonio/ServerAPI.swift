@@ -25,6 +25,13 @@ class ServerAPI
 		let game = Game()
 		game.board.boundingRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(37.952902, -91.772447), 100, 70)
 		
+		let me = Player()
+		me.team = .red
+		me.brushRadius = 2
+		me.id = 0
+		me.name = "ME"
+		game.addPlayer(player:me, isMe:true)
+		
 		return game
 	}
 	

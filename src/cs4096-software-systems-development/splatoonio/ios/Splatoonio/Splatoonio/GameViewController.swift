@@ -10,122 +10,172 @@ import UIKit
 import MapKit
 
 
-class GameViewController: UIViewController, MKMapViewDelegate
+class GameViewController: UIViewController, ItemPickerViewDelegate, GameBoardDelegate
 {
 	var game:Game!
-	private var boardOverlay:BoardOverlay!
-	private var boardRenderer:BoardOverlayRenderer!
 	
-	@IBOutlet private var map:MKMapView!
+	private var lastCoord:CLLocationCoordinate2D!
+	private var lastTouchTime:Date!
+	private var lastIndex:Int!
+	private var minimap:Minimap!
+	private var map:GameMapView!
+	
 	@IBOutlet private var itemPicker:ItemPickerView!
 	
 	// =================================================================================
 	//								Touch Functions
 	// =================================================================================
 	
-	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
 	{
 		guard let touchpoint = touches.first?.location(in:map) else
 		{
 			return
 		}
 		
-		let coord = map.convert(touchpoint, toCoordinateFrom:map)
-		let index = boardOverlay.pixelIndexForGPSLocation(location: coord)
+		lastTouchTime = Date()
+		lastCoord = map.convert(touchpoint, toCoordinateFrom:map)
+		lastIndex = game.board.pixelIndexForGPSLocation(location: lastCoord)
 		
-		if (index >= 0)
+		if (lastIndex >= 0)
 		{
-			print("setting red at r=\(index / game.board.width) c=\(index % game.board.width)")
-			game.board.setBoardColor(index:index, color:.red)
+//			game.board.setBoardColor(index:lastIndex, color:.red)
+			game.board.paintLine(from:lastCoord, to:lastCoord, travelTime:1.0, forPlayer:game.me!)
 		}
+	}
+	
+	// =================================================================================
+	
+	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
+	{
+		handleTouch(touch: touches.first)
 	}
 	
 	// =================================================================================
 	
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
 	{
-		guard let touchpoint = touches.first?.location(in:map) else
+		handleTouch(touch: touches.first)
+	}
+	
+	// =================================================================================
+	
+	func handleTouch(touch:UITouch?)
+	{
+		guard let touchpoint = touch?.location(in:map) else
 		{
 			return
 		}
 		
 		let coord = map.convert(touchpoint, toCoordinateFrom:map)
-		let index = boardOverlay.pixelIndexForGPSLocation(location: coord)
+		let index = game.board.pixelIndexForGPSLocation(location: coord)
+		let now = Date()
+		let travelTime = now.timeIntervalSince(lastTouchTime)
 		
-		if (index >= 0)
+		// if at least one of the points is on the board, draw the line
+		if (index >= 0) || (lastIndex >= 0)
 		{
-			game.board.setBoardColor(index:index, color:.red)
+			game.board.paintLine(from:lastCoord, to:coord, travelTime:travelTime, forPlayer:game.me!)
 		}
+		
+		lastCoord = coord
+		lastTouchTime = now
+		lastIndex = index
 	}
 	
 	// =================================================================================
-	//								MKMapViewDelegate
+	//								  GameBoardDelegate
 	// =================================================================================
 	
-	func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer
+	func boardUpdated(pixels: [PixelUpdate])
 	{
-		return boardRenderer
+		map.boardRenderer.updatePixels(pixels)
+		minimap.updatePixels(pixels)
 	}
 	
 	// =================================================================================
+	//								ItemPickerViewDelegate
+	// =================================================================================
 	
-	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
+	func itemPicker(_ picker: ItemPickerView, pickedItem item: ItemType)
 	{
-		if (annotation === mapView.userLocation)	// check that they are the same object
+		switch (item)
 		{
-			let annotationView = MKAnnotationView(annotation:annotation, reuseIdentifier:"customUserLocation")
-//			annotationView.image = MyUtilities.circleImageWithColor(color:.green, radius:10)
-			annotationView.image = nil
-			
-			return annotationView
+			case .generic: game.me?.team = .red
+			case .bomb: game.me?.team = .blue
+//			case .greenShell: game.me?.team = .green
+			default: game.me?.team = .green
 		}
-		
-		// use the default annotation
-		return nil
 	}
 	
 	// =================================================================================
 	//								UIViewController
 	// =================================================================================
 	
+	func createMinimap()
+	{
+		let MINIMAP_PADDING:CGFloat = 7
+		let MAX_MINIMAP_SIZE:CGFloat = 120
+		
+		let minimapWidth:CGFloat
+		let minimapHeight:CGFloat
+		
+		minimap = Minimap(newBoard:game.board)
+		
+		if let imageSize = minimap.image?.size
+		{
+			if (imageSize.width > imageSize.height)
+			{
+				minimapWidth = MAX_MINIMAP_SIZE
+				minimapHeight = (imageSize.height / imageSize.width) * minimapWidth
+			}
+			else
+			{
+				minimapHeight = MAX_MINIMAP_SIZE
+				minimapWidth = (imageSize.width / imageSize.height) * minimapHeight
+			}
+		}
+		else
+		{
+			minimapWidth = 0
+			minimapHeight = 0
+		}
+		
+		minimap.frame = CGRect(x:MINIMAP_PADDING,
+		                       y:itemPicker.frame.origin.y - (MINIMAP_PADDING + minimapHeight),
+		                       width:minimapWidth,
+		                       height:minimapHeight)
+		self.view.addSubview(minimap)
+	}
+	
+	// =================================================================================
+	
     override func viewDidLoad()
 	{
         super.viewDidLoad()
 
-//		let coord = GPSManager.defaultManager().currentLocation!.coordinate
-		let coord = CLLocationCoordinate2DMake(37.953039, -91.772499)
-		let region = MKCoordinateRegionMakeWithDistance(coord, 200, 140)
-		map.setRegion(region, animated:true)
+		game.board.delegate = self
 
-		map.delegate = self
-		map.isScrollEnabled = true
-		map.isPitchEnabled = false
-		map.isZoomEnabled = true
-		map.isRotateEnabled = false
-		map.showsCompass = false
-		map.showsTraffic = false
-		map.showsUserLocation = false
-		map.showsPointsOfInterest = false
-		map.mapType = .satellite
-//		map.setUserTrackingMode(.followWithHeading, animated:false)
-		
-		boardOverlay = BoardOverlay()
-		boardOverlay.board = game.board
-		
-		boardRenderer = BoardOverlayRenderer(overlay:boardOverlay)	// must initialize with an overlay or it won't draw
-		boardRenderer.board = game.board
-
-		map.add(boardOverlay)
+		map = GameMapView(game:game)
+		map.frame = CGRect(x:0, y:0, width:self.view.frame.size.width, height:itemPicker.frame.origin.y)
+		self.view.addSubview(map)
 		
 		// add some default items for testing
 		itemPicker.addItem(type:.generic)
 		itemPicker.addItem(type:.bomb)
 		itemPicker.addItem(type:.bomb)
 		itemPicker.addItem(type:.bomb)
-		itemPicker.isHidden = true
+		itemPicker.delegate = self
 		
-		// used to intercept touches, allowing us to process them instead of the map
-//		self.view.addSubview(UIView(frame:self.view.bounds))
+		self.createMinimap()
+		
+		// used to intercept touches, allowing us to process them instead of the map (top half of screen)
+//		let touchFrame = CGRect(x:0, y:0, width:self.view.frame.size.width, height:self.view.frame.size.height / 2)
+//		self.view.addSubview(UIView(frame:touchFrame))
+		
+		let from = CLLocationCoordinate2DMake(20, 20)
+		let to = CLLocationCoordinate2DMake(30, 30)
+		game.board.paintLine(from:from, to:to, travelTime:1.0, forPlayer:game.me!)
     }
 
 	// =================================================================================

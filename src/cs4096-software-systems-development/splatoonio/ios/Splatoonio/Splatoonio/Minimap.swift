@@ -1,21 +1,19 @@
 //
-//  BoardOverlayRenderer.swift
+//  Minimap.swift
 //  Splatoonio
 //
-//  Created by Adam Evans on 9/2/17.
+//  Created by Adam Evans on 9/12/17.
 //  Copyright © 2017 Kijug Software. All rights reserved.
 //
 
 import UIKit
-import MapKit
 
 
-class BoardOverlayRenderer: MKOverlayRenderer
+class Minimap: UIImageView
 {
 	private var board:GameBoard!
 	private var imageData:UnsafeMutableRawBufferPointer! 
 	private var imageContext:CGContext!
-//	private var boardImage:CGImage!
 	
 	private let bitmapInfo:UInt32 = UInt32(CGBitmapInfo.byteOrder32Big.rawValue) | UInt32(CGImageAlphaInfo.premultipliedLast.rawValue)
 	
@@ -35,44 +33,29 @@ class BoardOverlayRenderer: MKOverlayRenderer
 	//									Initializers
 	// =================================================================================
 	
-	init?(boardOverlay:BoardOverlay)
+	init?(newBoard:GameBoard)
 	{
-		super.init(overlay:boardOverlay)
+		super.init(image:nil)
 		
-		gameBoard = boardOverlay.board		// gameBoard used to free dummy data via the setter function
-	}
-	
-	// =================================================================================
-	
-	deinit
-	{
-		if (imageData != nil)
-		{
-			imageData.deallocate()
-		}
-	}
-	
-	// =================================================================================
-	//									MKOverlayRenderer
-	// =================================================================================
-	
-	override func draw(_ mapRect: MKMapRect, zoomScale: MKZoomScale, in context: CGContext)
-	{
-		let rect = self.rect(for:self.overlay.boundingMapRect)
-		let landUnitWidth = rect.size.width / CGFloat(board.width)
+		self.layer.borderWidth = 2
+		self.layer.borderColor = UIColor.black.cgColor
 		
-		// have to invert the context in the y axis to make the board image draw right side up
+		gameBoard = newBoard
 		
 		if let image = imageContext.makeImage()
 		{
-			context.scaleBy(x:1.0, y:-1.0)
-			context.translateBy(x:0.0, y:-rect.size.height)
-			context.draw(image, in:rect)
+			self.image = UIImage(cgImage:image)
 		}
+	}
+	
+	// =================================================================================
+	
+	required init?(coder aDecoder: NSCoder)
+	{
+		super.init(coder:aDecoder)
 		
-		// draw the border
-		context.setStrokeColor(UIColor.black.cgColor)
-		context.stroke(rect, width:landUnitWidth)
+		self.layer.borderWidth = 2
+		self.layer.borderColor = UIColor.black.cgColor
 	}
 	
 	// =================================================================================
@@ -81,23 +64,23 @@ class BoardOverlayRenderer: MKOverlayRenderer
 	
 	func updatePixels(_ pixels: [PixelUpdate])
 	{
-		let alpha:UInt8 = 100
-		let alphaFactor = Float(Float(alpha) / 255.0)
-		
 		// update the changed pixels in the image
 		for update in pixels
 		{
 			let index = 4 * update.index
 			let rgb = update.team.color()
 			
-			imageData[index + 0] = UInt8(Float(rgb.r) * alphaFactor)
-			imageData[index + 1] = UInt8(Float(rgb.g) * alphaFactor)
-			imageData[index + 2] = UInt8(Float(rgb.b) * alphaFactor)
-			imageData[index + 3] = alpha
+			imageData[index + 0] = rgb.r
+			imageData[index + 1] = rgb.g
+			imageData[index + 2] = rgb.b
+			imageData[index + 3] = 255
 		}
 		
-		// TODO: pass the rect encompassing the updated pixels to reduce drawing
-		self.setNeedsDisplay()
+		// create an image
+		if let image = imageContext.makeImage()
+		{
+			self.image = UIImage(cgImage:image)
+		}
 	}
 	
 	// =================================================================================
@@ -114,8 +97,19 @@ class BoardOverlayRenderer: MKOverlayRenderer
 		board = newBoard
 		
 		let contextBuffer = UnsafeMutableRawPointer.allocate(bytes:4 * board.width * board.height, alignedTo:MemoryLayout<UInt8>.alignment)
-		contextBuffer.initializeMemory(as:UInt8.self, to:0)
 		imageData = UnsafeMutableRawBufferPointer(start:contextBuffer, count:4 * board.width * board.height)
+		
+		// initialize to transparent gray background
+		var i = 0
+		
+		while i < 4 * board.width * board.height
+		{
+			imageData[i + 0] = 0
+			imageData[i + 1] = 0
+			imageData[i + 2] = 0
+			imageData[i + 3] = 100
+			i += 4
+		}
 		
 		if let context = CGContext(data: contextBuffer,
 		                           width: board.width,
@@ -129,26 +123,20 @@ class BoardOverlayRenderer: MKOverlayRenderer
 		}
 		else
 		{
-			print("ERROR: Could not create overlay context")
+			print("ERROR: Could not create minimap context")
+			return
+		}
+		
+		if let image = imageContext.makeImage()
+		{
+			self.image = UIImage(cgImage:image)
+		}
+		else
+		{
+			print("ERROR: Could not create image from minimap context")
 			return
 		}
 	}
 	
 	// =================================================================================
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

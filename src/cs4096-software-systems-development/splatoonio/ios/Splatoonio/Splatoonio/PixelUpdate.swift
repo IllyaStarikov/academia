@@ -13,12 +13,14 @@ import Foundation
 struct PixelUpdate
 {
 	var index:Int		// index in the board for this pixel. Indices count like reading a book
-	var owner:TeamColor
+	var team:TeamColor
+	var timestamp:UInt32
 	
 	init()
 	{
 		index = 0
-		owner = .none
+		team = .none
+		timestamp = 0
 	}
 }
 

@@ -32,6 +32,8 @@
 		6635C9AA1F574FBF00AC77B7 /* MyUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6635C9A91F574FBF00AC77B7 /* MyUtilities.swift */; };
 		66655AC11F5B9B68003BE322 /* BoardOverlayRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66655AC01F5B9B68003BE322 /* BoardOverlayRenderer.swift */; };
 		66655AC31F5C6200003BE322 /* BoardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66655AC21F5C6200003BE322 /* BoardOverlay.swift */; };
+		668C1DF51F688F3B00CD6016 /* Minimap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668C1DF41F688F3B00CD6016 /* Minimap.swift */; };
+		668C1DF71F69618E00CD6016 /* GameMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668C1DF61F69618E00CD6016 /* GameMapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,8 @@
 		6635C9A91F574FBF00AC77B7 /* MyUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUtilities.swift; sourceTree = "<group>"; };
 		66655AC01F5B9B68003BE322 /* BoardOverlayRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardOverlayRenderer.swift; sourceTree = "<group>"; };
 		66655AC21F5C6200003BE322 /* BoardOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardOverlay.swift; sourceTree = "<group>"; };
+		668C1DF41F688F3B00CD6016 /* Minimap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Minimap.swift; sourceTree = "<group>"; };
+		668C1DF61F69618E00CD6016 /* GameMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +138,6 @@
 				6635C98E1F5638F300AC77B7 /* GPSManager.swift */,
 				6635C9901F56510400AC77B7 /* ServerAPI.swift */,
 				6635C9A91F574FBF00AC77B7 /* MyUtilities.swift */,
-				661B610F1F58C7FD0066890B /* PixelUpdate.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 				6635C99C1F56F78700AC77B7 /* Player.swift */,
 				6635C99A1F565A8C00AC77B7 /* Item.swift */,
 				6635C9961F56523900AC77B7 /* GameTypes.swift */,
+				661B610F1F58C7FD0066890B /* PixelUpdate.swift */,
 			);
 			name = "Game Objects";
 			sourceTree = "<group>";
@@ -165,9 +169,11 @@
 		6635C9A61F573DA900AC77B7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				668C1DF41F688F3B00CD6016 /* Minimap.swift */,
 				6635C9A71F573DBF00AC77B7 /* ItemPickerView.swift */,
 				66655AC01F5B9B68003BE322 /* BoardOverlayRenderer.swift */,
 				66655AC21F5C6200003BE322 /* BoardOverlay.swift */,
+				668C1DF61F69618E00CD6016 /* GameMapView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -261,10 +267,12 @@
 				6635C9A11F57349A00AC77B7 /* JoinLobbyViewController.swift in Sources */,
 				6635C9951F5651D500AC77B7 /* GameBoard.swift in Sources */,
 				6635C9A81F573DBF00AC77B7 /* ItemPickerView.swift in Sources */,
+				668C1DF51F688F3B00CD6016 /* Minimap.swift in Sources */,
 				6635C99B1F565A8C00AC77B7 /* Item.swift in Sources */,
 				66655AC31F5C6200003BE322 /* BoardOverlay.swift in Sources */,
 				6635C9971F56523900AC77B7 /* GameTypes.swift in Sources */,
 				6635C96C1F5637B200AC77B7 /* AppDelegate.swift in Sources */,
+				668C1DF71F69618E00CD6016 /* GameMapView.swift in Sources */,
 				6635C99D1F56F78700AC77B7 /* Player.swift in Sources */,
 				6635C9911F56510400AC77B7 /* ServerAPI.swift in Sources */,
 			);

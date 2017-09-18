@@ -124,10 +124,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="WxB-Ot-U2s">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="506"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </mapView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fWF-fp-xq1" customClass="ItemPickerView" customModule="Splatoonio" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="506" width="320" height="62"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -141,12 +137,11 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="itemPicker" destination="fWF-fp-xq1" id="aiW-XB-86y"/>
-                        <outlet property="map" destination="WxB-Ot-U2s" id="Xkt-PB-dE7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G7f-wZ-6Hc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3944.8000000000002" y="35.532233883058474"/>
+            <point key="canvasLocation" x="3943.125" y="34.859154929577464"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hvf-5W-Idh">

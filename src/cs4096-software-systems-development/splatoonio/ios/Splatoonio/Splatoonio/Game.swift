@@ -40,7 +40,7 @@ class Game
 	// me - Pass true to designate player as us
 	// Returns player if the given player is not in the game, else returns the player in
 	// the game with the same player ID as the given player.
-	func addPlayer(player:Player, isMe:Bool) -> Player
+	@discardableResult func addPlayer(player:Player, isMe:Bool) -> Player
 	{
 		// check if player is already playing (don't add the same player twice)
 		for p in players

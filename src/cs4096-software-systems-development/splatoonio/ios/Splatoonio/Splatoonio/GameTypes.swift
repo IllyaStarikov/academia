@@ -67,6 +67,10 @@ struct PaintColor
 	var r:UInt8 = 0
 	var g:UInt8 = 0
 	var b:UInt8 = 0
+	var description:String
+	{
+		return "\(r, g, b)"
+	}
 	
 	init(_ inr:UInt8, _ ing:UInt8, _ inb:UInt8)
 	{

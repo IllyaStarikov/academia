@@ -8,6 +8,13 @@
 
 import UIKit
 
+
+protocol ItemPickerViewDelegate
+{
+	func itemPicker(_ picker:ItemPickerView, pickedItem item:ItemType) 
+}
+
+
 class ItemPickerView: UIView
 {
 	private static let ICON_SIZE:CGFloat					= 40
@@ -25,6 +32,7 @@ class ItemPickerView: UIView
 	private var selectionBox:UIView
 	
 	var selectedType:ItemType
+	var delegate:ItemPickerViewDelegate?
 	
 	// =================================================================================
 	//									Initializers
@@ -34,6 +42,7 @@ class ItemPickerView: UIView
 	{
 		nslots = 0
 		selectedType = .none
+		delegate = nil
 		
 		itemCounts			= [Int]			(repeating:0, count:Int(ItemType.count.rawValue))
 		itemIcons			= [UIImageView]	(repeating:UIImageView(), count:Int(ItemType.count.rawValue))
@@ -91,6 +100,7 @@ class ItemPickerView: UIView
 		
 		selectedType = ItemType(rawValue: type)!
 		refreshList()
+		delegate?.itemPicker(self, pickedItem:selectedType)
 	}
 	
 	// =================================================================================
