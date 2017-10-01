@@ -39,6 +39,7 @@ class Minimap: UIImageView
 		
 		self.layer.borderWidth = 2
 		self.layer.borderColor = UIColor.black.cgColor
+		self.alpha = CGFloat(UserDefaults.standard.integer(forKey:SETTING_MINIMAP_ALPHA)) / 255.0
 		
 		gameBoard = newBoard
 		
@@ -56,6 +57,7 @@ class Minimap: UIImageView
 		
 		self.layer.borderWidth = 2
 		self.layer.borderColor = UIColor.black.cgColor
+		self.alpha = CGFloat(UserDefaults.standard.integer(forKey:SETTING_MINIMAP_ALPHA)) / 255.0
 	}
 	
 	// =================================================================================
@@ -100,6 +102,7 @@ class Minimap: UIImageView
 		imageData = UnsafeMutableRawBufferPointer(start:contextBuffer, count:4 * board.width * board.height)
 		
 		// initialize to transparent gray background
+//		let alpha = UInt8(UserDefaults.standard.integer(forKey:SETTING_MINIMAP_ALPHA)
 		var i = 0
 		
 		while i < 4 * board.width * board.height
@@ -107,7 +110,7 @@ class Minimap: UIImageView
 			imageData[i + 0] = 0
 			imageData[i + 1] = 0
 			imageData[i + 2] = 0
-			imageData[i + 3] = 100
+			imageData[i + 3] = 255
 			i += 4
 		}
 		

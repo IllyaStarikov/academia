@@ -15,7 +15,7 @@ class Player
 	var id:PlayerID
 	var team:TeamColor
 	var brushRadius:Float		// in meters
-	var location:CLLocationCoordinate2D
+	var location:CLLocation?
 	var name:String
 	
 	// =================================================================================
@@ -27,7 +27,7 @@ class Player
 		id = 0
 		team = .none
 		brushRadius = 0
-		location = CLLocationCoordinate2DMake(0, 0)
+		location = nil
 		name = ""
 	}
 	

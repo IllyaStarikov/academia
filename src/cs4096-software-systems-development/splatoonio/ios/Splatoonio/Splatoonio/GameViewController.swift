@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 
-class GameViewController: UIViewController, ItemPickerViewDelegate, GameBoardDelegate
+class GameViewController: UIViewController, ItemPickerViewDelegate, GameBoardDelegate, GameMenuViewDelegate
 {
 	var game:Game!
 	
@@ -19,6 +19,7 @@ class GameViewController: UIViewController, ItemPickerViewDelegate, GameBoardDel
 	private var lastIndex:Int!
 	private var minimap:Minimap!
 	private var map:GameMapView!
+	private var menu:GameMenuView!
 	
 	@IBOutlet private var itemPicker:ItemPickerView!
 	
@@ -39,8 +40,8 @@ class GameViewController: UIViewController, ItemPickerViewDelegate, GameBoardDel
 		
 		if (lastIndex >= 0)
 		{
-//			game.board.setBoardColor(index:lastIndex, color:.red)
-			game.board.paintLine(from:lastCoord, to:lastCoord, travelTime:1.0, forPlayer:game.me!)
+			let updates = game.board.paintLine(from:lastCoord, to:lastCoord, travelTime:1.0, forPlayer:game.me!)
+			game.board.updatePixels(pixels:updates)
 		}
 	}
 	
@@ -70,12 +71,15 @@ class GameViewController: UIViewController, ItemPickerViewDelegate, GameBoardDel
 		let coord = map.convert(touchpoint, toCoordinateFrom:map)
 		let index = game.board.pixelIndexForGPSLocation(location: coord)
 		let now = Date()
-		let travelTime = now.timeIntervalSince(lastTouchTime)
 		
 		// if at least one of the points is on the board, draw the line
 		if (index >= 0) || (lastIndex >= 0)
 		{
-			game.board.paintLine(from:lastCoord, to:coord, travelTime:travelTime, forPlayer:game.me!)
+			if let me = game.me
+			{
+				let location = CLLocation(coordinate:coord, altitude:0, horizontalAccuracy:0, verticalAccuracy:0, course:0, speed:0, timestamp:now)
+				game.move(player:me.id, to:location)
+			}
 		}
 		
 		lastCoord = coord
@@ -89,6 +93,7 @@ class GameViewController: UIViewController, ItemPickerViewDelegate, GameBoardDel
 	
 	func boardUpdated(pixels: [PixelUpdate])
 	{
+		// the game model has been updated, so forward those updates to the UI components
 		map.boardRenderer.updatePixels(pixels)
 		minimap.updatePixels(pixels)
 	}
@@ -109,7 +114,32 @@ class GameViewController: UIViewController, ItemPickerViewDelegate, GameBoardDel
 	}
 	
 	// =================================================================================
-	//								UIViewController
+	//								   GameMenuDelegate
+	// =================================================================================
+	
+	func menuItemPressed(item: GameMenuItemType)
+	{
+		if (item == .quit)
+		{
+			if let menu = self.navigationController?.viewControllers[0]
+			{
+				self.navigationController?.popToViewController(menu, animated:true)
+			}
+		}
+		else if (item == .settings)
+		{
+			
+		}
+		else if (item == .toggleMinimap)
+		{
+			let current = UserDefaults.standard.bool(forKey:SETTING_MINIMAP_ON)
+			minimap.isHidden = !current
+			UserDefaults.standard.set(!current, forKey:SETTING_MINIMAP_ON)
+		}
+	}
+	
+	// =================================================================================
+	//                                 UIViewController
 	// =================================================================================
 	
 	func createMinimap()
@@ -141,11 +171,27 @@ class GameViewController: UIViewController, ItemPickerViewDelegate, GameBoardDel
 			minimapHeight = 0
 		}
 		
-		minimap.frame = CGRect(x:MINIMAP_PADDING,
-		                       y:itemPicker.frame.origin.y - (MINIMAP_PADDING + minimapHeight),
+		minimap.frame = CGRect(x:self.view.bounds.size.width - (MINIMAP_PADDING + minimapWidth),
+		                       y:MINIMAP_PADDING,
 		                       width:minimapWidth,
 		                       height:minimapHeight)
+		minimap.isHidden = UserDefaults.standard.bool(forKey:SETTING_MINIMAP_ON)
 		self.view.addSubview(minimap)
+	}
+	
+	// =================================================================================
+	
+	func createMenu()
+	{
+		let PADDING:CGFloat = 0
+		let WIDTH:CGFloat = self.view.frame.size.width
+		
+		menu = GameMenuView(expandUpward:true, iconOnLeft:false)
+		menu.delegate = self
+		menu.frame.origin = CGPoint(x:WIDTH - (PADDING + menu.frame.size.width), y:itemPicker.frame.origin.y - (PADDING + menu.frame.size.height))
+		menu.updateUI()
+		
+		self.view.addSubview(menu)
 	}
 	
 	// =================================================================================
@@ -158,7 +204,7 @@ class GameViewController: UIViewController, ItemPickerViewDelegate, GameBoardDel
 
 		map = GameMapView(game:game)
 		map.frame = CGRect(x:0, y:0, width:self.view.frame.size.width, height:itemPicker.frame.origin.y)
-		self.view.addSubview(map)
+		self.view.insertSubview(map, at:0)
 		
 		// add some default items for testing
 		itemPicker.addItem(type:.generic)
@@ -168,14 +214,7 @@ class GameViewController: UIViewController, ItemPickerViewDelegate, GameBoardDel
 		itemPicker.delegate = self
 		
 		self.createMinimap()
-		
-		// used to intercept touches, allowing us to process them instead of the map (top half of screen)
-//		let touchFrame = CGRect(x:0, y:0, width:self.view.frame.size.width, height:self.view.frame.size.height / 2)
-//		self.view.addSubview(UIView(frame:touchFrame))
-		
-		let from = CLLocationCoordinate2DMake(20, 20)
-		let to = CLLocationCoordinate2DMake(30, 30)
-		game.board.paintLine(from:from, to:to, travelTime:1.0, forPlayer:game.me!)
+		self.createMenu()
     }
 
 	// =================================================================================

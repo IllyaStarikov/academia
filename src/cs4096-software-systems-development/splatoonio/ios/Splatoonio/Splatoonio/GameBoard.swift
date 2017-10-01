@@ -138,7 +138,7 @@ class GameBoard
 	
 	// =================================================================================
 	// speed is in meters per second
-	func paintLine(from fromCoord:CLLocationCoordinate2D, to toCoord:CLLocationCoordinate2D, travelTime:TimeInterval, forPlayer player:Player)
+	func paintLine(from fromCoord:CLLocationCoordinate2D, to toCoord:CLLocationCoordinate2D, travelTime:TimeInterval, forPlayer player:Player) -> [PixelUpdate]
 	{
 		let maxLat = geoBounds.center.latitude + (geoBounds.span.latitudeDelta / 2)
 		let minLon = geoBounds.center.longitude - (geoBounds.span.longitudeDelta / 2)
@@ -242,7 +242,8 @@ class GameBoard
 			i += 1
 		}
 		
-		self.updatePixels(pixels:updates)
+//		self.updatePixels(pixels:updates)
+		return updates
 	}
 	
 	// =================================================================================	

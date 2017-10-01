@@ -55,24 +55,55 @@ class GameMapView: MKMapView, MKMapViewDelegate
 	
 	// =================================================================================
 	
+	var timer:Timer!
+	var timer2:Timer!
+	
 	func initializeMapSettings()
 	{
 		// for testing on simulator - kills heading and location tracking on device... not sure why
 		let coord = CLLocationCoordinate2DMake(37.952902, -91.772447)
-		let region = MKCoordinateRegionMakeWithDistance(coord, 100, 70)
+		let region = MKCoordinateRegionMakeWithDistance(coord, 200, 140)
 		self.setRegion(region, animated:true)
 		
 		self.delegate = self
 		self.isScrollEnabled = false
-		self.isPitchEnabled = false
+		self.isPitchEnabled = true
 		self.isZoomEnabled = true
-		self.isRotateEnabled = false
+		self.isRotateEnabled = true
 		self.showsCompass = false
 		self.showsTraffic = false
-		self.showsUserLocation = false
+		self.showsUserLocation = true
 		self.showsPointsOfInterest = false
-		self.mapType = .satellite
-		self.setUserTrackingMode(.followWithHeading, animated:false)
+//		self.mapType = .satellite
+		
+//		timer = Timer.scheduledTimer(timeInterval:0.03, target:self, selector:#selector(updateLocation(timer:)), userInfo:nil, repeats:true)
+	}
+	
+	// =================================================================================
+	//								Location Updating
+	// =================================================================================
+	// Updates the heading and our location on the map to reflect the user's location and heading
+	func updateLocation(timer:Timer)
+	{
+		let gps = GPSManager.defaultManager()
+		
+		if let loc = gps.location()
+		{
+			self.centerCoordinate = loc
+			
+			if  let me = self.game.me,
+				let to = gps.currentLocation
+			{
+				game.move(player:me.id, to:to)
+			}
+		}
+		
+		if let heading = gps.heading()
+		{
+			self.camera.heading = heading
+		}
+		
+		self.setNeedsDisplay()
 	}
 	
 	// =================================================================================
@@ -99,28 +130,6 @@ class GameMapView: MKMapView, MKMapViewDelegate
 		// use the default annotation
 		return nil
 	}
-	
-	// =================================================================================
-	
-	// TODO: uncomment this function to use real user location
-//	func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation)
-//	{
-//		guard let me = game.me else
-//		{
-//			return
-//		}
-//		guard let to = userLocation.location else
-//		{
-//			return
-//		}
-//		
-//		let from = (prevLocation != nil ? prevLocation! : to)
-//		let travelTime = to.timestamp.timeIntervalSince(from.timestamp)
-//		
-//		game.board.paintLine(from:from.coordinate, to:to.coordinate, travelTime:travelTime, forPlayer:me)
-//		
-//		prevLocation = to
-//	}
 	
 	// =================================================================================
 }

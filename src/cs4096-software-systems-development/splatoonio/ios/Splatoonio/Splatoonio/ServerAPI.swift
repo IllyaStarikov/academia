@@ -73,9 +73,18 @@ class ServerAPI
 		me.id = PlayerID(arc4random())
 		me.name = String(format:"player%d", arc4random() % 100)
 		
-		_ = game.addPlayer(player:me, isMe:true)
+		game.addPlayer(player:me, isMe:true)
 		
 		return game
+	}
+	
+	// =================================================================================
+	//								In-Game Updates
+	// =================================================================================
+	
+	static func sendUpdates(updates:[PixelUpdate])
+	{
+		// TODO: implement
 	}
 	
 	// =================================================================================
