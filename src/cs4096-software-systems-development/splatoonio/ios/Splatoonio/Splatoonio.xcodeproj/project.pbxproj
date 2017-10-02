@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49B308091F818916005A84E3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B308081F818916005A84E3 /* User.swift */; };
+		49B3080B1F81C309005A84E3 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B3080A1F81C309005A84E3 /* Map.swift */; };
 		661250191F79322500563046 /* GameMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661250181F79322500563046 /* GameMenuView.swift */; };
 		6612501B1F793CBB00563046 /* GameMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6612501A1F793CBB00563046 /* GameMenuItem.swift */; };
 		661256231F7D84C90024A288 /* GameMenuItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661256221F7D84C90024A288 /* GameMenuItemType.swift */; };
@@ -42,6 +44,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		49B308081F818916005A84E3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		49B3080A1F81C309005A84E3 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		661250181F79322500563046 /* GameMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameMenuView.swift; sourceTree = "<group>"; };
 		6612501A1F793CBB00563046 /* GameMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameMenuItem.swift; sourceTree = "<group>"; };
 		661256221F7D84C90024A288 /* GameMenuItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMenuItemType.swift; sourceTree = "<group>"; };
@@ -118,6 +122,8 @@
 		6635C96A1F5637B200AC77B7 /* Splatoonio */ = {
 			isa = PBXGroup;
 			children = (
+				49B308081F818916005A84E3 /* User.swift */,
+				49B3080A1F81C309005A84E3 /* Map.swift */,
 				6635C9811F56383E00AC77B7 /* Utilities */,
 				6635C9831F56384800AC77B7 /* Game Objects */,
 				6635C9A61F573DA900AC77B7 /* Views */,
@@ -281,7 +287,9 @@
 			files = (
 				6635C99F1F57337400AC77B7 /* MenuViewController.swift in Sources */,
 				661B61101F58C7FD0066890B /* PixelUpdate.swift in Sources */,
+				49B3080B1F81C309005A84E3 /* Map.swift in Sources */,
 				6635C98F1F5638F300AC77B7 /* GPSManager.swift in Sources */,
+				49B308091F818916005A84E3 /* User.swift in Sources */,
 				6635C9991F5659F400AC77B7 /* Game.swift in Sources */,
 				6612501B1F793CBB00563046 /* GameMenuItem.swift in Sources */,
 				6635C9A31F5734D900AC77B7 /* LoadingGameViewController.swift in Sources */,

@@ -11,7 +11,7 @@ import UIKit
 
 typealias GameID = UInt64
 typealias PlayerID = UInt64
-
+typealias UserID = UInt32
 
 // =================================================================================
 
