@@ -9,7 +9,7 @@ class Atlas(object):
     def __init__(self):
         self.maps = {}
         # TODO: Replace with database
-        self.maps[0] = Map(GeoPlane(
+        self.maps['0'] = Map(GeoPlane(
             GeoCoord(37.955185, -91.775621),
             GeoCoord(37.946861, -91.767553),
             GeoCoord(37.946861, -91.775621),
@@ -17,8 +17,11 @@ class Atlas(object):
         ))
 
     @return_json
-    def on_get(self, req, resp):
-        return self.maps[0].to_json()
+    def on_get(self, req, resp, map_id):
+        if map_id in self.maps:
+            return self.maps[map_id].to_json()
+        else:
+            resp.status = falcon.HTTP_404
 
 class Map(object):
     # TODO: use constants to determine width/length (or pull from database)

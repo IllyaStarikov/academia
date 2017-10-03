@@ -4,24 +4,23 @@ import json
 
 def return_json(func):
 
-    def wrapper(self, req, resp):
-        resp.body = json.dumps(func(self, req, resp))
+    def wrapper(self, req, resp, *args, **kwargs):
+        resp.body = json.dumps(func(self, req, resp, *args, **kwargs))
 
     return wrapper
 
 def read_req_data(func):
 
-    def wrapper(self, req, resp):
+    def wrapper(self, req, resp, *args, **kwargs):
         data = json.loads(req.stream.read().decode('utf8'))
-        return func(self, req, resp, data)
+        return func(self, req, resp, data, *args, **kwargs)
 
     return wrapper
 
 def expect_data_fields(*fields):
     def decorator(func):
 
-        def wrapper(self, req, resp, data):
-            args = []
+        def wrapper(self, req, resp, data, *args, **kwargs):
             for field in fields:
                 if field in data:
                     args.append(data[field])
@@ -31,7 +30,7 @@ def expect_data_fields(*fields):
                         'Expected data field: {}'.format(field)
                     )
 
-            return func(self, req, resp, data, *args)
+            return func(self, req, resp, data, *args, **kwargs)
 
         return wrapper
     return decorator
@@ -41,8 +40,8 @@ def expect_fields(*fields):
 
         @read_req_data
         @expect_data_fields(*fields)
-        def wrapper(self, req, resp, data, *args):
-            return func(self, req, resp, *args)
+        def wrapper(self, req, resp, data, *args, **kwargs):
+            return func(self, req, resp, *args, **kwargs)
 
         return wrapper
     return decorator
