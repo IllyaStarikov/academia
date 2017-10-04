@@ -24,30 +24,35 @@ Server Team: Eric Michalak, Deacon Seals, Michael Harrington
 \section{Tasks}
 \begin{itemize}
     \item \textbf{Entire team (done):} Create client/server communication protocol
-    \item \textbf{Deacon, Michael: } Research server frameworks
-    \item \textbf{Eric:} Create games with unique IDs
+    \item \textbf{Deacon, Michael (done):} Research server frameworks
+    \item Create games with unique IDs
         \begin{itemize}
-            \item \textbf{Eric} Add players to games with unique IDs (added to smallest team)
+            \item Add players to games with unique IDs (added to smallest team)
             \item Add players via group lobbies
         \end{itemize}
-    \item Manage account information
+    \item \textbf{Eric:} Manage account information in a database
         \begin{itemize}
-            \item Leaderboards
-            \item Achievements
+            \item \textbf{(done):} Leaderboards
+            \item \textbf{(done):} Achievements
             \item Player Level
             \item Statistics (items used, accuracy, players hit, total distance, total painted)
             \item Unlockables (new items, etc)
         \end{itemize}
-    \item Maintain game state
+    \item \textbf{Eric:} Maintain game state in a database
         \begin{itemize}
-            \item Out of bounds (lat/long)
+            \item Bounds (lat/long)
             \item Color of the \emph{Game Board} map pixels
             \item Active players and player information (held items, brush size, name)
             \item Game clock
         \end{itemize}
-    \item Update \emph{Game Board}
-    \item Multiple concurrent games
-    \item Generic API calls (winning team, percent controlled)
+    \item \textbf{Deacon, Michael:} Play games
+        \begin{itemize}
+            \item Handle game state changes (e.g. adding players, items spawning...)
+            \item \textbf{Deacons:} Update \emph{Game Board}
+            \item \textbf{Michael:} Implement public REST API
+        \end{itemize}
+    \item \textbf{Deacon:} Multiple concurrent games
+    \item \textbf{Michael:} Generic API calls (winning team, percent controlled)
 \end{itemize}
 
 % Mobile
@@ -59,15 +64,16 @@ Android Team: Ian Howell, Luke Parton
 \begin{itemize}
     \item Plays game
         \begin{itemize}
-            \item \textbf{Ian:} Draws main display map in background - potentially fancy map (stretch goal)
-            \item \textbf{Adam:} Paint board pixels slightly transparently over the map
-            \item Draw minimap displaying only the board (not map)
-            \item Display location of other players with arrows on the board edges or on the minimap (stretch goal?)
+            \item \textbf{(iOS, Android done):} Draws main display map in background - potentially fancy map (stretch goal)
+            \item \textbf{Ian (iOS done):} Paint board pixels slightly transparently over the map
+            \item \textbf{(iOS done):} Draw minimap displaying only the board (not map)
+            \item Display location of other players with arrows on the board edges or on the minimap (do we even want to do this anymore?)
             \item \textbf{Ian:} Track the user's location/direction and move/rotate accordingly
             \item \textbf{Luke:} Update game state from server
             \item Game Features (see section 3)
         \end{itemize}
-    \item \textbf{Illya:} Stub out server calls
+    \item \textbf{(iOS done):} Stub out server calls
+    \item \textbf{Adam:} Query server for leaderboards and achievements
     \item Query server for available game by user's location
     \item Query server to create/join a public game
     \item Query server to create/join a private game
@@ -75,7 +81,7 @@ Android Team: Ian Howell, Luke Parton
             \item Custom map and boundaries
             \item Custom item spawns
         \end{itemize}
-    \item Tweak settings
+    \item \textbf{(iOS done):} Create an options page
 \end{itemize}
 
 
