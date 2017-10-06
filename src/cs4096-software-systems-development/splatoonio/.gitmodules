@@ -1,0 +1,12 @@
+[submodule "splatoonio-ios"]
+	path = splatoonio-ios
+	url = https://git-classes.mst.edu/ane3md/splatoonio-ios.git
+	branch = master
+[submodule "splatoonio-android"]
+	path = splatoonio-android
+	url = https://git-classes.mst.edu/ane3md/splatoonio-android.git
+	branch = master
+[submodule "splatoonio-server"]
+	path = splatoonio-server
+	url = https://git-classes.mst.edu/ane3md/splatoonio-server.git
+	branch = master
