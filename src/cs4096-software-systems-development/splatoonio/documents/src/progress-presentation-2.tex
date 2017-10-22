@@ -1,0 +1,183 @@
+%
+%  progress-presentation.tex
+%  src
+%
+%  Created by Illya Starikov on 09/16/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+% \documentclass[notes,xcolor=dvipsnames]{beamer}       % print frame + notes
+% \documentclass[notes=only,xcolor=dvipsnames]{beamer}  % only notes
+% \documentclass[xclolor=dvipsnames]{beamer}            % only frames
+\documentclass[handout,xclolor=dvipsnames]{beamer}    % only frames, no pauses
+\usepackage{soul,graphics}
+
+\input{template-presentation/macros}
+\title{Presentation \#2}
+\subtitle{Senior Design (Comp Sci 4096)}
+\author{Illya Starikov, Ian Howell, Deacon Seals, Michael Harrington, Luke Parton, Eric Michalak, Adam Evans}
+\date{Sometimes In The Future}
+\institute{Missouri University of Science and Technology}
+
+\begin{document}
+\begin{darkframes}
+    \maketitle
+
+    \hugeslide{Announcements}
+    \begin{frame}
+        \frametitle{The Name}
+
+        After a lot of consideration, bureaucracy, and arguing about voting systems, we have settled on the following: \pause{}
+
+        \vspace{3mm}
+        \begin{quote}
+            \centering {\fontsize{30}{40}\selectfont War Paint}
+        \end{quote}
+    \end{frame}
+
+
+    \hugeslide{Product}
+
+
+    \begin{frame}
+        \frametitle{The Product Today}
+        \framesubtitle{Besides, You Know, \textbf{Awesome}}
+
+        \begin{itemize}
+            \item Still a real-time collaborative game focused on users trying to paint as much of a map as possible.
+            \item However, now it has a name.
+            \item Picked our hosting provider (Digital Ocean) and found optimal plan.
+                \begin{itemize}
+                    \item ``we have hosted it; it's just not yet hosted''--Eric Michalak.
+                \end{itemize}
+        \end{itemize}
+    \end{frame}
+
+
+    \begin{frame}
+        \frametitle{What We Still Want To Do}
+        \framesubtitle{Before End of Semester, Before We Launch, Before We Die}
+
+        Before the end of the semester$\ldots$
+        \begin{itemize}
+            \item Finish the iOS application, Android application, and server.
+            \item Switch software stacks a couple of times again.
+        \end{itemize}\pause{}
+
+        Before we launch a minimal viable product$\ldots$
+        \begin{itemize}
+            \item Create unit test and do more user testing for the product.
+            \item Polish UI elements, create fake scenarios to demonstrate.
+        \end{itemize}\pause{}
+
+        Before we die$\ldots$
+        \begin{itemize}
+            \item Set foot on each of the seven continents.
+            \item Make love on a tropical beach.
+            \item Run a marathon.
+        \end{itemize}
+    \end{frame}
+
+
+    \hugeslide{Costumer}
+
+
+    \begin{frame}
+        \frametitle{Costumers}
+        \framesubtitle{Our Real-World Test \st{Monkeys} Subjects}
+
+        Currently, we are bouncing ideas off of:
+        \begin{itemize}
+            \item Fellow teammates.
+            \item Fellow computer students.
+            \item ACM members.
+        \end{itemize}
+
+        Also, a possibility of ACM sponsored mini-launch.
+    \end{frame}
+
+
+    \begin{frame}
+        \frametitle{Costumers}
+        \frametitle{What They're Saying}
+
+        \begin{quote}
+            ``It sounds cool'' --- Mom\pause{}
+        \end{quote}
+
+        \begin{quote}
+            ``Dope'' --- Kevin Schoonover, ACM\pause{}
+        \end{quote}
+
+        \begin{quote}
+            ``$\frac{\star\star\star\star}{\star\star\star\star\star}$, would recommend'' --- Wall Street Journal\pause{}
+        \end{quote}
+
+        \begin{quote}
+            ``Stop asking us for a review'' --- Nilay Patel, The Verge\pause{}
+        \end{quote}
+
+        \begin{quote}
+            ``Well it doesn't suck'' --- Illya
+        \end{quote}
+    \end{frame}
+
+
+    \hugeslide{Lessons Learned}
+
+
+    \begin{frame}
+        \begin{itemize}
+            \item \st{Being a hipster is hard} picking software stacks is hard\pause{}
+                \begin{itemize}
+                    \item Objective C\textrightarrow Swift 3\textrightarrow Swift 4\pause{}
+                    \item Falcon\textrightarrow Flask\pause{}
+                    \item Python\textrightarrow Go\pause{}
+                    \item Java\textrightarrow\pause{} Dumpster. We've always used Kotlin\pause{}
+                \end{itemize}
+
+            \item Naming things (and Cache Invalidations) is hard.\pause{}
+            \begin{itemize}
+                \item Before picking a name, had to pick a voting system.
+                \item After picking voting system, had to determine set of popular names.
+                \item Vote for said names.
+            \end{itemize}
+
+            \item Determining what to wear to the presentations is hard.
+
+            \item However, all of our go-to tools have worked well --- Git, \LaTeX{}, etc.
+        \end{itemize}
+    \end{frame}
+
+
+    \hugeslide{Questions?}
+
+
+    \begin{frame}
+        \frametitle{In Closing}
+
+        Spam Adam Evans (Team Lead) or Illya Starikov (PR/Angel Investing) with all questions, comments, and insults.
+
+        \begin{center}
+            \begin{description}
+                \item[\faComment] Adam Evans --- \href{mailto:ane3md@mst.edu}{\nolinkurl{ane3md@mst.edu}}
+                \item[\faComment] Illya Starikov --- \href{mailto:starikov@mst.edu}{\nolinkurl{starikov@mst.com}}
+            \end{description}
+        \end{center}
+
+        Special thanks to the awesome team.
+
+        \begin{center}
+            \begin{description}
+                \item[\faUser] Ian Howell
+                \item[\faUser] Deacon Seals
+                \item[\faUser] Michael Harrington
+                \item[\faUser] Luke Parton
+                \item[\faUser] Eric Michalak
+            \end{description}
+        \end{center}
+
+        \presentby{Illya Starikov}{0}
+    \end{frame}
+\end{darkframes}
+\end{document}
