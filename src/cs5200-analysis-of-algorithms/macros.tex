@@ -1,0 +1,59 @@
+%
+%  macros.tex
+%
+%  Created by Illya Starikov on 10/05/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,hyperref,enumitem,listings,graphics,inputenc,amsthm,float,booktabs,float,mathtools}
+\usepackage[linguistics]{forest}
+
+\newcommand{\problem}{%
+    \addtocounter{section}{1}
+    \setcounter{subsection}{0}
+    \section*{Question \#\thesection}
+}
+
+\newcommand{\subproblem}{%
+    \addtocounter{subsection}{1}
+    \subsection*{Problem \#\thesubsection}
+}
+
+\lstset{%
+    language=Python,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{blue}\ttfamily,
+    stringstyle=\color{red}\ttfamily,
+    commentstyle=\color{gray}\ttfamily,
+    morecomment=[l][\color{magenta}]{\#},
+    numbers=left,
+    keepspaces=true,
+    tabsize=4,
+    breaklines=true,
+    morekeywords={True, False},
+    mathescape
+}
+
+\let\emptyset\varnothing%
+\newtheorem{theorem}{Theorem}
+\setlist[description]{font=\normalfont\itshape\space\/}
+
+\title{Homework \#\homeworknumber}
+\subtitle{Analysis of Algorithms}
+\date{Due Date: \homeworkdue}
+\author{Illya Starikov}
+
+\renewcommand*\pagemark{{\usekomafont{pagenumber}Page\nobreakspace\thepage}}
+\addtokomafont{pageheadfoot}{\upshape}
+
+\setlength{\columnsep}{25pt}
+\setlength{\columnseprule}{0.4pt}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\newcommand{\bigO}[1]{\mathcal{O}\left(#1\right)}
+\newcommand{\bigTheta}[1]{\Theta\left(#1\right)}
+\newcommand{\bigOmega}[1]{\Omega\left(#1\right)}
+
+\newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{\strut#1}}}
+\newcommand{\todo}[1]{\textbf{\colorbox{red!50}{\strut#1}}}
