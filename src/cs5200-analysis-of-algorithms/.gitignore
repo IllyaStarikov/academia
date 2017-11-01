@@ -322,3 +322,9 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# Ignore editor temp files
+*~
+\#*\#
+.\#*
+.*.sw?
