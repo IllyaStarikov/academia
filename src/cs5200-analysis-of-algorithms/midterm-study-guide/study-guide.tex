@@ -324,6 +324,7 @@ def anagram(st):
 
 \section{Graph Theory I}
 \begin{itemize}
+    \item Let $P$ be a path of length $K > 0$ and let $i,j \in range(k+1) \mid P(i) = P(j)$. We define $Trim(p,i,j)$ to be a function $g: k + i - j + 1 \rightarrow \mathbb{V}$.
     \item Let $p$ and $q$ be paths in a graph $G$. $q$ is said to be \textbf{reduction} of $p$ iff $q$ can be derived from $p$ by a finite number of trimming operations.
     \item The set of all paths that can be obtained by applying finite sequences of trimming operations to $p$ is called the set of \textbf{reduced path of $p$} or \textbf{reductions of $p$}
     \item In a finite graph with even a single edge, the number of paths is infinite.
@@ -332,7 +333,17 @@ def anagram(st):
     \item A \textbf{simple cycle} is a cycle that has no repetition of vertices except for the first and last vertex.
     \item A simple cycle is not a simple path.
     \item If there are two different simple paths between $a$ and $b$ in a graph, $G$, then there is a simple cycle in $G$.
-    \item A \textbf{simple path} is a path such that no vertex appears more than once.
+    \item A \textbf{simple path} is a path such that no vertex appears more than once. (if $f:$\underbar{$n$}$\rightarrow \mathbb{V}$ it's an \textit{injection})
+    \item If $\exists P = (a,\ldots, b)$, then $b$ is \textbf{Reachable}  from $a$
+
+        \begin{itemize}
+            \item let $R$ be the relation on $\mathbb{V} \iff b$ is reachable from $a$.
+            \item $R$ is \textit{reflexive}: $aRa$ given by $f(0) = a$
+            \item $R$ is \textit{symmetric}: $aRb \to bRa$ given by \textit{Reverse Paths}
+            \item $R$ is \textit{transitive}: $aRb, bRc \to aRc$ given by \textit{Path Concatenation}
+            \item Equivalence Classes of $R$ are all the connected Components of a graph $G$.
+        \end{itemize}
+
     \item A graph is \textbf{acyclic} iff it does not contain simple cycles.
     \item Two graphs $G_1 = (V_1, E_1)$ and $G_2 = (V_2, E_2)$ are said to be \textbf{isomorphic} iff there is a bijection $f: V_1 \rightarrow V_2$ such that $\{a, b\} \in E_1$ iff $\{f(a), f(b)\} \in E_2$.
         \begin{itemize}
