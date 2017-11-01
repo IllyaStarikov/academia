@@ -141,10 +141,10 @@ def anagram(st):
         \begin{description}
             \item[Define the Problem] Clearly state the objects you are dealing with, provide names and definitions for all functions you are talking about, clearly state what you are trying to prove.
             \item[Check the Stopping Values + Two More] Checking that whatever you are tying to prove is required for the stopping value, but optional for two other values.
-            \item[Check that the recursion stays in $D$] Prove that if recursion in $P$ is triggered by values in $D$, then the values in the call are also in $D$.
-            \item[Check that recursion halts] We use the \textbf{counting strategy}: assign a \textbf{non-negative} integer as a counter to every value in the domain $D$. If whenever recursion is triggered, the counter associated with called values are $<$ the value associate with the calling value, recursion will halt!
-            \item[Check inheritance] You may assume that $P$ is true for all values called recursively; however, you must then prove that $P$ holds for the calling value.
-            \item[Conclude the proof] Invoke the Principle of Recursion.
+            \item[Check that the Recursion Stays in $D$] Prove that if recursion in $P$ is triggered by values in $D$, then the values in the call are also in $D$.
+            \item[Check That Recursion Halts] We use the \textbf{counting strategy}: assign a \textbf{non-negative} integer as a counter to every value in the domain $D$. If whenever recursion is triggered, the counter associated with called values are $<$ the value associate with the calling value, recursion will halt!
+            \item[Check Inheritance] You may assume that $P$ is true for all values called recursively; however, you must then prove that $P$ holds for the calling value.
+            \item[Conclude the Proof] Invoke the Principle of Recursion.
         \end{description}
 \end{itemize}
 
@@ -168,7 +168,7 @@ def anagram(st):
         \begin{description}
             \item[Define the problem] Clearly define the domain $D$, which must be of the form $D = s \ldots \infty$.
             \item[Check Base Case \& Two Other Values]
-            \item[Prove for all $n > s$, that if $P(n - 1)$ is true, then $P(n) is true$].
+            \item[Prove for all $n > s$, that if $P(n - 1)$ is true, then $P(n)$ is true]
             \item[Conclude the proof]
         \end{description}
 
@@ -178,7 +178,7 @@ def anagram(st):
             Every non-empty set of natural numbers has at least one element.
         \end{quote}
 
-    \item To Euclid, \textbf{axioms} are statements that are ture in all domains. Postulates are statements that are true in some domain.
+    \item To Euclid, \textbf{axioms} are statements that are true in all domains. Postulates are statements that are true in some domain.
     \item Via Peano's postulates, there is a set called $N$ consisting of objects we call ``numbers''. There is also a operation of \textit{successor} denoted by $*$ from $N$ into $N$.
         \begin{enumerate}
             \item There is an objected called $0$.
@@ -213,7 +213,7 @@ def anagram(st):
 
 \begin{description}
     \item[Incremental Improvement] Improve things one step at a time.
-    \item[Divide and Conquer] Divide the problem into a number of subproblems that are instates of the same problem and put your solution together from the sub-solutions.
+    \item[Divide and Conquer] Divide the problem into a number of subproblems that are instances of the same problem and put your solution together from the sub-solutions.
 \end{description}
 
 \section{Fibonacci Numbers, Sums, and Series}
@@ -244,7 +244,7 @@ def anagram(st):
         \begin{equation*}
             \int_{m - 1} ^n f(x)\, dx \leq
             \sum_{k = m} ^n f(k) \leq
-            \sum_m ^{n + 1} f(x)\, dx
+            \int_m ^{n + 1} f(x)\, dx
         \end{equation*}
 
 
@@ -253,7 +253,7 @@ def anagram(st):
         \begin{equation*}
             \int_{m - 1} ^n f(x)\, dx \geq
             \sum_{k = m} ^n f(k) \geq
-            \sum_m ^{n + 1} f(x)\, dx
+            \int_m ^{n + 1} f(x)\, dx
         \end{equation*}
 
     \item for $|r| < 1$,
@@ -333,7 +333,7 @@ def anagram(st):
     \item A \textbf{simple cycle} is a cycle that has no repetition of vertices except for the first and last vertex.
     \item A simple cycle is not a simple path.
     \item If there are two different simple paths between $a$ and $b$ in a graph, $G$, then there is a simple cycle in $G$.
-    \item A \textbf{simple path} is a path such that no vertex appears more than once. (if $f:$\underbar{$n$}$\rightarrow \mathbb{V}$ it's an \textit{injection})
+    \item A \textbf{simple path} is a path such that no vertex appears more than once. (if $f : $\underbar{$n$}$\rightarrow \mathbb{V}$ it's an \textit{injection})
     \item If $\exists P = (a,\ldots, b)$, then $b$ is \textbf{Reachable}  from $a$
 
         \begin{itemize}
@@ -569,6 +569,9 @@ while Q $\neq \emptyset$
             \Pr(|X - \mu| \geq t\sigma) \leq \frac{1}{t^2}
         \end{equation*}
 
+\end{itemize}
+\section{Heaps}
+\begin{itemize}
     \item In-place sorts sort an array using the space occupied by the array and a constant amount of additional space
 
     \item Sort an array using a non-fixed amount of space in addition to the amount of space occupied by the array
