@@ -1,0 +1,220 @@
+%
+%  homework-4.tex
+%  cs5200-analysis-of-algorithms
+%
+%  Created by Illya Starikov on 08/25/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{scrartcl}
+
+\newcommand{\homeworknumber}{4}
+\newcommand{\homeworkdue}{September 26\textsuperscript{th}, 2017}
+\input{../macros.tex}
+
+\begin{document}
+\maketitle
+
+\problem{}
+\begin{lstlisting}
+def sum_of_two_elements(S, x):
+    S = sorted(S)
+    i, j = 0, len(S) - 1
+    while i <= j:
+        if S[i] + S[j] == x:
+            return True
+        elif S[i] + S[j] < x:
+            i += 1
+        else:
+            j -= 1
+
+    return False
+\end{lstlisting}
+
+\begin{table}[H]
+    \centering
+    \caption{Output for \texttt{sum\_of\_two\_elements}}
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{lccc}
+    \textbf{List} & \textbf{$x$} & \textbf{$n \lg n$ solution} & \textbf{$n^2$ solution} \\\toprule
+            \texttt{[219, 526, 87,  829, 59,  384, 849, 65,  463, 934]} & ${449}$  & \texttt{True}  & \texttt{True}  \\
+        \texttt{[393, 983, 584, 160, 421, 652, 41,  719, 686, 181]} & ${1338}$ & \texttt{True}  & \texttt{True}  \\
+        \texttt{[491, 154, 345, 508, 208, 50,  11,  183, 723, 994]} & ${931}$  & \texttt{True}  & \texttt{True}  \\
+        \texttt{[798, 810, 263, 786, 177, 314, 211, 708, 300, 286]} & ${1061}$ & \texttt{True}  & \texttt{True}  \\
+        \texttt{[262, 494, 533, 38,  105, 937, 383, 625, 733, 428]} & ${645}$  & \texttt{True}  & \texttt{True}  \\
+        \texttt{[730, 371, 356, 591, 126, 416, 732, 84,  505, 165]} & ${717}$  & \texttt{True}  & \texttt{True}  \\
+        \texttt{[469, 821, 559, 492, 479, 91,  621, 55,  550, 507]} & ${605}$  & \texttt{True}  & \texttt{True}  \\
+        \texttt{[822, 407, 527, 858, 498, 360, 551, 532, 503, 274]} & ${1054}$ & \texttt{True}  & \texttt{True}  \\
+        \texttt{[278, 265, 997, 628, 563, 536, 783, 817, 725, 124]} & ${1380}$ & \texttt{True}  & \texttt{True}  \\
+        \texttt{[455, 745, 422, 274, 335, 781, 909, 867, 669, 681]} & ${943}$  & \texttt{True}  & \texttt{True}  \\
+        \texttt{[209, 836, 717, 858, 446, 773, 507, 693, 907, 59]}  & ${268}$  & \texttt{True}  & \texttt{True}  \\
+        \texttt{[18,  639, 711, 738, 583, 69,  714, 503, 597, 280]} & ${1452}$ & \texttt{True}  & \texttt{True}  \\
+        \texttt{[690, 867, 901, 558, 367, 927, 439, 590, 651, 447]} & ${1459}$ & \texttt{True}  & \texttt{True}  \\
+        \texttt{[156, 129, 61,  363, 948, 347, 874, 914, 775, 73]}  & ${503}$  & \texttt{True}  & \texttt{True}  \\
+        \texttt{[781, 985, 385, 523, 753, 804, 740, 7,   155, 441]} & ${596}$  & \texttt{True}  & \texttt{True}  \\
+        \texttt{[897, 799, 83,  402, 144, 820, 621, 22,  640, 660]} & ${1420}$ & \texttt{True}  & \texttt{True}  \\
+        \texttt{[478, 364, 216, 907, 638, 576, 835, 487, 571, 883]} & ${1051}$ & \texttt{True}  & \texttt{True}  \\
+        \texttt{[193, 116, 483, 17,  363, 276, 14,  534, 145, 636]} & ${162}$  & \texttt{True}  & \texttt{True}  \\
+        \texttt{[626, 446, 185, 716, 514, 225, 953, 826, 758, 809]} & ${1072}$ & \texttt{True}  & \texttt{True}  \\
+        \texttt{[268, 778, 934, 880, 347, 306, 90,  767, 626, 230]} & ${1712}$ & \texttt{True}  & \texttt{True}  \\
+        \texttt{[170, 591, 380, 744, 868, 242, 736, 756, 45,  798]} & ${624}$  & \texttt{False} & \texttt{False} \\
+        \texttt{[85,  354, 59,  185, 916, 42,  567, 532, 106, 285]} & ${704}$  & \texttt{False} & \texttt{False} \\
+        \texttt{[938, 218, 584, 440, 574, 748, 450, 931, 955, 588]} & ${909}$  & \texttt{False} & \texttt{False} \\
+        \texttt{[930, 337, 292, 491, 668, 486, 630, 320, 91,  797]} & ${17}$   & \texttt{False} & \texttt{False} \\
+        \texttt{[277, 754, 116, 486, 75,  868, 788, 346, 326, 188]} & ${847}$  & \texttt{False} & \texttt{False} \\
+        \texttt{[951, 37,  80,  72,  515, 45,  925, 533, 626, 767]} & ${346}$  & \texttt{False} & \texttt{False} \\
+        \texttt{[529, 286, 483, 105, 283, 224, 461, 245, 447, 861]} & ${482}$  & \texttt{False} & \texttt{False} \\
+        \texttt{[563, 577, 795, 911, 692, 462, 755, 311, 898, 268]} & ${706}$  & \texttt{False} & \texttt{False} \\
+        \texttt{[798, 617, 27,  746, 149, 763, 546, 752, 692, 279]} & ${816}$  & \texttt{False} & \texttt{False} \\
+        \texttt{[334, 339, 184, 870, 776, 716, 375, 752, 414, 453]} & ${522}$  & \texttt{False} & \texttt{False} \\
+        \texttt{[683, 969, 687, 274, 870, 566, 139, 664, 699, 325]} & ${17}$   & \texttt{False} & \texttt{False} \\
+        \texttt{[641, 411, 4,   735, 742, 205, 264, 548, 331, 617]} & ${604}$  & \texttt{False} & \texttt{False} \\
+        \texttt{[876, 939, 653, 487, 148, 433, 807, 238, 848, 556]} & ${872}$  & \texttt{False} & \texttt{False} \\
+        \texttt{[385, 21,  172, 598, 463, 721, 187, 670, 328, 917]} & ${510}$  & \texttt{False} & \texttt{False} \\
+        \texttt{[3,   246, 181, 435, 937, 974, 817, 109, 841, 383]} & ${518}$  & \texttt{False} & \texttt{False} \\
+        \texttt{[889, 542, 73,  455, 946, 307, 189, 988, 440, 349]} & ${58}$   & \texttt{False} & \texttt{False} \\
+        \texttt{[383, 691, 490, 938, 233, 139, 818, 231, 825, 720]} & ${170}$  & \texttt{False} & \texttt{False} \\
+        \texttt{[772, 543, 127, 538, 273, 508, 924, 793, 495, 150]} & ${229}$  & \texttt{False} & \texttt{False} \\
+        \texttt{[311, 843, 307, 863, 305, 602, 696, 351, 910, 776]} & ${42}$   & \texttt{False} & \texttt{False} \\
+    \end{tabular}
+    }
+\end{table}
+
+\problem{}
+\begin{enumerate}
+    \item As follows, the inversions $(i, j)$ are:
+        \begin{enumerate}
+            \item $(1,\, 5)$
+            \item $(2,\, 5)$
+            \item $(3,\, 4)$
+            \item $(3,\, 5)$
+            \item $(4,\, 5)$
+        \end{enumerate}
+
+        $(A[i], A[j])$ are:
+
+        \begin{enumerate}
+            \item $(2,\, 1)$
+            \item $(3,\, 5)$
+            \item $(8,\, 6)$
+            \item $(8,\, 1)$
+            \item $(6,\, 1)$
+        \end{enumerate}
+
+    \item For a reverse sorted array, there would ${n \choose 2} = \frac{n(n - 1)}{2}$ total inversions.
+
+    \item Divide the array recursively into half and count number of inversions in sub-arrays (an $\lg n$ algorithm). To count all inversions, it takes $n$ steps. $n-\text{operations}\times \lg n-\text{recursive steps}$. Combined, $\Theta\left( n \lg n \right)$ algorithm.
+\end{enumerate}
+
+\problem{}
+We recall that the geometric series, and its derivatives, state that:
+
+\begin{equation}\label{eq:identity}
+    \sum_{k = 0} ^\infty x^k = \frac{1}{1 - x}
+    \quad\text{and}\quad
+    \sum_{k = 0} ^\infty k x^k = \frac{x}{{\left(1 - x\right)}^2}
+\end{equation}
+
+Next, we know that our sum is as follows:
+
+\begin{equation*}
+    \sum_{k = 0} ^\infty \frac{(k - 1)}{2^k}
+\end{equation*}
+
+Breaking these up we have the following:
+
+\begin{equation}\label{eq:expanded}
+    \sum_{k = 0} ^\infty k {\left( \frac{1}{2} \right)}^k
+    -
+    \sum_{k = 0} ^\infty {\left( \frac{1}{2} \right)}^k
+\end{equation}
+
+Replacing Equation~\ref{eq:expanded} with Equation~\ref{eq:identity}, we get the following:
+
+\begin{align*}
+    \sum_{k = 0} ^\infty k {\left( \frac{1}{2} \right)}^k
+    -
+    \sum_{k = 0} ^\infty {\left( \frac{1}{2} \right)}^k &= \frac{\nicefrac{1}{2}}{{(1 - \nicefrac{1}{2})}^2} - \frac{1}{1 - \nicefrac{1}{2} } \\
+                                                        &= 2 - 2 \\
+                                                        &= 0
+\end{align*}
+
+\problem{}
+Because $k^3$ is monotonically increasing, we have the following bounds upper bound:
+
+\begin{align*}
+    \sum_{k = 1} ^n k^3 &\leq \int _1 ^{n + 1} x^3\, dx \\
+                        &= \frac{x^4}{4} \Big| _1 ^{n + 1} \\
+                        &= \frac{{(n + 1)}^4 - 1}{4}
+\end{align*}
+
+For the lower bound,
+
+\begin{align*}
+    \sum_{k = 1} ^n k^3 &\geq \int _0 ^{n} x^3\, dx \\
+                        &= \frac{x^4}{4} \Big| _0 ^{n} \\
+                        &= \frac{{(n)}^4}{4}
+\end{align*}
+
+So, the bounds are as follows:
+
+\begin{equation*}
+    \frac{{(n)}^4}{4} \leq \sum _{k = 1}^n k^3 \leq \frac{{(n + 1)}^4 - 1}{4}
+\end{equation*}
+
+\problem{}
+We use integral approximations for all of the following.
+
+\subproblem{}
+\begin{alignat*}{3}
+    &\int _{0} ^{n} x^r\, dx \quad&&\leq \sum _{k = 1} ^{n} k^r \quad&&\leq \int _{1} ^{n + 1} x^r\, dx \\
+    &\frac{n^{r + 1}}{r + 1} \quad&&\leq \sum _{k = 1} ^{n} k^r \quad&&\leq \frac{{(n + 1)}^{r + 1} - 1}{r + 1}
+\end{alignat*}
+
+Therefore, the bound is $\Theta\left( n^{r + 1} \right)$.
+
+\subproblem{}
+For the following, we take $s$ for 1,
+\begin{alignat*}{3}
+    &\int _{0} ^{n} \lg^1 x\, dx \quad&&\leq \sum _{k = 1} ^{n} \lg^1 k \quad&&\leq \int _{1} ^{n + 1} \lg^1 x\, dx \\
+    &n\left(\lg \left(n\right)-1\right ) \quad&&\leq \sum _{k = 1} ^{n} \lg^1 k \quad&&\leq\left(n+1\right)\left(\lg \left(n+1\right)-1\right)+1
+\end{alignat*}
+
+Therefore, the bound is $\Theta\left( n \lg^1 n \right)$. \\
+
+For the following, we take $s$ for 2,
+\begin{alignat*}{3}
+    &\int _{0} ^{n} \lg^2 x\, dx \quad&&\leq \sum _{k = 1} ^{n} \lg^2 k \quad&&\leq \int _{1} ^{n + 1} \lg^2 x\, dx \\
+    &n\left(\left(\lg \left(n\right)-2\right)\lg \left(n\right)+2\right)\quad&&\leq \sum _{k = 1} ^{n} \lg^2 k \quad&& \leq \left(n+1\right)\left(\left(\lg \left(n+1\right)-2\right)\lg \left(n+1\right)+2\right)-2
+\end{alignat*}
+
+Therefore, the bound is $\Theta\left( n \lg^2 n \right)$. \\
+
+For the following, we take $s$ for 3,
+\begin{alignat*}{3}
+    &\int _{0} ^{n} \lg^3 x\, dx \quad&&\leq \sum _{k = 1} ^{n} \lg^3 k \quad&&\leq \int _{1} ^{n + 1} \lg^3 x\, dx \\
+\end{alignat*}
+
+From this, we get,
+\begin{align*}
+    &n\left(\lg \left(n\right)\left(\left(\lg \left(n\right)-3\right)\lg \left(n\right)+6\right)-6\right) \\
+    &\leq\sum _{k = 1} ^{n} \lg^3 k \\
+    &\leq \left(n+1\right)\left(\lg \left(n+1\right)\left(\left(\lg \left(n+1\right)-3\right)\lg \left(n+1\right)+6\right)-6\right)+6
+\end{align*}
+
+Therefore, the bound is $\Theta\left( n \lg^3 n \right)$. \\
+
+In general, the integral requires $s$ integration by parts, multiplying $\lg n$ $s$ times. So, for $\sum _{k = 1} ^{n} \lg^s k$, the bound would be $\Theta\left(n \lg^s n\right)$.
+
+\subproblem{}
+In general, we know that the lower-bound integral we have will have the form
+
+\begin{equation*}
+    \int _{0}  ^n x^r \lg^s x\, dx
+\end{equation*}
+
+And likewise for the upper bound. Using the same process as before (omitted due to tedious mathematics), we get the tight bound $\Theta \left( n^{r + 1} \lg^s n \right)$.
+
+
+\end{document}
