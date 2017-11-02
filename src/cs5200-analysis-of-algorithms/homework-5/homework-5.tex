@@ -1,0 +1,110 @@
+%
+%  homework-5.tex
+%  cs5200-analysis-of-algorithms
+%
+%  Created by Illya Starikov on 08/25/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+foobar
+
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{scrartcl}
+
+\newcommand{\homeworknumber}{5}
+\newcommand{\homeworkdue}{October 4\textsuperscript{th}, 2017}
+\input{../macros.tex}
+
+\begin{document}
+\maketitle
+
+\problem{}
+\begin{theorem}
+    If $L \geq 2$, then every binary tree with $L$ leaves contains a subtree having between $\frac{L}{3}$ and $\frac{2L}{3}$ leaves, inclusive.
+\end{theorem}
+
+\begin{proof}
+        Suppose not. That is, suppose that there exists a binary tree with more than $1$ leaves with all subtrees containing leaves in the range $\frac{L}{3} > n > \frac{2L}{3}$. The root contains $L$ leaves, and all bottommost leaves contain $1$ leaves.
+
+        This implies that two subtrees with size less than $\frac{L}{3}$ (because our hypothesis states all leaves must in the range $\frac{L}{3} > n > \frac{2L}{3}$) combined to make a tree of size greater than $\frac{2L}{3}$. This is a contradiction
+
+        \begin{equation*}
+            \frac{L}{3} + \frac{L}{3} \not > \frac{2L}{3}
+        \end{equation*}
+
+        Because we have reached a contradiction, our hypothesis does not hold. Therefore, binary tree with $L$ leaves contains a subtree having between $\frac{L}{3}$ and $\frac{2L}{3}$ leaves, inclusive.
+\end{proof}
+
+
+\problem{}
+\begin{theorem}
+    For every binary tree $T$, let us associate a ``weight'' $w(q) = 2^{-depth(q)}$. For all leaves $q \in T$,
+
+    \begin{equation*}
+        \sum _q w(q) \leq 1
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    We prove so by induction.
+
+    (Base Case) For the root,
+
+    \begin{equation*}
+        \sum _{x \in T} w(x) = 2^{-0} = 1
+    \end{equation*}
+
+    (Inductive Hypothesis) Suppose for any tree of $n$ nodes, $\sum _{x \in T} ^n w(q) \leq 1$.
+
+    (Inductive Step) Suppose the binary tree $T_0$ to have $n - 1$ nodes. We must show that $\sum _{x \in T_0} ^{n-1} w(x) \leq 1$. Suppose we take the left subtree $T_L$ or the right subtree $T_R$. By the inductive hypothesis, the sum of the weights are less than or equal to $1$; however, since the depth of a node in $T_0$ is one greater than the depth of $T_L$ or $T_R$, the respective weights of ever leaf in $T_0$ is halved. Thus,
+
+    \begin{equation*}
+        \sum _{x \in T_L} w(x) \leq \nicefrac{1}{2} \qquad \sum _{x \in T_R} w(x) \leq \nicefrac{1}{2}
+    \end{equation*}
+
+    Because both of these are bounded by $\nicefrac{1}{2}$, their sum forms $T_0$, which is bounded by $1$.
+
+    By the principle of mathematical induction, $\sum _q w(q) \leq 1$ for any tree.
+\end{proof}
+
+
+\problem{}
+\begin{theorem}
+    Any planar graph can be colored with six or fewer colors.
+\end{theorem}
+
+\begin{proof}
+    We prove so by induction. We take $n$ to be an arbitrary number of nodes in an arbitrary graph $G$.
+
+    (Base Case) For $n$ vertices, where $1 \leq n \leq 6$, we can color the graph $G$ with $6$ or less colors (for every vertices maps to a single, unique color).
+
+    (Inductive Hypothesis) Suppose for $n - 1$ vertices, where $n > 1$, the graph $G$ can be colored with $6$ or less colors.
+
+    (Inductive Step) We now prove that $G$ can be colored with $n$ vertices can be colored with $6$ or fewer colors. Recall all connected, simple planar graph contains a maximum of $5$ degrees. Suppose that the any vertex $v \in G$ has this max degree $5$.
+
+    We remove this vertex, name it $v_0$, with all incident edges. We now have less than $n$ vertices, and by our inductive hypothesis, this graph now can be colored with $6$ or less colors. Adding this vertex back, we see that there are $5$ incident vertexes, hence $5$ colors. We use the $6$\textsuperscript{th} color for $v_0$.
+
+    Hence, the inductive step holds. By the principle of mathematical induction, any planar graph can be colored with six or fewer colors.
+\end{proof}
+
+
+\problem{}
+\begin{theorem}
+    Any point $x$ in a graph is a cut-point iff there exists two vertices in the graph, $a$ and $b$, such that every path between $a$ and $b$ has to pass through $x$.
+\end{theorem}
+
+\begin{proof}
+    Assume $G$ to be a connected graph, and $\exists \text{ vertices } a, b \in G$, where every path $a\longleftrightarrow b$ path passes through $x$. Also assume there exists no path $a\longleftrightarrow b \in G - \{ x \}$. Therefore, $G - \{ x \}$ is disconnected, for $a$ and $b$ are in two different components of $G - \{ x \}$. This proves that $x$ is a cut-point.
+\end{proof}
+
+
+\problem{}
+\begin{description}
+    \item[Euler Path] A path that uses every edge of a graph exactly once.
+    \item[Hamiltonian Cycle] A path through a graph that starts and ends at the same vertex and includes every other vertex exactly once.
+\end{description}
+
+Yes, all \textbf{cyclic graphs} meet both these conditions.
+
+
+\end{document}
