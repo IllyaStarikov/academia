@@ -1,0 +1,304 @@
+%
+%  homework-6.tex
+%  cs5200-analysis-of-algorithms
+%
+%  Created by Illya Starikov on 08/25/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{scrartcl}
+
+\newcommand{\homeworknumber}{5}
+\newcommand{\homeworkdue}{October 4\textsuperscript{th}, 2017}
+\input{../macros.tex}
+
+\begin{document}
+
+\begin{theorem}
+Let $a \geq 1$ and $b > 1$ be constants, let $f(n)$ be a function, and let $T(n)$ be defined on the non-negative numbers by the recurrence
+
+\begin{equation}\label{eq:recurrence}
+    T(n) = a\, T(\nicefrac{n}{b}) + f(n)
+\end{equation}
+
+\noindent where we interpret $\nicefrac{n}{b}$ to mean either $\floor*{\nicefrac{n}{b}}$ or $\ceil*{\nicefrac{n}{b}}$. Then $T(n)$ has the following asymptotic bounds:
+
+\begin{enumerate}
+    \item If $f(n) = \bigO{n^{\log_b a - \epsilon}} $ for some constant $\epsilon > 0$, then $T(n) = \bigTheta{n^{\log _b a}}$.
+    \item If $f(n) = \bigTheta{n^{\log_b a}} $, then $T(n) = \bigTheta{n^{\log _b a} \lg n}$.
+    \item If $f(n) = \bigOmega{n^{\log_b a + \epsilon}} $ for some constant $\epsilon > 0$, and if
+        \begin{equation*}
+            a\, f(\nicefrac{n}{b}) < c\, f(n)
+        \end{equation*}
+
+    for some constant $c < 1$ and sufficiently large $n$, then $T(n) = \bigTheta{f(n)}$.
+\end{enumerate}
+\end{theorem}
+
+\problem{}\label{sec:firstrec}
+
+
+\subproblem{}
+From Equation~\ref{eq:recurrence}, we have the following:
+
+\begin{equation*}
+    a = 2 \qquad b = 4 \qquad f(n) = 1
+\end{equation*}
+
+\noindent From this,
+
+\begin{align*}
+    f(n) &= \bigO{n^{\log_b a - \epsilon}} \\
+    1    &= \bigO{n^{\log_4 2 - \epsilon}} \\
+         &= \bigO{n^{\nicefrac{1}{2} - \epsilon}} \\
+         &= \bigO{n^{\nicefrac{1}{2} - \nicefrac{1}{2}}} \\
+         &= \bigO{1}
+\end{align*}
+
+\noindent Therefore, the tight asymptotic bound for the recurrence is
+
+\begin{align*}
+    T(n) &\in \bigTheta{n^{\log _b a}} \\
+         &\in \bigTheta{n^{\log _4 2}} \\
+         &\in \bigTheta{n^{\nicefrac{1}{2}}} \\
+         &\in \bigTheta{\sqrt{n}}
+\end{align*}
+
+\noindent Therefore, the bound is $\bigTheta{\sqrt{n}}$.
+
+
+\subproblem{}
+From Equation~\ref{eq:recurrence}, we have the following:
+
+\begin{equation*}
+    a = 2 \qquad b = 4 \qquad f(n) = \sqrt{n}
+\end{equation*}
+
+\noindent From this,
+
+\begin{equation*}
+    \sqrt{n} = \bigTheta{n^{\log_4 2}} \\
+\end{equation*}
+
+\noindent Therefore, the tight asymptotic bound for the the recurrence is
+
+\begin{equation*}
+    T(n) \in \bigTheta{\sqrt{n}\lg n}
+\end{equation*}
+
+
+\subproblem{}
+From Equation~\ref{eq:recurrence}, we have the following:
+
+\begin{equation*}
+    a = 2 \qquad b = 4 \qquad f(n) = n
+\end{equation*}
+
+\noindent From this,
+
+\begin{equation*}
+    n = \bigOmega{n^{\log_4 2 + \nicefrac{1}{2}}} \\
+\end{equation*}
+
+\noindent Therefore, the tight asymptotic bound for the the recurrence is
+
+\begin{equation*}
+    T(n) \in \bigTheta{n}
+\end{equation*}
+
+
+\subproblem{}
+From Equation~\ref{eq:recurrence}, we have the following:
+
+\begin{equation*}
+    a = 2 \qquad b = 4 \qquad f(n) = n^2
+\end{equation*}
+
+\noindent From this,
+
+\begin{equation*}
+    n^2 = \bigOmega{n^{\log_4 2 + \nicefrac{3}{2}}} \\
+\end{equation*}
+
+\noindent Therefore, the tight asymptotic bound for the recurrence is
+
+\begin{equation*}
+    T(n) \in \bigTheta{n^2}
+\end{equation*}
+
+
+\problem{}
+Recall Strassen's algorithm belongs to the complexity class $\bigTheta{n^{\lg 7}}$. By using the Case~1 of the Master Theorem, we must find a that solves the inequality $\log _4 a < \lg 7$. The integer that solves the equation $\log _4 a = \lg 7$ is $49$; therefore,
+
+\begin{equation*}
+    a = 48
+\end{equation*}
+
+
+\problem{}
+Because the process is identical to Problem~\ref{sec:firstrec}, the work is omitted; only answers are provided.
+
+\begin{enumerate}
+    \item Master Theorem (\textit{Case \#3}), $T(n) \in \bigTheta{n^4}$
+    \item Master Theorem (\textit{Case \#3}), $T(n) \in \bigTheta{n}$
+    \item Master Theorem (\textit{Case \#2}), $T(n) \in \bigTheta{n^2 \lg n}$
+    \item Master Theorem (\textit{Case \#3}), $T(n) \in \bigTheta{n^2}$
+    \item Master Theorem (\textit{Case \#1}), $T(n) \in \bigTheta{n^{\log _2 7}}$
+    \item Master Theorem (\textit{Case \#2}), $T(n) \in \bigTheta{\sqrt{n} \lg n}$
+
+    \item Because $\left(n - 2\right) \in \bigO{n}$, we can write an equivalent recurrence relation,
+
+    \begin{equation*}
+        T(n) = T(\nicefrac{n}{1}) + n^2
+    \end{equation*}
+
+    Because $\log _1 1$ is undefined, we cannot use the Master Theorem; but we do not need it. We have $n^2$ work to do $n$ times. This implies that $T(n) \in \bigTheta {n^3}$.
+\end{enumerate}
+
+
+\problem{}
+\begin{enumerate}
+    \item Master Theorem (\textit{Case \#1}), $T(n) \in \bigTheta{n^{\log_3 4}}$
+    \item Using a recursion tree,
+
+        \begin{center}
+            \begin{forest}
+                [$\frac{n}{\lg n}$
+                    [$\frac{\frac{n}{3}}{\lg \frac{n}{3}}$
+                        [$\vdots$]
+                        [$\vdots$]
+                        [$\vdots$]
+                    ]
+                    [$\frac{\frac{n}{3}}{\lg \frac{n}{3}}$
+                        [$\vdots$]
+                        [$\vdots$]
+                        [$\vdots$]
+                    ]
+                    [$\frac{\frac{n}{3}}{\lg \frac{n}{3}}$
+                        [$\vdots$]
+                        [$\vdots$]
+                        [$\vdots$]
+                    ]
+                ]
+            \end{forest}
+        \end{center}
+
+            We see that the $T(n) \in \bigTheta{n \lg \lg n}$.
+    \item Master Theorem (\textit{Case \#3}), $T(n) \in \bigTheta{n^{2.5}}$.
+    \item We augment the equation to be $3T(n/3) + n/2$, where we can use Master Theorem (\textit{Case \#2}), $T(n) \in \bigTheta{n \lg n}$.
+    \item With similar reasoning as in Step \#2, we use a recursion tree to get the results $T(n) \in \bigTheta{n \lg \lg n}$
+    \item We solve so via the substitution method. We use a recursion tree to get our initial guess.
+
+        \begin{center}
+            \begin{forest}
+                [$n$
+                    [$\nicefrac{n}{2}$ [$\nicefrac{n}{4}$  [$\vdots$ ]]]
+                    [$\nicefrac{n}{4}$ [$\nicefrac{n}{16}$ [$\vdots$ ]]]
+                    [$\nicefrac{n}{8}$ [$\nicefrac{n}{64}$ [$\vdots$ ]]]
+                ]
+            \end{forest}
+        \end{center}
+
+        Guessing $T(n) \in \bigTheta{n}$, we get the following:
+
+        \begin{align*}
+            T(n) &= T(\nicefrac{n}{2}) + T(\nicefrac{n}{4}) T(\nicefrac{n}{8}) + n \\
+                 &= c\,\nicefrac{n}{2} + c\,\nicefrac{n}{4} + c\,\nicefrac{n}{8} + n \\
+                 &= \frac{7}{8}\c\,n + n \\
+                 &\leq c\,n
+        \end{align*}
+
+        We see this inequality holds for $c \geq 8$. Therefore, $T(n) \in \bigTheta{n}$.
+
+    \item Using a recursion tree,
+
+        \begin{center}
+            \begin{forest}
+                [$\frac{1}{n}$ [$\frac{1}{n - 1}$ [$\frac{1}{n - 2}$ [$\vdots$]]]]
+            \end{forest}
+        \end{center}
+
+        We see that $T(n) \in \bigTheta{n \lg \lg n}$.
+
+    \item Using a recursion tree,
+
+        \begin{center}
+            \begin{forest}
+                [$\lg n$ [$\lg \left(n - 1\right)$ [$\lg \left(n - 2\right)$ [$\vdots$]]]]
+            \end{forest}
+        \end{center}
+
+        We see that $T(n) \in \bigTheta{n \lg n}$.
+
+    \item Using a recursion tree,
+
+        \begin{center}
+            \begin{forest}
+                    [$\frac{1}{\lg n}$ [$\frac{1}{\lg \left(n -2\right)}$ [$\frac{1}{\lg \left(n -4\right)}$ [$\vdots$]]]]
+            \end{forest}
+        \end{center}
+
+        We see that $T(n) \in \bigTheta{\lg \lg n}$.
+
+    \item We guess
+
+        \begin{equation*}
+            T(n) \in \bigTheta{n \lg \lg n}
+        \end{equation*}
+
+        \begin{align*}
+            T(n) &= \sqrt{n}\, T\left(\sqrt{n}\right) + n \\
+                 &= \sqrt{n}\, T\left(c \sqrt{n} \lg \lg \sqrt{n} \right) + n \\
+                 &= c\, n \lg \lg n - c\,n + n \\
+                 &\leq c\, n \lg \lg n
+        \end{align*}
+
+        We see this inequality for $c \in \mathbb{R}^+$. Therefore $T(n) \in \bigTheta{n \lg \lg n}$.
+\end{enumerate}
+
+\problem{}
+Options $c$ and $e$.
+
+
+\problem{}
+\begin{enumerate}
+    \item We choose a root among the vertices, call it $v_0$. If we choose the $k$th smallest element, the smaller subtree will have $i - 1$ vertices and the larger will have $n - i$ vertices. Summing over all possibilities, we get the following form for $b_n$:
+
+        \begin{align*}
+            b_n &= \sum_{k = 1} ^n b_{k - 1} b_{n - k} \\
+                &= \sum_{k = 0} ^{n - 1} b_k b_k b_{n-k-1}
+        \end{align*}
+
+    \item \begin{align*}
+            B(x) &= \sum_{n = 0} ^{\infty} b_n x^n \\
+                 &= 1 + \sum_{n = 1} ^{\infty} b_n x^n \\
+                 &= 1 + \sum_{n = 1} ^{\infty} \sum_{k = 0} ^{n - 1} b_k b_{n - k - 1} x^{n - k - 1} \\
+                 &= 1 + x\sum_{n = 1} ^{\infty} \sum_{k = 0} ^{n - 1} b_k x^k b_{n - k - 1} x^{n - k - 1} \\
+                 &= 1 + x\sum_{n = 0} ^{\infty} \sum_{k = 0} ^n b_k x^k b_{n - k} x^{n - k} \\
+                 &= 1 + x\,{B(x)}^2
+        \end{align*}
+
+    \item We use the Taylor expansion of $\sqrt{1 - 4x}$, we have the following
+
+        \begin{align*}
+            B(x) &= \frac{1}{2x} \left( 1 - \sum_{n = 0} ^{\infty} \frac{1}{1 - 2n} {2n \choose n} x^n \right) \\
+                 &= -\frac{1}{2x} \sum _{n = 1} ^\infty \sum _{n = 1} ^\infty \frac{1}{1 - 2n} {2n \choose n} x^n \\
+                 &= \frac{1}{2} \sum _{n = 1} ^\infty \frac{1}{2n - 1} {2n \choose n} x^{n - 1} \\
+                 &= \frac{1}{2} \sum _{n = 0} ^\infty \frac{1}{2n + 1} {2n + 2 \choose n + 1} x^n
+        \end{align*}
+
+        Therefore $b_n = \frac{1}{n+1} \binom{2n}{n}$.
+
+    \item \begin{align*}
+            b_n &= \frac{1}{n+1} \frac{(2n)!}{n!n!} \ \\
+                &\approx \frac{1}{n + 1} \frac{\sqrt{4\,\pi n}{(2n / e)}^{2n}}{2\,\pi n {(n / e)}^{2n}} \\
+                &= \frac{1}{n+1} \frac{4^n}{\sqrt{\pi n}} \\
+                &= \left(\frac{1}{n} + \left (\frac{1}{n+1} - \frac{1}{n} \right) \right) \frac{4^n}{\sqrt{\pi n} } \\
+                &= \left(\frac{1}{n} - \frac{1}{n^2+n} \right) \frac{4^n}{\sqrt{\pi n} } \\
+                &=  \frac{1}{n} \left(1 - \frac{1}{n+1} \right) \frac{4^n}{\sqrt{\pi n}} \\
+                &=  \frac{4^n}{\sqrt{\pi}n^{3/2}} (1 + O(1/n))
+        \end{align*}
+\end{enumerate}
+\end{document}
