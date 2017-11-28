@@ -1,0 +1,284 @@
+%
+%  homework-7.tex
+%  cs5200-analysis-of-algorithms
+%
+%  Created by Illya Starikov on 08/25/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+
+\RequirePackage[l2tabuorthodox]{nag}
+\documentclass[12pt,listof=totoc,toc=sectionentrywithdots]{scrartcl}
+\usepackage{spverbatim}
+
+\newcommand{\homeworknumber}{8}
+\newcommand{\homeworkdue}{November 27\textsuperscript{th}, 2017}
+\input{../macros.tex}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\lstlistoflistings
+\clearpage
+
+\problem{}
+Let the samples space $S = \{
+    X_{\text{free}} \implies \text{prisoner $X$ is going free},\
+    Y_{\text{free}} \implies \text{prisoner $Y$ is going free},\
+    Z_{\text{free}} \implies \text{prisoner $Z$ is going free},\
+\}
+$. Furthermore, let $y$ be event that $Y$ is to be executed. Using Bayes Theorem, we get the following:
+
+\begin{align*}
+    \Pr(X_\text{free}|y) &= \frac{\Pr(y|X_\text{free}) \times \Pr(X_\text{free})}{\Pr(y \cap X_\text{free}) + \Pr(y \cap Y_\text{free}) + \Pr(y \cap Z_\text{free})} \\
+                         &= \frac{\frac{1}{3} \times \frac{1}{2}}{\frac{1}{3}\times\frac{1}{2} + 0 + \frac{1}{3}\times 1} \\
+                         &= \frac{1}{3}
+\end{align*}
+
+We see that the prisoner $X$ still has a probability of $\frac{1}{3}$.
+
+\problem{}
+\begin{equation*}
+    \text{minimum} = 2^h  \qquad \text{maximum} = 2^{h + 1} - 1
+\end{equation*}
+
+\problem{}
+A simple way to achieve an $\bigO{n \lg k}$ algorithm.
+
+\begin{enumerate}
+    \item Sort all of the arrays in ascending order.
+    \item\label{it:heap_creation} Create a minimum heap with all of the minimum elements in the $k$ individual lists. Remove these elements from the respective arrays.
+    \item\label{it:remove_element} Remove the minimum element (name it $d_\text{min}$) from the heap mentioned in Step~\ref{it:heap_creation}, and replace it with the minimum from it's respective list. Add $d_\text{min}$ to the solution.
+    \item While the heap is not empty, repeat Step~\ref{it:remove_element}.
+\end{enumerate}
+
+\lstinputlisting[caption=Problem \#8.2]{source/problem-3.py}
+
+\problem{}
+Recall \href{https://en.wikipedia.org/wiki/Stirling\%27s_approximation}{Stirling's Approximation} for factorials:
+
+\begin{equation}\label{eq:stirling}
+    n! \approx \sqrt{2\pi n} {\left(\frac{n}{e}\right)}^n
+\end{equation}
+
+We skip the $\frac{1}{2}$ and $\frac{1}{n}$ case; for if we can't prove $\frac{1}{2^n} \times n! \in \bigOmega{n}$, then neither are $\frac{1}{2}$ and $\frac{1}{n}$.
+
+\begin{theorem}
+    \begin{equation*}
+        \forall n \in \mathbb{R}^+, \frac{1}{2^n} \times n! \not\in \bigOmega{n}
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    Suppose not. That is, suppose $\exists c \in \mathbb{R}, \frac{1}{2^n} \times n! \leq c\, n$. Therefore, $\frac{1}{2^n} \times n!$ must be in the same growth class as $n$. By definition, the limit of the two functions must be convergent to some number $M$.
+
+    Because we cannot directly take the limit, we use Equation~\ref{eq:stirling}. From this we get the result
+
+    \begin{equation*}
+        \lim_{n \rightarrow \infty} \frac{\frac{1}{2^n} \times n!}{c\, n} = \frac{\frac{1}{2^n} \times \sqrt{2\pi n}{\left(\frac{n}{e}\right)}^n}{c\, n} = \infty \qquad\forall c \in R^+
+    \end{equation*}
+
+    This has led us to a contradiction.
+\end{proof}
+
+\problem{}
+\begin{proof}
+    Suppose we have $n$ integers of length $L$ (we can make this assumption because we can always pad the leading digits with \num{0}s).
+
+    \begin{description}
+        \item[Base Case] Solving with $L = 1$ is trivial. Because it assumed our sorting algorithm is correct, this will simply sort the digits.
+        \item[Inductive Hypothesis] Suppose that it is true for $n - 1$; we will show it to be true for $n$.
+
+            When comparing the $n$th digit, call it $d_1$ and $d_2$ from the two respective lists, it appears something like such:
+
+            \begin{center}
+                \begin{tabular}{|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|}
+                    \hline
+                    $\cdots$ & $\cdots$ & $d_1$ & $\cdots$ & $\cdots$ \\\hline
+                    $\cdots$ & $\cdots$ & $d_2$ & $\cdots$ & $\cdots$ \\\hline
+                \end{tabular}
+            \end{center}
+
+            From this, there are three cases:
+
+            \begin{description}
+                \item[$d_1 < d_2$] Then $d_1$ is placed before $d_2$.
+                \item[$d_1 > d_2$] Then $d_1$ is placed after $d_1$.
+                \item[$d_1 = d_2$] Then the numbers go unchanged. \textbf{Because our sorting algorithm is stable}, the order is preserved from the lower digits. This is shown below.
+            \end{description}
+
+            \begin{center}
+                \begin{tabular}{|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|p{0.5cm}|}
+                    \hline
+                    $\cdots$ & $\cdots$ & $42$ & $64$ & $\cdots$ \\\hline
+                    $\cdots$ & $\cdots$ & $42$ & $16$ & $\cdots$ \\\hline
+                \end{tabular}
+            \end{center}
+
+
+    \end{description}
+\end{proof}
+
+\problem{}
+We can accomplish $n + \lg n - 2$ runtime as such:
+
+\begin{enumerate}
+    \item Split all elements into pairwise elements ($S \implies (s_1,\, s_2), (s_3,\, s_4), \ldots, (s_{n - 1},\, s_n)$).
+    \item Compare all of the elements with respect to the smallest element in the pair. This will get the smallest. This requires $n$ iterations.
+    \item The second smallest value must have been an element that lost to the original minimum, so we cache all of the lost contenders. We then run the previous step on this to get the second minimum. This requires at most $\lg n - 1$ iterations.
+\end{enumerate}
+
+We first the following sample input $n = 10$:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cccccccccc}
+        \toprule
+        342 & 133 & \cellcolor{blue!50} 40 & 365 & 796 & 716 & 354 & \cellcolor{blue!25} 38 & 256 & 614 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+We get the following output:
+
+\begin{align*}
+    \text{Number of Comparison} &\in \bigOmega{n + \ceil{\lg n} - 2} \\
+                                &\leq 10 + \lg 10 - 2 \\
+                                &\leq 12 \\
+                                &= 7
+\end{align*}
+
+\lstinputlisting[caption=Problem \#5]{source/problem-5.py}
+
+\problem{}
+\begin{theorem}
+    The Set-Partition Problem is NP-Complete.
+\end{theorem}
+
+\begin{proof}
+    It is trivial to prove that The Set-Partition problem is NP. Given two candidate solutions $A$ and $\bar{A}$, verify that following things:
+
+    \begin{equation*}
+        \sum_{x \in A} x - \sum_{x \in \bar{A}} x = 0 \quad\text{and}\quad A \cup \bar{A} = S
+    \end{equation*}
+
+    Recall The Subset Sum problem as follows:
+
+    \begin{quote}
+        Given a set of natural numbers $S$ and a natural number $t$, is there a subset of $S$ that sums to $t$
+    \end{quote}
+
+    We will prove that The Set-Partition problem reduces down to The Subset Sum problem.
+
+    Suppose we have $p, t \in \mathbb{R}$ and a set $P$, where $t$ is a particular number and $p$ is $p = \sum_{x \in P} x$. We give input to Set-Partition $P^* = P \cup {s - 2t}$. From this, we have two cases.
+
+    \begin{enumerate}
+        \item If there exists $t \in P$, then remaining numbers in $P$ sum to $s - t$. This satisfies the Set-Partition problem.
+        \item There exists a partition of $X^*$ into two sets $Q, Q^*$ such that the $\sum_{x \in Q} = \sum_{x \in Q^*} = s - t$. This implies $s - 2t \in  Q* \cup Q$. Removing this number, one set sums to $t$, and we can use the previous case.
+    \end{enumerate}
+
+    Because we have proved The Set-Partition Problem is NP and it reduces to an NP-Complete problem, we conclude that the Set-Partition problem is NP Complete.
+\end{proof}
+
+\problem{}
+\subproblem{}
+There exists an algorithm. Because there are only two denominations, we can enumerate all possible solutions. By producing pairs of all values in amount of $x$ and the amount of $y$, we get a solution that's $\bigO{\text{amount of x} \times \text{amount of y}} = \bigO{n^2}$.
+
+\lstinputlisting[caption=Problem \#8.1]{source/problem-8-1.py}
+
+\subproblem{}
+There exists an algorithm. And it works like such:
+
+\begin{enumerate}
+    \item Sort the coins in ascending order.
+    \item\label{it:repeat} Pop off the largest coin, give it to Bonnie.
+    \item\label{it:failure} Keep taking smallest coins and assign them to Clyde. If finished, and still have coins to assign, go to Step~\ref{it:repeat}.
+    \item If at any there is not enough coins to match Bonnie when assigning to Clyde in Step~\ref{it:failure}, there exists no such configuration.
+\end{enumerate}
+
+\lstinputlisting[caption=Problem \#8.2]{source/problem-8-2.py}
+
+\subproblem{}
+There exists no polynomial algorithm.
+
+\begin{proof}
+    \textit{Note to Reader:} We shall call this the Bonnie-Clyde Check problem, and the solution set of checks $S_\text{Bonnie}$ for Bonnie and $S_\text{Clyde}$ for Clyde.
+
+    It is trivial to prove that this Bonnie-Cylde check problem is NP. Given a solution $S_\text{Bonnie}$ and $S_\text{Clyde}$, we must verify
+    \begin{equation*}
+        \sum_{x \in S_\text{Bonnie}} \text{$x$'s worth} = \sum_{x \in S_\text{Cylde}} \text{$x$'s worth} \qquad
+        |S_\text{Bonnie}| + |S_\text{Clyde}| = n
+    \end{equation*}
+
+where $|A|$ is the cardinality of $A$\footnote{Cardinality meaning the amount of elements in the set}. This is clearly a polynomial algorithm.
+
+    We will now show that the Bonnie-Clyde Check problem reduces down to the Partition Problem.
+
+    Assign every checks value as it's representation in the input set $S$. Feed $S$ into The Partition problem. All output from The Partition problem is also valid output for the Bonnie Clyde problem.
+
+    Because we have proved that the Bonnie-Clyde problem is NP and reduces to an NP Complete problem, we conclude that the Bonnie-Clyde problem is NP complete.
+\end{proof}
+
+\subproblem{}
+The problem is also NP Complete.
+
+\begin{proof}
+    \textit{Note to Reader:} We shall call this the Bonnie-Clyde 100 Check problem, and the solution set of checks $S_\text{Bonnie}$ for Bonnie and $S_\text{Clyde}$ for Clyde.
+
+    If the minimum check value is greater than \num{100}\$, the proof is identical to the previous.
+
+    If the minimum check is less than \num{100}\$, first we must prove it is in NP. Given a solution $S_\text{Bonnie}$ and $S_\text{Clyde}$, we must verify
+    \begin{equation*}
+        \left|\sum_{x \in S_\text{Bonnie}} \text{$x$'s worth} - \sum_{x \in S_\text{Cylde}} \text{$x$'s worth}\right| = 100 \qquad
+        |S_\text{Bonnie}| + |S_\text{Clyde}| = n
+    \end{equation*}
+
+    where $|A|$ is the cardinality of $A$\footnote{Cardinality meaning the amount of elements in the set}. This is clearly a polynomial algorithm.
+
+    We will now show that the Bonnie-Clyde 100 Check problem reduces to the partition problem.
+
+    If there is a valid solution via Partition problem, we know there to be a solution. If not, we append a $1$ to the distribution of checks, and rerun Set-Partition. Does this until either:
+
+    \begin{itemize}
+        \item We reach a valid solution.
+        \item We reach \num{100}.
+    \end{itemize}
+
+    Either way, this problem reduces to the Partition Problem.
+
+    Because we have proved that the Bonnie-Clyde problem is NP and reduces to an NP Complete problem, we conclude that the Bonnie-Clyde problem is NP complete.
+\end{proof}
+
+\problem{}
+A greedy algorithm is as follows:
+
+\begin{enumerate}
+    \item\label{it:first_step} Pick two arbitrary vertices $u$ and $v$.
+    \item Add both $u$ and $v$ to the vertex cover.
+    \item Delete all incident edges to $u$ and $v$.
+    \item If the adjacency matrix still has edges, go to Step~\ref{it:first_step}.
+\end{enumerate}
+
+For the adjacency matrix
+
+\[
+    \begin{bmatrix}
+        0 & 0 & 1 & 0 & 1 \\
+        1 & 0 & 0 & 1 & 0 \\
+        0 & 1 & 0 & 0 & 1 \\
+        1 & 0 & 1 & 0 & 0 \\
+        1 & 0 & 0 & 0 & 1 \\
+    \end{bmatrix}
+\]
+
+We get the minimum vertex cover:
+
+\begin{equation*}
+    \left\{ 1, 2, 3, 4, 5 \right\}
+\end{equation*}
+
+\lstinputlisting[caption=Problem \#9]{source/problem-9.py}
+
+
+\end{document}

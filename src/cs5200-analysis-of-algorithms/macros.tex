@@ -5,16 +5,29 @@
 %  Copyright 2017. Illya Starikov. All rights reserved.
 %
 
-\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,hyperref,enumitem,listings,graphics,inputenc,amsthm,float,booktabs,float,mathtools}
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,enumitem,listings,graphics,inputenc,amsthm,float,booktabs,float,mathtools,xcolor,colortbl,caption}
+
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
 \usepackage[linguistics]{forest}
 
+
 \newcommand{\problem}{%
+    \clearpage
     \addtocounter{section}{1}
     \setcounter{subsection}{0}
-    \section*{Question \#\thesection}
+    \section{Question \#\thesection}
 }
 
+\setcounter{secnumdepth}{0}
+
 \newcommand{\subproblem}{%
+    \ifnum\value{subsection} > 0
+        \clearpage
+    \fi
     \addtocounter{subsection}{1}
     \subsection*{Problem \#\thesubsection}
 }
@@ -31,8 +44,18 @@
     tabsize=4,
     breaklines=true,
     morekeywords={True, False},
+    showspaces=false,
+    showtabs=false,
+    xleftmargin=17pt,
+    framexleftmargin=17pt,
+    framexrightmargin=5pt,
+    framexbottommargin=4pt,
     mathescape
 }
+
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox[cmyk]{0.43, 0.35, 0.35,0.01}{\parbox{\textwidth}{\hspace{15pt}#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white, singlelinecheck=false, margin=0pt, font={bf,footnotesize}}
 
 \let\emptyset\varnothing%
 \newtheorem{theorem}{Theorem}
