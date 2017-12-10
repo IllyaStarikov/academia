@@ -10,10 +10,13 @@
 \documentclass[12pt]{scrartcl}
 
 \input{../macros.tex}
-\title{Midterm Cribsheet}
+\title{Final Cribsheet}
+
+\usepackage{graphicx,forest,tikz-qtree,graphics}
 \date{\today}
 \let\oldemptyset\emptyset{}
 \let\emptyset\varnothing{}
+\newcommand{\cost}[1]{\text{cost}\left(#1\right)}
 
 \begin{document}
 \maketitle
@@ -602,6 +605,107 @@ while Q $\neq \emptyset$
     \item A sort is \textbf{stable} if whenever $A[i] = A[j]$ and $i < j$ in the original data, then $A[i]$ will precede $A[j]$ in the output.
     \item Counting sort and radix sort are both stable.
 \end{itemize}
+
+\section{NP-Complete Problems}
+\begin{itemize}
+    \item NP-Complete problems have two properties.
+        \begin{itemize}
+            \item There problems have a yes/no answer.
+            \item There is a polynomial time algorithm that can verify whether a purported solution is indeed a solution.
+        \end{itemize}
+
+    \item To be an NP-Complete problem, a problem must be in the class NP and have the property, that if a polynomial time algorithm can be discovered to answer it, then all problems in the class NP have a polynomial time algorithm.
+
+    \item Given that one problem is NP complete, we can show that another problem is NP-Complete in two steps:
+        \begin{enumerate}
+            \item Prove that the second problem is in NP\@.
+            \item Prove that if we could solve the second problem in Polynomial Time, we could solve the NP complete problem in polynomial time.
+                \begin{itemize}
+                    \item This generally means that we have to show a polynomial time transformation from the NP complete problem to the second problem.
+                \end{itemize}
+       \end{enumerate}
+
+\end{itemize}
+
+\begin{figure}
+    \resizebox{\columnwidth}{!}{%
+    \begin{forest} for tree={
+            edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}
+        }
+        [SAT Problem
+            [0--1 Integer Programming]
+            [Clique
+                [Set Packing]
+                [Vertex Cover
+                    [Set Covering]
+                    [Feedback Node Set]
+                    [Feedback Arc Set]
+                    [Directed Hamilton Circuit
+                        [Undirected Hamilton Circuit]
+                    ]
+                ]
+            ]
+            [3-Sat
+                [Graph Coloring Problem
+                    [Clique Cover]
+                    [Exact Cover
+                        [Hitting Set]
+                        [Steiner Tree]
+                        [3-Dimensional Matching]
+                        [Knapsack
+                            [Job Sequencing]
+                            [Partition
+                                [Max Cut]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    \end{forest}
+    }
+\end{figure}
+
+
+\section{Discrete Mathematics \& Computer Science}
+\begin{itemize}
+    \item For approximation algorithms, we want to find a bounds that look like
+        \begin{equation*}
+            \max\left(\frac{\text{solution}}{\text{optimal}}, \frac{\text{optimal}}{\text{solution}}\right) \leq r(n)
+        \end{equation*}
+
+    \item We use $\frac{\text{solution}}{\text{optimal}}$ for $\min$ problems and $\frac{\text{optimal}}{\text{solution}}$ for $\max$ problems.
+
+    \item The relative error $\delta$ is defined as
+
+        \begin{equation*}
+            \delta = \frac{|\text{solution} - \text{optimal}|}{|\text{optimal}|}
+        \end{equation*}
+
+    \item The random method of generating vertex covers can can produce ratio $\frac{|\text{cover}|}{|\text{optimal}|} \leq 2$.
+
+    \item If $P \neq NP$ and k is an integer, there does not exist a poly-time algorithm for optimal TSP such that $\cost{\text{Approximation}} \leq k \times \cost{\text{Optimal}}$.
+\end{itemize}
+
+\section{Greedy Algorithms}
+\begin{itemize}
+    \item Greedy algorithms are algorithms that make locally optimal choices in the hope that they can produce a global optimal.
+        \begin{itemize}
+            \item Sometimes they succeed, sometimes not.
+            \item They always produce something.
+        \end{itemize}
+
+    \item For the scheduling problem, arranging activities so that finishing times are monotone increasing and then taking activities in order as long as they don't overlap with previously chosen activities yields a best answer.
+\end{itemize}
+
+
+\section{Amortized Analysis}
+\begin{itemize}
+    \item This is a combination of worst-case and average-case analysis.
+    \item The basic idea is that you have some very expensive operations but they happen rarely.
+    \item You figure out a way to ``average'' these costs over the mean cheap operations in various ways.
+\end{itemize}
+
 
 \end{document}
 
