@@ -1,0 +1,507 @@
+%
+%  final-exam.tex
+%  cs5200-analysis-of-algorithms
+%
+%  Created by Illya Starikov on 08/25/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+
+\RequirePackage[l2tabuorthodox]{nag}
+\documentclass[12pt,listof=totoc,toc=sectionentrywithdots]{scrartcl}
+\usepackage{spverbatim}
+
+\newcommand{\homeworknumber}{8}
+\newcommand{\homeworkdue}{November 27\textsuperscript{th}, 2017}
+\input{../macros.tex}
+
+\newtheorem*{statement}{Problem Statement}
+\def\cents{\hbox{\rm\rlap/c}}
+
+\newcommand{\approptoinn}[2]{\mathrel{\vcenter{
+    \offinterlineskip\halign{\hfil$##$\cr
+    #1\propto\cr\noalign{\kern2pt}#1\sim\cr\noalign{\kern-2pt}}}}}
+
+\newcommand{\appropto}{\mathpalette\approptoinn\relax}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\lstlistoflistings{}
+\clearpage
+
+\problem{}
+\begin{theorem}
+    We take the definition of $\mathcal{O}$ as such.
+
+    For $f(n) \in \bigO{g(n)}$, there must exist constants $c$, where $c > 0$, and there must exist $n_0 \in \mathbb{N}$, where $n_0 \geq 1$, such that
+
+    \begin{equation*}
+        |f(n)| \leq c |g(n)|\ \forall n \geq n_0
+    \end{equation*}
+\end{theorem}
+
+\subproblem{}
+\begin{statement}
+    \textbf{Without using limits, but only the definition of $\mathcal{O}$} prove that $81n^3 + 1300n^2 +300n \in \bigO{n^5 - 15000n^4 - 10n^3}$, but that $n^5 -15000n^4 -10n^3 \not\in \bigO{81n^3 + 1300n^2 + 300n}$. Show all work.
+\end{statement}
+
+\begin{proof}
+    In this instance, $f(n) = 81n^3 + 1300n^2 +300n$ and $g(n) \in \bigO{n^5 - 15000n^4 - 10n^3}$. To prove that $f(n) \in \bigO{g(n)}$, first we must find constants $c$ and $n_0$.
+
+    Take the following, $c = 1$, $n_0 = \num{15000}$. Then, for all $n \geq 15000$,
+
+    \begin{equation*}
+        81n^3 + 1300n^2 + 300n \ll n^5 -15000n^4 -10n^3
+    \end{equation*}
+
+    We see this is true, because
+
+    \begin{align*}
+        f(n) &= 81n^3 + 1300n^2 + 300n \\
+         &\leq 81n^3 + 1300n^3 + 300n^3 \\
+         &\leq 1681n^3 \\
+        g(n) &= n^5 - 15000n^4 - 10n^3 \\
+         &\geq n^3 - 15000^3 - 10n^3 \\
+         &\geq -14991n^3 \\
+    \end{align*}
+
+    From this we, we see that
+
+    \begin{equation*}
+        |f(n)| \leq c |g(n)|\ \forall n \geq n_0
+    \end{equation*}
+
+    Therefore, $f(n) \in \bigO{g(n)}$, and $81n^3 + 1300n^2 +300n \in \bigO{n^5 - 15000n^4 - 10n^3}$.
+\end{proof}
+
+\begin{proof}
+    Suppose not. That is, suppose that $\exists c, n_0$ such that
+
+    \begin{equation*}
+        |f(n)| \leq c |g(n)|\ \forall n \geq n_0
+    \end{equation*}
+
+    Therefore, $c, n_0$ must satisfy the equation
+
+    \begin{align*}
+        81n^3 + 1300n^2 + 300n &\geq c \times (n^5 -15000n^4 -10n^3) \\
+        \imples n^5 &\leq 15000n^4 - 10n^3 + c \times (81n^3 + 1300n^2 + 300n) \\
+                    &\leq \frac{15000}{n} + \frac{10}{n^2} + c \times \left(\frac{81}{n^2} + \frac{1300}{n^3} + \frac{300}{n^4}\right) \\
+                    &\approx 1 + 3.6\times 10^{-7} c
+    \end{align*}
+
+    From this, the inequality must be satisfied:
+
+    \begin{equation*}
+        n \leq \max\left(n_0, \delta + 1 + 3.6\times 10^{-7} c\right)
+    \end{equation*}
+
+    As we see, there is no values of $n_0$ and $c$ that will make this inequality hold for all $n$. This has led us to our contradiction. Therefore
+
+    \begin{equation*}
+        n^5 -15000n^4 -10n^3 \not\in \bigO{81n^3 + 1300n^2 + 300n}
+    \end{equation*}
+\end{proof}
+
+\subproblem{}
+\begin{statement}
+    Let
+    $f(x) = 2\sin^3(x) - 4\sin^2(x)$ and
+    $g(x) = 2\cos^4(x) + 5\cos(x)$.
+    Determine whether $f(x) \in \bigO{g(x)}$ or $g(x) \in \bigO{f(x)}$. You must show all work and base it directly on the definition of $\mathcal{O}$.
+\end{statement}
+
+\begin{proof}
+    Because both $\sin x$ and $\cos x$ are sinusoidal, we cannot compare them directly. For the purposes of this problem, we will use a Taylor Series expansions (Equation~\ref{eq:taylor}).
+
+    \begin{equation}\label{eq:taylor}
+        \sum _{n = 1} ^\infty \frac{f^{(n)} (a)}{n!} {(x - a)}^n
+    \end{equation}
+
+    For $f(x)$ and $g(x)$, we get the following expansions.
+
+    \begin{footnotesize}
+        \begin{alignat*}{10}
+            \sum _{n = 1} ^\infty \frac{f^{(n)} (a)}{n!} {(x - a)}^n &= -4x^2 &&+ 2x^3 &&+ \frac{4x^4}{3} &&- x^5 &&- \frac{8x^6}{45} &&+ \frac{13x^7}{60} &&+ \frac{4x^8}{315} &&+ \bigO{x^{9}} \\
+            \sum _{n = 1} ^\infty \frac{g^{(n)} (a)}{n!} {(x - a)}^n &= 7 &&- \frac{13 x^2}{2} &&+ \frac{85 x^4}{24} &&- \frac{1093 x^6}{720} &&+ \frac{3329 x^8}{8064} &&- \frac{263173 x^{10}}{3628800} &&+ \frac{839681 x^{12}}{95800320} &&+ \bigO{x^{14}}
+        \end{alignat*}
+    \end{footnotesize}
+
+    From this, we can clearly see that starting at the third term, $g(x)$ grows much more rapidly than $f(x)$. Furthermore, we see that the exponents of $g(x)$ grow by increments of \num{2}, while $f(x)$ only grows by an increments of \num{1}.
+
+    Therefore, choosing $c = 1$ and $n_0 = 1$,
+
+    \begin{align*}
+        |f(x)| \leq c |g(x)|\ \forall n \geq n_0 &\implies f(x) \in \bigO{g(x)} \\
+        &\implies 2\sin^3(x) - 4\sin^2(x) \in \bigO{2\cos^4(x) + 5\cos(x)}
+    \end{align*}
+\end{proof}
+
+\problem{}
+For the proceeding problems, the source code is as follows.
+
+\lstinputlisting[caption=Problem \#2, firstline=11]{source/problem-2.py}
+
+\problem{}
+\subproblem{}
+\begin{statement}
+    Let function $q$ be as below:
+
+    \begin{verbatim}
+ def q(n):
+    if n <= 0:
+        return 1
+    elif n < 2:
+        return 7
+    else:
+        return q(n - 1) + q(n - 2)
+    \end{verbatim}
+
+    Let function $sq$ be as below:
+
+    \begin{verbatim}
+ def sq(n):
+    if n < 0:
+        return 0
+    else:
+        return sq(n - 1) + q(n)
+    \end{verbatim}
+
+    Conjecture a very simple linear relationship between $q$ and $sq$.
+\end{statement}
+
+After careful inspection of the sequences, it became quite apparent that there was a relationship between the two sequences is a constant and two terms in the sequence. In other words,
+
+\begin{equation}\label{eq:linear_relationship}
+    s(q) = q(n + 2) - 7
+\end{equation}
+
+These findings can be summarized by Table~\ref{tab:sq_and_q}.
+
+\begin{table}[H]
+    \centering
+    \caption{The values of $q(n)$, $sq(n)$, and $q(n + 2) - 7$}
+    \label{tab:sq_and_q}
+    \begin{tabular}{p{2cm}|p{2cm}|p{2cm}}
+        \toprule
+        $q(n)$ & $sq(n)$ & $q(n + 2) - 7$ \\\hline
+        1    & 1    & 1 \\
+        7    & 8    & 8 \\
+        8    & 16   & 16 \\
+        15   & 31   & 31 \\
+        23   & 54   & 54 \\
+        38   & 92   & 92 \\
+        61   & 153  & 153 \\
+        99   & 252  & 252 \\
+        160  & 412  & 412 \\
+        259  & 671  & 671 \\
+        419  & 1090 & 1090 \\
+        678  & 1768 & 1768 \\
+        1097 & 2865 & 2865 \\
+        1775 & 4640 & 4640 \\
+        2872 & 7512 & 7512 \\\bottomrule
+    \end{tabular}
+\end{table}
+
+\subproblem{}
+\begin{statement}
+    Prove, using induction, that the relationship that you conjectured in the previous part is correct. Be sure to set your proof up correctly and to list explicitly the steps of a proof by induction.
+\end{statement}
+
+\begin{proof}
+    We will prove the following with induction. To prove this, first we must take into consideration that:
+
+    \begin{equation}
+        sq(n) = \sum^{n + 1}_{i = 0} q(n) = q(n + 2) - 7
+    \end{equation}
+
+    \begin{description}
+        \item[Define The Problem] For this problem, we wish to prove that $p \appropto{} q$ by the relation modeled by Equation~\ref{eq:linear_relationship}. We map this relationship $\forall n \in \mathbb{Z}^+$.
+        \item[Check Base Case & Two Other Values] Refer to Table~\ref{tab:sq_and_q} for the first three values, along with \num{12} more values.
+        \item[Prove for all $n > s$, that if $P(n - 1)$ is true, then $P(n)$ is true] Assume the following inductive hypothesis:
+
+            \begin{equation*}
+                \sum_{i = 0}^{n - 1} q(n) = q(n + 1) - 7
+            \end{equation*}
+
+            Then we are going to prove
+
+            \begin{equation*}
+                \sum_{i = 0}^{n} q(n) = q(n + 2) - 7
+            \end{equation*}
+
+            We prove so by such:
+
+            \begin{align*}
+                \sum_{i = 0}^{n} q(n) &= \sum_{i = 0}^{n - 1} q(n) + q(n) \\
+                                      &= \left(q(n + 1) - 7\right) + q(n) \\
+                                      &= q(n + 2) - 7
+            \end{align*}
+        \item[Conclude The proof] Because we have proved the base case and the inductive step, we use inducion to conclude $sq(n) = q(n + 2) - 7$.
+    \end{description}
+
+\end{proof}
+
+\problem{}
+\begin{statement}
+Let $Vec_n$ be the set of all vectors of length $n$ each component of which comes from $range(n)$. For example, $(3,\, 0,\, 2,\, 2) \in Vec_4$. If $v \in Vec_n$, a \textit{quirk} is defined as a pair $(i,\, j)$ such that $0 \leq  i <  j \leq  n - 1$, but $v[i] > v[j]$.
+
+\subproblem{}
+\begin{statement}
+    Create a sample space consisting of the elements of $Vec_3$. List all the elements of this space. Turn it into a probability space by using the uniform distribution. Finally, compute the average number of quirks in members of $Vec_3$.
+\end{statement}
+
+\end{statement}
+
+The sample space $S$ as follows,
+
+\begin{center}
+    \begin{multiline}
+        S = (0,\, 0,\, 0),
+        (0,\, 0,\, 1),
+        (0,\, 0,\, 2),
+        (0,\, 0,\, 3), \\
+        (0,\, 1,\, 0),
+        (0,\, 1,\, 1),
+        (0,\, 1,\, 2),
+        (0,\, 1,\, 3),
+        (0,\, 2,\, 0), \\
+        (0,\, 2,\, 1),
+        (0,\, 2,\, 2),
+        (0,\, 2,\, 3),
+        (0,\, 3,\, 0),
+        (0,\, 3,\, 1), \\
+        (0,\, 3,\, 2),
+        (0,\, 3,\, 3),
+        (1,\, 0,\, 0),
+        (1,\, 0,\, 1),
+        (1,\, 0,\, 2), \\
+        (1,\, 0,\, 3),
+        (1,\, 1,\, 0),
+        (1,\, 1,\, 1),
+        (1,\, 1,\, 2),
+        (1,\, 1,\, 3), \\
+        (1,\, 2,\, 0),
+        (1,\, 2,\, 1),
+        (1,\, 2,\, 2),
+        (1,\, 2,\, 3),
+        (1,\, 3,\, 0), \\
+        (1,\, 3,\, 1),
+        (1,\, 3,\, 2),
+        (1,\, 3,\, 3),
+        (2,\, 0,\, 0),
+        (2,\, 0,\, 1), \\
+        (2,\, 0,\, 2),
+        (2,\, 0,\, 3),
+        (2,\, 1,\, 0),
+        (2,\, 1,\, 1),
+        (2,\, 1,\, 2), \\
+        (2,\, 1,\, 3),
+        (2,\, 2,\, 0),
+        (2,\, 2,\, 1),
+        (2,\, 2,\, 2),
+        (2,\, 2,\, 3), \\
+        (2,\, 3,\, 0),
+        (2,\, 3,\, 1),
+        (2,\, 3,\, 2),
+        (2,\, 3,\, 3),
+        (3,\, 0,\, 0), \\
+        (3,\, 0,\, 1),
+        (3,\, 0,\, 2),
+        (3,\, 0,\, 3),
+        (3,\, 1,\, 0),
+        (3,\, 1,\, 1), \\
+        (3,\, 1,\, 2),
+        (3,\, 1,\, 3),
+        (3,\, 2,\, 0),
+        (3,\, 2,\, 1),
+        (3,\, 2,\, 2), \\
+        (3,\, 2,\, 3),
+        (3,\, 3,\, 0),
+        (3,\, 3,\, 1),
+        (3,\, 3,\, 2),
+        (3,\, 3,\, 3)
+    \end{multiline}
+\end{center}
+
+The average number of quirks for $Vec_3 = 1$.
+
+\subproblem{}
+\begin{statement}
+    Generalize the results of Part (a) to determine the average number of quirks in members of $Vec_n$. You do not need to list the elements of $Vec_n$.
+\end{statement}
+
+For $Vec_n$, we have the following:
+
+\begin{equation*}
+    \text{Number of $quirks \in Vec_n$} = 0.25{\left(n - 1\right)}^2
+\end{equation*}
+
+
+\problem{}
+\begin{statement}
+    Let $G$ be defined by the following equations: $G(0) = 5$, $G(1) = 15$, $G(2) = 40$, and for $n > 2$, $G(n) = G(n-1) + G(n-2) + G(n-3)$. Write a Python program that implements $G$ directly from the definition. Submit this program as a \texttt{.py} in your ZIP file. Try to compute $G(500)$ with this program. If you can't compute $G(500)$ directly show how to use dynamic programming to write a more efficient program. Submit this program in your ZIP file.
+
+    Let $H$ be defined by the following equations: $H(0) = 6$, $H(1) = 7$, $H(2) = 8$, and for $n > 2$, $H(n) = H(n-1) - H(n-2) + H(n-3)$. Write a Python program that implements $H$ directly from the definition. Submit this program as a \texttt{.py} in your ZIP file. Try to compute $H(500)$ with this program. If you can't compute $H(500)$ directly show how to use dynamic programming to write a more efficient program. Once you compute $H(500)$ see if you can discover a more efficient program. Submit all of these programs in your ZIP file.
+\end{statement}
+
+For the sample input, the following is generated.
+
+\resizebox{\columnwidth}{!}{%
+    \begin{tabular}{rcl}
+        $G(500)$ & $=$ & \num{213546417395738934772794111784493777375698990926394537758958705709} \\
+                 &     & \num{75006915873346065610819405691957713899246806099708361322154885470915} \\
+        $H(500)$ & $=$ & \num{6} \\
+    \end{tabular}
+}
+
+For a $\bigO{c}$ solution to $H(n)$, the following was produced:
+
+\begin{equation*}
+    H(n) = \begin{cases}
+        6 & \iff n\mod 4 = 0 \\
+        7 & \iff n\mod 2 \neq 0 \\
+        8 & \iff (n - 2)\mod 4 = 0 \\
+    \end{cases}
+\end{equation*}
+
+\lstinputlisting[caption=Problem \#5, firstline=11]{source/problem-5.py}
+
+\problem{}
+\begin{statement}
+    Suppose you are dealing with a dynamic table that follows the following rules:
+
+    \begin{enumerate}
+        \item The table size doubles when the table is full and another element is added.
+        \item The table contracts to $\nicefrac{2}{3}rds$ of its size when its load factor falls below $\nicefrac{1}{3}$.
+    \end{enumerate}
+
+    Using the potential function
+
+    \begin{equation*}
+        \Phi(T) = |2 \times T.num - T.size|
+    \end{equation*}
+
+    show that the amortized cost of a TABLE-DELETE for this strategy is bounded above by a constant. For the definition of all terms, consult your textbook.
+\end{statement}
+
+\begin{proof}
+    We know the amortized cost of the $i$th operation to be
+
+    \begin{equation}\label{eq:cost}
+        \hat{c}_i = c_i + \Phi_i - \Phi_{i - 1}
+    \end{equation}
+
+    Assuming the $i$th operation does not trigger a contraction, using Equation~\ref{eq:cost},
+
+    \begin{align*}
+        \hat{c}_i &= c_i + \Phi_i - \Phi_{i - 1} \\
+                  &= 1 + \left(2 \times T.num_i - T.size_i\right) - \left(2 \times T.num_{i - 1} - T.size_{i - 1}\right) \\
+                  &= 1 + \left(2\times T.num_i - T.size_i\right) - \left(2\times T.num_i - T.size_i \right) + 2 \\
+                  &= 3
+    \end{align*}
+
+    However, if the $i$th operation does trigger a contraction,
+
+    \begin{align*}
+        \hat{c}_i &= c_i + \Phi_i - \Phi_{i - 1} \\
+                  &= T.num_i + 1 + \left(2 \times T.num_i - T.size_i\right) - \left(2 \times T.num_{i-1} - T.size_{i-1}\right) \\
+                  &= T.num_i + 1 + \left(\frac{2}{3} T.size_{i-1} - 2 \times T.num_i) - \left(T.size_{i-1} - 2\times T.num_i - 2\right) \\
+                  &= 2
+    \end{align*}
+
+    We see in either situations, the amortized cost of a TABLE-DELETE operation is bounded by $2 \leq \hat{c}_i \leq 3$.
+
+\end{proof}
+
+\problem{}
+\subproblem{}
+\begin{statement}
+    Consider the following two sets of coin denominations: \{1 cent, 8 cents, 20 cents\}, \{1 cent, 6 cents, 18 cents\}. Describe a greedy algorithm that will express any sum given in pennies in terms of the denominations given in a set. Determine whether the greedy algorithm always produces the optimal solution for these two sets or not. Give a convincing reason for your conclusion.
+\end{statement}
+
+A greedy algorithm that always produces a solution could be described as follows:
+
+\begin{enumerate}
+    \item Take $S = \emptyset$ to be the solution set, $coins$ to be the input of coins, and $T$ to be the target to reach.
+    \item Sort $coins$ in ascending order.
+    \item While $\sum _{x \in S} x \neq T$
+        \begin{enumerate}
+            \item Take the difference $\delta$ to be $T - \sum _{x \in S} x$.
+            \item Pick the largest coin $c$ such that $c \leq \delta$\footnote{Because \num{1} is a valid coin, there will always be a coin to choose from}.
+            \item Add this coin to $S$.
+        \end{enumerate}
+\end{enumerate}
+
+Although this always produces a solution, it does not always produce an optimal solution. For example, suppose our target $T = 24$. With the algorithm described above, then it would take \num{5} coins ($1 \times 20\cents + 4 \times 1\cents$), while the optimal solution would take \num{4} coins ($4 \times 8\cents$).
+
+\subproblem{}
+\begin{statement}
+    Suppose we have an unlimited number of rooms and a finite number of activities, each of which can be staged in any of the rooms. Give an efficient algorithm that can schedule all the activities using the smallest number of rooms.
+\end{statement}
+
+A greedy algorithm that always produces solution is as follows:
+
+\begin{enumerate}
+    \item Sort all of the activities in respect to their finish times (i.e., the job that finishes first is the first element). Call this sorted set of activities $A$.
+    \item\label{it:repeat} Take a particular room that is not preoccupied $R_i$ and map a particular schedule $S_i$ to it.
+    \item While not at the end of $A$:
+        \begin{enumerate}
+            \item Pick the first activity as just the first element in the $A$. Remove this element from $A$ and add it the schedule $S_i$.
+            \item Search $A$ from beginning, finding the first activity who's start time is after the finish time of the previous job. Add this to schedule $S_i$, remove it from $A$.
+            \item Repeat the last step.
+        \end{enumerate}
+    \item If $A$ is empty, the algorithm is finished. If not, repeat Step~\ref{it:repeat}.
+\end{enumerate}
+
+\problem{}
+\subproblem{}
+\begin{statement}
+    Consider the following problem: given a graph, determine whether it can be colored using exactly \num{4} colors. Prove that this coloring problem is NP-Complete.
+\end{statement}
+
+\begin{proof}
+    To prove the Four Coloring Problem is NP-Complete, first we must prove that the Four Color Problem is NP. To check a solution in polynomial time, we simple iterate through all edges, and check:
+
+    \begin{itemize}
+        \item Make sure that the graph is colored by $\leq 4$ colors.
+        \item Iterate though all edges, ensuring that every edge's neighbor is colored by a different color.
+    \end{itemize}
+
+    Because this is a $\bigO{n^2}$ algorithm, we can check a solution in polynomial time.
+
+    To prove that this is NP-Complete, we will reduce it to the three coloring problem, as follows.
+
+    Supposing we have a graph $G$, we wish to create a new graph $G'$, such that if $G$ is colorable in three colors, $G'$ can be colored in four. To make $G'$, then we simply add a new vertex and attach it to all of the verticies in $G$. Therefore, if $G$ is three colorable, then we know $G'$ to be four colorable.
+
+    Because we know the Four Coloring Problem is NP and is reducable from the Three Coloring Problem, we conclude that the Four Coloring Problem is NP-Complete.
+\end{proof}
+
+
+\subproblem{}
+\begin{statement}
+    Prove that for all $k > 4$, determining whether a graph can be colored using exactly $k$ colors is NP-Complete.
+\end{statement}
+
+\begin{proof}
+    To prove the Four Coloring Problem is NP-Complete, first we must prove that the $k$-Color Problem is NP. To check a solution in polynomial time, we simple iterate through all edges, and check:
+
+    \begin{itemize}
+        \item Make sure that the graph is colored by $\leq k$ colors.
+        \item Iterate though all edges, ensuring that every edge's neighbor is colored by a different color.
+    \end{itemize}
+
+    Because this is a $\bigO{n^2}$ algorithm, we can check a solution in polynomial time.
+
+    To prove that this is NP-Complete, we will reduce it to the three coloring problem, as follows.
+
+    Supposing we have a graph $G$, we wish to create a new graph $G'$, such that if $G$ is colorable in three colors, $G'$ can be colored in $k$. To make $G'$, then we simply add attach $k$ new vertices and attach it to all of the vertices in $G$. Therefore, if $G$ is three colorable, then we know $G'$ to be $k$ colorable.
+
+    Because we know the $k$-Coloring Problem is NP and is reducable from the Three Coloring Problem, we conclude that the $k$-Coloring Problem is NP-Complete.
+
+\end{proof}
+
+
+
+\end{document}
