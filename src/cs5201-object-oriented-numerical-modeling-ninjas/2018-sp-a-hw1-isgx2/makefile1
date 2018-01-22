@@ -1,0 +1,27 @@
+#
+# makefile1
+# 2018-sp-a-hw1-isgx2 (CS5201 – Spring 2018)
+#
+# Created by Illya Starikov on 01/21/18.
+# Copyright 2018. Illya Starikov. All rights reserved.
+#
+#
+
+driver: main.o additives.o beer.o
+	g++ main.o additives.o beer.o -o driver
+
+main.o: brewMain.cpp additives.o beer.o wine.h wine.hpp yeast.h hops.h grains.h
+	g++ -c brewMain.cpp -o main.o
+
+additives.o: additives.cpp additives.h
+	g++ -c additives.cpp
+
+beer.o: beer.cpp beer.h yeast.h hops.h grains.h
+	g++ -c beer.cpp
+
+
+.PHONY: clean
+clean:
+	-@rm -f driver > /dev/null 2>&1
+	-@rm -f *.o    > /dev/null 2>&1
+	-@rm core      > /dev/null 2>&1
