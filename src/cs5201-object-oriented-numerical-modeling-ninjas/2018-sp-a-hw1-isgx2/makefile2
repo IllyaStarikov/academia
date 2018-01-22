@@ -1,0 +1,38 @@
+#
+# makefile2
+# 2018-sp-a-hw1-isgx2 (CS5201 – Spring 2018)
+#
+# Created by Illya Starikov on 01/21/18.
+# Copyright 2018. Illya Starikov. All rights reserved.
+#
+#
+
+CXX = g++
+CXXFLAGS = -std=c++14
+
+OBJECTS = 	driver.o  \
+			parser.o  \
+			scanner.o \
+			signal.o  \
+			token.o   \
+			tokenlist.o
+
+.SUFFIXES: .cpp
+
+driver: ${OBJECTS}
+	${CXX} ${CXXFLAGS} ${OBJECTS} -o $@
+
+.cpp.o: $<
+	${CXX} -c ${CXXFLAGS} $< -o $@
+
+clean:
+	-@rm core > /dev/null 2>&1
+	-@rm driver > /dev/null 2>&1
+	-@rm ${OBJECTS} > /dev/null 2>&1
+
+driver.o: driver.cpp signal.h parser.h tokenlist.h token.h enTokens.h Amatrix.h Avector.h scanner.h enChar.h
+parser.o: parser.cpp parser.h tokenlist.h token.h enTokens.h Amatrix.h Avector.h signal.h
+scanner.o: scanner.cpp scanner.h enChar.h tokenlist.h token.h enTokens.h signal.h
+signal.o: signal.cpp signal.h
+token.o: token.cpp token.h enTokens.h
+tokenlist.o: tokenlist.cpp tokenlist.h token.h enTokens.h signal.h
