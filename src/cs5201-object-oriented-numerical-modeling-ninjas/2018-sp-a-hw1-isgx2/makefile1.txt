@@ -7,10 +7,12 @@
 #
 #
 
+# Run via: `make -f makefile1.txt`
+
 driver: main.o additives.o beer.o
 	g++ main.o additives.o beer.o -o driver
 
-main.o: brewMain.cpp additives.o beer.o wine.h wine.hpp yeast.h hops.h grains.h
+main.o: brewMain.cpp additives.h beer.h wine.h wine.hpp yeast.h hops.h grains.h
 	g++ -c brewMain.cpp -o main.o
 
 additives.o: additives.cpp additives.h
@@ -19,7 +21,7 @@ additives.o: additives.cpp additives.h
 beer.o: beer.cpp beer.h yeast.h hops.h grains.h
 	g++ -c beer.cpp
 
-
+# Phony means they're not associated with any files
 .PHONY: clean
 clean:
 	-@rm -f driver > /dev/null 2>&1
