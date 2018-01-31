@@ -119,3 +119,16 @@ class MechanicalMatch():
             for direction in [Direction.UP, Direction.LEFT]
             if MechanicalMatch.swap_is_valid(state.grid, (row, column), direction)
         )
+    @staticmethod
+    def path_cost(state, action):
+        """Calculates the score of applying an action onto a state.
+
+        Args:
+            state (State): The current state of the game.
+            action (Action): The action that will transition the state.
+
+        Returns:
+            int: The cost of applying the action.
+        """
+
+        return 1  # I think
