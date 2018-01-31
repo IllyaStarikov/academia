@@ -7,6 +7,9 @@
 # Copyright 2018. Illya Starikov. All rights reserved.
 #
 
+from direction import Direction
+from action import Action
+from state import State
 
 
 
@@ -89,3 +92,30 @@ class MechanicalMatch():
             bool: True if is goal, False if not.
         """
         return state.points >= quota
+
+    @staticmethod
+    def actions(state):
+        """Generates all actions that are valid (i.e., every action in the
+        in the list will produce a match.
+
+        Args:
+            state (State): The current state of the game.
+
+        Returns:
+            list of action: a list of Actions such that every action will produce
+            some match.
+        """
+
+        # This is ugly, but by abusing list comprehension, I get lazy evaluation.
+        # In turn, I actually do a linear search of the entire space, but only store
+        # the states that are legal. Thank you, generators.
+
+        row_max, column_max = MechanicalMatch.grid_size(state.grid)
+
+        return (
+            Action((row, column), direction)
+            for row in range(0, row_max)
+            for column in range(0, column_max)
+            for direction in [Direction.UP, Direction.LEFT]
+            if MechanicalMatch.swap_is_valid(state.grid, (row, column), direction)
+        )
