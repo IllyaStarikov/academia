@@ -159,3 +159,138 @@ class MechanicalMatch():
 
         # pretty standard tuple swap
         grid[old_row][old_column], grid[new_row][new_column] = grid[new_row][new_column], grid[old_row][old_column]
+
+    @staticmethod
+    def reduce(grid, pool, device_replace_count, number_of_device_types):
+        """Removes all matches from the board, and properly inserts all new
+        elements back on the board.
+
+        Note:
+            This does mutate the board. It also only does one round of reductions.
+            If a reduction produces new matches, it's up to the calling function to
+            take care of it. Also, uses a formula function of the form:
+
+            ((device type at (x,1) + x + number of devices replaced so far
+              during the current match cycle including the current one)
+              % number of type of devices) + 1
+
+            The location for this is down below.
+
+
+        Args:
+            grid (list of list): The current game grid.
+            pool (list of list): The current pool.
+            device_replace_count (int): The number of devices that have been replaced
+            thus far into the game. Used to calculate new device.
+            number_of_device_types (int): The total number of device types there are.
+            Used to calculate the device types.
+
+        .. _Website Description
+            http://web.mst.edu/~tauritzd/courses/cs5400/sp2018/puzzle.html
+        """
+        def pool_fill_function(column, column_device_type, device_replace_count, number_of_device_types):
+            return (column_device_type + column + device_replace_count + number_of_device_types) % number_of_device_types + 1
+
+        row_columns_of_matches = sorted(list(MechanicalMatch.find_all_points_of_matches(grid)))
+        pool_row_max, _ = MechanicalMatch.pool_size(pool)
+
+        for (row, column) in row_columns_of_matches:
+            device_replace_count += 1
+            new_pool_device = pool_fill_function(column, pool[-1][column], device_replace_count, number_of_device_types)
+
+            if row > 0:
+                MechanicalMatch.__percolate_down(grid, column, row + 1)
+
+            grid[0][column] = pool[-1][column]
+
+            MechanicalMatch.__percolate_down(pool, column, pool_row_max)
+            pool[0][column] = new_pool_device
+
+    @staticmethod
+    def __percolate_down(pool_or_grid, column_to_percolate, row_max_to_percolate):
+        """A utility function to push down elements. Useful for reduction.
+
+        Note:
+            This will mutate pool_or_grid. Also, the last element will be copied over.
+
+        Args:
+            pool_or_grid (list of list): A list for the percolation to occur on.
+            column_to_percolate (int): The column for the percolation to occur.
+            row_max_to_percolate (int): The max row to percolate to.
+        """
+
+        sorted_ = sorted(range(row_max_to_percolate), reverse=True)
+
+        for i in range(len(sorted_) - 1):
+            column = column_to_percolate
+
+            old_row = sorted_[i]
+            new_row = sorted_[i + 1]
+
+            pool_or_grid[old_row][column], pool_or_grid[new_row][column] = pool_or_grid[new_row][column], pool_or_grid[old_row][column]
+
+    @staticmethod
+    def find_all_points_of_matches(grid):
+        """Find all the matches, and returns them. Makes use of two helper functions,
+        __find_all_vertical_matches and __find_all_horizontal_matches.
+
+        Returns:
+            list of tuples: A list of tuples (row, column) that represent the points
+            of three adjacent rows or three adjacent columns.
+        """
+        matches = MechanicalMatch.__find_all_horizontal_matches(grid).union(MechanicalMatch.__find_all_vertical_matches(grid))
+        logger.log("Matches Found: {}".format(matches), LogPriority.INFO)
+
+        return matches
+
+    @staticmethod
+    def __find_all_horizontal_matches(grid):
+        """Find all the horizontal matches, and returns them.
+
+        Returns:
+            list of tuples: A list of tuples (row, column) that represent the points
+            of three adjacent columns.
+        """
+
+        intersecting_points = set()
+        row_max, column_max = MechanicalMatch.grid_size(grid)
+
+        for row in range(0, row_max):
+            last_two = (grid[row][0], grid[row][1])
+
+            for column in range(2, column_max):
+                current_element = grid[row][column]
+
+                if last_two[0] == last_two[1] == current_element:
+                    points = [(row, column - i) for i in range(3)]
+                    intersecting_points = intersecting_points.union(points)
+
+                last_two = (last_two[1], current_element)
+
+        return intersecting_points
+
+    @staticmethod
+    def __find_all_vertical_matches(grid):
+        """Find all the vertical matches, and returns them.
+
+        Returns:
+            list of tuples: A list of tuples (row, column) that represent the points
+            of three adjacent rows.
+        """
+
+        intersecting_points = set()
+        row_max, column_max = MechanicalMatch.grid_size(grid)
+
+        for column in range(0, column_max):
+            last_two = (grid[0][column], grid[1][column])
+
+            for row in range(2, row_max):
+                current_element = grid[row][column]
+
+                if last_two[0] == last_two[1] == current_element:
+                    points = [(row - i, column) for i in range(3)]
+                    intersecting_points = intersecting_points.union(points)
+
+                last_two = (last_two[1], current_element)
+
+        return intersecting_points
