@@ -76,3 +76,16 @@ class MechanicalMatch():
         assert column_max > 2
 
         return (row_max, column_max)
+
+    @staticmethod
+    def goal_test(state, quota):
+        """Determines if the current state is the goal.
+
+        Args:
+            state (State): The current state of the game.
+            quota (int): The score limit for the game.
+
+        Returns:
+            bool: True if is goal, False if not.
+        """
+        return state.points >= quota
