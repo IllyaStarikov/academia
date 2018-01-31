@@ -230,6 +230,76 @@ class MechanicalMatch():
             pool_or_grid[old_row][column], pool_or_grid[new_row][column] = pool_or_grid[new_row][column], pool_or_grid[old_row][column]
 
     @staticmethod
+    def swap_is_valid(grid, row_column_pair, direction):
+        """Determines if the swap will lead to a match. Accomplishes this
+        by actually performing the swap, looking to see if a match exists,
+        and then swapping back.
+
+        Note:
+            This temporarily mutates the grid. Will mutate back to original
+            state. Also, if out of bounds, will only return that it is not a valid state.
+
+        Args:
+            grid (list of list): The current game grid.
+            row_column_pair (int, int): A tuple of value (row, column) of which point to swap.
+            direction (Direction): A Direction that specifies which direction to swap the element.
+
+        Returns:
+            bool: True if the swap will lead to a match, False otherwise.
+        """
+
+        row, column = row_column_pair
+        row_unit_vector, column_unit_vector = direction.unit_vector
+        row_max, column_max = MechanicalMatch.grid_size(grid)
+
+        if not (0 <= row + row_unit_vector < row_max) or not (0 <= column + column_unit_vector < column_max):
+            return False
+
+        MechanicalMatch.swap(grid, row_column_pair, direction)
+        is_valid = MechanicalMatch.match_exists(grid)
+        MechanicalMatch.swap(grid, row_column_pair, direction)
+
+        return is_valid
+
+    @staticmethod
+    def match_exists(grid):
+        """Determines if the grid passed contains a valid match.
+
+        Args:
+            grid (list of list): The current game grid.
+
+        Returns:
+            bool: True if the board contains three adjacent rows
+            or three adjacent column of the same device type, False otherwise.
+        """
+
+        row_max, column_max = MechanicalMatch.grid_size(grid)
+
+        for row in range(0, row_max):
+            last_two = (grid[row][0], grid[row][1])
+
+            for column in range(2, column_max):
+                current_element = grid[row][column]
+
+                if last_two[0] == last_two[1] == current_element:
+                    return True
+
+                last_two = (last_two[1], current_element)
+
+        for column in range(0, column_max):
+            last_two = (grid[0][column], grid[1][column])
+
+            for row in range(2, row_max):
+                current_element = grid[row][column]
+
+                if last_two[0] == last_two[1] == current_element:
+                    return True
+
+                last_two = (last_two[1], current_element)
+
+        return False
+
+    @staticmethod
     def find_all_points_of_matches(grid):
         """Find all the matches, and returns them. Makes use of two helper functions,
         __find_all_vertical_matches and __find_all_horizontal_matches.
