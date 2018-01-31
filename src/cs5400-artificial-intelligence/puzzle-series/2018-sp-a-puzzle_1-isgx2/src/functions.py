@@ -10,6 +10,8 @@
 import argparse
 from argparse import Namespace
 
+from mechanical_match import MechanicalMatch
+
 
 def parse_arguments():
     """Parses the arguments necessary for the program to run,
