@@ -132,3 +132,30 @@ class MechanicalMatch():
         """
 
         return 1  # I think
+
+    @staticmethod
+    def swap(grid, row_column_pair, direction):
+        """Swaps the value of a point (specified by row_column_pair), in the direction
+        specified by direction.
+
+        Note:
+            Does mutate the game grid. Also check to see the swap is valid; if not,
+            throws an AssertError.
+
+        Args:
+            row_column_pair (int, int): a tuple of value (row, column) of which point to swap.
+            direction (Direction): a Direction that specifies which direction to swap the element.
+        """
+
+        as_unit_vector = direction.unit_vector
+
+        old_row, old_column = row_column_pair
+        new_row, new_column = (old_row + as_unit_vector[0], old_column + as_unit_vector[1])
+
+        row_max, column_max = MechanicalMatch.grid_size(grid)
+
+        assert 0 <= new_row < row_max and 0 <= old_row < row_max
+        assert 0 <= new_column < column_max and 0 <= old_column < column_max
+
+        # pretty standard tuple swap
+        grid[old_row][old_column], grid[new_row][new_column] = grid[new_row][new_column], grid[old_row][old_column]
