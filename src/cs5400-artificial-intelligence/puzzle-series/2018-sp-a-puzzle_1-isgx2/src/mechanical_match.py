@@ -11,6 +11,7 @@ from direction import Direction
 from action import Action
 from state import State
 
+from copy import deepcopy
 
 
 class MechanicalMatch():
@@ -119,6 +120,42 @@ class MechanicalMatch():
             for direction in [Direction.UP, Direction.LEFT]
             if MechanicalMatch.swap_is_valid(state.grid, (row, column), direction)
         )
+
+    @staticmethod
+    def result(state, action):
+        """A transition model from one state and one action. Will take the
+        current state and reduce it until there's no more matches.
+
+        Note:
+            This will not mutate the current state.
+
+        Args:
+            state (State): The current state of the game.
+            action (Action): The action that will transition the state.
+
+        Returns:
+            State: The state after reducing the grid, with updates scores,
+            number of devices swaps, swap, and number of devices types.
+        """
+
+        new_grid = deepcopy(state.grid)
+        new_pool = deepcopy(state.pool)
+        points = state.points
+        number_of_device_swaps = state.number_of_device_swaps
+
+        MechanicalMatch.swap(new_grid, action.row_column_pair, action.direction)
+
+        while MechanicalMatch.match_exists(new_grid):
+            number_of_matches = len(MechanicalMatch.find_all_points_of_matches(new_grid))
+
+            points += number_of_matches
+            number_of_device_swaps += number_of_matches
+
+            MechanicalMatch.reduce(new_grid, new_pool, state.swaps, state.number_of_device_types)
+
+        logger.log("Ran Result, {} -> {}".format(state.grid, new_grid), LogPriority.INFO)
+        return State(new_grid, new_pool, state.swaps + 1, points, number_of_device_swaps, state.number_of_device_types)
+
     @staticmethod
     def path_cost(state, action):
         """Calculates the score of applying an action onto a state.
