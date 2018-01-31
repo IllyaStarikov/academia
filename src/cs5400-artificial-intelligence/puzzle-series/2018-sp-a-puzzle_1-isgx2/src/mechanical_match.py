@@ -8,7 +8,14 @@
 #
 
 
+
+
 class MechanicalMatch():
+    @property
+    def initial_state(self):
+        """An initial state for the game board."""
+        return State(self.grid, self.pool, 0, 0, 0, self.device_types)
+
     def __init__(self, quota, swaps_allowed, device_types, column_max, row_max, pool_height, bonuses_being_used, pool, grid):
         """Generate initial configuration of the board and all if it's parameters."""
 
