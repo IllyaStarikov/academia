@@ -10,6 +10,7 @@
 from functions import parse_arguments, parse_game_parameters, get_file_contents, generate_game_from_namespace, output_solution
 from timer import Timer
 from AI import AI
+from logger import logger, LogPriority
 
 
 def main():
@@ -22,10 +23,17 @@ def main():
     ai = AI(game)
 
     timer.start()
+
+    logger.log("Start DFS", LogPriority.INFO)
     solution = ai.breadth_first_tree_search()
+
+    logger.log("Finish DFS", LogPriority.INFO)
+    logger.stop_progress_bar()
     timer.stop()
 
+    logger.log("Outputting Solution", LogPriority.INFO)
     output_solution(output_path, filename, timer.difference, solution, game)
+    logger.log("Finished", LogPriority.INFO)
 
 
 if __name__ == "__main__":

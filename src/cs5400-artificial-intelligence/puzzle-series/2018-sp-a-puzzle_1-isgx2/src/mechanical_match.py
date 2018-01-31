@@ -12,6 +12,7 @@ from action import Action
 from state import State
 
 from copy import deepcopy
+from logger import logger, LogPriority
 
 
 class MechanicalMatch():
@@ -32,6 +33,18 @@ class MechanicalMatch():
         self.bonuses_being_used = bonuses_being_used
         self.pool = pool
         self.grid = grid
+
+        logger.configure_progress_bar(quota)
+        logger.log("Configured Initial Parameters...", LogPriority.INFO)
+        logger.log("quota: {}".format(quota), LogPriority.INFO)
+        logger.log("swaps_allowed: {}".format(swaps_allowed), LogPriority.INFO)
+        logger.log("device_types: {}".format(device_types), LogPriority.INFO)
+        logger.log("column_max: {}".format(column_max), LogPriority.INFO)
+        logger.log("row_max: {}".format(row_max), LogPriority.INFO)
+        logger.log("pool_height: {}".format(pool_height), LogPriority.INFO)
+        logger.log("bonuses_being_used: {}".format(bonuses_being_used), LogPriority.INFO)
+        logger.log("pool: {}".format(pool), LogPriority.INFO)
+        logger.log("grid: {}".format(grid), LogPriority.INFO)
 
     @staticmethod
     def grid_size(grid):
@@ -112,6 +125,17 @@ class MechanicalMatch():
         # the states that are legal. Thank you, generators.
 
         row_max, column_max = MechanicalMatch.grid_size(state.grid)
+
+        if __debug__:
+            actions = [
+                ((row, column), direction)
+                for row in range(0, row_max)
+                for column in range(0, column_max)
+                for direction in [Direction.UP, Direction.LEFT]
+                if MechanicalMatch.swap_is_valid(state.grid, (row, column), direction)
+            ]
+
+            logger.log("Generated the following actions: {}".format(actions), LogPriority.INFO)
 
         return (
             Action((row, column), direction)

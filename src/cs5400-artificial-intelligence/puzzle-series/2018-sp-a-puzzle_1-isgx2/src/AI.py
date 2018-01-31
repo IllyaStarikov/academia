@@ -11,6 +11,7 @@ from search_node import SearchNode
 from mechanical_match import MechanicalMatch
 
 from collections import deque
+from logger import logger, LogPriority
 
 
 class AI():
@@ -21,6 +22,7 @@ class AI():
 
     def log_progress(self, node):
         self.max_score = max(self.max_score, node.state.points)
+        logger.log(self.max_score, LogPriority.PROGRESS)
 
     def breadth_first_tree_search(self):
         """Does a BFS search on the game states.
