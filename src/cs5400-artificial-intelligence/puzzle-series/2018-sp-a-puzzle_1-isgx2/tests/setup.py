@@ -13,7 +13,7 @@ from test_action import ActionTestCase
 
 
 def load_suite():
-    tests = [MechanicalTestCase]
+    tests = [MechanicalTestCase, ActionTestCase]
 
     for test in tests:
         unittest.TestLoader().loadTestsFromTestCase(test)
