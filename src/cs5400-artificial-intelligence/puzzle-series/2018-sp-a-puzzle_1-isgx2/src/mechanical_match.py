@@ -19,7 +19,7 @@ class MechanicalMatch():
     @property
     def initial_state(self):
         """An initial state for the game board."""
-        return State(self.grid, self.pool, 0, 0, 0, self.device_types)
+        return State(self.grid, self.pool, 0, 0, self.device_types)
 
     def __init__(self, quota, swaps_allowed, device_types, column_max, row_max, pool_height, bonuses_being_used, pool, grid):
         """Generate initial configuration of the board and all if it's parameters."""
@@ -165,20 +165,16 @@ class MechanicalMatch():
         new_grid = deepcopy(state.grid)
         new_pool = deepcopy(state.pool)
         points = state.points
-        number_of_device_swaps = state.number_of_device_swaps
 
         MechanicalMatch.swap(new_grid, action.row_column_pair, action.direction)
 
         while MechanicalMatch.match_exists(new_grid):
             number_of_matches = len(MechanicalMatch.find_all_points_of_matches(new_grid))
-
             points += number_of_matches
-            number_of_device_swaps += number_of_matches
-
-            MechanicalMatch.reduce(new_grid, new_pool, state.swaps, state.number_of_device_types)
+            MechanicalMatch.reduce(new_grid, new_pool, state.number_of_device_types)
 
         logger.log("Ran Result, {} -> {}".format(state.grid, new_grid), LogPriority.INFO)
-        return State(new_grid, new_pool, state.swaps + 1, points, number_of_device_swaps, state.number_of_device_types)
+        return State(new_grid, new_pool, state.swaps + 1, points, state.number_of_device_types)
 
     @staticmethod
     def path_cost(state, action):
@@ -222,7 +218,7 @@ class MechanicalMatch():
         grid[old_row][old_column], grid[new_row][new_column] = grid[new_row][new_column], grid[old_row][old_column]
 
     @staticmethod
-    def reduce(grid, pool, device_replace_count, number_of_device_types):
+    def reduce(grid, pool, number_of_device_types):
         """Removes all matches from the board, and properly inserts all new
         elements back on the board.
 
@@ -241,7 +237,6 @@ class MechanicalMatch():
         Args:
             grid (list of list): The current game grid.
             pool (list of list): The current pool.
-            device_replace_count (int): The number of devices that have been replaced
             thus far into the game. Used to calculate new device.
             number_of_device_types (int): The total number of device types there are.
             Used to calculate the device types.

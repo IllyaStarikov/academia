@@ -73,7 +73,6 @@ class MechanicalTestCase(unittest.TestCase):
         self.assertEqual(initial_state.pool, pool)
         self.assertEqual(initial_state.swaps, 0)
         self.assertEqual(initial_state.points, 0)
-        self.assertEqual(initial_state.number_of_device_swaps, 0)
         self.assertEqual(initial_state.number_of_device_types, match.device_types)
 
     def test_grid_size(self):
@@ -107,8 +106,8 @@ class MechanicalTestCase(unittest.TestCase):
     def test_goal_test(self):
         quota = 420
 
-        not_goal = State(None, None, None, 1/2 * quota, None, None)
-        is_goal = State(None, None, None, 2*quota, None, None)
+        not_goal = State(None, None, None, 1/2 * quota, None)
+        is_goal = State(None, None, None, 2*quota, None)
 
         self.assertFalse(MechanicalMatch.goal_test(not_goal, quota))
         self.assertTrue(MechanicalMatch.goal_test(is_goal, quota))
@@ -127,7 +126,7 @@ class MechanicalTestCase(unittest.TestCase):
             Action((0, 4), Direction.DOWN)
         ]
 
-        state = State(grid, None, None, None, None, None)
+        state = State(grid, None, None, None, None)
         actions = list(MechanicalMatch.actions(state))
 
         for action in all_actions:
@@ -144,7 +143,7 @@ class MechanicalTestCase(unittest.TestCase):
                          [4, 2, 2, 4],
                          [2, 3, 4, 4]]
 
-        state = State(grid, pool, 0, 0, 0, 4)
+        state = State(grid, pool, 0, 0, 4)
         action = Action((1, 0), Direction.RIGHT)
         result = MechanicalMatch.result(state, action)
 
@@ -152,11 +151,10 @@ class MechanicalTestCase(unittest.TestCase):
         self.assertEqual(result.pool, expected_pool)
         self.assertEqual(result.swaps, 1)
         self.assertEqual(result.points, 6)
-        self.assertEqual(result.number_of_device_swaps, 6)
         self.assertEqual(result.number_of_device_types, 4)
 
     def test_path_cost(self):
-        state = State(None, None, None, None, None, None)
+        state = State(None, None, None, None, None)
         action = Action((0, 0), Direction.RIGHT)
 
         self.assertEqual(MechanicalMatch.path_cost(state, action), 1)
@@ -194,7 +192,7 @@ class MechanicalTestCase(unittest.TestCase):
                          [1, 6,  11, 5],
                          [5, 10, 12, 3]]
 
-        MechanicalMatch.reduce(grid, pool, 0, 12)
+        MechanicalMatch.reduce(grid, pool, 12)
 
         self.assertEqual(grid, expected_grid)
         self.assertEqual(pool, expected_pool)
