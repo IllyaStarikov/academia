@@ -249,10 +249,11 @@ class MechanicalMatch():
 
         row_columns_of_matches = sorted(list(MechanicalMatch.find_all_points_of_matches(grid)))
         pool_row_max, _ = MechanicalMatch.pool_size(pool)
+        device_replace_count = 0
 
         for (row, column) in row_columns_of_matches:
             device_replace_count += 1
-            new_pool_device = pool_fill_function(column, pool[-1][column], device_replace_count, number_of_device_types)
+            new_pool_device = pool_fill_function(column, pool[0][column], device_replace_count, number_of_device_types)
 
             if row > 0:
                 MechanicalMatch.__percolate_down(grid, column, row + 1)
