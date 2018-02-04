@@ -28,11 +28,17 @@ def main():
     solution = ai.breadth_first_tree_search()
 
     logger.log("Finish DFS", LogPriority.INFO)
-    logger.stop_progress_bar()
     timer.stop()
+    logger.stop_progress_bar()
+    print("")
 
     logger.log("Outputting Solution", LogPriority.INFO)
-    output_solution(output_path, filename, timer.difference, solution, game)
+
+    if solution is None:
+        print("No Solution Found")
+    else:
+        output_solution(output_path, filename, timer.difference, solution, game)
+
     logger.log("Finished", LogPriority.INFO)
 
 
