@@ -127,8 +127,11 @@ class MechanicalMatch():
         row_max, column_max = MechanicalMatch.grid_size(state.grid)
 
         if __debug__:
+            # sorry about this, but you can't really copy generators.
+            # so I just have to do it all over again
+
             actions = [
-                ((row, column), direction)
+                str(Action((row, column), direction))
                 for row in range(0, row_max)
                 for column in range(0, column_max)
                 for direction in [Direction.UP, Direction.LEFT]
