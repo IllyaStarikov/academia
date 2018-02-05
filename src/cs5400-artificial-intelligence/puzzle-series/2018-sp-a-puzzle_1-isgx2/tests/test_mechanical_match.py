@@ -126,11 +126,15 @@ class MechanicalTestCase(unittest.TestCase):
             Action((0, 4), Direction.DOWN)
         ]
 
-        state = State(grid, None, None, None, None)
+        state = State(grid, None, 0, 1, None, None)
         actions = list(MechanicalMatch.actions(state))
 
         for action in all_actions:
             self.assertTrue(action in actions)
+
+        state = State(grid, None, 1, 1, None, None)
+        actions = list(MechanicalMatch.actions(state))
+        self.assertTrue(actions == [])
 
     def test_result(self):
         pool = [[2, 2, 2, 1]]
@@ -143,7 +147,7 @@ class MechanicalTestCase(unittest.TestCase):
                          [4, 2, 2, 4],
                          [2, 3, 4, 4]]
 
-        state = State(grid, pool, 0, 0, 4)
+        state = State(grid, pool, 0, 0, 0, 4)
         action = Action((1, 0), Direction.RIGHT)
         result = MechanicalMatch.result(state, action)
 
@@ -154,7 +158,7 @@ class MechanicalTestCase(unittest.TestCase):
         self.assertEqual(result.number_of_device_types, 4)
 
     def test_path_cost(self):
-        state = State(None, None, None, None, None)
+        state = State(None, None, None, None, None, None)
         action = Action((0, 0), Direction.RIGHT)
 
         self.assertEqual(MechanicalMatch.path_cost(state, action), 1)

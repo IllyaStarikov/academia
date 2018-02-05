@@ -19,7 +19,7 @@ class MechanicalMatch():
     @property
     def initial_state(self):
         """An initial state for the game board."""
-        return State(self.grid, self.pool, 0, 0, self.device_types)
+        return State(self.grid, self.pool, 0, self.swaps_allowed, 0, self.device_types)
 
     def __init__(self, quota, swaps_allowed, device_types, column_max, row_max, pool_height, bonuses_being_used, pool, grid):
         """Generate initial configuration of the board and all if it's parameters."""
@@ -130,7 +130,7 @@ class MechanicalMatch():
             # sorry about this, but you can't really copy generators.
             # so I just have to do it all over again
 
-            actions = [
+            actions = None if state.swaps < state.max_swaps else [
                 str(Action((row, column), direction))
                 for row in range(0, row_max)
                 for column in range(0, column_max)
@@ -140,7 +140,7 @@ class MechanicalMatch():
 
             logger.log("Generated the following actions: {}".format(actions), LogPriority.INFO)
 
-        return (
+        return [] if state.swaps >= state.max_swaps else (
             Action((row, column), direction)
             for row in range(0, row_max)
             for column in range(0, column_max)
@@ -177,7 +177,7 @@ class MechanicalMatch():
             MechanicalMatch.reduce(new_grid, new_pool, state.number_of_device_types)
 
         logger.log("Ran Result, {} -> {}".format(state.grid, new_grid), LogPriority.INFO)
-        return State(new_grid, new_pool, state.swaps + 1, points, state.number_of_device_types)
+        return State(new_grid, new_pool, state.swaps + 1, state.max_swaps, points, state.number_of_device_types)
 
     @staticmethod
     def path_cost(state, action):
