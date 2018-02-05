@@ -6,5 +6,5 @@ if [ ! -d "env" ]; then
 fi
 
 source ./env/bin/activate
-make production ARGS=$1
+make production puzzle1.txt
 deactivate
