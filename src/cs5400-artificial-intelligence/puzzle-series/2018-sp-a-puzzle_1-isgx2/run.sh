@@ -6,5 +6,5 @@ if [ ! -d "env" ]; then
 fi
 
 source ./env/bin/activate
-make production puzzle1.txt
+make run ARGS="input/puzzle1.txt --solution_path=output/puzzle1.txt"
 deactivate
