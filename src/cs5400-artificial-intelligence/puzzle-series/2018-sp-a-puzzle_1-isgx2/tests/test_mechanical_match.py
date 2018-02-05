@@ -106,8 +106,8 @@ class MechanicalTestCase(unittest.TestCase):
     def test_goal_test(self):
         quota = 420
 
-        not_goal = State(None, None, None, 1/2 * quota, None)
-        is_goal = State(None, None, None, 2*quota, None)
+        not_goal = State(None, None, None, None, 1/2 * quota, None)
+        is_goal = State(None, None, None, None, 2*quota, None)
 
         self.assertFalse(MechanicalMatch.goal_test(not_goal, quota))
         self.assertTrue(MechanicalMatch.goal_test(is_goal, quota))

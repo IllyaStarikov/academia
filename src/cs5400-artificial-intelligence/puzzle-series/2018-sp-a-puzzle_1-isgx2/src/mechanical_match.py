@@ -329,7 +329,7 @@ class MechanicalMatch():
             grid (list of list): The current game grid.
 
         Returns:
-            bool: True if the board contains three adjacent rows
+            bool: True if the board contains three adjacent rows.
             or three adjacent column of the same device type, False otherwise.
         """
 

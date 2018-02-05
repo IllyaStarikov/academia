@@ -10,7 +10,7 @@
 
 class SearchNode():
     def __init__(self, state, action, parent, path_cost):
-        """Generates a new search node"""
+        """Generate a new search node."""
         self.state = state
         self.action = action
         self.parent = parent

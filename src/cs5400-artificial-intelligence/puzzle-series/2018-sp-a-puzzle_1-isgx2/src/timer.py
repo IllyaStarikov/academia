@@ -14,11 +14,11 @@ class Timer():
     __start_time, __stop_time = None, None
 
     def start(self):
-        """Starts the timer"""
+        """Starts the timer."""
         self.__start_time = datetime.now()
 
     def stop(self):
-        """Stops the timer"""
+        """Stops the timer."""
         self.__stop_time = datetime.now()
 
     @property

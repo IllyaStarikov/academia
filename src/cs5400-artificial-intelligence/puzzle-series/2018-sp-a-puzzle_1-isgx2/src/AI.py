@@ -16,16 +16,21 @@ from logger import logger, LogPriority
 
 class AI():
     def __init__(self, game):
-        """Just sets the game"""
+        """Just sets the game up."""
         self.game = game
         self.max_score = 0
 
     def log_progress(self, node):
+        """Logs the current progress of the game.
+
+        Args:
+            node (SearchNode): The current search node
+        """
         self.max_score = max(self.max_score, node.state.points)
         logger.log(self.max_score, LogPriority.PROGRESS)
 
     def breadth_first_tree_search(self):
-        """Does a BFS search on the game states.
+        """Does a BFS search on the game state.
 
         Returns:
             SearchNode: The node that the solution was found in.

@@ -10,10 +10,11 @@
 import unittest
 from test_mechanical_match import MechanicalTestCase
 from test_action import ActionTestCase
+from test_AI import AITestCase
 
 
 def load_suite():
-    tests = [MechanicalTestCase, ActionTestCase]
+    tests = [MechanicalTestCase, ActionTestCase, AITestCase]
 
     for test in tests:
         unittest.TestLoader().loadTestsFromTestCase(test)

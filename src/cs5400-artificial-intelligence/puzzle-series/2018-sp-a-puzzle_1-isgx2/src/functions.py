@@ -31,13 +31,14 @@ def parse_arguments():
 
 
 def get_file_contents(filename):
-    """Returns the contents of the file specified by the filename
+    """Returns the contents of the file specified by the filename.
 
     Args:
-        filename (str): The filename to get content from
+        filename (str): The filename to get content from.
 
     Returns:
-        str: The file contents in one giant string (\n) and all
+        str or None: The file contents in one giant string (\n) and all
+        or None if there is no such file.
     """
 
     with open(filename) as file_handler:
@@ -51,7 +52,7 @@ def parse_game_parameters(file_contents):
         file_contents (str): The contents of the specified input file.
 
     Returns:
-        Namespace: All of the game arguments in a Namespace object
+        Namespace: All of the game arguments in a Namespace object.
     """
 
     file_contents_split = file_contents.split('\n')
@@ -91,7 +92,7 @@ def parse_game_parameters(file_contents):
 
 
 def generate_game_from_namespace(namespace):
-    """From a Namespace object, generate a MechanicalMatch object
+    """From a Namespace object, generate a MechanicalMatch object.
 
     Args:
         namespace (Namespace): All of the game parameters.
@@ -115,7 +116,7 @@ def generate_game_from_namespace(namespace):
 
 def calculate_new_row_column(row_column_pair, direction):
     """From a row_column_pair a direction, calculate what the complementary
-    point would be
+    point would be.
 
     Args:
         row_column_pair (int, int): A tuple of value (row, column) of the initial point.
@@ -194,8 +195,8 @@ def output_solution(filename_of_output, filename_of_input, timer_difference, sol
         filename_of_output (str): The filename to output the solution to, or None if output to file
         is not desired.
         filename_of_input (str): The original file the game parameters were taken from.
-        timer_different (float): The amount of time (in seconds) the algorithm took to run
-        solution_node (SearchNode): The SearchNode where the solution was found
+        timer_different (float): The amount of time (in seconds) the algorithm took to run.
+        solution_node (SearchNode): The SearchNode where the solution was found.
         game (MechanicalMatch): The initial game instance.
     """
 
