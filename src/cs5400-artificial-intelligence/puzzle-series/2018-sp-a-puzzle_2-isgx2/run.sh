@@ -10,7 +10,7 @@ source ./env/bin/activate
 # Run program for all puzzle files in current directory
 for puzzle in puzzle*.txt; do
   solution="solution"$(echo $puzzle | tr -dc "0-9")".txt"
-  python3 main.py -O $puzzle --solution_path=$solution
+  python3 -O main.py $puzzle --solution_path=$solution
 done
 
 deactivate
