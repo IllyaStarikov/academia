@@ -1,0 +1,66 @@
+%
+%  bonus-1.tex
+%  bonus
+%
+%  Created by Illya Starikov on 02/18/18.
+%  Copyright 2018. Illya Starikov. All rights reserved.
+%
+
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{scrartcl}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,xcolor,float}
+
+\title{Bonus \#1}
+\date{Due Date: Sunday, February 18\textsuperscript{th}, 2018}
+\author{Illya Starikov}
+
+\begin{document}
+\maketitle
+
+We know the definition of branching factor $b^*$ to be defined as
+
+\begin{equation*}
+    N = b^* + {(b^*)}^2 + \cdots + {(b^*)}^d
+\end{equation*}
+
+With $N$ being the total number of nodes being generated, and $d$ being the solution depth. From this, we can get an estimate for the effective branching factor as follows:
+
+\begin{equation*}
+    b^* = N^{\frac{1}{d}}
+\end{equation*}
+
+Note this is not a perfect equation, and has the possibility for high error tolerances; for our purposes, it should be okay. The two heuristics for this assignment are as follows:
+\begin{align*}
+    h_1 &= \text{Score Difference} \\
+        &= \frac{\text{Quota $-$ Current Score}}{\text{Max Swaps $-$ Current Swaps}} \\
+    h_2 &= \text{Homogeneous Board} \\
+        &= \text{Standard Deviation of the} \\
+        &= \text{Number of Devices Types on the Board}
+\end{align*}
+
+
+Results can be found in Table~\ref{tab:results}. Essentially, the branching factors are similar, but the Homogeneous Board heuristic has a tendency to explore more of the board.
+
+\begin{table}[H]
+    \centering
+    \caption{The computations for the effective branching factor.}
+    \label{tab:results}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{llccc}
+        \toprule
+        \textbf{Input} & \textbf{Heuristic} & \textbf{Nodes Generated ($N$)} & \textbf{Solution Depth ($d$)} & \textbf{Branching Factor ($b^*$)} \\
+        Puzzle \#1 & Score Difference  & \num{4}   & \num{1}  & \num{4} \\
+        {}         & Homogeneous Board & \num{4}   & \num{1}  & \num{4} \\
+
+        Puzzle \#2 & Score Difference  & \num{99}  & \num{11} & \num{1.52} \\
+        {}         & Homogeneous Board & \num{144} & \num{10} & \num{1.64} \\
+
+        Puzzle \#3 & Score Difference  & \num{94}  & \num{12} & \num{1.46} \\
+        {}         & Homogeneous Board & \num{890} & \num{25} & \num{1.31} \\
+        \bottomrule
+    \end{tabular}
+    }
+\end{table}
+
+\end{document}

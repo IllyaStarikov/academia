@@ -1,0 +1,2 @@
+coverage==4.4.2
+progressbar2==3.34.3
