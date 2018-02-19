@@ -1,7 +1,6 @@
 #include <iostream>
 
 using namespace std;
-void foo() {int a = 1;}
 int main()
 {
 	int a = 0;
