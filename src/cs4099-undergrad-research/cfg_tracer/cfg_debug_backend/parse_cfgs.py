@@ -2,6 +2,8 @@ from cfg import CFG
 def parse_cfgs(filename):
     cfgs = []
     with open(filename) as f:
+        print(f)
+    with open(filename) as f:
         bblines = []
         for line in f:
             if line is '\n':
@@ -15,5 +17,6 @@ def parse_cfgs(filename):
 
 
 if __name__ == "__main__":
-    cfg = parse_cfgs('/home/squishy/test.cfg')
-    cfg[1].to_dot()
+    import os
+    cfg = parse_cfgs('test.cfg')
+    cfg[0].to_dot()

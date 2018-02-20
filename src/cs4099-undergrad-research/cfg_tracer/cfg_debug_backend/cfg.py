@@ -18,6 +18,9 @@ class CFG:
         if not self.exit_node is block_id:
             # we have successors
             bb.successors = lines[-1].split(':')[-1].strip().split()
+        if not self.entry_node is block_id:
+            ## we have preds
+            bb.preds = lines[-2].split(':')[-1].strip().split()
         self.basic_blocks[block_id] = bb
 
     def to_dot(self, fname = None):
