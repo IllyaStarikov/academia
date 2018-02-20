@@ -31,6 +31,8 @@ class Visitor:
         self.next_block = list(reversed(cfg.basic_blocks[self.current].successors))
 
     def instr_line(self, line):
+        if line == '' or self.current == self.cfg.exit_node:
+            return ''
         if self.current not in self.visited:
             self.visited.add(self.current)
             if '{' in line:
@@ -49,47 +51,78 @@ class Visitor:
 
     def augment_next(self):
         self.next_block += reversed(self.cfg.basic_blocks[self.current].successors)
+
+
+class RecDescInstrument:
+    def __init__(self, file, visitor):
+        self.f = file
+        self.v = visitor
+        self.newlines = [INST]
+        self.line = ''
+        self.next_line()
+        while not main_start.match(self.line):
+            self.newlines.append(self.line)
+            self.next_line()
+        while '{' not in self.line:
+            self.newlines.append(cmt(self.v.current) + self.line)
+            self.next_line()
+        self.newlines.append(self.v.instr_line(self.line))
+        self.next_line()
+        self.v.next_bb()
+        # pump is primed, let's go!
+        self._stmt()
+
+    def next_line(self):
+        self.line = self.f.readline().strip()
+
+    def _stmt(self):
+        while self.line != '':
+            if self.line == '}':
+                self.newlines.append(self.line)
+                self.v.next_bb()
+                self.next_line()
+            if for_stmt.match(self.line):
+                self._for()
+            else:
+                self.newlines.append(self.v.instr_line(self.line))
+                self.next_line()
+                self._stmt()
+
+    def _unbraced_stmt(self):
+        self.newlines.append('{')
+        self._stmt()
+        self.newlines.append('}')
+
+    def _for(self):
+        loop_parts = self.line.split(';')
+        self.v.next_bb()
+        loop_parts[1] = bb(self.v.current) + ',' + loop_parts[1]
+        # first pred should be loop update (hopefully?)
+        self.v.current = self.v.cfg.basic_blocks[self.v.current].preds[0]
+        self.v.visited.add(self.v.current)
+        loop_parts[2] = bb(self.v.current) + ',' + loop_parts[2]
+        newline = ';'.join(loop_parts)
+        self.newlines.append(newline)
+        self.v.next_bb()
+        self.next_line()
+        if self.line != '{':
+            self._unbraced_stmt()
+        else:
+            self.newlines.append('{')
+            self.next_line()
+            self._stmt()
+            self.next_line() # this is the closing }
+            self.next_line()
+
 def instrument(filename):
     # for now, assume only main!
     cfg = parse_cfgs(filename)[0]
     print(cfg)
     v = Visitor(cfg)
     current = cfg.entry_node
-
-    newlines = [INST]
     with open(filename.replace('.cfg', '.cpp')) as f:
-        line = f.readline().strip()
-        while not main_start.match(line):
-            newlines.append(line)
-            line = f.readline().strip()
-        while '{' not in line:
-            newlines.append(cmt(current) + line)
-            line = f.readline().strip()
-        # found opening bracket for main function
-        newlines.append(cmt(current) + line.replace('{', '{'+bb(current) + ';'))
-        print(current)
-        #current = v.next_bb()
-        v.next_bb()
-        advance_next = False
-        for line in f:
-            line = line.strip()
-            if for_stmt.match(line):
-                # advance the cfg
-                v.next_bb()
-                loop_parts = line.split(';')
-                loop_parts[1] = bb(v.current) + ',' + loop_parts[1]
-                # first pred should be loop update (hopefully?)
-                v.current = cfg.basic_blocks[v.current].preds[0]
-                v.visited.add(v.current)
-                loop_parts[2] = bb(v.current) + ',' + loop_parts[2]
-                newline = ';'.join(loop_parts)
-                newlines.append(newline)
-                v.next_bb()
-            else:
-                newlines.append(v.instr_line(line))
-                if '}' in line:
-                    v.next_bb()
-    return newlines
+        r = RecDescInstrument(f, v)
+    return r.newlines
 
 
 if __name__ == '__main__':
