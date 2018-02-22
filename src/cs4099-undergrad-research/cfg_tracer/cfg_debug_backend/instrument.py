@@ -190,7 +190,12 @@ class RecDescInstrument:
             return
         self.v.next_bb()
         self.next_line()
+        oneline = self.line != '{'
+        if oneline:
+            self.newlines.append('{')
         self._block()
+        if oneline:
+            self.newlines.append('}')
         self.v.next_bb()
         # While has a spare bb at the end
         self.v.next_bb()
@@ -229,7 +234,7 @@ def instrument(filename):
 if __name__ == '__main__':
     ##print('\n'.join(instrument('test.cfg')))
     with open('test_instr.cpp', 'w') as f:
-        f.write('\n'.join(instrument('testfiles/for_nobraces.cfg')))
+        f.write('\n'.join(instrument('testfiles/while.cfg')))
     ##print(main_start.match('int main(char * argv, int argc)'))
     ##print(for_stmt.match('for(int i=0; i<10; i++)'))
 
