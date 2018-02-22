@@ -4,6 +4,7 @@ int main()
 	do
 {
 		a ++;
-} while (a < 10);
+}
+while (a < 10);
 	return 0;
 }

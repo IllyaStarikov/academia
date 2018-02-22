@@ -24,6 +24,7 @@ main_start = re.compile('^int\s+main.*')
 for_stmt = re.compile('for\s*\(.*;.*;.*\)')
 if_stmt = re.compile('if\s*\(.*\)')
 while_stmt = re.compile('while\s*\(.*\)')
+do_stmt = re.compile('do$')
 
 
 class Visitor:
@@ -70,59 +71,74 @@ class RecDescInstrument:
             self.newlines.append(cmt(self.v.current) + self.line)
             self.next_line()
         self.newlines.append(self.v.instr_line(self.line))
-        self.next_line()
+        #self.next_line()
         self.v.next_bb()
+        self._block()
         # pump is primed, let's go!
-        self._stmt()
+        #while self.line != '':
+        #    self._stmt()
 
     def next_line(self):
         self.line = self.f.readline().strip()
+        #print('next_line:', self.line)
 
     def _simple_stmt(self):
+        #print('_simple_stmt', self.line)
         if for_stmt.match(self.line):
             self._for()
         elif if_stmt.match(self.line):
             self._if()
         elif while_stmt.match(self.line):
             self._while()
+        elif do_stmt.match(self.line):
+            self._do()
         else:
             self.newlines.append(self.v.instr_line(self.line))
             self.next_line()
             #self._stmt()
 
     def _stmt(self):
-        while self.line != '':
-            if self.line == '}':
-                self.newlines.append(self.line)
-                self.v.next_bb()
-                self.next_line()
-            if for_stmt.match(self.line):
-                self._for()
-            elif if_stmt.match(self.line):
-                self._if()
-            elif while_stmt.match(self.line):
-                self._while()
-            else:
-                self.newlines.append(self.v.instr_line(self.line))
-                self.next_line()
-                self._stmt()
+        #while self.line != '':
+        #print('_stmt', self.line)
+        if self.line == '}':
+            self.newlines.append(self.line)
+            self.v.next_bb()
+            self.next_line()
+        if for_stmt.match(self.line):
+            self._for()
+        elif if_stmt.match(self.line):
+            self._if()
+        elif while_stmt.match(self.line):
+            self._while()
+        elif do_stmt.match(self.line):
+            self._do()
+        else:
+            self.newlines.append(self.v.instr_line(self.line))
+            self.next_line()
+            #self._stmt()
 
     def _unbraced_stmt(self):
+        #print('_unbraced_stmt', self.line)
         self.newlines.append('{')
         self._simple_stmt()
         self.newlines.append('}')
 
     def _block(self):
+        #print('_block', self.line)
         if self.line != '{':
-            self._unbraced_stmt()
+            self._stmt()
         else:
             self.newlines.append('{')
             self.next_line()
-            self._stmt()
-            self.next_line() # this is the closing }
+            while self.line != '}':
+                self._stmt()
+                # self.next_line()
+            self.newlines.append(self.line)
             self.next_line()
 
+
     def _for(self):
+        #print('_for', self.line)
         loop_parts = self.line.split(';')
         self.v.next_bb()
         loop_parts[1] = bb(self.v.current) + ',' + loop_parts[1]
@@ -138,6 +154,7 @@ class RecDescInstrument:
         self.v.next_bb()
 
     def _if(self):
+        #print('_if', self.line)
         if_parts = self.line.split('(', 1)
         # self.v.next_bb()
         # If statement is part of the previous bb
@@ -150,6 +167,7 @@ class RecDescInstrument:
         self.v.next_bb()
 
     def _while(self):
+        #print('_while', self.line)
         while_parts = self.line.split('(', 1)
         self.v.next_bb()
         # If statement is part of the previous bb
@@ -157,7 +175,9 @@ class RecDescInstrument:
         self.v.visited.add(self.v.current)
         newline = '('.join(while_parts)
         self.newlines.append(newline)
-        print(newline)
+        #print(newline)
+        if (newline[-1] == ';'):
+            return
         self.v.next_bb()
         self.next_line()
         self._block()
@@ -165,11 +185,60 @@ class RecDescInstrument:
         # While has a spare bb at the end
         self.v.next_bb()
 
+    def _do(self):
+        #print('_do', self.line)
+        self.newlines.append(self.line)
+        self.v.next_bb()
+        self.next_line()
+        self._block()
+        #print(self.line)
+        self.v.next_bb()
+        self.v.visited.add(self.v.current)
+        while_parts = self.line.split('(', 1)
+        while_parts[1] = bb(self.v.current) + ',' + while_parts[1]
+        self.v.visited.add(self.v.current)
+        newline = '('.join(while_parts)
+        self.newlines.append(newline)
+        self.next_line()
+        self.v.next_bb()
+        self.v.next_bb()
+        #if self.line != '{':
+            #self._unbraced_stmt()
+            # the current line should be the while
+            # while_parts = self.line.split('(', 1)
+            # self.v.next_bb()
+            # # If statement is part of the previous bb
+            # while_parts[1] = bb(self.v.current) + ',' + while_parts[1]
+            # self.v.visited.add(self.v.current)
+            # newline = '('.join(while_parts)
+            # self.newlines.append(newline)
+            # #print(newline)
+            # self.v.next_bb()
+            # self.next_line()
+        #else:
+            #self.newlines.append('{')
+            #self.next_line()
+            #self._stmt()
+            #self.v.next_bb()
+            # self.next_line()  # this is the closing } we need to handle it
+            #self.next_line()
+            # while_parts = self.line.split('(', 1)
+            # self.v.next_bb()
+            # # If statement is part of the previous bb
+            # while_parts[1] = bb(self.v.current) + ',' + while_parts[1]
+            # self.v.visited.add(self.v.current)
+            # newline = '('.join(while_parts)
+            # self.newlines.append(newline)
+            # #print(newline)
+            # self.v.next_bb()
+            # self.next_line()
+
+
 
 def instrument(filename):
     # for now, assume only main!
     cfg = parse_cfgs(filename)[0]
-    print(cfg)
+    #print(cfg)
     v = Visitor(cfg)
     current = cfg.entry_node
     with open(filename.replace('.cfg', '.cpp')) as f:
@@ -178,9 +247,9 @@ def instrument(filename):
 
 
 if __name__ == '__main__':
-    #print('\n'.join(instrument('test.cfg')))
+    ##print('\n'.join(instrument('test.cfg')))
     with open('test_instr.cpp', 'w') as f:
-        f.write('\n'.join(instrument('testfiles/while.cfg')))
-    #print(main_start.match('int main(char * argv, int argc)'))
-    #print(for_stmt.match('for(int i=0; i<10; i++)'))
+        f.write('\n'.join(instrument('testfiles/do_while.cfg')))
+    ##print(main_start.match('int main(char * argv, int argc)'))
+    ##print(for_stmt.match('for(int i=0; i<10; i++)'))
 
