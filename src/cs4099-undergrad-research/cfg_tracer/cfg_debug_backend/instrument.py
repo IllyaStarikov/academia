@@ -22,6 +22,7 @@ def cmt(bbid):
 
 main_start = re.compile('^int\s+main.*')
 for_stmt = re.compile('for\s*\(.*;.*;.*\)')
+if_stmt = re.compile('if\s*\(.*\)')
 
 class Visitor:
     def __init__(self, cfg):
@@ -75,6 +76,20 @@ class RecDescInstrument:
     def next_line(self):
         self.line = self.f.readline().strip()
 
+    def _simple_stmt(self):
+        #if self.line == '}':
+        #    self.newlines.append(self.line)
+        #    self.v.next_bb()
+        #    self.next_line()
+        if for_stmt.match(self.line):
+            self._for()
+        elif if_stmt.match(self.line):
+            self._if()
+        else:
+            self.newlines.append(self.v.instr_line(self.line))
+            self.next_line()
+            #self._stmt()
+
     def _stmt(self):
         while self.line != '':
             if self.line == '}':
@@ -83,6 +98,8 @@ class RecDescInstrument:
                 self.next_line()
             if for_stmt.match(self.line):
                 self._for()
+            elif if_stmt.match(self.line):
+                self._if()
             else:
                 self.newlines.append(self.v.instr_line(self.line))
                 self.next_line()
@@ -90,8 +107,18 @@ class RecDescInstrument:
 
     def _unbraced_stmt(self):
         self.newlines.append('{')
-        self._stmt()
+        self._simple_stmt()
         self.newlines.append('}')
+
+    def _block(self):
+        if self.line != '{':
+            self._unbraced_stmt()
+        else:
+            self.newlines.append('{')
+            self.next_line()
+            self._stmt()
+            self.next_line() # this is the closing }
+            self.next_line()
 
     def _for(self):
         loop_parts = self.line.split(';')
@@ -105,14 +132,21 @@ class RecDescInstrument:
         self.newlines.append(newline)
         self.v.next_bb()
         self.next_line()
-        if self.line != '{':
-            self._unbraced_stmt()
-        else:
-            self.newlines.append('{')
-            self.next_line()
-            self._stmt()
-            self.next_line() # this is the closing }
-            self.next_line()
+        self._block()
+        self.v.next_bb()
+
+    def _if(self):
+        if_parts = self.line.split('(', 1)
+        # self.v.next_bb()
+        # If statement is part of the previous bb
+        if_parts[1] = bb(self.v.current) + ',' + if_parts[1]
+        newline = '('.join(if_parts)
+        self.newlines.append(newline)
+        self.v.next_bb()
+        self.next_line()
+        self._block()
+        self.v.next_bb()
+
 
 def instrument(filename):
     # for now, assume only main!
@@ -128,7 +162,7 @@ def instrument(filename):
 if __name__ == '__main__':
     #print('\n'.join(instrument('test.cfg')))
     with open('test_instr.cpp', 'w') as f:
-        f.write('\n'.join(instrument('test.cfg')))
+        f.write('\n'.join(instrument('testfiles/for_nobraces.cfg')))
     #print(main_start.match('int main(char * argv, int argc)'))
     #print(for_stmt.match('for(int i=0; i<10; i++)'))
 
