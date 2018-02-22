@@ -23,6 +23,8 @@ def cmt(bbid):
 main_start = re.compile('^int\s+main.*')
 for_stmt = re.compile('for\s*\(.*;.*;.*\)')
 if_stmt = re.compile('if\s*\(.*\)')
+while_stmt = re.compile('while\s*\(.*\)')
+
 
 class Visitor:
     def __init__(self, cfg):
@@ -77,14 +79,12 @@ class RecDescInstrument:
         self.line = self.f.readline().strip()
 
     def _simple_stmt(self):
-        #if self.line == '}':
-        #    self.newlines.append(self.line)
-        #    self.v.next_bb()
-        #    self.next_line()
         if for_stmt.match(self.line):
             self._for()
         elif if_stmt.match(self.line):
             self._if()
+        elif while_stmt.match(self.line):
+            self._while()
         else:
             self.newlines.append(self.v.instr_line(self.line))
             self.next_line()
@@ -100,6 +100,8 @@ class RecDescInstrument:
                 self._for()
             elif if_stmt.match(self.line):
                 self._if()
+            elif while_stmt.match(self.line):
+                self._while()
             else:
                 self.newlines.append(self.v.instr_line(self.line))
                 self.next_line()
@@ -147,6 +149,22 @@ class RecDescInstrument:
         self._block()
         self.v.next_bb()
 
+    def _while(self):
+        while_parts = self.line.split('(', 1)
+        self.v.next_bb()
+        # If statement is part of the previous bb
+        while_parts[1] = bb(self.v.current) + ',' + while_parts[1]
+        self.v.visited.add(self.v.current)
+        newline = '('.join(while_parts)
+        self.newlines.append(newline)
+        print(newline)
+        self.v.next_bb()
+        self.next_line()
+        self._block()
+        self.v.next_bb()
+        # While has a spare bb at the end
+        self.v.next_bb()
+
 
 def instrument(filename):
     # for now, assume only main!
@@ -162,7 +180,7 @@ def instrument(filename):
 if __name__ == '__main__':
     #print('\n'.join(instrument('test.cfg')))
     with open('test_instr.cpp', 'w') as f:
-        f.write('\n'.join(instrument('testfiles/for_nobraces.cfg')))
+        f.write('\n'.join(instrument('testfiles/while.cfg')))
     #print(main_start.match('int main(char * argv, int argc)'))
     #print(for_stmt.match('for(int i=0; i<10; i++)'))
 
