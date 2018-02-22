@@ -150,7 +150,12 @@ class RecDescInstrument:
         self.newlines.append(newline)
         self.v.next_bb()
         self.next_line()
+        oneline = self.line != '{'
+        if oneline:
+            self.newlines.append('{')
         self._block()
+        if oneline:
+            self.newlines.append('}')
         self.v.next_bb()
 
     def _if(self):
@@ -163,7 +168,12 @@ class RecDescInstrument:
         self.newlines.append(newline)
         self.v.next_bb()
         self.next_line()
+        oneline = self.line != '{'
+        if oneline:
+            self.newlines.append('{')
         self._block()
+        if oneline:
+            self.newlines.append('}')
         self.v.next_bb()
 
     def _while(self):
@@ -202,36 +212,6 @@ class RecDescInstrument:
         self.next_line()
         self.v.next_bb()
         self.v.next_bb()
-        #if self.line != '{':
-            #self._unbraced_stmt()
-            # the current line should be the while
-            # while_parts = self.line.split('(', 1)
-            # self.v.next_bb()
-            # # If statement is part of the previous bb
-            # while_parts[1] = bb(self.v.current) + ',' + while_parts[1]
-            # self.v.visited.add(self.v.current)
-            # newline = '('.join(while_parts)
-            # self.newlines.append(newline)
-            # #print(newline)
-            # self.v.next_bb()
-            # self.next_line()
-        #else:
-            #self.newlines.append('{')
-            #self.next_line()
-            #self._stmt()
-            #self.v.next_bb()
-            # self.next_line()  # this is the closing } we need to handle it
-            #self.next_line()
-            # while_parts = self.line.split('(', 1)
-            # self.v.next_bb()
-            # # If statement is part of the previous bb
-            # while_parts[1] = bb(self.v.current) + ',' + while_parts[1]
-            # self.v.visited.add(self.v.current)
-            # newline = '('.join(while_parts)
-            # self.newlines.append(newline)
-            # #print(newline)
-            # self.v.next_bb()
-            # self.next_line()
 
 
 
@@ -249,7 +229,7 @@ def instrument(filename):
 if __name__ == '__main__':
     ##print('\n'.join(instrument('test.cfg')))
     with open('test_instr.cpp', 'w') as f:
-        f.write('\n'.join(instrument('testfiles/do_while.cfg')))
+        f.write('\n'.join(instrument('testfiles/for_nobraces.cfg')))
     ##print(main_start.match('int main(char * argv, int argc)'))
     ##print(for_stmt.match('for(int i=0; i<10; i++)'))
 
