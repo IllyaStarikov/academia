@@ -17,7 +17,10 @@ def bb(bbid):
 
 
 def cmt(bbid):
-    return "/*{}*/".format(bbid)
+    return "/*:{}:*/".format(bbid)
+
+def close_cmt(bbid):
+    return "/*:/{}:*/".format(bbid)
 
 
 main_start = re.compile('^int\s+main.*')
@@ -40,9 +43,9 @@ class Visitor:
         if self.current not in self.visited:
             self.visited.add(self.current)
             if '{' in line:
-                return '{}{}'.format(cmt(self.current), line.replace('{', '{'+bb(self.current)+';'))
-            return '{} {};{}'.format(cmt(self.current), bb(self.current), line.strip())
-        return cmt(self.current) + line
+                return '{}{}{}'.format(cmt(self.current), line.replace('{', '{'+bb(self.current)+';'), close_cmt(self.current))
+            return '{} {};{}{}'.format(cmt(self.current), bb(self.current), line.strip(), close_cmt(self.current))
+        return cmt(self.current) + line +  close_cmt(self.current)
 
     def next_bb(self):
         if self.current == self.cfg.exit_node:
@@ -68,9 +71,9 @@ class RecDescInstrument:
             self.newlines.append(self.line)
             self.next_line()
         while '{' not in self.line:
-            self.newlines.append(cmt(self.v.current) + self.line)
+            self.newlines.append(cmt(self.v.current) + self.line + close_cmt(self.v.current))
             self.next_line()
-        self.newlines.append(self.v.instr_line(self.line))
+        # self.newlines.append(self.v.instr_line(self.line))
         #self.next_line()
         self.v.next_bb()
         self._block()
@@ -163,7 +166,7 @@ class RecDescInstrument:
         if_parts = self.line.split('(', 1)
         # self.v.next_bb()
         # If statement is part of the previous bb
-        if_parts[1] = bb(self.v.current) + ',' + if_parts[1]
+        if_parts[1] = cmt(self.v.current) + bb(self.v.current) + ',' + if_parts[1][:-1] + close_cmt(self.v.current) + ')'
         newline = '('.join(if_parts)
         self.newlines.append(newline)
         self.v.next_bb()
@@ -181,7 +184,7 @@ class RecDescInstrument:
         while_parts = self.line.split('(', 1)
         self.v.next_bb()
         # If statement is part of the previous bb
-        while_parts[1] = bb(self.v.current) + ',' + while_parts[1]
+        while_parts[1] = cmt(self.v.current) +  bb(self.v.current) + ',' + while_parts[1] + close_cmt(self.v.current)
         self.v.visited.add(self.v.current)
         newline = '('.join(while_parts)
         self.newlines.append(newline)
@@ -210,7 +213,7 @@ class RecDescInstrument:
         self.v.next_bb()
         self.v.visited.add(self.v.current)
         while_parts = self.line.split('(', 1)
-        while_parts[1] = bb(self.v.current) + ',' + while_parts[1]
+        while_parts[1] = cmt(self.v.current) +  bb(self.v.current) + ',' + while_parts[1] + close_cmt(self.v.current)
         self.v.visited.add(self.v.current)
         newline = '('.join(while_parts)
         self.newlines.append(newline)
@@ -234,7 +237,7 @@ def instrument(filename):
 if __name__ == '__main__':
     ##print('\n'.join(instrument('test.cfg')))
     with open('test_instr.cpp', 'w') as f:
-        f.write('\n'.join(instrument('testfiles/while.cfg')))
+        f.write('\n'.join(instrument('testfiles/if.cfg')))
     ##print(main_start.match('int main(char * argv, int argc)'))
     ##print(for_stmt.match('for(int i=0; i<10; i++)'))
 
