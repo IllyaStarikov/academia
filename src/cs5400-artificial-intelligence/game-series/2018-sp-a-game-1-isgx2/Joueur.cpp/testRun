@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ -z "$1" ]
+  then
+    echo "No argument(s) supplied. Please specify game session you want to join or make."
+  else
+    ./run Chess -s game.siggame.io -r "$@"
+fi

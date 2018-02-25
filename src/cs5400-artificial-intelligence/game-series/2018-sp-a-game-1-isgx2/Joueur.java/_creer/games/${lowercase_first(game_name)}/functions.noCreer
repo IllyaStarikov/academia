@@ -1,0 +1,53 @@
+<%
+if not 'java' in shared:
+    shared['java'] = {}
+
+    def java_default(type_obj, default=None):
+        base_type = type_obj['name']
+        if default == None:
+            if base_type == "string":
+                return '""'
+            elif base_type == "list":
+                return "new ArrayList<" + java_type(type_obj['valueType']) + ">()"
+            elif base_type == "dictionary":
+                return 'new HashMap<' + java_type(type_obj['keyType']) + ", " + java_type(type_obj['valueType']) + ">()"
+            elif base_type == "int" or base_type == "float":
+                return '0'
+            elif base_type == "boolean":
+                return 'false'
+            else: # should be null and GameObjects
+                return "null"
+        else:
+            return java_value(type_obj, default)
+    shared['java']['default'] = java_default
+
+    def java_value(type_obj, default):
+        base_type = type_obj['name']
+        if base_type == "string":
+            return '"' + default + '"'
+        elif base_type == "boolean":
+            return str(default).lower()
+        elif base_type == "int":
+            return str(default)
+        elif base_type == "float":
+            return str(default) + "d"
+        else: # should be dict, list, or gameobject
+            return "null"
+    shared['java']['value'] = java_value
+
+    def java_type(type_obj):
+        base_type = type_obj['name']
+        if base_type == "list":
+            return "List<" + java_type(type_obj['valueType']) + ">"
+        elif base_type == "dictionary":
+                return 'Map<' + java_type(type_obj['keyType']) + ", " + java_type(type_obj['valueType']) + ">"
+        elif base_type == "boolean":
+            return "boolean"
+        elif base_type == "string":
+            return "String"
+        elif base_type == "float":
+            return "double"
+        else: # should be int, float, or the GameObject class name
+            return base_type
+    shared['java']['type'] = java_type
+%>

@@ -1,0 +1,94 @@
+<%
+if not 'py' in shared:
+    shared['py'] = {}
+
+    def py_default(type_obj, default=None):
+        base_type = type_obj['name']
+        if default == None:
+            if base_type == "string":
+                return '""'
+            elif base_type == "list":
+                return '[]'
+            elif base_type == "dictionary":
+                return '{}'
+            elif base_type == "int" or base_type == "float":
+                return '0'
+            elif base_type == "boolean":
+                return 'False'
+            else:
+                return 'None'
+        else:
+            return py_value(type_obj, default)
+    shared['py']['default'] = py_default
+
+    def py_value(type_obj, default):
+        base_type = type_obj['name']
+        if base_type == "string":
+            return '"' + default + '"'
+        elif base_type == "boolean":
+            return str(default).capitalize()
+        elif base_type == "int" or base_type == "float":
+            return str(default)
+    shared['py']['value'] = py_value
+
+    def py_type(type_obj):
+        base_type = type_obj['name']
+        if base_type == "string":
+            return "str"
+        elif base_type == "list":
+            return "list[{}]".format(py_type(type_obj['valueType']))
+        elif base_type == "dictionary":
+            return "dict[{}, {}]".format(py_type(type_obj['keyType']), py_type(type_obj['valueType']))
+        elif base_type == "boolean":
+            return "bool"
+        elif base_type == "null":
+            return "None"
+        else:
+            return base_type
+    shared['py']['type'] = py_type
+
+    def py_cast(type_obj):
+        base_type = type_obj['name']
+        if base_type == "string":
+            return "str"
+        elif base_type == "int":
+            return "int"
+        elif base_type == "float":
+            return "float"
+        elif base_type == "boolean":
+            return "bool"
+        else:
+            return ""
+    shared['py']['cast'] = py_cast
+
+
+    def py_kwargs(argument_names):
+        k = [""]
+        for name in argument_names:
+            k.append(name + "=" + name)
+        return ", ".join(k)
+    shared['py']['kwargs'] = py_kwargs
+
+    def py_args(arguments):
+        to_join = [ "" ]
+        for argument in arguments:
+            arg_str = argument['name']
+            if argument['optional']:
+                default_value = py_value(argument['type'], argument['default'])
+                if default_value == None:
+                    default_value = "None"
+                arg_str += "=" + default_value
+            to_join.append(arg_str)
+        return ", ".join(to_join)
+    shared['py']['args'] = py_args
+
+    def py_format_description(description):
+        return description \
+            .replace("null", "None") \
+            .replace("Null", "None") \
+            .replace("true", "True") \
+            .replace("false", "False") \
+            .replace("dictionary", "dict")
+    shared['py']['format_description'] = py_format_description
+
+%>

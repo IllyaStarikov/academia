@@ -1,0 +1,85 @@
+<%
+
+def gen_cpp_base_type(type):
+    if type is None:
+        return 'void'
+    elif type['name'] in ['void', 'int']:
+        return type['name']
+    elif type['name'] == 'float':
+        return 'double'
+    elif type['name'] == 'boolean':
+        return 'bool'
+    elif type['name'] == 'string':
+        return 'std::string'
+    elif type['name'] == 'null':
+        return 'void'
+    elif type['name'] not in ['list', 'dictionary']:
+        return underscore(type['name']).capitalize()
+    elif type['name'] == 'list':
+        return 'std::vector<' + gen_cpp_base_type(type['valueType']) + '>'
+    elif type['name'] == 'dictionary':
+        return 'std::unordered_map<' + gen_cpp_base_type(type['keyType']) + ', ' + gen_cpp_base_type(type['valueType']) + '>'
+    else:
+        raise Exception('UNKNOWN TYPE ENCOUNTERED -- FATAL ERROR')
+
+def make_string_arg(params):
+    typer = params['type']
+    name = params['name']
+    if typer['name'] in ['float', 'boolean', 'int']:
+        return "std::to_string({})".format(underscore(name))
+    elif typer['name'] in ['string']:
+        return 'std::string("\\\"") + ' + underscore(name) + ' + "\\\""'
+    elif typer['name'] in ['list', 'dictionary']:
+        raise Exception('List and dictionary arguments are not supported.')
+    else:
+        return '(' + name + ' ? (std::string("{\\"id\\":\\"") + ' + name + '->id + "\\"}") : std::string("null"))'
+
+def is_ref(type):
+    return type not in ['double', 'bool', 'int', 'void']
+
+def gen_cpp_base_type2(type):
+    return 'const ' + gen_cpp_base_type(type) + '&'
+
+def make_arg(type_str):
+    if type_str in ['int', 'float', 'bool']:
+        return type_str
+    else:
+        return 'const ' + type_str + '&'
+
+def trans_default(defer):
+    if isinstance(defer, bool):
+        if defer == True:
+            return 'true'
+        elif defer == False:
+            return 'false'
+    elif isinstance(defer, int) or isinstance(defer, float):
+        return str(defer)
+    elif isinstance(defer, str):
+        return '"' + defer + '"'
+    raise Exception("UNKNOWN DEFAULT ARGUMENT TYPE -- FATAL ERROR")
+
+def make_args(params, default_values):
+    to_ret = ''
+    if 'arguments' in params:
+        for arg in params['arguments']:
+            if to_ret != '':
+                to_ret += ', '
+            to_ret += make_arg(gen_cpp_base_type(arg['type']))
+            to_ret += ' ' + underscore(arg['name'])
+            if arg['optional'] and default_values:
+                to_ret += ' = ' + trans_default(arg['default'])
+    return to_ret
+
+shared['gen_base_type'] = gen_cpp_base_type
+shared['make_args'] = make_args
+shared['gen_base_type2'] = gen_cpp_base_type2
+shared['defaults'] = {}
+# These are the C++ types, maaaaan
+shared['defaults']['bool'] = " true"
+shared['defaults']['void'] = ""
+shared['defaults']['int'] = " 0"
+shared['defaults']['double'] = " 0"
+shared['make_string_arg'] = make_string_arg
+shared['is_ref'] = is_ref
+
+%>

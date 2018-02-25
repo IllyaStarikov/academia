@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsWindows Condition="'$(OS)' == 'Windows_NT'">_</IsWindows>
+    <IsOSX Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' == 'true'">_</IsOSX>
+    <IsLinux Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' == 'true'">_</IsLinux>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RuntimeIdentifier Condition="'$(IsWindows)' != ''">win7-x64</RuntimeIdentifier>
+    <RuntimeIdentifier Condition="'$(IsOSX)' != ''">osx-x64</RuntimeIdentifier>
+    <RuntimeIdentifier Condition="'$(IsLinux)' != ''">linux-x64</RuntimeIdentifier>
+    <DebugType>portable</DebugType>
+    <AssemblyName>cs-client</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>Joueur.cs</PackageId>
+    <RuntimeFrameworkVersion>2.0.0</RuntimeFrameworkVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="_creer\**"/>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ILLink.Tasks" Version="0.1.4-preview-906439" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+  </ItemGroup>
+</Project>
