@@ -1,9 +1,9 @@
 //
 //  functions.h
-//  cs5201 - Numerical Modeling
+//  src
 //
-//  Created by Illya Starikov on 01/29/18.
-//  Copyright 2018. Illya Starikov. All rights reserved.
+//  Illya Starikov, Section 1A, 18083141
+//  cs5201 – Object Oriented Numerical Modeling
 //
 
 /** @file */
@@ -23,7 +23,8 @@
 
 namespace filesystem = std::experimental::filesystem;
 
-/** @brief Ensures there are enough parameters for the main function.
+/**
+ *  @brief Ensures there are enough parameters for the main function.
  *
  *  @param argc The number of parameters passed into main (typically named
  *         @p argc).
@@ -33,20 +34,24 @@ namespace filesystem = std::experimental::filesystem;
  *         program will terminate prematurely and print out the error to
  *         `stderr`.
  *
- * @pre    @p argc must at least 2.
- * @post   See `warning` */
+ *  @pre    @p argc must at least 2.
+ *  @post   See `warning`
+ **/
 void ensureEnoughArguments(const int argc);
 
-/** @brief Feed an error to `stderr`, and terminate the program.
+/**
+ *  @brief Feed an error to `stderr`, and terminate the program.
  *
  *  @warning This does terminate the program prematurely, meaning all subsequent
  *         after this function call will be ignored.
  *
  *  @pre   None.
- *  @post  See `note`. */
+ *  @post  See `warning`.
+ **/
 void displayErrorAndQuit(const std::string& output);
 
-/** @brief Split the input at @p delimiter (if multiple `delimiter`s) into
+/**
+ *  @brief Split the input at @p delimiter (if multiple `delimiter`s) into
  *  multiple strings.
  *
  *  @param someString The spring that is to be split into multiple strings.
@@ -57,10 +62,12 @@ void displayErrorAndQuit(const std::string& output);
  *  hand side of the split.
  *
  *  @pre    None.
- *  @post   See `return`. */
+ *  @post   See `return`.
+ **/
 std::vector<std::string> split(const std::string& someString, const char delimiter);
 
-/** @brief Converts a string to an integer.
+/**
+ *  @brief Converts a string to an integer.
  *
  *  @param someString The string to convert to an `int`. Note that if
  *  `someString` cannot explicitly be converted to an `int`, i.e., if
@@ -75,10 +82,12 @@ std::vector<std::string> split(const std::string& someString, const char delimit
  *  @return `someString` converted to an `int`.
  *
  *  @pre   See @p someString.
- *  @post  See `return`. */
+ *  @post  See `return`.
+ **/
 int stringToInt(const std::string& someString);
 
-/** @brief Converts a string to an integer.
+/**
+ *  @brief Converts a string to an integer.
  *  @param someString The string to convert to a `float`. Note that if
  *  `someString` cannot explicitly be converted to an `float`, i.e., if
  *  ```
@@ -91,19 +100,23 @@ int stringToInt(const std::string& someString);
  *  @return `someString` converted to an `float`.
  *
  *  @pre   See @p someString.
- *  @post  See `return`. */
+ *  @post  See `return`.
+ **/
 double stringToDouble(const std::string& someString);
 
-/** @brief Determines if a file exists a specified path.
+/**
+ *  @brief Determines if a file exists a specified path.
  *  @param filename The full or relative path where to check if a file
- *         exists.
+ *        exists.
  *  @return `true` if the file exists, `false` otherwise.
  *
  *  @pre   None.
- *  @post  See `return` */
+ *  @post  See `return`
+ **/
 bool fileExists(const std::string& filename);
 
-/** @brief Read into a `std::string` from a specified file.
+/**
+ *  @brief Read into a `std::string` from a specified file.
  *
  *  @param path The path where file is to be read from. Can
  *         be relative or absolute.
@@ -111,14 +124,15 @@ bool fileExists(const std::string& filename);
  *  @return An `std::string` with the entirety of the file contents
  *          in them (`n` and all).
  *
- *  @Note This does throw an exception if the file does not exist.
+ *  @warning This does throw an exception if the file does not exist.
  *
- *  @pre  Check `note`.
+ *  @pre  Check `warning`.
  *  @post See `return`.
- */
+ **/
 std::string readFile(const filesystem::path& path);
 
-/** @brief Read the specified input file and ensure proper
+/**
+ *  @brief Read the specified input file and ensure proper
  *         data format.
  *
  *  @param filename The filename where file is to be read from. Can
@@ -127,14 +141,28 @@ std::string readFile(const filesystem::path& path);
  *  @return An `std::string` with the entirety of the file contents
  *          in them (`n` and all).
  *
- *  @Note This does terminate prematurely if the file contents is not
+ *  @warning This does terminate prematurely if the file contents is not
  *        in the proper format.
  *
- *  @pre  Check `note`.
+ *  @pre  Check `warning`.
  *  @post See `return`.
- */
+ **/
 std::string readInputFile(const std::string& filename);
 
+/**
+ *  @brief Parse out points from @p fileContents.
+ *
+ *  @param fileContents The string to parse the Polar Pairs from. This is
+ *         intended to have the `\n` and all.
+ *
+ *  @warning This will throw if fileContents is not in the proper.
+ *
+ *  @return A `std::vector` of points of the form (x, y).
+ *
+ *  @pre  See `warning`.
+*   @post See `return`.
+**/
+std::vector<std::pair<double, double>> parseFileContents(const std::string& fileContents);
 
 #endif /* functions_h */
 
