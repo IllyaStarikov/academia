@@ -94,37 +94,33 @@ std::vector<std::pair<double, double>> parseFileContents(const std::string& file
     double x, y;
     std::remove_if(inputSplit.begin(), inputSplit.end(), [](std::string string) { return string == "" || string == "\t"; });
 
-    try {
         auto numberOfParameter = stringToInt(inputSplit[0]);
 
         for (int i = 1; i <= numberOfParameter; i++) {
-                auto line = inputSplit[i];
+            auto line = inputSplit[i];
 
-                // Just matches to see if there is no digit behind the decimal point. `stringToDecimal` will throw an exception if this is the case.
-                auto nonPaddedZeroRegex = std::regex(R"(((\s|^)[+-]?)\.([0-9]*))");
-                auto toReplaceWith = R"($010.$3)";
-                line = std::regex_replace(line, nonPaddedZeroRegex, toReplaceWith);
+            // Just matches to see if there is no digit behind the decimal point. `stringToDecimal` will throw an exception if this is the case.
+            auto nonPaddedZeroRegex = std::regex(R"(((\s|^)[+-]?)\.([0-9]*))");
+            auto toReplaceWith = R"($010.$3)";
+            line = std::regex_replace(line, nonPaddedZeroRegex, toReplaceWith);
 
-                auto stringStream = std::ostringstream();
-                auto FLOAT         = R"(([-+]?[0-9]*\.?[0-9]*))";
-                auto WHITESPACE    = R"(\s+)";
+            auto stringStream = std::ostringstream();
+            auto FLOAT         = R"(([-+]?[0-9]*\.?[0-9]*))";
+            auto WHITESPACE    = R"(\s+)";
 
-                stringStream << FLOAT << WHITESPACE << FLOAT;
+            stringStream << FLOAT << WHITESPACE << FLOAT;
 
-                auto regexString = stringStream.str();
-                auto regex       = std::regex(regexString);
-                auto match       = std::smatch();
+            auto regexString = stringStream.str();
+            auto regex       = std::regex(regexString);
+            auto match       = std::smatch();
 
-                std::regex_search(line, match, regex);
+            std::regex_search(line, match, regex);
 
-                x = stringToDouble(match[1]);
-                y = stringToDouble(match[2]);
+            x = stringToDouble(match[1]);
+            y = stringToDouble(match[2]);
 
-                pairs.push_back(std::make_pair(x, y));
+            pairs.push_back(std::make_pair(x, y));
         }
-    } catch(const std::logic_error error) {
-        displayErrorAndQuit("Data is not in proper format. Terminating.");
-    }
 
-    return pairs;
+        return pairs;
 }
