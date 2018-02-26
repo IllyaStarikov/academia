@@ -26,10 +26,10 @@ public:
     ImproperDataset(const std::string errorMessage);
 
     ImproperDataset() = delete;
-    ImproperDataset(const ImproperDataset& other) = delete;
-    ImproperDataset(const ImproperDataset&& other) = delete;
-    ImproperDataset& operator=(const ImproperDataset& other) = delete;
-    ImproperDataset& operator=(const ImproperDataset&& other) = delete;
+    ImproperDataset(const ImproperDataset& other) = default;
+    ImproperDataset(ImproperDataset&& other) = default;
+    ImproperDataset& operator=(const ImproperDataset& other) = default;
+    ImproperDataset& operator=(ImproperDataset&& other) = default;
 
     const std::string what() const;
 };

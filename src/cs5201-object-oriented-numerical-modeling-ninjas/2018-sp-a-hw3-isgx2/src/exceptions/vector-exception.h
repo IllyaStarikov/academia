@@ -27,10 +27,10 @@ public:
     OutOfBounds(const int index);
 
     OutOfBounds() = delete;
-    OutOfBounds(const OutOfBounds& other) = delete;
-    OutOfBounds(const OutOfBounds&& other) = delete;
-    OutOfBounds& operator=(const OutOfBounds& other) = delete;
-    OutOfBounds& operator=(const OutOfBounds&& other) = delete;
+    OutOfBounds(const OutOfBounds& other) = default;
+    OutOfBounds(OutOfBounds&& other) = default;
+    OutOfBounds& operator=(const OutOfBounds& other) = default;
+    OutOfBounds& operator=(OutOfBounds&& other) = default;
 
     const std::string what() const;
 };
@@ -53,10 +53,10 @@ public:
     ImproperArgument(T argument);
 
     ImproperArgument() = delete;
-    ImproperArgument(const ImproperArgument& other) = delete;
-    ImproperArgument(const ImproperArgument&& other) = delete;
-    ImproperArgument& operator=(const ImproperArgument& other) = delete;
-    ImproperArgument& operator=(const ImproperArgument&& other) = delete;
+    ImproperArgument(const ImproperArgument& other) = default;
+    ImproperArgument(ImproperArgument&& other) = default;
+    ImproperArgument& operator=(const ImproperArgument& other) = default;
+    ImproperArgument& operator=(ImproperArgument&& other) = default;
 
     const std::string what() const;
 };
