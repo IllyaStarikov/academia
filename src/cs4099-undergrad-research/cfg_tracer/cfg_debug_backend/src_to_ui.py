@@ -1,6 +1,6 @@
 import sys
 import os
-from subprocess import run, PIPE, Popen
+from subprocess import run, PIPE, Popen, DEVNULL
 from parse_cfgs import parse_lines
 from instrument import instrument_cpp
 from instr_to_html import instr_to_html
@@ -32,7 +32,7 @@ with open(html_src, 'w') as f:
     f.write('\n'.join(p2.stdout.read().decode('utf-8').split('\n')))
 
 # get initial trace
-run(['clang++', '-o', os.path.join(dir, 'initrun'), newfname])
+run(['clang++', '-o', os.path.join(dir, 'initrun'), newfname], stderr=DEVNULL)
 init_run = run([os.path.join(dir, 'initrun')], stderr=PIPE)
 init_trace = init_run.stderr.decode('utf-8').splitlines()
 
