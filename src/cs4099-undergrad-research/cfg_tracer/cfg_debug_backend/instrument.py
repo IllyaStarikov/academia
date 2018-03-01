@@ -177,7 +177,10 @@ class RecDescInstrument:
         if_parts = self.line.split('(', 1)
         # self.v.next_bb()
         # If statement is part of the previous bb
-        if_parts[1] = cmt(self.v.current) + bb(self.v.current) + ',' + if_parts[1][:-1] + close_cmt(self.v.current) + ')'
+        instr = ''
+        if not self.v.current in self.v.visited:
+            instr = bb(self.v.current) + ','
+        if_parts[1] = cmt(self.v.current) + instr + if_parts[1][:-1] + close_cmt(self.v.current) + ')'
         newline = '('.join(if_parts)
         self.newlines.append(newline)
         self.v.next_bb()
@@ -194,8 +197,11 @@ class RecDescInstrument:
         #print('_while', self.line)
         while_parts = self.line.split('(', 1)
         self.v.next_bb()
+        instr = ''
+        if not self.v.current in self.v.visited:
+            instr = bb(self.v.current) + ','
         # If statement is part of the previous bb
-        while_parts[1] = cmt(self.v.current) +  bb(self.v.current) + ',' + while_parts[1] + close_cmt(self.v.current)
+        while_parts[1] = cmt(self.v.current) +  instr + while_parts[1] + close_cmt(self.v.current)
         self.v.visited.add(self.v.current)
         newline = '('.join(while_parts)
         self.newlines.append(newline)
@@ -224,7 +230,10 @@ class RecDescInstrument:
         self.v.next_bb()
         self.v.visited.add(self.v.current)
         while_parts = self.line.split('(', 1)
-        while_parts[1] = cmt(self.v.current) +  bb(self.v.current) + ',' + while_parts[1] + close_cmt(self.v.current)
+        instr = ''
+        if not self.v.current in self.v.visited:
+            instr = bb(self.v.current) + ','
+        while_parts[1] = cmt(self.v.current) +  instr + while_parts[1] + close_cmt(self.v.current)
         self.v.visited.add(self.v.current)
         newline = '('.join(while_parts)
         self.newlines.append(newline)
