@@ -5,7 +5,7 @@ INST='''#include <iostream>
 #include <sstream>
 #include <unistd.h>
 void __bbinstr(const char bbid []) {
-    cerr << bbid << std::endl;
+    std::cerr << bbid << std::endl;
     return;
 }'''
 
