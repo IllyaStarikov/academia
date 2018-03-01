@@ -1,14 +1,11 @@
 from parse_cfgs import parse_cfgs
 import re
 
-INST='''#include <fstream>
+INST='''#include <iostream>
 #include <sstream>
 #include <unistd.h>
 void __bbinstr(const char bbid []) {
-    std::stringstream fname;
-    fname << getpid() << ".bbtrace";
-    std::ofstream tracefile(fname.str().c_str(), std::ofstream::app);
-    tracefile << bbid << std::endl;
+    cerr << bbid << std::endl;
     return;
 }'''
 
