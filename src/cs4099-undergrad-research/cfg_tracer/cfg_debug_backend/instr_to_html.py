@@ -5,10 +5,12 @@ main_start = re.compile('int\s+main.*')
 open_repl = re.compile("\/\*:(B[0-9]+):\*\/\s*")
 close_repl = re.compile("\/\*:\/(B[0-9]+):\*\/\s*")
 indent_repl = re.compile("^\s+")
+init_repl = re.compile("\/\*%[^%]*%\*\/\s*")
 
 
 def htmlize(line):
-    return  '<span>' + close_repl.sub('</span>', open_repl.sub('<span class="\g<1>">', line)) + '</span>'
+    return  '<span>' + init_repl.sub('', close_repl.sub('</span>',
+                                                        open_repl.sub('<span class="\g<1>">', line)) + '</span>')
 
 
 # pre: file has been instrumented and then bbinstr calls removed with

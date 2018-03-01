@@ -53,7 +53,7 @@ class Visitor:
         parts = line.split('=', 1)
         match = init_line.match(line)
         vname = match.group(1)
-        line = parts[0] + "/*%{}%*/".format(vname) + parts[1][:-1] + "/*%~{}%*/".format(vname) +';'
+        line = parts[0] + " = /*%{}%*/".format(vname) + parts[1][:-1] + "/*%~{}%*/".format(vname) +';'
         self.vars[match.group(1)] = match.group(2)
         return self.instr_line(line)
 
