@@ -21,8 +21,12 @@ newcpp = instrument_cpp(file, cfg)
 with open(newfname, 'w') as f:
     f.write('\n'.join(newcpp))
 
-src_html = instr_to_html(newfname)
-p1 = Popen(["sed", "'s/__bbinstr\([^;]*\)[;,]//g'", newfname], stdout=PIPE)
+p1 = Popen(["sed", "s/__bbinstr\([^;]*\)[;,]//g", newfname], stdout=PIPE)
 p2 = Popen(['clang-format'], stdin=p1.stdout, stdout=PIPE)
 
-print(p2.stdout)
+with open(html_src, 'w') as f:
+    f.write('\n'.join(p2.stdout.read().decode('utf-8').split('\n')))
+#p2.stdout.read().decode('utf-8').split('\n')
+src_html = instr_to_html(html_src)
+data={'cfg': cfg.to_json(), 'html': '\n'.join(src_html)}
+print(data)
