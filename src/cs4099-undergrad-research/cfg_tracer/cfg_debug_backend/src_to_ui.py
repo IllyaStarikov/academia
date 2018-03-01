@@ -4,6 +4,7 @@ from subprocess import run, PIPE, Popen
 from parse_cfgs import parse_lines
 from instrument import instrument_cpp
 from instr_to_html import instr_to_html
+import json
 
 file = sys.argv[1]
 dir = os.path.dirname(file)
@@ -32,4 +33,4 @@ with open(html_src, 'w') as f:
 #p2.stdout.read().decode('utf-8').split('\n')
 src_html = instr_to_html(html_src)
 data={'cfg': cfg.to_json(), 'html': '\n'.join(src_html)}
-print(data)
+print(json.dumps(data))
