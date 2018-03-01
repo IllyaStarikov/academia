@@ -28,6 +28,7 @@ for_stmt = re.compile('for\s*\(.*;.*;.*\)')
 if_stmt = re.compile('if\s*\(.*\)')
 while_stmt = re.compile('while\s*\(.*\)')
 do_stmt = re.compile('do$')
+init_line = re.compile('[_a-zA-Z]\w*\s+([_a-zA-Z]\w*)\s*=\s*([^;]);')
 
 
 class Visitor:
@@ -36,6 +37,7 @@ class Visitor:
         self.cfg = cfg
         self.current = cfg.entry_node
         self.next_block = list(reversed(cfg.basic_blocks[self.current].successors))
+        self.vars = dict()
 
     def instr_line(self, line):
         if line == '' or self.current == self.cfg.exit_node:
@@ -46,6 +48,14 @@ class Visitor:
                 return '{}{}{}'.format(cmt(self.current), line.replace('{', '{'+bb(self.current)+';'), close_cmt(self.current))
             return '{} {};{}{}'.format(cmt(self.current), bb(self.current), line.strip(), close_cmt(self.current))
         return cmt(self.current) + line +  close_cmt(self.current)
+
+    def instr_init_line(self, line):
+        parts = line.split('=', 1)
+        match = init_line.match(line)
+        vname = match.group(1)
+        line = parts[0] + "/*%{}%*/".format(vname) + parts[1][:-1] + "/*%~{}%*/".format(vname) +';'
+        self.vars[match.group(1)] = match.group(2)
+        return self.instr_line(line)
 
     def next_bb(self):
         if self.current == self.cfg.exit_node:
@@ -103,6 +113,7 @@ class RecDescInstrument:
     def _stmt(self):
         #while self.line != '':
         #print('_stmt', self.line)
+
         if self.line == '}':
             self.newlines.append(self.line)
             self.v.next_bb()
@@ -115,6 +126,9 @@ class RecDescInstrument:
             self._while()
         elif do_stmt.match(self.line):
             self._do()
+        elif init_line.match(self.line):
+            self.newlines.append(self.v.instr_init_line(self.line))
+            self.next_line()
         else:
             self.newlines.append(self.v.instr_line(self.line))
             self.next_line()
@@ -233,6 +247,12 @@ def instrument(filename):
         r = RecDescInstrument(f, v)
     return r.newlines
 
+
+def instrument_cpp(filename, cfg):
+    v = Visitor(cfg)
+    with open(filename) as f:
+        r = RecDescInstrument(f, v)
+    return r.newlines
 
 if __name__ == '__main__':
     ##print('\n'.join(instrument('test.cfg')))
