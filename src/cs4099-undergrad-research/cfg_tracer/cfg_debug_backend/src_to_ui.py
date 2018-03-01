@@ -18,7 +18,7 @@ with open(os.path.join(dir, 'out.cfg'), 'w') as f:
 
 newfname = file.replace('.cpp', '_instr.cpp')
 html_src = file.replace('.cpp', '_html.cpp')
-newcpp = instrument_cpp(file, cfg)
+newcpp, vars = instrument_cpp(file, cfg)
 with open(newfname, 'w') as f:
     f.write('\n'.join(newcpp))
 
@@ -32,5 +32,5 @@ with open(html_src, 'w') as f:
     f.write('\n'.join(p2.stdout.read().decode('utf-8').split('\n')))
 #p2.stdout.read().decode('utf-8').split('\n')
 src_html = instr_to_html(html_src)
-data={'cfg': cfg.to_json(), 'html': '\n'.join(src_html)}
+data={'cfg': cfg.to_json(), 'html': '\n'.join(src_html), 'vars': vars}
 print(json.dumps(data))

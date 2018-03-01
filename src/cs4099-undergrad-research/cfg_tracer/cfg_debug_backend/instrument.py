@@ -252,7 +252,7 @@ def instrument_cpp(filename, cfg):
     v = Visitor(cfg)
     with open(filename) as f:
         r = RecDescInstrument(f, v)
-    return r.newlines
+    return r.newlines, r.v.vars
 
 if __name__ == '__main__':
     ##print('\n'.join(instrument('test.cfg')))
