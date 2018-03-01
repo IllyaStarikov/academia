@@ -33,6 +33,7 @@ with open(html_src, 'w') as f:
 
 # get initial trace
 run(['clang++', '-o', os.path.join(dir, 'initrun'), newfname])
+run([os.path.join(dir, 'initrun')])
 
 src_html = instr_to_html(html_src)
 data={'cfg': cfg.to_json(), 'html': '\n'.join(src_html), 'vars': vars}
