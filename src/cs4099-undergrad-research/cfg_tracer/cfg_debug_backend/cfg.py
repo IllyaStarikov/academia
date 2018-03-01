@@ -33,9 +33,9 @@ class CFG:
     def to_json(self):
         # Dumps this to a json string compatible with vis.js
         bb_to_id = {bb: i for i, bb in enumerate(self.basic_blocks.keys(), 1)}
-        nodes = [{'id': bb_to_id[bb], 'label': self.label(bb)} for bb in bb_to_id]
+        nodes = [{'id': bb, 'label': self.label(bb)} for bb in bb_to_id]
         edges = []
-        make_edge = lambda b1, b2: {'from': bb_to_id[b1], 'to': bb_to_id[b2], 'arrows':'to'}
+        make_edge = lambda b1, b2: {'from': b1, 'to': b2, 'arrows':'to'}
         for bb in self.basic_blocks:
             for succ in self.basic_blocks[bb].successors:
                 edges.append(make_edge(bb, succ))
