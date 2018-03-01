@@ -21,7 +21,10 @@ newcpp = instrument_cpp(file, cfg)
 with open(newfname, 'w') as f:
     f.write('\n'.join(newcpp))
 
-p1 = Popen(["sed", "s/__bbinstr\([^;]*\)[;,]//g", newfname], stdout=PIPE)
+sed = 'C:\\MinGW\\msys\\1.0\\bin\\sed'
+# sed = 'sed'
+
+p1 = Popen([sed, "s/__bbinstr\([^;]*\)[;,]//g", newfname], stdout=PIPE)
 p2 = Popen(['clang-format'], stdin=p1.stdout, stdout=PIPE)
 
 with open(html_src, 'w') as f:
