@@ -155,11 +155,11 @@ class RecDescInstrument:
         #print('_for', self.line)
         loop_parts = self.line.split(';')
         self.v.next_bb()
-        loop_parts[1] = bb(self.v.current) + ',' + loop_parts[1]
+        loop_parts[1] = cmt(self.v.current) + bb(self.v.current) + ',' + loop_parts[1] + close_cmt(self.v.current)
         # first pred should be loop update (hopefully?)
         self.v.current = self.v.cfg.basic_blocks[self.v.current].preds[0]
         self.v.visited.add(self.v.current)
-        loop_parts[2] = bb(self.v.current) + ',' + loop_parts[2]
+        loop_parts[2] =cmt(self.v.current) + bb(self.v.current) + ',' + loop_parts[2] + close_cmt(self.v.current)
         newline = ';'.join(loop_parts)
         self.newlines.append(newline)
         self.v.next_bb()
@@ -201,7 +201,7 @@ class RecDescInstrument:
         if not self.v.current in self.v.visited:
             instr = bb(self.v.current) + ','
         # If statement is part of the previous bb
-        while_parts[1] = cmt(self.v.current) +  instr + while_parts[1] + close_cmt(self.v.current)
+        while_parts[1] = cmt(self.v.current) + instr + while_parts[1].rstrip()[:-1] + close_cmt(self.v.current) + ')'
         self.v.visited.add(self.v.current)
         newline = '('.join(while_parts)
         self.newlines.append(newline)
