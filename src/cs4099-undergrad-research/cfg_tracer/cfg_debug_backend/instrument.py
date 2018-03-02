@@ -25,7 +25,7 @@ for_stmt = re.compile('for\s*\(.*;.*;.*\)')
 if_stmt = re.compile('if\s*\(.*\)')
 while_stmt = re.compile('while\s*\(.*\)')
 do_stmt = re.compile('do$')
-init_line = re.compile('[_a-zA-Z]\w*\s+([_a-zA-Z]\w*)\s*=\s*([^;])+;')
+init_line = re.compile('[_a-zA-Z]\w*\s+([_a-zA-Z]\w*)\s*=\s*([^;]+);')
 
 
 class Visitor:
