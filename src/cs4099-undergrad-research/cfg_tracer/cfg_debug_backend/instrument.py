@@ -159,7 +159,7 @@ class RecDescInstrument:
         # first pred should be loop update (hopefully?)
         self.v.current = self.v.cfg.basic_blocks[self.v.current].preds[0]
         self.v.visited.add(self.v.current)
-        loop_parts[2] =cmt(self.v.current) + bb(self.v.current) + ',' + loop_parts[2] + close_cmt(self.v.current)
+        loop_parts[2] = cmt(self.v.current) + bb(self.v.current) + ',' + loop_parts[2].rstrip()[:-1] + close_cmt(self.v.current) + ')'
         newline = ';'.join(loop_parts)
         self.newlines.append(newline)
         self.v.next_bb()
