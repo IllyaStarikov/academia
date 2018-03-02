@@ -33,7 +33,7 @@ with open(html_src, 'w') as f:
 
 # get initial trace
 run(['clang++', '-o', os.path.join(dir, 'initrun'), newfname], stderr=DEVNULL)
-init_run = run([os.path.join(dir, 'initrun')], stderr=PIPE)
+init_run = run([os.path.join(dir, 'initrun')], stdout=DEVNULL, stderr=PIPE)
 init_trace = init_run.stderr.decode('utf-8').splitlines()
 
 src_html = instr_to_html(html_src)
