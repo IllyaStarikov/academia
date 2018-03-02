@@ -25,8 +25,9 @@ with open(newfname, 'w') as f:
 # sed = 'C:\\MinGW\\msys\\1.0\\bin\\sed'
 sed = 'sed'
 
-p1 = Popen([sed, "s/__bbinstr\([^;]*\)[;,]//g", newfname], stdout=PIPE)
-p2 = Popen(['clang-format'], stdin=p1.stdout, stdout=PIPE)
+p1 = Popen([sed, "s/__bbinstr\([^;]*\),//g", newfname], stdout=PIPE)
+p1_5 = Popen([sed, "s/__bbinstr\([^;]*\);//g"], stdin = p1.stdout, stdout=PIPE)
+p2 = Popen(['clang-format'], stdin=p1_5.stdout, stdout=PIPE)
 
 with open(html_src, 'w') as f:
     f.write('\n'.join(p2.stdout.read().decode('utf-8').split('\n')))
