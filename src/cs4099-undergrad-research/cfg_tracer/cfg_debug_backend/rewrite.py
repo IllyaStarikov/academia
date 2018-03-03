@@ -19,7 +19,7 @@ with open(instr_file) as f:
             f2.write(newline)
 
 run(['clang++', '-o', os.path.join(file_dir, 'replrun'), out_file], stderr=DEVNULL)
-repl_run = run([os.path.join(file_dir, 'initrun')], stdout=DEVNULL, stderr=PIPE)
+repl_run = run([os.path.join(file_dir, 'replrun')], stdout=DEVNULL, stderr=PIPE)
 trace = repl_run.stderr.decode('utf-8').splitlines()
 
 print(json.dumps({'trace': trace}))
