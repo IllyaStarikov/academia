@@ -16,7 +16,8 @@ cfg = parse_lines(cfgout.stderr.decode("utf-8").splitlines())[0]
 with open(os.path.join(dir, 'out.cfg'), 'w') as f:
     f.write('\n'.join(cfgout.stderr.decode("utf-8").splitlines()))
 
-newfname = file.replace('.cpp', '_instr.cpp')
+# newfname = file.replace('.cpp', '_instr.cpp')
+newfname = os.path.join(dir, 'instr.cpp')
 html_src = file.replace('.cpp', '_html.cpp')
 newcpp, vars = instrument_cpp(file, cfg)
 with open(newfname, 'w') as f:
