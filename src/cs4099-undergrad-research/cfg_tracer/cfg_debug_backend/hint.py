@@ -79,7 +79,7 @@ good_runs = [build_trace_graph(t['trace']) for t in traces if t['good'] == 'true
 bad_runs = [build_trace_graph(t['trace']) for t in traces if t['good'] == 'false']
 non_disc_edges = set(G.edges())
 for g in good_runs + bad_runs:
-    non_disc_edges &= g.edges
+    non_disc_edges &= set(g.edges())
 
 for g in good_runs:
     g.remove_edges_from(non_disc_edges)
