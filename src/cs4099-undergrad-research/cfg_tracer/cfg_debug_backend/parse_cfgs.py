@@ -5,6 +5,7 @@ def parse_lines(lines):
     cfgs = []
     bblines = []
     for line in lines:
+        print('---', lines)
         if line is '':
             cfgs[-1].add_block(bblines)
             bblines = []
@@ -17,10 +18,9 @@ def parse_lines(lines):
 
 def parse_cfgs(filename):
     cfgs = []
+    bblines = []
     with open(filename) as f:
-        print(f)
-    with open(filename) as f:
-        cfgs = parse_lines(f)
+        #cfgs = parse_lines(f.)
         for line in f:
             if line is '\n':
                 cfgs[-1].add_block(bblines)
