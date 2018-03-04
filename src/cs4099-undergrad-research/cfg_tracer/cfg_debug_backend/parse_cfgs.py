@@ -5,7 +5,6 @@ def parse_lines(lines):
     cfgs = []
     bblines = []
     for line in lines:
-        print('---', lines)
         if line is '':
             cfgs[-1].add_block(bblines)
             bblines = []
