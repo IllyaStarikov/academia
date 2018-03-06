@@ -15,7 +15,7 @@ with open(instr_file) as f:
         for line in f:
             newline = line
             for var in init_res:
-                newline = init_res[var].sub(new_vars[var], line)
+                newline = init_res[var].sub(new_vars[var], newline)
             f2.write(newline)
 
 run(['clang++', '-o', os.path.join(file_dir, 'replrun'), out_file], stderr=DEVNULL)
