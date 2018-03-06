@@ -25,7 +25,7 @@ for_stmt = re.compile('for\s*\(.*;.*;.*\)')
 if_stmt = re.compile('if\s*\(.*\)')
 while_stmt = re.compile('while\s*\(.*\)')
 do_stmt = re.compile('do$')
-init_line = re.compile('[_a-zA-Z]\w*\s+([_a-zA-Z]\w*)\s*=\s*([^;]+);')
+init_line = re.compile('[_a-zA-Z]\w*\s+([_a-zA-Z]\w*\s*(\[\s*\w*\s*\])?)\s*=\s*([^;]+);')
 
 
 class Visitor:
@@ -49,9 +49,9 @@ class Visitor:
     def instr_init_line(self, line):
         parts = line.split('=', 1)
         match = init_line.match(line)
-        vname = match.group(1)
+        vname = match.groups()[0]
         line = parts[0] + " = /*%{}%*/".format(vname) + parts[1][:-1] + "/*%~{}%*/".format(vname) +';'
-        self.vars[match.group(1)] = match.group(2)
+        self.vars[vname] = match.groups()[-1]
         return self.instr_line(line)
 
     def next_bb(self):
