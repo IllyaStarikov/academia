@@ -49,22 +49,22 @@ def build_dgraph(verts, edges, count):
     return disc_graph
 
 
-def discriminant_graph_total(verts_include, edges_include, verts_exclude, target_num):
-    disc_graph = build_dgraph(verts_include, edges_include, target_num)
-    disc_graph.remove_nodes_from(verts_exclude.keys())
+def create_discriminative_graph(S1_vert_count, S1_edge_count, S2_vert_count, target_num):
+    disc_graph = build_dgraph(S1_vert_count, S1_edge_count, target_num)
+    disc_graph.remove_nodes_from(S2_vert_count.keys()) # will remove edges going to those verts as well
+    # by definition, all of the nodes in S2 should have edges going from them (since we removed isolates)
     return disc_graph
 
 
-def discriminant_graph_threshold(verts_include, edges_include, verts_exclude, target_num, threshold):
-    disc_graph = build_dgraph(verts_include, edges_include, target_num)
+def relaxed_create_discriminative_graph(S1_verts_count, S1_edges_count, S2_verts_count, S2_edges_count, target_num, threshold):
     counter = 1
-    gcopy = disc_graph.copy()
-    while counter < threshold:
-        to_remove = [v for v in verts_exclude if verts_exclude[v] > counter]
+    disc_graph = build_dgraph(S2_verts_count, S2_edges_count, target_num)
+    while counter < threshold and len(disc_graph.nodes()) == 0:
+        gcopy = disc_graph.copy()
+        to_remove = [v for v in S1_verts_count if S1_verts_count[v] > counter]
         gcopy.remove_nodes_from(to_remove)
         if len(gcopy.nodes()) > 0:
             return gcopy
-        gcopy = disc_graph.copy()
         counter += 1
     # if we're here, there is no majority of discriminant graph, so return an empty graph
     return nx.DiGraph()
@@ -93,13 +93,15 @@ good_verts, good_edges = graph_stats(good_runs)
 bad_verts, bad_edges = graph_stats(bad_runs)
 
 # find what is in bad that is not in good
-dgraph = discriminant_graph_total(bad_verts, bad_edges, good_verts, len(bad_runs))
+dgraph = create_discriminative_graph(bad_verts, bad_edges, good_verts, len(bad_runs))
 if len(dgraph.nodes()) == 0:
-    dgraph = discriminant_graph_threshold(bad_verts, bad_edges, good_verts, len(bad_runs), (len(good_runs) + 1) // 2)
+    dgraph = relaxed_create_discriminative_graph(good_verts, good_edges, bad_verts, bad_edges,
+                                                 len(good_runs), (len(good_runs) + 1) // 2)
 if len(dgraph.nodes()) == 0:
-    dgraph = discriminant_graph_total(good_verts, good_edges, bad_verts, len(good_runs))
+    dgraph = create_discriminative_graph(good_verts, good_edges, bad_verts, len(good_runs))
 if len(dgraph.nodes()) == 0:
-    dgraph = discriminant_graph_threshold(good_verts, good_edges, bad_verts, len(good_runs), len(good_runs))
+    dgraph = relaxed_create_discriminative_graph(good_verts, good_edges, bad_verts, bad_edges,
+                                                 len(good_runs), len(good_runs))
 
 if len(dgraph.nodes()) > 0:
     print(json.dumps(list(min(nx.weakly_connected_components(dgraph), key=lambda x: len(x)))))
