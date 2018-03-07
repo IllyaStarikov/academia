@@ -59,10 +59,12 @@ def create_discriminative_graph(S1_vert_count, S1_edge_count, S2_vert_count, tar
 def relaxed_create_discriminative_graph(S1_verts_count, S1_edges_count, S2_verts_count, S2_edges_count, target_num, threshold):
     counter = 1
     disc_graph = build_dgraph(S2_verts_count, S2_edges_count, target_num)
-    while counter < threshold and len(disc_graph.nodes()) == 0:
+    gcopy = nx.DiGraph()
+    while counter <= threshold and len(gcopy.nodes()) == 0:
         gcopy = disc_graph.copy()
-        to_remove = [v for v in S1_verts_count if S1_verts_count[v] > counter]
-        gcopy.remove_nodes_from(to_remove)
+        to_remove = [e for e in S1_edges_count if S1_edges_count[e] > counter]
+        gcopy.remove_edges_from(to_remove)
+        gcopy.remove_nodes_from(nx.isolates(gcopy))
         if len(gcopy.nodes()) > 0:
             return gcopy
         counter += 1
@@ -75,8 +77,10 @@ cfg = parse_cfgs(cfg_file)[0]
 G = cfg_to_nx(cfg)
 # sys.argv[2] should be a json string of all of the traces as from the ui
 traces = json.loads(sys.argv[2])
+
 good_runs = [build_trace_graph(t['trace']) for t in traces if t['good'] == 'true']
 bad_runs = [build_trace_graph(t['trace']) for t in traces if t['good'] == 'false']
+
 non_disc_edges = set(G.edges())
 for g in good_runs + bad_runs:
     non_disc_edges &= set(g.edges())
@@ -84,6 +88,7 @@ for g in good_runs + bad_runs:
 for g in good_runs:
     g.remove_edges_from(non_disc_edges)
     g.remove_nodes_from(list(nx.isolates(g)))
+
 
 for g in bad_runs:
     g.remove_edges_from(non_disc_edges)
