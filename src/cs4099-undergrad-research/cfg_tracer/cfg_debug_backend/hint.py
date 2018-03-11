@@ -3,7 +3,7 @@ import networkx as nx
 import sys
 import os
 import json
-
+from collections import deque
 
 def cfg_to_nx(cfg):
     graph = nx.DiGraph()
@@ -26,15 +26,9 @@ def graph_stats(graphs):
 
     for g in graphs:
         for n in g.nodes():
-            if n in nodes:
-                nodes[n] += 1
-            else:
-                nodes[n] = 1
+            nodes[n] = nodes.get(n, 0) + 1
         for e in g.edges():
-            if e in edges:
-                edges[e] += 1
-            else:
-                edges[e] = 1
+            edges[e] = edges.get(e, 0) + 1
     return nodes, edges
 
 
@@ -49,11 +43,34 @@ def build_dgraph(verts, edges, count):
     return disc_graph
 
 
-def create_discriminative_graph(S1_vert_count, S1_edge_count, S2_vert_count, target_num):
-    disc_graph = build_dgraph(S1_vert_count, S1_edge_count, target_num)
-    disc_graph.remove_nodes_from(S2_vert_count.keys()) # will remove edges going to those verts as well
+#def create_discriminative_graph(S1_vert_count, S1_edge_count, S2_vert_count, target_num):
+#    disc_graph = build_dgraph(S1_vert_count, S1_edge_count, target_num)
+#    disc_graph.remove_nodes_from(S2_vert_count.keys()) # will remove edges going to those verts as well
     # by definition, all of the nodes in S2 should have edges going from them (since we removed isolates)
-    return disc_graph
+#    return disc_graph
+
+
+def contains_subgraph(G, edges):
+    return all(map(lambda x: G.has_edge(*x), edges))
+
+
+def augment_subgraph(g, freq_edges):
+    return [g + [e] for e in freq_edges if e[0] == g[-1][1]]
+
+
+def create_discriminative_graph(S1, S2):
+    vinc, einc = graph_stats(S1) # do we even need vinc?  is there a more efficient way of generating this info?
+    freq_edges = {e for e in einc if einc[e] == len(S1)}
+    freq_sg = deque([[e] for e in einc if einc[e] == len(S1)])
+    result = nx.DiGraph()
+    while not len(freq_sg) == 0:
+        sg = freq_sg.popleft()
+        if not any(map(lambda g: contains_subgraph(g, sg))):
+            result.add_edges_from(sg)
+            freq_sg.clear()
+        else:
+            freq_sg.extend(augment_subgraph(sg,freq_edges))
+    return result
 
 
 def relaxed_create_discriminative_graph(S1_verts_count, S1_edges_count, S2_verts_count, S2_edges_count, target_num, threshold):
@@ -94,18 +111,18 @@ for g in bad_runs:
     g.remove_edges_from(non_disc_edges)
     g.remove_nodes_from(list(nx.isolates(g)))
 
-good_verts, good_edges = graph_stats(good_runs)
-bad_verts, bad_edges = graph_stats(bad_runs)
+#good_verts, good_edges = graph_stats(good_runs)
+#bad_verts, bad_edges = graph_stats(bad_runs)
 
 # find what is in bad that is not in good
-dgraph = create_discriminative_graph(bad_verts, bad_edges, good_verts, len(bad_runs))
-if len(dgraph.nodes()) == 0:
-    dgraph = relaxed_create_discriminative_graph(good_verts, good_edges, bad_verts, bad_edges,
-                                                 len(good_runs), (len(good_runs) + 1) // 2)
-if len(dgraph.nodes()) == 0:
-    dgraph = create_discriminative_graph(good_verts, good_edges, bad_verts, len(good_runs))
-if len(dgraph.nodes()) == 0:
-    dgraph = relaxed_create_discriminative_graph(good_verts, good_edges, bad_verts, bad_edges,
+dgraph = create_discriminative_graph(bad_runs, good_runs)
+#if len(dgraph.nodes()) == 0:
+#    dgraph = relaxed_create_discriminative_graph(good_verts, good_edges, bad_verts, bad_edges,
+#                                                 len(good_runs), (len(good_runs) + 1) // 2)
+#if len(dgraph.nodes()) == 0:
+#    dgraph = create_discriminative_graph(good_verts, good_edges, bad_verts, len(good_runs))
+#if len(dgraph.nodes()) == 0:
+#    dgraph = relaxed_create_discriminative_graph(good_verts, good_edges, bad_verts, bad_edges,
                                                  len(good_runs), len(good_runs))
 
 if len(dgraph.nodes()) > 0:
