@@ -65,7 +65,7 @@ def create_discriminative_graph(S1, S2):
     result = nx.DiGraph()
     while not len(freq_sg) == 0:
         sg = freq_sg.popleft()
-        if not any(map(lambda g: contains_subgraph(g, sg))):
+        if not any(map(lambda g: contains_subgraph(g, sg), S2)):
             result.add_edges_from(sg)
             freq_sg.clear()
         else:
