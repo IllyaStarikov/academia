@@ -47,8 +47,8 @@ class CFG:
 
     def to_json(self):
         # Dumps this to a json string compatible with vis.js
-        keep_nodes = filter(lambda x: x not in (self.entry_node, self.exit_node), self.bb_to_id.keys())
-        nodes = [{'id': bb, 'label': self.label(bb)} for bb in keepnodes]
+        keep_nodes = filter(lambda x: x not in (self.entry_node, self.exit_node), self.basic_blocks.keys())
+        nodes = [{'id': bb, 'label': self.label(bb)} for bb in keep_nodes]
         edges = []
         make_edge = lambda b1, b2: {'from': b1, 'to': b2, 'arrows':'to'}
         for bb in keep_nodes:
