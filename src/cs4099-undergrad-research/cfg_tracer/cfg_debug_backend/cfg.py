@@ -9,10 +9,10 @@ class CFG:
 
     def reverse_labels(self):
         num_blocks = len(self.basic_blocks)
-        label_map = {bb: 'B' + str(int(bb[1:])) for bb in self.basic_blocks}
+        label_map = {bb: 'B' + str(num_blocks - int(bb[1:])) for bb in self.basic_blocks}
         self.entry_node = label_map[self.entry_node]
         self.exit_node = label_map[self.exit_node]
-        new_blocks = {bb: BasicBlock(bb) for bb in label_map}
+        new_blocks = {bb: BasicBlock(bb) for bb in label_map.values()}
         for bb in self.basic_blocks:
             new_blocks[label_map[bb]].successors = [label_map[x] for x in self.basic_blocks[bb].successors]
             new_blocks[label_map[bb]].preds = [label_map[x] for x in self.basic_blocks[bb].preds]
@@ -32,7 +32,10 @@ class CFG:
             bb.successors = lines[-1].split(':')[-1].strip().split()
         if not self.entry_node is block_id:
             ## we have preds
-            bb.preds = lines[-2].split(':')[-1].strip().split()
+            if self.exit_node is block_id:
+                bb.preds = lines[-1].split(':')[-1].strip().split()
+            else:
+                bb.preds = lines[-2].split(':')[-1].strip().split()
         self.basic_blocks[block_id] = bb
 
     def label(self, bb_id):

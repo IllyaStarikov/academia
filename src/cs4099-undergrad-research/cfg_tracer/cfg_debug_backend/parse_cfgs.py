@@ -34,6 +34,7 @@ def parse_cfgs(filename):
 if __name__ == "__main__":
     import os
     cfg = parse_cfgs('testfiles/if.cfg')
+    cfg[0].reverse_labels()
     cfg_json = cfg[0].to_json()
     import json
     with open('if.json', 'w') as f:
