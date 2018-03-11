@@ -123,7 +123,7 @@ dgraph = create_discriminative_graph(bad_runs, good_runs)
 #    dgraph = create_discriminative_graph(good_verts, good_edges, bad_verts, len(good_runs))
 #if len(dgraph.nodes()) == 0:
 #    dgraph = relaxed_create_discriminative_graph(good_verts, good_edges, bad_verts, bad_edges,
-                                                 len(good_runs), len(good_runs))
+                                                 #len(good_runs), len(good_runs))
 
 if len(dgraph.nodes()) > 0:
     print(json.dumps(list(min(nx.weakly_connected_components(dgraph), key=lambda x: len(x)))))
