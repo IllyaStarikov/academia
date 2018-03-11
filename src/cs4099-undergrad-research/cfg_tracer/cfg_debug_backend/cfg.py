@@ -8,7 +8,7 @@ class CFG:
         self.exit_node = ''
 
     def reverse_labels(self):
-        num_blocks = len(self.basic_blocks)
+        num_blocks = len(self.basic_blocks) - 1 # to account for zero indexing
         label_map = {bb: 'B' + str(num_blocks - int(bb[1:])) for bb in self.basic_blocks}
         self.entry_node = label_map[self.entry_node]
         self.exit_node = label_map[self.exit_node]
@@ -47,13 +47,14 @@ class CFG:
 
     def to_json(self):
         # Dumps this to a json string compatible with vis.js
-        bb_to_id = {bb: i for i, bb in enumerate(self.basic_blocks.keys(), 1)}
-        nodes = [{'id': bb, 'label': self.label(bb)} for bb in bb_to_id]
+        keep_nodes = filter(lambda x: x not in (self.entry_node, self.exit_node), self.bb_to_id.keys())
+        nodes = [{'id': bb, 'label': self.label(bb)} for bb in keepnodes]
         edges = []
         make_edge = lambda b1, b2: {'from': b1, 'to': b2, 'arrows':'to'}
-        for bb in self.basic_blocks:
+        for bb in keep_nodes:
             for succ in self.basic_blocks[bb].successors:
-                edges.append(make_edge(bb, succ))
+                if succ not in (self.entry_node, self.exit_node):
+                    edges.append(make_edge(bb, succ))
         #print(nodes)
         #print(edges)
         return {'nodes': nodes, 'edges': edges}
