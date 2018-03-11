@@ -61,7 +61,7 @@ def augment_subgraph(g, freq_edges):
 def create_discriminative_graph(S1, S2):
     vinc, einc = graph_stats(S1) # do we even need vinc?  is there a more efficient way of generating this info?
     freq_edges = {e for e in einc if einc[e] == len(S1)}
-    freq_sg = deque([[e] for e in einc if einc[e] == len(S1)])
+    freq_sg = deque([[e] for e in freq_edges])
     result = nx.DiGraph()
     while not len(freq_sg) == 0:
         sg = freq_sg.popleft()
@@ -73,19 +73,19 @@ def create_discriminative_graph(S1, S2):
     return result
 
 
-def relaxed_create_discriminative_graph(S1_verts_count, S1_edges_count, S2_verts_count, S2_edges_count, target_num, threshold):
-    counter = 1
-    disc_graph = build_dgraph(S2_verts_count, S2_edges_count, target_num)
-    gcopy = nx.DiGraph()
-    while counter <= threshold and len(gcopy.nodes()) == 0:
-        gcopy = disc_graph.copy()
-        to_remove = [e for e in S1_edges_count if S1_edges_count[e] > counter]
-        gcopy.remove_edges_from(to_remove)
-        gcopy.remove_nodes_from(nx.isolates(gcopy))
-        if len(gcopy.nodes()) > 0:
-            return gcopy
-        counter += 1
-    # if we're here, there is no majority of discriminant graph, so return an empty graph
+# finds the smallest subgraph in all graphs in S1 that appears in fewer than threshold graphs in S2
+def relaxed_create_discriminative_graph(S1, S2, threshold):
+    vinc, einc = graph_stats(S1)  # do we even need vinc?  is there a more efficient way of generating this info?
+    freq_edges = {e for e in einc if einc[e] == len(S1)}
+    freq_sg = deque([[e] for e in freq_edges])
+    result = nx.DiGraph()
+    while not len(freq_sg) == 0:
+        sg = freq_sg.popleft()
+        if sum(map(lambda g: contains_subgraph(g, sg), S2)) < threshold:
+            result.add_edges_from(sg)
+            freq_sg.clear()
+        else:
+            freq_sg.extend(augment_subgraph(sg, freq_edges))
     return nx.DiGraph()
 
 
@@ -116,6 +116,12 @@ for g in bad_runs:
 
 # find what is in bad that is not in good
 dgraph = create_discriminative_graph(bad_runs, good_runs)
+if len(dgraph.nodes()) == 0:
+    dgraph = relaxed_create_discriminative_graph(bad_runs, good_runs, (len(good_runs) + 1) // 2)
+if len(dgraph.nodes()) == 0:
+    dgraph = create_discriminative_graph(good_runs, bad_runs)
+if len(dgraph.nodes()) == 0:
+    dgraph = relaxed_create_discriminative_graph(good_runs, bad_runs, (len(bad_runs) + 1) // 2)
 #if len(dgraph.nodes()) == 0:
 #    dgraph = relaxed_create_discriminative_graph(good_verts, good_edges, bad_verts, bad_edges,
 #                                                 len(good_runs), (len(good_runs) + 1) // 2)
