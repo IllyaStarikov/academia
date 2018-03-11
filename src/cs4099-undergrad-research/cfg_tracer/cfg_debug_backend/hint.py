@@ -91,6 +91,7 @@ def relaxed_create_discriminative_graph(S1, S2, threshold):
 
 cfg_file = os.path.join(sys.argv[1], 'out.cfg')
 cfg = parse_cfgs(cfg_file)[0]
+cfg.reverse_labels()
 G = cfg_to_nx(cfg)
 # sys.argv[2] should be a json string of all of the traces as from the ui
 traces = json.loads(sys.argv[2])

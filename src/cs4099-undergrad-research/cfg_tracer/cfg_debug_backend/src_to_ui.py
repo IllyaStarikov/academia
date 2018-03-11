@@ -12,6 +12,7 @@ cfgout = run(['clang++', '-Xclang', '-analyze', '-Xclang', '-analyzer-checker=de
               '-unoptimized-cfg', '-O0', '-g', '-c', file], stderr=PIPE)
 # print(cfgout.stderr.decode("utf-8").splitlines())
 cfg = parse_lines(cfgout.stderr.decode("utf-8").splitlines())[0]
+cfg.reverse_labels()
 # print(parse_lines(cfgout.stderr.decode("utf-8").splitlines()))
 with open(os.path.join(dir, 'out.cfg'), 'w') as f:
     f.write('\n'.join(cfgout.stderr.decode("utf-8").splitlines()))

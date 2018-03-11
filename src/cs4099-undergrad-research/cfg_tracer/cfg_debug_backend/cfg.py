@@ -7,6 +7,18 @@ class CFG:
         self.entry_node = ''
         self.exit_node = ''
 
+    def reverse_labels(self):
+        num_blocks = len(self.basic_blocks)
+        label_map = {bb: 'B' + str(int(bb[1:])) for bb in self.basic_blocks}
+        self.entry_node = label_map[self.entry_node]
+        self.exit_node = label_map[self.exit_node]
+        new_blocks = {bb: BasicBlock(bb) for bb in label_map}
+        for bb in self.basic_blocks:
+            new_blocks[label_map[bb]].successors = [label_map[x] for x in self.basic_blocks[bb].successors]
+            new_blocks[label_map[bb]].preds = [label_map[x] for x in self.basic_blocks[bb].preds]
+        self.basic_blocks = new_blocks
+
+
     def add_block(self, lines):
         # first line should be the name.  All basic blocks should be wrapped in []
         block_id = lines[0].strip()[1:-1].split()[0]
