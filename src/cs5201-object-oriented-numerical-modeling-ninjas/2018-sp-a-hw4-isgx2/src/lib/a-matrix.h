@@ -10,7 +10,7 @@
 #define a_matrix_h
 
 #include <iostream>
-#include "Vector.h"
+#include "vector.h"
 
 /** @class SquareMatrix
  *
