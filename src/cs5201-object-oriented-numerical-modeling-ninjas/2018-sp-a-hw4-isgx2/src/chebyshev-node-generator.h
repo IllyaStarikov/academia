@@ -35,7 +35,7 @@ private:
         auto N = numberOfNodes;
         auto K = nodeNumber;
 
-        return cos((2.0*N + 1.0 - 2.0*K)*M_PI/(2.0*N + 2.0));
+        return cos((2.0*K + 1)/(2.0*N) * M_PI);
     };
 
 public:
