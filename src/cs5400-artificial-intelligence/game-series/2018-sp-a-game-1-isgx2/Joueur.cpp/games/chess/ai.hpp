@@ -7,6 +7,9 @@
 #include "move.hpp"
 #include "piece.hpp"
 #include "player.hpp"
+#include <string>
+
+#include "chess-ai/src/chess-ai.h"
 
 #include "../../joueur/src/base_ai.hpp"
 #include "../../joueur/src/attr_wrapper.hpp"
