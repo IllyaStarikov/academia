@@ -7,5 +7,5 @@
 LANG=$1
 
 cd $LANG
-zip -r $LANG.zp .
+zip -r $LANG.zip .
 mv $LANG.zp ../
