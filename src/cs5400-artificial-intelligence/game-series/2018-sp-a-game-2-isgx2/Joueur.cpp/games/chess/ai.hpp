@@ -7,11 +7,17 @@
 #include "move.hpp"
 #include "piece.hpp"
 #include "player.hpp"
+#include <string>
+
+#include "chess-ai/src/chess-ai.h"
+#include "chess-ai/src/chess-history.h"
 
 #include "../../joueur/src/base_ai.hpp"
 #include "../../joueur/src/attr_wrapper.hpp"
 
+// <<-- Creer-Merge: includes -->> - Code you add between this comment and the end comment will be preserved between Creer re-runs.
 // You can add additional #includes here
+// <<-- /Creer-Merge: includes -->>
 
 namespace cpp_client
 {
@@ -35,7 +41,9 @@ public:
     /// </summary>
     Player player;
 
+    //<<-- Creer-Merge: class variables -->> - Code you add between this comment and the end comment will be preserved between Creer re-runs.
     // You can add additional class variables here.
+    //<<-- /Creer-Merge: class variables -->>
 
     /// <summary>
     /// This returns your AI's name to the game server.
@@ -67,15 +75,9 @@ public:
     /// <returns>Represents if you want to end your turn. True means end your turn, False means to keep your turn going and re-call this function.</returns>
     bool run_turn();
 
-    /// <summary>
-    ///  Prints the current board using pretty ASCII art
-    /// </summary>
-    /// <remarks>
-    /// Note: you can delete this function if you wish
-    /// </remarks>
-    void print_current_board();
-
+    // <<-- Creer-Merge: methods -->> - Code you add between this comment and the end comment will be preserved between Creer re-runs.
     // You can add additional methods here.
+    // <<-- /Creer-Merge: methods -->>
 
 
 

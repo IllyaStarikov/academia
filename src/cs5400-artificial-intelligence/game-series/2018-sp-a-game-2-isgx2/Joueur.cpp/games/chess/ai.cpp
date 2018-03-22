@@ -3,10 +3,9 @@
 
 #include "ai.hpp"
 
-#include <ctime>
-#include <cstdlib>
-
+// <<-- Creer-Merge: includes -->> - Code you add between this comment and the end comment will be preserved between Creer re-runs.
 // You can add #includes here for your AI.
+// <<-- /Creer-Merge: includes -->>
 
 namespace cpp_client
 {
@@ -21,8 +20,10 @@ namespace chess
 /// <returns>The name of your AI.</returns>
 std::string AI::get_name() const
 {
+    // <<-- Creer-Merge: get-name -->> - Code you add between this comment and the end comment will be preserved between Creer re-runs.
     // REPLACE WITH YOUR TEAM NAME!
     return "Chess C++ Player";
+    // <<-- /Creer-Merge: get-name -->>
 }
 
 /// <summary>
@@ -30,8 +31,9 @@ std::string AI::get_name() const
 /// </summary>
 void AI::start()
 {
+    // <<-- Creer-Merge: start -->> - Code you add between this comment and the end comment will be preserved between Creer re-runs.
     // This is a good place to initialize any variables
-    srand(time(NULL));
+    // <<-- /Creer-Merge: start -->>
 }
 
 /// <summary>
@@ -39,7 +41,9 @@ void AI::start()
 /// </summary>
 void AI::game_updated()
 {
+    // <<-- Creer-Merge: game-updated -->> - Code you add between this comment and the end comment will be preserved between Creer re-runs.
     // If a function you call triggers an update this will be called before it returns.
+    // <<-- /Creer-Merge: game-updated -->>
 }
 
 /// <summary>
@@ -49,7 +53,9 @@ void AI::game_updated()
 /// <param name="reason">An explanation for why you either won or lost</param>
 void AI::ended(bool won, const std::string& reason)
 {
+    //<<-- Creer-Merge: ended -->> - Code you add between this comment and the end comment will be preserved between Creer re-runs.
     // You can do any cleanup of your AI here.  The program ends when this function returns.
+    //<<-- /Creer-Merge: ended -->>
 }
 
 /// <summary>
@@ -58,102 +64,70 @@ void AI::ended(bool won, const std::string& reason)
 /// <returns>Represents if you want to end your turn. True means end your turn, False means to keep your turn going and re-call this function.</returns>
 bool AI::run_turn()
 {
-    // Here is where you'll want to code your AI.
+    // <<-- Creer-Merge: runTurn -->> - Code you add between this comment and the end comment will be preserved between Creer re-runs.
+    // Put your game logic here for run_turn here
+    // <<-- /Creer-Merge: runTurn -->>
+    ChessAI ai(game -> fen);
 
-    // We've provided sample code that:
-    //    1) prints the board to the console
-    //    2) prints the opponent's last move to the console
-    //    3) prints how much time remaining this AI has to calculate moves
-    //    4) makes a random (and probably invalid) move.
+    auto depthLimit = 4;
 
-    // 1) print the board to the console
-    print_current_board();
+    auto move = ChessAI::minimax(depthLimit, ai.currentState, PerceptSequence());
 
-    // 2) print the opponent's last move to the console
-    if(game->moves.size() > 0)
-    {
-        std::cout << "Opponent's Last Move: '" << game->moves[game->moves.size() - 1]->san << "'" << std::endl;
-    }
+    auto beforeMoveDescription = ChessEngine::bitStringToDescription(move.pieceBefore)[0];
+    auto afterMoveDescription = ChessEngine::bitStringToDescription(move.pieceAfter)[0];
 
-    // 3) print how much time remaining this AI has to calculate moves
-    std::cout << "Time Remaining: " << player->time_remaining << " ns" << std::endl;
+    int beforeMoveRank = beforeMoveDescription.second;
+    std::string beforeMoveFile = std::string(1, tolower(beforeMoveDescription.first));
 
-    // 4) make a random (and probably invalid) move.
-    chess::Piece random_piece = player->pieces[rand() % player->pieces.size()];
-    std::string random_file(1, 'a' + rand() % 8);
-    int random_rank = (rand() % 8) + 1;
-    random_piece->move(random_file, random_rank);
+    int afterMoveRank = afterMoveDescription.second;
+    std::string afterMoveFile = std::string(1, tolower(afterMoveDescription.first));
 
-    return true; // to signify we are done with our turn.
-}
+    std::cout << "Selecting Move ";
+    std::cout << "from " << beforeMoveFile << beforeMoveRank;
+    std::cout << " to " << afterMoveFile << afterMoveRank << "\n";
 
-/// <summary>
-///  Prints the current board using pretty ASCII art
-/// </summary>
-/// <remarks>
-/// Note: you can delete this function if you wish
-/// </remarks>
-void AI::print_current_board()
-{
-    for(int rank = 9; rank >= -1; rank--)
-    {
-        std::string str = "";
-        if(rank == 9 || rank == 0) // then the top or bottom of the board
-        {
-            str = "   +------------------------+";
-        }
-        else if(rank == -1) // then show the ranks
-        {
-            str = "     a  b  c  d  e  f  g  h";
-        }
-        else // board
-        {
-            str += " ";
-            str += std::to_string(rank);
-            str += " |";
-            // fill in all the files with pieces at the current rank
-            for(int file_offset = 0; file_offset < 8; file_offset++)
-            {
-                std::string file(1, 'a' + file_offset); // start at a, with with file offset increasing the char;
-                chess::Piece current_piece = nullptr;
-                for(const auto& piece : game->pieces)
-                {
-                    if(piece->file == file && piece->rank == rank) // then we found the piece at (file, rank)
-                    {
-                        current_piece = piece;
+    // Figure out what move i am doing and do that
+    for (auto& movePiece : player -> pieces) {
+        if (movePiece -> rank == beforeMoveRank && movePiece -> file == beforeMoveFile) {
+            auto promotionString = "";
+            if (move.wasPromotion) {
+                switch (move.promotedTo) {
+                    case queen:
+                        promotionString = "queen";
                         break;
-                    }
+
+                    case king:
+                        promotionString = "king";
+                        break;
+
+                    case knight:
+                        promotionString = "knight";
+                        break;
+
+                    case pawn:
+                        promotionString = "pawn";
+                        break;
+
+                    case rook:
+                        promotionString = "rook";
+                        break;
+
+                    case bishop:
+                        promotionString = "bishop";
+                        break;
                 }
-
-                char code = '.'; // default "no piece";
-                if(current_piece != nullptr)
-                {
-                    code = current_piece->type[0];
-
-                    if(current_piece->type == "Knight") // 'K' is for "King", we use 'N' for "Knights"
-                    {
-                        code = 'N';
-                    }
-
-                    if(current_piece->owner->id == "1") // the second player (black) is lower case. Otherwise it's upppercase already
-                    {
-                        code = tolower(code);
-                    }
-                }
-
-                str += " ";
-                str += code;
-                str += " ";
             }
 
-            str += "|";
+            movePiece -> move(afterMoveFile, afterMoveRank, promotionString);
         }
-
-        std::cout << str << std::endl;
     }
+
+    return true;
 }
 
+//<<-- Creer-Merge: methods -->> - Code you add between this comment and the end comment will be preserved between Creer re-runs.
 // You can add additional methods here for your AI to call
+//<<-- /Creer-Merge: methods -->>
 
 } // chess
 
