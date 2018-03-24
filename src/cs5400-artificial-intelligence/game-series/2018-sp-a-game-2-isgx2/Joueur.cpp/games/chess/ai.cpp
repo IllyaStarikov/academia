@@ -68,8 +68,16 @@ bool AI::run_turn()
     // Put your game logic here for run_turn here
     // <<-- /Creer-Merge: runTurn -->>
     ChessAI ai(game -> fen);
+    int depthLimit;
 
-    auto depthLimit = 4;
+    auto depthLimitArgument = get_setting("depth_limit");
+
+    if (depthLimitArgument == "") {
+        std::cout << "Depth Limit argument not present. Arbitrarily defaulting to 3.\n";
+        depthLimit = 3;
+    } else {
+        depthLimit = std::stoi(depthLimitArgument);
+    }
 
     auto move = ChessAI::minimax(depthLimit, ai.currentState, PerceptSequence());
 

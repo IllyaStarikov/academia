@@ -72,7 +72,7 @@ public:
     static std::vector<Action> actions(const State& state);
     static State result(const State& state, const Action& action);
 
-    static ChessOutcome terminalTest(const State& state, const Color& friendlyColor, const PerceptSequence& history);
+    static ChessOutcome terminalTest(const State& state, const PerceptSequence& history);
     static float utilityFunction(const State& state, const Color& friendlyColor, const PerceptSequence& history);
     static float utilityHeurisitic(const State& state, const Color& friendlyColor);
 

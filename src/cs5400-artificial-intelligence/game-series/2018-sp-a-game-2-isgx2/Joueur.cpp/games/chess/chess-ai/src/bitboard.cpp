@@ -65,17 +65,17 @@ Bitboard Bitboard::operator^(const Bitboard& right) const noexcept {
 }
 
 Bitboard& Bitboard::operator|=(const Bitboard& right) noexcept {
-    this -> board = this -> board | right.board;
+    this -> board |= right.board;
     return *this;
 }
 
 Bitboard& Bitboard::operator&=(const Bitboard& right) noexcept {
-    this -> board = this -> board & right.board;
+    this -> board &= right.board;
     return *this;
 }
 
 Bitboard& Bitboard::operator^=(const Bitboard& right) noexcept {
-    this -> board = this -> board ^ right.board;
+    this -> board ^= right.board;
     return *this;
 }
 

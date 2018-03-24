@@ -15,9 +15,8 @@
 #include <bitset>
 
 class Bitboard {
-    uint64_t board;
-
 public:
+    uint64_t board;
 
     // MARK: Constructors
     Bitboard();

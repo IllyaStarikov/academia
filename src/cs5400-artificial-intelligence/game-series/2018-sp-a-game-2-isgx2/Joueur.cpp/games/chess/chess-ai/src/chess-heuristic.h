@@ -15,6 +15,7 @@
 #include "state.h"
 
 #include <map>
+#include <iostream>
 
 
 template <class T>
