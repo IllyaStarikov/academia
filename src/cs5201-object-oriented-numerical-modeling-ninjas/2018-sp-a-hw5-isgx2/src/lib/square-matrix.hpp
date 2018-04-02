@@ -262,16 +262,15 @@ bool operator!=(const SquareMatrix<T>& leftHandSide, const SquareMatrix<T>& righ
  **/
 template <typename T>
 void SquareMatrix<T>::resize(const size_t rows) {
-    if (rows != dimension) {
-        auto newPointer = std::unique_ptr<Vector<T>[]>(new Vector<T>[rows]);
+    // Could check for to see if I `have` to resize here, but this acts as a way to reinstantiate data in the this -> data
+    auto newPointer = std::unique_ptr<Vector<T>[]>(new Vector<T>[rows]);
 
-        for (unsigned i = 0; i < rows; i++) {
-            newPointer[i] = Vector<T>(rows);
-        }
-
-        this -> data = std::move(newPointer);
-        this -> dimension = rows;
+    for (unsigned i = 0; i < rows; i++) {
+        newPointer[i] = Vector<T>(rows);
     }
+
+    this -> data = std::move(newPointer);
+    this -> dimension = rows;
 }
 
 /**
