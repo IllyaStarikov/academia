@@ -6,6 +6,9 @@
 #include <ctime>
 #include <cstdlib>
 
+
+#include <unordered_map>
+
 // You can add #includes here for your AI.
 
 namespace cpp_client
@@ -22,7 +25,7 @@ namespace chess
 std::string AI::get_name() const
 {
     // REPLACE WITH YOUR TEAM NAME!
-    return "Chess C++ Player";
+    return "daddy";
 }
 
 /// <summary>
@@ -58,31 +61,73 @@ void AI::ended(bool won, const std::string& reason)
 /// <returns>Represents if you want to end your turn. True means end your turn, False means to keep your turn going and re-call this function.</returns>
 bool AI::run_turn()
 {
-    // Here is where you'll want to code your AI.
+    /* static std::unordered_map<std::string, Piece> pieceMappings = { */
+    /*     { "King", king }, */
+    /*     { "Queen", queen }, */
+    /*     { "Knight", knight }, */
+    /*     { "Rook", rook }, */
+    /*     { "Bishop", bishop }, */
+    /*     { "Pawn", pawn } */
+    /* }; */
 
-    // We've provided sample code that:
-    //    1) prints the board to the console
-    //    2) prints the opponent's last move to the console
-    //    3) prints how much time remaining this AI has to calculate moves
-    //    4) makes a random (and probably invalid) move.
+    ChessEngine::ChessAI ai(game -> fen);
 
-    // 1) print the board to the console
-    print_current_board();
+    /* if (game -> moves.size() == 1 || game -> moves.size() == 2 || game -> moves.size() % 9 == 0 || game -> moves.size() % 10 == 0) { */
+        /* std::cout << "RESYNC"; */
+        ai.updateTimer(player -> time_remaining / 1000000000.0);
+    /* } */
 
-    // 2) print the opponent's last move to the console
-    if(game->moves.size() > 0)
-    {
-        std::cout << "Opponent's Last Move: '" << game->moves[game->moves.size() - 1]->san << "'" << std::endl;
+    /* auto opponentMove = Actio */
+    auto move = ai.move();
+
+    auto beforeMoveDescription = ChessEngine::MoveEngine::bitStringToDescription(move.pieceBefore)[0];
+    auto afterMoveDescription = ChessEngine::MoveEngine::bitStringToDescription(move.pieceAfter)[0];
+
+    int beforeMoveRank = beforeMoveDescription.second;
+    std::string beforeMoveFile = std::string(1, tolower(beforeMoveDescription.first));
+
+    int afterMoveRank = afterMoveDescription.second;
+    std::string afterMoveFile = std::string(1, tolower(afterMoveDescription.first));
+
+    std::cout << "Selecting move ";
+    std::cout << "from " << beforeMoveFile << beforeMoveRank;
+    std::cout << " to " << afterMoveFile << afterMoveRank << ".\n";
+
+    // Figure out what move i am doing and do that
+    for (auto& movePiece : player -> pieces) {
+        if (movePiece -> rank == beforeMoveRank && movePiece -> file == beforeMoveFile) {
+            auto promotionString = "";
+            if (move.wasPromotion) {
+                switch (move.promotedTo) {
+                    case ChessEngine::queen:
+                        promotionString = "queen";
+                        break;
+
+                    case ChessEngine::king:
+                        promotionString = "king";
+                        break;
+
+                    case ChessEngine::knight:
+                        promotionString = "knight";
+                        break;
+
+                    case ChessEngine::pawn:
+                        promotionString = "pawn";
+                        break;
+
+                    case ChessEngine::rook:
+                        promotionString = "rook";
+                        break;
+
+                    case ChessEngine::bishop:
+                        promotionString = "bishop";
+                        break;
+                }
+            }
+
+            movePiece -> move(afterMoveFile, afterMoveRank, promotionString);
+        }
     }
-
-    // 3) print how much time remaining this AI has to calculate moves
-    std::cout << "Time Remaining: " << player->time_remaining << " ns" << std::endl;
-
-    // 4) make a random (and probably invalid) move.
-    chess::Piece random_piece = player->pieces[rand() % player->pieces.size()];
-    std::string random_file(1, 'a' + rand() % 8);
-    int random_rank = (rand() % 8) + 1;
-    random_piece->move(random_file, random_rank);
 
     return true; // to signify we are done with our turn.
 }
