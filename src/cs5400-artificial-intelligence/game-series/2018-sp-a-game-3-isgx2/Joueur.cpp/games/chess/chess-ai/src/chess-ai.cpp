@@ -496,7 +496,6 @@ Action ChessAI::move() {
     timeRemaining -= moveTimer.elapsed();
 
     moveTimer.stop();
-    std::cout << "\n" << timeRemaining << " " << halfMoveNumber << " " << timeLimit << "\n";
 
     return move;
 }
