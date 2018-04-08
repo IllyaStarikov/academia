@@ -5,11 +5,13 @@
 # This script is to help you test your AI and for grading purposes. Your code will be compiled and ran by this script.
 
 LANG=$1
-SESSION=$2
-
+TEST_ARGS="${@:2}"
+FEN="$(sort --random-sort FEN.txt | head -n 1)"
+echo $FEN
+FEN_SETTING="--gameSetting fen=$FEN"
+echo $FEN_SETTING
 cd $LANG
 make
-./testRun $SESSION &
-./testRun $SESSION > /dev/null &
+./testRun $TEST_ARGS $FEN_SETTING > ../player1.txt &
+./testRun $TEST_ARGS $FEN_SETTING > ../player2.txt
 
-# DO NOT MODIFY THIS SCRIPT
