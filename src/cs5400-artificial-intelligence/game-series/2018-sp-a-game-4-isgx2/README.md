@@ -36,9 +36,13 @@ Late submissions will be penalized 5% for the first 24 hour period and an additi
 
 You have been provided a bash script called "play.sh", which compiles and runs your code; it also starts a game session between your AI and itself. DO NOT MODIFY THIS SCRIPT.
 You can run "play.sh" using the following command format :
+
 	./play.sh Joueur.<lang> Session_ID testRunArg1 ... testRunArgN
+
 Where Joueur.<lang> is the directory for the language you are coding in and where testRunArg# is an optional argument that is accepted by the provided testRun script. An example of the above command for c++ would be :
+
 	./play.sh Joueur.cpp AIisAwesome
+
 	./play.sh Joueur.cpp AIisAwesome --gameSettings fen=b6k%2F8%2F8%2F8%2F5p2%2F6q1%2F4P3%2F7K%20w%20K%20-%200%201
 
 You can find some helpful FEN strings in the file FEN.txt. There are FENs for testing castling, en passant and check.
