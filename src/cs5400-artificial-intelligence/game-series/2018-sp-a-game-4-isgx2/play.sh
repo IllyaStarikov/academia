@@ -6,10 +6,7 @@
 
 LANG=$1
 TEST_ARGS="${@:2}"
-FEN="$(sort --random-sort FEN.txt | head -n 1)"
-echo $FEN
-FEN_SETTING="--gameSetting fen=$FEN"
-echo $FEN_SETTING
+
 cd $LANG
 make
 ./testRun $TEST_ARGS $FEN_SETTING > ../player1.txt &
