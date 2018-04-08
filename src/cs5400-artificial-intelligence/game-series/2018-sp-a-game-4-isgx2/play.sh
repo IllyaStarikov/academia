@@ -9,6 +9,7 @@ TEST_ARGS="${@:2}"
 
 cd $LANG
 make
-./testRun $TEST_ARGS $FEN_SETTING > ../player1.txt &
-./testRun $TEST_ARGS $FEN_SETTING > ../player2.txt
+./testRun $TEST_ARGS &
+./testRun $TEST_ARGS > /dev/null
 
+# DO NOT MODIFY THIS SCRIPT
