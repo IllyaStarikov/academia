@@ -5,4 +5,4 @@ FROM python:alpine
 COPY --from=build /usr/src/client /client
 WORKDIR /client
 
-ENTRYPOINT ["python", "-u", "main.py", Chess]
+ENTRYPOINT ["python", "-u", "main.py", "Chess"]
