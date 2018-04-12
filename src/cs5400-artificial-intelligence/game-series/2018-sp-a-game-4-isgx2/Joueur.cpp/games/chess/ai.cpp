@@ -6,6 +6,8 @@
 #include <ctime>
 #include <cstdlib>
 
+#include <unordered_map>
+
 // You can add #includes here for your AI.
 
 namespace cpp_client
@@ -22,7 +24,7 @@ namespace chess
 std::string AI::get_name() const
 {
     // REPLACE WITH YOUR TEAM NAME!
-    return "Chess C++ Player";
+    return "daddy";
 }
 
 /// <summary>
@@ -52,37 +54,123 @@ void AI::ended(bool won, const std::string& reason)
     // You can do any cleanup of your AI here.  The program ends when this function returns.
 }
 
+ChessEngine::Action AI::getEnemyMove() {
+        /* const bool& wasPromotion, const Piece& promotedTo) { */
+
+    static const auto secondSeventhRank = ChessEngine::Bitboard(0xff00000000ff00);
+    static const auto fourthFifthRank   = ChessEngine::Bitboard(0xffff000000);
+
+    static std::unordered_map<std::string, ChessEngine::Piece> pieceMappings = {
+        { "King",   ChessEngine::king },
+        { "Queen",  ChessEngine::queen },
+        { "Knight", ChessEngine::knight },
+        { "Rook",   ChessEngine::rook },
+        { "Bishop", ChessEngine::bishop },
+        { "Pawn",   ChessEngine::pawn }
+    };
+
+    static std::unordered_map<std::string, ChessEngine::Color> colorMappings = {
+        { "White", ChessEngine::white},
+        { "Black", ChessEngine::black }
+    };
+
+    auto previousMove = game -> moves.back();
+    auto beforeIndex = 8 * (previousMove -> from_rank - 1) + static_cast<int>(toupper(previousMove -> from_file[0])) - 65;
+    auto afterIndex = 8 * (previousMove -> to_rank - 1) + static_cast<int>(toupper(previousMove -> to_file[0])) - 65;
+
+    auto piece = pieceMappings[previousMove -> piece -> type];
+    auto color = colorMappings[previousMove -> piece -> owner -> color];
+
+    auto before = ChessEngine::Bitboard().fromIndex(beforeIndex);
+    auto after = ChessEngine::Bitboard().fromIndex(afterIndex);
+
+    auto doublePawnForward = (piece == ChessEngine::pawn) && ((before & secondSeventhRank) != 0) && ((after & fourthFifthRank) != 0);
+
+    auto queenSideCastling = previousMove -> san == "O-O-O";
+    auto kingSideCastling = previousMove -> san == "O-O";
+
+    auto enemyInCheck = false;
+
+    auto wasACapture = previousMove -> captured != NULL;
+    auto wasEnPassantCapture = wasACapture && (piece == ChessEngine::pawn) && (previousMove -> captured -> rank != previousMove -> to_rank);
+    auto capturedPiece = wasACapture ? pieceMappings[previousMove -> captured -> type] : ChessEngine::king;
+
+    auto wasPromotion = previousMove -> promotion != "";
+    auto promotedTo = wasPromotion ? pieceMappings[previousMove -> promotion] : ChessEngine::king;
+
+    return ChessEngine::Action(piece, color, before, after, doublePawnForward, queenSideCastling, kingSideCastling, enemyInCheck, wasACapture, wasEnPassantCapture, capturedPiece, wasPromotion, promotedTo);
+}
+
 /// <summary>
 /// This is called every time it is this AI.player's turn.
 /// </summary>
 /// <returns>Represents if you want to end your turn. True means end your turn, False means to keep your turn going and re-call this function.</returns>
 bool AI::run_turn()
 {
-    // Here is where you'll want to code your AI.
+    static ChessEngine::ChessAI ai("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 
-    // We've provided sample code that:
-    //    1) prints the board to the console
-    //    2) prints the opponent's last move to the console
-    //    3) prints how much time remaining this AI has to calculate moves
-    //    4) makes a random (and probably invalid) move.
-
-    // 1) print the board to the console
-    print_current_board();
-
-    // 2) print the opponent's last move to the console
-    if(game->moves.size() > 0)
-    {
-        std::cout << "Opponent's Last Move: '" << game->moves[game->moves.size() - 1]->san << "'" << std::endl;
+    if (game -> moves.size() == 0 || game -> moves.size() == 1 || game -> moves.size() % 9 == 0 || game -> moves.size() % 10 == 0) {
+        ai.updateTimer(player -> time_remaining / 1000000000.0);
     }
 
-    // 3) print how much time remaining this AI has to calculate moves
-    std::cout << "Time Remaining: " << player->time_remaining << " ns" << std::endl;
+    if (game -> moves.size() > 0) {
+        auto action = getEnemyMove();
+        ai.updateMove(action);
+    }
 
-    // 4) make a random (and probably invalid) move.
-    chess::Piece random_piece = player->pieces[rand() % player->pieces.size()];
-    std::string random_file(1, 'a' + rand() % 8);
-    int random_rank = (rand() % 8) + 1;
-    random_piece->move(random_file, random_rank);
+    // print_current_board();
+    // ai.currentState.print();
+
+    auto move = ai.move();
+
+    auto beforeMoveDescription = ChessEngine::MoveEngine::bitStringToDescription(move.pieceBefore())[0];
+    auto afterMoveDescription = ChessEngine::MoveEngine::bitStringToDescription(move.pieceAfter())[0];
+
+    int beforeMoveRank = beforeMoveDescription.second;
+    std::string beforeMoveFile = std::string(1, tolower(beforeMoveDescription.first));
+
+    int afterMoveRank = afterMoveDescription.second;
+    std::string afterMoveFile = std::string(1, tolower(afterMoveDescription.first));
+
+    std::cout << "Selecting move ";
+    std::cout << "from " << beforeMoveFile << beforeMoveRank;
+    std::cout << " to " << afterMoveFile << afterMoveRank << ".\n";
+
+    // Figure out what move i am doing and do that
+    for (auto& movePiece : player -> pieces) {
+        if (movePiece -> rank == beforeMoveRank && movePiece -> file == beforeMoveFile) {
+            auto promotionString = "";
+            if (move.wasPromotion()) {
+                switch (move.promotedTo()) {
+                    case ChessEngine::queen:
+                        promotionString = "queen";
+                        break;
+
+                    case ChessEngine::king:
+                        promotionString = "king";
+                        break;
+
+                    case ChessEngine::knight:
+                        promotionString = "knight";
+                        break;
+
+                    case ChessEngine::pawn:
+                        promotionString = "pawn";
+                        break;
+
+                    case ChessEngine::rook:
+                        promotionString = "rook";
+                        break;
+
+                    case ChessEngine::bishop:
+                        promotionString = "bishop";
+                        break;
+                }
+            }
+
+            movePiece -> move(afterMoveFile, afterMoveRank, promotionString);
+        }
+    }
 
     return true; // to signify we are done with our turn.
 }

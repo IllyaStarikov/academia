@@ -3,3 +3,26 @@
 # You would add the following line to this folder (without the #)
 # my_code/stuff.cpp
 # If your build fails after adding files, try to build again
+chess-ai/src/action.cpp
+chess-ai/src/action.h
+chess-ai/src/bitboard.cpp
+chess-ai/src/bitboard.h
+chess-ai/src/chess-ai.cpp
+chess-ai/src/chess-ai.h
+chess-ai/src/chess-engine.cpp
+chess-ai/src/chess-engine.h
+chess-ai/src/chess-heuristic.h
+chess-ai/src/chess-history.h
+chess-ai/src/chess-outcome.h
+chess-ai/src/chess-pieces.h
+chess-ai/src/color.h
+chess-ai/src/constants.h
+chess-ai/src/direction.h
+chess-ai/src/fen-parser.cpp
+chess-ai/src/fen-parser.h
+chess-ai/src/move-time-calculator.cpp
+chess-ai/src/move-time-calculator.h
+chess-ai/src/state.cpp
+chess-ai/src/state.h
+chess-ai/src/timer.cpp
+chess-ai/src/timer.h
