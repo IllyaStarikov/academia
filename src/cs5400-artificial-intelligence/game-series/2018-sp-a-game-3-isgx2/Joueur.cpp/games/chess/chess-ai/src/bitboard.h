@@ -49,7 +49,7 @@ namespace ChessEngine {
         Bitboard& operator^=(const Bitboard& right) noexcept;
 
         // MARK: Properties
-        std::vector<int> toIndices();
+        std::vector<int> toIndices() const;
         Bitboard& fromIndex(const int index);
 
         std::vector<Bitboard> seperated() const;

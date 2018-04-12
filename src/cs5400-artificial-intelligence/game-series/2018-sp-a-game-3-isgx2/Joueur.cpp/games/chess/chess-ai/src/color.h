@@ -20,6 +20,15 @@ namespace ChessEngine {
         white, black
     };
 }
+
+namespace std {
+    template <>
+    struct hash<ChessEngine::Color> {
+        size_t operator()(const ChessEngine::Color& color) const {
+            return static_cast<int>(color);
+        }
+    };
+}
     
 #endif /* color_h */
 

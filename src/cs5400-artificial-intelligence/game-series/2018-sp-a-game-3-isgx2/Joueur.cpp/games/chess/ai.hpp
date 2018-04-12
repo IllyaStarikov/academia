@@ -7,6 +7,7 @@
 #include "move.hpp"
 #include "piece.hpp"
 #include "player.hpp"
+
 #include <string>
 
 #include "chess-ai/src/chess-ai.h"
@@ -80,6 +81,8 @@ public:
     void print_current_board();
 
     // You can add additional methods here.
+
+    ChessEngine::Action getEnemyMove();
 
 
 

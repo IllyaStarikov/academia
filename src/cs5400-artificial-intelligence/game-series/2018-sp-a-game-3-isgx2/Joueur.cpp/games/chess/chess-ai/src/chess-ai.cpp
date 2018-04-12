@@ -8,12 +8,11 @@
 
 #include "chess-ai.h"
 
-#include <algorithm>
-#include <random>
-
 using namespace ChessEngine;
 
-ChessAI::ChessAI(const std::string& fenString): halfMoveNumber(2*parser.fullMoves(fenString)), currentState(parser(fenString)) {}
+ChessAI::ChessAI(const std::string& fenString): halfMoveNumber(2*parser.fullMoves(fenString)), currentState(parser(fenString)) {
+    history.add(currentState);
+}
 
 State ChessAI::initialState() {
     auto whiteBitboard = std::vector<Bitboard>(6), blackBitboard = std::vector<Bitboard>(6);
@@ -87,10 +86,90 @@ bool ChessAI::isEightfoldRepitionRule(const PerceptSequence& fromHistory) {
         }
     }
 
-    return fromHistory.movesSensePawnMovement() >= 8 && fromHistory.movesSenseCapture() >= 8;
+    return fromHistory.movesSincePawnMovement() >= 8 && fromHistory.movesSinceCapture() >= 8;
 }
 
-std::shared_ptr<Action> ChessAI::depthLimitedMinimax(const int depthLimit, const double& timeLimit, const State& state, const PerceptSequence& history) {
+bool ChessAI::insufficientMaterial(const State& currentState) {
+    if (
+            (currentState.whites[MoveEngine::pieceToInt(rook)]                    == 0
+            && currentState.whites[MoveEngine::pieceToInt(bishop)]                == 0
+            && currentState.whites[MoveEngine::pieceToInt(queen)]                 == 0
+            && currentState.whites[MoveEngine::pieceToInt(knight)]                == 0
+            && currentState.whites[MoveEngine::pieceToInt(pawn)]                  == 0
+
+            && currentState.blacks[MoveEngine::pieceToInt(rook)]                  == 0
+            && currentState.blacks[MoveEngine::pieceToInt(bishop)]                == 0
+            && currentState.blacks[MoveEngine::pieceToInt(queen)]                 == 0
+            && currentState.blacks[MoveEngine::pieceToInt(knight)]                == 0
+            && currentState.blacks[MoveEngine::pieceToInt(pawn)]                  == 0)
+
+            ||
+
+            (currentState.whites[MoveEngine::pieceToInt(rook)]                    == 0
+            && currentState.whites[MoveEngine::pieceToInt(bishop)]                == 0
+            && currentState.whites[MoveEngine::pieceToInt(queen)]                 == 0
+            && currentState.whites[MoveEngine::pieceToInt(knight)]                == 0
+            && currentState.whites[MoveEngine::pieceToInt(pawn)]                  == 0
+
+            && currentState.blacks[MoveEngine::pieceToInt(rook)]                  == 0
+            && currentState.blacks[MoveEngine::pieceToInt(bishop)]                == 0
+            && currentState.blacks[MoveEngine::pieceToInt(queen)]                 == 0
+            && currentState.blacks[MoveEngine::pieceToInt(knight)].numberOfBits() == 1
+            && currentState.blacks[MoveEngine::pieceToInt(pawn)]                  == 0)
+
+            ||
+
+            (currentState.whites[MoveEngine::pieceToInt(rook)]                    == 0
+            && currentState.whites[MoveEngine::pieceToInt(bishop)]                == 0
+            && currentState.whites[MoveEngine::pieceToInt(queen)]                 == 0
+            && currentState.whites[MoveEngine::pieceToInt(knight)]                == 0
+            && currentState.whites[MoveEngine::pieceToInt(pawn)]                  == 0
+
+            && currentState.blacks[MoveEngine::pieceToInt(rook)]                  == 0
+            && currentState.blacks[MoveEngine::pieceToInt(bishop)].numberOfBits() == 1
+            && currentState.blacks[MoveEngine::pieceToInt(queen)]                 == 0
+            && currentState.blacks[MoveEngine::pieceToInt(knight)]                == 0
+            && currentState.blacks[MoveEngine::pieceToInt(pawn)]                  == 0)
+
+            ||
+
+            (currentState.whites[MoveEngine::pieceToInt(rook)]                    == 0
+            && currentState.whites[MoveEngine::pieceToInt(bishop)]                == 0
+            && currentState.whites[MoveEngine::pieceToInt(queen)]                 == 0
+            && currentState.whites[MoveEngine::pieceToInt(knight)].numberOfBits() == 1
+            && currentState.whites[MoveEngine::pieceToInt(pawn)]                  == 0
+
+            && currentState.blacks[MoveEngine::pieceToInt(rook)]                  == 0
+            && currentState.blacks[MoveEngine::pieceToInt(bishop)]                == 0
+            && currentState.blacks[MoveEngine::pieceToInt(queen)]                 == 0
+            && currentState.blacks[MoveEngine::pieceToInt(knight)]                == 0
+            && currentState.blacks[MoveEngine::pieceToInt(pawn)]                  == 0)
+
+            ||
+
+            (currentState.whites[MoveEngine::pieceToInt(rook)]                    == 0
+            && currentState.whites[MoveEngine::pieceToInt(bishop)].numberOfBits() == 1
+            && currentState.whites[MoveEngine::pieceToInt(queen)]                 == 0
+            && currentState.whites[MoveEngine::pieceToInt(knight)]                == 0
+            && currentState.whites[MoveEngine::pieceToInt(pawn)]                  == 0
+
+            && currentState.blacks[MoveEngine::pieceToInt(rook)]                  == 0
+            && currentState.blacks[MoveEngine::pieceToInt(bishop)]                == 0
+            && currentState.blacks[MoveEngine::pieceToInt(queen)]                 == 0
+            && currentState.blacks[MoveEngine::pieceToInt(knight)]                == 0
+            && currentState.blacks[MoveEngine::pieceToInt(pawn)]                  == 0)
+       ) {
+        return true;
+    }
+
+    return false;
+}
+
+bool ChessAI::fiftyMoveRule(const PerceptSequence& history) {
+    return history.movesSinceCapture() >= 50 && history.movesSincePawnMovement() > 50;
+}
+
+std::shared_ptr<Action> ChessAI::depthLimitedMinimax(const int depthLimit, const int quiescenceLimit, const double& timeLimit, const State& state, std::map<Action, int>& historyTable, const PerceptSequence& history) {
     auto friendlyColor = state.colorAtPlay;
     auto possibleActions = actions(state);
 
@@ -98,12 +177,12 @@ std::shared_ptr<Action> ChessAI::depthLimitedMinimax(const int depthLimit, const
     auto beta = std::numeric_limits<float>::infinity();
 
     auto bestAction = possibleActions.back();
-    auto currentMaxValue = minValue(depthLimit - 1, timeLimit, result(state, bestAction), alpha, beta, friendlyColor, history);
+    auto currentMaxValue = minValue(depthLimit - 1, quiescenceLimit, timeLimit, result(state, bestAction), bestAction, alpha, beta, friendlyColor, historyTable, history);
 
     possibleActions.pop_back();
 
     for (const auto& action : possibleActions) {
-        auto value = minValue(depthLimit - 1, timeLimit, result(state, action), alpha, beta, friendlyColor, history);
+        auto value = minValue(depthLimit - 1, quiescenceLimit, timeLimit, result(state, action), action, alpha, beta, friendlyColor, historyTable, history);
         if (value == nullptr) {
             return nullptr;
         }
@@ -117,65 +196,101 @@ std::shared_ptr<Action> ChessAI::depthLimitedMinimax(const int depthLimit, const
     return std::make_shared<Action>(bestAction);
 }
 
-std::shared_ptr<float> ChessAI::maxValue(const int depthLimit, const double& timeLimit, const State& state, float alpha, float beta, const Color& color, const PerceptSequence& history) {
+
+std::shared_ptr<float> ChessAI::maxValue(const int depthLimit, int quiescenceLimit, const double& timeLimit, const State& state, const Action&  action, float alpha, float beta, const Color& color, std::map<Action, int>& historyTable, const PerceptSequence& history) {
     if (terminalTest(state, history) != nonterminal) { return std::make_shared<float>(utilityFunction(state, color, history)); }
-    if (depthLimit <= 0) { return std::make_shared<float>(utilityHeurisitic(state, color)); }
     if (moveTimer.elapsed() > timeLimit) { return nullptr; }
+    if (depthLimit <= 0 && isNonQuiescenceState(action)) { quiescenceLimit--; }
+    else if (depthLimit <= 0) { return std::make_shared<float>(utilityHeurisitic(state, color)); }
 
     auto possibleActions = actions(state);
+    auto sortFunction = [&](const Action& action1, const Action& action2) { return (historyTable.find(action1) != historyTable.end() ? historyTable[action1] : 0) > (historyTable.find(action2) != historyTable.end() ? historyTable[action2] : 0); };
+    std::sort(possibleActions.begin(), possibleActions.end(), sortFunction);
+
     auto value = -std::numeric_limits<float>::infinity();
+    Action bestAction;
 
     for (const auto& action : possibleActions) {
         auto newHistory = history;
-        newHistory.add(result(state, action), action);
+        auto resultantState = result(state, action);
 
-        auto newValue = minValue(depthLimit - 1, timeLimit, result(state, action), alpha, beta, color, newHistory);
+        newHistory.add(resultantState);
+        newHistory.add(action);
+
+        auto newValue = minValue(depthLimit - 1, quiescenceLimit, timeLimit, resultantState, action, alpha, beta, color, historyTable, newHistory);
 
         if (newValue == nullptr) {
             return nullptr;
         }
 
-        value = std::max(value, *newValue);
+        if (*newValue > value) {
+            value = *newValue;
+            bestAction = action;
+        }
 
         if (value >= beta) {
+            addToHistoryTable(historyTable, action);
             return std::make_shared<float>(value);
         }
 
         alpha = std::max(alpha, value);
     }
 
+    addToHistoryTable(historyTable, bestAction);
     return std::make_shared<float>(value);
 }
 
-std::shared_ptr<float> ChessAI::minValue(const int depthLimit, const double& timeLimit, const State& state, float alpha, float beta, const Color& color, const PerceptSequence& history) {
+std::shared_ptr<float> ChessAI::minValue(const int depthLimit, int quiescenceLimit, const double& timeLimit, const State& state, const Action& action, float alpha, float beta, const Color& color, std::map<Action, int>& historyTable, const PerceptSequence& history) {
     if (terminalTest(state, history) != nonterminal) { return std::make_shared<float>(utilityFunction(state, color, history)); }
-    if (depthLimit <= 0) { return std::make_shared<float>(utilityHeurisitic(state, color)); }
     if (moveTimer.elapsed() > timeLimit) { return nullptr; }
+    if (depthLimit <= 0 && isNonQuiescenceState(action)) { quiescenceLimit--; }
+    else if (depthLimit <= 0) { return std::make_shared<float>(utilityHeurisitic(state, color)); }
 
     auto possibleActions = actions(state);
+    auto sortFunction = [&](const Action& action1, const Action& action2) { return (historyTable.find(action1) != historyTable.end() ? historyTable[action1] : 0) > (historyTable.find(action2) != historyTable.end() ? historyTable[action2] : 0); };
+
+    std::sort(possibleActions.begin(), possibleActions.end(), sortFunction);
+
     auto value = std::numeric_limits<float>::infinity();
+    Action bestAction;
 
     for (const auto& action : possibleActions) {
         auto newHistory = history;
-        newHistory.add(result(state, action), action);
+        auto resultantState = result(state, action);
 
+        newHistory.add(resultantState);
+        newHistory.add(action);
 
-        auto newValue = maxValue(depthLimit - 1, timeLimit, result(state, action), alpha, beta, color, newHistory);
+        auto newValue = maxValue(depthLimit - 1, quiescenceLimit, timeLimit, resultantState, action, alpha, beta, color, historyTable, newHistory);
 
         if (newValue == nullptr) {
             return nullptr;
         }
 
-        value = std::min(value, *newValue);
+        if (*newValue < value) {
+            value = *newValue;
+            bestAction = action;
+        }
 
         if (value <= alpha) {
+            addToHistoryTable(historyTable, action);
             return std::make_shared<float>(value);
         }
 
         beta = std::min(beta, value);
     }
 
+    addToHistoryTable(historyTable, bestAction);
     return std::make_shared<float>(value);
+}
+
+void ChessAI::addToHistoryTable(std::map<Action, int>& historyTable, const Action& action) {
+    if (historyTable.find(action) == historyTable.end()) {
+        historyTable[action] = 0;
+    }
+    /* std::cout << action.key() << " -> " << historyTable[action] << "\n"; */
+
+    historyTable[action]++;
 }
 
 Bitboard ChessAI::castlingMoveGenerator(const Bitboard& allWhites, const Bitboard& allBlacks, const Bitboard& castlingSquares, const Bitboard& rook) {
@@ -211,11 +326,18 @@ Bitboard ChessAI::castlingMoveGenerator(const Bitboard& allWhites, const Bitboar
 }
 
 std::vector<Action> ChessAI::actions(const State& state) {
-    static const auto zeroBitboard = Bitboard(0);
-    static const auto firstEighthFile = Bitboard(0xff000000000000ff);
+    static const auto zeroBitboard      = Bitboard(0);
+    static const auto firstEighthRank   = Bitboard(0xff000000000000ff);
+    static const auto secondSeventhRank = Bitboard(0xff00000000ff00);
+    static const auto fourthFifthRank   = Bitboard(0xffff000000);
+
+    static const auto queenSidePossibleCastlingSquaresBefore = Bitboard(0x100000000000001);
+    static const auto queenSidePossibleCastlingSquaresAfter = Bitboard(0x800000000000008);
+
+    static const auto kingSidePossibleCastlingSquaresBefore  = Bitboard(0x8000000000000080);
+    static const auto kingSidePossibleCastlingSquaresAfter = Bitboard(0x2000000000000020);
 
     std::vector<Action> actions;
-    auto rng = std::default_random_engine {};
 
     // Dirty enum flip
     const auto& friendlyColor = state.colorAtPlay;
@@ -300,14 +422,21 @@ std::vector<Action> ChessAI::actions(const State& state) {
                     auto before = pieceInsideBoard;
                     auto after = newLocation;
 
+                    auto doublePawnForward = (piece == pawn) && ((before & secondSeventhRank) != 0) && ((after & fourthFifthRank) != 0);
+                    auto queenSideCastling = isCastling ? ((before & queenSidePossibleCastlingSquaresBefore) != 0) & ((after & queenSidePossibleCastlingSquaresAfter) != 0) : false;
+                    auto kingSideCastling = isCastling ? ((before & kingSidePossibleCastlingSquaresBefore) != 0) & ((after & kingSidePossibleCastlingSquaresAfter) != 0) : false;
+
+                    auto enemyInCheck = false;
+
                     // Handle promotions accordingly
-                    if (piece == pawn && (newLocation & firstEighthFile) != zeroBitboard) {
+                    if ((piece == pawn) && ((newLocation & firstEighthRank) != zeroBitboard)) {
                         auto wasPromotion = true;
 
                         // Add possible promotions to the board
                         for (const auto& promotedPiece : promotablePieces) {
                             auto promotedTo = promotedPiece;
-                            auto action = Action(piece, friendlyColor, before, after, wasACapture, capturedPiece, wasPromotion, promotedTo, isEnPassant, isCastling);
+
+                            auto action = Action(piece, friendlyColor, before, after, doublePawnForward, queenSideCastling, kingSideCastling, enemyInCheck, wasACapture, isEnPassant, capturedPiece, wasPromotion, promotedTo);
 
                             actions.push_back(action);
                         }
@@ -315,7 +444,8 @@ std::vector<Action> ChessAI::actions(const State& state) {
                         auto wasPromotion = false;
                         auto promotedTo = king;
 
-                        auto action = Action(piece, friendlyColor, before, after, wasACapture, capturedPiece, wasPromotion, promotedTo, isEnPassant, isCastling);
+                        auto action = Action(piece, friendlyColor, before, after, doublePawnForward, queenSideCastling, kingSideCastling, enemyInCheck, wasACapture, isEnPassant, capturedPiece, wasPromotion, promotedTo);
+
                         actions.push_back(action);
                     }
                 }
@@ -324,7 +454,7 @@ std::vector<Action> ChessAI::actions(const State& state) {
         }
     }
 
-    std::shuffle(std::begin(actions), std::end(actions), rng);
+    std::sort(actions.begin(), actions.end());
     return actions;
 }
 
@@ -334,12 +464,15 @@ State ChessAI::result(const State& state, const Action& action) {
     static const auto fourthFifthRank = Bitboard(0xffff000000);
     static const auto secondSeventhRank = Bitboard(0xff00000000ff00);
 
-    auto piece = action.piece;
-    auto pieceBefore = action.pieceBefore;
-    auto pieceAfter = action.pieceAfter;
+    auto piece = action.piece();
+    auto pieceBefore = action.pieceBefore();
+    auto pieceAfter = action.pieceAfter();
 
-    auto wasCapture = action.wasCaptured;
-    auto capturedPiece = action.pieceCaptured;
+    auto wasCapture = action.wasCapture();
+    auto capturedPiece = action.pieceCaptured();
+
+    auto wasPromotion = action.wasPromotion();
+    auto promotedTo = action.promotedTo();
 
     auto oldColorAtPlay = state.colorAtPlay;
     auto newColorAtPlay = static_cast<Color>((state.colorAtPlay + 1) % 2);
@@ -347,27 +480,45 @@ State ChessAI::result(const State& state, const Action& action) {
     auto whites = state.whites;
     auto blacks = state.blacks;
 
-    auto wasEnPassant = action.wasEnPassant;
-    auto wasCastling = action.wasCastling;
+    auto wasEnPassant = action.wasEnPassantCapture();
+    auto wasCastling = action.queenSideCastling() || action.kingSideCastling();
 
     auto enPassantSquares = zeroBitboard;
     auto castlingSquares  = state.castlingSquares;
 
     // These two do the same thing, just for different colors
-    if (oldColorAtPlay == white) {
+    if (wasPromotion) {
+        if (oldColorAtPlay == white) {
+            whites[MoveEngine::pieceToInt(pawn)] &= ~pieceBefore;
+            whites[MoveEngine::pieceToInt(promotedTo)] |= pieceAfter;
+
+            // If it was a capture, update the enemy board
+            if (wasCapture) {
+                blacks[MoveEngine::pieceToInt(capturedPiece)] &= ~pieceAfter;
+            }
+        } else {
+            blacks[MoveEngine::pieceToInt(pawn)] &= ~pieceBefore;
+            blacks[MoveEngine::pieceToInt(promotedTo)] |= pieceAfter;
+
+            // If it was a capture, update the enemy board
+            if (wasCapture) {
+                whites[MoveEngine::pieceToInt(capturedPiece)] &= ~pieceAfter;
+            }
+        }
+    } else if (oldColorAtPlay == white) {
         // Remove the piece from the board
-        whites[MoveEngine::pieceToInt(piece)] ^= pieceBefore;
+        whites[MoveEngine::pieceToInt(piece)] &= ~pieceBefore;
         // And place it in the appropriate place
         whites[MoveEngine::pieceToInt(piece)] |= pieceAfter;
 
         // If it was a capture, update the enemy board
         if (wasCapture) {
-            blacks[MoveEngine::pieceToInt(capturedPiece)] ^= pieceAfter;
+            blacks[MoveEngine::pieceToInt(capturedPiece)] &= ~pieceAfter;
         }
 
         // If it was an enpassant capture, remove the enemy piece
         if (wasEnPassant) {
-            blacks[MoveEngine::pieceToInt(pawn)] ^= state.enPassantSquares;
+            blacks[MoveEngine::pieceToInt(pawn)] &= ~state.enPassantSquares;
         }
 
         // If this was a castling move, update our new King location as well
@@ -377,18 +528,18 @@ State ChessAI::result(const State& state, const Action& action) {
 
     } else {
         // Remove the piece from the board
-        blacks[MoveEngine::pieceToInt(piece)] ^= pieceBefore;
+        blacks[MoveEngine::pieceToInt(piece)] &= ~pieceBefore;
         // And place it in the appropriate place
         blacks[MoveEngine::pieceToInt(piece)] |= pieceAfter;
 
         // If it was a capture, update the enemy board
         if (wasCapture) {
-            whites[MoveEngine::pieceToInt(capturedPiece)] ^= pieceAfter;
+            whites[MoveEngine::pieceToInt(capturedPiece)] &= ~pieceAfter;
         }
 
         // If it was an enpassant capture, remove the enemy piece
         if (wasEnPassant) {
-            whites[MoveEngine::pieceToInt(pawn)] ^= state.enPassantSquares;
+            whites[MoveEngine::pieceToInt(pawn)] &= ~state.enPassantSquares;
         }
 
         // If this was a castling move, update our new King location as well
@@ -399,9 +550,9 @@ State ChessAI::result(const State& state, const Action& action) {
 
     // If this was a rook, we want to make sure he no longer can castle.
     if (piece == rook) {
-        castlingSquares ^= pieceBefore;
+        castlingSquares &= ~pieceBefore;
 
-    // If this was a pawn and it moved up two, we want it to reflect that it's eligible for enpassant
+        // If this was a pawn and it moved up two, we want it to reflect that it's eligible for enpassant
     } else if (piece == pawn) {
         if ((pieceBefore & secondSeventhRank) != zeroBitboard && (pieceAfter & fourthFifthRank) != zeroBitboard) {
             enPassantSquares |= pieceAfter;
@@ -410,7 +561,6 @@ State ChessAI::result(const State& state, const Action& action) {
 
     auto allWhites = MoveEngine::allBitboardsInOneBoard(whites);
     auto allBlacks = MoveEngine::allBitboardsInOneBoard(blacks);
-
 
     return State(newColorAtPlay, allWhites, allBlacks, whites, blacks, enPassantSquares, castlingSquares);
 }
@@ -443,9 +593,11 @@ ChessOutcome ChessAI::terminalTest(const State& state, const PerceptSequence& hi
         }
     } else if (isEightfoldRepitionRule(history)) {
         return draw;
+    } else if (insufficientMaterial(friendlyState)) {
+        return draw;
+    } else if (fiftyMoveRule(history)) {
+        return draw;
     }
-
-    // TODO: Insuffiient material
 
     return nonterminal;
 }
@@ -489,10 +641,11 @@ Action ChessAI::move() {
     auto timeLimit = timeCalculator(halfMoveNumber, timeRemaining);
     auto move = minimax(timeLimit, currentState, history);
 
-    history.add(currentState, move);
     currentState = result(currentState, move);
+    history.add(currentState);
+    history.add(move);
 
-    halfMoveNumber += 2;
+    halfMoveNumber += 1;
     timeRemaining -= moveTimer.elapsed();
 
     moveTimer.stop();
@@ -500,19 +653,31 @@ Action ChessAI::move() {
     return move;
 }
 
+void ChessAI::updateMove(const Action& action) {
+    currentState = result(currentState, action);
+
+    history.add(currentState);
+    history.add(action);
+
+    halfMoveNumber += 1;
+}
+
 Action ChessAI::minimax(const double& timeLimit, const State& state, const PerceptSequence& history) {
     static Timer localTimer;
 
     int depthLimit = 1;
+    int quiescenceLimit = 4;
 
     Action lastMove = actions(state)[0];
+    auto historyTable = std::map<Action, int>();
+
     std::shared_ptr<Action> move;
 
     do {
         localTimer.start();
-        move = depthLimitedMinimax(depthLimit++, timeLimit, state, history);
+        move = depthLimitedMinimax(depthLimit++, quiescenceLimit, timeLimit, state, historyTable, history);
         localTimer.stop();
-
+        
         if (move != nullptr) {
             lastMove = *move;
         }

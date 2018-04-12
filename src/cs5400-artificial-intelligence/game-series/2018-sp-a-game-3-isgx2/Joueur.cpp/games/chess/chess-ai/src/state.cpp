@@ -24,25 +24,64 @@ bool State::operator!=(const State& other) const noexcept {
     return !(*this == other);
 }
 
+
 std::ostream& operator<<(std::ostream& os, const State& object) {
-    auto color = object.colorAtPlay == white ? "white" : "black";
-    os << "Color: " << color << "\nAll Whites: " << object.allWhites << "\nAll Blacks: " << object.allBlacks;
+    static std::map<Piece, char> pieceToChar {
+        {king, 'K'},
+        {queen, 'Q'},
+        {knight, 'N'},
+        {rook, 'R'},
+        {bishop, 'B'},
+        {pawn, 'P'}
+    };
 
-    os << "\nWhite King:   " << object.whites[MoveEngine::pieceToInt(king)];
-    os << "\nWhite Queen:  " << object.whites[MoveEngine::pieceToInt(queen)];
-    os << "\nWhite Rook:   " << object.whites[MoveEngine::pieceToInt(rook)];
-    os << "\nWhite Bishop: " << object.whites[MoveEngine::pieceToInt(bishop)];
-    os << "\nWhite Knight: " << object.whites[MoveEngine::pieceToInt(knight)];
-    os << "\nWhite Pawn:   " << object.whites[MoveEngine::pieceToInt(pawn)];
+    std::map<int, char> mappings;
 
-    os << "\nBlack King:   " << object.blacks[MoveEngine::pieceToInt(king)];
-    os << "\nBlack Queen:  " << object.blacks[MoveEngine::pieceToInt(queen)];
-    os << "\nBlack Rook:   " << object.blacks[MoveEngine::pieceToInt(rook)];
-    os << "\nBlack Bishop: " << object.blacks[MoveEngine::pieceToInt(bishop)];
-    os << "\nBlack Knight: " << object.blacks[MoveEngine::pieceToInt(knight)];
-    os << "\nBlack Pawn:   " << object.blacks[MoveEngine::pieceToInt(pawn)];
+    for (int i = 0; i < 6; i++) {
+        for (auto index : object.whites[i].toIndices()) {
+            mappings[index] = toupper(pieceToChar[MoveEngine::intToPiece(i)]);
+        }
 
-    os << "\nEn Passant: " << object.enPassantSquares << "\nCastling " << object.castlingSquares;
+        for (auto index : object.blacks[i].toIndices()) {
+            mappings[index] = tolower(pieceToChar[MoveEngine::intToPiece(i)]);
+        }
+    }
+
+    std::stringstream ss;
+
+    for (int i = 63; i >= 0; i--) {
+        if (i == 63) {
+            os << "    +------------------------+";
+        }
+
+        if ((i + 1) % 8 == 0) {
+            auto string = ss.str();
+            std::reverse(string.begin(), string.end());
+
+            os << string;
+            os << "\n " << static_cast<int>(i / 8 + 1) << " | ";
+
+            ss.str("");
+            ss.clear();
+        }
+
+        if (mappings.find(i) == mappings.end()) {
+            ss << " . ";
+        } else {
+            ss << " " << mappings[i] << " ";
+        }
+
+        if (i == 0) {
+            auto string = ss.str();
+            std::reverse(string.begin(), string.end());
+
+            os << string;
+            os << "\n    +------------------------+";
+            os << "\n      a  b  c  d  e  f  g  h\n";
+        }
+    }
+
+
 
     return os;
 }

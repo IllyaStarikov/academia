@@ -84,7 +84,7 @@ Bitboard& Bitboard::operator^=(const Bitboard& right) noexcept {
 
 
 // MARK: Properties
-std::vector<int> Bitboard::toIndices() {
+std::vector<int> Bitboard::toIndices() const {
     auto solution = std::vector<int>();
     auto index = 0;
 

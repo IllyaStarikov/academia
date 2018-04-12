@@ -9,12 +9,16 @@
 #ifndef state_h
 #define state_h
 
+#include <algorithm>
 #include <ostream>
+#include <map>
+#include <sstream>
 
 #include "bitboard.h"
 #include "chess-engine.h"
 #include "chess-pieces.h"
 #include "color.h"
+
 
 namespace ChessEngine { class State; }
 std::ostream& operator<<(std::ostream& os, const ChessEngine::State& object);
@@ -39,6 +43,7 @@ namespace ChessEngine {
         bool operator==(const State& other) const noexcept;
         bool operator!=(const State& other) const noexcept;
 
+        void print() { std::cout << *this; }
         friend std::ostream& ::operator<<(std::ostream& os, const State& object);
     };
 }

@@ -9,6 +9,8 @@
 #ifndef chess_pieces_h
 #define chess_pieces_h
 
+#include <iostream>
+
 namespace ChessEngine {
     enum Piece {
         king   = 0,
@@ -17,6 +19,15 @@ namespace ChessEngine {
         bishop = 3,
         knight = 4,
         pawn   = 5
+    };
+}
+
+namespace std {
+    template <>
+    struct hash<ChessEngine::Piece> {
+        size_t operator()(const ChessEngine::Piece& piece) const {
+            return static_cast<int>(piece);
+        }
     };
 }
 

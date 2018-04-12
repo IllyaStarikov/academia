@@ -17,15 +17,17 @@
 #include "chess-outcome.h"
 #include "color.h"
 #include "fen-parser.h"
+#include "move-time-calculator.h"
 #include "state.h"
 #include "timer.h"
-#include "move-time-calculator.h"
 
+#include <algorithm>
 #include <functional>
 #include <limits>
 #include <map>
 #include <memory>
 #include <numeric>
+#include <random>
 #include <tuple>
 #include <utility>
 #include <vector>
@@ -49,17 +51,23 @@ namespace ChessEngine {
         static Bitboard kingLocationAfterCastling(const Bitboard& rookAfterCastling);
 
         static bool isEightfoldRepitionRule(const PerceptSequence& fromHistory);
+        static bool insufficientMaterial(const State& currentState);
+        static bool fiftyMoveRule(const PerceptSequence& history);
 
-        Action minimax(const double& timeLimit, const State& state, const PerceptSequence& history);
-        std::shared_ptr<Action> depthLimitedMinimax(const int depthLimit, const double& timeLimit, const State& state, const PerceptSequence& history);
-        std::shared_ptr<float> maxValue(const int depthLimit, const double& timeLimit, const State& state, float alpha, float beta, const Color& color, const PerceptSequence& history);
-        std::shared_ptr<float> minValue(const int depthLimit, const double& timeLimit, const State& state, float alpha, float beta, const Color& color, const PerceptSequence& history);
+        std::shared_ptr<Action> depthLimitedMinimax(const int depthLimit, int quiescenceLimit, const double& timeLimit, const State& state, std::map<Action, int>& historyTable, const PerceptSequence& history);
+        std::shared_ptr<float> maxValue(const int depthLimit, const int quiescenceLimit, const double& timeLimit, const State& state, const Action& action, float alpha, float beta, const Color& color, std::map<Action, int>& historyTable, const PerceptSequence& history);
+        std::shared_ptr<float> minValue(const int depthLimit, int quiescenceLimit, const double& timeLimit, const State& state, const Action& action, float alpha, float beta, const Color& color, std::map<Action, int>& historyTable, const PerceptSequence& history);
+
+        void addToHistoryTable(std::map<Action, int>& historyTable, const Action& action);
 
         static State flipColorAtPlay(State state) {
             state.colorAtPlay = static_cast<Color>((state.colorAtPlay + 1) % 2);
             return state;
         }
 
+        static bool isNonQuiescenceState(const Action& action) {
+            return action.wasCapture() || action.wasPromotion() || action.enemyInCheck();
+        }
 
     public:
         State currentState;
@@ -84,6 +92,8 @@ namespace ChessEngine {
 
         void updateTimer(const double& timeRemainingInSeconds);
         void updateMove(const Action& action);
+
+        Action minimax(const double& timeLimit, const State& state, const PerceptSequence& history);
 
         Action move();
     };

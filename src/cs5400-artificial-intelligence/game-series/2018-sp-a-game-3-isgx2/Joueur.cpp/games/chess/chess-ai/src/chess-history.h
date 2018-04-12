@@ -15,33 +15,34 @@
 #include <deque>
 
 namespace ChessEngine {
-
     class PerceptSequence {
     private:
         std::deque<State> stateHistory;
         int _movesSenseCapture = 0, _movesSensePawnMovement = 0;
 
     public:
-        void add(const State& state, const Action& action) {
+        void add(const State& state) {
             if (stateHistory.size() > MAX_HISTORY) {
                 stateHistory.pop_front();
             }
 
-            _movesSenseCapture = action.wasCaptured ? _movesSenseCapture + 1 : 0;
-            _movesSensePawnMovement = action.piece == pawn ? _movesSensePawnMovement + 1 : 0;
-
             stateHistory.push_back(state);
+        }
+
+        void add(const Action& action) {
+            _movesSenseCapture = action.wasCapture() ? _movesSenseCapture + 1 : 0;
+            _movesSensePawnMovement = action.piece() == pawn ? _movesSensePawnMovement + 1 : 0;
         }
 
         const State operator[](const int index) const {
             return stateHistory[index];
         }
 
-        int movesSensePawnMovement() const noexcept {
+        int movesSincePawnMovement() const noexcept {
             return _movesSensePawnMovement;
         }
 
-        int movesSenseCapture() const noexcept {
+        int movesSinceCapture() const noexcept {
             return _movesSenseCapture;
         }
 
