@@ -36,8 +36,6 @@ namespace ChessEngine {
 
         T value = 0;
 
-        std::cout << playerColor << "\n";
-
         for (const auto& element : pieceWeights) {
             auto piece = element.first;
             auto pieceWeight = element.second;
