@@ -26,7 +26,7 @@
  **/
 template <typename T>
 class SymmetricMatrix : public BaseMatrix<T> {
-private:
+protected:
     std::unique_ptr<Vector<T>[]> data;
     size_t dimension;
 
