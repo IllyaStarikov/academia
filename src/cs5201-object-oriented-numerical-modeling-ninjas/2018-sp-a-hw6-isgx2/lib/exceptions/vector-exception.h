@@ -18,7 +18,6 @@
  *  @brief An error object to represent indexing past the bounds.
  *
  **/
-
 class OutOfBoundsError {
 private:
     int index;
@@ -35,6 +34,11 @@ public:
     const std::string what() const;
 };
 
+/** @class OutOfBounds
+ *
+ *  @brief An error object to represent non-matching dimensions.
+ *
+ **/
 class MistmatchedDimensionsError {
 public:
     const std::string what() const;

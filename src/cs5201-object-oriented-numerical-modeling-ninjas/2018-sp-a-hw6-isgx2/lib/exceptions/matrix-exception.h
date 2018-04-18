@@ -12,16 +12,31 @@
 #include "vector-exception.h"
 #include <string>
 
+/** @class BandedMatrixDimensionError
+ *
+ *  @brief An error object to represent a banded matrix of dimension less than three.
+ *
+ **/
 class BandedMatrixDimensionError {
 public:
 	const std::string what() const;
 };
 
+/** @class NonSquareMatrixError
+ *
+ *  @brief An error object to represent a without matching dimensions.
+ *
+ **/
 class NonSquareMatrixError {
 public:
 	const std::string what() const;
 };
 
+/** @class NonSymmetricMatrixError
+ *
+ *  @brief An error object to represent a non symmetric matrix.
+ *
+ **/
 class NonSymmetricMatrixError {
 public:
 	const std::string what() const;
