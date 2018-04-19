@@ -1,0 +1,17 @@
+_creer/
+build/
+docs/
+
+.git/
+.gitattributes
+.gitignore
+
+.dockerignore
+
+LICENSE
+README.md
+Vagrantfile
+run
+testRun
+Dockerfile
+
