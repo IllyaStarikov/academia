@@ -1,0 +1,100 @@
+%
+%  exercise-6.tex
+%  artificial intelligence
+%
+%  Created by Illya Starikov on 3/13/18.
+%  Copyright 2018. Illya Starikov. All rights reserved.
+%
+
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{scrartcl}
+
+\newcommand{\exercisenumber}{7}
+\newcommand{\duedate}{March 9\textsuperscript{th}, 2018}
+
+\input{macros.tex}
+
+\begin{document}
+\maketitle
+
+\section{$x$ To $ax + b$ Leaf Node Transformation}
+\begin{statement}
+    Prove that with a positive linear transformation of leaf values (i.e., transforming a value $x$ to $a\,x + b$ where $a > 0$), the choice of move remains unchanged in a game tree, even when there are chance nodes.
+\end{statement}
+
+\begin{proof}
+    We will prove the following via proof of mathematical induction.
+
+    \begin{description}
+        \item[Base Case] We will take the base case with a lead nodes, so the transformation would be as follows:
+
+            \begin{center}
+                \begin{forest}
+                    [$\vdots$
+                    [$x_1$]
+                    [$x_2$]
+                    [$\cdots$]
+                    [$x_n$]
+                    ]
+                \end{forest}
+            \end{center}
+
+            would transform into:
+
+            \begin{center}
+                \begin{forest}
+                    [$\vdots$
+                    [$a\, x_1 + b$]
+                    [$a\, x_2 + b$]
+                    [$\cdots$]
+                    [$a\, x_n + b$]
+                    ]
+                \end{forest}
+            \end{center}
+
+            Recalling the definition of \textsc{Minimax}, we get the following:
+
+            \begin{center}
+                \resizebox{.9\textwidth}{!}{
+                    \begin{equation}\label{eq:minimax}
+                        \textsc{Minimax(s)} = \begin{cases}
+                            \textsc{Max'sUtility(s)} & \leftrightarrow \textsc{Terminal-Test(s)} \\
+                            \max_{a \in \textsc{Actions(s)}} \textsc{Minimax(Result(s, a))}  & \leftrightarrow \textsc{Player(s) = Max} \\
+                            \min_{a \in \textsc{Actions(s)}} \textsc{Minimax(Result(s, a))}  & \leftrightarrow \textsc{Player(s) = Min}
+                        \end{cases}
+                    \end{equation}
+                }
+            \end{center}
+
+            Recalling that \textsc{Actions} returns a set of values (let us name them $x_1, x_2, \ldots, x_n$) our $\min\left(\right)$ and $\max\left(\right)$ values can be rewritten as:
+            \begin{align*}
+                \min\left( x_1, x_2, \ldots, x_n \right) &= x_p \\
+                \max\left( x_1, x_2, \ldots, x_n \right) &= x_p
+            \end{align*}
+
+            where $x_p$ is the chosen node. For the probability, we get
+            \begin{align*}
+                p\left(x_1\right) + p\left(x_2\right) + \cdots + p\left(x_n\right)
+            \end{align*}
+
+            Applying the transformation, we get the following:
+            \begin{align*}
+                \min\left( a\,x_1 + b, a\,x_2 + b, \ldots, a\,x_n + b\right) &= a\,x_p + b \\
+                \max\left( a\,x_1 + b, a\,x_2 + b, \ldots, a\,x_n + b\right) &= a\,x_p + b \\
+                p_1\left(a\,x_1 + b\right) + p_2\left(a\,x_2 + b\right) + \cdots &+ p_n\left(a\,x_n + b\right)
+            \end{align*}
+
+            From this, we factor out $a$ and $b$:
+            \begin{align*}
+                a\,\min\left( x_1, x_2, \ldots, x_n \right) + b &= a\,x_p + b \\
+                a\,\max\left( x_1, x_2, \ldots, x_n \right) + b &= a\,x_p + b \\
+                a(p_1\,x_1 + p_2\,x_2 + \cdots &+ p_n\,x_n) + b
+            \end{align*}
+
+        Upon which we can clearly see $a$ ($\forall a \in \mathbb{R}^+$) and $b$ have no choice on which node gets chosen.
+
+    \item[Inductive Step] As we scale our problem up for \textsc{Minimax} (Equation~\ref{eq:minimax}), we see that if the decision of the terminal node is unchanged, the decision at the root will be changed. The same terminal value will be returned; and as we go up the game tree, each ply acts as a terminal.
+\end{description}
+
+\end{proof}
+\end{document}

@@ -1,0 +1,33 @@
+%
+%  exercise-6.tex
+%  artificial intelligence
+%
+%  Created by Illya Starikov on 3/13/18.
+%  Copyright 2018. Illya Starikov. All rights reserved.
+%
+
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{scrartcl}
+
+\newcommand{\exercisenumber}{8}
+\newcommand{\duedate}{April 22\textsuperscript{nd}, 2018}
+
+\input{macros.tex}
+
+\begin{document}
+\maketitle
+
+\section{State-Space Search Algorithms}
+\begin{statement}
+    Give the name of the algorithm that results from each of the following special cases.
+\end{statement}
+
+\begin{enumerate}
+    \item Local beam search with $k = 1$. \textbf{Steepest-Ascent Hill-Climbing.}
+    \item Local beam search with one initial state and no limit on the number of states retained. \textbf{Breadth First Tree Search.}
+    \item Simulated annealing with $T = 0$ at all times (and omitting the termination test). \textbf{Steepest-Ascent Hill-Climbing.}
+    \item Simulated annealing with $T = \infty$ at all times. \textbf{Random Walk.}
+    \item Genetic algorithm with population size $N = 1$. \textbf{Random Walk.}
+\end{enumerate}
+
+\end{document}

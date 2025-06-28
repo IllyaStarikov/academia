@@ -1,0 +1,80 @@
+%
+%  exercise-1.tex
+%  artificial intelligence
+%
+%  Created by Illya Starikov on 01/17/18.
+%  Copyright 2018. Illya Starikov. All rights reserved.
+%
+
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{scrartcl}
+
+\newcommand{\exercisenumber}{1}
+\newcommand{\duedate}{January 22\textsuperscript{nd}, 2018}
+\input{macros.tex}
+
+\begin{document}
+\maketitle
+
+We defined a rational agent as follows:
+
+\begin{quote}
+    For each possible percept sequence, a rational agent should select an action that is expected to maximize its performance measure, given the evidence provided by the percept sequence and whatever built-in knowledge the agent has.
+\end{quote}
+
+We also have the following assumptions:
+
+\begin{enumerate}
+    \item\label{it:performance} The performance measure awards one point for each clean square at each time step, over a ``lifetime'' of \num{1000} time steps.
+    \item\label{it:never_worse} The ``geography'' of the environment is known a priori (Figure 2.2) but the dirt distribution and the initial location of the agent are not. Clean squares stay clean and sucking cleans the current square. The Left and Right actions move the agent left and right except when this would take the agent outside the environment, in which case the agent remains where it is.
+    \item The only available actions are Left, Right, and Suck.
+    \item The agent correctly perceives its location and whether that location contains dirt.
+\end{enumerate}
+
+\begin{statement}
+    Show that the simple vacuum-cleaner agent function described in Figure 2.3 is indeed rational under the assumptions listed on Page 38.
+\end{statement}
+
+
+We couple our assumptions with the fact the agent moves to the apposing square if there is no dirt, and ``Suck''s if there is dirt. Also, we are under the assumption that the environment cannot become dirtier from some external agent within the \num{1000} time steps.
+
+Under these assumptions, with our performance measure (see Item~\ref{it:performance}), we can conclude the agent is rational. Because the performance measure cannot decrease, it would always be beneficial for the agent to move to a new square to clean (since there is always a possibility of increasing the performance measure). By design, our agent always moves to a new square, consequently, always having the possibility of increasing the performance measure.
+
+\begin{statement}
+    Describe a rational agent function for the case in which each movement costs one point. Does the corresponding agent program require internal state?
+\end{statement}
+
+Yes. Because movement now costs one point, it is no longer in the agent's best interest to constantly move. However, because or agent is purely reflexive and we are unsure of the initial conditions, the agent will receive a negative performance measure; quite contrary to our definition of a rational agent.
+
+For our agent to achieve maximum performance measure, the optimal situation would be to keep all clean squares in some sort of memory, and when the entirety of the vacuum world is clean, constantly perform a $NoOp$; a reflexive agent cannot do this.
+
+\begin{statement}
+Discuss possible agent designs for the cases in which clean squares can become dirty and the geography of the environment is unknown. Does it make sense for the agent to learn from its experience in these cases? If so, what should it learn? If not, why not?
+\end{statement}
+
+Learning would be optimal in this situation, for the following reasons:
+
+\begin{description}
+    \item[Boundaries] An agent with no clue about the world boundaries is doomed to constantly bump in the walls. This would waste precious time cycles on simply finding the boundaries.
+    \item[Obstacles] Just as one might bump in the boundaries, an agent might bump into obstacles.
+    \item[Common Accumulation] Some areas might become dirtier faster than others (i.e., a doorway). If an agent could determine where these areas are, it can check those areas more often that areas with less dirt.
+\end{description}
+
+In essence, learning some sort of a map would greatly improve the performance measure of the agent.
+
+After learning some sort of map, we use the following agent design:
+
+\begin{enumerate}
+    \item\label{it:first} Start traversing to the most common dirty areas on the map in order of closeness.
+    \item With every step, if the current step is dirty, clean it; if not, $NoOp$.
+    \item If all common areas are \textbf{not} traversed, proceed to Step~\ref{it:first}.
+    \item Proceed to the closest edge of the world boundary.
+    \item\label{it:around_edges} Proceed around the edges of the map.
+    \item If \textbf{not} reached original position, repeat Step~\ref{it:around_edges}.
+    \item Move one unit closer to the inside of the world. Treat the previous movement as the new world boundaries.
+    \item If \textbf{not} reached center of world, repeat Step~\ref{it:around_edges}.
+    \item Proceed to Step~\ref{it:first}.
+\end{enumerate}
+
+\end{document}
+

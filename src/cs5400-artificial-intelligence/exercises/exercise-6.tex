@@ -1,0 +1,103 @@
+%
+%  exercise-6.tex
+%  artificial intelligence
+%
+%  Created by Illya Starikov on 3/13/18.
+%  Copyright 2018. Illya Starikov. All rights reserved.
+%
+
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{scrartcl}
+
+\newcommand{\exercisenumber}{6}
+\newcommand{\duedate}{March 13\textsuperscript{th}, 2018}
+
+\input{macros.tex}
+
+\begin{document}
+\maketitle
+
+\section{Suboptimal Min vs Optimal Min}
+\begin{statement}
+    Prove the following assertion: For every game tree, the utility obtained by \textit{MAX} using minimax decisions against a suboptimal \textit{MIN} will be never be lower than the utility obtained playing against an optimal \textit{MIN}. Can you come up with a game tree in which \textit{MAX} can do still better using a suboptimal strategy against a suboptimal \textit{MIN}?
+\end{statement}
+
+We will do so by induction.
+
+\begin{description}
+    \item[Basis Case] The base case is a \textit{MIN} node with all terminals. Suppose we have the following leaf such that for any node $h_x$, they are ordered in ascending order based on the utility value $h_1 \leq h_2 \leq \cdots \leq h_{n - 1} \leq h_n$:
+        \begin{figure}[H]
+            \centering
+
+            \begin{forest}
+                [MIN [
+                    [$h_1$]
+                    [$h_2$]
+                    [$\cdots$]
+                    [$h_{n - 1}$]
+                    [$h_n$]
+                ]]
+            \end{forest}
+        \end{figure}
+
+        An optimal \textit{MIN} would always pick $h_1$, while a suboptimal would pick from $\{h_1, h_2, \ldots, h_{n - 1}, h_n\}$. From this, we can conclude
+        \begin{equation}
+            \text{Optimal \textit{MIN}'s Utility} \leq \text{Suboptimal \textit{MIN} Utility}
+        \end{equation}
+
+    \item[Inductive Case] The recursive case is for \textit{MIN} with parents and children.
+        \begin{figure}[H]
+            \centering
+
+            \begin{forest}
+                [MAX
+                    [MIN [[\vdots][\vdots][\vdots]]]
+                    [MIN [
+                        [$h_1$       ]
+                        [$h_2$       ]
+                        [$\cdots$    ]
+                        [$h_{n - 1}$ ]
+                        [$h_n$       ]
+                    ]]
+                    [MIN [[\vdots][\vdots][\vdots]]]
+                ]
+            \end{forest}
+        \end{figure}
+
+        However, because the game tree can be reduced to a \textit{MIN} node with all terminals (such as the base case), our inductive step holds.
+\end{description}
+
+For a game tree of a suboptimal \textit{MAX} vs a \textit{MIN}, we can produce the following chess game:
+
+\begin{figure}[H]
+    \centering
+
+    \begin{forest}
+        [MAX[
+            [[MIN
+                [
+                    [[1]]
+                    [[1]]
+                    [[1]]
+                    [[$\cdots$]]
+                    [[\textcolor{red}{-1}]]
+                    [[1]]
+                ]
+            ]]
+            [[MIN
+                [
+                    [[\nicefrac{1}{2}]]
+                    [[\nicefrac{1}{2}]]
+                    [[\nicefrac{1}{2}]]
+                    [[$\cdots$]]
+                    [[\nicefrac{1}{2}]]
+                    [[\nicefrac{1}{2}]]
+                ]
+            ]]
+        ]]
+    \end{forest}
+\end{figure}
+
+An optimal \textit{MAX} would pick the rightmost \textit{MIN}, which would result in only a draw; however, a suboptimal \textit{MIN} would only pick the leftmost \textit{MIN}, resulting in in almost all wins, with only one possibility of losing.
+
+\end{document}
