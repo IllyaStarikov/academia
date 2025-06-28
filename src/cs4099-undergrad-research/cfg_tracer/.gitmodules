@@ -1,0 +1,3 @@
+[submodule "cfg_debug_backend"]
+	path = cfg_debug_backend
+	url = git@bitbucket.org:neloe/cfg_debug_backend
