@@ -1,0 +1,9 @@
+while some func input + -1234 #what about this?
+*/- 0123 -99 + x camelCase &&^ (555)444-3321
+### yet another comment
+print if flex func 203.978 -22.4 + "30x2" ' !
+ABCH FFF  123.456   ## Here be dragons.
+1+2 = 3+4>t 00B 1010101 B "a
+bc" 123.456.7890 banana
+5 &@ 12.53E231 2B or not toBE1 111B
+78E / -42.. "another str constant"
