@@ -1,0 +1,15 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{article}
+
+\input{macros}
+\chapterNumber{9}
+
+\begin{document}
+\section{Timers and the 8051}
+\begin{itemize}
+    \item The time delay is $14 * 1.085 = \SI{15.19}{\micro\second}$
+    \item $65536 - \frac{7500}{1.085} = 58624_{10} = E500_{16}$
+    \item $200 \cdot (65536 - 264) \cdot 1.085 = \SI{14.16}{\micro\second}$
+\end{itemize}
+
+\end{document}

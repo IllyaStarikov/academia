@@ -1,0 +1,49 @@
+%
+%  3.2-rules-of-differentiation.tex
+%  chapter-3
+%
+%  Created by Illya Starikov on 06/18/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\subsubsection{Constant Rule}
+If $c$ is a real number, then $\frac{d}{dx}(c) = 0$.
+
+\subsubsection{Power Rule}
+If $n$ is a positive integer, then $\frac{d}{dx}(x^n) = nx^{n - 1}$.
+
+\subsubsection{Constant Multiple Rule}
+If $f$ is differentiable at $x$ and $c$ is a constant, then 
+
+\begin{equation}
+    \frac{d}{dx}(cf(x)) = cf'(x)
+\end{equation}
+
+\subsubsection{The Number $e$}
+The number $e = 2.7182 \ldots$ satisfies
+
+\begin{equation}
+    \lim_{h \rightarrow 0} \frac{e^h - 1}{h} = 1
+\end{equation}
+
+It is the base of the natural exponential function $f(x) = e^x$.
+
+\subsubsection{The Derivative of $e^x$}
+The function $f(x) = e^x$ is differentiable, for all real numbers $x$, and 
+
+\begin{equation}
+    \frac{d}{dx} (e^x) = e^x
+\end{equation}
+
+\subsubsection{Higher-Order Derivatives}
+Assuming $f$ can be differentiated as often as necessary, the \textbf{second derivative} of $f$ is
+
+\begin{equation}
+    f''(x) = f^{(2)}(x) = \frac{d^2 f}{dx^2} = \frac{d}{dx}\left(f'(x)\right)
+\end{equation}
+
+For integers $n \geq 1$, the \textbf{$n$th derivate} is
+
+\begin{equation}
+    f^{(n)}(x) = \frac{{d^n}f}{dx^n} = \frac{d}{dx}\left(f^{(n-1)}(x)\right)
+\end{equation}

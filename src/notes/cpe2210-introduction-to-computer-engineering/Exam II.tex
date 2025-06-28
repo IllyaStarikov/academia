@@ -1,0 +1,25 @@
+\documentclass{article}
+\newcommand*\xor{\mathbin{\oplus}}
+\begin{document}
+\section{Digital Design}
+\begin{itemize}
+    \item nFET = Not Negated. Turns on by 1 or High.
+    \item pFET = Negated. Turns on by 0 or Low.
+    \item Xor = $\bar{A}B + A\bar{B}$
+    \item Fan-out refers to the number of additional gates that can be physically connected to the output of a gate.
+    \begin{itemize}
+        \item $I_{ILMax} =$ The max current draw of a gate input for a low input value
+        \item $I_{OLMax} =$ The max current output of a gate for a low output
+        \item $I_{IHMax} =$ The max current draw of a gate input for a high input value
+        \item $I_{OHMax} =$ The max current output of a gate for a high output
+        \item Max Fanout = $Min( \frac{I_{OLMax}}{I_{ILMax}}, \frac{I_{OHMax}}{I_{IHMax}} )$
+    \end{itemize}
+    \item We don't do POS for Variable Entered K-Maps. Turn into SOP.
+    \item Inside Each Comparator
+    \begin{itemize}
+        \item $out\_gt = in\_gt + (in\_eq * a*\bar b)$
+        \item $out\_lt = in\_lt + (in\_eq * \bar a* b)$
+        \item $out\_eq = in\_eq * \overline{(a \xor b)}$
+    \end{itemize}
+\end{itemize}
+\end{document}

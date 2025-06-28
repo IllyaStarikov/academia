@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\begin{document}
+\section{Partial Order Relations}
+\subsection{Antisymmetry}
+No symmetry, \textbf{at all.} Let \textit{R} be a relation on a set \textit{A}. \textit{R} is \textbf{antisymmetric} iff $\forall a, b \in A, a \ R \ b \bigwedge b \ R \ a \rightarrow a = b.$
+
+\subsection{Partial Order Relations}
+Let \textit{R} be a relation defined on a set \textit{A}. \textit{R} is a \textbf{partial order relation} if, and only if, \textit{R} is reflexive, antisymmetric, and transitive.
+
+\subsubsection{Example}
+Let \textit{P} be the set of all people who have everlived and define \textit{A} relation \textit{P on P} as follows: $\forall r, s \in P, r \ R \ p \Leftrightarrow $ r is an ancestor of s or $ r = s $. Is \textit{R} a partial order relation?
+
+Yes. Proof.
+
+\underline{R is reflexive} Suppose $r \in P$. Then \textit{r = r}, by the definition of \textit{R}, \textit{r R r}
+
+\underline{R is antisymmetric} Suppose $r, s \in P, s \in P \bigwedge r \ R \ s \bigwedge s \ R \ r.$ We must show that \textit{r = s}. By definition of \textit{R}, either \textit{r} is an ancestor of \textit{s}, or \textit{r = s}, and also, either \textit{s} is an ancestor of r, or \textit{s = r}. Now it impossible for both r to be an ancestor of \textit{s} and for \textit{s} to be an ancestor of \textit{r}. Hence of the conditions must be false, and so \textit{r = s}.
+
+\underline{R is transitive} Suppose $r, s, t \in P \bigwedge r \ R \ s \bigwedge s \ R \ t$. We must show that \textit{s R t}. By definition of R, either r is an ancestor of \textit{s}, or \textit{r = s} and either \textit{s} is an ancestor of \textit{t}, or \textit{s = t}.
+
+\begin{description}
+\item [case 1] In case \textit{r} is an ancestor of \textit{s} is an ancestor of \textit{t}, then \textit{r} is an ancestor of \textit{t}, and so \textit{r R t}.
+
+\item [case 2] In case \textit{r} is an ancestor of \textit{s} and \textit{s = t}, then \textit{r} is an ancestor of \textit{t}, and so \textit{r R t}.
+
+$\vdots$
+
+\item [case 3] $\cdots$
+\item [case 4] $\cdots$
+\end{description}
+
+\subsubsection{Example}
+Define a relation \textit{r} on $ \mathbb{Z} $ as follows: $ \forall m, n \in \mathbb{Z}, m \ R \ n \Leftrightarrow$ ever prime factor of m is a prime factor of n.
+
+No, because it's not antisymmetric not antisymmetric. Counter example: let $m = 2 \bigwedge n = 4$. Then \textit{m R n} because every prime factor of \textit{2} is a prime factor of 4, and \textit{n R m} because 4 is a prime factor of 4. But \textit{m $\neq$ n}, because $2 \neq 4$
+
+\subsection{Dictionary or Lexicographic}
+Let \textit{A} be a set with a partial order relation \textit{R}, and let \textit{S} be a set of strings over \textit{A}. Define a relation $\preceq$ on \textit{S} as follows:
+
+For any two strings in \textit{S}, $a_1a_2 \cdots a_m$ and $b_1b_2 \cdots b_n$, where \textit{m} and \textit{n} are positive integers,
+
+\begin{enumerate}
+\item $m \leq n$ $a_i = b_i$ for all $i = 1, 2, \ldots, m,$ then
+
+\begin{equation*}
+a_1a_2 \cdots a_m \preceq b_1b_2 \cdots b_n.
+\end{equation*}
+
+\item If for some integer $k \ $ with $\ k \leq m, k \leq n, \ \text{and} \ k \geq 1, a_i = b_i \ $for all$ \ i = 1, 2, \ldots, k - 1 \ $ and $\ a_k \neq b_k, \ $ but $\ a_k \ R \ b_k \ $ then.
+
+\begin{equation*}
+a_1a_2 \cdots a_m \preceq b_1b_2 \cdots b_n.
+\end{equation*}
+
+\item If $\varepsilon$ is the null string and \textit{s} in any string in \textit{S}, then $\epsilon \preceq s$.
+\end{enumerate}
+
+If no strings are related other than by these three conditions, then $\preceq$ is a partial order relation.
+
+\subsubsection{Example}
+Let $A = \{ a,b \}$ and suppose \textit{A} has the partial order relation $R = \{ (a, a), (a, b), (b, a), (b, b) \}.$ Let \textit{S} be the set of all strings in a's and b's and let $\preceq$ be the corresponding lexiographic order on \textit{S}.
+
+\begin{description}
+\item [C: ] $\varepsilon \preceq aba$? Yes, property \#3.
+\item [E: ] $bbab \preceq bbaa$? No, property \#2.
+\item [F: ] $ababa \preceq ababaa$? Yes, property \#1.
+\end{description}
+\end{document}

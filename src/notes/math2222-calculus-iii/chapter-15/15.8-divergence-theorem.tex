@@ -1,0 +1,15 @@
+\subsection{Divergence Theorem}
+Let $\mathbf{F}$ be a vector field whose components have continuous first partial derivatives in a connected and simply connected region $D$ in $\mathbb{R}^3$ enclosed by a smooth oriented surface $S$. Then
+
+\begin{equation}
+    \iint \limits _S \mathbf{F \cdot n}\, dS = \iiint \limits _D \nabla \cdot \mathbf{F}\, dV
+\end{equation}
+
+\noindent where $\mathbf{n}$ is the unit outward normal vector on $S$.
+
+\subsubsection{Divergence Theorem for Hollow Regions}
+Suppose the vector field $\mathbf{F}$ satisfies the conditions of the Divergence Theorem on a region $D$ bounded by two smooth oriented surfaces $S_1$ and $S_2$, where $S_1$ lies within $S_2$. Let $S$ be the entire boundary of $D( S = S_1 \cup S_2 )$ and let $\mathbf{n}_1$ and $\mathbf{n}_2$ be the outward unit normal vectors for $S_1$ and $S_2$, respectively. Then
+
+\begin{equation}
+    \iiint \limits _D \nabla \cdot \mathbf{F} \, dV = \iint \limits \mathbf{F \cdot n} dS = \iint \limits _{S_2} \mathbf{F \cdot n_2}\, dS = \iint \limits _{S_1} \mathbf{F \cdot n_1}\, dS
+\end{equation}

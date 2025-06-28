@@ -1,0 +1,103 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+\setcounter{section}{10}
+\setcounter{subsection}{1}
+
+\subsubsection{Example 10.1.16}
+A graph of Vertices of degrees 1, 1, 4, 4 and 6 how many edges does the graph have?
+\begin{eqnarray}
+Total Edges & = & Add \ Them \ Up \ / \ 2 \\
+& = & 16 /2 \\
+& = & 8
+\end{eqnarray}
+
+\subsubsection{Example 10.11g} Draw or explain why doesn't exist: Graph with four vertices of degree 1, 1, 1, and 4.
+
+\noindent
+Doesn't exist, because is of odd total degree.
+
+\subsubsection{Example 10.1.20}
+Draw or explain why doesn't exists: graph with 4 vertices of degrees 1, 2, 3, 4.
+
+\subsubsection{Example 10.1.26b}
+Find all subgraphs of the picture depicted in the book. There's a lot.
+
+\subsubsection{Example 10.1.36c}
+Draw $K_{3,4}$. Three on left, four on right, connect the dots.
+
+\subsubsection{Example 10.1.37c}
+Is the following graph bipartite? If so, redraw.
+
+\subsubsection{Example 10.1.3gb}
+\textbf{THIS WE PROBABLY BE ON EXAM}. \\
+Find the complement of a graph in the book.
+
+\subsubsection{Example 10.1.44}
+\begin{itemize}
+\item In a simple graph, must every vertex have degree that is less than the number of vertices in the graph? \\
+\textit{Yes, in a simple graph.} This is so because if \textit{G} is a simple graph with \textit{n} vertices and \textit{v} is a vertex of \textit{G}, then since \textit{G} has no parallel edges, \textit{v} can be joined by at most a single edge to each of the other \textit{n - 1} vertices of \textit{G} and since \textit{G} has no loops, \textit{G} cannot be jointed to itself. Thus the max degree of \textit{v} is \textit{n - 1}.
+
+\item Can there be a simple graph that has 4 vertices each of different degree? \\
+Nah. Suppose there is a simple graph with 4 vertices each of which has different degree. By the previous proof, no vertex can have a greater degree than 3. And, of course, no vertex can have negative degree. Thus, the only possibility is that they have degree 0, 1, 2, and 3. The vertex of degree 3 has to be connected to all 3 other vertices, but this contradicts that one of the other degrees is 0, thus the assumption was false and no such graph exits.
+\end{itemize}
+
+\subsection{Trails, Paths, and Circuits}
+\subsubsection{Example 10.2.2}
+Look up in book.
+\begin{description}
+\item[a)] Just walk.
+\item[b)] Simple Circuit, trail.
+\item[c)] Closed Walk.
+\item[d)] Circuit.
+\item[e)] Trail.
+\item[f)] Path.
+\end{description}
+
+\subsection{Matrix Representation of Graphs}
+Find the adjency matrix for: \textit{insert picture}
+
+column x rows \\
+from x to
+
+\begin{bmatrix}
+1 & 0 & 1 & 0 \\
+0 & 0 & 1 & 0 \\
+1 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0
+\end{bmatrix}
+
+\subsubsection{Example 3b}
+\begin{bmatrix}
+0 & 1 & 0 & 0 \\
+2 & 0 & 1 & 0 \\
+1 & 2 & 1 & 0 \\
+0 & 0 & 1 & 0
+\end{bmatrix}
+
+\subsubsection{Example 6b}
+Given: \\
+
+\begin{bmatrix}
+0 & 2 & 0 & 0 \\
+2 & 0 & 0 & 0 \\
+0 & 0 & 1 & 1 \\
+0 & 0 & 1 & 1
+\end{bmatrix}
+
+\\
+Determine without drawing wither this graph is connected.
+
+
+\subsubsection{Example 13}
+Let 0 denote the matrix: \\
+
+\begin{bmatrix}
+0 & 0 & \\
+0 & 0 & \\
+\end{bmatrix}
+
+Find $2 \times 2$ matrices A and B such that $A \neq B$, $B \neq 0$, and $AB \neq 0$, but $BA = 0$.
+
+Do this some other time.
+\end{document}

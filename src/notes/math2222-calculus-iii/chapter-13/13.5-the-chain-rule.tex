@@ -1,0 +1,54 @@
+
+\subsection{The Chain Rule}
+
+\subsubsection{Chain Rule (One Independent Variable)}
+Let $z$ be a differentiable function of $x$ and $y$ on its domain, where $x$ and $y$ are differentiable functions of $t$ on an interval $I$. Then
+
+\begin{equation}
+    \frac{dz}{dt} = \frac{\partial z}{\partial x} \frac{dx}{dt} + \frac{\partial z}{\partial y} \frac{dy}{dt}.
+\end{equation}
+
+\subsubsection{Chain Rule (Two Independent Variables)}
+Let $z$ be a differentiable function of $x$ and $y$, where $x$ and $y$ are differentiable functions of $s$ and $t$. Then
+
+\begin{equation}
+    \frac{dz}{ds} = \frac{\partial z}{\partial x} \frac{\partial x}{\partial s} + \frac{\partial z}{\partial y} \frac{\partial y}{\partial s} \quad \text{and} \quad
+    \frac{dz}{dt} = \frac{\partial z}{\partial x} \frac{\partial x}{\partial t} + \frac{\partial z}{\partial y} \frac{\partial y}{\partial t}
+\end{equation}
+
+\begin{multicols}{2}
+\begin{forest}
+for tree={ l sep=40pt,s sep=40pt,}
+[z
+    [x, edge=red, edge label={node[midway,left] {$\frac{\partial z}{\partial x}$}}
+        [s, edge=red, edge label={node[midway,left] {$\frac{\partial x}{\partial s}$}}]
+        [t, edge label={node[midway,left] {$\frac{\partial x}{\partial t}$}}]
+    ]
+    [y, edge=red, edge label={node[midway,left] {$\frac{\partial z}{\partial y}$}}
+        [s, edge=red, edge label={node[midway,left] {$\frac{\partial y}{\partial s}$}}]
+        [t, edge label={node[midway,left] {$\frac{\partial y}{\partial t}$}}]
+    ]
+]
+\end{forest}
+
+\begin{forest}
+for tree={ l sep=40pt,s sep=40pt,}
+[z
+    [x, edge=red, edge label={node[midway,left] {$\frac{\partial z}{\partial x}$}}
+        [s, edge label={node[midway,left] {$\frac{\partial x}{\partial s}$}}]
+        [t, edge=red, edge label={node[midway,left] {$\frac{\partial x}{\partial t}$}}]
+    ]
+    [y, edge=red, edge label={node[midway,left] {$\frac{\partial z}{\partial y}$}}
+        [s, edge label={node[midway,left] {$\frac{\partial y}{\partial s}$}}]
+        [t, edge=red, edge label={node[midway,left] {$\frac{\partial y}{\partial t}$}}]
+    ]
+]
+\end{forest}
+\end{multicols}
+
+\subsubsection{Implicit Differentiation}
+Let $F$ be differentiable on its domain and suppose that $F(x,\, y) = 0$ defines $y$ as a differentiable function of $x$. Provided $F_y \neq 0$.
+
+\begin{equation}
+    \frac{dy}{dx} = - \frac{F_x}{F_y}
+\end{equation}

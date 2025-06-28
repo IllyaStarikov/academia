@@ -1,0 +1,32 @@
+\subsection{Trigonometric Integrals}
+\subsubsection{$\int \sin^m x \cos^n x \ dx$ Strategy}
+\begin{description}
+\item [$m$ is odd, $n$ real] Split off $\sin x$, rewrite the resulting even power of $\sin x$ in terms of $\cos x$, and then use $u = \cos x$
+\item [$n$ odd, $m$ real] Split off $\cos x$, rewrite the resulting even power of $\cos x$ in terms of $\sin x$, and then use $u = \sin x$.
+\item [$m$ and $n$ both even, nonnegative] Use half-angle identities to transform the integrand into a polynomial in $\cos 2x$, and apply the preceding strategies once again to powers of $\cos 2x$ greater than 1.
+\end{description}
+
+\subsubsection{Reduction Formulas}
+Assume $n$ is a positive integer.
+
+\begin{align}
+\int \sin^n x \, dx &= -\frac{\sin^{n - 1}x \cos x}{n} + \frac{n - 1}{n} \int \sin^{n-2}x \ dx \\
+\int \cos^n x \, dx &= \frac{\cos^{n - 1}x \sin x}{n} + \frac{n - 1}{n} \int \cos^{n - 2} x \ dx \\
+\int \tan ^n x \, dx &= \frac{\tan^{n - 1}x}{n - 1} - \int \tan^{n - 2}x \ dx, n \neq 1 \\
+\int \sec ^n x \, dx &= \frac{\sec^{n - 2}x \tan x}{n - 1} + \frac{n - 2}{n - 1} \int \sec^{n - 2} x \ dx, n \neq 1
+\end{align}
+
+\subsubsection{Integrals of $\tan x, \cot x, \sec x, \ \text{and} \ \csc x$}
+\begin{align}
+\int \tan x \, dx &= - \ln |\cos x| + C = \ln | \sec x | + C \\
+\int \cot x \, dx &= \ln | \sin x | + C \\
+\int \sec x \, dx &= \ln | \sec x + \tan x| + C \\
+\int \csc x \, dx &= - \ln | \csc x + \cot x | + C
+\end{align}
+
+\subsubsection{$\int \tan^m x \sec^n x \, dx$ Strategy}
+\begin{description}
+\item [$n$ even] Split off $\sec^2 x$, rewrite the remaining even power of $\sec x$ in terms of $\tan x$, and use $u = \tan x$.
+\item [$m$ odd] Split off $\sec x \tan x$, rewrite the remaining even power of $\tan x$ in terms of $\sec x$, and use $u = \sec x$.
+\item [$m$ even and $n$ odd] Rewrite the even power of $\tan x$ in terms of $\sec x$ to produce a polynomial in $\sec x$; apply reduction formula 4 to each term.
+\end{description}

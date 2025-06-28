@@ -1,0 +1,23 @@
+%
+%  4.8-newtons-method.tex
+%  chapter-4
+%
+%  Created by Illya Starikov on 07/03/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\subsection{Newtons Method}
+For approximating roots of $f(x) = 0$,
+
+\begin{enumerate}
+    \item Choose initial approximations $x_0$ as close to a root as possible.
+    \item For $n = 0, 1, 2, \cdot$
+
+        \begin{equation}
+            x_{n + 1} = x_n - \frac{f(x_n}{f'(x_n)}
+        \end{equation}
+
+        provided $f'(x_n) \neq 0$.
+
+    \item End the calculations when a termination condition is met.
+\end{enumerate}

@@ -1,0 +1,249 @@
+\input{macros}
+
+\title{Chapter \#1}
+
+\newtheorem{conjecture}{Conjecture}
+
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{1}
+
+\begin{document}
+\maketitle
+
+% Problem 1: Formulate a meaning for the statement that P is a bottom level of a level set M. We do not wish to introduce additional undefined terms so you should try to do this formulation using the undefined terms level and above.
+\problem
+Suppose $P$ is a level and $M$ is a level set. The statement that $P$ is a \textbf{bottom level} of $M$ means if $x$ is a level in $M$ then $P$ cannot be above $x$.
+
+\solutionAlt
+$P$ is a bottom level of the level set $M$ if $P$ is a level in $M$ so that if $x$ is a level in $M$ then $P$ is not above $x$.
+
+
+% Question 2: If M is a level set having exactly one level, does M have a top level?
+\problem
+\begin{theorem}
+    If $M$ is a level set having exactly one level, $M$ \textbf{does} a top level.
+\end{theorem}
+
+\begin{proof}
+    Suppose that $\exists P \in M$, where $P$ is a level and $M$ is a level set. Suppose, also, that $P$ is the only level in $M$. By our definition of \textbf{top level}, we state that the \textbf{top level} of $M$ means $P$ is a level in $M$ and if $x$ is a level in $M$ then $x$ is not above $P$. But we only have one level in $M$, that is $P$.
+
+    Therefore, $x$ must be $P$, and because Axiom 1 (If $P$ is a level then $P$ is not above $P$) agrees with our definition $x$ is not above $P$.
+\end{proof}
+
+\solutionAlt
+Yes, because if level set $M$ contains a single level $P$ any level $x$ within $M$ would be $P$ so according to Axiom 1 satisfies the definition of a top level of level set $M$.
+
+
+% Question 3: If M is a level set having exactly one level, does M have a bottom level?
+\problem
+With respect to all these definitions, can infer that $P$ is a bottom level in set $M$. One can infer that level $P$ is a bottom level.
+
+
+% Question 4: Is it possible that P and Q in Axiom 2 are two different names for the same level?
+\problem
+No.
+
+\begin{proof}
+    Suppose not. That is, suppose there exists $\text{ levels } P, Q, x$ in the level set $M$, where $P$ is a different name for $Q$. Because they are both representations of each other, we will write $Q$ to represent both $P$ and $Q$.
+
+    Rewriting Axiom 2 in this notation, it states as follows:
+
+    \begin{quote}
+        If each of $Q$ and $Q$ is a level and $Q$ is above $Q$ then there exists a level $x$ such that $Q$ is above $x$ and $x$ is above $Q$.
+    \end{quote}
+
+    This argument is no longer valid, because it builds on the premise that $Q$ is above $Q$ (by Axiom 1, this not valid). This is a violation of Axiom 1.
+\end{proof}
+
+% Problem 5: Show that ‘If P and Q are levels then P is above Q and Q is above P.’ is not a true statement.
+\problem
+If $P$ and $Q$ are levels then $P$ is above $Q$ and $Q$ is above $P$, then (by Axiom 3) this implies that $P$ is transitive above $P$, which by Axiom 1 is a contradiction.
+
+\solution{Osman}
+No, if $P$ and $Q$ are levels such that $P$ is above $Q$ and $Q$ is above $P$, then by Axiom 4 the $P$ is above $P$ which violates Axiom 1.
+
+
+% Question 6: Is there a level set having more than one top level?
+\problem
+No.
+
+\begin{proof}
+    Suppose not. That is, suppose that there exists two, different levels $P, Q$ in the level set $M$. By Axiom 3, $P$ is above $Q$ or $Q$ is above $P$, but not both (because that would imply $P$ is above $P$). By our definition of top level, $P$ and $Q$ must be a top level if $\exists x \in M$, where $x$ is not above $P$ and $Q$, but by Axiom 2 $\exists x \in M$ such that $P$ is above $x$ and $x$ is above $Q$. Because the statements $x$ is above and $P, Q$ and $P$ is above $x$ and $x$ is above $Q$ cannot both hold, this is a contradiction.
+\end{proof}
+
+\solution{Matthew Kovar}
+\begin{proof}
+    If $P$ and $Q$ are both top levels in a level set $M$, then there is no level $x$ in the level set $M$ above $P$ or $Q$ (by Definition 1), which means that $P$ cannot be above $Q$ and $Q$ cannot be above $P$. However, this violates Axiom 3 which states that $P$ must be above $Q$ or $Q$ must be above $P$. Therefore, there cannot be more than one top level in a level set.
+\end{proof}
+
+% Problem 7: (a) Give an example of an level set that does not have a top level. (b) Give an example of a level set that does not have a bottom level. (c) Give an example of an level set M that does not have a top level and there is a level P such that if x is a level in M then P is above x.
+\problem
+The following answer is wrong. An empty level set is simply an empty set, not an empty level set.
+
+\begin{enumerate}[label=(\alph*)]
+    \item A level set that satisfies the property of having no top level is the empty set, $\emptyset$.
+    \item The empty set $\emptyset$ also satisfies this property.
+    \item Assume $\exists P \in M$, where $P$ is an arbitrary level and $M$ to be the level set of all levels. Therefore, there are is no top level (if $Q \in M$, if $Q$ is said to be the top level, $\exists x \in M$, where $x$ is above $Q$), but $P$ such that if $x \in M$ then $P$ is above $x$.
+\end{enumerate}
+
+
+\solution{Brett Sears, Illya Starikov, Matthew Healy}
+\begin{enumerate}[label=(\alph*)]
+    \item (Brett Sears) Let $M$ be a level set containing some level $P$. A level $x$ is included in $M$ if $x$ is above $P$. Suppose $T$ is the top level of $M$. By Axiom 5, we know there is also a level $U$ above $T$, $T$ is above $P$ or $P$. By Axiom 4, $U$ is above $P$ and included in $M$. Therefore there is no level that satisfies the definition of of a top level, and this is a contradiction.
+
+    \setcounter{enumi}{0} % Because we did this one twice
+
+    \item (Illya Starikov) Suppose $M$ to be the level set of all levels. By our definition of top level, there exists a top level in $M$ if there is a level $x, P \in M$, then $x$ is not above $P$ (where $P$ is to be the candidate top level). However, for every level $P$, there is a level $x$ above it. $\therefore$ $M$ has no top level.
+
+    \item (Matthew Healy) Suppose $M$ to be the level set of all levels. For any bottom level $b$ which we have defined a level such that for any level $x \in M$, $b$ is not above $x$. By Axiom 5, there exists level $x$ and $y$, such that $y > b > x$. Since this causes b to be above another level $x \in M$, $b$ no longer satisfies the definition of a bottom level.
+
+    \item (Brett Sears) Let $M$ be the level set that includes every level $P$ is above, but does not include $P$. Let $T$ be a potential top level for $M$. By Axiom 2, there is a level $x$ such that $P$ is above $x$, $x$ is above $T$. Since $P$ is above $x$, $x$ must be included in the level set $M$. However, since $x$ is above $T$, the definition of a top level is not satisfied. So $M$ does not have a definitive top level.
+\end{enumerate}
+
+
+% Problem 8: Show that, under the hypothesis of Axiom 6, if S1 has a top level then S2 does not have a bottom level.
+\problem
+\solutionAlt
+Let level set $S_1$ have a top level $Q$. Under the hypothesis of Axiom 6, suppose level set $S_2$ has a bottom level $P$. By Axiom 2, there exists a level $x$ such that $P$ is above $x$ and $x$ is above $Q$. Since $x$ must be in $S_1$ or $S_2$ under the hypothesis of Axiom 6 and since $Q$ is the top level of $S_1$, then $x$ must be in $S_2$. Since bottom level $P$ in $S_2$ is above level $x$ in $S_2$, Kyle Foster's definition of a bottom level is violated and level $P$ cannot be a bottom level. Therefore, if $S_1$ has a top level, $S_2$ cannot have a bottom level.
+
+
+% Problem 9: Complete the following statement: The level P is not the top level of the level set M means ...
+\problem
+The level $P$ is not the top level of the level set $M$ means $\dots$ \textit{there is more than one level in $M$}.
+
+\solution{Terry Maxwell}
+The level $P$ is not the top level of the level set $M$ means $\dots$ \textit{the level $P$ may or may not be included in the level set $M$ and if $P$ is included in $M$ then there must exists a level $x$ in level set $M$ and $x$ must be above $P$.}
+
+
+% Theorem #1: If M is a level set and a level B is above every level of M then M has a top level or there is a bottom level of the level set of all the levels that are above every level in M.
+\section*{Theorem \#1}
+\begin{theorem}
+    If $M$ is a level set and a level $B$ is above every level of $M$ then $M$ has a top level or there is a bottom level of the level set of all the levels that are above every level in $M$.
+\end{theorem}
+
+\begin{proof}
+    Let $C$ be the level set of all levels above every level above $M$, and let $D$ be the level set of all levels not in $C$.
+
+    Any level $x$ must be in either level set $C$ or level set $D$. Assume there is a level $y$ in $C$ such that $y$ is not above a level $z$ in $D$. If $y$ is $z$, then this would imply $y$ is in both level set $C$ and $D$, which is a contradiction. If $y$ is not above $z$ and not $z$, then, $z$ is above $y$. Since $y$ is above every level in $M$, then, since the hypothesis of Axiom 4 is satisfied, $z$ would be above every level in $M$, which implies $z$ is in both set $C$ and set $D$, contradicting sets $C$ and $D$'s definitions. Since every level in level set $C$ is above every level in level set $D$, the hypothesis of Axiom 6 is satisfied. Therefore, through the conclusion of Axiom 6, level set $D$ has a top level or level set $C$ has a bottom level.
+
+    But does this satisfy the original hypothesis of Theorem 1?
+
+    Yes, since level set $D$ is also a level set, and a level $B$ is above every level of $M$ and, by our definition of $C$, $B$ is in set $C$.
+
+    Claim: Level set $D$ and level set M must both have a top level or both not have a top level.
+
+    Bare denial of the claim: Suppose level set $D$ does not have a top level and level set $M$ does, or level set $D$ does have a top level and level set $M$ does not.
+
+
+    \begin{description}
+        \item[Case \#1] $D$ does not have a top level and $M$ does, and $D$ does have a top level and level set $M$ does not. A level set, by our definition of top level, cannot have both a top level and no top level at the same time.
+
+        \item[Case \#2] $D$ does have a top level $T$ and $M$ does not.
+
+        By our definition of level set $D$, level set $M$ does not contain levels that are above any levels in level set $D$. Yet, level set $D$ also contains all of the levels within level set $M$, since the level set $M$ is not included in level set $C$. So, if $D$ does have a top level, then, because
+
+        \begin{enumerate}
+            \item $M$ does not have any levels that are above the levels in $D$.
+            \item $D$ contains all levels of $M$.
+            \item $D$ does not contain any levels that are above all levels in $M$.
+        \end{enumerate}
+
+        We have already shown $C = \{ \text{all levels above every level in $M$} \}$, $D = \{ \text{every level not in $C$} \}$, and Axiom 6 to be satisfied. If $T$ is below $\forall x \in C$ then $\forall x \in M$ not above $T$ and $T \not\in C \implies T \in M$ or $Q \in M$ above $T$.
+
+        This must be true because their is no level $Q$ in $M$ that can satisfy being above $T$ because it must then be a member of $D$ and violate the definition of top level held by $T$, forcing $Q$ to be in $C$. Therefore $T \in M$ and thus the top level of $M$.
+
+        % If level set $D$ had a top level $T$, then $M$ would have to contain this level $T$ as well. However, $M$ is defined to not have a top level and therefore must have levels above $T$. This contradicts our definition of level set $D$, since $M$ contains levels that $D$ does not.
+
+
+        \item[Case \#3] $M$ does have a top level $T$ and $D$ does not. In this instance, see Case 2. If $M$ has a top level, then $D$ must include that top level $T$ and no levels above $T$.
+    \end{description}
+
+    Therefore, since our bare denial has been proven false, our claim must be true!
+\end{proof}
+
+% Problem 10: If P and Q are levels, define what it means to say that P is below Q.
+\problem
+Suppose $P$ and $Q$ are levels. To say that $P$ is \textbf{below} $Q$ is to say that $Q$ is above $P$.
+
+\begin{conjecture}
+    If $P$ is a level then $P$ is not below $P$.
+\end{conjecture}
+
+\begin{proof}
+    Suppose there is a level $P$ such that $P$ is below $P$. By the definition of below this says $P$ is above $P$. This contradicts Axiom 1. Thus there is no level which is below itself.
+\end{proof}
+
+\subsection{The Bare Denial of Above}
+The bare denial of $P$ is above $Q$ is \textit{$P$ is below $Q$ or $P$ is $Q$}.
+
+
+% Problem 11: Restate the definition that P is an accumulation level of a level set M beginning with the phrase “A level P is an accumulation level of the level set M if ...” but do not use the words ‘every’ or ‘any’.
+\problem
+\solutionAlt
+A level $P$ is an accumulation level of the level set $M$ if a segment $s$ contains $P$ then $s$ also contains a level of $M$ distinct from $P$.
+
+% Problem 12: Write the bare denial of the statement that a level P is an accumulation level of the level set M.
+\problem
+\solution{Terry Maxwell}
+A level $P$ is not an accumulation level of level set $M$ if $P$ is contained in a segment $s$, and there are no levels in $s$ that are contained in level set $M$ other than $P$.
+
+
+% Question 13. Suppose A is a level and M is a level set whose only member is A. Is A an accumulation level of M? If x is below A, is x an accumulation level of M? If x is above A is x an accumulation level of M? Are there any levels that are accumulation levels of M?
+\problem
+\solutionAlt
+\begin{enumerate}
+    \item (Daniel Welker) $M$ is the level set containing only the level $A$. By Axiom 5, there must exist levels $x$ and $y$ such that $y$ is above $A$ and $x$ is below $A$. These levels $x$ and $y$ may not be in the level set $M$ because we have defined the level set $M$ to contain only the level $A$. The levels $x$ and $y$ may form a segment $s(x,\,y)$ which contains the level $A$ in level set $M$. Since there are no distinct levels of $M$ in $s(x,\,y)$ other than $A$, the bare denial of the definition of an accumulation level is satisfied so that $A$ is not an accumulation level of $M$.
+    \item (Daniel Welker) Suppose $B$ to be above $A$ such that $y > B > A > x$. Then $B$ would be in segment $s(x,\,y)$. The segment $s$ contains levels $A$ and $B$, but only $ $A is a member of level set $M$. Then $s(x,\,y)$ is not an accumulation level of $M$ because it does not contain a level of $M$ distinct from $A$.
+\end{enumerate}
+
+% Question 14: Suppose A and B are levels and M is a level set whose only members are A and B. Are there any levels that are accumulation levels of M?
+\problem
+\solution{Elisabeth Warner}
+By Axiom 5, there exists levels $x$ and $y$ such that $y$ is above $A$ and $A$ is above $x$. There also exists levels $z$ and $w$ such that $z$ is above $B$ and $B$ is above $w$. However, because $M$ is the level set that only contains $A$ and $ $B, levels $x$, $y$, $z$, and $w$ are not in $M$.
+
+In order for $B$ (or $A$) to be an accumulation level of $M$, every segment $s$ containing $B$ (or $A$) must also contain a level of $M$ distinct from $B$ (or $A$).
+
+\begin{description}
+    \item[Take $A$ to be above $B$] If $A$ is above $B$ and $y$ is above $A$, then $y$ is above $B$ (Axiom 4). Take segment $s(w,\, y)$. $B$ is above $w$ but below $y$, so $B$ is in the segment. $A$ is above $B$ (and thus above $w$) and $y$ is above $A$, thus $A$ is also in $s$. $B$ is a possible accumulation level of $M$ because segment $s(w,\, y)$ contains $A$ (a level in $M$ distinct from $B$).
+
+    However, take segment $s(w,\, A)$. As $B$ is below $A$, $B$ is included in $s$, but the level $A$ is not included in the segment $s(w,\, A)$, by the definition of a segment. There is not a level in $s(w,\, A)$ of $M$ distinct from $B$, therefore $B$ is not an accumulation level of $M$.
+
+    Nevertheless, $A$ could be an accumulation level of $M$. Take segment $s(B, y)$. $A$ is above $B$ and $y$ is above $A$, so $A$ is in segment $s$. However, $B$ is not in segment $s$(endpoints not in segments), therefore there $s(B,\, y)$ does not contain $B$(a level in $M$ distinct from $A$), thus $A$ is not an accumulation level of $M$.
+
+    Suppose $y$ is an accumulation of $M$. By Axiom 5, there exist levels $j$ and $k$, where $j$ is above $y$ and $y$ is above $k$. Take segment $s(A,\, j)$. Level $y$ is in the segment due to the fact that $y$ is above $A$ but below $j$. Segment $s$ does not contain either $A$ or $B$, thus it does not contain a level in $M$ distinct from $y$. Therefore, $y$ is not an accumulation level of $M$.
+
+    \item[Take B to be above A] $B$ is above $A$ and $z$ is above $B$, thus $z$ is above $A$. Take segment $s(x,\, z)$. $A$ is above $x$ and $z$ is above $A$, thus $A$ is in the segment. $B$ is above $A$ but below $z$, so $B$ is also in segment $s$. Segment $s(x,\, z)$ contains a level in $M$ distinct from $A$, thus $A$ is an accumulation level of $M$.
+
+    Take segment $s(x,\, B)$. $A$ is in $s$, as $A$ is below $B$, but $B$ is not in $s$. Segment $s(x,\, B)$ does not contain a level in $M$ distinct from $A$, thus $A$ is not an accumulation level of $M$.
+
+    Testing $B$: take segment $s(A,\, z)$. $B$ is in $s$ ($B$ is above $A$ but below $z$), but $A$ is not in $s$ (endpoints of a segment). Therefore, segment $s(A,\, z)$ does not contain $A$ (a level in $M$ distinct from $B$), thus $B$ is not an accumulation level of $M$.
+\end{description}
+
+There is not any level that satisfies the qualifications to be an accumulation level of level set $M$.
+
+\problem
+\solution{Brett Sears}
+Yep.
+
+Suppose there were no level $x$ such that $x$ is an accumulation level of $s$. In other words, suppose it were possible to define a segment $q(z,\, y)$, such that $x$ is included in $q$ with no other levels also in $s$ distinct from $x$.
+
+Let $x$ be a level between $(A,\, B)$.
+
+If $z$ is between $(A,\, B)$ and $y$ is above $B$. Then, there must be a level $x$ between $z$ and $B$ (Axiom 2). Then, there must also be another level $R$ between $z$ and $x$. Since $R$ and $x$ are both between $z$ and $y$ and both included within $(A,\, B)$, $(z,\, y)$ must contain a level distinct from $x$ that is also included in $(A,\, B)$.
+
+If $z$ is between $A$ and $B$ and $y$ is between $A$ and $B$. Then, there must be a level $x$ between $z$ and $y$ (Axiom 2). Then, there must also be another level $P$ between $z$ and $x$ (Axiom 2). Since $B$ is above $x$ is above $z$, and $x$ is above $z$ is above $A$, $B$ is above $x$ is above $A$ (Axiom 4), which means $x$ is between $A$ and $B$ and thus included on $(A,\, B)$. A similar argument can be made for level $P$. However, $P$ and $x$ are both included in $(z,\, y)$, so $(z,\, y)$ must contain a level distinct from $x$.
+
+If $z$ is below $A$ and $y$ is between $A$ and $B$. Then, there must be a level $x$ between $y$ and $A$ (Axiom 2). Likewise, there must also be another level $R$ between $x$ and $y(x,\, y)$.
+
+If $z$ is below $A$ and $y$ is below $A$. Suppose $x$ is included in $(z,\, y)$. Then, $x$ is between $z$ and $y$; in other words, $y$ is above $x$ is above $z$.  However, $x$ is also included in $(A,\, B)$. $x$ must be above $A$ since $x$ is between $A$ and $B$. So, $x$ must be above $A$ must be above $y$. However, $y$ is above $x$, leading to a contradiction.
+
+If $z$ is above $B$ and $y$ is above $B$. Suppose $x$ is included in $(z,\, y)$. Then, $x$ is between $z$ and $y$; in other words, $y$ is above $x$ is above $z$. However, $x$ is also included in $(A,\, B)$. $x$ must be above $A$ since $x$ is between $A$ and $B$. So, $x$ is above $z$ is above $B$. However, $B$ is above $x$, and by Axiom 4 we would have $x$ is above $x$, leading to a contradiction.
+
+If $z$ is $A$ and $y$ is $B$. Then any level between $z$ and $y$ is also included in $(A,\, B)$.
+
+All possible segments have been exhausted.
+
+
+
+
+\end{document}

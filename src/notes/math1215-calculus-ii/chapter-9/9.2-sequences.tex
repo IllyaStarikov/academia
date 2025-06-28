@@ -1,0 +1,54 @@
+\subsection{Sequences}
+\subsubsection{Limits of Sequences from Limits of Functions}
+Suppose $f$ is a function such that $f(n) = a_n$ for all positive integers $n$. If $\limit{x \rightarrow \infty} = L$, then the limits of the sequences $\{ a_n \}$ is also $L$.
+
+\subsubsection{Properties of Limits of Sequences}
+Assume that the sequence $\{ a_n \}$ and $\{ b_n \}$ have limits $A$ and $B$, respectively. Then,
+
+\begin{enumerate}
+    \item $\limit{n \rightarrow \infty} ( a_n \pm b_n) = A \pm B$
+    \item $\limit{n \rightarrow \infty} c a_n = cA$, where $c$ is a real number
+    \item $\limit{n \rightarrow \infty} a_n b_n = AB$
+    \item $\limit{n \rightarrow \infty} \frac{a_n}{b_n} = \frac{A}{B}$, provided $B \neq 0$.
+\end{enumerate}
+
+\subsubsection{Geometric Sequences}
+Let $r$ be a real number. Then,
+
+\begin{align}
+    \lim _{n\rightarrow \infty} r^n  =
+    \begin{cases}
+    0 \quad &\Leftrightarrow |r| < 1 \\
+    1 \quad &\Leftrightarrow r = 1 \ \\
+    \text{does not exist} \ \quad &\Leftrightarrow r \leq -1 \vee r > 1
+    \end{cases}
+\end{align}
+
+\subsubsection{Squeeze Theorem for Sequences}
+Let $\{ a_n \}$, $\{ b_n \}$, and $\{ c_n \}$ be sequences with $a_n \leq b_n \leq c_n$ for all $n$ greater than some index $N$. If $\limit{n \rightarrow \infty} a_n = \limit{n \rightarrow \infty} c_n = L$, the $\limit{n \rightarrow \infty} b_n = L$.
+
+\subsubsection{Bounded Monotonic Sequences}
+A bounded monotonic sequence converges.
+
+\subsubsection{Growth Rates of Sequences}
+The following sequences are ordered according to increasing growth rates as $n \rightarrow \infty$; that is, if $\{ a_n \}$ appears before $\{ b_n \}$ in the list, then $\lim _{n \rightarrow \infty} \frac{a_n}{b_n} = 0$ and $\lim _{n \rightarrow \infty} \frac{b_n}{a_n} = \infty$
+
+\begin{equation}
+    \{ \ln^q n \} \ll \{ n^p \} \ll \{ n^p \ln^r n \} \ll \{ n^{p + s} \} \ll \{ b^n \} \ll \{ n! \} \ll \{ n^n \}
+\end{equation}
+The ordering applies for $p, q, r, s, b \in \mathbb{R}^+ \wedge b > 1$.
+
+\subsubsection{Limit of a Sequence}
+The sequence $\{ a_n \}$ converges to $L$ provided the terms of $a_n$ can be made arbitrarily close to $L$ by taking $n$ sufficiently large. More precisely, $\{ a_n \}$ has the unique limit $L$ if given any tolerance $\epsilon > 0$, it is possible to find a positive integer $N$ (depending only on $\epsilon$) such that
+
+\begin{equation}
+    | a_n - L | < \epsilon \quad \text{whenever} \ n > N
+\end{equation}
+
+if the \textbf{limit of a sequence} is L, we say the sequence \textbf{converges} to $L$, written
+
+\begin{equation}
+    \lim _{n \rightarrow \infty} a_n = L
+\end{equation}
+
+A sequence that does not converge is said to \textbf{diverge.}

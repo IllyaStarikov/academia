@@ -1,0 +1,83 @@
+%
+%  2.6-continuity.tex
+%  chapter-2
+%
+%  Created by Illya Starikov on 06/16/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\subsection{Continuity}
+\subsubsection{Continuity at a Point}
+A function $f$ is \textbf{continuous} at $a$ if $\limit{x \rightarrow a} f(x) = f(a)$. If $f$ is not continuous at $a$, then $a$ is a point of discontinuity.
+
+\subsubsection{Continuity Checklist}
+In order for $f$ to be continuous at $a$, the following three conditions must hold:
+
+\begin{itemize}
+    \item $f(a)$ is defined ($a$ is in the domain of $f$).
+    \item $\limit{x \rightarrow a} f(x)$ exists.
+    \item $limit{x \rightarrow a} f(x) = f(a)$ (the value of $f$ equals the limit of $f$ at $a$).
+\end{itemize}
+
+\subsubsection{Continuity Rules}
+If $f$ and $g$ are continuous at $a$, then the following functions are also continuous at $a$. Assume $c$ is a constant and $n > 0$ is an integer.
+
+\begin{enumerate}
+    \item $f + g$
+    \item $f - g$
+    \item $cf$
+    \item $fg$
+    \item $f / g$, provided $g(a) \neq 0$
+    \item ${(f(x))}^n$
+\end{enumerate}
+
+\subsubsection{Polynomial and Rational Functions}
+\begin{enumerate}
+    \item A polynomial function is continuous for all $x$.
+    \item A rational function (a function of the form $\frac{p}{q}$, where $p$ and $q$ are polynomials) is continuous for all $x$ for which $q(x) \neq 0$
+\end{enumerate}
+
+\subsubsection{Continuity of Composite Function at a Point}
+If $g$ is continuous at $a$ and $f$ is continuous at $g(a)$, then the composite function $f \cdot g$ is continuous at $a$.
+
+\subsubsection{Continuity at Endpoints}
+A function $f$ is \textbf{is continuous from the left} (or \textbf{left-continuous}) at $a$ if $\limit{x \rightarrow a^-} f(x) = f(a)$ and $f$ is \textbf{continuous from the right} (or \textbf{right-continuous}) at $a$ if $\limit{x \rightarrow a^+} f(x) = f(a)$. 
+
+\subsubsection{Continuity on an Interval}
+A function $f$ is continuous on an interval $I$ if it is continuous at all points of $I$. If $i$ contains its endpoints, continuous on $I$ means continuous from the right or left at the endpoints.
+
+\subsubsection{Continuity of Functions with Roots}
+Assume that $m$ and $n$ are positive integers with no common factors. If $m$ is an odd integer, then ${[ f(x) ]}^{n/m}$ is continuous at all points at which $f$ is continuous. If $m$ is even, then ${[ f(x) ]}^{n/m}$ is continuous at all points at which $f$ is continuous and $f(a) > 0$.
+
+\subsubsection{Continuity of Inverse Functions}
+If $a$ continuous function $f$ has an inverse on an interval $I$, then its inverse $f^{-1}$ is also continuous (on the interval consisting of the points $f(x)$), where $x$ is in $I$. 
+
+\subsubsection{Continuity of Transcendental Functions}
+The following functions are continuous at all points of their domain.
+
+\noindent\textbf{Trigonometric}
+\begin{align}
+    \sin x &\qquad \cos x \\
+    \tan x &\qquad \cot x \\
+    \sec x &\qquad \csc x 
+\end{align}
+
+\noindent\textbf{Inverse Trigonometric}
+\begin{align}
+    \sin^{-1} x &\qquad \cos^{-1} x \\
+    \tan^{-1} x &\qquad \cot^{-1} x \\
+    \sec^{-1} x &\qquad \csc^{-1} x
+\end{align}
+
+\noindent\textbf{Exponential}
+\begin{equation}
+    b^x \qquad e^x
+\end{equation}
+
+\noindent\textbf{Logarithmic}
+\begin{equation}
+    \log_b x \qquad \ln x
+\end{equation}
+
+\subsubsection{The Intermediate Value Theorem}
+Suppose $f$ is continuous on the interval $[a, b]$ and $L$ is a number $f(a)$ and $f(b)$. Then there is at least one number $c$ in $(a, b)$ satisfying $f(x) = L$.

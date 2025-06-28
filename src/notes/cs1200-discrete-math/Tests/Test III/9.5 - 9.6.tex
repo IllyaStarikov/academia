@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+
+\setcounter{section}{9}
+\setcounter{subsection}{4}
+
+\subsection{R-Combination}
+Let \textit{n} and \textit{r} be nonnegative integers with $r \leq n$. An \textbf{r-combination} of a set of n elements is a subset of \textit{r} of the n elements. As indicated in Section 5.1, the symbol
+
+\[
+{{n}\choose{r}}
+\]
+
+which is read \underline{n choose r}, denotes the number of subsets of size \textit{r} (\textit{r}-combinations) that can be chosen from a set of \textit{n} elements.
+
+\subsubsection{Definition}
+The number of subsets of size \textit{r} (or \textit{r}-combinations) that can be chosen from a set of \textit{n} elements,  \textit{n}, is given by the formula
+
+\[
+{{n}\choose{r}}
+ = \frac{P(n, r)}{r!}\]
+
+or, equivalently,
+
+\[
+{{n}\choose{r}}
+ = \frac{n!}{r!(n - r)!}\]
+
+where \textit{n} and \textit{r} are nonnegative integers with $r \leq n$.
+
+\subsubsection{Permutations with sets of Indistinguishable Objects}
+Suppose a collection consists of \textit{n} objects of which
+
+\begin{center}
+$n_1$ are of type 1 and are indistinguishable from each other.
+$n_2$ are of type 2 and are indistinguishable from each other.
+$\vdots$
+$n_k$ are of type k and are indistinguishable from each other.
+\end{center}
+
+and suppose that $n_1 + n_2 + \cdots + n_k = n$. Then the number of distinguishable.
+
+\[
+{{n}\choose{n_1}}{{n - n_1}\choose{n_2}}{{n - n_1 - n_2}\choose{n_3}}\cdots{{n - n_1 - n_2 - \cdots - n_k{k - 1}}\choose{n_k}}
+\]
+
+\begin{equation}
+\frac{n!}{n_1!n_2!n_3! \cdots n_k!}
+\end{equation}
+
+\subsection{r-Combinations with Repetition Allowed}
+An \textbf{r-combination with repetition allowed}, or \textbf{multiset of size \textit{r}}, chosen from a set \textit{X} of \textit{n} elements is an unordered selection of elements taken from \textit{X} with repetition allowed. If $X = \{ x_1, x_2, \ldots, x_n \},$ we write an \textit{r}-combination with repetition allowed,or multiset of size \textit{r}, as \textbf{ $[ x_{i1}, x_{i2}, \ldots, x_i]$ }, where each $x_ij$ is in \textit{X} and some of the $x_ij$ may equal.
+
+\subsubsection{Theorem}
+The number of r-combinations with repetition allowed (multisets of size r) that can be selected from a set of n elements is
+
+\[
+{{r+ n - 1}\choose{r}}
+\]
+
+This equals the number of ways \textit{r} objects can be selected from \textit{n} categories of objects with repetition allowed.
+
+\end{document}

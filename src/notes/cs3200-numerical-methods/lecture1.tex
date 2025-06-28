@@ -1,0 +1,22 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{article}
+
+\input{macros}
+\chapterNumber{1}
+
+\begin{document}
+\section{Introduction}
+
+\begin{itemize}
+    \item The differential equation for newton's equation is $\frac{dv}{dt} = g - \frac{cv}{m}$, where $cv$ is the drag coefficient $\times$ velocity.
+\end{itemize}
+
+\begin{align}
+    \frac{dv}{dt} &= g - \frac{cv}{m} \\
+    dv &= (g - \frac{cv}{m}) dt \\
+    \int \frac{1}{g - \frac{cv}{m}} dv &= \int dt \\
+    \lg (g - \frac{cv}{m}) &= t + c \\
+    v &= mg/c(1- e ^{c/mt})
+\end{align}
+
+\end{document}

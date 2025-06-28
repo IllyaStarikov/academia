@@ -1,0 +1,39 @@
+%
+%  5.3-fundamental-theorem-of-calculus.tex
+%  chapter-5
+%
+%  Created by Illya Starikov on 07/16/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\subsection{Fundamental Theorem of Calculus}
+\subsubsection{Area Function}
+Let $f$ be continuous function, for $t geq a$. The \textbf{area function for $f$ with left endpoint $a$} is
+
+\begin{equation}
+    A(x) = \int _a ^x f(t)\, dt 
+\end{equation}
+
+where $x \geq a$. The area function gives the net area of the region bounded by the graph of $f$ and the $t$-axis on the interval $[a, x]$.
+
+\subsubsection{Fundamental Theorem of Calculus}
+If $f$ is continuous of $[a, b]$, then the area function
+
+\begin{equation}
+    A(x) = \int _a ^x f(t)\, dt \qquad\text{for}\qquad a \leq x \leq b
+\end{equation}
+
+is continuous on $[a, b]$ and differentiable on $(a, b)$. The area function satisfies $A'(x) = f(x)$; or, equivalently,
+
+\begin{equation}
+    A'(x) = \frac{d}{dx}\int _a ^x f(t)\, dt = f(x)
+\end{equation}
+
+which means that the area function of $f$ is an antiderivative of $f$ on $[a, b]$.
+
+\subsubsection{Fundamental Theorem of Calculus}
+If $f$ is continuous on $[a, b]$ and $F$ is any antiderivative of $f$ on $[a, b]$, then
+
+\begin{equation}
+    \int _a ^b f(x)\, dx = F(b) - F(a)
+\end{equation}

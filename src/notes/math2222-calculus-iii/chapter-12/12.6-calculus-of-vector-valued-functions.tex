@@ -1,0 +1,47 @@
+\subsection{Calculus of Vector-Valued Functions}
+\subsubsection{Derivative and Tangent Vector}
+Let $\mathbf{r}(t) = f(t)\ihat + g(t)\jhat + h(t)\khat$, where $f$, $g$, and $h$ are differentiable functions on $(a\, b)$. Then \textbf{r} has a \textbf{derivative} (or is \textbf{differentiable}) on $(a\, b)$ and
+
+\begin{equation}
+    \mathbf{r}'(t) = f'(i)\ihat + g'(t)\jhat + h'(t)\khat
+\end{equation}
+
+Provided $\mathbf{r}'(t) \neq \mathbf{0}, \mathbf{r}'(t)$ is a \textbf{tangent vector} (or velocity vector) at the point corresponding to $\mathbf{r}$.
+
+\subsubsection{Unit Tangent Vector}
+Let $\mathbf{r} = f(t)\ihat + g(t)\jhat + h(t)\khat$ be a smooth parameterized curve, for $a \leq t \leq b$. The \textbf{unit tangent vector} for a particular value of $t$ is
+
+\begin{equation}
+    \mathbf{T}(t) = \frac{\mathbf{r}'(t)}{|\mathbf{r}'(t)|}
+\end{equation}
+
+\subsubsection{Derivative Rules}
+Let \uvec and \vvec be differentiable vector-valued functions and let $f$ be a differentiable scalar-valued function, all at a point $t$. Let \textbf{c} be a constant vector. The following rules apply.
+
+\begin{align}
+    \frac{d}{dt} (\mathbf{c}) = \mathbf{0}   && &\text{Constant Rule} \\
+    \frac{d}{dt} (\uvec(t) + \vvec(t)) = \uvec'(t) + \vvec'(t)   && &\text{Sum Rule} \\
+    \frac{d}{dt} (f(t) \uvec(t)) = f'(t) \uvec(t) + f(t) \uvec'(t)   && &\text{Product Rule} \\
+    \frac{d}{dt} (\uvec (f(t))) = \uvec'(f(t)) f'(t)   && &\text{Chain Rule} \\
+    \frac{d}{dt} (\uvec(t) \cdot \vvec(t)) = \uvec'(t) \cdot \vvec(t) + \uvec(t) \cdot \vvec'(t)   && &\text{Dot Product Rule} \\
+    \frac{d}{dt} (\uvec(t) \times \vvec(t)) = \uvec'(t) \times \vvec(t) + \uvec(t) \times \vvec'(t)   && &\text{Cross Product Rule}
+\end{align}
+
+\subsubsection{Indefinite Integral of a Vector-Valued Function}
+Let $\mathbf{r} = f\ihat + g\jhat + h\khat$ be a vector function and let $\mathbf{R} = F\ihat + G\jhat + H\khat$, where $F$, $G$, and $H$ are antiderivatives of $f$, $g$, and $h$, respectively. The \textbf{indefinite integral} of \textbf{r} is
+
+\begin{equation}
+    \int \mathbf{r}(t) \, dt = \mathbf{R}(t) + \mathbf{C}
+\end{equation}
+
+where \textbf{C} is an arbitrary constant vector.
+
+\subsubsection{Definite Integral of a Vector-Valued Function}
+Let $\mathbf{r}(t) = f(t)\ihat + g(t)\jhat + h(t)\khat$, where $f$, $g$, and $h$ are integrable on the interval $[a,\, b]$.
+
+\begin{equation}
+    \int \mathbf{r}(t) \, dt =
+    \Bigg[ \int _a ^b f(t) \, dt \Bigg] \ihat +
+    \Bigg[ \int _a ^b g(t) \, dt \Bigg] \jhat +
+    \Bigg[ \int _a ^b h(t) \, dt \Bigg] \khat
+\end{equation}

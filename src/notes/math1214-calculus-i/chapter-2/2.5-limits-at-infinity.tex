@@ -1,0 +1,68 @@
+%
+%  2.5-limits-at-infinity.tex
+%  chapter-2
+%
+%  Created by Illya Starikov on 06/13/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\subsection{Limits at Infinity}
+If $f(x)$ becomes arbitrarily close to a finite number $L$ for all sufficiently large and positive $x$, then we write
+
+\begin{equation}
+    \lim_{x \rightarrow \infty} f(x) = L
+\end{equation}
+
+We say the limit of $f(x)$ as $x$ approaches infinity is $L$. In this case the line $y = L$ is a \textbf{horizontal asymptote} of $f$. The limit at negative infinity, $\limit{x \rightarrow -\infty} f(x) = M$, is defined analogously. When the limit exists, the horizontal asymptote is $y = M$.
+
+\subsubsection{Infinite Limits at Infinity}
+If $f(x)$ becomes arbitrarily large as $x$ becomes arbitrary large, then we write
+
+\begin{equation}
+    \lim_{x \rightarrow \infty} f(x) = \infty
+\end{equation}
+
+The limits $\limit{x \rightarrow \infty} = -\infty$, $\limit{x \rightarrow -\infty} = \infty$, and $\limit{x \rightarrow -\infty} = -\infty$ are defined similarly.
+
+
+\subsubsection{Limit of Infinity at Powers and Polynomials}
+Let $n$ be a positive integer and let $p$ be the polynomial $p(x) = a_n x^m + a_{n - 1} x^{n - 1} + \cdots + a_2 x^2 + a_1 x + a_0$, where $a_n \neq 0$.
+
+\begin{enumerate}
+    \item $\limit{x \rightarrow \pm\infty} x^n = \infty$ when $n$ is even.
+    \item $\limit{x \rightarrow \infty} x^n = \infty$ and $\limit{x \rightarrow -\infty} x^n = -\infty$ when $n$ is odd.
+    \item $\limit{x \rightarrow \pm\infty} \frac{1}{x^n} = \limit{x \rightarrow \pm\infty} x^{-n} = 0$
+    \item $\limit{x \rightarrow \pm\infty} p(x) = \infty or -\infty$, depending on the degree of the polynomial or the leading coefficient of $a_n$.
+\end{enumerate}
+
+\subsubsection{End Behavior and Asymptotes of Rational Functions}
+Suppose $f(x) = \frac{p(x)}{q(x)}$ is a rational function, where
+
+\begin{equation}
+    p(x) = a_m x^m + a_{m-1} + \cdots + a_2 x^2 + a_1 x + a_0
+\end{equation}
+
+and
+
+\begin{equation}
+    q(x) = b_m x^m + b_{m-1} + \cdots + b_2 x^2 + b_1 x + b_0
+\end{equation}
+
+with $a_m \neq 0$ and $b_n \neq 0$.
+
+\begin{enumerate}
+    \item If $m < n$ then $\limit{x \rightarrow \pm\infty} f(x) = 0$, and $y = 0$ is a horizontal asymptote of $f$.
+    \item If $m = n$, then $\limit{x \rightarrow \pm\infty} f(x) = a_m/b_n$, and $y = a_m/b_n$ is a horizontal asymptote.
+    \item If $m > n$, then $\limit{x \rightarrow \pm\infty} f(x) = \infty$ or $-\infty$, and $f$ has no horizontal asymptote.
+    \item If $m = n + 1$, then $\limit{x \rightarrow \pm\infty} f(x) = \infty$ or $-\infty$, $f$ has no horizontal asymptote, but $f$ has a slant asymptote.
+    \item Assuming that $f(x)$ is in reduced form ($p$ and $q$ share no common factors), vertical asymptotes occur at the zeros of $q$.
+\end{enumerate}
+
+\subsubsection{End Behavior of $e^x$, $e^{-x}$, and $\ln x$}
+The end behavior for $e^x$ and $e^{-x}$ on $(-\infty, \infty)$ and $\ln x$ on $(0, \infty)$ is given by the following limits:
+
+\begin{align}
+    \lim_{x \rightarrow \infty} e^x    = \infty  &\qquad\text{and}\qquad \lim_{x \rightarrow -\infty} e^x = 0 \\
+    \lim_{x \rightarrow \infty} e^{-x} = \infty  &\qquad\text{and}\qquad \lim_{x \rightarrow -\infty} e^x = 0 \\
+    \lim_{x \rightarrow 0^+} \ln x     = -\infty &\qquad\text{and}\qquad \lim_{x \rightarrow \infty} \ln x = \infty
+\end{align}

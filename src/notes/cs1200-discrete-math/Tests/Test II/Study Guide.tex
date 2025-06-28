@@ -1,0 +1,343 @@
+\documentclass[12pt]{article}
+\usepackage[document]{ragged2e}
+\usepackage{amsmath}
+\usepackage[retainorgcmds]{IEEEtrantools}
+\begin{document}
+
+\title{Test II Study Guide}
+\author{Prepared By: Illya Starikov}
+
+\maketitle
+
+\setcounter{section}{4}
+\section{Sequences, Mathematical Induction, and Recursion}
+\subsection{Sequences}
+If $a_m, a_{m+1}, a_{m+1} \ldots$ and $b_m, b_{m+1}, b_{m+1} \ldots$ are sequences of real numbers and \textit{c} is any real number, then the following equations hold for any integer \textit{n $\geq$ m}:
+
+\begin{enumerate}
+\item $\sum^{n}_{k = m} a_k + \sum^{n}_{k = m} b_k = \sum^{n}_{k = m} (a_k + b_k)  $
+\item $c \times \sum^{n}_{k = m} a_k = \sum^{n}_{k = m} c \times a_k$
+\item $( \Pi^{n}_{k = m} a_k ) \times ( \Pi^{n}_{k = m} b_k ) = \Pi^{n}_{k = m} a_k \times b_k $
+\end{enumerate}
+
+\subsection{Mathematical Induction I}
+\subsubsection*{n choose r}
+For all integers \textit{n} and \textit{r} with $0 \leq r \leq n$
+,
+
+\begin{equation*}
+\binom{n}{k} = \frac{n!}{r!(n - r)!}
+\end{equation*}
+
+\subsubsection*{Sum of the First \textit{n} Integers}
+For all integers $n \geq 1$,
+
+\begin{equation*}
+1 + 2 + \cdots + n = \frac{n (n + 1)}{2}
+\end{equation*}
+
+\subsubsection*{Sum of Geometric Sequence}
+For any real number \textit{r} except 1, and an integer $n \geq 0$,
+
+\begin{equation*}
+\sum^{n}_{i-0} r^i = \frac{r^{n+1} - 1}{r - 1}
+\end{equation*}
+
+\section{Set Theory}
+\subsection{Set Theory: Definitions and the Element Method of Proof}
+
+\subsubsection*{Proper Subset}
+\textit{A} is a \textbf{proper subset} of B $\Leftrightarrow$
+\begin{enumerate}
+
+\item $A \subseteq B$, and
+\item there is at least one element in \textit{B} that is not in \textit{A}.
+
+\end{enumerate}
+
+\subsubsection*{Element Argument: The Basic Method for Proving That One Set Is a Subset of Another}
+Let sets \textit{X} and \textit{Y} be given. To prove that $X \subseteq Y$,
+\begin{enumerate}
+
+\item \textbf{suppose} that \textit{x} is a particular but arbitrary chosen element of \textit{X},
+\item \textbf{show} that \textit{x} is an element of \textit{Y}.
+
+\end{enumerate}
+
+\subsubsection*{Equals}
+Given sets \textit{A} and \textit{B}, \textit{A} \textbf{equals} \textit{B}, written \textbf{A = B}, if, and only if, every element of \textit{A} is in \textit{B} and every element of \textit{B} is in \textit{A}.
+
+Symbolically:
+
+\begin{equation*}
+A = B \quad \Leftrightarrow \quad A \subseteq B \ \text{and} \ B \subseteq A.
+\end{equation*}
+
+\subsubsection*{Union, Intersection, Difference, Complement}
+Let \textit{A} and \textit{B} be subsets of a universal set \textit{U}.
+
+\begin{enumerate}
+\item The \textbf{union} of \textit{A} and \textit{B}, denoted \textbf{$A \cup B$}, is the set of all elements that are in at least one of \textit{A} or \textit{B}.
+
+\item The \textbf{intersection} of \textit{A} and \textit{B}, denoted \textbf{$A \cap B$}, is the set of all elements that are common to both \textit{A} and \textit{B}.
+
+\item The \textbf{difference} of \textit{B} minus \textit{A} (or \textbf{relative complement} of \textit{A} in \textit{B}), denoted \textbf{$B - A$}, is the set of all elements that are in \textit{B} and not \textit{A}.
+
+\item The \textbf{complement} of \textit{A}, denoted \textbf{$A^c$}, is the set of all elements in \textit{U} that are not in \textit{A}.
+\end{enumerate}
+
+Symbolically,
+\begin{IEEEeqnarray*}{rCl}
+A \cup B & = & \{ x \in U \mid x \in A \ \text{or} \ x \in B \}, \\
+A \cap B & = & \{ x \in U \mid x \in A \ \text{and} \ x \in B \}, \\
+B - A & = & \{ x \in U \mid x \in B \ \text{and} \ x \not \in A \}, \\
+A^c & = & \{ x \in U \mid x \not \in A \}.
+\end{IEEEeqnarray*}
+
+\subsubsection*{Disjoint}
+Two sets are called \textbf{disjoint} if, and only if, they have no elements in common.
+Symbolically:
+
+\begin{equation*}
+\text{\textit{A} and \textit{B} are disjoint} \quad \Leftrightarrow \quad A \cup B = \emptyset
+\end{equation*}
+
+\subsubsection*{Partition}
+A finite or infinite collection of nonempty sets ${A_1, A_2, A_3 \ldots}$ is a \textbf{partition} of a set \textit{A} if, and only if,
+
+\begin{enumerate}
+\item \textit{A} is the union of all the $A_i$
+\item The sets $A_1, A_2, A_3, \ldots \ \text{are mutually disjoint. (Not-overlapping)}$
+\end{enumerate}
+
+\subsubsection*{Power Set}
+Given a set \textit{A}, the \textbf{power set} of \textit{A}, denoted $\mathcal P(A)$, is the set of all subsets of \textit{A}.
+
+\subsubsection*{Cartesian Product}
+Gives sets $A_1, A_2, \ldots, A_n$ the \textbf{Cartesian product} of $A_1, A_2, \ldots, A_n$, denoted \textbf{$A_1 \times A_2 \times \ldots \times A_n$}, is the set of all ordered \textit{n}-tuples ($a_1, a_2, \ldots, a_n$) where $a_1 \in A_1, a_2 \in A_2, \ldots a_n \in A_n.$
+
+Symbolically:
+\begin{equation*}
+A_1 \times A_2 \times \ldots \times A_n = \{ (a_1, a_2, \ldots, a_n) \mid a_1 \in A_1, a_2 \in A_2, \ldots, a_n \in A_n \}
+\end{equation*}
+
+In particular,
+\begin{equation*}
+A_1 \times A_2 = \{ (a_1, a_2) \mid a_1 \in A_1 \ \text{and} \ a_2 \in A_2 \}
+\end{equation*}
+
+is the Cartesian product of $A_1 \ \text{and} \ A_2$
+
+\section{Functions}
+\subsection{Functions Defined on General Sets}
+
+\subsubsection*{Function}
+A \textbf{function \textit{f} from a set \textit{X} to a set \textit{Y}}, denoted \textit{f : x $\rightarrow$ Y}, is a relation from \textit{X}, the \textbf{domain}, to Y, the \textbf{co-domain}, that satisfies two properties: (1) every element \textit{X} is related to some element in \textit{Y}, and (2) no element in \textit{X} is related to more than one element in Y.
+
+\subsubsection*{Logarithms And Logarithmic Function}
+Let \textit{b} be a positive real number with \textit{$b \not = 1$}. For each positive real number \textit{x}, the \textbf{logarithm with base b of x}, written $\log_b x$, is the exponent to which \textit{b} must be raised to obtain \textit{x}. Symbolically,
+
+\begin{equation*}
+\log_b x = y \quad \Leftrightarrow \quad b^y = x
+\end{equation*}
+
+The \textbf{logarithmic function with base \textit{b}} is the function from $\mathbf{R}^+ \ \text{to} \ \mathbf{R}$ that takes each
+positive real number x to $\log_b x$
+
+\subsubsection*{One-to-One}
+Let \textit{F} be a function from a set \textit{X} to a set \textit{Y}. \textit{F} is \textbf{one-to-one} (or \textbf{injective}) if, and only if, for all element $x_1 \ \text{and} \ x_2$ in \textit{X},
+
+\begin{equation*}
+\text{if} \ F(x_1) = F(x_2), \ \text{then} \ x_1 = x_2,
+\end{equation*}
+
+or, equivalently,
+
+\begin{equation*}
+\text{if} \ x_1 \neq x_2, \ \text{then} \ F(x_1) \neq F(x_2)
+\end{equation*}
+
+Symbolically,
+\begin{equation*}
+F: X \rightarrow Y \text{is one-to-one} \quad \Leftrightarrow \quad \forall x_1, x_2 \in X, \ \text{if} \ F(x_1) = F(x_2) \ \text{then} \ x_1 = 2_2
+\end{equation*}
+
+This can be read as $\text{A function} \ F: X \rightarrow Y \text{is \textit{not} one-to-one} \ \text{\textbf{if, and only if,}} \ \exists \ \text{element} \ x_1, x_2 \in X \ \text{with} \ F(x_1) = F(x_2) \ \text{and} \ x_1 \neq x_2.$
+
+\subsubsection*{Proof of One-To-One}
+$f(x) = 4x - 1$ \\
+
+\noindent
+Suppose $x_1 \ \text{and} \ x_2$ are real numbers such that $f(x_1) = f(x_2)$.
+
+\begin{align}
+4x_1 - 1 = 4x_2 - 1 \\
+4x_1 = 4x_2 \\
+x_1 = x_2 \\
+\end{align}
+
+\subsubsection*{Onto}
+Let \textit{F} be a function from a set \textit{X} to a set \textit{Y}. \textit{F} is \textbf{onto} (or \textbf{surjective}) if, and only if, given any element \textit{y} in \textit{Y}, it is possible to find an element \textit{x} in \textit{X} with the property that \textit{y = F(x)}.
+
+Symbolically:
+
+\begin{equation*}
+F: X \rightarrow Y \ \text{is onto} \quad \Leftrightarrow \quad \forall y \in Y, \exists x \in X \ \text{such that} \ F(x) = y.
+\end{equation*}
+
+In other words, $F: X \rightarrow Y \text{is \textit{not} onto} \ \text{\textbf{if, and only if,}} \ \exists y \ \text{in \textit{Y} such that} \ \forall x \in X, F(x) \neq y.$
+
+\subsubsection*{Onto Proof Example}
+$f(x) = 4x - 1$
+
+Let $y \in \mathbf{R}$. Let $x = (y + 1)/4$. Then \textit{x} is a real number since sums and quotients (other than by 0) of a real numbers are real numbers. It follows:
+
+\begin{align*}
+f( x ) = f(\frac{y+1}{4}) \\
+ =  4 \times f(\frac{y+1}{4}) - 1 \\
+ =  (y + 1) - 1 \\
+ =   y
+\end{align*}
+
+\subsubsection*{Bijection}
+A \textbf{one-to-one correspondence} (or \textbf{bijection}) from a set \textit{X} to a set \textit{Y} is a function F: X → Y that is \textit{both one-to-one and onto.}
+
+\subsubsection*{Inverse Image}
+Suppose \textit{F: X → Y} is a one-to-one correspondence; that is, suppose F is one-to-one and onto. Then there is a function $F^{-1}: Y \rightarrow X$ that is defined as follows:
+
+Just take the inverse. It's basic algebra.
+
+\section{Relations}
+\subsection{Relations on Sets}
+
+\subsubsection*{Relation}
+Let \textbf{R} be a relation from \textit{A} to \textit{B}. Define the inverse relation $R^{-1}$ from \textit{B} to \textit{A} as follows:
+
+\begin{center} $R^{-1} = {(x,y)\ \in \textit{B} \times \textit{A} | { (x,y) \in \textit{R} }}$ \end{center}
+
+This is equivelent to: $\forall x \in \textit{A}$ and $y \in \textit{B},  (y,x)\ \in R^{-1} \Leftrightarrow (x,y) \in R$
+
+\subsubsection*{Relation on Sets}
+A \textbf{relation on a set A} is a relation from \textit{A} to \textit{A}.
+
+\subsubsection*{\textit{n}-ary relation}
+Given sets $A_1, A_2, \ldots, A_n,$ an \textbf{\textit{n}-ary relation} \textit{R} on $A_1 \times A_2 \times \ldots \times A_n$.The special casts of 2-ary, 3-ary, and 4-ary relations are called \textbf{binary, ternary,} and \textbf{quaternary relations}, respectively.
+
+\subsection{Reflexivity, Symmetry, and Transitivity}
+\subsubsection*{Reflexivity, Symmetry, and Transitivity}
+Let \textit{R} be a relation on a set \textit{A}.
+
+\begin{description}
+
+\item [Reflexive] \textit{R} is reflexive if, and only if, for all $x \in A, x \ \textit{R} \ x$
+
+\begin{itemize}
+\item R is reflexive \hspace{10pt} $\Leftrightarrow$ \hspace{10pt} for all \textit{x} in \textit{A}, $(x, x) \in R$.
+\item \textbf{Reflexive:} Each element is related to itself.
+\item \textit{R} is \textbf{not reflexive} \hspace{10pt} $\Leftrightarrow$ \hspace{10pt} there is an element \textit{x} in \textit{A} such that $x \not R \ x$ [\textit{that is, such that $(x, y) \not \in R$}].
+\end{itemize}
+
+\item [Symmetric] \textit{R} is symmetric if, and only if, for all $x, y \in A, \textbf{if} \ x \ \textit{R} \ y$ then $y \ \textit{R} \ x$
+
+\begin{itemize}
+\item \textit{R} is symmetric \hspace{10pt} $\Leftrightarrow$ \hspace{10pt} for all \textit{x} and \textit{y} in A, $\textbf{if} (x, y) \in R$ then $(y, x) \in \textit{R}$
+\item \textbf{Symmetric:} If any one element is related to any other element, then the second element is related to the first.
+\item \textit{R} is \textbf{not symmetric} \hspace{10pt} $\Leftrightarrow$ \hspace{10pt} there are elements x and y in \textit{A} such that $x \ R \ y$ but $y \not R \ x$ [\textit{that is, such that $(x, y) \in R$ but $(x, y) \not \in R$}].
+\end{itemize}
+
+\item [Transitive] \textit{R} is transitive if, and only if, for all $x, y, z \in A, \textbf{if} \ x \ \textit{R} \ y$ and $y \ \textit{R} \ z$ then $x \ \textit{R} \ z$
+
+\begin{itemize}
+\item \textit{R} is transitive \hspace{10pt} $\Leftrightarrow$ \hspace{10pt} for all \textit{x}, \textit{y}, and \textit{z} in \textit{A}, $\textbf{if} \ (x, y) \in R$ and $(y, z) \in R$ then $(x, z) \in R$.
+\item \textbf{Transitive} If any one element is related to a second and that second element is related to a third, then the first element is related to the third.
+\item \textit{R} is \textbf{not transitive} \hspace{10pt} $\Leftrightarrow$ \hspace{10pt} there are elements \textit{x}, \textit{y}, and \textit{z} in \textit{A} such that $x \ R \ y$ and $y \ R \ z$ but $x \not R \ z$ [\textit{that is, such that $(x, y) \in R$ and $(y, z) \in R$ but $(x, z) \not \in R$}]
+\end{itemize}
+\end{description}
+
+\subsubsection*{The Transitive Closure of a Relation}
+Let \textit{A} be a set and \textit{R} a relation on \textit{A}. the \textbf{transitive closure} of R is the relation $R^t$ on \textit{A} that satisfies the following three properties:
+
+\begin{enumerate}
+\item $R^t$ is transitive.
+\item $R \subset R^t$.
+\item If \textit{S} is any other transitive relation that contains \textit{R}, then $R^t \subset S$
+\end{enumerate}
+
+\subsection{Equivalence Relations}
+Give a partition of a set \textit{A}, the \textbf{relation induced by the partition}, \textit{R}, is defined on \textit{A} as follows: For all $x, y \in A$,
+
+\begin{center}
+$x \ R \ y$ \hspace{10pt} there is a subset $A_i$ of the partition such that both \textit{x} and \textit{y} are in \textit{$A_i$}
+\end{center}
+
+\subsubsection*{Equivalence Relation}
+Let \textit{A} be a set and \textit{R} a relation on \textit{A}. \textit{R} is an \textbf{equivalence relation} if, and only if, \textit{R} is reflexive, symmetric,and transitive.
+
+\subsubsection*{Equivalence Class}
+Suppose \textit{A} is a set and \textit{R} is an equivalence relation on \textit{A}. For each element \textit{a} in \textit{A}, the \textbf{equivalence class of a}, denoted \textbf{[a]} and called the \textbf{class of a}
+
+\subsubsection*{Representative}
+Suppose \textit{R} is an equivalence relation on a set \textit{A} and \textit{S} is an equivalence class of R. A representative of the class \textit{S} is any element a such that \textit{[a] = S}.
+
+\subsubsection*{Congruence Modulo}
+Let \textit{m} and \textit{n} be integers and let \textit{d} be a positive integer. We say that \textbf{m is congruent to n modulo d} and write
+
+\begin{equation*}
+m \equiv n (\text{mod} \ d)
+\end{equation*}
+
+if, and only if,
+
+\begin{equation*}
+d \mid (m - n)
+\end{equation*}
+
+Symbolically:
+
+\begin{equation*}
+m \equiv n \ (\text{mod} \ d) \Leftrightarrow d \mid (m - n)
+\end{equation*}
+
+\setcounter{subsection}{4}
+\subsection{Partial Order Relations}
+\subsubsection*{Antisymmetric}
+Let \textit{R} be a relation on a set \textit{A}. \textit{R} is \textbf{antisymmetric} if, and only if,
+
+\begin{center}
+for all \textit{a} and \textit{b} in \textit{A}, $\quad$ if \textit{a R b} and \textit{b R a} then \textit{a = b}.
+\end{center}
+
+\subsubsection*{Partial Order Relation}
+Let \textit{R} be a relation defined on a set \textit{A}. \textit{R} is a \textbf{partial order relation} if, and only if, R is reflexive, antisymmetric, and transitive.
+
+\subsubsection*{General Partial Order}
+Because of the special paradigmatic role played by the $\leq$ relation in the study of partial order relations, the symbol $\preceq$ is often used to refer to a general partial order relation, and the notation \textit{x} $\preceq$ \textit{y} is read “\textit{x} is less than or equal to \textit{y}” or “\textit{y} is greater than or equal to \textit{x}.”
+
+\subsubsection*{Dictionary or Lexicographic}
+Let \textit{A} be a set with a partial order relation \textit{R}, and let \textit{S} be a set of strings over \textit{A}. Define a relation $\preceq$ on \textit{S} as follows:
+
+For any two strings in \textit{S}, $a_1a_2 \cdots a_m$ and $b_1b_2 \cdots b_n$, where \textit{m} and \textit{n} are positive integers,
+
+\begin{enumerate}
+\item $m \leq n$ $a_i = b_i$ for all $i = 1, 2, \ldots, m,$ then
+
+\begin{equation*}
+a_1a_2 \cdots a_m \preceq b_1b_2 \cdots b_n.
+\end{equation*}
+
+\item If for some integer $k \ \text{with} \ k \leq m, k \leq n, \ \text{and} \ k \geq 1, a_i = b_i \ \text{for all} \ i = 1, 2, \ldots, k - 1 \ \text{and} \ a_k \neq b_k, \ \text{but} \ a_k \ R \ b_k \ \text{then}$
+
+\begin{equation*}
+a_1a_2 \cdots a_m \preceq b_1b_2 \cdots b_n.
+\end{equation*}
+
+\item If $\varepsilon$ is the null string and \textit{s} in any string in \textit{S}, then $\epsilon \preceq s$.
+\end{enumerate}
+
+If no strings are related other than by these three conditions, then $\preceq$ is a partial order relation.
+
+
+\subsubsection*{Maximal, Minimal, Greatest, Least}
+A \textit{maximal element} in a partially ordered set is an element that is greater than or equal to every element to which it is comparable. (There may be many elements to which it is not comparable.) A \textit{greatest element} in a partially ordered set is an element that is greater than or equal to every element in the set (so it is comparable to every element in the set). Minimal and least are defined similarly.
+
+\end{document}

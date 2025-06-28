@@ -1,0 +1,60 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{scrartcl}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,xcolor}
+\usepackage[margin=.5in]{geometry}
+\usepackage[margin=10pt, font=small, labelfont=bf, labelsep=endash]{caption}
+\usepackage[colorlinks=true, pdfborder={0 0 0}]{hyperref}
+\usepackage[utf8]{inputenc}
+
+\usepackage{tikz}
+
+\newcommand{\namesigdatehrule}[1]{\par\tikz \draw [black, densely dotted, ultra thick] (0,0) -- (#1,0);\par}
+\newcommand{\namesigdate}[2][9cm]{%
+\begin{minipage}{#1}%
+    #2 \vspace{.5cm}\namesigdatehrule{#1}\smallskip
+\end{minipage}
+}
+
+\begin{document}
+\begin{center}
+\textbf{\huge\sffamily Homework \#10 Grading Rubric} \\\vskip.5em
+\textbf{\LARGE\sffamily Introduction To Programming}
+\end{center}\vskip1em
+
+\section{Partners}
+\noindent \namesigdate{Author \#1} \hfill \namesigdate{Author \#2}
+
+\section{Grading Rubric}
+\centering
+\begin{tabular}{|p{7cm}|p{2cm}|p{1.25cm}|p{1.25cm}|p{5cm}|}
+    \hline
+    \centering \textbf{Description} & \centering \textbf{Points Possible} & \centering \textbf{Grade \#1} & \centering \textbf{Grade \#2} & {\centering\textbf{Notes}\par} \\  \hline
+
+    \footnotesize The program works as expected. All classes are properly implemented. Milhouse is chased by phantom pants. Bullies are scattered. Milhouse doesn't run over stuff. A clean, 17x17 grid is displayed. \textbf{Colors are required}. & \centering 40 & & & \\ \hline
+    \footnotesize
+    The program is semantically correct. No segmentation faults, infinite loops, program properly terminates, etc. & \centering 20 & & & \\ \hline
+    \footnotesize Proper use of object oriented programming. Use of abstraction and encapsulation. Implementation details are marked private, vital functionality is marked public. & \centering 10 & & & \\ \hline
+    \footnotesize Proper documentation. Preconditions, post-conditions, and description are articulated. & \centering 10 & & & \\ \hline
+    \footnotesize Style guide is adhered to. Braces are on new lines, no tabs are used, constants are uppercased, etc. & \centering 10 & & & \\ \hline
+    \footnotesize Presentation. Prepared for presentation, able to properly answer questions, brought snacks. & \centering 10 & & & \\ \hline
+\end{tabular}
+
+\section{Additional Questions}
+\begin{itemize}
+    \item What extra things did you implement?
+    \item What was the work split? (For this, \textbf{you do not have to be honest}. If one person did all the work, and you want equal credit, say equal work. However, keep in mind I will grade more leniently those who did more work.)
+    \item How did you handle Milhouse getting randomly placed on the map?
+    \item How did you handle the phantom pants chasing Milhouse?
+    \item How are your classes structured? As in, how did you choose what was public or private?
+    \item Did issues did you run into during coding this assignment?
+\end{itemize}
+
+\section{Notes}
+\rule{\textwidth}{.5pt}
+\rule{\textwidth}{.5pt}
+\rule{\textwidth}{.5pt}
+\rule{\textwidth}{.5pt}
+
+
+\end{document}

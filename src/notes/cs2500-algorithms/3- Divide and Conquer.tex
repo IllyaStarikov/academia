@@ -1,0 +1,39 @@
+\documentclass{article}
+\begin{document}
+\setcounter{section}{2}
+\section{Divide and Conquer}
+Search for 64.
+\begin{verbatim}
+10 20 37 43 52 76 85 93
+10 20 37 *43* | 52 76 85 93 [43 vs 64]
+52 *76* | 85 93 [76 vs 64]
+*52* | 76 [52 vs 64]
+\end{verbatim}
+
+Three comparisons.
+
+\subsection{Merge Sort}
+\begin{verbatim}
+38 27 43 3 | 9 82 10
+38 27 | 43 3       9 82 | 10
+38 | 27    43 | 3       9 | 82     10
+38       27    43       3       9        82     10
+27 38      3 43         9 82       10
+3 27 28 43      9 10 82
+3 9 10 38 43 82
+\end{verbatim}
+
+\subsection{Substitution Method}
+$2^n-1$ \\
+\textbf{Base case}: $2-1 = 1$ \\
+\textbf{Inductive}:
+
+\begin{eqnarray} \\
+T(n) & = & 2^n - 1  \\
+T(n + 1) & = & 2^{n + 1} - 1 \\
+& = & 2 \ T(n) + 1 \\
+& = & 2(2^n - 1) \\
+& = & 2^{n+1} - 1
+\end{eqnarray}
+
+\end{document}

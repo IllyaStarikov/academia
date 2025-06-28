@@ -1,0 +1,52 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{article}
+
+\input{macros}
+\chapterNumber{2}
+
+\begin{document}
+\section{Languages \& DFAs}
+
+\begin{itemize}
+    \item $\lambda$ represents empty string.
+    \item $(ab)^2 = abab$
+    \begin{itemize}
+        \item $(ab)^0 = \lambda$
+    \end{itemize}
+\end{itemize}
+
+\begin{align}
+    \sum &= \{ a,b \} \\
+    \sum* &= \{ \lambda, a, b, aa, bb, \ldots \} \\
+    \sum+ &= \sum* - \{ \lambda \}
+\end{align}
+
+\begin{itemize}
+    \item $\delta$ can be described by: \texttt{state delta(state q, char ch);}
+    \begin{itemize}
+        \item $\delta^*$ acts on the a string, calling delta
+        \item \texttt{state deltaStar(state q, string s);}
+    \end{itemize}
+
+    \item These functions are \textbf{one-to-one}.
+    \begin{itemize}
+        \item However there can be states in $Q$ that no one uses.
+    \end{itemize}
+
+    \item For the transition graph in the PDF, here is the table.
+\end{itemize}
+
+\begin{center}
+    \begin{tabular}{c|ll}
+              & 0 & 1 \\ \hline
+        $q_0$ & $q_0$ & $q_1$ \\
+        $q_1$ & $q_2$ & $q_1$ \\
+        $q_2$ & $q_2$& $q_2$ \\
+    \end{tabular}
+\end{center}
+
+\begin{itemize}
+    \item
+\end{itemize}
+
+\end{document}

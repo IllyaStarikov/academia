@@ -1,0 +1,51 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{article}
+
+\input{macros}
+\chapterNumber{10}
+
+\begin{document}
+\section{Turing Machines}
+
+\begin{itemize}
+    \item We still have..
+    \begin{itemize}
+        \item a set of states
+        \item some final states
+    \end{itemize}
+
+    \item The input alphabet is a subset of the input alphabet
+    \item We have a simbol for the space: $\square$.
+    \begin{itemize}
+        \item Not really different from $\lambda$
+    \end{itemize}
+    \item This is deterministic
+    \item \textbf{You don't have to process all the input}
+    \begin{itemize}
+        \item All you have to do is end up in the final state
+    \end{itemize}
+
+    \item Imagine we have a tape, and some symbol $a$. The read-write head starts as some state $q_0$.
+    \begin{itemize}
+        \item Now we write over $a$ to a value $d$, we now are at $q_1$
+    \end{itemize}
+
+    \item Now suppose the input $abb$.
+    \begin{enumerate}
+        \item Start at $a$ ($q_0$).
+        \item Move to $b$ ($q_1$)
+        \item Move to $b$ ($q_1$)
+    \end{enumerate}
+
+    \item Example $abcd \implies ab q_1 c \vdash abe q_2 d$
+    \begin{itemize}
+        \item A way of describing what we go from to.
+    \end{itemize}
+
+
+
+
+\end{itemize}
+
+
+\end{document}

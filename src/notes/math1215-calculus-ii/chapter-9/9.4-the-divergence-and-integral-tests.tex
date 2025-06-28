@@ -1,0 +1,39 @@
+\subsection{The Divergence and Integral Tests}
+
+\subsubsection{Divergence Test}
+If $\sum a_k$ converges, then $\limit{k \rightarrow \infty} a_k = 0$. Equivalently, if $\limit{k \rightarrow \infty} a_k \neq 0$, then the series diverges. However, this cannot be used to prove convergence. If $\limit{k \rightarrow \infty} a_k = 0$, the test is inconclusive.
+
+\subsubsection{Harmonic Series}
+The harmonic series $\sum _{k = 1} ^{\infty} \frac{1}{k} = 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \frac{1}{5} + \cdots$ diverges, even though the terms of the series approach zero.
+
+\subsubsection{Integral Test}
+Suppose $f$ is a continuous, positive, decreasing function, for $x \geq 1$, and let $a_k = f(k)$, for $k = 1, 2, 3, \ldots$. Then
+
+\begin{equation}
+    \sum _{k = 1} ^{\infty} a_k \quad \text{and} \quad \int _{1} ^{\infty} f(x)\, dx
+\end{equation}
+
+either both converge or both diverge. In the case of convergence, the value of the integral is \textit{not}, in general, equal to the value of the series.
+
+\subsubsection{Convergence of the $p$-Series}
+The $p$-Series $\sum _{k = 1} ^{\infty} \frac{1}{k^p}$ converges, for $p > 1$, and diverges for $p \leq 1$.
+
+\subsubsection{Estimating Series with Positive Terms}
+Let $f$ be continuous, positive, decreasing function, for $x \geq 1$, and let $a_k = f(k)$, for $k = 1, 2, 3, \ldots$. Let $S = \sum _{k = 1} ^{\infty} a_k$ be a convergence series and let $S_n = \sum _{k = 1} ^{n}$ be the sum of of the first $n$ terms of the series. The remainder $R_n = S - S_{n}$ satisfies
+
+\begin{equation}
+    R_n \leq \int _{n} ^{\infty} f(x)\, dx
+\end{equation}
+
+Furthermore, the exact value of the series is bounded as follows:
+
+\begin{equation}
+    S_n + \int _{n + 1} ^{\infty} f(x)\, dx \leq \sum _{k = 1} ^{\infty} a_k \leq S_n + \int _{n} ^{\infty} f(x)\, dx.
+\end{equation}
+
+\subsubsection{Properties of Convergent Series}
+\begin{enumerate}
+    \item Suppose $\sum a_k$ converges to $A$ and let $c$ be a real number. The series $\sum c a_k$ converges and $\sum c a_k = c \sum a_k = cA$
+    \item Suppose $\sum a_k$ converges to $A$ and $\sum b_k$ converges to $B$. The series $\sum (a_k \pm b_k)$ converges and $\sum (a_k \pm b_k) = \sum a_k \pm \sum b_k = A \pm B$
+    \item \textit{Whether} a series converges does not depend on a fininte number of terms added to or removed form the series. Specifically, if $M$ is a positive integer, then $\sum _{k = 1} ^{\infty} a_k$ and $\sum _{k = M} ^{\infty} a_k$ both converge or both diverge. However, the \textit{value} of a convergent series does change if nonzero terms are added or deleted.
+\end{enumerate}

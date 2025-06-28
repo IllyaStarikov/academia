@@ -1,0 +1,214 @@
+\documentclass[12pt]{srcarticle}
+
+\usepackage{fancyhdr,lastpage,extramarks,graphicx,booktabs,marvosym,xcolor}
+\usepackage[most]{tcolorbox}
+
+\usepackage{sectsty}
+
+\allsectionsfont{\centering}
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle} % Top center header
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\begin{tcolorbox}[colback=black!5!white,colframe=black!75!black]
+    \centering
+    \begin{minipage}{0.98\columnwidth}#1\end{minipage}
+\end{tcolorbox} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Test \#1} % Assignment title
+\newcommand{\hmwkDueDate}{Wednesday, April\ 5\textsuperscript{th},\ 2017} % Due date
+\newcommand{\hmwkClass}{PHILOS\ 3235} % Course/class
+\newcommand{\hmwkClassTime}{15:00} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Dittmer} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Illya Starikov} % Your name
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate}\\
+\vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
+\vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{Monday, April 3\textsuperscript{rd}, 2017} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\maketitle\newpage
+
+\begin{homeworkProblem}[Problem \Roman{homeworkProblemCounter}] % Roman numerals
+\problemAnswer{ % Answer
+    Characterize the Trolley vs. Transplant Problem. Explain how some people do not face the Trolley vs. Transplant Problem. What do you take to be the most important implication from this problem?
+}
+
+    The Trolley vs.~Transplant Problem is the juxtaposition of two problems, the Trolley problem:
+
+    \begin{quote}
+        Suppose you are standing on train tracks. You notice on one side of the tracks, there is an oncoming trolley. On the other side, there is a fork in the tracks. On one side, there is a person tied to the tracks; on the other, five people are tied. The tracks are oriented towards the five people; however, there is a lever to divert the tracks. Do you save five at the expense of one?
+    \end{quote}
+
+    \noindent And the Transplant problem:
+
+    \begin{quote}
+        Suppose you are an outstanding surgeon working in the top medical facility in your area. During a shift, you have five subsequent patients needing transplants within the hour (with their life in jeopardy). In a stroke of luck, a healthy patient walks is in for a checkup that has all the organs necessary. Do you save five at the expense of one?
+    \end{quote}
+
+    The last sentence in both cases are identical because the problems are identical; however, the vast majority say ``yes'' to Trolley \emph{while saying no ``no'' to Transplant}. This is the Trolley vs.~Transplant.
+
+    Some people do not face this problem because they break the problem into its fundamentals: save five at the expense of one. First principles thinking helps to avoid falling in this ambiguity trap.
+
+    The most important implication from this is showcasing the enigmatic decision-making process a person might go through. When given a straightforward prompt:
+
+    \begin{quote}
+        Save five at the expense of one.
+    \end{quote}
+
+    The answer is always utilitarian: ``yes''. Muddled with a semi-plausible scenario; the answer is a resounding ``no''. This is humans inability to think from first principles.
+\end{homeworkProblem} \clearpage
+
+\begin{homeworkProblem}[Problem \Roman{homeworkProblemCounter}] % Roman numerals
+\problemAnswer{ % Answer
+    Define utilitarianism. Characterize two problems with/objections to utilitarianism.  Attempt a reply to just one of the two problems/objections.
+}
+
+    Utilitarianism can be defined as follows:
+
+    \begin{quote}
+        The doctrine that actions are right if they benefit the majority.
+    \end{quote}
+
+    It may seem a suitable framework for ethics; however, once one starts dissecting it, very visible holes are evident. Two of the biggest holes are:
+
+    \begin{enumerate}
+        \item Defining what benefit entails.
+        \item Defining how to distribute the benefit.
+    \end{enumerate}
+
+    The Oxford-style definition of benefit ``An advantage or profit gained from something''\footnote{https://en.oxforddictionaries.com/definition/benefit} may work in most cases, but it leaves room open for ambiguity. One's benefit can be defined as other's hindrance.
+
+    Even if a valid definition of ``benefit'', with all subsequent consequences calculated, was created, one might not like the outcome. In a purely utilitarian framework, the work of computer scientist can be done remote while engineers would be obliged to work in third world countries. That much accountability can be quite taxing.
+
+    The second problem is how to distribute the benefit. Oligarchy utilitarianism would be to give the people with the most benefit more benefit. There is also the apposing side; where the people with the lowest amount of benefit would get the benefit.
+
+    A different approach could be maximizing equality --- whereas the benefit is distributed evenly amongst all participants. This seems reasonable; however it shares some common qualities to communism, a seemly ostracized form of government.
+
+    To counter this point, one could simply assemble all that would be involved, and hold a democratic vote to see which system they would favor --- whether it be communism or an oligarchy. The voting system holds its own problems (i.e., Brexit), but its the most reasonable solution.
+\end{homeworkProblem}
+\clearpage
+
+
+\begin{homeworkProblem}[Problem \Roman{homeworkProblemCounter}] % Roman numerals
+\problemAnswer{ % Answer
+Characterize the Prisoner's Dilemma. Why is it a dilemma? Discuss some application of the dilemma.
+}
+
+    The Prisoner's Dilemma can be characterized as so:
+
+    \begin{quote}
+        Suppose Bonnie and Clyde are detained by the police for a burglary without enough evidence to convict either of them. Knowing they need a confession, the police place Bonnie and Clyde into separate rooms and propose the following to both of them:
+
+    \begin{quote}
+        You can incriminate your partner, and you will have \emph{zero years} in prison; however, your partner will have \emph{three years}. This also works in reverse; if your partner incriminates you, you will have \emph{three years} while your partner will have \emph{zero years}. If both of you incriminate each other, both of you will have \emph{two years} each. If neither of you incriminate each other you both will have \emph{one year} each.
+    \end{quote}
+    \end{quote}
+
+    The point where this becomes a dilemma apposed to problem is as follows: collectively, it benefits to cooperate (i.e., not to incriminate the partner), as described in Table \ref{tab:collective}. Looking at it from one person's perspective, however, it always benefits to defect (i.e., incriminate your partner). If your partner defects, you will get two years; if not, there will be zero years. The barrier of not knowing your partner's response turns this into a dilemma.
+
+    \begin{table}[!ht]
+        \centering
+        \caption{Collective benefit from prisoner's dilemma.}
+        \label{tab:collective}
+
+        \begin{tabular}{l|l|l}
+            \toprule
+            & \textbf{\textcolor{blue}{\Ladiesroom} (Cooperate)} & \textbf{\textcolor{red}{\Ladiesroom} (Defect)}     \\ \hline
+            \textbf{\textcolor{blue}{\Gentsroom} (Cooperate)} & 2 Years Total & 3 Years Total     \\ \hline
+            \textbf{\textcolor{red}{\Gentsroom} (Defect)} & 3 Years Total   & 4 Years Total \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+
+    One application of this is politics; specifically, military. Suppose two apposing nations both heavily invest in their military (i.e., nuclear arsenals, army, weapons), out of fear of the other nation doing the same. That's hundreds of billions\footnote{In 2017 currency.} that could have gone to:
+
+    \begin{itemize}
+        \item Education
+        \item Economy
+        \item Infrastructure
+    \end{itemize}
+
+    \noindent and so forth. Other applications could include media (i.e., two apposing companies advertising at the cost of their own), business (i.e., companies lowering margins at the expense of profits), and stock market (i.e., overvaluing at the expense of future shares).
+
+\end{homeworkProblem}
+\clearpage
+
+
+
+\end{document}

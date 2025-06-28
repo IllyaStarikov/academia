@@ -1,0 +1,153 @@
+%
+%  3-intro-to-search.tex
+%  Introduction To Artificial Intelligence
+%
+%  Created by Illya Starikov on 01/23/18.
+%  Copyright 2018. Illya Starikov. All rights reserved.
+%
+
+\section{Introduction To Search}
+\begin{itemize}
+    \item Open-loop problem solving steps are as follows\ldots
+        \begin{enumerate}
+            \item Problem-formulation (actions \& states)
+            \item Goal-formulation (states)
+            \item Search (action sequences)
+            \item Execute solution
+        \end{enumerate}
+
+        \item All well-defined problems have the following\ldots
+            \begin{itemize}
+                \item An initial state
+                \item An actions set (usually denoted by $\textsc{Actions}(s)$)
+                \item A transition model (usually denoted by $\textsc{Result}(s,\, a)$)
+                \item A goal test
+                \item A step cost (usually denoted by $\textsc{C}(s,\, a,\, s')$)
+                \item Path cost
+                \item Solution / optimal solution\footnote{The optimal solution is just the solution with the least path cost}
+            \end{itemize}
+
+        \item Search trees\ldots
+            \begin{itemize}
+                \item Root corresponds to initial state
+                \item Search algorithms iterate through goal testing and expanding a state until goal is found
+                \item Order of state expansion is critical
+            \end{itemize}
+
+        \begin{algorithmic}[1]
+            \Statex{}
+            \Function{Tree-Search}{problem}
+                \Let{frontier}{using initial problem state}
+
+                \State{}
+                \Loop{}
+                    \If{\Call{empty}{frontier}}
+                        \State{\Return{Fail}}
+                    \EndIf{}\State{}
+
+                    \State{choose leaf node and remove it from frontier}\State{}
+
+                    \If{chosen node contains goal state}
+                        \State{\Return{corresponding solution}}
+                    \EndIf{}
+
+                    \State{}
+                    \State{expand chosen node and add resulting nodes to frontier}
+                \EndLoop{}
+
+            \EndFunction{}
+        \end{algorithmic}
+
+        \item The keyword \textbf{choose} is critical; there are different ways to choose nodes, providing better search algorithms.
+
+        \item However, this doesn't deal with repeated students, redundant paths, or loops. For graphs, we have as follows.
+
+        \begin{algorithmic}[1]
+            \Function{Graph-Search}{problem}
+                \Let{frontier}{using initial problem state}
+                \Let{explored set}{$\{\}$}
+
+                \State{}
+                \Loop{}
+                    \If{\Call{empty}{frontier}}
+                        \State{\Return{Fail}}
+                    \EndIf{}\State{}
+
+                    \State{choose leaf node and remove it from frontier}\State{}
+
+                    \If{chosen node contains goal state}
+                        \State{\Return{corresponding solution}}
+                    \EndIf{}
+
+                    \Let{explored set}{explored set $\cup$ chosen node}
+
+                    \State{}
+                    \If{chosen node $\not\in$ frontier or explored set}
+                        \State{expand chosen node and add resulting nodes to frontier}
+                    \EndIf{}
+                \EndLoop{}
+
+            \EndFunction{}
+        \end{algorithmic}
+
+        \item Search node data structure
+            \begin{itemize}
+                \item $n.\textsc{State}$
+                \item $n.\textsc{Parent-Node}$
+                \item $n.\textsc{Action}$
+                \item $n.\textsc{Path-Cost}$
+            \end{itemize}
+
+        \item \textbf{\textit{States are not search nodes}}
+        \item We define a child nodes as follows.
+
+        \begin{algorithmic}[1]
+            \Function{Child-Node}{problem, parent, action}
+                \State{\Return{node with:}}
+                \Indent{}
+                    \State{\textsc{State} = problem.\Call{Result}{parent.\textsc{State}, action}}
+                    \State{\textsc{Parent} = parents}
+                    \State{\textsc{Action} = action}
+                    \State{\textsc{Path-Cost} = parents.\textsc{Path-Cost} + problem.\Call{Step-Cost}{parent.\textsc{State}, action}}
+                \EndIndent{}
+            \EndFunction{}
+        \end{algorithmic}
+
+    \item The frontier\ldots
+        \begin{itemize}
+            \item Is a set of leaf nodes
+            \item Implemented as a queue with operations\ldots
+                \begin{itemize}
+                    \item \textsc{Empty}
+                    \item \textsc{Pop}
+                    \item \textsc{Insert}
+                \end{itemize}
+
+            \item Queue types: FIFO, LIFE (stack), and priority queue.
+        \end{itemize}
+
+        \item Explored set\ldots
+            \begin{itemize}
+                \item Set of expanded nodes
+                \item Implemented typically as a hash table for constant time insertion and lookup
+            \end{itemize}
+
+        \item Problem-solving performance\ldots
+            \begin{itemize}
+                \item Completeness
+                \item Optimality
+                \item Time complexity
+                \item Space complexity
+            \end{itemize}
+
+        \item Complexity in AI\ldots
+            \begin{description}
+                \item[$b$] Branching Factor
+                \item[$d$] Depth of Shallowest Goal Node
+                \item[$m$] Max Path Length in State Space
+                \item[Time Complexity] Generated Nodes
+                \item[Space Complexity] Max Number of Nodes Stored
+                \item[Search Cost] Time + Space Complexity
+                \item[Total cost] Search + Path Cost
+            \end{description}
+\end{itemize}

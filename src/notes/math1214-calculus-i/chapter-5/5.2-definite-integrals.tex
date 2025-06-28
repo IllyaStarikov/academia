@@ -1,0 +1,60 @@
+%
+%  5.2-definite-integrals.tex
+%  chapter-5
+%
+%  Created by Illya Starikov on 07/08/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\subsection{Definite Integrals}
+\subsubsection{Net Area}
+Consider the region $R$ bounded by the graph of a continuous function $f$ and the $x$-axis between $x$ = $a$ and $x$ = $b$. The \textbf{net area} of $R$ is the sum of the areas of the parts of $R$ that lie above the $x$-axis minus the sum of the areas of the parts of $R$ that lie below the $x$-axis on $[a, b]$.
+
+\subsubsection{General Riemann Sum}
+Suppose $[x_0, x_1], [x_1, x_2], \ldots, [x_{n-1}, x_n]$ are subintervals of $[a, b]$ with 
+
+\begin{equation}
+    a = x_0 < x_1 < x_2 < \cdots < x_{n - 1} < x_n = b
+\end{equation}
+
+Let $\Delta x_k$ be the length of the subinterval $[x_{k - 1}, x_k]$ and let $x_k ^*$ be any point in $[x_{k - 1}, x_k]$, for $k = 1, 2, \ldots, n$.
+
+If $f$ is defined on $[a, b]$, the sum
+
+\begin{equation}
+    \sum _{k = 1} ^{n} f(x_k ^*)\, \Delta x_k = f(x_1 ^*) \Delta x_1 + 
+f(x_2 ^*) \Delta x_2 + f(x_n ^*) \Delta x_n
+\end{equation}
+
+is called a \textbf{general Riemann sum for $f$ on $[a, b]$}.
+
+\subsubsection{Definite Integral}
+A function $f$ defined on $[a, b]$ is \textbf{integrable} on $[a, b]$ if $\limit{\Delta \rightarrow 0} \sum _{k = 1} ^n f(x_k ^*)\, \Delta x_k$ exists and is unique over all partitions of $[a, b]$ and all choices of $x_k ^*$ on a partition. This limit is the \textbf{definite integral of $f$ from $a$ to $b$}, which we write
+
+\begin{equation}
+    \int _a ^b f(x)\, dx = \lim _{\Delta \rightarrow x} \sum _{k = 1} ^n f(x_k ^*) \Delta x_k
+\end{equation}
+
+\subsubsection{Integrable Functions}
+If $f$ is continuous on $[a, b]$ or bounded on $[a, b]$ with a finite number of discontinuities, then $f$ is Integrable on $[a, b]$. 
+
+\subsubsection{Reversing Limits and Identical Limits}
+Suppose $f$ is integrable on $[a, b]$.
+
+\begin{enumerate}
+    \item $\int _b ^a f(x)\, dx = -\int _a ^b f(x)\, dx$
+    \item $\int _a ^a f(x)\, dx = 0$
+\end{enumerate}
+
+\subsubsection{Properties of Definite Integrals}
+Let $f$ and $g$ be integrable functions on an interval that contains $a$, $b$, and $c$.
+
+\begin{enumerate}
+    \item $\int _a ^a f(x)\, dx = 0$
+    \item $\int _b ^a f(x)\, dx = -\int _b ^a f(x)\, dx$
+    \item $\int _b ^a f(x) + g(x)\, dx = \int _b ^a f(x)\, dx + \int _b ^a g(x)\, dx$
+    \item $\int _b ^a cf(x)\, dx = c\,\int _b ^a f(x)\, dx$
+    \item $\int _b ^a f(x)\, dx = \int _b ^c f(x)\, dx + \int _c ^a f(x)\, dx$
+    \item The function $|f|$ is integrable on $[a, b]$ and $\int _a ^b |f(x)|\, dx$ is the sum of the areas of the regions bounded by the graph of $f$ and the $x$-axis on $[a, b]$
+\end{enumerate}
+

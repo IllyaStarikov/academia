@@ -1,0 +1,59 @@
+\subsection{Improper Integrals}
+
+\subsubsection{Improper Integrals over Infinite Intervals}
+\begin{enumerate}
+\item If $f$ is continuous on $[a, \infty)$, then
+
+\begin{equation}
+    \int _a ^{\infty} f(x)\, dx = \lim _{b \rightarrow \infty} \int _a ^b f(x) \, dx
+\end{equation}
+
+provided the limit exists.
+
+\item If $f$ is continuous on $( -\infty, b ]$, then
+
+\begin{equation}
+    \int _{-\infty} ^{b} f(x)\, dx = \lim _{a \rightarrow -\infty} \int _a ^b f(x) \, dx
+\end{equation}
+
+provided the limit exists.
+
+\item If $f$ is continuous on $( -\infty, \infty )$, then
+
+\begin{equation}
+    \int _{-\infty} ^{\infty} f(x)\, dx = \lim _{a \rightarrow -\infty} \int _a ^c f(x) \, dx + \lim _{b \rightarrow \infty} \int _c ^b f(x) \, dx
+\end{equation}
+
+provided both limits exist, where $c$ is any real number.
+
+In each case, if the limit exists, the improper integral is said to \textbf{converge}, if it does not exist, the improper integral is said to \textbf{diverge}.
+\end{enumerate}
+
+\subsubsection{Improper Integrals with an Unbounded Integrand}
+\begin{enumerate}
+\item Suppose $f$ is continuous on $(a, b]$ with $\limit{x \rightarrow a^+} f(x) = \pm \ \infty$. Then
+
+\begin{equation}
+    \int _a ^b f(x)\, dx = \lim _{c \rightarrow a^+} \int _c ^b f(x)\, dx
+\end{equation}
+
+provided the limit exists.
+
+\item Suppose $f$ is continuous on $[a, b)$ with $\limit{x \rightarrow b^-} f(x) = \pm \ \infty$. Then
+
+\begin{equation}
+    \int _a ^b f(x)\, dx = \lim _{c \rightarrow b^-} \int _a ^c f(x)\, dx
+\end{equation}
+
+provided the limit exists.
+
+\item Suppose $f$ is continuous on $[a, b]$ except at the interior point $p$ where $f$ is unbounded. Then
+
+\begin{equation}
+    \int _a ^b f(x)\, dx = \int _a ^p f(x)\, dx + \int _p ^b f(x)\, dx,
+\end{equation}
+
+provided the improper integrals on the right side exist.
+
+In each case, if the limit exists, the improper integrals is said to \textbf{converge}, if it does not exists, the improper integral is said to \textbf{diverge}.
+\end{enumerate}

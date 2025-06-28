@@ -1,0 +1,45 @@
+\subsection{Logarithmic and Exponential Functions with Other Bases}
+\subsubsection{Logarithmic Function Base $b$}
+For any base $b > 0$, with $b \neq 1$, the \textbf{logarithmic function base $b$}, denoted $\log_b x$, is the inverse of the exponential function $b^x$.
+
+\subsubsection{Inverse Relations for Exponential and Logarithmic Functions}
+For any base $b > 0$, with $b \neq 1$, the following inverse relation holds.
+\begin{itemize}
+\item $b^{\log_b x} = x$, $\forall x \in \mathbf{R}^+$
+\item $\log _b b^x = x$, $\forall x$
+\end{itemize}
+
+\subsubsection{Derivative of $b^x$}
+If $b > 0 \wedge b \neq 1, \forall x$,
+
+\begin{equation}
+\frac{d}{dx}(b^x) = b^x \ln b
+\end{equation}
+
+\subsubsection{Indefinite Integral of $b^x$}
+For $b > 0 \wedge b \neq 1$,
+
+\begin{equation}
+\int b^x dx = \frac{1}{\ln b}{b^x} + C
+\end{equation}
+
+\subsubsection{General Power Rule}
+$\forall p, x \in \mathbf{R}^+$,
+
+\begin{equation}
+\frac{d}{dx}(x^p) = px^{p - 1}
+\end{equation}
+
+Furthermore, if $u$ is a positive differentiable function on its domain, then
+
+\begin{equation}
+\frac{d}{dx}(u(x)^p) = p(u(x))^{p - 1} \times u'(x)
+\end{equation}
+
+\subsubsection{Derivative of $\log _b x$}
+If $b > 1$,
+
+\begin{align}
+\frac{d}{dx}(\log _b x) = \frac{1}{x \ln b} &\quad \forall x \in \mathbf{R}^+ \wedge x \neq 0 \\
+\frac{d}{dx}(\log _b | x |) = \frac{1}{x \ln b} &\quad \forall x \in \mathbf{R}^+ \wedge x \neq 0
+\end{align}

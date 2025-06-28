@@ -1,0 +1,40 @@
+\subsection{Motion In Space}
+\subsubsection{Position, Velocity, Speed, Acceleration}
+Let the position of an object moving in three-dimensional space be given by $\mathbf{r}(t) = \langle x(t), y(t), z(t) \rangle$, for $t \geq 0$. The \textbf{velocity} of the object is
+
+\begin{equation}
+    \vvec(t) = \mathbf{r}'(t) = \langle x'(t), y'(t), z'(t) \rangle
+\end{equation}
+
+The \textbf{speed} of the object is the scalar function
+
+\begin{equation}
+    |\vvec(t)| = \sqrt{x'(t)^2 + y'(t)^2 + z'(t)^2}
+\end{equation}
+
+The \textbf{acceleration} of the object is $\mathbf{a}(t) = \mathbf{v}'(t) = \mathbf{r}''(t)$.
+
+\subsubsection{Motion with Constant $\vert \mathbf{r} \vert$}
+Let \textbf{r} describe a path on which $\vert \mathbf{r} \vert$ is constant (motion on a circle or sphere centered at the origin). Then, $\mathbf{r \cdot v} = 0$, which means the position vector and the velocity vector are orthogonal at all times for which the functions are defined.
+
+\subsubsection{Two-Dimensional Motion in a Gravitational Field}
+Consider an object moving in a plane with horizontal $x$-axis and a vertical $y$-axis, subject only to the force of gravity. Given the initial velocity $\vvec(0) = \langle u_0,\, v_0 \rangle$ and the initial position $\mathbf{r}(0) = \langle x_0,\, y_0 \rangle$, the velocity of the object, for $t \geq 0$, is
+
+\begin{equation}
+    \mathbf{v}(t) = \langle x'(t),\, y'(t) \rangle = \langle u_0,\, -gt + v_0 \rangle
+\end{equation}
+
+and the position is
+
+\begin{equation}
+    \mathbf{r}(t) = \langle x(t),\, y(t) \rangle = \Bigg \langle u_0 \ t + x_0,\, -\frac{1}{2} gt^2 + v_0 t + y_0 \Bigg \rangle
+\end{equation}
+
+\subsubsection{Two-Dimensional Motion}
+Assume an object traveling over horizontal ground, acted on only by the gravitational force, has an initial position $\langle x_0,\, y_0 \rangle = \langle 0,\, 0 \rangle$ and initial velocity $\langle u_0,\, v_0 \rangle = \langle |\vvec_0|\cos\alpha,\, |\vvec_0|\sin\alpha \rangle$. The trajectory, which is a segment or a parabola, has the following properties.
+
+\begin{align}
+    \text{time of flight} &= T = \frac{2|\vvec_0|\sin\alpha}{g} \\
+    \text{range} &= \frac{|\vvec_0|\sin 2\alpha}{g} \\
+    \text{maximum height} &= y \Bigg( \frac{T}{2} \Bigg) = \frac{(|\vvec_0| \sin \alpha)^2}{2g}
+\end{align}

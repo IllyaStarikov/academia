@@ -1,0 +1,59 @@
+\subsection{Partial Fractions}
+\subsubsection{Partial Fractions with Simple Linear Factors}
+Suppose $f(x) = p(x) > q(x)$, where $p$ and $q$ are polynomials with no common factors and with the degree of $p$ less than the degree of $q$. Assume that $q$ is the product of simple linear factors. The partial fraction decomposition is obtained as follows.
+
+\begin{description}
+\item [Step 1.] \textbf{Factor the denominator $q$} in the form $(x - r_1)(x - r_2)\cdots(x - r_n)$, where $r_1,\ldots,r_n$ are real numbers.
+\item [Step 2.] \textbf{Partial fraction decomposition} Form the partial fraction decomposition by writing
+
+\begin{equation}
+    \frac{p(x)}{q(x)} = \frac{A_1}{x - r_1} + \frac{A_2}{x - r_2} + \cdots + \frac{A_n}{x - r_n}
+\end{equation}
+
+\item [Step 3.] \textbf{Clear denominators} Multiply both sides of the equation in Step 2 by $q(x) = (x - r_1)(x - r_2)\cdots(x-r_n)$, which produces conditions for $A_1,\ldots,A_n$.
+
+\item [Step 4.] \textbf{Solve for coefficients} Equate like powers of $x$ in Step 3 to solve for the undertmined coefficients $A_1,\ldots,A_n$
+\end{description}
+
+\subsubsection{Partial Fractions For Repeated Linear Factors}
+Suppose the repeated linear factor $(x - r)^m$ appears in the denominator of a proper rational function in reduced form. The partial fraction decomposition has a partial fraction for each power of $(x - r)$ up to and including the $m$th power; that is, the partial fraction decomposition contains the sum
+
+\begin{equation}
+    \frac{A_1}{(x - r)} + \frac{A_2}{(x - r)^2} + \frac{A_3}{(x - r)^3} + \cdots + \frac{A_m}{(x - r)^m}
+\end{equation}
+
+where $A_1, \ldots, A_m$ are constants to be determined.
+
+\subsubsection{Partial Fractions with Simple Irreducible Quadratic Factors}
+Suppose a simple irreducible factor $ax^2 + bx + c$ appears in the denominator of a proper rational function in reduced form. The partial fraction decomposition contains a term of the form
+
+\begin{equation}
+    \frac{Ax + B}{ax^2 + bx + c}
+\end{equation}
+
+where $A$ and $B$ are unknown coefficients to be determined.
+
+
+\subsubsection{Partial Fraction Decomposition}
+Let $f(x) = p(x) / q(x)$ be a proper rational function in reduced form. Assume the denominator $q$ has been factored completely over the real numbers and m is a positive integer.
+
+\begin{description}
+\item [Simple linear factor] A factor $x - r$ in the denominator requires the partial fraction $\frac{A}{x - r}$.
+\item [Repeated linear factor] A factor $(x - r)^m$ with $m > 1$ in the denominator requires the partial fractions.
+
+\begin{equation}
+    \frac{A_1}{(x - r)} + \frac{A_2}{(x - r)^2} + \frac{A_3}{(x - r)^3} + \cdots + \frac{A_m}{(x - r)^m}
+\end{equation}
+
+\item [Simple irreducible quadratic factor] An irreducible factor $ax^2 + bx + c$ in the denominator requires the partial fraction
+
+\begin{equation}
+    \frac{Ax + B}{ax^2 +bx + c}
+\end{equation}
+
+\item [Repeated irreducible quadratic factor] An irreducible factor $(ax^2 + bx + c)^m$ with $m > 1$ in the denominator requires the partial fractions
+
+\begin{equation}
+    \frac{A_1 x + B_1}{ax^2 + bx + c} + \frac{A_2 x + B_2}{(ax^2 + bx + c)^2} + \cdots + \frac{A_m x + B_m}{(ax^2 + bx + c)^m}
+\end{equation}
+\end{description}

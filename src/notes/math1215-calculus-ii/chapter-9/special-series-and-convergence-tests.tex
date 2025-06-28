@@ -1,0 +1,36 @@
+    \begin{center}
+        \begin{landscape}
+        \resizebox{\textwidth}{!}{
+        \bgroup
+        \def\arraystretch{1.75}
+        \centering
+        \footnotesize
+        \begin{tabular}{|l|p{5cm}p{5cm}p{5cm}p{5cm}|}
+            \hline
+            \textbf{Series or Test} & \textbf{Form of Series} & \textbf{Condition for Convergence} & \textbf{Condition for Divergence} & \textbf{Comments}\\
+
+            Geometric Series & $\sum _{k = 0} ^{\infty} ar^k, a \neq 0$ & $|r| < 1$ & $|r| \geq 1$ & If $|r| < 1$, then $\sum a_{k = 1} ^{\infty} ar^k = \frac{a}{1-r}$ \\
+
+            Divergence Test & $\sum _{k = 1} ^{\infty} a_k$ & Does Not Apply & $\lim _{k \rightarrow \infty a_k \neq 0}$ & Cannot be used to prove convergence.\\
+
+            Integral Test & $\sum a_{k = 1} ^{\infty} a_k$, where $a_k = f(k)$ and $f$ is continuous, positive, and decreasing. & $\int _1 ^\infty f(x) dx < \infty$ & $\int _1 ^{\infty} f(x) dx$ does not exist & The value of the integral is not the value of the series.\\
+
+            $p$-Series & $\sum a_{k = 1} ^{\infty} \frac{1}{k^p}$ & $p > 1$ & $p \leq 1$ & Useful for comparison tests.\\
+
+            Ratio Test & $\sum a_{k = 1} ^{\infty}$ where $a_k > 0$ & $\lim _k \rightarrow \infty \frac{a_{k + 1}}{a_k} < 1$ & $\lim _{k \rightarrow \infty} \frac{a_{k + 1}}{a_k} > 1$ & Inconclusive if $\lim _{k \rightarrow \infty} \frac{a_{k + 1}}{a_k} = 1$\\
+
+            Root Test & $\sum a_{k = 1} ^{\infty}$ where $a_k \geq 0$ & $\lim _{k \rightarrow \infty} \sqrt[k]{a_k} < 1$ & $\lim _{k \rightarrow \infty} \sqrt[k]{a_k} > 1$ & Inconclusive if $\lim _{k \rightarrow \infty} \sqrt[k]{a_k} = 1 $\\
+
+            Comparison Test & $\sum a_{k = 1} ^{\infty}$ where $a_k > 0$ & $0 < a_k \leq b_k$ and $\sum _{k = 1} ^{\infty} b_k$ converges & $0 < b_k \leq a_k$ and $\sum a_{k = 1} ^{\infty} b_k$ diverges & $\sum a_{k = 1} ^{\infty} a_k$ is given; you supply $\sum a_{k = 1} ^{\infty} b_k$\\
+
+            Limit Comparison Test & $\sum a_{k = 1} ^{\infty} a_k$ where $a_k > 0, b_k > 0$ & $0 \leq \lim _{k \rightarrow \infty} \frac{a_k}{b_k} < \infty$ and $\sum _{k = 1} ^{\infty} b_k$ converges & $\lim _{k \rightarrow \infty} \frac{a_k}{b_k} > 0$ and $\sum a_{k = 1} ^{\infty} b_k$ diverges. & $\sum a_{k = 1} ^{\infty} a_k$ is given; you supply $\sum a_{k = 1} ^{\infty} b_k$\\
+
+            Alternating Series Test & $\sum _{k = 1} ^{\infty} (-1)^k a_k$, where $a_k > 0, 0 < a_{k + 1} \leq a_k$ & $\lim _{k \rightarrow \infty} a_k = 0$ & $\lim _{k \rightarrow \infty} a_k \neq 0$ & Remainder $R_n$ satisfies $R_n \leq a_{n+1}$ \\
+
+            Absolute Convergence & $\sum a_{k = 1} ^{\infty} a_k, a_k$ arbitrary & $\sum _{k = 1} ^{\infty} |a_k|$ converges. & Applies to arbitrary series & \\
+            \hline
+        \end{tabular}
+        \egroup
+        }
+        \end{landscape}
+    \end{center}

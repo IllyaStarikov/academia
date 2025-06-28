@@ -1,0 +1,43 @@
+%
+%  4.9-antiderivatives.tex
+%  chapter-4
+%
+%  Created by Illya Starikov on 07/03/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\subsection{Antiderivatives}
+A function $F$ is an \textbf{antiderivative} of $f$ on an interval $I$ provided $F'(x) = f'(x)$, for all $x$ in $I$.
+
+\subsubsection{The Family of Antiderivatives}
+Let $F$ be any antiderivative of $f$ on an interval $I$. Then \textit{all} antiderivatives of $f$ on $I$ have the form $F + C$, where $C$ is an arbitrary constant.
+
+\subsubsection{Power Rule for Indefinite Integrals}
+\begin{equation}
+    \int x^p\, dx = \frac{d^{p + 1}}{p + 1} + C,
+\end{equation}
+
+where $p \neq -1$ is a real number and $C$ is an arbitrary constant.
+
+\subsubsection{Constant Multiple and Sum Rules}
+The constant multiple rule is as follows:
+
+\begin{equation}
+    \int c f(x)\, dx = c \int f(x)\, dx
+\end{equation}
+
+The sum rules as follows:
+
+\begin{equation}
+    \int (f(x) + g(x))\, dx
+\end{equation}
+
+\subsubsection{Indefinite Integrals of Trigonometric Functions}
+\begin{align}
+    \frac{d}{dx}(\sin ax) = a\, \cos ax \quad&\rightarrow\quad \int \cos ax\, dx = \frac{1}{a} \sin ax + C \\
+    \frac{d}{dx}(\cos ax) = -a\, \sin ax \quad&\rightarrow\quad \int \sin ax\, dx = \frac{1}{a} -\cos ax + C \\
+    \frac{d}{dx}(\tan ax) = a\, \sec^2 ax \quad&\rightarrow\quad \int \sec^2 ax\, dx = \frac{1}{a} \tan ax + C \\
+    \frac{d}{dx}(\cot ax) = -a\, \csc^2 ax \quad&\rightarrow\quad \int \csc^2 ax\, dx = -\frac{1}{a} \cot ax + C \\
+    \frac{d}{dx}(\sec ax) = a\, \sec ax \tan ax \quad&\rightarrow\quad \int \sec ax \tan ax \, dx = \frac{1}{a} \sec ax + C \\
+    \frac{d}{dx}(\csc ax) = -a\, \csc ax \cot ax \quad&\rightarrow\quad \int \csc ax \cot ax\, dx = -\frac{1}{a} \csc ax + C 
+\end{align}

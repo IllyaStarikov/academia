@@ -1,0 +1,122 @@
+%
+%  5-informed-search-algorithms.tex
+%  Introduction To Artificial Intelligence
+%
+%  Created by Illya Starikov on 01/30/18.
+%  Copyright 2018. Illya Starikov. All rights reserved.
+%
+
+\section{Informed Search Algorithms}
+An informed search algorithm generates the search tree with using any domain specific knowledge.
+
+Note, for these algorithms,
+
+\begin{align*}
+    g(n) &= \text{lowest path-cost from start node to node $n$} \\
+    h(n) &= \text{estimated non-negative path-cost of cheapest path from node $n$ to a goal node} \\
+         &= \text{with $h({goal})$}
+\end{align*}
+
+where,
+
+\begin{itemize}
+    \item $h(n)$ is a heuristic function.
+    \item Heuristics incorporate problem-specific knowledge.
+    \item Heuristics need to be relatively efficient to compute.
+    \item The function $h(n)$ is admissible if
+
+        \begin{equation*}
+            \forall n \left(h(n) \leq C^*(n)\right)
+        \end{equation*}
+
+        In other words, a heuristic is admissible if the estimated cost is never more than the actual cost from the current node to the goal node.
+
+    \item The function $h(n)$ is consistent if
+
+        \begin{equation*}
+            \forall n, n' \left(h(n) \leq c(n, a, n') + h(n')\right)
+        \end{equation*}
+
+        In other words, a heuristic is consistent if the cost from the current node to a successor node, plus the estimated cost from the successor node to the goal is less than or equal to the estimated cost from the current node to the goal.
+\end{itemize}
+
+For the major search search algorithms:
+
+\begin{align*}
+    \text{UCS}: f(n) &= g(n)
+    \text{GBeFS}: f(n) &= h(n)
+    \text{A*S}: f(n) &= g(n) + h(n)
+
+\end{align*}
+
+\subsection{$A^*$ Proof}
+\begin{theorem}
+    $A^*$TS employing heuristic $h(n)$ is optimal if $h(n)$ is admissible.
+\end{theorem}
+
+\begin{proof}
+    Suppose suboptimal goal node $G$ appears on the frontier and let the cost of the optimal solution be $C^*$. From the definition of $h(n)$ we know that $h(G) = 0$ and because $G$ is suboptimal we know $f(G) > C^*$. Together this gives $f(G) = g(G) + \cancel{h(G)} = g(G) > C^*$.
+
+    If there is an optimal solution, then there is a frontier node $N$ that is on the optimal solution path. Our proof is for an admissible heuristic, so we know $h(N)$ does not overestimate; thus $f(N) = g(N) + h(N) \leq C^*$.
+
+    Together this given $f(N) \leq C^* < f(G) \implies f(N) < f(G)$.
+
+    As $A^*$TS expands lower $f$-cost nodes before higher $f$-cost nodes, $N$ will always be expanded before $G$. Thus, $A^*$TS is optimal.
+\end{proof}
+
+
+\subsection{Consistent $\implies$ Admissible}
+\begin{theorem}
+    Every consistent heuristic is admissible
+\end{theorem}
+
+\begin{proof}
+    Take an arbitrary path to an arbitrary goal node $G$ denoted $S_1, S_2, S_3, \ldots, S_G$. As $h$ is consistent, we know $\forall n, n' : h(n) \leq c(n, a, n') + h(n')$.
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{l|l}
+            $S_1\, S_2$ & $h(S_1) - h(S_2) \leq c(S_1, S_2)$ \\
+            $S_2\, S_3$ & $h(S_2) - h(S_3) \leq c(S_2, S_3)$ \\
+            $\vdots$    & $\vdots$ \\
+            $S_{G-1}\, S_G$ & $h(S_{G-1}) - h(S_G) \leq c(S_{G-1}, S_G)$ \\\hline
+
+            $S_1\, S_G$ & $h(S_1) \leq c(S_1, S_G)$ \\
+            $S_2\, S_G$ & $h(S_2) \leq c(S_2, S_G)$ \\
+            $\vdots$    & $\vdots$ \\
+            $S_k\, S_G$ & $h(S_k) \leq c(S_k, S_G)$ \\
+        \end{tabular}
+    \end{table}
+\end{proof}
+
+As this is true for all goal nodes $S_G$, it's also true for the optimal goal node. Thus,
+
+\begin{equation*}
+    \forall h \in \{ 1, 2, \ldots, h \}, h(S_k) \leq C^*(S_k)
+\end{equation*}
+
+which is the definition of admissibility.
+
+\subsection{Best First Search}
+\begin{itemize}
+    \item Select node to expand based on evaluation function $f(n)$.
+    \item Node with lowest $f(n)$ selected as $f(n)$ correlated with path-cost.
+    \item Represent frontier with priority queue sorted in ascending order of $f$-values.
+\end{itemize}
+
+\subsection{Greedy Best First Search}
+\begin{itemize}
+    \item Incomplete (so also not optimal).
+    \item Worst-case time complexity and space complexity: $\bigO{b^m}$.
+    \item Actual complexity depends on accuracy of $h(n)$.
+\end{itemize}
+
+\subsection{$A^*$ Search}
+\begin{itemize}
+    \item $f(n) = g(n) + h(n)$.
+    \item $f(n)$ is estimated cost of optimal solution through node $n$
+    \item If $h(n)$ satisfies certain conditions, $A*$ Search is complete & optimal
+    \item Is Optimally efficient for consistent heuristics.
+    \item Run-time is a function of the heuristic error.
+    \item $A^*$ Graph Search not scalable due to memory requirements.
+\end{itemize}

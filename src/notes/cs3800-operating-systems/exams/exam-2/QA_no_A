@@ -1,0 +1,509 @@
+                            Computer Science 284
+
+                      Introduction to Operating Systems
+            
+            
+Q: What are the three popular strategies for allocating free memory
+  blocks to processes in dynamic memory partitioning? Explain briefly
+  how each strategy works.
+
+Q: True or False?
+   Buddy Strategy always allocates memory in chunks of size power of two and 
+   uses a data structure based on a binary tree. 
+
+Q: Give an example drawing of a partially allocated memory and
+  appropriate pointers in which each strategy ends up allocating
+  a different free memory block to satisfy a memory request for 16 MB. 
+  Indicate clearly which strategy allocates which memory block.
+
+Q: What interrupt is created when a desired page frame is not 
+   currently resident in RAM?
+
+Q: How does the hardware 'know' that a desired page frame 
+   is not currently resident in RAM?
+
+Q: What precisely does it mean if the 'dirty bit' is set for a page frame?
+
+Q: What is 'good' vs. 'bad' program locality?
+
+Q: Explain when/how internal fragmentation may occur.
+
+Q: Explain when/how external fragmentation may occur.
+
+Q: What is a global allocation scheme?
+
+Q: What is a working set model?
+
+Q: Comparing global allocation vs. working set allocation, which would be
+   more adversely affected by a program with 'bad' locality? and WHY would
+   that be true?
+
+Q: Which one of the following is not among the set of events that may
+   take place between the time a page fault occurs and the time the
+   faulting process resumes execution?
+   (a) OS blocks the process and puts it into a wait queue.
+   (b) One of the processes in the ready queue is selected to run. 
+   (c) A DMA is initiated to load the page from disk into main memory
+   (d) A page replacement strategy is used to find a page frame to
+       load the new page
+   (e) Page table is updated to reflect the change.
+   (f) none of the above
+
+Q: Which one of the following is not among the set of events that may
+   take place between the time a page fault occurs and the time the
+   faulting process resumes execution?
+   (a) OS blocks the process and puts it into a wait queue.
+   (b) One of the processes in the ready queue is selected to run. 
+   (c) A DMA is initiated to load the page from disk into main memory
+   (d) The last page that the faulting process was executing is
+       replaced with the newly loaded page.
+   (e) Page table is updated to reflect the change.
+   (f) none of the above
+
+Q: True or False?
+   While DMA (Direct Memory Access) is taking place, processor is free
+   to do other things. The processor is only involved at the beginning
+   and end of the DMA transfer. 
+
+Q: True or False?
+   DMA uses "cycle stealing" to transfer data on the system bus. Each
+   time cycle stealing is used, CPU is interrupted.  
+
+   beginning and at the end of DMA (no interrupts in between). 
+
+
+Q: What is the "largest" program that could execute on a machine with 
+   a 24-bit virtual address?
+
+
+Q: What is the "largest" program that could execute on a machine with 
+   a 24-bit physical address?
+
+Q: The address contained in a TLB entry <PTE> is (physical | logical).
+
+Q: List at least 3 flags that are contained in a PTE.
+
+Q: Define hit-ratio in a memory management context.
+
+Q: True or False?
+   If a virtual page number X generates a miss in the TLB (Translation
+   Lookaside Buffer), then the corresponding physical page number for
+   X is guaranteed to be found in the Page Table Entry. 
+
+Q: True or False?
+   It is possible that page tables are stored in virtual (secondary) memory.
+
+Q: True or False?
+   In a virtual memory system with paging, page size must be large
+   enough to offset the high cost of page faults.   
+
+Q: True or False?
+   The Least Recently Used (LRU) page replacement strategy is based on
+   the principle of spatial locality (locality in space) as opposed to
+   temporal locality (locality in time).
+
+Q: True or False?
+   Consider "clock policy" for page replacement, a newly arrived
+   page (i.e. just swapped in) will not get replaced before the clock
+   pointer makes two full rotations in the circular buffer of
+   candidate page frames.  
+
+Q: True or False?
+   In a virtual memory system with paging, you can run a program whose
+   size is larger than the size of Main Memory. 
+
+Q: Draw a picture which shows the relationship between ``Virtual Address 
+   (virtual page#, offset)'', ``Translation Lookaside Buffer'', ``Page Table'', ``Real
+  Address (frame#, offset)'', ``Main Memory'', and ``Secondary Memory''. 
+
+Q: Draw the flowchart for paging using TLB, Page Table, and DMA.
+
+Q: How does the kernel 'know' where on disk the desired 
+   information is for a non-resident frame?
+
+Q: Describe what demand paging means.
+
+Q: Describe what prepaging means.
+
+-> Must know slides 14 through 20 (in CHAP8.ppt) in detail
+
+========================================================================
+Please fill in the blanks for the following questions:
+------------------------------------------------------
+
+Q: If a desired page frame is not currently resident in RAM,
+   __________________ occurs.
+
+
+Q: Since paging system uses _____________________-sized pages,
+  ____________ fragmentation may occur. 
+
+
+Q: If a memory management system uses dynamic partitioning,
+   _______________ fragmentation may occur.
+
+
+Q: _____________________ is a form of I/O in which a special module
+   controls the exchange of data between main memory and an I/O
+   device. During this I/O transfer, CPU is free to do other computation.
+
+
+
+Q: The least recently used (LRU) page replacement strategy is
+   based on the principle of __________________  as opposed to
+   ________________________. 
+
+
+Q: The top four levels in the memory hierarchy, starting with the
+   fastest, are: _____________; ______________; ___________;
+   ___________
+
+
+
+Q: Swapping out a piece of a process (i.e. pages of a process) just
+   before that piece is needed is called ________________________
+
+
+=======================================================================       
+ 
+Q: True or False?
+   A unix socket is used for communication between processes running
+   on the same machine. On the other hand, an internet socket can not
+   be used for communication between processes running on the same machine.   
+
+   machine as well as different machines
+
+
+Q: True or False?
+   If clients are connected to a server through "connect()" and
+   "accept()" calls and the server calls "listen(soc,2)" before
+   "accept()", then at most 2 clients can get connected to the server
+   at anytime. 
+
+   connections take place, not the max. number of clients that can get
+   connected.   
+
+Q: True or False?
+   In RAID (Redundant Array of Independent Disks) Level 1, every disk
+   in the array has a mirror disk that contains the same data.
+
+
+Q: True or False?
+In Client/Server architectures, OS and the platforms in the client and server
+machines must be the same. 
+
+
+
+Q: True or False?
+In Client/Server applications, there is heavy emphasis on providing a
+user-friendly Graphical User Interface (GUI) on the client side.
+
+
+
+Q: True or False?
+In client/server applications, fat client models can not take advantage
+of the desktop power and therefore can only serve a small number of clients.
+
+
+
+Q: True or False?
+First-Come-First-Served (FCFS) process scheduling favors I/O-bound processes.
+
+
+
+Q: True or False?
+Most antivirus software is based on program emulation and virus signature analysis. 
+
+
+Q: True or False?
+RAID 2 (Redundant Array of Independent Disks with Level 2) is designed
+to provide error detection/correction. 
+
+
+
+Q: True or False?
+User Datagram Protocol (UDP) provides unduplicated and reliable packet
+delivery.
+
+
+
+Q: True or False?
+Two periodic real-time processes A and B have periods T_a=0.2 ms and
+T_b=0.5 ms respectively. Furthermore, their execution times are
+C_a=10 micro sec. and C_b=40 micro sec. respectively. If Rate
+ Monothonic scheduling is used A has higher priority than B.
+
+
+
+
+Q: True or False?
+The following I/O devices are sorted correctly in decreasing order
+according to the typical data rates that they can sustain:
+Gigabit Ethernet, firewire 800, laser printer, hard disk, keyboard, and modem.  
+
+
+
+Q: True or False?
+   DMA uses "cycle stealing" to transfer data on the system bus. Each
+   time cycle stealing is used, CPU is interrupted.  
+
+
+   
+Q: Which  of the following strategies is not used in a Disk Scheduling
+   Algorithm?  
+  (a) First in first out (FIFO)      
+  (b) Last in first out (LIFO)
+  (c) Shortest service time first (SSTF)  
+  (d) Longest service time first (LSTF)
+  (e) Back and forth over disk (SCAN)
+
+
+
+
+Q:  Explain what the following C calls do both when the call is
+    successful and when it is unsuccessful.
+    1.  socket( AF_INET, SOCK_STREAM, 0 )
+    2.  bind(sd, (struct sockaddr*)&server_addr, sizeof(server_addr)) 
+    3.  socket( AF_INET, SOCK_DGRAM, 0 )
+    4.  accept( sd, (struct sockaddr*)&client_addr, &client_len )
+
+
+Q: Which one of the following is not among the 7-layers defined for
+   ISO Open Systems Interconnect (OSI) model ? 
+   (a) Application
+   (b) Routing
+   (c) Transport
+   (d) Data Link
+   (e) Physical
+
+
+
+
+Q: Which of the following are among the direct goals of process scheduling algorithms (circle all that apply):
+a. improve response time
+b. minimize interrupts
+c. improve throughput
+d. minimize page faults
+e. improve turnaround time for jobs
+f. increase memory efficiency
+
+
+
+
+Q: When we compare clusters with SMP (Symmetric Multiprocessors),
+   which of the following are true (circle all that apply)?
+a. Clusters are easier to manage and configure
+b. Clusters take up less space and draw less power
+c. Clusters are better for incremental and absolute scalability
+d. Clusters are superior in terms of availability
+e. Clusters have superior price/performance
+
+
+
+
+Q: Which of the following malicious software need a host program to
+  operate? (circle all that apply) 
+a. Logic Bomb
+b. Worm
+c. Zombie (bots)
+d. Trojan Horse
+e. Virus
+
+
+
+
+Q: Which of the following scheduling policies may cause 
+    starvation for certain jobs? (circle all that apply)
+a. First Come First Serve (FCFS)
+b. Feedback
+c. Round Robin
+d. Shortest Process Next (SPN)
+e. Shortest Remaining Time Next (SRT)
+
+
+
+
+Q: Which of the following features are specific
+  to Real-Time OS? (circle all that apply) 
+a. Small size
+b. Fast context switch
+c. Less user control
+d. Nondeterministic delays
+e. Fail-safe operation
+
+
+
+
+Q: In which one of the following OSI layers Transmission Control
+  Protocol (TCP) and User Datagram Protocol (UDP) are defined and
+  implemented? 
+a. Application
+b. Physical
+c. Transport
+d. Data Link
+e. Session
+
+
+
+
+Q: What does an Internet Protocal do?
+
+Q: True or False?
+   Sockets are bidirectional communication ports in UNIX. Once a
+   socket is created, it can be bound to an internet port using
+   socket() call. 
+
+Q: True or False?
+   There is only one internet port in each networked host.
+
+Q: True or False?
+   The UNIX call listen(soc,N) allows only N clients to be connected
+   to a socket at any time. 
+
+Q: True or False?
+   The two lowest layers in the 7-layer ISO Open Systems Interconnect (OSI)
+   model are Physical and Data Link layers and their primary function is
+   to implement the TCP/IP protocol.
+
+Q: What are the possible goals that any scheduling policy might try
+   to accomplish (list at least three)?
+
+   - response time
+   - Turnaround time (TAT)
+   - Throughput
+   - Processor Efficieny
+
+Q: True or False?
+   Long-Term scheduler controls the degree of multiprogramming
+
+
+Q: True or False?
+   Among the three scheduling disciplines (long-term, medium-term, and
+   short-term), long-term scheduler executes most frequently.
+
+
+Q: True or False?
+   Among the short-term scheduling policies, feedback policy penalizes
+   jobs that have been running longer.
+
+Q: Which decisions are made by Long-term, Medium-term, and Short-term scheduling? Be brief.
+
+Q: Name 3 things that are essential to launch a "`bots"' attack:
+A:
+(1) attack software 
+(2) a large number of vulnerable machines   
+(3) locating these machines (scanning or fingerprinting)
+
+
+
+========================================================================
+Please fill in the blanks for the following questions:
+------------------------------------------------------
+
+Q: The two lowest layers in the 7-layer ISO Open Systems Interconnect (OSI)
+   model are ______________ and ____________  layers and their primary
+   function is to provide ______________ and ____________ .
+
+
+
+Q: Two transport protocols, __________________________________ and
+   _________________________, are defined and handled at the Transport
+   Layer.  
+
+
+
+========================================================================
+=                                                                      =
+=   Miscellaneous questions related to the VIDEO: TRIUMP OF THE NERDS  =
+=                                                                      =
+=                                                                      =
+========================================================================
+
+Q: Fill in the blanks.
+
+  1. ____________________ and _____________________ are generally credited
+     with the invention of C/Unix.
+   
+
+  2. ____________________ and _____________________ started Microsoft in
+     19______.
+
+
+
+  3. What corp./laboratory may fairly take credit for inventions like the
+     mouse, windows, pull-down menus etc.?
+
+
+
+  4. ____________________ and ______________________ co-founded Apple.
+     ________________ then started NeXT, and was the CEO of Pixar.
+
+
+
+  5. MS/DOS was 90% derived from a predecessor product named  ________
+         which was written by _______________
+         and owned by   _________________.
+         which in turn had been cloned from ____________
+         written by _______________________
+      
+
+
+
+Q: Answer the following questions.
+
+
+  6. What did Steve Jobs see while visiting PARC that inspired him to build
+     a different kind of computer?   
+
+
+     What did he see that he completely ignored? 
+
+
+     What was the 1st computer that he built based on this inspiration
+     (that flopped)?   
+
+
+     What was the 2nd one that didn't flop?
+     A; Macintosh
+
+  7. What 'product' got Microsoft into the microcomputer software business?
+
+
+  8. What lucky event got Microsoft into the operating system market?
+
+      Gary Kildall didn't eagerly pursue IBM when they requested a new
+      OS. His wife and attorney would not sign a nondisclosure
+      agreement. Bill Gates of Microsoft saw this as an opportunity and
+      jumped in.
+
+  9. What company purchased NeXT and their OS NExTStep? What year?
+
+ 10. What is a 'killer application'?
+
+ 11. What was the killer app for the Apple II?
+
+ 12. What was the killer app for the IBM PC?
+ 
+ 13. What was the killer app for the Apple MacIntosh?
+
+ 14. Why didn't IBM create their own OS for their 1st PC?
+
+ 15. Who 'should have' sold IBM their operating system for the 1st IBM PC?
+
+ 16. What was the one part of the 1st IBM PC that was proprietary (that
+     Compaq had to later reverse engineer)?
+
+ 17. Why did IBM decide to build the PC using 'open architecture'?
+ 
+ 18. What was IBM's motivation for designing/building PS-2/OS-2?
+
+ 19. What person ______________ what company ________________ built the 1st
+     commercially available personal computer in 1975?
+
+ 20. Gordon Moore is one of the _______________ founders.   
+
+ 21. World's first personal computer, ________________, was designed by 
+     ______________________ and was introduced in 19___
+
+ 22. The first mass market PC company is _____________.
+

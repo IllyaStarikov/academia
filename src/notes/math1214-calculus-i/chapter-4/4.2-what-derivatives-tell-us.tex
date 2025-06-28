@@ -1,0 +1,54 @@
+%
+%  4.2-what-derivatives-tell-us.tex
+%  chapter-4
+%
+%  Created by Illya Starikov on 07/02/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\subsection{What Derivatives Tell Us}
+\subsubsection{Increasing And Decreasing Functions}
+Suppose a function $f$ is defined on an interval $I$. We say that $f$ is \textbf{increasing} on $I$ if $f(x_2) > f(x_1)$ whenever $x_1$ and $_2$ are in $I$ and $x_2 > x_1$. We say that $f$ is \textbf{decreasing} on $I$ if $f(x_2) < f(x_1)$ whenever $x_1$ and $x_2$ are in $I$ and $x_2 > x_1$.
+
+\subsubsection{Test for Intervals of Increase and Decrease}
+Suppose $f$ is continuous on an interval $I$ and differentiable at all interior points of $I$. If $f'(x) > 0$ at all interior points of $I$, then $f$ is increasing on $I$. If $f'(x) < 0$ at all interior points of $I$, then $f$ is decreasing on $I$.
+
+\subsubsection{First Derivative Test}
+Suppose that $f$ is continuous on an interval that contains a critical point $c$ and assume $f$ is differentiable on an interval containing $c$, except perhaps at $c$ itself.
+
+\begin{itemize}
+    \item If $f'$ changes sign from positive to negative as $x$ increases through $c$, then $f$ has a \textbf{local maximum} at $c$.
+    \item If $f'$ changes sign from negative to positive as $x$ increases through $c$, then $f$ has a \textbf{local minimum} at $c$.
+    \item If $f'$ does not change sign at $c$ (from positive to negative or vice versa), then $f$ has no local extreme value at $c$.
+\end{itemize}
+
+\subsubsection{One Local Extreme Implies Absolute Extremum}
+Suppose $f$ is continuous on an interval $I$ that contains one local extremum at $c$.
+
+\begin{itemize}
+    \item If a local maximum occurs at $c$, then $f(c)$ is the absolute maximum of $f$ on $I$.
+    \item If a local minimum occurs at $c$, then $f(c)$ is the absolute minimum of $f$ on $I$.
+\end{itemize}
+
+\subsubsection{Concavity and Inflection Point}
+Let $f$ be differentiable on an open interval $I$. If $f'$ is increasing on $I$, then $f$ is \textbf{concave up} on $I$. If $f'$ is decreasing on $I$, then $f$ is \textbf{concave down} on $I$.
+
+If $f$ is continuous at $c$ and $f$ changes concavity at $c$ (from up to down, or vice versa), then $f$ has an \textbf{inflection point} at $c$.
+
+\subsubsection{Test for Concavity}
+Suppose that $f''$ exists on an interval $I$.
+
+\begin{itemize}
+    \item If $f'' > 0$ on $I$, then $f$ is concave up on $I$.
+    \item If $f'' < 0$ on $I$, then $f$ is concave down on $I$.
+    \item If $c$ is a point of $I$ at which $f''$ changes sign at $c$, then $f$ has an inflection point at $c$.
+\end{itemize}
+
+\subsubsection{Second Derivative Test for Local Extrema}
+Suppose that $f''$ is continuous on an open interval containing $c$ with $f'(c) = 0$.
+
+\begin{itemize}
+    \item If $f''(c) > 0$, then $f$ has a local minimum at $c$.
+    \item If $f''(c) < 0$, then $f$ has a local maximum at $c$.
+    \item If $f''(c) = 0$, then the test is inconclusive; $f$ may have a local maximum, local minimum, or neither at $c$.
+\end{itemize}

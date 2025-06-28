@@ -1,0 +1,266 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{article}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,listings,siunitx,fancyvrb,newverbs}
+\usepackage[margin=10pt, font=small, labelfont=bf, labelsep=endash]{caption}
+\usepackage[colorlinks=true, pdfborder={0 0 0}]{hyperref}
+\usepackage[utf8]{inputenc}
+
+\usepackage{xcolor}
+\newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{#1}}}
+
+\makeatletter
+\renewcommand{\boxed}[1]{\text{\fboxsep=.2em\fbox{\m@th$\displaystyle#1$}}}
+\makeatother
+
+\lstdefinestyle{cC++}{
+    language=C++,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{blue}\ttfamily,
+    stringstyle=\color{red}\ttfamily,
+    commentstyle=\color{gray}\ttfamily,
+    morecomment=[l][\color{magenta}]{\#},
+    showstringspaces=false,
+    numbers=left,
+    keepspaces=true,
+    tabsize=4,
+    breaklines=true,
+    morekeywords={}
+}
+
+\definecolor{cverbbg}{gray}{.7}
+\newenvironment{lcverbatim}
+ {\SaveVerbatim{cverb}}
+ {\endSaveVerbatim
+  \flushleft\fboxrule=0pt\fboxsep=.5em
+  \colorbox{cverbbg}{%
+    \makebox[\dimexpr\linewidth-2\fboxsep][l]{\BUseVerbatim{cverb}}%
+  }
+  \endflushleft
+}
+
+\title{Quiz \#11}
+\date{\today}
+\author{Ilya Starikov}
+
+\begin{document}
+\maketitle
+
+\section{Source Code}
+\begin{lstlisting}[style=cC++]
+    /*    example.l
+
+     	 Illya Starikov
+    */
+
+    %{
+    /*
+    Definitions of constants, variables, & function prototypes go here
+    */
+
+    #define T_IDENT     1
+    #define T_INTCONST  2
+    #define T_UNKNOWN   3
+    #define T_FOO       4
+    #define T_KEYWORD   5
+    #define T_OPERATOR  6
+    #define T_NUMBER    7
+    #define T_ALPHA     8
+
+    int numLines = 1;
+
+    void printTokenInfo(const char* tokenType, const char* lexeme);
+
+    %}
+
+    /* Defintions of regular expressions go here */
+
+    WSPACE		[ \t\v\r]+
+    NEWLINE     \n
+
+    KEYWORD     (var|if|then|else|while|true|false)
+    OPERATOR    (;|\{|\}|;|\[|\]|=|\(|\)|\+|>|<|!=|>=|<=|==)
+    NUMBER      -?{INTCONST}
+    ALPHA       {LETTER}
+
+    DIGIT	        [0-9]
+    LETTER         	[a-zA-Z]
+
+    IDENT			{LETTER}({LETTER}|{DIGIT})*
+    INTCONST      	{DIGIT}+
+
+    %%
+
+    "foo"           {
+    				printTokenInfo("FOO", yytext);
+    				return T_FOO;
+    			}
+    {KEYWORD}  	{
+    				printTokenInfo("KEYWORD", yytext);
+    				return T_KEYWORD;
+    			}
+    {OPERATOR}	{
+    				printTokenInfo("OPERATOR", yytext);
+    				return T_OPERATOR;
+    			}
+    {ALPHA}	{
+    				printTokenInfo("ALPHA", yytext);
+    				return T_ALPHA;
+    			}
+    {INTCONST}	{
+    				printTokenInfo("INTCONST", yytext);
+    				return T_INTCONST;
+    			}
+    {INTCONST}	{
+    				printTokenInfo("INTCONST", yytext);
+    				return T_INTCONST;
+    			}
+    {IDENT}		{
+    				printTokenInfo("IDENT", yytext);
+    				return T_IDENT;
+    			}
+    {NEWLINE}	{
+                          numLines++;
+               	}
+    {WSPACE}    { }
+    .			{
+    				printTokenInfo("UNKNOWN", yytext);
+    				return T_UNKNOWN;
+    			}
+    %%
+
+    // User-written code goes here
+
+    void printTokenInfo(const char* tokenType, const char* lexeme)
+    {
+      printf("TOKEN: %s  LEXEME: %s\n", tokenType, lexeme);
+    }
+
+    // You should supply a yywrap function.
+    // Having it return 1 means only 1 input file will be scanned.
+    int yywrap() { return(1); }
+
+    int main()
+    {
+      while ( yylex() ) ;  // Process tokens until 0 returned
+
+      printf("Processed %d lines\n", numLines);
+      return(0);
+    }
+
+\end{lstlisting}
+
+\section{Input}
+\begin{lcverbatim}
+    var
+    x; y; z;
+    A[4];
+    B[2][3];
+    \$\% \#
+    {
+    x = 12;
+    B[1][2] = x;
+    A[x] = 5;
+    while (x > 100) x = x + 1;
+    if (A[2] <= A[B[x][y]]) then x = y + 1 else z = 10;
+    \}
+\end{lcverbatim}
+
+\section{Output}
+\begin{lcverbatim}
+    TOKEN: KEYWORD  LEXEME: var
+    TOKEN: ALPHA  LEXEME: x
+    TOKEN: OPERATOR  LEXEME: ;
+    TOKEN: ALPHA  LEXEME: y
+    TOKEN: OPERATOR  LEXEME: ;
+    TOKEN: ALPHA  LEXEME: z
+    TOKEN: OPERATOR  LEXEME: ;
+    TOKEN: ALPHA  LEXEME: A
+    TOKEN: OPERATOR  LEXEME: [
+    TOKEN: INTCONST  LEXEME: 4
+    TOKEN: OPERATOR  LEXEME: ]
+    TOKEN: OPERATOR  LEXEME: ;
+    TOKEN: ALPHA  LEXEME: B
+    TOKEN: OPERATOR  LEXEME: [
+    TOKEN: INTCONST  LEXEME: 2
+    TOKEN: OPERATOR  LEXEME: ]
+    TOKEN: OPERATOR  LEXEME: [
+    TOKEN: INTCONST  LEXEME: 3
+    TOKEN: OPERATOR  LEXEME: ]
+    TOKEN: OPERATOR  LEXEME: ;
+    TOKEN: UNKNOWN  LEXEME: \$
+    TOKEN: UNKNOWN  LEXEME: \%
+    TOKEN: UNKNOWN  LEXEME: \#
+    TOKEN: OPERATOR  LEXEME: {
+    TOKEN: ALPHA  LEXEME: x
+    TOKEN: OPERATOR  LEXEME: =
+    TOKEN: INTCONST  LEXEME: 12
+    TOKEN: OPERATOR  LEXEME: ;
+    TOKEN: ALPHA  LEXEME: B
+\end{lcverbatim}
+
+\begin{lcverbatim}
+    TOKEN: OPERATOR  LEXEME: [
+    TOKEN: INTCONST  LEXEME: 1
+    TOKEN: OPERATOR  LEXEME: ]
+    TOKEN: OPERATOR  LEXEME: [
+    TOKEN: INTCONST  LEXEME: 2
+    TOKEN: OPERATOR  LEXEME: ]
+    TOKEN: OPERATOR  LEXEME: =
+    TOKEN: ALPHA  LEXEME: x
+    TOKEN: OPERATOR  LEXEME: ;
+    TOKEN: ALPHA  LEXEME: A
+    TOKEN: OPERATOR  LEXEME: [
+    TOKEN: ALPHA  LEXEME: x
+    TOKEN: OPERATOR  LEXEME: ]
+    TOKEN: OPERATOR  LEXEME: =
+    TOKEN: INTCONST  LEXEME: 5
+    TOKEN: OPERATOR  LEXEME: ;
+    TOKEN: KEYWORD  LEXEME: while
+    TOKEN: OPERATOR  LEXEME: (
+    TOKEN: ALPHA  LEXEME: x
+    TOKEN: OPERATOR  LEXEME: >
+    TOKEN: INTCONST  LEXEME: 100
+    TOKEN: OPERATOR  LEXEME: )
+    TOKEN: ALPHA  LEXEME: x
+    TOKEN: OPERATOR  LEXEME: =
+    TOKEN: ALPHA  LEXEME: x
+    TOKEN: OPERATOR  LEXEME: +
+    TOKEN: INTCONST  LEXEME: 1
+    TOKEN: OPERATOR  LEXEME: ;
+\end{lcverbatim}
+
+\begin{lcverbatim}
+    TOKEN: KEYWORD  LEXEME: if
+    TOKEN: OPERATOR  LEXEME: (
+    TOKEN: ALPHA  LEXEME: A
+    TOKEN: OPERATOR  LEXEME: [
+    TOKEN: INTCONST  LEXEME: 2
+    TOKEN: OPERATOR  LEXEME: ]
+    TOKEN: OPERATOR  LEXEME: <=
+    TOKEN: ALPHA  LEXEME: A
+    TOKEN: OPERATOR  LEXEME: [
+    TOKEN: ALPHA  LEXEME: B
+    TOKEN: OPERATOR  LEXEME: [
+    TOKEN: ALPHA  LEXEME: x
+    TOKEN: OPERATOR  LEXEME: ]
+    TOKEN: OPERATOR  LEXEME: [
+    TOKEN: ALPHA  LEXEME: y
+    TOKEN: OPERATOR  LEXEME: ]
+    TOKEN: OPERATOR  LEXEME: ]
+    TOKEN: OPERATOR  LEXEME: )
+    TOKEN: KEYWORD  LEXEME: then
+    TOKEN: ALPHA  LEXEME: x
+    TOKEN: OPERATOR  LEXEME: =
+    TOKEN: ALPHA  LEXEME: y
+    TOKEN: OPERATOR  LEXEME: +
+    TOKEN: INTCONST  LEXEME: 1
+    TOKEN: KEYWORD  LEXEME: else
+    TOKEN: ALPHA  LEXEME: z
+    TOKEN: OPERATOR  LEXEME: =
+    TOKEN: INTCONST  LEXEME: 10
+    TOKEN: OPERATOR  LEXEME: ;
+    TOKEN: OPERATOR  LEXEME: }
+\end{lcverbatim}
+
+\end{document}

@@ -1,0 +1,139 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{article}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,fullpage,mathtools}
+\setcounter{secnumdepth}{0}
+
+\title{Homework \#7}
+\date{Due Date: November 10\textsuperscript{th}, 2016}
+\author{Illya Starikov}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\begin{document}
+\maketitle
+
+\section{Problem \#1}
+\begin{align}
+    (65536 - x) \times \SI{1.085}{\micro\second} = \SI{5}{\milli\second} &= \SI{5000}{\micro\second} \\
+    &= 60928_{10} \\
+    &= EE00_{16}
+\end{align}
+
+Therefore, \texttt{TH1} = $EE_{16}$ and \texttt{TL1} = $00_{16}$
+
+\section{Problem \#2}
+Assuming Problem \#1 is correct,
+
+\begin{verbatim}
+        ORG 0H
+
+        MOV R0, #100D
+LOOP:   MOV TMOD, #01D
+        MOV TH0, #EEH
+        MOV TL0, #00H   ; (FFFF - EE00 + 1)*1.085 = 5ms
+        ACALL DELAY
+        DJNZ R0, LOOP   ; 100*5ms = 500 ms
+
+        AJMP DONE
+
+DELAY:  SETB TR0
+LOOP2:  JNB TF0, LOOP2
+        CLR TR0
+        CLR TF0
+        RET
+
+DONE:   NOP
+        END
+\end{verbatim}
+
+\section{Problem \#3}
+\SI{5}{\kilo\hertz} = \SI{500}{\micro\second}. So,
+
+\begin{equation}
+    \mathtt{TH1} = EE_{16} \quad\text{and}\quad \mathtt{TL1} = 00_{16}
+\end{equation}
+
+\noindent The code is as follows,
+
+\begin{verbatim}
+        ORG 0H
+
+        MOV R0, #100D
+        CLR P0.0
+
+LOOP:   MOV TMOD, #01D
+        MOV TH0, #EEH
+        MOV TL0, #00H   ; (FFFF - EE00 + 1)*1.085 = 5ms
+        ACALL DELAY
+
+        CJNE R0, #75D, SKIP
+        SETB P0.0
+
+SKIP:   DJNZ R0, LOOP   ; 100*5ms = 500 ms
+
+        AJMP DONE
+
+DELAY:  SETB TR0
+LOOP2:  JNB TF0, LOOP2
+        CLR TR0
+        CLR TF0
+        RET
+
+DONE:   NOP
+        END
+\end{verbatim}
+
+\section{Problem \#4}
+Because we know frequency ($f$) = $\frac{1}{\text{period ($T$)}}, \floor*{f} \implies \ceil*{T}, \{ \forall f,\, T \in \mathbb{R}^+ | \ f \neq 0, T \neq 0 \}$. Using this, we find the smallest period to be,
+
+\begin{equation}
+    (FFFF_{16} - FFFF_{16} + 1) \cdot \SI{1.085}{\micro\second} = \SI{1.085}{\micro\second}
+\end{equation}
+
+\noindent From this, we use $f = \frac{1}{T} = \frac{1}{1.085} = \SI{0.92}{\micro\hertz}$. We do a similar process for lowest frequency.
+
+
+\begin{verbatim}
+        ORG 0H
+        CLR P1.3
+
+LOOP:   MOV TMOD, #01D
+        MOV TH0, #0D    ; lowest frequency => highest period
+        MOV TL0, #0D    ; highest period => Smallest TH, TL
+        SETB P1.3
+        ACALL DELAY
+
+        CLR P1.3
+        AJMP DONE
+
+DELAY:  SETB TR0
+LOOP2:  JNB TF0, LOOP2
+        CLR TR0
+        CLR TF0
+        RET
+
+DONE:   NOP
+        END
+\end{verbatim}
+
+
+\section{Problem \#5}
+\subsection{Part A}
+\begin{align}
+    2C_{16} + 11_{16} &\implies 2C11_{16} \\
+    FFFF_{16} - 2C11_{16} + 1_{16} &= D3EF_{16} \\
+    &= 54254_{10} \\
+    &\implies \SI{58865.59}{\micro\second} \\
+    &= \SI{58.87}{\milli\second}
+\end{align}
+
+\subsection{Part B}
+\begin{align}
+    1001\, 0011_2 \implies 93_{16} &\implies 147_{10} \\
+    (65536 - 147) \times 1.085 &= \SI{70947.07}{\micro\second} \\
+    &= \SI{70.95}{\milli\second}
+\end{align}
+
+\end{document}

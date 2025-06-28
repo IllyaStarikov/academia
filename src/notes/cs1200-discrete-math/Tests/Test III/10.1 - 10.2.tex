@@ -1,0 +1,172 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{wrapfig,lipsum,booktabs}
+\usepackage{array}
+\newcolumntype{L}{>{\centering\arraybackslash}m{2cm}}
+\begin{document}
+
+\setcounter{section}{9}
+\subsection{Graphs: Definitions and Basic Properties}
+\subsubsection{Graph Terminology}
+A \textbf{graph} \textit{G} consists of two finite sets: a nonempty set \textit{V(G)} of \textbf{vertices} and a set \textit{E(G)} of \textbf{edges}, where each edge is associated with a set consisting of either one or two vertices called its \textbf{endpoints}. The correspondence from edges to endpoints is called the \textbf{edge-endpoint function}.
+
+An edge with just one endpoint is called a \textbf{loop}, and two or more distinct edges with the same set of endpoints are said to be \textbf{parallel}. An edge is said to \textbf{connect} its endpoints; two vertices that are connected by an edge are called \textbf{adjacent}; and a vertex that is an endpoint of a loop is said to be \textbf{adjacent to itself}.
+
+An edge is said to be \textbf{incident on} each of its endpoints, and two edges incident on the same endpoint are called \textbf{adjacent}. A vertex on which no edges are incident is called \textbf{isolated}.
+
+\subsubsection{Directed Graph / Digraph}
+A \textbf{directed graph}, or \textbf{digraph}, consists of two finite sets: a nonempty set \textit{V(G)} of vertices and a set \textit{D(G)} of directed edges, where each is associated with an ordered pair of vertices called its \textbf{endpoints}. If edge \textit{e} is associated with the pair (\textit{v, w}) of vertices, then \textit{e} is said to be the (\textbf{directed}) \textbf{edge} from \textit{v} to \textit{w}.
+
+\subsubsection{Simple Graph}
+A \textbf{simple graph} is a graph that does not have any loops or parallel edges. In a simple graph, an edge with endpoints \textit{v} and \textit{w} is denoted {\textit{v, w}}.
+
+\subsubsection{Complete Graph of \textit{n} Vertices}
+Let \textit{n} be a positive integer. A \textbf{complete graph on \textit{n} vertices}, denoted $K_n$, is a simple graph with \textit{n} vertices and exactly one edge connecting each pair of distinct vertices.
+
+\subsubsection{Complete Bipartite Graph on (\textit{m, n}) Vertices}
+Let \textit{m} and \textit{n} be positive integers. A complete bipartite graph on (\textit{m, n}) vertices, denoted $K_{m,n}$, is a simple graph with distinct vertices $v_1, v_2, \ldots , v_m$ and $w_1, w_2, \ldots , w_n$ that satisfies the following properties: For all $i, k = 1, 2, \ldots, m$ and for all $j, l = 1, 2, \ldots, n,$
+
+\begin{enumerate}
+\item There is an edge from each vertex $v_i$ to each vertex $w_j$.
+\item There is no edge from any vertex $v_i$ to any other vertex $v_k$
+\item There is no edge from any vertex $w_j$ to any other vertex $w_i$
+\end{enumerate}
+
+\subsubsection{Subgraph}
+A graph \textit{H} is said to be a \textbf{subgraph} of a graph \textit{G} if, and only if, every vertex in \textit{H} is also a vertex in \textit{G},every edge in \textit{H} is also an edge in \textit{G},and every edge in \textit{H} has the same endpoints as it has in \textit{G}.
+
+\subsubsection{Degree}
+Let \textit{G} be a graph and \textit{v} a vertex of \textit{G}. The \textbf{degree of \textit{v}}, denoted \textbf{deg(v)}, equals the number of edges that are incident on \textit{v}, with an edge that is a loop counted twice. The \textbf{total degree of \textit{G}} is the sum of the degrees of all the vertices of \textit{G}.
+
+\subsubsection{The Handshake Theorem}
+If \textit{G} is any graph, then the sum of the degrees of all the vertices of \textit{G} equals twice the number of edges of \textit{G}. Specifically, if the vertices of G are $v_1, v_2, \ldots, v_n,$ where n is a nonnegative integer, then
+
+\begin{eqnarray}
+\text{The total degree of \textit{G} } & = & deg(v_1) + deg(v_2) + \cdots + deg(v_n) \\
+& = & 2 \times (\text{the number of edge of \textit{G}})
+\end{eqnarray}
+
+This means that \textbf{the total degree of a graph is even}.
+
+\subsubsection{Proposition}
+In any graph there are an even number of vertices of odd degree.
+
+\subsubsection{Complement}
+If \textit{G} is a simple graph, the \textbf{complement of G}, denoted \textbf{G'}, is obtained as follows: The vertex set of \textit{G′} is identical to the vertex set of \textit{G}. However, two distinct vertices \textit{v} and \textit{w} of \textit{G′} are connected by an edge if, and only if, \textit{v} and \textit{w} are not connected by an edge in \textit{G}.
+
+\subsection{Trails, Paths, and Circuits}
+\subsubsection{Definitions}
+Let \textit{G} be a graph, and let \textit{v} and \textit{w} be vertices in \textit{G}.
+
+\begin{description}
+\item [Walk] A \textbf{walk from \textit{v} to \textit{w}} finite alternating sequence of adjacent vertices and edges of G. Thus a walk has the form
+
+\begin{equation}
+v_0 e_1 v_1 e_2 \cdots v_{n-1} e_n v_n
+\end{equation}
+
+where the \textit{v}’s represent vertices, the \textit{e}’s represent edges, $v_0 = v, v_n = w$, and for all $i = 1, 2, \ldots n, v_{i − 1}$ and $v_i$ are the endpoints of $e_i$. The \textbf{trivial walk from \textit{v} to \textit{v}} consists of the single vertex \textit{v}.
+
+\item [Trail] A \textbf{trail} from \textit{v} to \textit{w} is a walk from \textit{v} to \textit{w} that does not contain a repeated edge.
+
+\item [Path] A \textbf{path} from \textit{v} to \textit{w} is a trail that does not contain a repeated vertex.
+
+\item [Closed Walk] A \textbf{closed walk} is a walk that starts and ends at the same vertex.
+
+\item [Circuit] A \textbf{circuit} is a closed walk that contains at least one edge and does not contain a repeated edge.
+
+\item [Simple Circuit] A \textbf{simple circuit} is a circuit that does not have any other repeated vertex except the first and last.
+\end{description}
+
+\begin{center}
+\begin{tabular}{ |L|L|L|L|L| }
+    \hline
+    & \textbf{Repeated Edge?} & \textbf{Repeated Vertex?} & \textbf{Starts and Ends at Same Point?} & \textbf{Must Contain At Least One Edge?} \\ \hline
+    \textbf{Walk} & allowed & allowed & allowed & no \\ \hline
+    \textbf{Trail} & no & allowed & allowed & no \\ \hline
+    \textbf{Path} & no & no & no & no \\ \hline
+    \textbf{Closed Walk} & allowed & allowed & yes & no \\ \hline
+    \textbf{Circuit} & no & allowed & yes & yes \\ \hline
+    \textbf{Simple Circuit} & no & first and last only & allowed & yes \\ \hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Connected}
+Let \textit{G} be a graph. Two \textbf{vertices \textit{v} and \textit{w} of G are connected} if, and only if, there is a walk from \textit{v} to \textit{w}. The \textbf{graph G is connected} if, and only if, given \textit{any} two vertices \textit{v} and \textit{w} in \textit{G}, there is a walk from \textit{v} to \textit{w}. Symbolically,
+
+\begin{equation}
+G \ \text{is connected} \Leftrightarrow \forall \ \text{vertices} \ v, w \in V(G), \exists \ \text{a walk from \textit{v} to \textit{w}}.
+\end{equation}
+
+Let \textit{G} be a graph.
+\begin{itemize}
+\item If \textit{G} is connected, then any two distinct vertices of \textit{G} can be connected by a path.
+\item . If vertices \textit{v} and \textit{w} are part of a circuit in \textit{G} and one edge is removed from the circuit, then there still exists a trail from \textit{v} to \textit{w} in \textit{G}.
+\item If \textit{G} is connected and \textit{G} contains a circuit, then an edge of the circuit can be removed without disconnecting \textit{G}.
+\end{itemize}
+
+A graph \textit{H} is a connected component of a graph \textit{G} if, and only if,
+\begin{enumerate}
+\item \textit{H} is subgraph of \textit{G};
+\item \textit{H} is connected; and
+\item no connected subgraph of \textit{G} has \textit{H} as a subgraph and contains vertices or edges that are not in \textit{H}.
+\end{enumerate}
+
+\subsubsection{Euler Circuit}
+Let \textit{G} be a graph. An \textbf{Euler circuit} for \textit{G} is a circuit that contains every vertex and every edge of \textit{G}. That is, an Euler circuit for \textit{G} is a sequence of adjacent vertices and edges in \textit{G} that has at least one edge, starts and ends at the same vertex, uses every vertex of \textit{G} at least once, and uses every edge of \textit{G} exactly once.
+
+If a graph has an Euler circuit, then every vertex of the graph has positive even degree. If some vertex of a graph has odd degree, then the graph does not have an Euler circuit.
+
+\subsubsection{Euler Algorithm}
+If a graph G is connected and the degree of every vertex of G is a positive even integer, then G has an Euler circuit.
+
+\noindent
+\textbf{Proof: }
+Suppose that \textit{G} is any connected graph and suppose that every vertex of \textit{G} is a positive even integer. \textit{[We must find an Euler circuit for G.]} Construct a circuit \textit{C} by the following algorithm:
+\begin{description}
+\item[Step 1: ] Pick any vertex \textit{v} of \textit{G} at which to start.
+\textit{[This step can be accomplished because the vertex set of G is nonempty by assumption.]}
+
+\item[Step 2: ] Pick any sequence of adjacent vertices and edges, starting and ending at v and never repeating an edge. Call the resulting circuit C.
+\textit{[This step can be performed for the following reasons: Since the degree of each vertex of G is a positive even integer, as each vertex of G is entered by traveling on one edge, either the vertex is v itself and there is no other unused edge adja- cent to v, or the vertex can be exited by traveling on another previously unused edge. Since the number of edges of the graph is finite (by definition of graph), the sequence of distinct edges cannot go on forever. The sequence can eventu- ally return to v because the degree of v is a positive even integer, and so if an edge connects v to another vertex, there must be a different edge that connects back to v.]}
+
+\item[Step 3: ] Check whether \textit{C} contains every edge and vertex of \textit{G}. If so, \textit{C} is an Euler circuit, and we are finished. If not, perform the following steps.
+
+    \begin{description}
+    \item[Step 3a: ] Remove all edges of \textit{C} from \textit{G} and also any vertices that become isolated when the edges of \textit{C} are removed. Call the resulting subgraph \textit{G′}.
+    \textit{[Note that G′ may not be connected (as illustrated in Figure 10.2.4), but every vertex of G′ has positive, even degree (since removing the edges of C removes an even number of edges from each vertex, the difference of two even integers is even, and isolated vertices with degree 0 were removed.)]}
+
+    \item[Step 3b: ] Pick any vertex w common to both C and G′.
+    \textit{[There must be at least one such vertex since G is connected. (See exercise 44.) (In Figure 10.2.4 there are two such vertices: u and w.)]}
+
+    \item[Step 3c: ] Pick any sequence of adjacent vertices and edges of \textit{G′}, starting and ending at \textit{w} and never repeating an edge. Call the resulting circuit \textit{C′}.
+    \textit{[This can be done since each vertex of G′ has positive, even degree and G′ is finite. See the justification for step 2.]}
+
+    \item[Step 3d: ] Patch \textit{C} and \textit{C′} together to create a new circuit \textit{C′′} as follows: Start at \textit{v} and follow \textit{C} all the way to \textit{w}. Then follow \textit{C′} all the way back to \textit{w}. After that, continue along the untraveled portion of \textit{C} to return to \textit{v}.
+    \textit{[The effect of executing steps 3c and 3d for the graph of Figure 10.2.4 is shown in Figure 10.2.5.]}
+
+    \item[Step 3e: ] Let \textit{C = C′′} and go back to step 3.
+    \end{description}
+\end{description}
+
+Since the graph \textit{G} is finite, execution of the steps outlined in this algorithm must eventually terminate. At that point an Euler circuit for \textit{G} will have been constructed. (Note that because of the element of choice in steps 1, 2, 3b, and 3c, a variety of different Euler circuits can be produced by using this algorithm.)
+
+\subsubsection{Theorem}
+A graph \textit{G} has an Euler circuit if, and only if, \textit{G} is connected and every vertex of \textit{G} has positive even degree.
+
+\subsubsection{Corollary}
+Let \textit{G} be a graph, and let \textit{v} and \textit{w} be two distinct vertices of \textit{G}. There is an Euler path from \textit{v} to \textit{w} if, and only if, \textit{G} is connected, \textit{v} and \textit{w} have odd degree, and all other vertices of \textit{G} have positive even degree.
+
+\subsubsection{Hamiltonian Circuit}
+Given a graph \textit{G}, a Hamiltonian circuit for \textit{G} is a simple circuit that includes every vertex of \textit{G}. That is, a Hamiltonian circuit for \textit{G} is a sequence of adjacent vertices and distinct edges in which every vertex of \textit{G} appears exactly once, except for the first and the last, which are the same.
+
+If a graph \textit{G} has a Hamiltonian circuit, then \textit{G} has a subgraph \textit{H} with the following properties:
+
+\begin{enumerate}
+\item \textit{H} contains every vertex of \textit{G}.
+\item \textit{H} is connected.
+\item \textit{H} has the same number of edges as vertices.
+\item Every vertex of \textit{H} has degree 2.
+\end{enumerate}
+
+\end{document}

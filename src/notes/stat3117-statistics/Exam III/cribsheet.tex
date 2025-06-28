@@ -1,0 +1,420 @@
+\documentclass[9pt,landscape]{memoir}
+\usepackage{multicol}
+\usepackage{calc} \usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{hyperref,siunitx}
+\usepackage{amssymb,amsmath,verbatim,graphicx,enumitem,microtype,upquote,units,booktabs,siunitx,hyperref}
+
+\ifthenelse{\lengthtest{\paperwidth{} = 11in}}
+{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in}}
+{\ifthenelse{ \lengthtest{\paperwidth{} = 297mm}}
+    {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm}}
+    {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm}}
+}
+
+% Turn off header and footer
+\pagestyle{empty}
+\renewcommand{\familydefault}{\sfdefault}
+\setlist[itemize]{leftmargin=0pt, noitemsep, before={\vspace*{-.25\baselineskip}}, after={\vspace*{-\baselineskip}}}
+\setlist[enumerate]{leftmargin=0pt, noitemsep, before={\vspace*{-.25\baselineskip}}, after={\vspace*{-\baselineskip}}}
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+    {-1ex plus -.5ex minus -.2ex}%
+    {0.5ex plus .2ex}%x
+{\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+    {-1explus -.5ex minus -.2ex}%
+    {0.5ex plus .2ex}%
+{\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+    {-1ex plus -.5ex minus -.2ex}%
+    {1ex plus .2ex}%
+{\normalfont\small\bfseries}}
+\makeatother
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+\makeatletter
+\newsavebox\myboxA{}
+\newsavebox\myboxB{}
+\newlength\mylenA{}
+
+\newcommand*\xoverline[2][0.75]{%
+    \sbox{\myboxA}{$\m@th#2$}%
+    \setbox\myboxB\null% Phantom box
+    \ht\myboxB=\ht\myboxA%
+    \dp\myboxB=\dp\myboxA%
+    \wd\myboxB=#1\wd\myboxA% Scale phantom
+    \sbox\myboxB{$\m@th\overline{\copy\myboxB}$}%  Overlined phantom
+    \setlength\mylenA{\the\wd\myboxA}%   calc width diff
+    \addtolength\mylenA{-\the\wd\myboxB}%
+    \ifdim\wd\myboxB<\wd\myboxA%
+       \rlap{\hskip 0.5\mylenA\usebox\myboxB}{\usebox\myboxA}%
+    \else
+        \hskip -0.5\mylenA\rlap{\usebox\myboxA}{\hskip 0.5\mylenA\usebox\myboxB}%
+    \fi}
+\makeatother
+
+\renewcommand{\hat}{\widehat}
+
+% -----------------------------------------------------------------------
+
+\begin{document}
+
+\raggedright{}
+\footnotesize
+\begin{multicols}{3}
+    \setcounter{section}{5}
+    \subsection{Confidence Intervals for a Population Mean}
+    Let $X_1, \ldots, X_n$ be a simple random sample from a population with mean $\mu$ and variance $\sigma^2$. Let $\bar{X}$ be the sample mean, and $S_n$ be the sum of sample observation. If \textbf{$n$ is sufficiently large},
+
+    \begin{equation*}
+        \bar{X} \sim N \left(\mu , \frac{\sigma^2}{n} \right)
+    \end{equation*}
+
+    and
+
+    \begin{equation*}
+        S_n \sim N \left( n \mu, n\sigma^2 \right)
+    \end{equation*}
+
+    Let $X_1, \ldots, X_n$ be a \textbf{large} ($n > 30$) random sample from a population with mean $\mu$ and standard deviation $\sigma$, so that $\bar{X}$ is approximately normal. Then a level $100 (1 - \alpha)\%$ confidence interval for $\mu$ is
+
+    \begin{equation*}
+        \bar{X} \pm z_{\frac{\alpha}{2}} \sigma_{\bar{X}}
+    \end{equation*}
+
+    where $\sigma_{\bar{X}} = \frac{\sigma}{\sqrt{n}}$. When the value of $\sigma$ is unknown, it can be replaced with the sample standard deviation $s$.
+
+    \subsection{Small Sample Confidence Intervals for a Population Mean}
+    Let $X_1, \ldots, X_n$ be a small $(n < 30)$ sample from a \textit{normal} population with mean $\mu$. Then the quantity
+
+    \begin{equation*}
+        \frac{\bar{X} - \mu}{\frac{s}{\sqrt{n}}}
+    \end{equation*}
+
+    \noindent has a Student's $t$ distribution with $n - 1$ degrees of freedom, denoted $t_{n - 1}$.
+
+    When $n$ is large, the distribution of quantity $\frac{\bar{X} - \mu}{\frac{s}{\sqrt{n}}}$ is very close to normal, so the normal curve can be used, rather than the Student's $t$.
+
+    \section{Hypothesis Testing}
+    \subsection{Large-Sample Tests for a Population Mean}
+    Let $X_1, \ldots, X_n$ be a \textbf{large} ($n > 30$) sample form a population with mean $\mu$ and standard deviation $\sigma$.
+
+    To test a null hypothesis of the form $H_0: u \leq u_0, H_0: u \geq \mu_0, H_0: = \mu_0$:
+
+    \begin{itemize}
+        \item Compute the $z$-score:
+
+            \begin{equation*}
+                z = \frac{\bar{X} - \mu_0}{\frac{\sigma}{\sqrt{n}}}
+            \end{equation*}
+
+            If $\sigma$ is unknown it may be approximated with $s$.
+
+        \item Computer the $P$-value. The $P$-value is an area under the normal curve, which depends on the alternate hypothesis as follows:
+    \end{itemize}
+
+    \vspace{2mm}
+    \begin{tabular}{cc}
+    \textbf{Alternate Hypothesis} & \textbf{$P$-Value} \\
+    $H_1 : \mu > \mu_0$      & Area to the right of $z$ \\
+    $H_1 : \mu < \mu_0$      & Area to the left of $z$\\
+    $H_1 : \mu = \mu_0$      & Sum of the areas cut off by $z$ and $-z$ \\
+    \end{tabular}
+
+    \section{Drawing Conclusions from the Results of Hypothesis Tests}
+    Let $\alpha$ be any value between \num{0} and \num{1}. Then, if $P \leq \alpha$,
+
+    \begin{itemize}
+        \item The result of the test is said to be statistically significant at the $100\alpha\%$ level.
+        \item The null hypothesis is rejected at the $100\alpha\%$ level.
+        \item When reporting the result of the hypothesis test, report the $P$-value, rather than just comparing it to the \num{5}\% or \num{1}\%.
+    \end{itemize}
+
+
+    \vspace{2mm}
+    \subsection{Small-Sample Tests for a Population Mean}
+    Let $X_1, \ldots, X_n$ be a \textbf{small} ($n \leq 30$) random sample from a \textit{normal} population with mean $\mu$ (unknown) and a standard deviation $\sigma$.
+
+    To test a null hypothesis of the form $H_0 :  \mu \leq \mu_0$, $H_0: \mu \geq \mu_0$,  or $H_0: \mu = \mu_0$:
+
+    \begin{itemize}
+        \item Compute the test statistic
+
+    \begin{equation*}
+        t^* = \frac{\bar{X} - \mu_0}{\frac{s}{\sqrt{n}}}
+    \end{equation*}
+
+    \item Compute the $P$-value. The $P$-value is an area under the Student's $t$ curve with $n - 1$ degrees of freedom, which depends on the alternate hypothesis as follows
+
+    \end{itemize}
+
+    \vspace{2mm}
+    \begin{tabular}{cc}
+        \textbf{Alternate Hypothesis} & \textbf{$P$-Value} \\
+        $H_1 : \mu > \mu_0$      & Area to the right of $z$ \\
+        $H_1 : \mu < \mu_0$      & Area to the left of $z$\\
+        $H_1 : \mu = \mu_0$      & Sum of the areas cut off by $z$ and $-z$ \\
+    \end{tabular}
+
+
+    \begin{itemize}
+        \item If $\sigma$ is known, the test statistic is $z = \frac{\bar{X} - \mu_0}{\frac{\sigma}{\sqrt{n}}}$
+    \end{itemize}
+
+    \vspace{2mm}
+    \subsection{Large-Sample Tests for the Difference Between Two Means}
+    Let $X_1, \ldots, X_n$ and $Y_1, \ldots, Y_n$ be \textbf{large} ($n_x > 30$ and $n_y > 30$) independent random samples from populations with mean $u_x$ and $u_y$ and standard deviation $\sigma_x$ and $\sigma_y$, respectively.
+
+    The test statistic is as follows:
+
+    \begin{equation*}
+        z^* = \frac{(\bar{X} - \bar{Y}) - \delta_0}{%
+            \sqrt{\frac{\sigma_X ^2}{n_x} + \frac{\sigma_Y ^2}{n_y}}
+        }
+    \end{equation*}
+
+    If $\sigma_X$ and $\sigma_Y$ are unknown they may be replaced by $s_X$ and $s_Y$, respectively
+
+    \vspace{2mm}
+    \begin{tabular}{ccc}
+        \textbf{Null Hypothesis} & \textbf{Alternative Hypothesis} & \textbf{$p$-value} \\
+        $H_0: \mu_x - \mu_y \leq \delta_0$ & $H_1: \mu_x - \mu_y > \delta_0$ & $P(Z \geq z^*)$ \\
+        $H_0: \mu_x - \mu_y \geq \delta_0$ & $H_1: \mu_x - \mu_y < \delta_0$ & $P(Z \leq z^*)$ \\
+        $H_0: \mu_x - \mu_y = \delta_0$ & $H_1: \mu_x - \mu_y \neq \delta_0$ & $2 \times P(Z \geq |z^*|)$ \\
+    \end{tabular}
+
+    \vspace{2mm}
+    \subsection{Small-Sample Tests for the Difference Between Two Means}
+    \subsubsection{Population Variances Are Not Equal}
+    Let $X_1, \ldots, X_{n, x}$ and $Y_1, \ldots, Y_{n, y}$ be samples from \textit{normal} populations with means $\mu_X$ and $\mu_Y$ and standard deviations $\sigma_X$ and $\sigma_Y$, respectively. Assume the samples are drawn independently of each other.
+
+    \textbf{If $\sigma_x$ and $\sigma_Y$ are not known to be equal}, then, to test a null hypothesis of the form $
+    H_0: \mu_X - \mu_Y \leq \Delta_0,
+    H_0: \mu_X - \mu_Y \geq \Delta_0$, or
+    $H_0: \mu_X - \mu_Y = \Delta_0$.
+
+    \begin{itemize}
+        \item Rounding down to the nearest integer, calculate
+
+            \begin{equation*}
+                \nu = \frac{
+                    {\left[\frac{s_X^2}{n_X} + \frac{s_Y^2}{n_Y}\right]}^2
+                }{
+                \frac{{\left(\frac{s_X^2}{n_X}\right)}^2}{n_X - 1} +
+                \frac{{\left(\frac{s_Y^2}{n_Y}\right)}^2}{n_Y - 1}
+            }
+            \end{equation*}
+
+        \item Compute the test statistic
+
+            \begin{equation*}
+                t = \frac{(\bar{X} - \bar{Y}) - \Delta_0}
+                {\sqrt{S_X ^2 / n_x + S_Y ^2 / n_Y}}
+            \end{equation*}
+
+        \item Compute the $P$-value. The $P$-value is an area under the Student's $t$ curve with $v$ degrees of freedom, which depends on the alternate hypothesis as follows:
+
+            \vspace{2mm}
+            \begin{tabular}{cc}
+                \textbf{Alternate Hypothesis} & \textbf{$P$-value} \\
+                $H_1: \mu_X - \mu_Y > \Delta_0$ & Area to the right of $t$ \\
+                $H_1: \mu_X - \mu_Y < \Delta_0$ & Area to the left of $t$ \\
+                $H_1: \mu_X - \mu_Y \neq \Delta_0$ & Sum of the areas in the tails cut off \\
+            \end{tabular}
+    \end{itemize}
+
+
+    \subsubsection{Population Variances Are Equal}
+    Let $X_1, \ldots, X_{n, x}$ and $Y_1, \ldots, Y_{n, y}$ be samples from \textit{normal} populations with means $\mu_X$ and $\mu_Y$ and standard deviations $\sigma_X$ and $\sigma_Y$, respectively. Assume the samples are drawn independently of each other.
+
+    If $\sigma_X$ and $\sigma_Y$ are known to be qual, then, to test a null hypothesis of the fortm $H_0: \mu_X - \mu_Y \leq \Delta_0$, $H_0: \mu_X - \mu_Y \geq \Delta_0$, or $H_0: \mu_x - \mu_y = \Delta_0$:
+
+    \begin{itemize}
+        \item Compute
+
+            \begin{equation*}
+                s_p = \sqrt{\frac{
+                        (n_X - 1)s_X^2 + (n_Y - 1)s_Y^2
+                    }{
+                        n_X + n_Y - 2
+                }}
+            \end{equation*}
+
+        \item Compute the test statistic
+
+            \begin{equation*}
+                t = \frac{(\bar{X} - \bar{Y}) - \Delta_0}{s_p \sqrt{\frac{1}{n_X} + \frac{1}{n_Y}}}
+            \end{equation*}
+
+        \item Compue the $P$-value. The $P$-value is an area under the Student's $t$ curve with $n_X + n_Y - 2$ degrees of freedom, which depends on the alternate hypothesis as follows.
+
+            \vspace{2mm}
+            \begin{tabular}{cc}
+                \textbf{Alternate Hypothesis} & \textbf{$P$-value} \\
+                $H_1: \mu_X - \mu_Y > \Delta_0$ & Area to the right of $t$ \\
+                $H_1: \mu_X - \mu_Y < \Delta_0$ & Area to the left of $t$ \\
+                $H_1: \mu_X - \mu_Y \neq \Delta_0$ & Sum of the areas in the tails cut off \\
+            \end{tabular}
+    \end{itemize}
+
+    \vspace{2mm}
+
+    \section{Correlation vs. Causation}
+    \subsection{Correlation}
+    A correlation coefficient (denoted $r$) deasures the strength and direction of a linear relationship between two variables. Let $(x_1, y_1)$, $\ldots$, $(x_n, y_n)$ represent bivariate data, then the correlation coefficient is
+
+    \begin{align*}
+        r &= \frac{1}{n - 1} \sum _{i = 1} ^n \left(\frac{x_i - \bar{x}}{s_x}\right)\left(\frac{x_i - \bar{x}}{s_x}\right) \\
+          &= \frac{
+                \sum_{i = 1} ^n x_i y_i - n \bar{x}\bar{y}
+          }{
+              \sqrt{\sum_{i = 1}^n x_i^2 - n\bar{x}^2}
+              \sqrt{\sum_{i = 1}^n y_i^2 - n\bar{y}^2}
+          }
+          &= \frac{SSR}{SST}
+    \end{align*}
+
+    \subsection{The Least-Squares Line}
+    For an equation of the form
+
+    \begin{equation*}
+        y_1 = \beta_0 + \beta_1 x_i + \epsilon_i
+    \end{equation*}
+
+    $y_i$ is called the \textbf{dependent variable}, $x_i$ is called the \textbf{indepedent variable}, $\beta$ is called the \textbf{regression coefficients} (the least squares coefficients), and $\epsilon_i$ is called the \textbf{error}.
+
+    Also, $r^2$ is the \textbf{proportion of variance in $y$ explained by regression}.
+
+    \begin{align*}
+        e_1 &= y_i - \hat{y}_i = y_i - \hat{\beta}_0 - \hat{B}_1 x_i \\
+        \hat{\beta}_1 &= \hat{\beta}_1 = \frac{\sum _i ^n y_i - n\bar{x}\bar{y}}{\sum _i ^n x_i ^2 - n\bar{x}^2} \\
+        \hat{\beta}_0 &= \bar{y} - \hat{\beta}_1 \bar{x}
+    \end{align*}
+    \subsection{Uncertainties in the Least-Squares Coefficients}
+    Using some assumptions,
+
+    \begin{itemize}
+        \item The quantity $\hat{\beta}$ is \textit{normally distributed} random variables.
+        \item The means of $\hat{\beta}$ is the true values of $\hat{\beta}$.
+        \item The \textit{standard deviations} of $\beta$ is estimated with
+
+            \begin{align*}
+                s_{\beta_0} &= s \sqrt{
+                    \frac{1}{n} +
+                    \frac{\bar{x}}^2}{\sum_{i = 1} ^n {(x_i - \bar{x})}^2} \\
+                s_{\beta_1} &= \frac{s}{\sqrt{\sum_{i = 1}^n {(x_i - \bar{x})}^2}}
+            \end{align*}
+
+            where
+
+            \begin{equation*}
+                s = \sqrt{\frac{(1 - r^2) \sum_{i = 1} ^n {(y_i - \bar{y})}^2}{n - 2}}
+            \end{equation*}
+
+            is an estimate of the error standard deviation $\sigma$.
+    \end{itemize}
+
+    \vspace{2mm}
+    \subsubsection{Confidence Intervals for Coefficients}
+    Under assumptions, the quantities $\frac{\hat{\beta_1} - \beta_1}{s_{\beta_1}}$ and $\frac{\hat{\beta_1} - \beta_1}{s_{\beta_1}}$ have Student's $t$ distributions with $n - 2$ degrees of freedom.
+
+    Level $100(1 - \alpha)\%$ confidence intervals for $\beta_0$ and $\beta_1$ are given by
+
+    \begin{equation*}
+        \bar{\beta_0} \pm t_{n - 2} \times s_{\bar{\beta_0}} \qquad
+        \bar{\beta_1} \pm t_{n - 2} \times s_{\bar{\beta_1}}
+    \end{equation*}
+
+    Level $100(1 - \alpha)\%$ confidence intervals for the quantity $\beta_0 + \beta_1 x$ is given by
+
+    \begin{equation*}
+        \hat{\beta_0} + \hat{\beta_1} x \pm t_{n - 2, \alpha/2} \times s_\hat{y}
+    \end{equation*}
+
+    where
+
+    \begin{equation*}
+        s_\hat{y} = s \sqrt{\frac{1}{n} + \frac{{(x - \bar{x})}^2}{\sum_{i = 1} ^n {(x_i - \bar{x})}^2}}
+    \end{equation*}
+
+    \subsection{Checking Assumptions}
+    If the plot of residuals versus fitted values
+
+    \begin{itemize}
+        \item Shjows no substantial trend or curve, and
+        \item Is \textbf{homoscedastic}, that is, the vertical spread does not varu too much along the horizontal length of the plot, except perhaps near the edges,
+    \end{itemize}
+
+    then it is \textit{likely}, but not certain, that the assumptions of the linear model hold.
+
+    \vspace{2mm}
+    However, if the residual plot \textit{does} show a substantial trend or curve, or is \textbf{heteroscedastic}, it is certain that the assumptions of the linear plot \textit{do not} hold.
+
+
+    \section*{Miscellaneous Notes}
+    \begin{itemize}
+        \item A \textbf{test statistic} is a function of the sample data whose value is used to test a hypothesis
+        \item A \textbf{p-value} is a measure of the disagreement between a sample and $H_0$.
+        \item The smaller the $P$-value, the more certain we can be that $H_0$ is false and vice versa.
+        \item For \textbf{large samples}, we approximate the population standad deviation $\sigma$ using the sample standard deviation $s$.
+        \item The correlation coefficient is called the \textbf{sample correlation ($r$)}, and the it is an estimate of the population correleation ($\rho$).
+        \item Some properties of the correlation coeffciient ($r$):
+            \vspace{2mm}
+            \begin{enumerate}
+                \item $-1 \leq r \leq 1$, $r$ is unitless.
+                \item If the points lie exactly on a horizontal or vertical line, the correlation coefficient is undefined, because one of the standard deviations is equal to zero.
+                \item Whenever $r \neq 0$, $x$ and $y$ are said to be correlated. If $r = 0$, $x$ and $y$ are said to be uncorrelated.
+                \item Correlation coefficient is unaffected by the units in whicht he measurements are made.
+            \end{enumerate}
+            \vspace{2mm}
+
+        \item For \textbf{small samples}, $s$ may be far from $\sigma$, which invalidates this large-sample method. However, when the population is approximately normal, the Student's $t$ distribution can be used.
+        \item The \textbf{pooled} sample variance is
+
+            \begin{equation*}
+                s_p ^2 = \frac{(n_X - 1)s_X ^2 + (n_Y - 1)S_Y^2}{n_X + n_Y - 2}
+            \end{equation*}
+
+        \item The correleation coefficient remains unchanged under each of the following operations
+            \begin{itemize}
+                \item Multiplying each value of a variable by a positive constant.
+                \item Adding a constant to each of a variable.
+                \item Interchanging the values of $x$ and $y$.
+            \end{itemize}
+
+        \vspace{2mm}
+        \item A \textbf{goodness-of-fit statistic} measures how well a model explains a given set of data.
+        \item $SST = \text{total sum of squares} = \sum_{i = 1} ^n {(y_i - \bar{y})}^2$
+        \item $SSE = \text{error sum of squares} = \sum_{i = 1} ^n {(y_i - \hat{y})}^2$
+        \item $SSR = \text{regression sum of squares} = SST - SSE$
+        \item The following assumptions are satisfied.
+            \begin{itemize}
+                \item The errors $\epsilon_1$, $\ldots$, $\epsilon_0$ are random and independent. In particular, the magnitude of any error $\epsilon_i$ does not influence the value of the next error $\epsilon_{i + 1}$.
+                \item The errors $\epsilon_1$, $\ldots$, $\epsilon_0$ all have mean \num{0}.
+                \item The errors $\epsilon_1$, $\ldots$, $\epsilon_0$ all have the same variance, which we denote by $\sigma^2$.
+                \item The errors $\epsilon_1$, $\ldots$, $\epsilon_0$ are normally distributed.
+            \end{itemize}
+
+        \item Margin of error = $t_{\frac{\alpha}{2}, \sqrt{n}}\times \frac{\sigma}{\sqrt{n}}$
+        \item The sample variance is calculated
+
+            \begin{equation*}
+                \frac{1}{N - 1} \sum _{i = 0} ^n {\left( x - \bar{x} \right)}^2
+            \end{equation*}
+    \end{itemize}
+
+\end{multicols}
+\end{document}

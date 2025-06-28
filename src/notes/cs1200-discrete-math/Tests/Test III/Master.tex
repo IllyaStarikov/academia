@@ -1,0 +1,447 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{wrapfig,lipsum,booktabs}
+\usepackage{array}
+\begin{document}
+\newcolumntype{L}{>{\centering\arraybackslash}m{2cm}}
+
+\setcounter{section}{8}
+\section{Counting And Probability}
+\subsection{Introduction}
+
+\subsubsection{Sample Space}
+A \textbf{sample space} is the set of all possible outcomes of a random process or experiment. An \textbf{event} is a subset of a sample space.
+
+\subsubsection{Equally Likely Probability Formula}
+If \textit{S} is a finite sample space in which all outcomes are equally likely and \textit{E} is an event in \textit{S}, then the \textbf{probability of E}, denoted \textbf{P(E)}, is
+
+\begin{equation}
+P(E) = \frac{\text{the number of outcomes in \textit{E}}}{\text{the total number of outcomes in \textit{S}}}
+\end{equation}
+
+The notation is as follows: For any finite set \textit{A, N(A)} denotes the number of elements in \textit{A}.
+
+\subsubsection{The Number of Elements in a List}
+If \textit{m} and \textit{n} are integers and $m \leq n$, then there are \textit{n - m + 1} integers from \textit{m} to \textit{n} inclusive.
+
+\subsection{Possibility Trees and the Multiplication Rule}
+\subsubsection{The Multiplication Rule}
+If an operation consists of \textit{k} steps and
+
+\begin{center}
+the first step can be performed $n_1$ ways,
+the second step can be performed in $n_2$ ways [\textit{regardless of how the first step was performed}]
+$\vdots$
+the \textit{k}th step can be performed in $n_k$ ways [\textit{regardless of how the preceding steps were performed}],
+\end{center}
+
+then the entire operation can be performed in $n_1 n_2 \cdots n_k$ ways.
+
+\subsubsection{Number of Permutations}
+For any integer \textit{n} with $n \geq 1$, the number of permutations of a set with \textit{n} elements is \textit{n!}.
+
+\subsubsection{R-Permutation}
+An \textbf{r-permutation} of a set of \textit{n} elements is an ordered selection of \textit{r} elements taken from the set of \textit{n} elements. The number of r-permutations of a set of \textit{n} elements is denoted \textbf{P(n, r)}.
+
+If \textit{n} and \textit{r} are integers and $1 \leq r \leq n$, then the number of \textit{r}-permutations of a set of \textit{n} elements is given by the formula
+
+\begin{equation*}
+P(n, r) = n(n - 1)(n - 2) \cdots (n - r + 1)
+\end{equation*}
+
+or, equivalently,
+
+\begin{equation*}
+P(n, r) = \frac{n!}{(n - 2)!}
+\end{equation*}
+
+\subsection{Counting Elements of Disjoint Sets: The Addition Rule}
+\subsubsection*{The Addition Rule}
+Suppose a finite set \textit{A} equals the union of \textit{k} distinct mutually disjoint subsets $A_1, A_2, \ldots , A_k$ Then:
+
+\begin{equation*}
+N(A) = N(A_1) + N(A_2) + \cdots + N(A_k).
+\end{equation*}
+
+\subsubsection*{The Difference Rule}
+If \textit{A} is a finite set and \textit{B} is a subset of \textit{A}, then:
+
+\begin{equation*}
+N(A - B) = N(A) - N(B).
+\end{equation*}
+
+\subsubsection*{Formula for the probability of the complement of an Event}
+If \textit{S} is a finite sample space and \textit{A} is an event in \textit{S}, then:
+
+\begin{equation*}
+P(A^c) = 1 - P(A)
+\end{equation*}
+
+\subsubsection*{The Inclusion/Exclusion Rule for Two or Three Sets}
+If \textit{A, B} and \textit{C} are any finite sets, then
+
+\begin{equation*}
+N(A \cup B) = N(A) + N(B) - B(A \cap B)
+\end{equation*}
+
+and
+
+\begin{equation*}
+N(A \ \cup \ B \ \cup \ C) = N(A) + N(B) + N(C) - N(A \ \cap \ B) - N(A \ \cup \ C) - N(B \ \cap \ C) + N(A \ \cap \ B \ \cap \ C).
+\end{equation*}
+
+\subsubsection*{Pigeonhole Principle}
+A function from one finite set to a smaller finite set cannot be one-to-one: There must be at least two elements in the domain that have the same image in the co-domain.
+
+\subsubsection*{Generalized Pigeonhole Principle}
+For any function \textit{f} from a finite set \textit{X} with \textit{n} elements to a finite set \textit{Y} with \textit{m} elements and for any positive integer \textit{k}, if $ k < n/m $, there there is some $y \in Y$ such that \textit{y} is the image of at least \textit{k + 1} distinct elements of \textit{X}
+
+\subsubsection{Generalized Pigeonhole Principle (Contrapositive Form)}
+For any function $f$ from a finite set $X$ with $n$ elements to a finite set $Y$ with $m$ elements and for any positive integer $k$, if for each $y \in Y, f ^{−1} (y)$ has at most $k$ elements, then $X$ has at most $km$ elements; in other words, $n \leq km$.
+
+\subsubsection{The Pigeonhole Principle}
+For any function $f$ from a finite set $X$ with n elements to a finite set $Y$ with m elements, if $n > m$, then $f$ is not one-to-one.
+
+\subsubsection{One-to-One and Onto for Finite Sets}
+Let $X$ and $Y$ be finite sets with the same number of elements and suppose $f$ is a function from $X$ to $Y$. Then $f$ is one-to-one if, and only if, $f$ is onto.
+
+
+\setcounter{section}{9}
+\setcounter{subsection}{4}
+
+\subsection{R-Combination}
+Let \textit{n} and \textit{r} be nonnegative integers with $r \leq n$. An \textbf{r-combination} of a set of n elements is a subset of \textit{r} of the n elements. As indicated in Section 5.1, the symbol
+
+\[
+{{n}\choose{r}}
+\]
+
+which is read \underline{n choose r}, denotes the number of subsets of size \textit{r} (\textit{r}-combinations) that can be chosen from a set of \textit{n} elements.
+
+\subsubsection{Definition}
+The number of subsets of size \textit{r} (or \textit{r}-combinations) that can be chosen from a set of \textit{n} elements,  \textit{n}, is given by the formula
+
+\[
+{{n}\choose{r}}
+ = \frac{P(n, r)}{r!}\]
+
+or, equivalently,
+
+\[
+{{n}\choose{r}}
+ = \frac{n!}{r!(n - r)!}\]
+
+where \textit{n} and \textit{r} are nonnegative integers with $r \leq n$.
+
+\subsubsection{Permutations with sets of Indistinguishable Objects}
+Suppose a collection consists of \textit{n} objects of which
+
+\begin{center}
+$n_1$ are of type 1 and are indistinguishable from each other.
+$n_2$ are of type 2 and are indistinguishable from each other.
+$\vdots$
+$n_k$ are of type k and are indistinguishable from each other.
+\end{center}
+
+and suppose that $n_1 + n_2 + \cdots + n_k = n$. Then the number of distinguishable.
+
+\[
+{{n}\choose{n_1}}{{n - n_1}\choose{n_2}}{{n - n_1 - n_2}\choose{n_3}}\cdots{{n - n_1 - n_2 - \cdots - n_k{k - 1}}\choose{n_k}}
+\]
+
+\begin{equation}
+\frac{n!}{n_1!n_2!n_3! \cdots n_k!}
+\end{equation}
+
+\subsection{r-Combinations with Repetition Allowed}
+An \textbf{r-combination with repetition allowed}, or \textbf{multiset of size \textit{r}}, chosen from a set \textit{X} of \textit{n} elements is an unordered selection of elements taken from \textit{X} with repetition allowed. If $X = \{ x_1, x_2, \ldots, x_n \},$ we write an \textit{r}-combination with repetition allowed,or multiset of size \textit{r}, as \textbf{ $[ x_{i1}, x_{i2}, \ldots, x_i]$ }, where each $x_ij$ is in \textit{X} and some of the $x_ij$ may equal.
+
+\subsubsection{Theorem}
+The number of r-combinations with repetition allowed (multisets of size r) that can be selected from a set of n elements is
+
+\[
+{{r+ n - 1}\choose{r}}
+\]
+
+This equals the number of ways \textit{r} objects can be selected from \textit{n} categories of objects with repetition allowed.
+
+
+\setcounter{section}{9}
+\subsection{Graphs: Definitions and Basic Properties}
+\subsubsection{Graph Terminology}
+A \textbf{graph} \textit{G} consists of two finite sets: a nonempty set \textit{V(G)} of \textbf{vertices} and a set \textit{E(G)} of \textbf{edges}, where each edge is associated with a set consisting of either one or two vertices called its \textbf{endpoints}. The correspondence from edges to endpoints is called the \textbf{edge-endpoint function}.
+
+An edge with just one endpoint is called a \textbf{loop}, and two or more distinct edges with the same set of endpoints are said to be \textbf{parallel}. An edge is said to \textbf{connect} its endpoints; two vertices that are connected by an edge are called \textbf{adjacent}; and a vertex that is an endpoint of a loop is said to be \textbf{adjacent to itself}.
+
+An edge is said to be \textbf{incident on} each of its endpoints, and two edges incident on the same endpoint are called \textbf{adjacent}. A vertex on which no edges are incident is called \textbf{isolated}.
+
+\subsubsection{Directed Graph / Digraph}
+A \textbf{directed graph}, or \textbf{digraph}, consists of two finite sets: a nonempty set \textit{V(G)} of vertices and a set \textit{D(G)} of directed edges, where each is associated with an ordered pair of vertices called its \textbf{endpoints}. If edge \textit{e} is associated with the pair (\textit{v, w}) of vertices, then \textit{e} is said to be the (\textbf{directed}) \textbf{edge} from \textit{v} to \textit{w}.
+
+\subsubsection{Simple Graph}
+A \textbf{simple graph} is a graph that does not have any loops or parallel edges. In a simple graph, an edge with endpoints \textit{v} and \textit{w} is denoted {\textit{v, w}}.
+
+\subsubsection{Complete Graph of \textit{n} Vertices}
+Let \textit{n} be a positive integer. A \textbf{complete graph on \textit{n} vertices}, denoted $K_n$, is a simple graph with \textit{n} vertices and exactly one edge connecting each pair of distinct vertices.
+
+\subsubsection{Complete Bipartite Graph on (\textit{m, n}) Vertices}
+Let \textit{m} and \textit{n} be positive integers. A complete bipartite graph on (\textit{m, n}) vertices, denoted $K_{m,n}$, is a simple graph with distinct vertices $v_1, v_2, \ldots , v_m$ and $w_1, w_2, \ldots , w_n$ that satisfies the following properties: For all $i, k = 1, 2, \ldots, m$ and for all $j, l = 1, 2, \ldots, n,$
+
+\begin{enumerate}
+\item There is an edge from each vertex $v_i$ to each vertex $w_j$.
+\item There is no edge from any vertex $v_i$ to any other vertex $v_k$
+\item There is no edge from any vertex $w_j$ to any other vertex $w_i$
+\end{enumerate}
+
+\subsubsection{Subgraph}
+A graph \textit{H} is said to be a \textbf{subgraph} of a graph \textit{G} if, and only if, every vertex in \textit{H} is also a vertex in \textit{G},every edge in \textit{H} is also an edge in \textit{G},and every edge in \textit{H} has the same endpoints as it has in \textit{G}.
+
+\subsubsection{Degree}
+Let \textit{G} be a graph and \textit{v} a vertex of \textit{G}. The \textbf{degree of \textit{v}}, denoted \textbf{deg(v)}, equals the number of edges that are incident on \textit{v}, with an edge that is a loop counted twice. The \textbf{total degree of \textit{G}} is the sum of the degrees of all the vertices of \textit{G}.
+
+\subsubsection{The Handshake Theorem}
+If \textit{G} is any graph, then the sum of the degrees of all the vertices of \textit{G} equals twice the number of edges of \textit{G}. Specifically, if the vertices of G are $v_1, v_2, \ldots, v_n,$ where n is a nonnegative integer, then
+
+\begin{eqnarray}
+\text{The total degree of \textit{G} } & = & deg(v_1) + deg(v_2) + \cdots + deg(v_n) \\
+& = & 2 \times (\text{the number of edge of \textit{G}})
+\end{eqnarray}
+
+This means that \textbf{the total degree of a graph is even}.
+
+\subsubsection{Proposition}
+In any graph there are an even number of vertices of odd degree.
+
+\subsubsection{Complement}
+If \textit{G} is a simple graph, the \textbf{complement of G}, denoted \textbf{G'}, is obtained as follows: The vertex set of \textit{G′} is identical to the vertex set of \textit{G}. However, two distinct vertices \textit{v} and \textit{w} of \textit{G′} are connected by an edge if, and only if, \textit{v} and \textit{w} are not connected by an edge in \textit{G}.
+
+\subsection{Trails, Paths, and Circuits}
+\subsubsection{Definitions}
+Let \textit{G} be a graph, and let \textit{v} and \textit{w} be vertices in \textit{G}.
+
+\begin{description}
+\item [Walk] A \textbf{walk from \textit{v} to \textit{w}} finite alternating sequence of adjacent vertices and edges of G. Thus a walk has the form
+
+\begin{equation}
+v_0 e_1 v_1 e_2 \cdots v_{n-1} e_n v_n
+\end{equation}
+
+where the \textit{v}’s represent vertices, the \textit{e}’s represent edges, $v_0 = v, v_n = w$, and for all $i = 1, 2, \ldots n, v_{i − 1}$ and $v_i$ are the endpoints of $e_i$. The \textbf{trivial walk from \textit{v} to \textit{v}} consists of the single vertex \textit{v}.
+
+\item [Trail] A \textbf{trail} from \textit{v} to \textit{w} is a walk from \textit{v} to \textit{w} that does not contain a repeated edge.
+
+\item [Path] A \textbf{path} from \textit{v} to \textit{w} is a trail that does not contain a repeated vertex.
+
+\item [Closed Walk] A \textbf{closed walk} is a walk that starts and ends at the same vertex.
+
+\item [Circuit] A \textbf{circuit} is a closed walk that contains at least one edge and does not contain a repeated edge.
+
+\item [Simple Circuit] A \textbf{simple circuit} is a circuit that does not have any other repeated vertex except the first and last.
+\end{description}
+
+\begin{center}
+\begin{tabular}{ |L|L|L|L|L| }
+    \hline
+    & \textbf{Repeated Edge?} & \textbf{Repeated Vertex?} & \textbf{Starts and Ends at Same Point?} & \textbf{Must Contain At Least One Edge?} \\ \hline
+    \textbf{Walk} & allowed & allowed & allowed & no \\ \hline
+    \textbf{Trail} & no & allowed & allowed & no \\ \hline
+    \textbf{Path} & no & no & no & no \\ \hline
+    \textbf{Closed Walk} & allowed & allowed & yes & no \\ \hline
+    \textbf{Circuit} & no & allowed & yes & yes \\ \hline
+    \textbf{Simple Circuit} & no & first and last only & allowed & yes \\ \hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Connected}
+Let \textit{G} be a graph. Two \textbf{vertices \textit{v} and \textit{w} of G are connected} if, and only if, there is a walk from \textit{v} to \textit{w}. The \textbf{graph G is connected} if, and only if, given \textit{any} two vertices \textit{v} and \textit{w} in \textit{G}, there is a walk from \textit{v} to \textit{w}. Symbolically,
+
+\begin{equation}
+G \ \text{is connected} \Leftrightarrow \forall \ \text{vertices} \ v, w \in V(G), \exists \ \text{a walk from \textit{v} to \textit{w}}.
+\end{equation}
+
+Let \textit{G} be a graph.
+\begin{itemize}
+\item If \textit{G} is connected, then any two distinct vertices of \textit{G} can be connected by a path.
+\item . If vertices \textit{v} and \textit{w} are part of a circuit in \textit{G} and one edge is removed from the circuit, then there still exists a trail from \textit{v} to \textit{w} in \textit{G}.
+\item If \textit{G} is connected and \textit{G} contains a circuit, then an edge of the circuit can be removed without disconnecting \textit{G}.
+\end{itemize}
+
+A graph \textit{H} is a connected component of a graph \textit{G} if, and only if,
+\begin{enumerate}
+\item \textit{H} is subgraph of \textit{G};
+\item \textit{H} is connected; and
+\item no connected subgraph of \textit{G} has \textit{H} as a subgraph and contains vertices or edges that are not in \textit{H}.
+\end{enumerate}
+
+\subsubsection{Euler Circuit}
+Let \textit{G} be a graph. An \textbf{Euler circuit} for \textit{G} is a circuit that contains every vertex and every edge of \textit{G}. That is, an Euler circuit for \textit{G} is a sequence of adjacent vertices and edges in \textit{G} that has at least one edge, starts and ends at the same vertex, uses every vertex of \textit{G} at least once, and uses every edge of \textit{G} exactly once.
+
+If a graph has an Euler circuit, then every vertex of the graph has positive even degree. If some vertex of a graph has odd degree, then the graph does not have an Euler circuit.
+
+\subsubsection{Euler Algorithm}
+If a graph G is connected and the degree of every vertex of G is a positive even integer, then G has an Euler circuit.
+
+\noindent
+\textbf{Proof: }
+Suppose that \textit{G} is any connected graph and suppose that every vertex of \textit{G} is a positive even integer. \textit{[We must find an Euler circuit for G.]} Construct a circuit \textit{C} by the following algorithm:
+\begin{description}
+\item[Step 1: ] Pick any vertex \textit{v} of \textit{G} at which to start.
+\textit{[This step can be accomplished because the vertex set of G is nonempty by assumption.]}
+
+\item[Step 2: ] Pick any sequence of adjacent vertices and edges, starting and ending at v and never repeating an edge. Call the resulting circuit C.
+\textit{[This step can be performed for the following reasons: Since the degree of each vertex of G is a positive even integer, as each vertex of G is entered by traveling on one edge, either the vertex is v itself and there is no other unused edge adja- cent to v, or the vertex can be exited by traveling on another previously unused edge. Since the number of edges of the graph is finite (by definition of graph), the sequence of distinct edges cannot go on forever. The sequence can eventu- ally return to v because the degree of v is a positive even integer, and so if an edge connects v to another vertex, there must be a different edge that connects back to v.]}
+
+\item[Step 3: ] Check whether \textit{C} contains every edge and vertex of \textit{G}. If so, \textit{C} is an Euler circuit, and we are finished. If not, perform the following steps.
+
+    \begin{description}
+    \item[Step 3a: ] Remove all edges of \textit{C} from \textit{G} and also any vertices that become isolated when the edges of \textit{C} are removed. Call the resulting subgraph \textit{G′}.
+    \textit{[Note that G′ may not be connected (as illustrated in Figure 10.2.4), but every vertex of G′ has positive, even degree (since removing the edges of C removes an even number of edges from each vertex, the difference of two even integers is even, and isolated vertices with degree 0 were removed.)]}
+
+    \item[Step 3b: ] Pick any vertex w common to both C and G′.
+    \textit{[There must be at least one such vertex since G is connected. (See exercise 44.) (In Figure 10.2.4 there are two such vertices: u and w.)]}
+
+    \item[Step 3c: ] Pick any sequence of adjacent vertices and edges of \textit{G′}, starting and ending at \textit{w} and never repeating an edge. Call the resulting circuit \textit{C′}.
+    \textit{[This can be done since each vertex of G′ has positive, even degree and G′ is finite. See the justification for step 2.]}
+
+    \item[Step 3d: ] Patch \textit{C} and \textit{C′} together to create a new circuit \textit{C′′} as follows: Start at \textit{v} and follow \textit{C} all the way to \textit{w}. Then follow \textit{C′} all the way back to \textit{w}. After that, continue along the untraveled portion of \textit{C} to return to \textit{v}.
+    \textit{[The effect of executing steps 3c and 3d for the graph of Figure 10.2.4 is shown in Figure 10.2.5.]}
+
+    \item[Step 3e: ] Let \textit{C = C′′} and go back to step 3.
+    \end{description}
+\end{description}
+
+Since the graph \textit{G} is finite, execution of the steps outlined in this algorithm must eventually terminate. At that point an Euler circuit for \textit{G} will have been constructed. (Note that because of the element of choice in steps 1, 2, 3b, and 3c, a variety of different Euler circuits can be produced by using this algorithm.)
+
+\subsubsection{Theorem}
+A graph \textit{G} has an Euler circuit if, and only if, \textit{G} is connected and every vertex of \textit{G} has positive even degree.
+
+\subsubsection{Corollary}
+Let \textit{G} be a graph, and let \textit{v} and \textit{w} be two distinct vertices of \textit{G}. There is an Euler path from \textit{v} to \textit{w} if, and only if, \textit{G} is connected, \textit{v} and \textit{w} have odd degree, and all other vertices of \textit{G} have positive even degree.
+
+\subsubsection{Hamiltonian Circuit}
+Given a graph \textit{G}, a Hamiltonian circuit for \textit{G} is a simple circuit that includes every vertex of \textit{G}. That is, a Hamiltonian circuit for \textit{G} is a sequence of adjacent vertices and distinct edges in which every vertex of \textit{G} appears exactly once, except for the first and the last, which are the same.
+
+If a graph \textit{G} has a Hamiltonian circuit, then \textit{G} has a subgraph \textit{H} with the following properties:
+
+\begin{enumerate}
+\item \textit{H} contains every vertex of \textit{G}.
+\item \textit{H} is connected.
+\item \textit{H} has the same number of edges as vertices.
+\item Every vertex of \textit{H} has degree 2.
+\end{enumerate}
+
+
+\subsection{Matrix Representations of Graphs}
+An \textbf{m $\times$ n} (read “\textit{m} by \textit{n}”) \textbf{matrix A over a set S} is a rectangular array of elements of \textit{S} arranged into \textit{m} rows and \textit{n} columns.
+
+We write \textbf{A} = $(a_{ij})$
+
+\subsubsection{Adjacency Matrix}
+Let \textit{G} be a directed graph with ordered vertices $v_1, v_2, \ldots , v_n$ . The adjacency matrix of \textit{G} is the $n \times n$ matrix $\textbf{A} = ( a_{ij} )$ over the set of nonnegative integers such that
+
+\begin{equation}
+a_{ij} = \text{the number of arrows from} \ v_i \ \text{to} \ v_j \ \text{for all} \ i, j = 1, 2, \ldots, n.
+\end{equation}
+
+\subsubsection{Adjacency Matrix}
+Let G be an undirected graph with ordered vertices $v_1, v_2, \ldots,v_n$. The adjacency matrix of G is the $n \times n$ matrix $A = ( a_{ij} )$ over the set of nonnegative integers such that
+
+\begin{equation}
+a_{ij} = \text{the number of edges connecting} \ v_i \ \text{and} \ v_j
+\end{equation}
+
+for all $i, j = 1, 2, \ldots, n$.
+
+\subsubsection{Symmetric}
+An $n \times n$ square matrix $A = ( a_{ij} )$ is called \textbf{symmetric} if, and only if, for all $i, j =
+1, 2, \ldots, n,$
+
+\begin{equation}
+a_{ij} = a_{ji}
+\end{equation}
+
+\subsubsection{Identity Matrix}
+For each positive integer \textit{n}, the $n \times n$ \textbf{identity matrix}, denoted \textbf{$I_n = (\delta {ij})$} or just \textbf{I} (if the size of the matrix is obvious from context), is the $n \times n$ matrix in which all the entries in the main diagonal are 1’s and all other entries are 0’s. In other words,
+
+\[
+\delta _{ij} =
+\begin{cases}
+1 \ \text{if} \ i = j \\
+0 \ \text{if} \ i \neq j
+\end{cases}
+\text{for all} \ i, j = 1, 2, \ldots, n
+\],
+
+\subsubsection{The Number of Walks}
+If \textit{G} is a graph with vertices $v_1,v_2, \ldots, v_m$ and \textit{A} is the adjacency matrix of \textit{G}, then for each positive integer \textit{n} and for all integers $i, j = 1, 2, ldots , m,$
+
+\begin{center}
+the \textit{ij}th entry of $A_n$ = the number of walks of length \textit{n} from $v_i$ to $v_j$.
+\end{center}
+
+\setcounter{subsection}{4}
+\subsection{Trees}
+\subsubsection{Terminology}
+A graph is said to be \textbf{circuit-free} if, and only if, it has no circuits. A graph is called a \textbf{tree} if, and only if, it is circuit-free and connected. A \textbf{trivial tree} is a graph that consists of a single vertex. A graph is called a \textbf{forest} if, and only if, it is circuit-free and not connected.
+
+\subsubsection{Vertex-Degree Relation}
+Any tree that has more than one vertex has at least one vertex of degree 1.
+
+\subsubsection{Terminal Vertex}
+Let \textit{T} be a tree. If \textit{T} has only one or two vertices, then each is called a \textbf{terminal vertex}. If \textit{T} has at least three vertices, then a vertex of degree 1 in \textit{T} is called a \textbf{terminal vertex} (or a \textbf{leaf}), and a vertex of degree greater than 1 in \textit{T} is called an \textbf{internal vertex} (or a \textbf{branch vertex}).
+
+\subsubsection{Edges And Vertices}
+For any positive integer \textit{n}, any tree with \textit{n} vertices has \textit{n - 1} edges.
+
+\subsection{Connected, Circuit}
+If \textit{G} is any connected graph, \textit{C} is any circuit in \textit{G}, and any one of the edges of \textit{C} is removed from \textit{G}, then the graph that remains is connected.
+
+
+\setcounter{section}{10}
+\setcounter{subsection}{5}
+
+\subsection{Rooted Trees}
+A \textbf{rooted tree} is a tree in which there is one vertex that is distinguished from the others and is called the \textbf{root}. The \textbf{level} of a vertex is the number of edges along the unique path between it and the root. The \textbf{height} of a rooted tree is the maximum level of any vertex of the tree. Given the root or any internal vertex \textit{v} of a rooted tree, the \textbf{children} of \textit{v} are all those vertices that are adjacent to \textit{v} and are one level farther away from the root than \textit{v}. If \textit{w} is a child of \textit{v}, then \textit{v} is called the \textbf{parent} of \textit{w}, and two distinct vertices that are both children of the same parent are called \textbf{siblings}. Given two distinct vertices \textit{v} and \textit{w}, if \textit{v} lies on the unique path between \textit{w} and the root, then \textit{v} is an \textbf{ancestor} of \textit{w} and \textit{w} is a \textbf{descendant} of \textit{v}.
+
+\subsection{Binary Tree}
+A \textbf{binary tree} is a rooted tree in which every parent has at most two children. Each child in a binary tree is designated either a \textbf{left child} or a \textbf{right child} (but not both), and every parent has at most one left child and one right child. A \textbf{full binary tree} is a binary tree in which each parent has exactly two children.
+
+Given any parent \textit{v} in a binary tree \textit{T}, if \textit{v} has a left child, then the \textbf{left subtree} of \textit{v} is the binary tree whose root is the left child of \textit{v}, whose vertices consist of the left child of \textit{v} and all its descendants, and whose edges consist of all those edges of \textit{T} that connect the vertices of the left subtree. The \textbf{right subtree} of \textit{v} is defined analogously.
+
+\subsubsection{Theorem}
+If \textit{k} is a positive integer and \textit{T} is a full binary tree with \textit{k} internal vertices, then \textit{T} has a total of \textit{2k + 1} vertices and has \textit{k + 1} terminal vertices.
+
+\subsubsection{Height And Terminal Vertices}
+For all integers $h \geq 0$, if \textit{T} is any binary tree with of height \textit{h} and \textit{t} terminal vertices, then
+
+\begin{equation}
+t \leq 2^h.
+\end{equation}
+
+Equivalently,
+
+\begin{equation}
+log _2 t \leq h
+\end{equation}
+
+\subsection{Spanning Trees and Shortest Paths}
+A \textbf{spanning tree} for a graph \textit{G} is a subgraph of \textit{G} that contains every vertex of \textit{G} and is a tree.
+
+\subsubsection{Proposition}
+\begin{itemize}
+\item Every connected graph has a spanning tree.
+\item Any two spanning trees for a graph have the same number of edges.
+\end{itemize}
+
+\subsubsection{Terminology}
+A \textbf{weighted graph} is a graph for which each edge has an associated positive real number \textbf{weight}. The sum of the weights of all the edges is the \textbf{total weight} of the graph. A \textbf{minimum spanning tree} for a connected weighted graph is a spanning tree that has the least possible total weight compared to all other spanning trees for the graph.
+If \textit{G} is a weighed graph and \textit{e} is an edge of \textit{G}, then \textbf{w(e)} denotes the weight of \textit{e} and \textbf{w(G)} denotes the total weight of \textit{G}.
+
+\subsubsection{Kruskal’s Algorithm}
+\begin{tabular}{ |c|c|c|c| }
+\hline
+Iteration Number & Edge Considered & Weight & Action Take  \\
+\hline
+\end{tabular}
+\end{document}

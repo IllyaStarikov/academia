@@ -1,0 +1,55 @@
+\subsection{Divergence and Curl}
+\subsubsection{Divergence of a Vector Field}
+The \textbf{divergence} of a vector field $\mathbf{F} = \langle f,\, g,\, h \rangle$ that is differentiable on a region of $\mathbb{R}^3$ is
+
+\begin{equation}
+    \text{div} \, \mathbf{F} = \mathbf{\nabla \cdot F} = \frac{\partial f}{\partial x} + \frac{\partial g}{\partial y} + \frac{\partial h}{\partial z}
+\end{equation}
+
+If $\mathbf{\nabla \cdot F} = 0$, the vector field is \textbf{source free.}
+
+\subsubsection{Divergence of Radial Vector Fields}
+For a real number $p$, the divergence of the radial vector field
+
+\begin{equation}
+    \mathbf{F} = \frac{\mathbf{r}}{|r|^p} = \frac{\langle x,\, y,\, z \rangle}{(x^2 + y^2 + z^2)^\frac{p}{2}} \ \text{is} \ \nabla \cdot \mathbf{F} = \frac{3 - p}{|\mathbf{r}|^p}
+\end{equation}
+
+\subsubsection{Curl of a Vector Field}
+The \textbf{curl} of a vector field $\mathbf{F} = \langle f,\, g,\, h \rangle$ that is differentiable on a region of $\mathbb{R}^3$ is
+
+\begin{equation}
+    \nabla \times \mathbf{F} = \text{curl} \, \mathbf{F} = \left( \frac{\partial h}{\partial y} - \frac{\partial g}{\partial z} \right)\ihat + \left( \frac{\partial f}{\partial z} - \frac{\partial h}{\partial x} \right)\jhat + \left( \frac{\partial g}{\partial x} - \frac{\partial f}{\partial y} \right)\khat
+\end{equation}
+
+If $\nabla \times \mathbf{F = 0}$, the vector field is \textbf{irrotational}.
+
+\subsubsection{Curl of a Conservative Vector Field}
+The \textbf{general rotation vector field} is $\mathbf{F = a \times r}$, where the nonzero constant vector $\mathbf{a} = \langle a_1,\, a_2,\, a_3 \rangle$ is the axis of ration and $\mathbf{r} = \langle x,\, y,\, z \rangle$. For all nonzero choices of $\mathbf{a}, | \nabla \times \mathbf{F} | = 2|\mathbf{a}|$ and $\mathbf{\nabla \cdot F} = 0$. The constant angular speed of the vector field is
+
+\begin{equation}
+    \omega = |\mathbf{a}| = \frac{1}{2}| \nabla \times \mathbf{F} |
+\end{equation}
+
+\subsubsection{Curl of a Conservative Vector Field}
+Suppose that $\mathbf{F}$ is a conservative vector field on an open region $D$ of $\mathbb{R}^3$. Let $\mathbf{F} = \nabla \varphi$, where $\varphi$ is a potential function with continuous second partial derivatives on $D$. Then $\nabla \times \mathbf{F} = \nabla \times \nabla \varphi = \mathbf{0}$; that is, the curl of the gradient is the zero vector and $\mathbf{F}$ is irrotational.
+
+\subsubsection{Divergence of the Curl}
+Suppose that $\mathbf{F} = \langle f,\, g,\, h \rangle$, where $f$,\, $g$,\, and $h$ have continuous second partial derivatives. Then $\nabla \cdot \left( \nabla \times \mathbf{F} \right) = 0$: The divergence of the curl is zero.
+
+\subsubsection{Product Rule for the Divergence}
+Let $u$ be a scalar-valued functino that is differentiable on a region $D$ and let $\mathbf{F}$ be a vector field that is differentiable on $D$. Then
+
+\begin{equation}
+    \nabla \cdot (u \mathbf{F}) = \nabla u \cdot \mathbf{F} + u (\nabla \cdot \mathbf{F})
+\end{equation}
+
+\subsubsection{Properties of a Conservative Vector Field}
+Let \textbf{F} be a conservative vector field whose components have continuous second partial derivatives on an open connected region $D$ in $\mathbb{R}^3$. Then $\mathbf{F}$ has the following equivalent properties.
+
+\begin{enumerate}
+    \item There exists a potential function $\varphi$ such that $\mathbf{F} = \nabla \varphi$
+    \item $\int _C \mathbf{F} \cdot d\mathbf{r} = \varphi (B) - \varphi (A)$ for all points $A$ and $B$ in $D$ and all smooth oriented curves $C$ from $A$ and $B$.
+    \item $\oint _C \mathbf{F} \cdot d \mathbf{r} = 0$ on all simple smooth closed oriented curves $C$ in $D$.
+    \item $\nabla \times \mathbf{F} = \mathbf{0}$ at all points of $D$.
+\end{enumerate}

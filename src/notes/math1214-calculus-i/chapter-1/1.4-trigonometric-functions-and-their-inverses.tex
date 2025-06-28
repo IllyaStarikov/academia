@@ -1,0 +1,67 @@
+%
+%  1.4-trigonometric-functions-and-their-inverses.tex
+%  chapter-1
+%
+%  Created by Illya Starikov on 05/17/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\subsection{Trigonometric Functions and Their Inverses}
+Let $P(x,\, y)$ be a point on a circle of radius $r$ associated with the angle $\theta$. Then
+
+\begin{align}
+    \sin\theta = \frac{y}{r} \qquad \cos\theta &= \frac{x}{r} \qquad \tan\theta = \frac{y}{x} \\
+    \cot\theta = \frac{x}{y} \qquad \sec\theta &= \frac{r}{x} \qquad \csc\theta = \frac{r}{y} \\
+\end{align}
+
+\subsubsection{Trigonometric Identities}
+\noindent\textbf{Reciprocal Identities}
+\begin{align}
+    \tan\theta = \frac{\sin\theta}{\cos\theta} &\qquad \cot\theta = \frac{1}{\tan\theta} = \frac{\cos\theta}{\sin\theta} \\
+    \csc\theta = \frac{1}{\sin\theta} &\qquad \sec\theta = \frac{1}{\cos\theta}
+\end{align}
+
+\noindent\textbf{Pythagorean}
+\begin{equation}
+    \sin^2\theta + \cos^2\theta = 1 \qquad 1 + \cot^2\theta = \csc^2\theta \qquad \tan^2\theta + 1 = \sec^2\theta
+\end{equation}
+
+\noindent\textbf{Double- and Half-Angle Formulas}
+\begin{align}
+    \sin 2\theta = 2\sin\theta \cos\theta &\qquad \cos 2\theta = \sin^2\theta - \sin^2\theta \\
+    \cos^2\theta = \frac{1 + \cos 2\theta}{2} &\qquad \sin^2\theta = \frac{1 - \cos 2\theta}{2}
+\end{align}
+
+\subsubsection{Period of Trigonometric Function}
+The function $\sin\theta$, $\cos\theta$, $\sec\theta$, and $\csc\theta$ have a period of $2\pi$
+
+\begin{align}
+    \sin(\theta + 2\pi) = \sin\theta &\qquad \cos(\theta + 2\pi) = \cos\theta \\
+    \sec(\theta + 2\pi) = \sec\theta &\qquad \csc(\theta + 2\pi) = \csc\theta
+\end{align}
+
+for all $\theta$ in the domain.
+
+The functions $\tan\theta$ and $\cot \theta$ have a period of $\pi$:
+
+\begin{equation}
+    \tan(\theta + \pi) = \tan\theta \qquad \cot(\theta + \pi) = \cot\theta
+\end{equation}
+
+for all $\theta$ in the domain.
+
+\subsubsection{Inverse Sine and Cosine}
+$y = \sin^{-1} x$ is the value of $y$ such that $x = \sin y$, where $-\frac{\pi}{2} \leq y \leq \frac{\pi}{2}$. $y = \cos^{-1} x$ is the value of $y$ such that $x = \cos y$, where $0 \leq y \leq \pi$. The domain of both $\sin^{-1} x$ and $\cos^{-1} x$ is $\{ x: -1 \leq x \leq 1 \}$.
+
+\subsubsection{Other Inverse Trigonometric Functions}
+\begin{itemize}
+    \item $\tan^{-1} x$ is the value of $y$ such that $x = \tan y$, where $-\frac{\pi}{2} < \frac{\pi}{2}$.
+    \item $\cot^{-1} x$ is the value of $y$ such that $x = \tan y$, where $0 < y < \pi$.
+\end{itemize}
+
+The domain of both $\tan^{-1} x$ and $\cot^{-1} x$ is $\{ x: -\infty < x < \infty \}$
+
+\begin{itemize}
+    \item $\sec^{-1} x$ is the value of $y$ such that $x = \sec y$, where $0 < y < \pi$ with $y \neq \frac{\pi}{2}$
+    \item $\tan^{-1} x$ is the value of $y$ such that $x = \tan y$, where $-\frac{\pi}{2} < \frac{\pi}{2}$.
+\end{itemize}

@@ -1,0 +1,45 @@
+\subsection{Directional Derivatives and the Gradient}
+\subsubsection{Directional Derivative}
+Let $f$ be a differentiable at $(a,\, b)$ and let $\textbf{u} = \langle \cos \theta,\, \sin \theta \rangle$ be a unit vector in the $xy$-plane. The \textbf{directional derivatives of $f$ at $(a,\, b)$} in the direction of $\textbf{u}$ is
+
+\begin{equation}
+    D _u f(a,\, b) = \lim _{h \rightarrow 0} \frac{f(a + h\cos \theta,\, b + h \sin \theta) - f (a,\, b)}{h}
+\end{equation}
+
+provided the limit exits.
+
+\subsubsection{Directional Derivative}
+Let $f$ be differentiable on $(a,\, b)$ and let $\textbf{u} = \langle u_1,\, u_2 \rangle$ be a unit vecor in the $x,\, y$-plane. The \textbf{directional derivative of $f$ at a $(a,\, b)$ in the direction of $u$} is
+
+\begin{equation}
+    D_u f(a,\, b) = \langle f_x (a,\, b),\, f_y (a,\, b) \rangle \cdot \langle u_1,\, u_2 \rangle
+\end{equation}
+
+\subsubsection{Gradient (Two Dimensions)}
+Let $f$ be differentiable at the point $(x,\, y)$. The \textbf{gradient} of $f$ at $(x,\, y)$ is the vector-valued function
+
+\begin{equation}
+    \nabla f(x,\, y) = \langle f_x (x,\, y),\, f_y (x,\, y) \rangle = f_x (x,\, y) \ihat + f_y (x,\, y) \jhat
+\end{equation}
+
+\subsubsection{Directions of Change}
+Let $f$ be differentiable at $(a,\, b)$ with $\nabla f(a,\, b) \neq \mathbf{0}$
+
+\begin{enumerate}
+    \item $f$ has its maximum rate of increase at $(a,\, b)$ in the direction of the gradient $\nabla f (a,\, b)$. The rate of increase in this direction is $|\nabla f(a,\, b)|$
+    \item $f$ has its maximum rate of decrease at $(a,\, b)$ in the direction of $-\nabla f(a,\, b)$. The rate of decrease in this direction is $-|\nabla f(a,\, b)|$.
+    \item The directional derivative is zero in any direction orthogonal to $\nabla f (a,\, b)$.
+\end{enumerate}
+
+\subsubsection{The Gradient and Level Curves}
+Given a function $f$ differentiable at $(a,\, b)$, the line tangent to the level curve of $f$ at $(a,\, b)$ is orthogonal to the gradient $\nabla f(a,\, b)$, provided $\nabla f(a,\, b) \neq \mathbf{0}$.
+
+\subsubsection{Gradient and Directional Derivative in Three Dimensions}
+Let $f$ be differentiable at the point $(x,\, y,\, z)$. The \textbf{gradient} of $f$ at $(x,\, y,\, z)$ is the vector-valued function
+
+\begin{align}
+    \nabla f(x,\, y,\, z) &= \langle f_x (x,\, y,\, z),\, f_y (x,\, y,\, z),\, f_z (x,\, y,\, z) \rangle \\
+    &= f_x (x,\, y,\, z)\ihat + f_y (x,\, y,\, z)\jhat + f_z (x,\, y,\, z)\khat
+\end{align}
+
+The \textbf{directional derivative} of $f$ in the direction of the unit vector $\mathbf{u} = \langle u_1,\, u_2,\, u_3 \rangle$ at the point $(a,\, b,\, c)$ is $D_u f(a,\, b,\, c) = \nabla f(a,\, b,\, c) \cdot \mathbf{u}$

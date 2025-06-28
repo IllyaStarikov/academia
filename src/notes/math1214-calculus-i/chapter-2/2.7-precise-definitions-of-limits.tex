@@ -1,0 +1,40 @@
+%
+%  2.7-precise-definitions-of-limits.tex
+%  chapter-2
+%
+%  Created by Illya Starikov on 06/17/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\subsection{Precise Definitions of Limits}
+Assume that $f(x)$ exists for all $x$ in some open interval containing $a$, except possibly at $a$. We stay that the \textbf{limit of $f(x)$ as $x$ approaches $a$ is $L$}, written
+
+\begin{equation}
+    \lim_{x \rightarrow a} f(x) = L
+\end{equation}
+
+If for \textit{any} number $\epsilon > 0$ there is a corresponding number $\delta > 0$ such that
+
+\begin{equation}
+    |f(x) - L| < \epsilon whenver 0 < |x - a| < \epsilon 
+\end{equation}
+
+\subsubsection{Steps for proving that $\lim_{x \rightarrow a} f(x) = L$}
+
+\begin{enumdescript}
+    \item[Find $\espilon$] Let $\epsilon$ be an arbitrary positive number. Use the inequality $|f(x) - L| < \epsilon$ to find a condition of the form $|x - a| < \delta$, where $\delta$ depends only on the value of $\epsilon$
+    \item[Write a proof] For any $\epsilon > 0$, assume $0 < |x - a| < \delta$ and use the relationship between $\epsilon$ and $\delta$ found in the previous step to prove that $|f(x) - L| < \epsilon$
+\end{enumdescript}
+
+\subsubsection{Two-Sided Infinite Limit}
+The \textbf{infinite limit} $\limit{x \rightarrow a} f(x) = \infty$ means that for any positive number $N$ there exists a corresponding $\delta > 0$ such that
+
+\begin{equation}
+    f(x) > N \qquad\text{whenever}\qquad 0 < |x - a| < \epsilon
+\end{equation}
+
+\subsubsection{Steps for proving that $\limit{x \rightarrow a} f(x) = \infty$}
+\begin{enumdescript}
+    \item[Find $\delta$] Let $N$ be an arbitrary positive number. Use the statement $f(x) > N$ to find an inequality of the form $|x - a| < \delta$, where $\delta$ depends only on $N$.
+    \item[Write a proof] For any $N > 0$, assume $0 < |x - a| < \delta$ and use the relationship between $N$ and $\delta$ found in the previous step to prove that $|f(x) - L| > N$
+\end{enumdescript}

@@ -1,0 +1,73 @@
+\subsection{Cross Product}
+Given two nonzero vectors \uvec \ and \vvec \ in $\mathbb{R}^3$, the \textbf{cross product} $\uvec \times \vvec$ is a vector with magnitude
+
+\begin{align}
+    |\uvec \times \vvec| = |\uvec||\vvec| \sin \theta
+\end{align}
+
+where $0 \leq \theta \leq \pi$ is the angle between \uvec and \vvec. The direction of $\uvec \times \vvec$ is given by the \textbf{right-hand rule}: When you put the vectors tail to tail and let the fingers of your right hand curl from \uvec to \vvec the direction of $\uvec \times \vvec$ is the direction of your thumb, orthogonal to both \uvec and \vvec. When $\uvec \times \vvec = 0$, the direction of $\uvec \times \vvec$ undefined.
+
+\subsubsection{Geometry of the Cross Product}
+Let \uvec and \vvec be two nonzero vectors in $\mathbb{R}^3$.
+
+\begin{enumerate}
+    \item The vectors \uvec and \vvec are parallel ($\theta = 0$ or $\theta = \pi$) if and only if $\uvec \times \vvec = 0$.
+    \item If \uvec and \vvec are two sides of a parallelogram, then the area of the parallelogram is
+
+    \begin{align}
+        |\uvec \times \vvec| = |\uvec||\vvec| \sin \theta
+    \end{align}
+\end{enumerate}
+
+\subsubsection{Properties of the Cross Product}
+Let \uvec, \vvec, and \wvec be nonzero vectors in $\mathbb{R}^3$, and let $a$ and $b$ be scalars.
+
+\begin{align}
+    \uvec \times \vvec = -(\vvec \times \uvec) && &\text{Anticommutative property} \\
+    (a \uvec) \times (b \vvec) = ab(\uvec \times \vvec) && &\text{Associative property} \\
+    \uvec \times (\vvec + \wvec) = (\uvec \times \vvec) + (\uvec \times \wvec) && &\text{Distributive property} \\
+    (\uvec + \vvec) \times \wvec = (\uvec \times \wvec) + (\vvec \times \wvec) && &\text{Distributive property}
+\end{align}
+
+\subsubsection{Cross Products of Coordinate Unit Vectors}
+\begin{center}
+    \tdplotsetmaincoords{60}{125}
+    \begin{tikzpicture}
+            [tdplot_main_coords,
+                cube/.style={very thick,black},
+                grid/.style={very thin,gray},
+                axis/.style={->,blue,thick}]
+
+        %draw a grid in the x-y plane
+        \foreach \x in {-1.5,0,...,3.5}
+            \foreach \y in {-1.5,0,...,3.5}
+            {
+                \draw[grid] (\x,-1.5) -- (\x,3.5);
+                \draw[grid] (-1.5,\y) -- (3.5,\y);
+            }
+
+
+        %draw the axes
+        \draw[axis] (0,0,0) -- (5,0,0) node[anchor=west]{$x = \ihat$};
+        \draw[axis] (0,0,0) -- (0,5,0) node[anchor=west]{$y = \jhat$};
+        \draw[axis] (0,0,0) -- (0,0,5) node[anchor=west]{$z = \khat$};
+        \end{tikzpicture}
+\end{center}
+
+\begin{align}
+    \ihat \times \jhat &= -(\jhat \times \ihat) = \khat \\
+    \jhat \times \khat &= -(\khat \times \jhat) = \ihat \\
+    \khat \times \ihat &= -(\ihat \times \khat) = \jhat \\
+    \ihat \times \ihat &= \jhat \times \jhat = \khat \times \khat = 0
+\end{align}
+
+\subsubsection{Evaluating the Cross Product}
+Let $\uvec = u_1\ihat + u_2\jhat + u_3\khat$ and $\vvec = v_1\ihat + v_2\jhat + v_3\khat$. Then
+
+\begin{equation}
+    \uvec \times \vvec
+    = \begin{vmatrix} \ihat & \jhat & \khat \\ u_1 & u_2 & u_3 \\ v_1 & v_2 & v_3 \end{vmatrix}
+    = \begin{vmatrix} u_2 & u_3 \\ v_2 & v_3 \end{vmatrix}\ihat
+    - \begin{vmatrix} u_1 & u_3 \\ v_1 & v_3 \end{vmatrix}\jhat
+    + \begin{vmatrix} u_1 & u_2 \\ v_1 & v_2 \end{vmatrix}\khat
+\end{equation}

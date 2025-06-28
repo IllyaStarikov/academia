@@ -1,0 +1,109 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+
+\setcounter{section}{10}
+\setcounter{subsection}{2}
+\subsection{Matrix Representations of Graphs}
+\subsubsection{Example 10.3.19}
+\[\text{Let} \ A =
+\begin{bmatrix}
+1 & 1 & 2 \\
+1 & 0 & 1 \\
+2 & 1 & 0
+\end{bmatrix}
+\]
+
+
+\[
+A^2 =
+\begin{bmatrix}
+1 & 1 & 2 \\
+1 & 0 & 1 \\
+2 & 1 & 0
+\end{bmatrix}
+\times
+\begin{bmatrix}
+1 & 1 & 2 \\
+1 & 0 & 1 \\
+2 & 1 & 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+6 & 3 & 3 \\
+3 & 2 & 2 \\
+3 & 2 & 5
+\end{bmatrix}
+\]
+
+\[
+A^3 =
+\begin{bmatrix}
+1 & 1 & 2 \\
+1 & 0 & 1 \\
+2 & 1 & 0
+\end{bmatrix}
+\times
+\begin{bmatrix}
+6 & 3 & 3 \\
+3 & 2 & 2 \\
+3 & 2 & 5
+\end{bmatrix}
+=
+\begin{bmatrix}
+15 & 9 & 15 \\
+9 & 5 & 8 \\
+15 & 8 & 8
+\end{bmatrix}
+\]
+
+
+Assume \textit{A} is an adjacney matrix. How many walks of length 2 from $v_1$ to $v_3$? 3. \\
+
+Assume \textit{A} is an adjacney matrix. How many walks of length 3 from $v_1$ to $v_3$? 15. \\
+
+Examine the calculations you performed to find five walks of length 2 form $v_3$ to $v_3$. Then draw \textit{G} and find the walks by visual inspection.
+
+\begin{equation}
+2 \cdot 2 + 1 \cdot 1 + 0 \cdot 0
+\end{equation}
+
+Left edges from $v_3$ to $v_1$, right is edges from $v_1$ to $v_3$. $2 \times 2$ = walk of length 2 from $v_3$ to $v_3$ via $v_1$.
+
+\setcounter{subsection}{1}
+\subsection{Matrix Representations of Graphs}
+\textit{Graph in book}.
+\begin{itemize}
+\item How many from \textit{a} to \textit{c}? \textbf{4.}
+\item How many trails from \textit{a} to \textit{c}? \textbf{4 + 3 + 2 + 1}
+\item How many walks form \textit{a} to \textit{c}? $\infty$
+\end{itemize}
+
+\subsubsection{Example 10.3.6b}
+An edge whose removal disconnects graph it is part of is called an \underline{bridge}. Find the bridge in:
+
+\textit{The graph is in the book}
+
+\begin{itemize}
+\item $<v_7, v_8>$
+\item $<v_3, v_4>$
+\item $<v_1, v_2>$
+\end{itemize}
+
+\subsubsection{Example 10.2.8d}
+Find the number of connected components in: \textit{Image in book.} \textbf{2.}
+
+\subsubsection{Euler Circuit}
+Let \textit{G} be a graph. An Euler circuit for \textit{G} is a circuit that contains every vertex and every every edge of \textit{G}. That is, an Euler Circuit for \textit{G} is a sequence of adjacent vertices and edges in \textit{G} that has at least one edge, starts and ends in the same vertex, uses every vertex of \textit{G} at least once, and uses every edge exactly edge exactly one.
+
+\subsubsection{Theorem 10.2.2}
+If a graph has an Euler circuit, then every vertex has even degree.
+
+\subsubsection{Theorem 10.2.3}
+if a graph \textit{G} is connected and the degree of every vertex is even, then \textit{G} has an Euler circuit.
+
+\subsubsection{Example 10.2.6}
+\textit{Insert graph here.}
+
+
+\end{document}

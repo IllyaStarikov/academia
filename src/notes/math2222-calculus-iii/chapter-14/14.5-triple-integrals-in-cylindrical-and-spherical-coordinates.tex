@@ -1,0 +1,47 @@
+\subsection{Triple Integrals in Cylindrical and Spherical Coordinates}
+\subsubsection{Transformations Between Cylindrical and Rectangular Coordinates}
+
+\begin{center}
+    \begin{tabular}{cc}
+        \textbf{Rectangular \textrightarrow \ Cylindrical} & \textbf{Cylindrical \textrightarrow \ Rectangular} \\
+        $r^2 = x^2 + y^2$ & $x = r \cos\theta$ \\
+        $\tan\theta = \nicefrac{y}{x}$ & $y = r \sin\theta$ \\
+        $z = z$ & $z = z$ \\
+    \end{tabular}
+\end{center}
+
+\subsubsection{Triple Integrals in Cylindrical Coordinates}
+Let $f$ be continuous over the region
+
+\begin{equation}
+    D = \{ (r,\, \theta,\, z): g(\theta) \leq r \leq h(\theta),\, \alpha \leq \theta \leq \beta,\, G(x,\, y) \leq z \leq H(x,\, y). \}
+\end{equation}
+
+Then $f$ is integrable over $D$ and the triple integral of $f$ over $D$ in cylindrical coordinates is
+
+\begin{equation}
+    \iiint \limits _D f(r,\, \theta,\, z) \,dV = \int _\alpha ^\beta \int _{g(\theta)} ^{h(\theta)} \int _{G(r \cos\theta,\, r\sin\theta)} ^{H(r \cos\theta,\, r\sin\theta)} f(r,\, \theta,\, z) \,dz \ r \,dr \,d\theta
+\end{equation}
+
+\subsubsection{Tranformations Between Spherical and Rectangular Coordinates}
+\begin{center}
+    \begin{tabular}{cc}
+        \textbf{Rectangular \textrightarrow \ Spherical} & \textbf{Spherical \textrightarrow \ Rectangular} \\
+        $\rho^2 = x^2 + y^2 + z^2$ & $x = \rho \sin \varphi \cos \theta$ \\
+        Use trigonometry to find $\varphi$ and $\theta$ & $y = \rho \sin \varphi \sin \theta$ \\
+        & $z = \rho \cos \varphi$\\
+    \end{tabular}
+\end{center}
+
+\subsubsection{Triple Integrals in Spherical Coordinates}
+Let $f$ be continuous over the region
+
+\begin{equation}
+    D = \{ (\rho,\, \varphi,\, \theta): g(\varphi,\, \theta) \leq \rho \leq h(\varphi,\, \theta),\, a \leq \varphi b,\, \alpha \leq \theta \leq \beta \}
+\end{equation}
+
+Then $f$ is integrable over $D$, and the triple integral of $f$ over $D$ in spherical coordinates is
+
+\begin{equation}
+    \iiint \limits _D \, f(\rho,\, \varphi,\, \theta) dV = \int _\alpha ^\beta \int _a ^b \int _{g(\varphi,\, \theta)} ^{h(\varphi,\, \theta)} f(\rho,\, \varphi,\, \theta) \rho^2 \sin \varphi \ d\rho\, d\varphi\, d\theta
+\end{equation}

@@ -1,0 +1,36 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{article}
+
+\input{macros}
+\chapterNumber{4}
+
+\begin{document}
+\section{I/O Port Programming}
+\begin{itemize}
+    \item \texttt{Port 0} is weird, no pull up transistor
+    \item \texttt{Port 0} also has bit addressability
+    \item Only when ALE is set will the data be treated as an address \texttt{P0}
+    \item \texttt{Port 1} general input/output port. Boring port.
+    \item \texttt{Port 2} is date for input/output and addressing. Meaning it does not need pull up resistors.
+    \item \texttt{Port 3} has special functions.
+    \item For duty cycle.
+\end{itemize}
+
+\begin{align}
+    f &= 5 \text{kHZ} \implies T = 200 \mu s \\
+    \frac{200}{1.085} &= 184 \text{MC} \implies 92 \text{ iterations} \\
+    \frac{92}{5} &= 18.4
+\end{align}
+
+\begin{itemize}
+    \item I/0 Example --- 2
+    \begin{itemize}
+        \item We'll use \texttt{CJNE A, \#} or \texttt{CJNE A, dir}
+        \item Also, \texttt{SUBB}
+    \end{itemize}
+\end{itemize}
+
+
+
+
+\end{document}

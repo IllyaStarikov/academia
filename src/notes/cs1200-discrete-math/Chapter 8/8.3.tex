@@ -1,0 +1,64 @@
+\documentclass[12pt]{article}
+\usepackage{amsfonts}
+\begin{document}
+\section*{Reflexivity, Symmetry, Transitivity}
+\subsection*{Properties of Congruence Modulo 3}
+Define relation T on $ \mathbb{Z} $ as follows: $\forall m, n \in \mathbb{Z}, m \ T \ n \Leftrightarrow 3 \ | \ (m - n)$
+
+\begin{enumerate}
+\item \textbf{Reflexive?}
+Yes. Proof: Let $m \in \mathbb{Z}$. We must show m T m. Now \textit{m - m = 0}. But \textit{3 | 0} since $0 = 3 \times 0$. Hence \textit{3 | (m - m)}. Thus by definition of T, \textit{m T m}.
+
+\item \textbf{Symmetric?}
+Yes. Proof: Left $m, n \in \mathbb{Z}, m T m$. We must show that $n \  T \ m$. By definition of \textit{T}. Since $m \ T \ n$, then \textit{3 | (m - n)}. Dy definition of divides, $\exists k \in \mathbb{Z}, m - n = 3k.$ Multiplication on both sides by \textit{-1} gives $n - m = 3(-k)$. Since $-k \in \mathbb{Z}, 3 | (n - m)$. Hence, by definition of $T, n \ T \ m$. 
+
+\item \textbf{Transitive?}
+Hell to the yes. Proof: Let $m, n, p \in \mathbb{Z}, m \ T \ n \bigwedge n \ T \ p $. We must show $m \ T \ p$. By definition of \textit{T}, since $ m \ T \ n \bigwedge n \ T \ p$, then $ 3 | (m - n) \bigwedge 3 | (n - p)$. By definition of divides, $\exists r \in \mathbb{Z}, m - n = 3r \bigwedge \exists s \in \mathbb{Z}, n - p = 3s$ Adding the two equations gives $(m - n) + (n - p) = 3r +3s$ and simplifying gives $m - p = 3(r+s)$. Since $r + s \in \mathbb{Z}, 3 | (m - p)$. Hence, by definition of \textit{T}, $m \ T \ p$.
+\end{enumerate}
+
+\subsection*{Transitive Closure}
+Let \textit{A} be a set and \textit{R} a relation on \textit{A}. The \underline{Transitive Closure} of R is the relation $R^t$ on \textit{A} that satisfies the following three properties:
+
+\begin{enumerate}
+\item $R^t$ is transitive.
+\item $R \subset R^{t}$.
+\item If \textit{S} is any other transitive relation that contains \textit{R}, then $R^{t} \subset S$
+\end{enumerate}
+
+\subsubsection*{Example}
+Let $A = \{0,1,2,3\}$ and Relation \textit{R} on A is $R = \{(0,1),(1,2),(2,3)\}$. Find the transitive closure of R.
+
+\noindent
+Answer: $\{(0,1),(1,2),(2,3)\} \subset R^{t}. R^{t} = \{(0,1),(0,2),(0,3),(1,2),(1,3),(2,3)\}$
+
+\section*{Equivalent Relations}
+\subsection*{Partition}
+A partition of set \textit{A} is a set of mutually disjoint \textbf{non-empty} subsets of \textit{A} whose union is \textit{A}. 
+
+Give a partition of set \textit{A}, the relation induced by the partition, \textit{R}, is defined as follows: $\forall x,y, \in A, x \ R \ y \Leftrightarrow \exists$ subsets \textit{Ai} of the partition, $x, y \in Ai$.
+
+\subsubsection*{Example}
+Let $A = \{ 0, 1, 2, 3, 4 \}$ and consder the following partition of \textit{A}: $ \{0, 3, 4 \}, \{1\}, \{2\}$. Find the relation \textit{R} induced by this partition.
+
+\noindent
+Answer: $R = \{ (0,0), (0,3), (0,4), (1,1), (2,2) \}$
+
+\subsubsection*{Theorem}
+Let \textit{A} be a set with partition and let \textit{R} be the relation induced by the partition. Then \textit{R} is \emph{reflexive, symmetric, and transitive}.
+
+Proof: Suppose A is a set with partition $\{ A_1, A_2, \ldots , A_n \}$. Without loss of generality, we'll assume a finite partition. Then $\forall i, j \in \{ 1, 2, \ldots , n \}, i \not = j \Rightarrow A_i \cap A, = \not 0.$ And $\bigcup\limits_{i=1}^{n}$. The relation R induced by the partition is defined as follows: $\forall x,y \in A, x \ R \ y \Leftrightarrow \exists Ai$ of the partition, $x, y \in Ai$.
+
+\begin{description}
+\item[Reflexive] Let $x \in A$, Since $A_1, A_2, \ldots A_n$ is a partition of A, $\exists i \in \{ 1, 2, \ldots n \}, x \in Ai$. But then the statement $\exists Ai$ of the partition, $x \in Ai$ and $x \in Ai$ is true. Thus, by definition of R, $x \ R \ x$.
+
+\item[Symmetric] Let $x,y \in A, x \ R \ y$. Then $ \exists Ai$ of the partition, $x \in Ai \wedge y \in Ai$. It follows that the statement $\exists Ai$ of the partition, $y \in Ai$ is true. Hence, by definition of R, $x \ R \ y$.
+
+
+\item[Transitivity] Let $x, y, z \in A, x R y \wedge y R z.$ By definition of \textit{R}, $ \exists Ai, A$, of the partition $ x, y \in A \wedge y, z \in A$. Suppose $Ai \not = A$, then $Ai \cap A, = \not 0$. Since $\{ A, A_2, \ldots, A_n \} $ is a partition of A. But $ y \in Ai \bigwedge y \in Aj,$. Hence $ Ai \cap Aj \not = \not 0$. That's a contradiction, thus Ai = A. It follows that $x, y, z \in Ai$. Thus, by definition of R, $x R z$.
+
+\end{description}
+
+Let \textit{A} be a set and \textit{R} a relation on \textit{A}, R is an \underline{equivalence relation} iff R is reflexive, symmetric, and transitive.
+
+
+\end{document}

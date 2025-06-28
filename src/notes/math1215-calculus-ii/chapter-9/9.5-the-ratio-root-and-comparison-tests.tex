@@ -1,0 +1,60 @@
+\subsection{The Ratio, Root, and Comparison Tests}
+\subsubsection{Useful Identities}
+\begin{align}
+    \lim _{k \rightarrow \infty} \left(1 + \frac{1}{k} \right)^k
+    &= \lim _{k \rightarrow \infty} \left(\frac{k + 1}{k} \right)^k
+    = e \\
+    \lim _{k \rightarrow \infty} k^\frac{1}{k} &= 1
+\end{align}
+
+\subsubsection{The Ratio Test}
+Let $\sum a_k$ be an infinite series with positive terms and let $r = \limit{k \rightarrow \infty} \frac{a_{k+1}}{a_k}$.
+\begin{enumerate}
+    \item If $0 \leq r < 1$, the series converges.
+    \item If $r > 1$ (including $r = \infty$), the series diverges.
+    \item If $r = 1$, the test is inconclusive.
+\end{enumerate}
+
+\subsubsection{The Root Test}
+Let $\sum a_k$ be an infinite series with nonegative terms and let $\rho = \limit{k \rightarrow \infty} \sqrt[k]{a_k}$.
+
+\begin{enumerate}
+    \item If $0 \leq \rho < 1$, the series converges.
+    \item If $\rho > 1$ (including $\rho = \infty$), the series diverges.
+    \item If $\rho = 1$, test is inconclusive.
+\end{enumerate}
+
+\subsubsection{The Comparison Test}
+Let $\sum a_k$ and $\sum b_k$ be a series with postivie terms.
+
+\begin{enumerate}
+    \item If $0 < a_k \leq b_k$ and $\sum b_k$ converges, then $\sum a_k$ converges.
+    \item If $0 < b_k \leq a_k$ and $\sum b_k$ diverges, then $\sum a_k$ diverges.
+\end{enumerate}
+
+\subsubsection{The Limit Comparison Test}
+Let $\sum a_k$ and $\sum b_k$ be series with positive terms and let
+
+\begin{equation}
+    \lim _{k \rightarrow \infty} \frac{a_k}{b_k} = L
+\end{equation}
+
+\begin{itemize}
+    \item If $0 < L < \infty$ (that is, $L$ is a finite, positive number), then $\sum a_k$ and $\sum b_k$ either both converge or both diverge.
+    \item If $L = 0$ and $\sum b_k$ converges, then $\sum a_k$ converges.
+    \item If $L = \infty$ and $\sum b_k$ diverges, then $\sum a_k$ diverges.
+\end{itemize}
+
+\subsubsection{Guidelines}
+\begin{itemize}
+    \item Begin with the Divergence Test. If you show that $\limit{k \rightarrow \infty} a_k \neq 0$, then the series diverges and your work is finished.
+    \item Is the series a special series? Recall the convergence properties for the following series:
+    \begin{itemize}
+        \item Geometric series: $\sum a r^k$ converges for $|r| < 1$ and diverges for $|r| \geq 1$ ($a \neq 0$).
+        \item $p$-series: $\sum \frac{1}{k^p}$ converges for $p > 1$, and diverges for $p \leq 1$.
+        \item Check also for telescoping series.
+    \end{itemize}
+    \item If the general $k$th term of the series looks like a function you can integrate, then try the Integral Test.
+    \item If the general $k$th term of the series involves $k!, k^k, \ \text{or} \ a^k,$ where $a$ is a constant, the Ratio Test is advisable. Series with $k$ in an exponent may yield to the Root Test.
+    \item If the general $k$th term of the series is a rational function of $k$ (or a root of a rational function), use the Comparison or the Limit Comparison Test. Use the families of series given in Step 2 as comparison series.
+\end{itemize}

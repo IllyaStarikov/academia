@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\begin{document}
+\setcounter{section}{8}
+\section{Counting And Probability}
+\subsection{Introduction}
+
+\subsubsection{Sample Space}
+A \textbf{sample space} is the set of all possible outcomes of a random process or experiment. An \textbf{event} is a subset of a sample space.
+
+\subsubsection{Equally Likely Probability Formula}
+If \textit{S} is a finite sample space in which all outcomes are equally likely and \textit{E} is an event in \textit{S}, then the \textbf{probability of E}, denoted \textbf{P(E)}, is
+
+\begin{equation}
+P(E) = \frac{\text{the number of outcomes in \textit{E}}}{\text{the total number of outcomes in \textit{S}}}
+\end{equation}
+
+The notation is as follows: For any finite set \textit{A, N(A)} denotes the number of elements in \textit{A}.
+
+\subsubsection{The Number of Elements in a List}
+If \textit{m} and \textit{n} are integers and $m \leq n$, then there are \textit{n - m + 1} integers from \textit{m} to \textit{n} inclusive.
+
+\subsection{Possibility Trees and the Multiplication Rule}
+\subsubsection{The Multiplication Rule}
+If an operation consists of \textit{k} steps and
+
+\begin{center}
+the first step can be performed $n_1$ ways,
+the second step can be performed in $n_2$ ways [\textit{regardless of how the first step was performed}]
+$\vdots$
+the \textit{k}th step can be performed in $n_k$ ways [\textit{regardless of how the preceding steps were performed}],
+\end{center}
+
+then the entire operation can be performed in $n_1 n_2 \cdots n_k$ ways.
+
+\subsubsection{Number of Permutations}
+For any integer \textit{n} with $n \geq 1$, the number of permutations of a set with \textit{n} elements is \textit{n!}.
+
+\subsubsection{R-Permutation}
+An \textbf{r-permutation} of a set of \textit{n} elements is an ordered selection of \textit{r} elements taken from the set of \textit{n} elements. The number of r-permutations of a set of \textit{n} elements is denoted \textbf{P(n, r)}.
+
+If \textit{n} and \textit{r} are integers and $1 \leq r \leq n$, then the number of \textit{r}-permutations of a set of \textit{n} elements is given by the formula
+
+\begin{equation*}
+P(n, r) = n(n - 1)(n - 2) \cdots (n - r + 1)
+\end{equation*}
+
+or, equivalently,
+
+\begin{equation*}
+P(n, r) = \frac{n!}{(n - 2)!}
+\end{equation*}
+
+\end{document}

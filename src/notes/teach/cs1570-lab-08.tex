@@ -1,0 +1,146 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{article}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,xcolor,fancyvrb,newverbs,mathtools,siunitx}
+\newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{#1}}}
+
+\title{Template Functions, Function Overloading, Structs}
+\date{October 11\textsuperscript{th}, 2016}
+\author{Sannihitha Muppidi}
+
+\definecolor{cverbbg}{gray}{.7}
+\newenvironment{lcverbatim}
+ {\SaveVerbatim{cverb}}
+ {\endSaveVerbatim
+  \flushleft\fboxrule=0pt\fboxsep=.5em
+  \colorbox{cverbbg}{%
+    \makebox[\dimexpr\linewidth-2\fboxsep][l]{\BUseVerbatim{cverb}}%
+  }
+  \endflushleft
+}
+
+\begin{document}
+\maketitle
+
+\section{Problem Statement}
+As the title of this lab implies, the lab will cover template functions, function overloading, and structs (also a few other miscellaneous topics). This will be a longer lab, so please use time wisely. I recommend reading through the entirety of this lab, especially to the hints.
+
+The scope of this lab is to create a simplistic attack-and-defend game. Two battleships start with the same health, but continuously attack each other until either one gets sunk or one flees from taking too much damage.
+
+The implementation is laid out as follows.
+
+\subsection*{Required Files}
+There will be \textit{five} files to submit, namely
+
+\begin{enumerate}
+    \item \texttt{main.cpp}
+    \item \texttt{battleship.h}
+    \item \texttt{functions.cpp}
+    \item \texttt{functions.h}
+    \item \texttt{templates.hpp}
+\end{enumerate}
+
+And an optional constants file.
+
+\subsection*{Required Structs}
+There will be one struct to be implemented, called \texttt{BattleShip}. It will have the following variables:
+
+\begin{itemize}
+    \item A health variable of type \shellcmd{int}. This holds the health points (hp) of the ship.
+    \item A defense variable of type \shellcmd{short}. It will be used when calculating relative damage.
+    \item An attack variable of type \shellcmd{short}. It will also be used to calculate relative damage.
+\end{itemize}
+
+\subsection*{Required Functions}
+The following are all the \textit{required} functions that must be implemented --- this does not include any maintenance functions you so choose to have.
+
+\begin{itemize}
+    \item \texttt{T randomNumber(const T from, const T to)} A \textbf{templated} random number generator (of typename \texttt{T}) that returns a random number $\texttt{from} \ldots \texttt{to}$ (inclusive). This \textbf{does not} work for floating point numbers, that is okay.
+
+    \item \texttt{readyTheShip(BattleShip \& ship, const int shipNumber)} This function prepares the ship for battle. Note that the
+    \begin{enumerate}
+        \item Ask for input on what the name of the ship is.
+        \item Assign health to a value of \num{100}.
+        \item Assign defense a \textit{random} number $1 \ldots 5$. (\num{1} through \num{5})
+        \item Assign attack a \textit{random} number $15 \ldots 20$. (\num{1} through \num{5})
+    \end{enumerate}
+
+    \item \texttt{void attack(BattleShip \& attacker, BattleShip \& attackee)} The attackee ship loses health depending on the attack value. The attack value is a \textit{random} value $\texttt{attacker.defense} \ldots \texttt{attackee.attack}$. Output the damage.
+
+    \item \texttt{bool attemptToFlee()} The flee is completely up to chance. At first the percentage chance is $15\%$, but with every successive attempt to flee, the change goes down a $1\%$ until it's fixed at $1\%$.
+
+    \item \texttt{void winner(const string winner)} Outputs a single winner.
+
+    \item \texttt{void winner()} Outputs that there was a fleeing ship, no one wins!
+
+    \item \texttt{int main()} Because there are several ways to play a game like this, there is provided pseudocode below. If you find a clever or cool different way to play, ask any of the student TAs or the TA if you are allowed to implement it.
+
+\end{itemize}
+
+\begin{lcverbatim}
+ready ship one and two
+
+while no one fleed and no ship dies:
+    ship two attacks ship one
+    ship one attacks ship two
+
+    if the health of ship one is < 20:
+        ship one attempts to flee
+
+    if the health of ship two is < 20:
+        ship two attempts to flee
+
+if someone flee,
+    display flee message
+else
+    present the winner
+\end{lcverbatim}
+
+
+
+Note that we do not consider ties, if two lose at the same time, arbitrarily choose the loser (I recommend choosing Price, if possible).
+
+\section{Submission}
+When using \shellcmd{cssubmit}, please use the following sample input and verify your solution with the sample output.
+
+\subsection*{Sample Input}
+\begin{lcverbatim}
+Jarus
+Price
+\end{lcverbatim}
+
+\subsection*{Sample Output}
+\begin{lcverbatim}
+Jarus dealt 9 damage to Price
+Price dealt 10 damage to Jarus
+Jarus dealt 11 damage to Price
+Price dealt 5 damage to Jarus
+Jarus dealt 12 damage to Price
+Price dealt 16 damage to Jarus
+Jarus dealt 6 damage to Price
+Price dealt 16 damage to Jarus
+Jarus dealt 14 damage to Price
+Price dealt 17 damage to Jarus
+Jarus dealt 11 damage to Price
+Price dealt 8 damage to Jarus
+Jarus dealt 15 damage to Price
+Price dealt 15 damage to Jarus
+Jarus dealt 13 damage to Price
+Price dealt 8 damage to Jarus
+Jarus dealt 11 damage to Price
+Price dealt 17 damage to Jarus
+
+Jarus won!
+\end{lcverbatim}
+
+\section{Hints}
+\begin{itemize}
+    \item Compile early and compile often.
+    \item If you don't know/aren't quite sure how to generate a random number $x_0 \ldots x_n$, ask one of the TAs for a full explanation.
+    \begin{itemize}
+        \item Make sure your random number generator is \textit{inclusive}.
+    \end{itemize}
+    \item There is a bare minimum of 6 constants in this assignment.
+\end{itemize}
+
+\end{document}

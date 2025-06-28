@@ -1,0 +1,23 @@
+\subsection{Double Integrals over Rectangular Regions}
+\subsubsection{Volumes and Double Integrals}
+A function $f$ defined on a rectangular region $R$ in the $xy$-plane is \textbf{integratabtle} on $R$ if $\limit{\Delta \rightarrow 0} \sum _{k = 1} ^{n} f(x_k ^*, y_k ^*) \Delta A_k$ exists fora ll partitions of $R$ and for all choices of $(x_k ^*,\, y_k ^*)$ within those partitions. The limit is the \textbf{double integral of $f$ over $R$}, which we write
+
+\begin{equation}
+    \iint \limits _R f(x,\, y) \,dA = \limit{\Delta \rightarrow 0} \sum _{k = 1} ^{n} f(x_k ^*,\, y_k ^*) \Delta A_k
+\end{equation}
+
+If $f$ is nonnegative on $R$, then the double integral equals the volume of the solid bounded by $z = f(x,\, y)$ and the $xy$-plane over $R$.
+
+\subsubsection{Double Integrals on Rectangular Regions}
+Let $f$ be continuous on the rectangular region $R = \{ (x,\, y): a \leq x \leq b,\, c \leq y \leq d \}$. The double integral of $f$ over $R$ may be evaluated by either of two iterated integrals:
+
+\begin{equation}
+    \iint \limits _R f(x,\, y) \,dA = \int _c ^d \int _a ^b dx\,dy = \int _a ^b \int _c ^d dy\,dx
+\end{equation}
+
+\subsubsection{Average Value of a Function over a Plane Region}
+The \textbf{average value} of an integrable function $f$ over a region $R$ is
+
+\begin{equation}
+    \bar{f} = \frac{1}{\text{area of}\ R} \iint \limits _R f(x,\, y)\, dA
+\end{equation}

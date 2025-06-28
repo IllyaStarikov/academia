@@ -1,0 +1,57 @@
+\subsection{The Natural Logarithmic and Exponential Functions}
+\subsubsection{The Natural Logarithm}
+The \textbf{natural logarithm} of a number $x > 0$, denoted $x$, is defined
+
+\begin{equation}
+\ln x = \int ^x _1 \frac{dt}{t}
+\end{equation}
+
+\subsubsection{Properties of the Natural Logarithm}
+\begin{enumerate}
+\item The domain and range of $\ln x$ are $(0,\, \infty)$ and $(- \infty,\, \infty)$, respectively.
+\item $\ln (xy) = \ln x + \ln y, \forall x, y \in \mathbf{R}^+$
+\item $\ln (x / y) = \ln x - \ln y, \forall x, y \in \mathbf{R}^+$
+\item $\ln x^p = p \ln x, \forall x \in \mathbf{Q}^+$
+\item $\frac{d}{dx} (\ln |x|) = \frac{1}{x}, \forall x \in \mathbf{R} \wedge x \neq 0$
+\item $\frac{d}{dx} (\ln |u(x)|) = \frac{u'(x)}{u(x)}$
+\item $\int \frac{dx}{x} = \ln |x| + C$
+\end{enumerate}
+
+\subsubsection{The Number $e$}
+The number $e$ is the real number that satisfies
+
+\begin{equation}
+\ln e = \int _1 ^e \frac{dt}{t} = 1
+\end{equation}
+
+
+\subsubsection{The Exponential Function}
+$\forall x, y \in \mathbf{R}$
+
+\begin{equation}
+y = e^x \Leftrightarrow x = \ln y
+\end{equation}
+
+\subsubsection{Properties of $e$}
+\begin{itemize}
+\item $e^{x+y} = e^x e^y$
+\item $e^{x - y} = e^x / e^y$
+\item $(e^x)^y = e^{xy}, \forall y \in \mathbf{Q}$
+\item $\ln (e^x) = x, \forall x \in \mathbf{R}$
+\item $e^{\ln \ x} = x, \forall x \in \mathbf{R}^+$
+\end{itemize}
+
+\subsubsection{Exponential Functions with General Bases}
+Let $b \in \mathbf{R}^+ \wedge b \neq 1$. $\forall x \in \mathbf{R}^+$,
+
+\begin{equation}
+b^x = e^{x \ln b}
+\end{equation}
+
+\subsubsection{Derivative and Integral of the Exponential Function}
+$\forall x \in \mathbf{R}, $
+
+\begin{align}
+\frac{d}{dx}(e^{u(x)}) &= e^{u(x)}u'(x) \\
+\int e^x\, dx &= e^x + C
+\end{align}

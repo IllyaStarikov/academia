@@ -1,0 +1,32 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{article}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,multicol,xcolor,listings,amsthm,enumitem}
+\newtheorem{theorem}{Theorem}
+
+\title{Homework \#1}
+\date{Thursday, January 26\textsuperscript{th}, 2017}
+\author{Illya Starikov}
+
+\begin{document}
+\maketitle
+
+% ORIGINAL
+% \begin{proof}
+%     Suppose not. That is, suppose that there exists two, different levels $P$ and $Q$ in the level set $M$. By Axiom 3, $P$ is above $Q$ or $Q$ is above $P$, but not both (because that would imply $P$ is above $P$). By our definition of bottom level, $P$ and $Q$ are bottom levels if $P$ and $Q$ are levels in $M$ so that if $x$ is a level in $M$ then $P$ and $Q$ are not above $x$. But by Axiom 2, $\exists x \in M$ such that $P$ is above $x$ and $x$ is above $Q$. Because the statements ``$P$ and $Q$ are not above $x$'' and ``$P$ is above $x$ and $x$ is above $Q$'' cannot concurrently hold, this is a contradiction. $\therefore$ There does not exists a level set with more than one bottom level.
+% \end{proof}
+
+% EDIT I
+% \begin{proof}
+%     Suppose not. That is, suppose that there exists two, different levels $P$ and $Q$ in the level set $M$ (where $M$ may contain two --- $P$ and $Q$ --- or more levels). Per our definition, $P$ and $Q$ are bottom levels of the level set $M$ if $P$ and $Q$ are levels in $M$ so that if $x$ is a level in $M$ then $P$ and $Q$ are not above $x$. However, this violates Axiom 3 (there exists a level $x$ such that $P$ is above $x$ and $x$ is above $Q$). This has lead us to a contradiction. $\therefore$ There does not exists a level set with more than one bottom level.
+% \end{proof}
+
+\begin{theorem}
+    There does not exist a level set with more than one bottom level.
+\end{theorem}
+
+\begin{proof}
+    Suppose that there exists two, different levels $P$ and $Q$ in the level set $M$ (where $M$ may contain two --- $P$ and $Q$ --- or more levels). Per our definition, $P$ and $Q$ are bottom levels of the level set $M$ if there exists a level $x$ in $M$ where $x$ is not above $P$ and $Q$. This implies $P$ cannot be above $Q$ and $Q$ cannot be above $P$, for a level $x$ must not be above $P$ and $Q$. However, this violates Axiom 3 (which states that $P$ is above $Q$ or $Q$ is above $P$). This has lead us to a contradiction. $\therefore$ There does not exists a level set with more than one bottom level.
+\end{proof}
+
+\end{document}

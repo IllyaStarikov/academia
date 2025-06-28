@@ -1,0 +1,63 @@
+%
+%  3.1-introducing-the-derivative.tex
+%  chapter-3
+%
+%  Created by Illya Starikov on 06/18/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\subsection{Introducing The Derivative}
+\subsubsection{Rates of Change and the Tangent Line}
+The \textbf{average rate of change} in $f$ on the interval $[a, x]$ is the slope of the corresponding secant line:
+
+\begin{equation}
+    m_\text{sec} = \frac{f(x) - f(a)}{x - a}
+\end{equation}
+
+The \textbf{instantaneous rate of change} in $f$ at $x = a$ is 
+
+\begin{equation}
+    m_\text{tan} = \lim_{x \rightarrow a} \frac{f(x) - f(a)}{x - a}
+\end{equation}
+
+which is also the \textbf{slope of the tangent line} at $(a, f(a))$, provided this limit exists. This \textbf{tangent line} is the unique line through $(a, f(a))$ with slope $m_\text{tan}$. Its equation is
+
+\begin{equation}
+    y - f(a) = m_\text{tan}(x - a)
+\end{equation}
+
+\subsubsection{Rates of Change and the Tangent Line}
+The \textbf{average rate of change} in $f$ on the interval $[a, a + h]$ is the slope of the corresponding secant line:
+
+\begin{equation}
+    m_\text{sec} = \frac{f(a + h) - f(a)}{h}
+\end{equation}
+
+The \textbf{instantaneous rate of change} in $f$ at $x = a$ is 
+
+\begin{equation}
+    m_\text{tan} = \lim_{h \rightarrow 0} \frac{f(a + h) - f(a)}{h}
+\end{equation}
+
+which is also the \textbf{slope of the tangent line} at $(a, f(a))$, provided the limit exists.
+
+\subsubsection{The Derivative}
+The \textbf{derivative} of $f$ is the function
+
+\begin{equation}
+    f'(x) = \lim_{h \rightarrow 0} \frac{f(x + h) - f(x)}{h}
+\end{equation}
+
+provided the limit exists. If $f'(x)$ exists, we say $f$ is \textbf{differentiable} at $x$. If $f$ is differentiable at every point of an open interval $I$, we say that $f$ is differentiable on $I$.
+
+\subsubsection{Differentiable Implies Continuous}
+If $f$ is differentiable at $a$, then $f$ is continuous at $a$. Conversely, if $f$ is not continuous at $a$, then $f$ is not differentiable at $a$.
+
+\subsubsection{When Is a Function Not Differentiable at a Point?}
+A function $f$ is \textit{not} differentiable at $a$ if at least one of the following conditions holds:
+
+\begin{enumerate}
+    \item $f$ is not continuous at $a$.
+    \item $f$ has a corner at $a$.
+    \item $f$ has a vertical tangent at $a$.
+\end{enumerate}

@@ -1,0 +1,231 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{article}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,pgfplots,siunitx,hyperref}
+\pgfplotsset{compat=1.7}
+
+\title{Homework \#9}
+\date{Due Date: December 1\textsuperscript{st}, 2016}
+\author{Illya Starikov}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+\maketitle
+
+\section{Simpson \nicefrac{1}{3} Rule For $1 + 2x + 3x^2$}
+\begin{align*}
+    \int _0 ^4 1 + 2x + 3x^2 \, dx &\approx \nicefrac{h}{6}(f(a) + 4\, f(a + h) + f(b)) \\
+    &= \nicefrac{4}{6}(1 + 4(1+ 4 + 12) + (1 + 8 + 48)) \\
+    &= \nicefrac{2}{3}(1 + 68 + 57) \\
+    &= 84
+\end{align*}
+
+\section{Simpson's \nicefrac{3}{8} Rule For $x^3$}
+\begin{align*}
+    \int _0 ^3 x^3 \, dx &\approx \nicefrac{3}{8}h (f(a) + 3(a + h) + 3(a + 2h) + f(b)) \\
+    &= \nicefrac{3}{8}(0 + 1 + 8 + 27) \\
+    &= \nicefrac{3}{8} \cdot 36 \\
+    &= 13.5
+\end{align*}
+
+\section{Trapezoidal, Richardson and Romberg Method of $x^4$}
+We know the equation for the trapezoid rule to be
+
+\begin{equation*}
+    I = \frac{h}{2}\left[ f(x_0) + 2 \sum _{i = 1} ^n + f(x_n) \right]
+\end{equation*}
+
+From this, we obtain
+
+\begin{align*}
+    I_4 &= \frac{4}{2} \left( f(0) + f(4) \right) = 512 \\
+    I_2 &= \frac{2}{2} \left( f(0) + 2\, f(2) + f(4) \right) = 288 \\
+    I_1 &= \frac{1}{2} \left( f(0) + 2\, f(2) + 2\, f(3) + f(4) \right) = 226
+\end{align*}
+
+For Richardson, we calculate the terms as follows:
+
+\begin{align*}
+    I &\approx \nicefrac{4}{3}I(h_2) - \nicefrac{1}{3}I(h_1) \\
+    I_2 &= \nicefrac{4}{3}(288) - \nicefrac{1}{3}(512) = \nicefrac{640}{3} = 213.\bar{3} \\
+    I_1 &= \nicefrac{4}{3}(226) - \nicefrac{1}{3}(288) = \nicefrac{616}{3} = 205.\bar{3}
+\end{align*}
+
+And for Romberg,
+
+\begin{align*}
+    I_{j, k} &= \frac{4^{k-1} I_{j+1, k-1} - I_{j, k-1}}{4^{k-1}} \\
+    I_1 &= \frac{4^2(\nicefrac{616}{3}) - \nicefrac{640}{3}}{15} = \frac{1024}{5} = 204.8
+\end{align*}
+
+We observe that the table looks like
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{h} & \textbf{trapazoidal} & \textbf{Richardson} & \textbf{Romberg}  \\\hline
+        $4$ & $512$ &               &         \\\hline
+        $2$ & $288$ & $213.\bar{3}$ &         \\\hline
+        $1$ & $226$ & $205.\bar{3}$ & $204.8$ \\\hline
+    \end{tabular}
+\end{center}
+
+\section{Derivation of Richardson Extrapolation}
+We recall that the value of integration $I$ is equal to $\text{approximation} + \text{error}$, which we can eloquently write
+
+\begin{equation} \label{eq:1}
+    I = I(h) + \mathcal{E}(h)
+\end{equation}
+
+Where $\mathcal{E}$ represents our error and $I(h)$ represents our approximation. Supposing we have two different steps size ($h_1$ and $h_2$), we can rewrite equation (\ref{eq:1}) in the form
+
+\begin{equation} \label{eq:2}
+    I = I(h_1) + \mathcal{E}(h_1) = I(h_2) + \mathcal{E}(h_2)
+\end{equation}
+
+Now, let us expand $\mathcal{E}(h)$ from equation (\ref{eq:1}) and equation (\ref{eq:2}).
+
+\begin{equation} \label{eq:3}
+    \mathcal{E} \approx - \frac{b - a}{2} h^2\, \bar{f''}
+\end{equation}
+
+Where $b$ and $a$ are the upper and lower bounds, respectively, and $\bar{f''}$ is the average value of $\frac{d}{dx} f(x)$ (where $f(x)$ is the function we are integrating). Therefore, we can a ratio of the two errors
+
+\begin{equation*}
+    \frac{\mathcal{E}(h_1)}{\mathcal{E}(h_2)} \approx - \frac{\frac{b - a}{2} h_1^2\, \bar{f''}}{\frac{b - a}{2} h_2^2\, \bar{f''}} \approx \frac{h_1 ^2}{h_2 ^2}
+\end{equation*}
+
+Which can be algebraically manipulated to
+
+\begin{equation} \label{eq:4}
+    \mathcal{E}(h_1) \approx \mathcal{E}(h_2)\left( \frac{h_1}{h_2} \right)^2
+\end{equation}
+
+Now we can substitute equation (\ref{eq:4}) back into equation (\ref{eq:2}) to obtain
+
+\begin{equation*}
+    I \approx I(h_1) + \mathcal{E}(h_2)\left( \frac{h_1}{h_2} \right)^2 \approx I(h_2) + \mathcal{E}(h_2)
+\end{equation*}
+
+Which can be solve for
+
+\begin{equation*}
+    \mathcal{E}(h_2) \approx \frac{I(h_2) - I(h_1)}{(\nicefrac{h_1}{h_2})^2 - 1}
+\end{equation*}
+
+Now that we have an estimate (hence the $\approx$) of the truncation error, We once plug this back into equation (\ref{eq:2}) to get
+
+\begin{equation*}
+    I \approx I(h_2) + \approx \frac{I(h_2) - I(h_1)}{(\nicefrac{h_1}{h_2})^2 - 1}.
+\end{equation*}
+
+Because we know the interval to be halved, we can safely assume $h_2 = \nicefrac{h_1}{2}$. Thus, our equation reduces to
+
+\begin{equation}
+    I \approx \nicefrac{4}{3}\, I(h_2) - \nicefrac{1}{3}\, I(h_1)
+\end{equation}
+
+\section{Derivative of $x^2 \sin x$}
+From the chain rule, we get
+
+\begin{equation*}
+    \frac{d}{dx} x^2 \sin x = 2x \sin x + x^2 \cos x
+\end{equation*}
+
+It can be plotted as follows
+
+\begin{center}
+    \begin{tikzpicture}
+      \begin{axis}[
+        width=\textwidth,
+        height=7.5  cm,
+        xlabel=$x$,
+        ylabel={$f(x) \ \text{and} \ f'(x)$},
+      ]
+        \addplot+[blue] {x^2 * sin x};
+        \addlegendentry{$f(x) = x^2 \sin x$}
+
+        \addplot+[red] { 2*x* sin x + x^2 * cos x};
+        \addlegendentry{$f'(x) = 2x \sin x + x^2 \cos x $}
+      \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+To compute the two derivatives for $h_1 = 0.2$ and $h_2 = 0.1$, we use the centered difference formulas. For $h_1$
+
+\begin{align*}
+    \frac{d}{dx} &= \frac{f(x_{i+1}) - f(x_{i-1})}{2h} \\
+    &= \frac{f(x + h) - f(x - h)}{2h} \\
+    &= \frac{f(x + \nicefrac{1}{5}) - f(x -\nicefrac{1}{5})}{\nicefrac{2}{5}} \\
+    &= \frac{(x + \nicefrac{1}{5})^2 \sin(x + \nicefrac{1}{5}) - ((x - \nicefrac{1}{5})^2 \sin(x - \nicefrac{1}{5}))}{\nicefrac{2}{5}}
+\end{align*}
+
+Similarly, for $h_2$
+
+\begin{equation*}
+    \frac{(x + \nicefrac{1}{10})^2 \sin(x + \nicefrac{1}{10}) - ((x - \nicefrac{1}{10})^2 \sin(x - \nicefrac{1}{10}))}{\nicefrac{1}{5}}
+\end{equation*}
+
+We combine these for obtain the Richardson extrapolation formula,
+
+\begin{align}
+    D &\approx \nicefrac{4}{3}D(h_2) - \nicefrac{1}{3}D(h_1) \\
+    &\approx \nicefrac{4}{3} \frac{(x + \nicefrac{1}{10})^2 \sin(x + \nicefrac{1}{10}) - ((x - \nicefrac{1}{10})^2 \sin(x - \nicefrac{1}{10}))}{\nicefrac{1}{5}} \\
+    &- \nicefrac{1}{3} \frac{(x + \nicefrac{1}{5})^2 \sin(x + \nicefrac{1}{5}) - ((x - \nicefrac{1}{5})^2 \sin(x - \nicefrac{1}{5}))}{\nicefrac{2}{5}}
+\end{align}
+
+\begin{center}
+    \begin{tikzpicture}
+      \begin{axis}[
+        width=\textwidth,
+        height=7.5  cm,
+        xlabel=$x$,
+        ylabel={Actual vs. Numerical Derivative},
+      ]
+        \addplot+[blue] { 2*x* sin x + x^2 * cos x};
+        \addlegendentry{Actual $\frac{d}{dx}$}
+
+        \addplot+[red] { 4/3*((x + 1/10)^2 *sin(x + 1/10) - ((x - 1/10)^2 *sin(x - 1/10)))/(2/10)-1/3*((x + 1/5)^2 *sin(x + 1/5) - ((x - 1/5)^2 *sin(x - 1/5)))/(2/5) };
+        \addlegendentry{Numerical $\frac{d}{dx}$}
+      \end{axis}
+    \end{tikzpicture}
+\end{center}
+
+
+\section{Central Difference of $x^4$}
+\subsection{First Order}
+From the power rule, we notice that
+
+\begin{equation*}
+    \frac{d}{dx} x^4 = 4x^3 \implies f'(1) = 4
+\end{equation*}
+
+Using centered difference formula,
+
+\begin{align*}
+    \frac{d}{dx} &= \frac{f(x_{i+1}) - f(x_{i-1})}{2h} \\
+    &= \frac{(1 + \nicefrac{1}{2})^4 - (1 - \nicefrac{1}{2})^4)}{(2\nicefrac{1}{2})} \\
+    &= 5
+\end{align*}
+
+We notice the error to be $|\frac{4 - 5}{4}| = |-.25| \implies \mathbf{25\%}$
+
+\subsection{Second Order}
+From the power rule, we notice that
+
+\begin{equation*}
+    \frac{d^2}{dx^2} x^4 = 12x^2 \implies f'(1) = 12.
+\end{equation*}
+
+Using centered difference formula,
+
+\begin{align*}
+    \frac{d^2}{dx^2} &= \frac{f(x_{i+1}) - 2f(x_i) + f(x_{i-1})}{h^2} \\
+    &= \frac{(1 + \nicefrac{1}{2})^4 - 2(1^4) + (1 - \nicefrac{1}{2})^4)}{(\nicefrac{1}{2})^2} \\
+    &= \nicefrac{25}{2}
+\end{align*}
+
+We notice the error to be $|\frac{12 - \nicefrac{25}{2}}{12}| = |-.041\bar{6}| \implies \mathbf{4.16\%}$.
+
+\end{document}

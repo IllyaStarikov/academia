@@ -1,0 +1,55 @@
+\documentclass[12pt]{article}
+\begin{document}
+## Chapter 6.1: Set Theory
+*Problem 5.13: Prove by Mathmatical induction $$\forall n \in \mathbb{Z}^+ \cup {0}, x,y \in \mathbb{Z}, x ≠ y, x - y | x^n - y^n$$
+
+*Proof* Suppose $$x,y \in \mathbb{Z} \or x ≠ y.$$ Let the predicate *P(n)* be the statement $$x - y | x^n - y^n$$.
+*Basis Step* Show that *P(0)* is true. *P(0)* is true because $$x^0 - y^0 = 1 - 1$$ and $$x - y | 0.$$
+*Inductive Step* Show that $$\forall k \in \mathbb{Z}^+, \cup {0}, P(k) \rightarrow P(k + 1)$$
+Let $$k \in \mathbb{Z}^+ \cup {0} $$ and suppose $$x - y | x^k - y^k$$.
+We must show that $$x - y | x^{k + 1} - y^{k + 1}$$.
+By rewriting the inductive hypothesis using the definition of divisiblity, we have:
+
+$$\exists r \in \mathbb{Z}, x^k - y^k = (x- y)r$$
+Then: $$x^{k + 1} - y^{k + 1}$$
+= $$x^{k + 1} - xy^k + xy^k - y^{k + 1}$$
+= $$x(x^k - y^k) + y^k(x - y)$$
+= $$x(x - y)r + y^k(x - y)$$ %by the inductive hypothesis
+= $$(x - y)[xr + y^k]$$
+
+Now $$x(r + y^k) \in \mathbb{Z}$$ because products and sums of integeres are integers. Thus, $$x - y | x^{k + 1} - x^{k + 1}$$.
+
+Let the set $$A = {x \in \mathbb{Z} | x = 5a + 2, a \in \mathbb{Z}}}$$
+$$B = {y \in \mathbb{Z} | y = 10b - 3, b \in \mathbb{Z}}}$$
+$$C = {z \in \mathbb{Z} | z = 10c + 7, z \in \mathbb{Z}}}$$
+
+A. Is $$ A \subset B? $$. No, because  2 = 5 * 0 + 2, but $$2 \not \subset $$ because if $$2 \exists b \in \mathbb{Z} = 10b - 3$$. Then $$10b = 5, b = \frac{1}{2} $$ which is not an integer. Counterexample found.
+
+B. Is $$ B \subset A? $$. Yes. Proof: Suppose $$ y \in B. $$ [*We must show that $$y \in A.$$ By defintion of A, this means taht we msut show $$y = 5(some int) + 2$$].
+By definition of B, $$\exists b \in \mathbb{Z}, y = 10b - 3.$$
+Let $$a = 2b - 1$$. Then $$a \in \mathbb{Z} \or 5a + 2$$ =
+$$5(2b - 1) + 2 = 10b - 5 + 2 = 10b - 3 = y$$
+
+*To prove A = B, prove both are subsets of each other*
+Let the universal set be $$\mathbb{R}$$
+$$A \cup B$$ = {$$x \in \mathbb{R} | 6 < x ≤ 8 $$}
+$$A \cap B$$ = {$$x \in \mathbb{R} | -1 < x ≤ 0 $$}
+$$A^c$$ = {$$x \in \mathbb{R} | -3 > x  \or x > 0 $$}
+$$A \cap C$$ = $$\not 0$$
+
+*Draw the venn diagram to describe $$A \cap B  ≠ \not 0, B \cap C = \not 0, A \cap C = \not 0, A \not \subset B, C \not \subset \B$$
+
+Questions:
+Is $$ 0 \in \not 0$$ No
+$$\not 0 ≠ {\not 0}? $$ Yes.
+$$\not 0 \in {\not 0}$$
+$$\not 0 \in \not \0$$
+
+EXAM QUESTION
+$$\forall i \in \mathbb{Z}^+, R_i {x \in \mathbb{R} | 1 ≤ x ≤ 1 + \frac{1}{i}} = [1, 1 + \frac{1}{i}]$$
+
+$$\cup_{i = i}{4} R_i = R_1 \cup R_2 \cup R_3 \cup R_4 =  \cup [1, 1 + \frac{1}{1} \cup [1, 1 + \frac{1}{2} \cup [1, 1 + \frac{1}{3} \cup [1, 1 + \frac{1}{4} = [1,2]$$
+$$\cap{i = i}{4} R_i = R_1 \cap R_2 \cap R_3 \cap R_4 =  \cap [1, 1 + \frac{1}{1} \cap [1, 1 + \frac{1}{2} \cap [1, 1 + \frac{1}{3} \cap [1, 1 + \frac{1}{4} = [1,1 , \frac{1}{4}]$$
+
+Is $${\{w, x, v\}, \{w,y,q\}, \{p,z\}}$$ a partition of $$\{p,q,u,v,w,x,y,z\}?$$ YAAS!
+\end{document}

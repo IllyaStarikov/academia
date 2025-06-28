@@ -1,0 +1,39 @@
+%
+%  2.2-limits-of-a-function -preliminary.tex
+%  chapter-1
+%
+%  Created by Illya Starikov on 06/11/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\subsection{Definitions of Limits}
+\subsubsection{Limits of a Function (Preliminary)}
+Suppose the function $f$ is defined for all $x$ near $a$ except possibly at $a$. If $f(x)$ is arbitrarily close to $L$ (as close to $L$ as we like) for all $x$ sufficiently close (but not equal) to $a$, we write
+
+\begin{equation*}
+    \lim_{x \rightarrow a} f(x) = L
+\end{equation*}
+
+and say the limit of $f(x)$ as $x$ approaches $a$ equals $L$.
+
+\subsubsection{One-Sided Limits}
+\begin{enumdescript}
+    \item[Right-sided limits] Suppose $f$ is defined for all $x$ near $a$ with $x > a$. If $f(x)$ is arbitrarily close to $L$ for all $x$ sufficiently close to $a$ with $x > a$, we write
+
+    \begin{equation}
+        \lim_{x \rightarrow a^+} f(x) = L
+    \end{equation}
+
+    and say the limit of $f(x)$ as $x$ approaches $a$ from the right equals $L$.
+
+    \item[Left-sided limits] Suppose $f$ is defined for all $x$ near $a$ with $x < a$. If $f(x)$ is arbitrarily close to $L$ for all $x$ sufficiently close to $a$ with $x < a$, we write
+
+    \begin{equation}
+        \lim_{x \rightarrow a^-} f(x) = L
+    \end{equation}
+
+    and say the limit of $f(x)$ as $x$ approaches $a$ from the left equals $L$.
+\end{enumdescript}
+
+\subsubsection{Relationship Between One-Sided and Two-Sided Limits}
+Assume $f$ is defined for all $x$ near $a$ except possibly at $a$. Then $\limit{x \rightarrow a} f(x) = L$ if and only if $\limit{x \rightarrow a^+} = \limit{x \rightarrow a^-} = L$.

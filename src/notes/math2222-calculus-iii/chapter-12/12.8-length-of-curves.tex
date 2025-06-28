@@ -1,0 +1,31 @@
+\subsection{Length of Curves}
+Consider the parameterized curve $\mathbf{r}(t) = \langle f(t), g(t), h(t) \rangle$, where $f'$, $g'$, and $h'$ are continuous, and the curve is traversed once for $a \leq t \leq b$. The \textbf{arc length} of the curve between $(f(a), g(a), h(a))$ and $(f(b), g(b), h(b))$ is
+
+\begin{equation}
+    L = \int _a ^b \sqrt{f'(t)^2 + g'(t)^2 + h'(t)^2} \, dt = \int _a ^b |\mathbf{r'(t)}|\, dt
+\end{equation}
+
+\subsubsection{Arc Length of a Polar Curve}
+Let $f$ have a continuous derivative on the interval $[\alpha, \beta]$. The \textbf{arc length} of the polar curve $r = f(\theta)$ on $[ \alpha,\, \beta ]$ is
+
+\begin{equation}
+    L = \int _\alpha ^\beta \sqrt{f(\theta)^2 + f'(\theta)^2} \, d\theta.
+\end{equation}
+
+\subsubsection{Arc Length as a Function of a Parameter}
+Let \textbf{r}(t) describe a smooth curve, for $t \geq a$. The arc length is given by
+
+\begin{equation}
+    s(t) = \int _a ^t |\vvec(u)| \, du,
+\end{equation}
+
+where $|\vvec| = |\mathbf{r'}|$. Equivalently, $\frac{ds}{dt} = |\vvec{t}| > 0$. If $|\vvec(t)| = 1$, for all $t \geq a$, then the parameter $t$ corresponds to arc length.
+
+\subsubsection{Arc Length as a Function of a Parameter}
+Let \textbf{r}(t) describe a smooth curve, for $t \geq a$. The arc length is given by
+
+\begin{equation}
+    s(t) = \int _a ^t |\vvec(u) | \, du,
+\end{equation}
+
+where $|\vvec| = |\mathbf{r}'|$. Equivalently, $\frac{ds}{dt} = \vvec(t) > 0$. If $|\mathbf{v(t)}| = 1$, for all $t \geq a$, then the parameter $t$ corresponds to arc length.

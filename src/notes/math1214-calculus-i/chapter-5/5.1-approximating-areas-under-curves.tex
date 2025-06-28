@@ -1,0 +1,58 @@
+%
+%  5.1-approximating-areas-under-curves.tex
+%  chapter-5
+%
+%  Created by Illya Starikov on 07/03/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\subsection{Approximating Areas under Curves}
+\subsubsection{Regular Partition}
+Suppose $[a, b]$ is a closed interval containing $n$ subintervals
+
+\begin{equation}
+    [x_0, x_1],\, [x_1, x_2],\, \ldots, [x_{n - 1}, x_n]
+\end{equation}
+
+of equal length $\Delta x = \frac{b - a}{n}$ with $a = x_0$ and $b = x_n$. The endpoints $x_0$, $x_1$, $x_2$, $\ldots$, $x_{n - 1}, x_n$ of the subintervals are called \textbf{grid points}, and they create a \textbf{regular partition} of the interval $[a, b]$. In general, the $k$th grid point is
+
+\begin{equation}
+    x_k = a + k \Delta x,\text{for $k = 0, 1, 2, \ldots, n$}
+\end{equation}
+
+\subsubsection{Riemann Sum}
+Suppose $f$ is defined on a closed interval $[a, b]$, which is divided into $n$ subintervals of equal lengths $\Delta x$. If $x_k ^*$ is any point in the $k$th subinterval $[x_{k - 1}, x_k]$, for $k = 1, 2, \ldots, n$, then 
+
+\begin{equation}
+    f(x_1 ^*) \Delta x + f(x_2 ^*) \Delta x + \cdots f(x_n ^*) \Delta x
+\end{equation}
+
+is called a \textbf{Riemann sum} for $f$ on $[a, b]$. This sum is
+
+\begin{itemize}
+    \item a \textbf{left sum} if $x_k ^*$ is the left endpoint of $[x_{k - 1}, x_k]$.
+    \item a \textbf{right sum} if $x_k ^*$ is the right endpoint of $[x_{k - 1}, x_k]$.
+    \item a \textbf{midpoint Riemann sum} if $k_k ^*$ is the midpoint of $[x_{k - 1}, x_k]$
+\end{itemize}
+
+for $k = 1, 2, \ldots, n$.
+
+
+\subsubsection{Sums of Positive Integers}
+Let $n$ be a positive integer
+
+\begin{align}
+    \sum_{k = 1} ^n c = cn \qquad& \sum _{k = 1} ^n k = \frac{n(n + 1)}{2} \\
+    \sum_{k = 1} ^n k^2 = \frac{n(n + 1)(2n + 1)}{6} \qquad& \sum_{k = 1} ^n = \frac{n^2{(n + 1)}^2}{4}
+\end{align}
+
+\subsubsection{Left, Right, and Midpoint Riemann Sums in Sigma Notation}
+Suppose $f$ is defined on a closed interval $[a, b]$, which is divided into $n$ subintervals of equal length $\Delta x$. If $x_k ^*$ is a point in the $k$th subinterval $[x_{k - 1}, x_k]$, for $k = 1, 2, \ldots, n$, then the \textbf{Riemann sum} of $f$ on $[a, b]$ is $\sum _{k = 1} ^n f(x_k ^*) \Delta x$. Three cases arise in practice.
+
+\begin{itemize}
+    \item \textbf{left Riemann sum} if $x_k ^* = a + (k - 1) \Delta x$
+    \item \textbf{right Riemann sum} if $x_k ^* = a + k \delta x$
+    \item \textbf{midpoint Riemann sum} if $x_k ^* = a + (k - \frac{1}{2})\Delta x$
+\end{itemize}
+
+for $k = 1, 2, \ldots, n$.

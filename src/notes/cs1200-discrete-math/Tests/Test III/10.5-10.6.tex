@@ -1,0 +1,47 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+
+\setcounter{section}{10}
+\setcounter{subsection}{5}
+
+\subsection{Rooted Trees}
+A \textbf{rooted tree} is a tree in which there is one vertex that is distinguished from the others and is called the \textbf{root}. The \textbf{level} of a vertex is the number of edges along the unique path between it and the root. The \textbf{height} of a rooted tree is the maximum level of any vertex of the tree. Given the root or any internal vertex \textit{v} of a rooted tree, the \textbf{children} of \textit{v} are all those vertices that are adjacent to \textit{v} and are one level farther away from the root than \textit{v}. If \textit{w} is a child of \textit{v}, then \textit{v} is called the \textbf{parent} of \textit{w}, and two distinct vertices that are both children of the same parent are called \textbf{siblings}. Given two distinct vertices \textit{v} and \textit{w}, if \textit{v} lies on the unique path between \textit{w} and the root, then \textit{v} is an \textbf{ancestor} of \textit{w} and \textit{w} is a \textbf{descendant} of \textit{v}.
+
+\subsection{Binary Tree}
+A \textbf{binary tree} is a rooted tree in which every parent has at most two children. Each child in a binary tree is designated either a \textbf{left child} or a \textbf{right child} (but not both), and every parent has at most one left child and one right child. A \textbf{full binary tree} is a binary tree in which each parent has exactly two children.
+
+Given any parent \textit{v} in a binary tree \textit{T}, if \textit{v} has a left child, then the \textbf{left subtree} of \textit{v} is the binary tree whose root is the left child of \textit{v}, whose vertices consist of the left child of \textit{v} and all its descendants, and whose edges consist of all those edges of \textit{T} that connect the vertices of the left subtree. The \textbf{right subtree} of \textit{v} is defined analogously.
+
+\subsubsection{Theorem}
+If \textit{k} is a positive integer and \textit{T} is a full binary tree with \textit{k} internal vertices, then \textit{T} has a total of \textit{2k + 1} vertices and has \textit{k + 1} terminal vertices.
+
+\subsubsection{Height And Terminal Vertices}
+For all integers $h \geq 0$, if \textit{T} is any binary tree with of height \textit{h} and \textit{t} terminal vertices, then
+
+\begin{equation}
+t \leq 2^h.
+\end{equation}
+
+Equivalently,
+
+\begin{equation}
+log _2 t \leq h
+\end{equation}
+
+\subsection{Spanning Trees and Shortest Paths}
+A \textbf{spanning tree} for a graph \textit{G} is a subgraph of \textit{G} that contains every vertex of \textit{G} and is a tree.
+
+\subsubsection{Proposition}
+\begin{itemize}
+\item Every connected graph has a spanning tree.
+\item Any two spanning trees for a graph have the same number of edges.
+\end{itemize}
+
+\subsubsection{Terminology}
+A \textbf{weighted graph} is a graph for which each edge has an associated positive real number \textbf{weight}. The sum of the weights of all the edges is the \textbf{total weight} of the graph. A \textbf{minimum spanning tree} for a connected weighted graph is a spanning tree that has the least possible total weight compared to all other spanning trees for the graph.
+If \textit{G} is a weighed graph and \textit{e} is an edge of \textit{G}, then \textbf{w(e)} denotes the weight of \textit{e} and \textbf{w(G)} denotes the total weight of \textit{G}.
+
+
+
+\end{document}

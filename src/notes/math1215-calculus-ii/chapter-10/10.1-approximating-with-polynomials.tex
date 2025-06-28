@@ -1,0 +1,48 @@
+\subsection{Approximating Functions with Polynomials}
+\subsubsection{Taylor Polynomials}
+Let $f$ be a function with $f', f'', \ldots , f ^{(n)}$ defined at $a$. The \textbf{$n$th-order Taylor polynomial} for $f$ with its \textbf{center} at $a$, denoted $p_n$, has the property that it matches $f$ in value, slope, and all derivatives up to the $n$th derivative at $a$; that is,
+
+\begin{equation}
+    p_n(a) = f(a), p_n'(a) = f'(a), \ldots,p_n^{(n)}(a) = f^{(n)}(a).
+\end{equation}
+
+The $n$th-order Taylor polynomial centered at $a$ is
+
+\begin{equation}
+    p_n(x) = f(a) + f'(a)(x - a) + \frac{f''(a)}{2!}(x - a)^2 + \cdots + \frac{f^{(n)}(a)}{n!}(x - a)^n.
+\end{equation}
+
+More compactly, $p_n(x) = \sum _{k = 0} ^{n}c_k(x - a)^k$, where the \textbf{coefficients} are
+
+\begin{equation}
+    c_k = \frac{f^{(k)}(a)}{k!}, \quad \ \text{for} \ k = 0, 1, 2, \ldots, n
+\end{equation}
+
+\subsubsection{Remainder in a Taylor Polynomial}
+Let $p_n$ be the Taylor polynomial of order $n$ for $f$. The \textbf{remainder} in using $p_n$ to approximate $f$ at the point $x$ is
+
+\begin{equation}
+    R_n(x) = f(x) - p_n(x)
+\end{equation}
+
+\subsubsection{Taylor's Theorem}
+Let $f$ have continuous derivatives up to $f^{(n + 1)} $ on an open interval $I$ containing $a$. For all $x$ in $I$,
+
+\begin{equation}
+    f(x) = p_n(x) + R_n(x),
+\end{equation}
+
+where $p_n$ is the $n$th-order Taylor polynomial for $f$ centered at $a$, and the remainder is
+
+\begin{equation}
+    R_n(x) = \frac{f^{(n + 1)}(c)}{(n + 1)!}(x - a)^{(n + 1)},
+\end{equation}
+
+for some point $c$ between $x$ and $a$.
+
+\subsubsection{Estimate of the Remainder}
+Let $n$ be a fixed positive integer. Suppose there exists a number $M$ such that $|f^{(n + 1)}(c)| \leq M$, for all $c$ between $a$ and $x$ inclusive. The remainder in the $n$th-order Taylor polynomial for $f$ centered at $a$ satisfies
+
+\begin{equation}
+    |R_n(x)| = |f(x) - p_n(x)| \leq M\frac{|x - a|^{n + 1}}{(n + 1)!}
+\end{equation}

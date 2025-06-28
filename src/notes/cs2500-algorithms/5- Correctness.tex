@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+
+\setcounter{section}{3}
+\section{Recurrences}
+\begin{eqnarray}
+T(n) & = & 2T(n/2) + n^3 \\
+\log_b a & = & \log _2 2 = 1 \\
+log ^{_b a} & = & n \\
+n^3 & & \in  \Omega (n^{\log _b a + 2}) \\
+& & \Omega(n^3) \\
+af(n / b) & \leq & cf(n) \\
+2f(n/2) & \leq & cf(n) \\
+2 \times (\frac{n}{2})^3 & \leq & cn^3 \\
+\frac{n^3}{4} & \leq & c n^3 \\
+& & \text{choose} \ c < 1\\
+& & \text{choose} \ c = \frac{1}{4} \\
+& & T(n) \in \Theta(n^3)
+\end{eqnarray}
+
+\section{Correctness}
+Loop has three parts, init, maintenance, termination.
+
+\section{Quicksort}
+
+\end{document}

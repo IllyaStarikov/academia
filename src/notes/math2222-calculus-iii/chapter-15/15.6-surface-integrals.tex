@@ -1,0 +1,35 @@
+\subsection{Surface Integrals}
+\subsubsection{Surface Integrals of Scalar-Valued Functions on Parameterized Surface}
+Let $f$ be a continuous function on a smooth surface $S$ given parametrically by $\mathbf{r}(u,\, v) = \langle x(u,\, v),\, y(u,\, v),\, z(u,\, v) \rangle$, where $R = \{ (u,\, v): a \leq u \leq b, c \leq v \leq d \}$. Assume also that the tangent vectors $\mathbf{t}_u  = \frac{\partial \mathbf{r}}{\partial u} = \langle \frac{\partial x}{\partial u},\, \frac{\partial y}{\partial u},\, \frac{\partial z}{\partial u} \rangle$, and $\mathbf{t}_v  = \frac{\partial \mathbf{r}}{\partial v} = \langle \frac{\partial x}{\partial v},\, \frac{\partial y}{\partial v},\, \frac{\partial z}{\partial v} \rangle$ are continuous on $R$ and the normal vectors $\mathbf{n} = \mathbf{t}_u \times \mathbf{t}_v$ is nonzero on $R$. Then the \textbf{surface integral} of the scalar-valued function $f$ over $S$ is
+
+\begin{equation}
+    \iint \limits _S f(x,\, y,\, z) \, dS = \iint \limits _R f(
+    x(u,\, v),\,
+    y(u,\, v),\,
+    z(u,\, v)
+    ) | \mathbf{t}_u \times \mathbf{t}_v | \, dA
+\end{equation}
+
+If $f(x,\, y,\, z) = 1$, the integral equals the surface area of $S$.
+
+\subsubsection{Evaluation of Surface Integrals of Scalar-Valued Functions on Explicitly Defined Surfaces}
+Let $f$ be a continuous function on a smooth surfaces $S$ given by $z = g(x,\, y)$, for $(x,\, y)$ in a region $R$. The surface integral of $f$ over $S$ is
+
+\begin{equation}
+    \iint \limits _S f(x,\, y,\, z) \, dS = \iint \limits _R f(x,\, y,\, g(x,\, y))\sqrt{z_x^2 + z _y^2 + 1} \, dA
+\end{equation}
+
+If $f(x,\, y,\, z) = 1$, the surface integral equals the area of the surface.
+
+\subsubsection{Surface Integral of a Vector Field}
+Suppose $\mathbf{F} = \langle f,\, g,\, h \rangle$ is a continuous vector field on a region of $\mathbb{R}^3$ containing a smooth oriented surface $S$. If $S$ is defined parametrically as $\mathbf{r}(u,\, v) = \langle x(u,\, v),\, y(u,\, v),\, z(u,\, v) \rangle$, for $(u,\, v)$ is a region $R$, then
+
+\begin{equation}
+    \iint \limits _S \mathbf{F \cdot n} \, dS = \iint \limits _R \mathbf{F} \cdot (\mathbf{t}_u \times \mathbf{t}_v) \, dA
+\end{equation}
+
+where $\mathbf{t}_u  = \frac{\partial \mathbf{r}}{\partial u} = \langle \frac{\partial x}{\partial u},\, \frac{\partial y}{\partial u},\, \frac{\partial z}{\partial u} \rangle$ and $\mathbf{t}_v  = \frac{\partial \mathbf{r}}{\partial v} = \langle \frac{\partial x}{\partial v},\, \frac{\partial y}{\partial v},\, \frac{\partial z}{\partial v} \rangle$ are continuous on $R$, the normal vector $\mathbf{n} = \mathbf{t}_u \times \mathbf{t}_v$ is nonzero on $R$, and the direction of $\mathbf{n}$ is consistent with the orientation of $S$. If $S$ is defined in the form $z = g(z,\, y)$, for $(x,\, y)$ in a region $R$, then
+
+\begin{equation}
+    \iint \limits _S \mathbf{F \cdot n} \, dS = \iint \limits _R (-fz_x - gz_y + h)\, dA
+\end{equation}

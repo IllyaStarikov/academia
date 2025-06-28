@@ -1,0 +1,35 @@
+%
+%  master.tex
+%  Introduction To Artificial Intelligence
+%
+%  Created by Illya Starikov on 01/23/18.
+%  Copyright 2018. Illya Starikov. All rights reserved.
+%
+
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{article}
+
+\input{macros.tex}
+
+\title{Introduction To Artificial Intelligence}
+\date{Last Modified: \today}
+\author{Illya Starikov}
+
+\begin{document}
+
+\maketitle
+\makeatletter
+\@starttoc{toc}\clearpage
+\makeatother
+
+\input{1-intro-to-ai.tex}\clearpage
+\input{2-intelligent-agents.tex}\clearpage
+\input{3-intro-to-search.tex}\clearpage
+\input{4-uninformed-search-algorithms.tex}\clearpage
+\input{5-informed-search-algorithms.tex}\clearpage
+\input{6-adversarial-search.tex}\clearpage
+\input{7-state-space-search.tex}\clearpage
+\input{8-ethics.tex}\clearpage
+
+\end{document}
+

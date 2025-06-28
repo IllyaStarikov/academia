@@ -1,0 +1,90 @@
+\documentclass{article}
+\usepackage{forest}
+\begin{document}
+\section*{Heap}
+
+\begin{itemize}
+\item Binary Search Tree
+\item All but the bottom level is complete.
+\item From every node x, x is less than it's two children.
+\item Member functions.
+    \begin{itemize}
+    \item top(T) \textit{= 8}
+    \item insert(T, x)
+    \item remove(T) = \textit{T = the top of the heap}
+    \end{itemize}
+\item Maintenance Functions
+    \begin{itemize}
+    \item Percolate Up, during insertion.
+        \begin{itemize}
+        \item Let the item bubble up.
+        \end{itemize}
+    \item Percolate Down, during removal.
+        \begin{itemize}
+        \item Like a stone sinking through a viscous liquid.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+% Heap Sketch
+% 8
+% 12 20
+% 14,18 20,21
+% 99,15 35,20 54
+
+\begin{forest}
+[8
+    [12
+        [14
+            [99]
+            [15]]
+        [18
+            [35]
+            [20]]]
+    [20
+        [20
+            [54]]
+        [21]]]
+\end{forest}
+
+\subsection*{D.S. ArrayHeap}
+\begin{verbatim}
+class ArrayHeap {
+    T *data;
+    int m_max, m_size;
+
+public:
+    const T& top() {
+        if (m_size != 0) {
+            return m_data[0];
+        } else {
+            cerr << "Shit."
+        }
+    }
+
+    void insert(const T& x) {
+        if (m_max == m_size) {
+            grow();
+        }
+
+        int hole = m_size;
+        m_size++;
+
+        while (hole > 0 && x < m_data[(hole- 1) / 2]) {
+            m_data[hole] = m_data[(hole - 1) / 2];
+            hole = (hole - 1)/2;
+        }
+
+        m_data[hole] = x;
+    }
+
+    void remove() {
+        if (m_size == 0) { return; }
+        int hole = 0;
+        m_size--;
+
+        We can continue this over break.
+    }
+};
+\end{verbatim}
+\end{document}

@@ -1,0 +1,48 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[11pt]{article}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,akkwidepage}
+\usepackage[margin=10pt, font=small, labelfont=bf, labelsep=endash]{caption}
+\usepackage[utf8]{inputenc}
+
+\title{Numerical Methods Equations}
+\date{\today}
+\author{Illya Starikov}
+
+\begin{document}
+\maketitle
+
+\section{Taylor Series}
+\begin{align}
+    f(a) + f'(a)(x - a) + \frac{f''(a)}{2!}(x - a)^2 + \frac{f^{(3)}(a)}{3!}(x - a)^3 + \cdots & \\ = \sum ^{\infty} _{k = 0} \frac{f^{(k)}(a)}{k!}(x - a)^k.
+\end{align}
+
+\section{Taylor Series of $e^x$}
+\begin{align}
+    e^x &= 1 + x + \frac{x^2}{2!} + \cdots \\
+    \frac{1}{e^{-x}} &= \frac{1}{1 - x + \frac{x^2}{2} +\cdots }
+\end{align}
+
+
+\section{False Position}
+\begin{equation}
+    r = b - \frac{(b - a) \cdot f(b)}{f(b) - f(a)}
+\end{equation}
+
+\section{Newton's Method}
+\begin{equation}
+    x_{n + 1} = x_n + \frac{f(x_n)}{f'(x_n)}
+\end{equation}
+
+
+\section{Secant Lines}
+\begin{equation}
+    x_3 = x_1 - \frac{(x_2 - x_1) \cdot f(x_1)}{f(x_2) - f(x_1)}
+\end{equation}
+
+\section{Modified Secant Method}
+\begin{equation}
+    x_2 = x_1 - \frac{f(x_1) \Delta}{f(x_1+\Delta) - f(x_1)}
+\end{equation}
+
+\end{document}

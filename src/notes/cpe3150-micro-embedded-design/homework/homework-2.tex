@@ -1,0 +1,64 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass{article}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,tabularx,multicol}
+\usepackage[margin=10pt, font=small, labelfont=bf, labelsep=endash]{caption}
+\usepackage[colorlinks=true, pdfborder={0 0 0}]{hyperref}
+\usepackage[utf8]{inputenc}
+
+\newcounter{map}
+\newcommand{\address}{
+    \textbf{000\themap}
+    \addtocounter{map}{1}
+}
+\newcommand{\contents}[1]{
+    \texttt{#1}
+}
+
+\title{Homework \#2}
+\date{Due Date: September 15, 2016}
+\author{Illya Starikov}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+    \item Printer, Disk, Keyboard, Monitor.
+
+    \item Because Windows and Android both support the x86 architecture, there is a monopolization of the x86 architecture support --- meaning millions of computers could run x86 compatible software. Other benefits could include more functionality (i.e. BIOS Bootloading) and computing power.
+
+    \item The ROM is where the program is stores; too large of a program could mean not being able to run the executable.
+
+    \item Power consumption.
+
+    \item Addressing modes are as follows:
+    \begin{enumerate}
+        \item Directed, Indexed
+        \item Indexed, Immediate
+        \item Absolute
+        \item Direct
+        \item Relative
+        \item Register, Relative
+        \item Register
+        \item Long
+    \end{enumerate}
+
+    \item Addressing maps is as follows:
+\end{enumerate}
+
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Address} & \textbf{Contents} \\ \hline
+        \address & \contents{79} \\ \hline
+        \address & \contents{A3} \\ \hline
+        \address & \contents{74} \\ \hline
+        \address & \contents{2D} \\ \hline
+        \address & \contents{27} \\ \hline
+        \address & \contents{04} \\ \hline
+        \address & \contents{C4} \\ \hline
+        \address & \contents{82} \\ \hline
+    \end{tabular}
+\end{center}
+
+\end{document}

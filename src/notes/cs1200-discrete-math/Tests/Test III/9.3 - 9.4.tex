@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+\subsection{Counting Elements of Disjoint Sets: The Addition Rule}
+\subsubsection*{The Addition Rule}
+Suppose a finite set \textit{A} equals the union of \textit{k} distinct mutually disjoint subsets $A_1, A_2, \ldots , A_k$ Then:
+
+\begin{equation*}
+N(A) = N(A_1) + N(A_2) + \cdots + N(A_k).
+\end{equation*}
+
+\subsubsection*{The Difference Rule}
+If \textit{A} is a finite set and \textit{B} is a subset of \textit{A}, then:
+
+\begin{equation*}
+N(A - B) = N(A) - N(B).
+\end{equation*}
+
+\subsubsection*{Formula for the probability of the complement of an Event}
+If \textit{S} is a finite sample space and \textit{A} is an event in \textit{S}, then:
+
+\begin{equation*}
+P(A^c) = 1 - P(A)
+\end{equation*}
+
+\subsubsection*{The Inclusion/Exclusion Rule for Two or Three Sets}
+If \textit{A, B} and \textit{C} are any finite sets, then
+
+\begin{equation*}
+N(A \cup B) = N(A) + N(B) - B(A \cap B)
+\end{equation*}
+
+and
+
+\begin{equation*}
+N(A \ \cup \ B \ \cup \ C) = N(A) + N(B) + N(C) - N(A \ \cap \ B) - N(A \ \cup \ C) - N(B \ \cap \ C) + N(A \ \cap \ B \ \cap \ C).
+\end{equation*}
+
+\subsubsection*{Pigeonhole Principle}
+A function from one finite set to a smaller finite set cannot be one-to-one: There must be at least two elements in the domain that have the same image in the co-domain.
+
+\subsubsection*{Generalized Pigeonhole Principle}
+For any function \textit{f} from a finite set \textit{X} with \textit{n} elements to a finite set \textit{Y} with \textit{m} elements and for any positive integer \textit{k}, if $ k < n/m $, there there is some $y \in Y$ such that \textit{y} is the image of at least \textit{k + 1} distinct elements of \textit{X}
+
+\subsubsection{Generalized Pigeonhole Principle (Contrapositive Form)}
+For any function $f$ from a finite set $X$ with $n$ elements to a finite set $Y$ with $m$ elements and for any positive integer $k$, if for each $y \in Y, f ^{−1} (y)$ has at most $k$ elements, then $X$ has at most $km$ elements; in other words, $n \leq km$.
+
+\subsubsection{The Pigeonhole Principle}
+For any function $f$ from a finite set $X$ with n elements to a finite set $Y$ with m elements, if $n > m$, then $f$ is not one-to-one.
+
+\subsubsection{One-to-One and Onto for Finite Sets}
+Let $X$ and $Y$ be finite sets with the same number of elements and suppose $f$ is a function from $X$ to $Y$. Then $f$ is one-to-one if, and only if, $f$ is onto.
+\end{document}

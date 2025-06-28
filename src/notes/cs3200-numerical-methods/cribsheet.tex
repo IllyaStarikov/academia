@@ -1,0 +1,197 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{hyperref,siunitx}
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,hyperref}
+
+% To make this come out properly in landscape mode, do one of the following
+% 1.
+%  pdflatex latexsheet.tex
+%
+% 2.
+%  latex latexsheet.tex
+%  dvips -P pdf  -t landscape latexsheet.dvi
+%  ps2pdf latexsheet.ps
+
+
+% If you're reading this, be prepared for confusion.  Making this was
+% a learning experience for me, and it shows.  Much of the placement
+% was hacked in; if you make it better, let me know...
+
+
+% 2008-04
+% Changed page margin code to use the geometry package. Also added code for
+% conditional page margins, depending on paper size. Thanks to Uwe Ziegenhagen
+% for the suggestions.
+
+% 2006-08
+% Made changes based on suggestions from Gene Cooperman. <gene at ccs.neu.edu>
+
+
+% To Do:
+% \listoffigures \listoftables
+% \setcounter{secnumdepth}{0}
+
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+	{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+
+% Turn off header and footer
+\pagestyle{empty}
+
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+
+% -----------------------------------------------------------------------
+
+\begin{document}
+
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+     \Large{\textbf{Numerical Methods Crib Sheet}} \\
+     {\textbf{Illya Starikov}} \\
+\end{center}
+
+\section{Integration Equations}
+Note that $h$ usually refers to $(b - a)$. Also, Trapezoidal needs \num{2} points, Simpson's $\nicefrac{1}{3}$ uses \num{3}, Simpson's $\nicefrac{3}{8}$ uses \num{4} and Boole's \num{5}. Also note that for something like $[0, 4]$, $h = 4, n = 1, h = 2, n = 2, h = 1, n = 4$
+
+\newlength{\MyLen}
+\settowidth{\MyLen}{\texttt{letterpaper}/\texttt{a4paper} \ }
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\texttt{Trapezoidal} & $I = \frac{h}{2}\left[ f(x_0) + 2 \sum _{i = 1} ^n + f(x_n) \right]$ \\
+\texttt{Richardson} & $I \approx \nicefrac{4}{3} I(h_2) - \nicefrac{1}{3} I(h_1)$ \\
+&  $\approx \nicefrac{4}{3} I(\text{current cell}) - \nicefrac{1}{3} I(\text{previous cell})$ \\
+\texttt{Romberg} & $I_{j, k} = \frac{4^{k-1} I_{j+1, k-1} - I_{j, k-1}}{4^{k-1} - 1}$ \\
+& $I_{j, k} = \frac{4^{\text{cell your on - 1}} I_{\text{cell your on}} - I_{\text{cell one up}}}{4^{k-1} - 1}$ \\
+\texttt{Simpson \nicefrac{1}{3}} & $\nicefrac{h}{6}(f(a) + 4f(a + h) + f(b))$ \\
+\texttt{Simpson \nicefrac{3}{8}} & $\nicefrac{3\,h}{8}(f(a + h) + 3f(a + h) + 3f(a + 2h) + f(b))$
+\end{tabular}
+
+\section{Differentiation Equations}
+\subsection{Forward Finite-Divided}
+\begin{align*}
+    \frac{d}{dx} &= \frac{f(x+h) - f(x)}{h} \quad O(h) \\
+\end{align*}
+
+\subsection{Backward Finite-Divided}
+\begin{align*}
+    \frac{d}{dx} &= \frac{f(x) - f(x-h)}{h} \quad O(h) \\
+\end{align*}
+
+\subsection{Central Difference}
+\begin{align*}
+    \frac{d}{dx} &= \frac{f(x+h) - f(x-h)}{2h} \quad O(h^2)\\
+    \frac{d^2}{dx^2} &= \frac{f(x + h) - 2f(x) + f(x - h)}{h^2} \quad O(h^4) \\
+\end{align*}
+
+
+\section{Richardson Extrapolation}
+\begin{align*}
+    I &= I(h) + \mathcal{E}(h) \\
+    I &= I(h_1) + \mathcal{E}(h_1) = I(h_2) + \mathcal{E}(h_2) \\
+    \mathcal{E} &\approx - \frac{b - a}{2} h^2\, \bar{f''} \\
+    \frac{\mathcal{E}(h_1)}{\mathcal{E}(h_2)} &\approx - \frac{\frac{b - a}{2} h_1^2\, \bar{f''}}{\frac{b - a}{2} h_2^2\, \bar{f''}} \approx \frac{h_1 ^2}{h_2 ^2} \\
+    \mathcal{E}(h_1) &\approx \mathcal{E}(h_2)\left( \frac{h_1}{h_2} \right)^2 \\
+    I &\approx I(h_1) + \mathcal{E}(h_2)\left( \frac{h_1}{h_2} \right)^2 \approx I(h_2) + \mathcal{E}(h_2) \\
+    \mathcal{E}(h_2) &\approx \frac{I(h_2) - I(h_1)}{(\nicefrac{h_1}{h_2})^2 - 1} \\
+    I &\approx I(h_2) + \approx \frac{I(h_2) - I(h_1)}{(\nicefrac{h_1}{h_2})^2 - 1} \\
+    I &\approx \nicefrac{4}{3}\, I(h_2) - \nicefrac{1}{3}\, I(h_1)
+\end{align*}
+
+\section{Differential Equations}
+\subsection{Midpoint Method}
+Note that $y(a) = b \implies x_i = a, y_i = b$.
+
+\begin{align*}
+    k_1 &= f(x_i, y_i) \\
+    k_2 &= f(x_1 + \nicefrac{h}{2}, y_i + k_1 \nicefrac{h}{2}) \\
+    y_{i + 1} &= y_i + k_2 \cdot h
+\end{align*}
+
+\subsection{Heun Method}
+\begin{align*}
+    k_1 &= f(x_i, y_i) \\
+    k_2 &= f(x_i + h, y_i + k_1 h) \\
+    y_{i + 1} &= y_i + \frac{h \cdot (k_1 + k_2)}{2}
+\end{align*}
+
+\subsection{RK-3}
+\begin{align*}
+    k_1 &= f(x_i, y_i) \\
+    k_2 &= f(x_i + \nicefrac{h}{2}, y_i + k_1\nicefrac{h}{2}) \\
+    k_3 &= f(x_i + h, y_i + (-k_1 + 2k_2)h) \\
+    y_{i+1} &= y_i + h\cdot(k_i + 4k_2 + k_3)/6
+\end{align*}
+
+\subsection{RK-4}
+\begin{align*}
+    k_1 &= f(x_i, y_i) \\
+    k_2 &= f(x_1 + \nicefrac{h}{2}, y_i + k_1 \nicefrac{h}{2}) \\
+    k_3 &= f(x_i + \nicefrac{h}{2}, y_i + k_2 \nicefrac{h}{2}) \\
+    k_4 &= f(x_i + h, y_i + k_3 h) \\
+    y_{i+i} &= y_i + h\nicefrac{(k_1 + 2k_2 + 2k_3 + k_3)}{6}
+\end{align*}
+
+% \section{Short Answer}
+% \begin{itemize}
+%     \item How does trapezoidal rule approximate the function in order to find the integral? \textbf{Linear approximation}
+%     \item For trapezoidal integration, what is the order of error using single interval? $O(h^3)$
+%     \item How does Simpson’s $\nicefrac{1}{3}$-Rule rule the approximate function?
+% 	\textbf{Quadratic approximation}
+%     \item How does Simpson’s $\nicefrac{3}{8}$-Rule rule the approximate function?
+%  	\textbf{Cubic approximation}
+%     \item  Give Richarson approximation formula for integration when Trapezoidal integral for step size, h and h/2 are known as I(h/2) and I(h)  with error estimate of $O(h^2)$. $R(h/2) = (4*I(\nicefrac{h}{2}) - I(h))/3$
+%     \item Give Romberg approximation formula for integration when Richardson integral for step size, h and h/2 are known as Rich(h/2) and Rich(h)  with error estimate of $O(h^4)$. $(16*Rich(\nicefrac{h}{2}) - Rich(h))/15$
+%     \item Derive the Central difference formula for f’’(xi), and Give its order of approximation error. \textbf{Add the two Taylor series expansions of $f(x)$ to get formula for $f''(x_i), O(h^2)$. For step $h$ and step  $-h$. $f(x \pm h) = f(x) \pm h f'(x) + h^2/2 f''(x) + \cdots$. $f''(x) = (f(x + h) - 2f(x) + f(x-h) )/ h^2$ }
+%     \item Central Difference has best second order derivative.
+% \end{itemize}
+\end{multicols}
+\end{document}

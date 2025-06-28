@@ -1,0 +1,214 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{fancyvrb}
+\usepackage{mathtools}
+\usepackage{tabularx}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\begin{document}
+
+\title{Test I Study Guide}
+\author{Illya Starikov}
+\date{February 15, 2016}
+\maketitle
+
+\fvset{%
+numbers=left
+}
+
+\section{Sorting Algorithms}
+\subsection{Insertion-Sort}
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`_=8}]
+Insertion-Sort(A)
+    for j = 2 to A.length
+        key = A[j]
+        // Insert A[j] into the sorted sequence A[1..j - 1]
+        i = j - 1
+        while i > 0 and A[j] > key
+            A[i + 1] =  A[i]
+            i = i - 1
+        A[i + 1] = key
+\end{Verbatim}
+
+\subsection{Merge Sort}
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`_=8}]
+Merge-Sort(A, p, r)
+    if p < r
+        q = $ \floor*{(q + r) /2}$
+        Merge-Sort(A, p, q)
+        Merge-Sort(A, q + 1, r)
+        Merge(A, p, q, r)
+
+Merge(A, p, q, r)
+    $n_1$ = q - p + 1
+    $n_2$ = r - q
+    let L[1...$n_1$ + 1] and R[1..$n_2$] be new arrays
+    for i = 1 to $n_1$
+        L[i] = A[p + i - 1]
+    for j = 1 to $n_2$
+        R[j] = A[q + j]
+    R[$n_1$ + 1] = $\infty$
+    R[$n_2$ + 1] = $\infty$
+    i = 1
+    j = 1
+    for k = p to r
+        if L[i] $\leq$ R[j]
+            A[k] = L[i]
+            i = i + 1
+        else A[k] = R[j]
+            j = j + 1
+\end{Verbatim}
+
+\subsection{Heap Sort}
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`_=8}]
+Max-Heapify(A, i)
+    l = Left(i)
+    r = Right(i)
+    if l $\leq$ A.heap-size and A[l] > A[i]
+        largest = l
+    else largest = i
+    if r $\leq$ A.heap-size and A[r] > A[largest]
+        largest = r
+    if largest $\neq$ i
+        exchange A[i] with A[largest]
+        Max-Heaphify(A-largest)
+
+Heapsort(A)
+    Build-Max-Heap(A)
+    for i = A.length downto 2
+        exchange A[1] with A[i]
+        A.heap-size = A.heap-size - 1
+        Max-Heapify(A, 1)
+\end{Verbatim}
+
+\subsection{Quicksort}
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`_=8}]
+Quicksort(A, p, r)
+    if p < r
+        q = Partition(A, p, r)
+        Quicksort(A, p, q - 1)
+        Quicksort(A, q + 1, r)
+
+Partition(A, p, r)
+    x = A[r]
+    i = p - 1
+    for j = p to r - 1
+        if A[j] $\leq$ x
+            i = i + 1
+            exchange A[i] with A[j]
+    exchange A[i + 1] with A[r]
+    return i + 1
+\end{Verbatim}
+
+\subsection{Counting Sort}
+Let $A$ = input array, $B$ = output array, $n$ = size of array, $k$ = maximum number.
+\begin{Verbatim}
+countingSort(A, B, n, k)
+    let C[0...k] be the counting array
+    for i = 0 to k
+        C[i] = 0
+    for j = 1 to n
+        C[A[j]] = C[A[j]] + 1
+    for i = 1 to k
+        C[i] = C[i] + C[i - 1]
+    for j = n down to 1
+        B[C[A[j]]] = A[j]
+        C[A[j]] = C[A[j]] - 1
+\end{Verbatim}
+
+\subsection{Rate of Growth}
+\begin{description}
+    \item [Insertion Sort] Worst: $\Theta(n^2)$, Average: $
+    \Theta(n^2)$
+    \item [Merge Sort] Worst: $\Theta(n \lg n)$, Average: $
+        \Theta(n \lg n)$
+    \item [Quick Sort] Worst: $\Theta(n^2)$, Average: $
+        \Theta(n \lg n)$
+    \item [Heap Sort] Worst: $\Theta(n \lg n)$, Average: $
+        \Theta(n \lg n)$
+    \end{description}
+
+\section{Growth Classes}
+\subsection{$O$-notation}
+\begin{equation*}
+O(g(n)) = \{ f(n) : \ \text{there exists positive constant $c$ and $n_0$ such that} \ 0 \leq f(n) \leq c \ g(n) \ \text{for all} \ n \geq n_0 \}
+\end{equation*}
+
+\subsection{$\Omega$-notation}
+\begin{equation*}
+\Omega(g(n)) = \{ f(n) : \ \text{there exists positive constants $c$ and $n_0$ such that} \ 0 \leq c \ g(n) \leq f(n) \ \text{for all} \ n \geq n_0 \}
+\end{equation*}
+
+\subsection{$\Theta$-notation}
+\begin{align*}
+\Theta(g(n)) = \{ f(n) : \ \text{there exists positive constants $c_1, c_2$ and $n_0$ such that} \\ \ 0 \leq c_1 \ g(n) \leq f(n) \leq c_2\ g(n) \ \text{for all} \ n \geq n_0 \}
+\end{align*}
+
+\subsection{$o$-notation (Little-o)}
+$f(n) \in o(g(n)) $ iff for every $c > 0$ there is an $n_0 > 0$ such that
+
+\begin{equation*}
+0 \leq f(n) < c \ g(n)
+\end{equation*}
+
+for all $n \geq n_0$
+
+\subsection{$\omega$-notation (Little-omega)}
+\begin{equation*}
+f(n) \in \omega(g(n)) \ \text{iff} \ g(n) \in o(f(n)).
+\end{equation*}
+
+or $f(n) \in \omega(g(n))$ iff for every $c > 0$ there is an $n_0 > 0$ such that
+
+\begin{equation*}
+0 \leq c \ g(n) < f(n)
+\end{equation*}
+
+for all $n \geq n_0$
+
+\section{Master Theorem}
+The master theorem can only be applied to recurrence equations of the form:
+
+\begin{equation*}
+T(n) = aT(n/b) + f(n)
+\end{equation*}
+
+\subsection{Constants}
+\begin{description}
+    \item [n] The size of the problem
+    \item [a] The number of subproblems
+    \item [n/b] The size of each subproblem
+    \item [f(n)] cost outside of recursive calls (divide, combine)
+\end{description}
+
+\subsection{Cases}
+\begin{tabularx}{\textwidth}{X|X}
+ \hline \\
+$f(n) \in O(n^{\log _b a - \epsilon})$ & $T(n) \in \Theta(n^{\log _b a})$ \\
+$f(n) \in \Theta(n^{\log _b a})$ & $T(n) \in \Theta(n ^{\log _b a} \lg n)$ \\
+$f(n) \in \Omega(n^{\log _b a + \epsilon})$ & $T(n) \in \Theta (f(n))$ \\
+\hline
+\end{tabularx}
+
+\section{Definitions}
+\begin{description}
+    \item [Algorithm] Any well-defined computational procedure that takes a set of values as input and produces a set of values as output in a finite number of steps
+    \item [Correct Algorithm]  One returns the correct solution for every valid instance of a problem
+    \item [Loop Invariance] Define a key property about the relationship among variables of the algorithms.
+    \begin{itemize}
+        \item Holds in the \emph{initial} case.
+        \begin{description}
+            \item [Initialization] The loop invariance must be true prior to the first iteration.
+        \end{description}
+        \item Is \emph{maintained} each iteration.
+        \begin{description}
+            \item [Maintenance] If the property holds prior to an iteration, it must still hold after the iteration is complete.
+        \end{description}
+        \item Yields correctness when the loop \emph{terminates}.
+        \begin{description}
+            \item [Termination] The invariant provides a useful property that helps demonstrate the algorithm is correct.
+        \end{description}
+    \end{itemize}
+    \item [Heapify] Go all the way down to the heap and fix the violations of the max-heap property by sifting-up
+\end{description}
+\end{document}

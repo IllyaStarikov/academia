@@ -1,0 +1,114 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{article}
+
+\input{macros}
+\chapterNumber{3}
+
+\begin{document}
+\section{Control Transfer Instructions and Time Delay Generation}
+\begin{itemize}
+    \item There are 5 types of instructions
+    \begin{itemize}
+         \item One of which is \texttt{MOV, MOVC, MOVX}
+    \end{itemize}
+
+    \item No one uses \texttt{JMP}.
+    \begin{itemize}
+        \item Because it's a bit difficult to work with --- as apposed to a long jump.
+    \end{itemize}
+
+    \item \texttt{NOP} is literally do nothing
+    \begin{itemize}
+        \item It's to kill time.
+    \end{itemize}
+
+    \item Let's multiply $5 \times 5$
+\end{itemize}
+
+\subsection*{JZ Multiply By 5}
+\begin{verbatim}
+        ORG 0
+
+        MOV R0, #5
+        MOV R1, #0
+
+        MOV A, #0
+
+LOOP:   MOV A, R1
+        ADD A, #5
+
+        MOV R1, A
+        MOV A, R0
+
+        DEC A
+        JNZ A, LOOP
+
+        END
+\end{verbatim}
+
+\subsection*{DJNZ Multiply By 5}
+\begin{verbatim}
+        ORG 0
+
+        MOV R0, #5
+        MOV A, #0
+
+LOOP:   ADD A, #5
+        DJNZ R0, Loop
+
+        END
+\end{verbatim}
+
+
+\subsection*{Nested Loop}
+Load \texttt{A} with 5, add 10 for 300 times.
+
+\begin{verbatim}
+        ORG 0
+
+        MOV A, #5
+
+        MOV R0, #3
+
+LOOP2:  MOV R1, #100    ; Runs 3 times
+LOOP1:  ADD A, #10      ; Runs 100 times
+                        ; 3x100 = 300 times
+
+        DJNZ R1, LOOP1
+        DJNS R0, LOOP2
+\end{verbatim}
+
+\begin{itemize}
+    \item 1 MC = $1.0852 \mu s$ --- \textbf{KNOW THIS}!
+    \item For slides, the values (in order) of the delay is
+\end{itemize}
+
+\begin{tabular}{|c|c|}
+    % 1 1 2 1 2 -- 1 2 2
+    \hline
+    \textbf{Machine Cycle} & \textbf{Times} \\ \hline
+    1 & 1 \\ \hline
+    1 & $\infty$ \\  \hline
+    2 & $\infty$ \\  \hline
+    1 & $\infty$ \\  \hline
+    2 & $\infty$ \\  \hline
+      & \\ \hline
+    1 & $\infty$ \\ \hline
+    2 & $200 \times \infty$ \\ \hline
+    2 & $1 \times \infty$ \\ \hline
+\end{tabular}
+
+\subsection*{Delay Example}
+\begin{verbatim}
+DELAY:  MOV R0, #251
+
+DL1:    MOV R1, #182
+DL2:    DJNZ R1, DL2
+        DJNZ R0, DL1
+
+        RET
+\end{verbatim}
+
+
+
+\end{document}

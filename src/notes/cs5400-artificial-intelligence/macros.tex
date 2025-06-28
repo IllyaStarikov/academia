@@ -1,0 +1,63 @@
+%
+%  macros.tex
+%
+%  Created by Illya Starikov on 10/05/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,enumitem,listings,graphics,amsthm,booktabs,mathtools,xcolor,a4wide}
+
+\usepackage{tocloft}
+\renewcommand\cftsecleader{\cftdotfill{\cftdotsep}}
+
+\usepackage{algpseudocode,algorithm,algorithmicx}
+\newcommand*\Let[2]{\State{#1 $\gets$ #2}}
+\algrenewcommand\algorithmicrequire{\textbf{Precondition:}}
+\algrenewcommand\algorithmicensure{\textbf{Postcondition:}}
+\algdef{SE}[SUBALG]{Indent}{EndIndent}{}{\algorithmicend\ }%
+\algtext*{Indent}
+\algtext*{EndIndent}
+\MakeRobust{\Call}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\usepackage[linguistics]{forest}
+
+\lstset{%
+    language=Python,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{blue}\ttfamily,
+    stringstyle=\color{red}\ttfamily,
+    commentstyle=\color{gray}\ttfamily,
+    morecomment=[l][\color{magenta}]{\#},
+    numbers=left,
+    keepspaces=true,
+    tabsize=4,
+    breaklines=true,
+    morekeywords={True, False},
+    showspaces=false,
+    showtabs=false,
+    xleftmargin=17pt,
+    framexleftmargin=17pt,
+    framexrightmargin=5pt,
+    framexbottommargin=4pt,
+    mathescape
+}
+
+\let\emptyset\varnothing%
+\newtheorem{theorem}{Theorem}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\newcommand{\bigO}[1]{\mathcal{O}\left(#1\right)}
+\newcommand{\bigTheta}[1]{\Theta\left(#1\right)}
+\newcommand{\bigOmega}[1]{\Omega\left(#1\right)}
+
+\newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{\strut#1}}}
+\newcommand{\todo}[1]{\textbf{\colorbox{red!50}{\strut#1}}}

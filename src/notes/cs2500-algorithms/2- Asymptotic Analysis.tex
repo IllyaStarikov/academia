@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+
+\setcounter{section}{1}
+\section{Asymptotic Analysis}
+
+\subsection{Proofs}
+Prove the following for big O.
+\begin{eqnarray}
+n^2 + 2n + lg \ n & = & O(n^2) \\
+& = & O \leq n^2 +  2n + lg \ n \\
+& \leq & n^2 + 2n^2 + lg \ n * n \\
+& \leq & n^2 + 2n^2 + n^2 \\
+& = & 4 n^2
+\end{eqnarray}
+
+So $c = 4$ and $n_0 = 1$.
+
+\subsection{Proof II}
+Prove the following for big $\Omega$
+
+\begin{eqnarray}
+2n^3 - 3n^2 + 2n & = & \Omega (n^3) \\
+& & 2n ^3 - 3n^2 + 2n \\
+& \geq &  2n^3 - 3n^2 \\
+& \geq & 2n^3 - n^3, n \geq 3 \\
+& = & n^3
+\end{eqnarray}
+
+So $c = 1$, $n_0 = 3$.
+
+\subsection{Proof III}
+Upper bound.
+\begin{eqnarray}
+\frac{n^2}{2} - \frac{n}{2} & = & \Theta (n^2) \\
+& = & \frac{n^2}{2} - \frac{n}{2} \\
+& \leq & \frac{n^2}{2} - \frac{n}{2} \\
+& = & \leq \frac{n^2}{2}, c_2 = \frac{1}{2}, n \geq 0.
+\end{eqnarray}
+
+Lower bound.
+\begin{eqnarray}
+& & \frac{n^2}{2} - \frac{n}{2} \\
+& \geq & \frac{n^2}{2} - \frac{n}{2} * \frac{n}{2} \\
+& = & \frac{1}{4}n^2
+\end{eqnarray}
+
+$c_1 = \frac{1}{4}$ and $n_0 = 2$
+
+\subsection{Growth Classes Proof}
+Show $n^3 - 10n^2 \neq O(n^2)$
+
+\begin{eqnarray}
+0 & \leq & n^3 - 10n^2 \leq cn^2 \\
+n^3 & \leq & 10n^2 + cn^2 \\
+n^3 & \leq & (10+c)n^2 \\
+n & \leq & 10 + C
+\end{eqnarray}
+
+This is a contradiction.
+
+\subsection{Growth Classes Example II}
+Show $2^n = o(3^n)$
+
+\begin{eqnarray}
+2^n & = & o(3^n) \\
+lim _{n \rightarrow \infty} \frac{2^n}{3^n} & = & lim _{n \rightarrow \infty} \frac{2}{3}^n \\
+& = & 0
+\end{eqnarray}
+
+\end{document}

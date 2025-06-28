@@ -1,0 +1,69 @@
+\documentclass{article}
+\begin{document}
+\subsection{State Variable}
+\textbf{$C_v is specific heat for constant volume.$}
+
+\textit{p, V, T, n, U}. Cannot write \textit{Q}, because you can pull heat in and out. The relation ships of these:
+
+\begin{eqnarray*}
+pV & = & nRT \\
+U & = & \frac{3}{2} nRT \\
+& = & N_{molecules} E_{kinetic}
+\end{eqnarray*}
+
+We can describe this in a \textit{pV} diagram. When you see a \textit{pV} diagram that has an area under the curve, you can can calculate it with:
+
+\begin{eqnarray*}
+W & = & \int p dv
+\end{eqnarray*}
+
+How this is derived:
+
+\begin{eqnarray*}
+W & = & \int F dv \\
+& = & Ap \frac{dv}{A} \\
+& = & \int p dv
+\end{eqnarray*}
+
+Now talking about non state variable:
+
+\begin{eqnarray}
+U & = & Q - W
+\end{eqnarray}
+
+\subsection{Processes}
+\begin{description}
+\item [isobaric] \textit{p} = constant
+\item [isochoric] \textit{V} = constant
+\item [isothermic] \textit{T} = constant
+\item [adiabatic] \textit{Q} = constant
+\end{description}
+
+To maintain the same pressure (isobaric), apply heat and increase temperature. To maintain the same volume (isochoric), cool it down. To keep the temperature the same (isothermal), keep it in thermodynamic equilibrium while changing the pressure / volume via a heat bath. To keep the heat the same, insulate the system.
+
+\begin{enumerate}
+\item Isobaric.
+    \begin{itemize}
+    \item $W = \int p dV = p \Delta V = nR \Delta T$.
+    \item $Q = n C_p \Delta T$
+    \item $\Delta U = Q - W = n(c_p - R) \Delta T= n c_v \Delta T$
+    \end{itemize}
+\item Isochoric.
+    \begin{itemize}
+    \item $W = \int p dV = 0$
+    \item $Q = n c_v \Delta T$
+    \item $\Delta U = Q = n c_v \Delta T = \frac{3}{2} n RT \rightarrow c_v = \frac{3}{2}R$
+    \end{itemize}
+\item Iosthermal.
+    \begin{itemize}
+    \item $W = \int p dV = \int _{vi} ^{vf} (nRT) dV = nRT ln(\frac{V_f}{V_i}$
+    \item $\Delta U = 0 \rightarrow Q - W = 0 \rightarrow Q = W$
+    \end{itemize}
+\item Adiabatic
+    \begin{itemize}
+    \item $\Delta Q = 0 \rightarrow \Delta U = - \Delta W \rightarrow du = -dW$
+    \item Just look in lecture notes for derivation.
+    \item $pV^{\gamma} = pV^{\frac{c_p}{c_v}}$ constant
+    \end{itemize}
+\end{enumerate}
+\end{document}

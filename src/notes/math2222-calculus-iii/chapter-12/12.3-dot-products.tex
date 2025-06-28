@@ -1,0 +1,54 @@
+\subsection{Dot Product}
+\subsubsection{Dot Product}
+Given two nonzero vectors \uvec \ and \vvec \ in two or three dimensions, their \textbf{dot product} is
+
+\begin{equation}
+    \uvec \cdot \vvec = |\uvec||\vvec| \cos \theta
+\end{equation}
+
+where $\theta$ is the angle between \uvec and \vvec with $0 \leq \theta \leq \pi$. If $\uvec = \mathbf{0}$ or $\vvec = \mathbf{0}$, then $\uvec \cdot \vvec = 0$, and $\theta$ is undefined.
+
+\subsubsection{Orthogonal Vectors}
+Two vectors \uvec and \vvec are \textbf{orthogonal} if and only if $\uvec \cdot \vvec = 0$. The zero vector is orthogonal to all vectors. In two or three dimensions, two nonzero orthogonal vectors are perpendicular to each other.
+
+\subsubsection{Dot Product}
+Given two vectors $\uvec = \langle u_1,\, u_2,\, u_3 \rangle$ and $\vvec = \langle v_1,\, v_2,\, v_3 \rangle$,
+
+\begin{equation}
+    \uvec \cdot \vvec = u_1v_1 + u_2v_2 + u_3v_3
+\end{equation}
+
+\subsubsection{Properties of the Dot Product}
+Suppose \uvec, \vvec, and \wvec are vectors and let $c$ be a scalar.
+
+\begin{align}
+    \uvec \cdot \vvec = \vvec \cdot \uvec && &\text{Commutative property} \\
+    c(\uvec \cdot \vvec) = (c\uvec) \cdot \vvec = \uvec \cdot (c \vvec) && &\text{Associative property} \\
+    \uvec \cdot (\vvec + \wvec) = \uvec \cdot \vvec + \uvec \cdot \wvec
+\end{align}
+
+\subsubsection{(Orthogonal) Projection of u onto v}
+The \textbf{orthogonal projection of \uvec onto \vvec}, denoted $\text{proj}_{\vvec}\uvec$, where $\vvec \neq \mathbf{0}$, is
+
+\begin{equation}
+    \text{proj}_{\vvec}\uvec = |\uvec| \cos \theta \Bigg( \frac{\vvec}{|\vvec|} \Bigg)
+\end{equation}
+
+The orthogonal projection may also be computed with the formulas
+
+\begin{equation}
+    \text{proj}_{\vvec}\uvec = \text{scal}_{\vvec}\uvec \Bigg( \frac{\vvec}{|\vvec|} \Bigg) = \Bigg( \frac{\uvec \cdot \vvec}{\vvec \cdot \vvec} \Bigg)\vvec
+\end{equation}
+
+where the \textbf{scalar component of u in the direction of \vvec} is
+
+\begin{equation}
+    \text{scal}_{\vvec}\uvec = |\uvec| \cos \theta = \frac{\uvec \cdot \vvec}{|\vvec|}
+\end{equation}
+
+\subsubsection{Work}
+Let a constant force \textbf{F} be applied to an object, producing a displacement \textbf{d}. If the angle between \textbf{F} and \textbf{d} is $\theta$, then the \textbf{work} done by the force is
+
+\begin{equation}
+    W = \mathbf{|F||d|} \cos \theta = \mathbf{F \cdot d}
+\end{equation}

@@ -1,0 +1,42 @@
+%
+%  3.6-the-chain-rule.tex
+%  chapter-3
+%
+%  Created by Illya Starikov on 06/22/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\subsection{The Chain Rule}
+Suppose $y = f(x)$ is differentiable at $u = g(x)$ and $u = g(x)$ is differentiable at $x$. The composite function $y = f(g(x))$ is differentiable at $x$, and its derivative can be expressed in two equivalent ways:
+
+\begin{equation}
+    \frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}
+\end{equation}
+
+or
+
+\begin{equation}
+    \frac{d}{dx}\left[ f(g(x)) \right] = f'(g(x)) \cdot g'(x)
+\end{equation}
+
+\subsubsection{Using the Chain Rule}
+Assume the differentiable function $f = f(g(x))$ is given
+
+\begin{enumerate}
+    \item Identify the outer function $f$ and the inner function $g$, and let $u = g(x)$.
+    \item Replace $g(x)$ by $u$ to express in terms of $u$:
+
+        \begin{equation}
+            y = f(g(x)) \implies y = f(u)
+        \end{equation}
+
+    \item Calculate the product $\frac{dy}{du} \cdot \frac{du}{dx}$.
+    \item Replace $u$ by $g(x)$ in $\frac{dy}{du}$ to obtain $\frac{dy}{dx}$
+\end{enumerate}
+
+\subsubsection{Chain Rule for Powers}
+If $g$ is differentiable for all $x$ in its domain and $n$ is an integer, then
+
+\begin{equation}
+    \frac{d}{dx}\left[ {(g(x))}^n \right] = {n(g(x))}^{n-1} g'(x) 
+\end{equation}

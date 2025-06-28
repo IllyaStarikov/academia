@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+
+\setcounter{section}{10}
+\setcounter{subsection}{2}
+
+\subsection{Matrix Representations of Graphs}
+An \textbf{m $\times$ n} (read “\textit{m} by \textit{n}”) \textbf{matrix A over a set S} is a rectangular array of elements of \textit{S} arranged into \textit{m} rows and \textit{n} columns.
+
+We write \textbf{A} = $(a_{ij})$
+
+\subsubsection{Adjacency Matrix}
+Let \textit{G} be a directed graph with ordered vertices $v_1, v_2, \ldots , v_n$ . The adjacency matrix of \textit{G} is the $n \times n$ matrix $\textbf{A} = ( a_{ij} )$ over the set of nonnegative integers such that
+
+\begin{equation}
+a_{ij} = \text{the number of arrows from} \ v_i \ \text{to} \ v_j \ \text{for all} \ i, j = 1, 2, \ldots, n.
+\end{equation}
+
+\subsubsection{Adjacency Matrix}
+Let G be an undirected graph with ordered vertices $v_1, v_2, \ldots,v_n$. The adjacency matrix of G is the $n \times n$ matrix $A = ( a_{ij} )$ over the set of nonnegative integers such that
+
+\begin{equation}
+a_{ij} = \text{the number of edges connecting} \ v_i \ \text{and} \ v_j
+\end{equation}
+
+for all $i, j = 1, 2, \ldots, n$.
+
+\subsubsection{Symmetric}
+An $n \times n$ square matrix $A = ( a_{ij} )$ is called \textbf{symmetric} if, and only if, for all $i, j =
+1, 2, \ldots, n,$
+
+\begin{equation}
+a_{ij} = a_{ji}
+\end{equation}
+
+\subsubsection{Identity Matrix}
+For each positive integer \textit{n}, the $n \times n$ \textbf{identity matrix}, denoted \textbf{$I_n = (\delta {ij})$} or just \textbf{I} (if the size of the matrix is obvious from context), is the $n \times n$ matrix in which all the entries in the main diagonal are 1’s and all other entries are 0’s. In other words,
+
+\[
+\delta _{ij} =
+\begin{cases}
+1 \ \text{if} \ i = j \\
+0 \ \text{if} \ i \neq j
+\end{cases}
+\text{for all} \ i, j = 1, 2, \ldots, n
+\],
+
+\subsubsection{The Number of Walks}
+If \textit{G} is a graph with vertices $v_1,v_2, \ldots, v_m$ and \textit{A} is the adjacency matrix of \textit{G}, then for each positive integer \textit{n} and for all integers $i, j = 1, 2, ldots , m,$
+
+\begin{center}
+the \textit{ij}th entry of $A_n$ = the number of walks of length \textit{n} from $v_i$ to $v_j$.
+\end{center}
+
+\setcounter{subsection}{4}
+\subsection{Trees}
+\subsubsection{Terminology}
+A graph is said to be \textbf{circuit-free} if, and only if, it has no circuits. A graph is called a \textbf{tree} if, and only if, it is circuit-free and connected. A \textbf{trivial tree} is a graph that consists of a single vertex. A graph is called a \textbf{forest} if, and only if, it is circuit-free and not connected.
+
+\subsubsection{Vertex-Degree Relation}
+Any tree that has more than one vertex has at least one vertex of degree 1.
+
+\subsubsection{Terminal Vertex}
+Let \textit{T} be a tree. If \textit{T} has only one or two vertices, then each is called a \textbf{terminal vertex}. If \textit{T} has at least three vertices, then a vertex of degree 1 in \textit{T} is called a \textbf{terminal vertex} (or a \textbf{leaf}), and a vertex of degree greater than 1 in \textit{T} is called an \textbf{internal vertex} (or a \textbf{branch vertex}).
+
+\subsubsection{Edges And Vertices}
+For any positive integer \textit{n}, any tree with \textit{n} vertices has \textit{n - 1} edges.
+
+\subsection{Connected, Circuit}
+If \textit{G} is any connected graph, \textit{C} is any circuit in \textit{G}, and any one of the edges of \textit{C} is removed from \textit{G}, then the graph that remains is connected.
+
+
+
+\end{document}

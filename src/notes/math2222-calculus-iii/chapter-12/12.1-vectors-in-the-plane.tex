@@ -1,0 +1,48 @@
+\subsection{Vectors in the Plane}
+
+\subsubsection{Vectors, Equal Vectors, Scalars, Zero Vector
+}
+\textbf{Vectors} are quantities that have both \textbf{length} (or \textbf{magnitude}) and \textbf{direction}. Two vectors are \textbf{equal} if they have the same magnitude and direction. Quantities having magnitude but no direction are called \textbf{scalars}. One exception is the \textbf{zero} vector, denoted \textbf{0}: It has length 0 and no direction.
+
+\subsubsection{Scalar Multiples and Parallel Vectors}
+Given a scalar $c$ and a vector \uvec, the scalar multiple $c$\vvec \ is a vector whose magnitude is $|c|$ multiplied by the magnitude of \vvec. If $c > 0$, then $c$\vvec has the same direction as \vvec. If $c < 0$, then $c$\vvec and \vvec point in opposite directions. Two vectors are \textbf{parallel} if they are scalar multiples of each other.
+
+\subsubsection{Position Vectors and Vector Components}
+A vector \vvec with its tail at the origin and head at the point $( v_1, v_2 )$ is called a \textbf{position vector} (or is said to be in \textbf{standard position}) and is written $\langle v_1, v_2 \rangle$. The real numbers $v_1$ and $v_2$ are the x- and y-\textbf{components} of \vvec, respectively. The position vectors $\uvec = \langle v_1, v_2 \rangle$ and $\vvec = \langle v_1, v_2 \rangle$ are equal if and only if $u_1 = v_1$ and $u_2 = v_2$.
+
+\subsubsection{Magnitude of a Vector}
+Given the points $P(x_1, y_1)$ and $Q(x_2, y_2)$, the \textbf{magnitude}, or \textbf{length}, of $\vec{PQ} = \langle x_2 - x_1, y_2 - y_1 \rangle$, denoted $|\vec{PQ}|$, is the distance between $P$ and $Q$:
+
+\begin{equation}
+    |\vec{PQ}| = \sqrt{ (x_2 - x_1)^2 + (y_2 - y_1)^2 }
+\end{equation}
+
+The magnitude of the position vector $\vvec = \langle v_1, v_2 \rangle$ is $|\vvec| = \sqrt{v_1^2 + v_2^2}$
+
+\subsubsection{Vector Operations}
+Suppose $\mathit{c}$ is a scalar, $\text{\uvec} = \langle u_1, u_2 \rangle$ and $\text{\vvec} = \langle v_1, v_2 \rangle$.
+
+\begin{align}
+    \uvec + \vvec &= \langle u_1 + v_1, u_2 + v_2 \rangle && \text{Vector addition} \\
+    \uvec - \vvec &= \langle u_1 - v_1, u_2 - v_2 \rangle && \text{Vector subtraction} \\
+    \mathit{c}\uvec &= \langle \mathit{c}u_1, \mathit{c} u_2 \rangle && \text{Scalar multiplication}
+\end{align}
+
+\subsubsection{Unit Vectors and Vectors of a Specified Length}
+A \textbf{unit vector} is any vector with length 1. Given a nonzero vector $\vvec, \pm \frac{\vvec}{|\vvec|}$ are unit vectors parallel to $\vvec$. For a scalar $c > 0$, the vectors $\pm\frac{\mathit{c}\vvec}{|v|}$ are vectors of length $\mathit{c}$ parallel to $\vvec$.
+
+\subsubsection{Properties of Vector Operations}
+Suppose $\uvec, \vvec,$ and $\wvec$ are vectors and $a$ and $c$ are scalars. Then the following properties hold (for vectors in any number of dimensions).
+
+\begin{align}
+    \uvec + a = \vvec + \uvec && &\text{Commutative property of addition} \\
+    (\uvec + \vvec) + \wvec = \uvec + (\vvec + \wvec) && &\text{Associative property of addition} \\
+    \vvec + \mathbf{0} = \vvec && &\text{Additive identity} \\
+    \vvec + (-\vvec) = 0 && & \text{Additive identity} \\
+    c(\uvec + \vvec) = c\uvec + c\vvec && &\text{Distributive property 1} \\
+    (a + c)\vvec = a\vvec + c\vvec && &\text{Distributive property 2} \\
+    0\vvec = \mathbf{0} && &\text{Multiplication by zero scalar} \\
+    c\mathbf{0} = \mathbf{0} && &\text{Multiplication by zero vector} \\
+    1\vvec = \vvec && &\text{Multiplicative identity} \\
+    a(c\vvec) = (ac)\vvec && &\text{Associative property of scalar multiplication}
+\end{align}

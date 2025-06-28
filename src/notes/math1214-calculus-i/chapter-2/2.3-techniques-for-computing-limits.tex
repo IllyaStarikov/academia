@@ -1,0 +1,49 @@
+%
+%  2.3-techniques-for-computing-limits.tex
+%  chapter-1
+%
+%  Created by Illya Starikov on 06/11/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\subsection{Techniques For Computing Limits}
+\subsubsection{Limits of Linear Functions}
+Let $a$, $b$, and $m$ be real numbers. For Linear functions $f(x) = mx + b$,
+\begin{equation} \lim_{x \rightarrow a} f(x) = f(a) = ma + b
+\end{equation}
+
+\subsubsection{Limit Laws}
+Assume $\limit{x \rightarrow a} f(x)$ and $\limit{x \rightarrow a} g(x)$ exist. The following properties hold, where $c$ is a real number, and $m > 0$ and $n> 0$ are integers.
+
+\begin{enumdescript}
+    \item[Sum] $\limit{x \rightarrow a} \left[ f(x) + g(x) \right] = \limit{x \rightarrow a} f(x) + \limit{x \rightarrow a} g(x)$
+    \item[Difference] $\limit{x \rightarrow a} \left[ f(x) - g(x) \right] = \limit{x \rightarrow a} f(x) - \limit{x \rightarrow a} g(x)$
+    \item[Constant Multiple] $\limit{x \rightarrow a} \left[c\,f(x)\right] = c\,\limit{x \rightarrow a}$
+    \item[Product] $\limit{x \rightarrow a} \left[ f(x) g(x) \right] = \left[ \limit{x \rightarrow a} f(x)\right] \left[\limit{x \rightarrow a} g(x) \right]$
+    \item[Quotient] $\limit{x \rightarrow a} \left[ \frac{f(x)}{g(x)} \right] = \frac{\limit{x \rightarrow a} f(x)}{\limit{x \rightarrow a} g(x)}, \text{ provided } \limit{x \rightarrow a} g(x) \neq 0$
+    \item[Power] $\limit{x \rightarrow a} {\left[ f(x) \right]}^n = {\left[ \limit{x \rightarrow a} f(x) \right]}^n$
+    \item[Fractional Power] $\limit{x \rightarrow a} {\left[ f(x) \right]}^{n/m} = {\left[\limit{x \rightarrow a} f(x) \right]}^{n/m}$, provided $f(x) \geq 0$, for $x$ near $a$, if $m$ is even and $n/m$ is reduced to lowest terms.
+\end{enumdescript}
+
+\subsubsection{Limits of Polynomial and Rational Functions}
+Assume $p$ and $q$ are polynomials and $a$ is a constant
+
+\begin{itemize}
+    \item Polynomial functions: $\limit{x \rightarrow a} p(x) = p(a)$
+    \item Rational functions: $\limit{x \rightarrow a} \frac{p(x)}{q(x)} = \frac{p(a)}{q(a)}$, provided $q(a) \neq 0$
+\end{itemize}
+
+\subsubsection{Limit Laws For One-Sided Limits}
+Laws 1--6 hold with $\limit{x \rightarrow a}$ replaced by $\limit{x \rightarrow a^+}$ or $\limit{x \rightarrow a^-}$. Law 7 is modified as follows, assume $m > 0$ and $n >0$ are integers.
+
+\begin{enumdescript}
+   \setcounter{descriptcount}{6}
+   \item[Fractional Power] \
+    \begin{itemize}
+        \item $\limit{x \rightarrow a^+} {\left[ f(x) \right]}^{n/m}$, provided $f(x) \geq 0$, for $x$ near $a$ with $x > a$, if $m$ is even and $n/m$ is reduced to lowest terms
+        \item $\limit{x \rightarrow a^-} {\left[ f(x) \right]}^{n/m}$, provided $f(x) \geq 0$, for $x$ near $a$ with $x < a$, if $m$ is even and $n/m$ is reduced to lowest terms
+    \end{itemize}
+\end{enumdescript}
+
+\subsubsection{The Squeeze Theorem}
+Assume the function $f$, $g$, and $h$ satisfy $f(x) \leq g(x) \leq h(x)$, for all values of $x$ near $a$, except possibly at $a$. If $\limit{x \rightarrow a} f(x) = \limit{x \rightarrow a} h(x) = L$, then $\limit{x \rightarrow a} g(x) = L$.

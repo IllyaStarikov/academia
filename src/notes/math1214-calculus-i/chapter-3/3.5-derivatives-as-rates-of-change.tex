@@ -1,0 +1,24 @@
+%
+%  3.5-derivatives-as-rates-of-change.tex
+%  chapter-3
+%
+%  Created by Illya Starikov on 06/21/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\subsection{Derivatives as Rates of Change}
+\subsubsection{Average and Instantaneous Velocity}
+Let $s = f(t)$ be the position function of an object moving along a line. The \textbf{average velocity} of the object over the time interval $[a, a + \Delta t]$ is the slope of the secant line between $(a, f(a))$ and $(a + \Delta t, f(a + \Delta t))$:
+
+\begin{equation}
+    v_\text{average} = \frac{f(a + \Delta t) - f(a)}{\Delta t}
+\end{equation}
+
+The \textbf{instantaneous velocity} at $a$ is the slope of the line tangent to the position curve, which is the derivative of the position function
+
+\begin{equation}
+    v(a) = \lim_{t \rightarrow 0} \frac{f(a + \Delta t) - f(a)}{\Delta t} = f'(a)
+\end{equation}
+
+\subsubsection{Average and Marginal Cost}
+The \textbf{cost function} $C(x)$ gives the cost to produce the first $x$ items in a manufacturing process. The \textbf{average cost} to produce $x$ items in $\bar{C}(x) = C(x)/x$. The \textbf{marginal cost} $C'(x)$ is the approximate cost to produce one additional item after producing $x$ items.

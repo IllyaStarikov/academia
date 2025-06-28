@@ -1,0 +1,36 @@
+\subsection{Properties of Power Series}
+
+\subsubsection{Power Series}
+A \textbf{power series} has the general form
+
+\begin{equation}
+    \sum _{k = 0} ^{\infty} c_k(x - a)^k
+\end{equation}
+
+where $a$ and $c_k$ are real numbers, and $x$ is a variable. The $c_k$’s are the \textbf{coefficients} of the power series and $a$ is the \textbf{center} of the power series. The set of values of $x$ for which the series converges is its \textbf{interval of convergence}. The \textbf{radius of convergence} of the power series, denoted $R$, is the distance from the center of the series to the boundary of the interval of convergence.
+
+\subsubsection{Convergence of Power Series}
+A power series $\sum _{k = 0} ^{\infty} c_k (x - a)^k$ centered at $a$ converges in one of three ways:
+
+\begin{enumerate}
+    \item The series converges absolutely for all $x$, in which case the interval of convergence is $(-\infty, \infty)$ and the radius of convergence is $R = \infty$.
+    \item There is a real number $R > 0$ such that the series converges absolutely for $|x - a| < R$ and diverges for $|x - a| > R$, in which case the radius of convergence is $R = 0$.
+    \item The series converges only at $a$, in which case the radius of convergence is $R = 0$.
+\end{enumerate}
+
+\subsubsection{Combining Power Series}
+Suppose the power series $\sum c_k x^k$ and $\sum d_k x^k$ converge absolutely to $f(x)$ and $g(x)$, respectively, on an interval $I$.
+
+\begin{enumerate}
+    \item \textbf{Sum and difference:} The power series $\sum (c_k \pm d_k)x^k$ converges absolutely to $f(x)\pm g(x)$ on $I$.
+    \item \textbf{Multiplication by a power:} The power series $x^m \sum c_k x^k = \sum c_k x^{k + m}$ converges absolutely to $x^m f(x)$ on $I$, provided $m$ is an integer such that $k + m \geq 0$ for all terms of the series.
+    \item \textbf{Composition:} If $h(x) = bx^m$, where $m$ is a positive integer and $b$ is a real number, the power series $\sum c_k (h(x))^k$ converges absolutely to the composite function $f(h(x))$, for all $x$ such that $h(x)$ is in $I$.
+\end{enumerate}
+
+\subsubsection{Differentiating and Integrating Power Series}
+Let the function $f$ be defined by the power series $\sum c_k (x - a)^k$ on its interval of convergence $I$.
+
+\begin{itemize}
+    \item $f$ is a continuous function on $I$.
+    \item The power series may be differentiated or integrated term by term, and the resulting power series converges to $f'(x)$ or $\int f(x) \ dx \ + \ C$, respectively, at all points in the interior of $I$, where $C$ is an arbitrary constant.
+\end{itemize}

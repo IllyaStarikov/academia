@@ -1,0 +1,255 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{article}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,fullpage,mathtools,listings}
+\usepackage[dvipsnames]{xcolor}
+\setcounter{secnumdepth}{0}
+
+\title{Homework \#8}
+\date{Due Date: December 1\textsuperscript{st}, 2016}
+\author{Illya Starikov}
+
+\lstdefinelanguage
+   [x64]{Assembler}     % add a "x64" dialect of Assembler
+   [x86masm]{Assembler} % based on the "x86masm" dialect
+   % with these extra keywords:
+   {morekeywords={ACALL, CPL}} % etc.
+
+\lstdefinestyle{cC}{
+    language=C,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{blue}\ttfamily,
+    stringstyle=\color{red}\ttfamily,
+    commentstyle=\color{gray}\ttfamily,
+    morecomment=[l][\color{magenta}]{\#},
+    numbers=left,
+    keepspaces=true,
+    tabsize=4,
+    breaklines=true,
+    morekeywords={true, false, bool}
+}
+
+\lstdefinestyle{cASM}{
+    language=[x64]Assembler,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{blue}\ttfamily,
+    stringstyle=\color{red}\ttfamily,
+    commentstyle=\color{gray}\ttfamily,
+    morecomment=[s][\color{magenta}]{\#}{\ },
+    morecomment=[s][\color{gray}]{/*}{*/},
+    numbers=left,
+    keepspaces=true,
+    tabsize=2,
+    breaklines=true,
+    emph={R0, R1, R2, R3, R4, R5, R6, A, B},
+    emphstyle={\color{ForestGreen}},
+    keywords={},
+    morekeywords={LJMP, RETI, DJNZ, CPL, MOV, INC, ACALL, SJMP, SETB, RET, CLR, JC, ADD,
+                  CJNE},
+}
+\begin{document}
+\maketitle
+
+\noindent This homework will be \textbf{extra credit.}
+
+\section{Problem \#1}
+\begin{lstlisting}[style=cC]
+#include <reg51.h>
+
+typedef enum { false, true } bool;
+unsigned char R0;
+
+void main() {
+	TMOD = 0x06; // Counter 2, Mode 2
+	TH0 = -0x60; // Initial value given
+
+	R0 = 0; // Just in case
+	TR0 = true; // Start the count
+
+	do {
+		if (TF0) {
+			R0++;
+			TF0 = false; // continue the count
+		}
+	} while (R0 != 60);
+
+	TR0 = false; // Stop the count
+}
+\end{lstlisting}
+
+\section{Problem \#2}
+\begin{lstlisting}[style=cASM]
+        ORG 0H
+
+        LJMP MAIN
+
+        /* Timer 1 Interrupt */
+        ORG 001BH
+        CPL P1.1
+        RETI
+
+        /* Main */
+        ORG 0030H
+MAIN:   MOV P2, #00H        ; P2 = output port
+        MOV TMOD, #20H      ; Timer 1, mode 2
+        MOV TH1, #-37D      ; 5 kHz => 25000 Hz => 4^-5 s
+                            ; => 40 us => 40/1.085 ticks => 37 ticks
+        MOV IE, #88H
+        SETB TR1
+
+LOOP:   INC R0
+        MOV P2, R0          ; P2 = R0
+        ACALL DELAY
+        SJMP LOOP
+
+; so we need to generate a 10.85us delay
+; 10.85/1.085 = 10MC. Easier to just do a brute force
+DELAY:  MOV R1, #4D         ; 2 MC
+HERE:   DJNZ R1, HERE       ; 4 * 2 = 8 MC
+        RET                 ; 8 + 2 = 10 MC
+
+
+        END
+\end{lstlisting}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics{meme.jpg}
+\end{figure}
+
+\section{Problem \#3}
+\begin{lstlisting}[style=cASM]
+        ORG 0
+        LJMP MAIN
+
+        /* Timer 0 Interrupt */
+        ORG 000B
+        CPL P1.1
+        RETI
+
+        /* Timer 1 Interrupt */
+        ORG 001B
+        CPL P1.2
+        RETI
+
+        /* Main */
+        ORG 30H
+MAIN:   MOV TMOD, #12H          ; T0M2 & T1M1
+        MOV P1, #0              ; P1 = output port
+        ACALL WAVE0
+        ACALL WAVE1
+
+        MOV IE, #8AH
+REPEAT: SJMP REPEAT
+
+; 5kHz => 1/5000 s = .0002 s => 200 microseconds
+; 200 us => 184 ticks PER PERIOD. Assuming a 50%
+; duty cycle. So actual value is 184/2 = 92 ticks
+WAVE0:  MOV TH0, #-92
+        SETB TR0
+        RET
+
+; 500 Hz => .002 s => 2000 us
+; (FFFF - x + 1)(1.085) = 2000
+; x = FFFF - 1842 => E7 BD
+WAVE1:  MOV TH1, #0E7H
+        MOV TL1, #0BDH
+        SETB TR1
+        RET
+
+
+        END
+\end{lstlisting}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics{meme2.jpg}
+\end{figure}
+
+\section{Problem \#4}
+\begin{lstlisting}[style=cASM]
+        ORG 0H
+        LJMP MAIN
+
+        /* Interrupts */
+        ORG 001BH
+        LJMP SWAVE
+        RETI
+
+        /* Main */
+        ORG 30H
+MAIN:   MOV R7, #1D
+        MOV P1, #0              ; Make P1 an output port
+        MOV IE, #88H            ; Enable interrupt on T1
+
+LOOP:   MOV P2, R7              ; R7 holds the value of the div series
+        ACALL INFSER
+        SJMP LOOP
+
+; code for the square wave interrupt
+; determines via R6 what the last wave was
+SWAVE:  MOV TMOD, #20H  ; Timer 2, mode 2
+
+        CJNE R6, #70, SKIP2LOW
+        ACALL HWAVE
+        SJMP NEXT
+
+SKIP2LOW:
+        ACALL LWAVE
+
+NEXT:   SETB TR1
+        RET
+
+; the wave has a duty cycle of 70%
+; so the high wave needs a high wave of 7kHz
+; & kHz => 7000 Hz => 1.42^-4 s => 142 us => 130 ticks
+; 130.8 *.7 = 92 ticks for 70% duty cycle of a 7kHz wave
+HWAVE:
+        SETB P1.1
+        MOV TH1, #-92
+        MOV R6, #70             ; Just to keep track of what our last value was
+        RET
+
+; so, exact same reasoning as before, we need 130 ticks for
+; the period of the wave, but now we just subtract 92 from 130
+; so, 130 - 92 = 38
+LWAVE:
+        CLR P1.1
+        MOV TH1, #-38
+        MOV R6, #30
+        RET
+
+; computes infinite divergent series incrementally
+; uses R7
+INFSER:
+        MOV A, R7
+        ACALL TWOCOMP
+        ACALL ISNEGATIVE
+
+        JC RETURN
+        INC A
+
+RETURN: MOV R7, A
+        RET
+
+
+; returns two's compliment of A
+TWOCOMP:
+        CPL A
+        ADD A, #1D
+        RET
+
+
+; returns 1 in C if B is negative
+ISNEGATIVE:
+        CJNE A, #10000000B, NEXT2
+NEXT2:  CPL C
+        RET
+
+
+        END
+\end{lstlisting}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics{meme3.jpg}
+\end{figure}
+
+\end{document}

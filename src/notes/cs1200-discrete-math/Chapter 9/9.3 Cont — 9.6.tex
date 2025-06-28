@@ -1,0 +1,58 @@
+\documentclass{article}
+\begin{document}
+A college conducted a survey to explore academic interests of students. If asked students to place checks besides the following statements if they were true:
+\begin{enumerate}
+    \item I was on the honor roll last term.
+    \item I belong to an academic club.
+    \item I'm majoring in multiple subjects.
+\end{enumerate}
+
+\noindent
+Out of 100 students, 28 checked \#1, 26 checked \#2, and 14 checked \#3, \#8 checked both \#1 and \#2, 4 checked \#1 and \#3, 3 checked \#2 and \#3, and 2 checked all three.
+
+\begin{itemize}
+    \item How many checked at least one? $N(H \wedge C \wedge \wedge D) = N(H) + N(C) + N(D) - N(N \wedge C) - N(H \wedge D) - N(C \wedge D) + N(H \wedge C \wedge D) = \textbf{28 + 26 + 14 - 8 - 4 - 3 + 2} = \textbf{55}$
+    \item How many checked none? \textbf{100 - 55 = 45 }
+    \item Let \textit{H} be the set of students who checked \#1, \textit{C} those who checked \#2, and \textit{D} those who checked \#3. \textit{Insert Picture}
+    \item How many checked \#1 and \#2, but not \#3. $N(H \wedge C) - N(H \wedge C \wedge D) = \textbf{8 - 2 = 6}$
+    \item How many checked \#2 and \#2, but not \#1. $N(C \wedge D) - N(C \wedge D \wedge H) = \textbf{3 - 2 = 1}$
+    \item How many checked \#2, but neither of the others? $N(C) - N(C \wedge H) - N(C \wedge D) + N(C \wedge D) + N(C \wedge H \wedge D) = \textbf{26 - 8 - 3 + 2 = 17}$
+\end{itemize}
+
+\section{8.4 The Pigeonhole Problem}
+\begin{itemize}
+    \item If 13 cards are selected from a standard 52-card deck, must at least 2 be of the same denomination? No, example: $2, 3, 4, \ldots, 10, J, Q, K, A$.
+    \item If 20 cards are selected from a standard 52-card deck, must at least 2 be of the same denomination? Yes, let \textit{X} be the set consisting of the 20 selected cards and let \textit{Y} be the 13 possible denominations. Define a function D from X (pigeons) to Y (Pigeonholes) by specifying $\forall x \in X, D(X) = The denomination of X.$ Now \textit{X} has 20 elements and \textit{Y} has 13, and $20 > 13$. So by the pigeonhole principle, D is not one-to-one. Hence, $\exists x_1, x_2, x_1 \neq x_2 \wedge D(x_1) = D(x_2).$ Then $x_1$ and $x_2$ are distinct cards that have the same denomination.
+\end{itemize}
+
+\subsection*{Example 4.27}
+In a group of 2000 people, must at least 5 have the same BD? Yes, let \textit{X} be the set consisting of the 2000 people (Pigeons) and \textit{Y} be the set of 366 days (Pigeon Holes). Define a function $B: X \rightarrow Y$ by specifying that $\forall x \in X, B(x) = x$'s birthday. Now $2000 > 4 \times 366 = 1464$ and so by the generalized pigeonhole principle, there must be some birthday $y \in Y$ such that $B^{-1}(y$ has at least 4 + 1 = 5 elements. Hence at least 5 people must share the same birthday.
+
+\subsection*{Example 4.30}
+\begin{itemize}
+\item 12 $\times$ 1967 Penny
+\item 7 $\times$ 1968 Penny
+\item 11 $\times$ 1971 Penny
+\end{itemize}
+
+\noindent
+How many must you pick to have at least 5 from the same year? \textbf{13}.
+
+\section*{9.5 Counting Subsets of a Set: Combinations}
+\subsection*{Theorem 9.5.1}
+The number of subsets of size r, called r - combinations, that can be chosen from a set of n elements, $n \choose r$ is.
+
+\begin{equation}
+{n \choose r} = \frac{P(n, r)}{r!} = \frac{n!}{r!(n - r)!}
+\end{equation}
+
+
+\subsection*{Example 9.5.9}
+$40 \choose 6$ = $\frac{40!}{6!34!} = 3,838,380$
+
+\subsection*{Example 9.5.21}
+How many Morse symbols with 7 or fewer dots or dashes?
+$2^1 + 2^2 + 2^3 + 2^4 + \cdots + 2^7 = 2 \times \frac{2^7 - 1}{2 - 1} = 254$
+
+
+\end{document}

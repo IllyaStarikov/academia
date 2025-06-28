@@ -1,0 +1,193 @@
+\documentclass[12pt]{article}
+\begin{document}
+\begin{itemize}
+\item Homework 5 is on stacks
+\item Go to megaminer.
+\end{itemize}
+
+\section{Recursive Object}
+An object which potentially consists or defined in terms of itself. Recursion is used to define things such as:
+
+\begin{itemize}
+\item Sets
+\item Functions
+\item Other objects
+\end{itemize}
+
+Power of Recursion:
+\begin{itemize}
+\item Describe an infite object
+\item Through finite means.
+\end{itemize}
+
+Recursive Definition
+\begin{itemize}
+\item Base Case
+\item Recursive Case
+\end{itemize}
+
+Example: Set of all strings of balanced parenthesis.
+
+%\begin{equation}
+%\begin{matrix}{cc}
+%() & (()) \\
+%()() & ()(())
+%\end{matrix}
+%\end{equation}
+
+\textbf{Base Case}: () is in the set. \\
+\textbf{Recursive Case}: if s is in the set, then s(), ()s, and (s) are also in the set.
+
+\begin{equation}
+  Fibonacci = \left\{
+    \begin{array}{rl}
+      fib(1) = 1 \\
+      fib(2) = 1 \\
+      fib(n) = fib(n -1) + fib(n - 2) \\
+    \end{array} \right.
+\end{equation}
+
+\begin{equation}
+  Factorial = \left\{
+    \begin{array}{rl}
+      1! = 1 \\
+      n! = n \times (n - 1)
+    \end{array} \right.
+\end{equation}
+
+\subsection{Recursive Algorithms}
+\begin{itemize}
+\item Base Case
+
+\begin{itemize}
+\item Direct solution to a small problem instance.
+\end{itemize}
+
+\item Recursive Case
+
+\begin{itemize}
+\item Decompose problem into smaller instances.
+\item Solve smaller instances.
+\item Construct solution from smaller solutions.
+\end{itemize}
+
+\end{itemize}
+
+\subsubsection{Triomino Problem}
+Suppose we have four possible tiles made of three squares. \\
+
+\noindent
+Problem: Cover $2^n \times 2^n$ board, where one tiles is a hole with triominoes.
+
+\begin{itemize}
+\item $n = 4, 2^n = 16$
+\end{itemize}
+
+\textit{Morales gives example.}
+
+\begin{itemize}
+\item split board in 4 equal parts.
+\item Place tronmino across 3 split parts without a hole.
+\item Solve each subpart.
+\end{itemize}
+
+\begin{verbatim}
+void foo() {
+  int x;
+
+  foo();
+}
+\end{verbatim}
+
+\begin{verbatim}
+quicksort(array, left, right) { // assuming left < or = right
+  if (left = right) {
+    return; // Base Case
+  }
+
+  pivot = a[(left + right) / 2];
+  int i = left;
+  int j = right;
+
+  repeat
+    while (a[i] < pivot) { i++; }
+    while (a[j] > pivot) { j--; }
+    if (i < j) {
+      swap(a[i], a[j]);
+      i++;
+      j--;
+    }
+  while (j > i);
+
+  quicksort(a, i + 1, r);
+  quicksort(a, l, i - 1)
+
+}
+\end{verbatim}
+
+\section{Recursive Backtracking}
+\begin{verbatim}
+try
+    intialize choices
+    do
+        select choice
+        if choice is valid
+            record choice
+            if solution complete
+                success!
+            else
+                try next step
+                if next step succeeds
+                    success!
+                else
+                    cancel record
+    while !success & more choices available
+\end{verbatim}
+
+\begin{verbatim}
+path_find(grid, int row, int col) {
+    for choice c in {N, NE, E}
+        nrow = row after c;
+        ncol = col after c;
+
+        if (grid[nrow][ncolumn]) != obstacle && nrow, ncol is in bounds)
+        record nrow, ncol;
+
+        if (grid[row][column] == cake!) {
+            return true;
+        } else {
+            solve = path_find(grid, nrow, ncol)
+            if (solve) {
+                return true;
+            } else {
+                record C;
+            }
+        }
+
+    return false
+}
+\end{verbatim}
+
+
+\begin{verbatim}
+bool valid(grid, int r, int c) {
+    if (c < 0 || r >= N) {
+        return false;j
+    }
+    if (c < 0 || c >= N) {
+        return false;
+    }
+    if (grid[r, c] = obstacle) {
+        return false;
+    }
+
+    return true;
+}
+
+for (int i = 0; i < 3; c++) {
+    nrow = col + dir[c][0];
+    ncol = col + dir[c][1];
+    if (valid(grid, nrow, ncol, n)
+}
+\end{verbatim}
+\end{document}

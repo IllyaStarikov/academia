@@ -1,0 +1,34 @@
+\documentclass{article}
+\begin{document}
+\section{Categories of Data Models}
+\begin{itemize}
+\item Conceptual data model
+\item Implementation data model
+\item Physical data model
+\end{itemize}
+
+\section{Three Schema Architecture}
+\begin{description}
+\item[Internal Schema] Physical data model.
+    \begin{itemize}
+    \item Physical storage structure
+    \item Data storage details, access path
+    \end{itemize}
+\item[Conceptual Schema] Conceptual or implementation data model.
+    \begin{itemize}
+    \item Structure of the entire database
+    \item Entities, data types, relationships
+    \end{itemize}
+\item[External Schema] Describe the various user views.
+    \begin{itemize}
+    \item Usually uses the same data model as the conceptual schema.
+    \end{itemize}
+\end{description}
+
+\section{Data Independence}
+\subsection{Logical Data Independence}
+The capacity to change the conceptual schema without having to change the external schemas and their associated application programs.
+
+\subsection{Physical Data Independence}
+The capacity to change the internal schema without having to change the conceptual schema.
+\end{document}

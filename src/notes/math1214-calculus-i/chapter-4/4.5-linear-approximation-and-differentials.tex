@@ -1,0 +1,46 @@
+%
+%  4.5-linear-approximation-and-differentials.tex
+%  chapter-4
+%
+%  Created by Illya Starikov on 07/02/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\subsection{Linear Approximation and Differentials}
+\subsubsection{Linear Approximation to $f$ at $a$}
+Suppose $f$ is differentiable on an interval $I$ containing the point $a$. The \textbf{linear approximation} to $f$ at $a$ is the linear function 
+
+\begin{equation}
+    L(x) = f(a) + f'(a)(x - a)\text{, for $x$ in $I$}.
+\end{equation}
+
+\subsubsection{Relationship Between $\Delta x$ and $\Delta y$}
+Suppose $f$ is differentiable on an interval $I$ containing the point $a$. The change in the value of $f$ between two points $a$ and $a + \Delta x$ is approximately 
+
+\begin{equation}
+    \Delta y \approx f'(a) \Delta x,
+\end{equation}
+
+where $a + \Delta x$ is in $I$.
+
+\subsubsection{Uses of Linear Approximation}
+\begin{itemize}
+    \item To approximate $f$ near $x = a$, use
+
+        \begin{equation}
+            f(x) \approx L(x) = f(a) + f'(a)(x - a)
+        \end{equation}
+
+    \item To approximate the change $\Delta y$ in the dependent variable when $x$ changes from $a + \Delta x$, use
+
+        \begin{equation}
+            \Delta y \approx f'(a) \Delta x
+        \end{equation}
+\end{itemize}
+
+\subsubsection{Differentials}
+Let $f$ be differentiable on an interval containing $x$. A small change in $x$ is denoted by the \textbf{differential} $dx$. The corresponding change in $f$ is approximated by the \textbf{differential} $dy = f'(x) dx$; that is,
+
+\begin{equation}
+    \Delta y = f(x + dx) - f(x) \approx dy = f'(x) dx
+\end{equation}

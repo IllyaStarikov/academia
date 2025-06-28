@@ -1,0 +1,39 @@
+\subsection{Maximum/Minimum Problems}
+\subsubsection{Local Maximum/Minimum Values}
+A function $f$ has a \textbf{local maximum value} at $(a, b)$ if $f(x, y) \leq f(a, b)$ for all $(x, y)$ in the domain of $f$ in some open disk centered at $(a, b)$. A function $f$ has a \textbf{local minimum value} at $(a, b)$ if $f(x, y) \geq f(a, b)$ for all $(x, y)$ in the domain of $f$ in some open disk centered at $(a, b)$. Local maximum and local minimum values are also called \textbf{local extreme values} or \textbf{local extrema}.
+
+\subsubsection{Derivatives and Local Maximum/Minimum Values}
+If $f$ has a local maximum or minimum value at $(a, b)$ and the partial derivatives $f_x$ and $f_y$ exist at $(a, b)$ then $f_x (a, b) = f_y(a, b) = 0$.
+
+\subsubsection{Critical Point}
+An interior point $(a,\, b)$ in the domain of $f$ is a \textbf{critical point} of $f$ is either
+
+\begin{enumerate}
+    \item $f_x (a,\, b) = f_y (a,\, b) = 0$, or
+    \item one (or both) of $f_x$ or $f_y$ does not exist at $(a,\, b)$
+\end{enumerate}
+
+\subsubsection{Saddle Point}
+A function $f$ has a \textbf{saddle point} at a critical point $(a,\, b)$ if, in every open disk centered at $(a,\, b)$, there are points $(x,\, y)$ for which $f(x,\, y) > f(a,\, b)$ and points for which $f(x,\, y) < f(a,\, b)$
+
+\subsubsection{Second Derivative Test}
+Suppose that the second partial derivative of $f$ are continuous throughout an open disk centered at the point $(a,\, b)$, where $f_x (a,\, b) = f_y (a,\, b) = 0$. Let $D(x,\, y) = f_{xx} (x,\, y) f_{yy} (x,\, y) - (f_{xy} (x,\, y))^2$.
+
+\begin{enumerate}
+    \item If $D(a,\, b) > 0$ and $f_{xx} (a,\, b) < 0$, then $f$ has a local maximum value at $(a,\, b)$.
+    \item If $D(a,\, b) > 0$ and $f_{xx} (a,\, b) > 0$, then $f$ has a local minimum value at $(a,\, b)$.
+    \item If $D(a,\, b) < 0$, then $f$ has a saddle point at $(a,\, b)$.
+    \item If $D(a,\, b) = 0$, then the test is inconclusive.
+\end{enumerate}
+
+\subsubsection{Absolute Maximum/Minimum Values}
+If $f(x,\, y) \leq f(a,\, b)$ for all $(x,\, y)$ in the domain of $f$, then $f$ has an \textbf{absolute maximum value} at $(a,\, b)$. If $f(x,\, y) \geq f(a,\, b)$ for all $(x,\, y)$ in the domain of $f$, then $f$ has an \textbf{absolute minimum value} at $(a,\, b)$.
+
+\subsubsection{Finding Absolute Maximum/Minimum Values on Closed, Bounded Sets}
+Let $f$ be continuous on a closed bounded set $R$ in $\mathbb{R}^2$. To find the absolute maximum and minimum values of $f$ on $R$:
+
+\begin{enumerate}
+    \item Determine the values of $f$ at all critical points in $R$.
+    \item Find the maximum and minimum values of $f$ on the boundary of $R$.
+    \item The greatest function values found in Step 1 and 2 is the absolute maximum value of $f$ on $R$, and the least function value found in Steps 1 and 2 is the absolute minimum value of $f$ on $R$.
+\end{enumerate}

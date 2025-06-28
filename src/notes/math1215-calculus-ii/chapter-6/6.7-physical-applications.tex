@@ -1,0 +1,36 @@
+\subsection{Physical Applications}
+\subsubsection{Mass of a One-Dimensional Object}
+Suppose a thin bar or wire is represented by a line segment on the interval $a \leq x \leq b$ with a density function $\rho$ (with units of mass per length). The mass of the object is
+
+\begin{equation}
+    m = \int _a ^b \rho(x)\, dx
+\end{equation}
+
+\subsubsection{Work}
+The work done by a variable force $F$ in moving an object along a line from $x = a$ to $x = b$ in the direction of the force is
+
+\begin{equation}
+    W = \int _a ^b F(x)\, dx
+\end{equation}
+
+\subsubsection{Solving Lifting Problems}
+\begin{enumerate}
+    \item Draw a $y$-axis in the vertical direction (parallel to gravity) and choose a convenient origin. Assume the interval $[a, b]$ corresponds to the vertical extent of the fluid.
+    \item For $a \leq y \leq b$, find the cross-sectional area $A(y)$ of the horizontal slices and the distance $D(y)$ the slices must be lifted.
+    \item The work required to lift the water is
+\end{enumerate}
+
+\begin{equation}
+    W = \int _a ^b \rho g A(y)D(y)\, dy
+\end{equation}
+
+\subsubsection{Solving Force/Pressure Problems}
+\begin{enumerate}
+    \item Draw a $y$-axis on the face of the dam in the vertical direction and choose a convenient origin (often taken to be the base of the dam).
+    \item Find the width function $w(y)$ for each value of $y$ on the face of the dam.
+    \item If the base of the dam is at $y = 0$ and the top of the dam is at $y = a$, then the total force on the dam is
+
+    \begin{equation}
+        F = \int \rho g (a - y) w(y)\, dy
+    \end{equation}
+\end{enumerate}

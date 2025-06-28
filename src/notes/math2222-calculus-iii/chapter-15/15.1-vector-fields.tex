@@ -1,0 +1,37 @@
+\subsection{Vector Fields}
+\subsubsection{Vector Fields in Two Dimensions}
+Let $f$ and $g$ be defined on a region $R$ of $\mathbb{R}^2$. A \textbf{vector field} in $\mathbb{R}^2$ is a function $\mathbf{F}$ that assigns to each point in $R$ a vector $\langle f(x, y),\, g(x, y) \rangle$. The vector field is written as
+
+\begin{equation}
+    \mathbf{F}(x, y) = \langle f(x, y),\, g(x, y) \rangle \quad\text{or}\quad \mathbf{F}(x, y) = f(x, y) \ihat + g(x, y) \jhat
+\end{equation}
+
+A vector field $\mathbf{F} = \langle f, g \rangle$ is continuous or differentiable on a region $R$ of $\mathbb{R}^2$ if $f$ and $g$ are continuous or differentiable on $R$, respectively.
+
+\subsubsection{Radial Vector Fields in $\mathbb{R}^2$}
+Let $\mathbf{r} = \langle x,\, y \rangle$. A vector field of the form $\mathbf{F} = f(x,\, y) \mathbf{r}$, where $f$ is a scalar-valued function, is a \textbf{radial vector field}. Of specific interest are the radial vector field
+
+\begin{equation}
+    \mathbf{F}(x,\, y) = \frac{\mathbf{r}}{|\mathbf{r}|^p} = \frac{\langle x,\, y \rangle}{|\mathbf{r}|^p}
+\end{equation}
+
+where $p$ is a real number. At every point (except the origin), the vectors of this field are directed outward from the origin with the magnitude of $|\mathbf{F}| = \frac{1}{|\mathbf{r}|^{p - 1}}$.
+
+\subsubsection{Vector Fields in Three Dimensions}
+Let $f$,\, $g$,\, and $h$ be defined on a region $D$ of $\mathbb{R}^3$. A \textbf{vector field} in $\mathbb{R}^3$ is a function $\mathbf{F}$ that assigns to each point in $D$ a vector $\langle f(x,\, y,\, z),\, g(x,\, y,\, z),\, h(x,\, y,\, z) \rangle$. The vector field is written as
+
+\begin{align}
+    &\mathbf{F}(x,\, y,\, z) = \langle f(x,\, y,\, z),\, g(x,\, y,\, z),\,  h(x,\, y,\, z) \rangle \quad\text{or}\\
+    &\mathbf{F}(x,\, y,\, z) =  f(x,\, y,\, z)\ihat +  g(x,\, y,\, z)\jhat + h(x,\, y,\, z)\khat
+\end{align}
+
+A vector field $\mathbf{F} = \langle f,\, g,\, h \rangle$ is continuous or differentiable on a region $D$ of $\mathbb{R}^3$ if $f$,\, $g$,\, $h$ are continuous or differentiable on $R$, respectively. Of particular importance are the \textbf{radial vector fields}
+
+\begin{equation}
+    \mathbf{F}(x,\, y,\, z) = \frac{\mathbf{r}}{|\mathbf{r}|^p} = \frac{\langle x,\, y,\, z \rangle}{|\mathbf{r}|^p}
+\end{equation}
+
+where $p$ is a real number.
+
+\subsubsection{Gradient Fields and Potential Functions}
+Let $z = \varphi(x,\, y)$ and $w = \varphi(x,\, y,\, z)$ be differentiable functions on regions of $\mathbb{R}^2$ and $\mathbb{R}^3$, respectively. The vector field $\mathbf{F} = \nabla \varphi$ is \textbf{gradient field}, and the function $\varphi$ is a \textbf{potential function} for \textbf{F}.

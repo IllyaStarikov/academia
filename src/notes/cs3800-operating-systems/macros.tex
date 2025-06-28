@@ -1,0 +1,37 @@
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,multicol,xcolor,listings}
+
+\newcommand{\chapterNumber}[1]{
+    \setcounter{section}{#1}
+    \addtocounter{section}{-1}
+}
+
+% For Boxed Commands --- Simply used \boxed{}
+\makeatletter
+\renewcommand{\boxed}[1]{\text{\fboxsep=.2em\fbox{\m@th$\displaystyle#1$}}}
+\makeatother
+
+\newcommand{\todo}[2]{\textbf{\colorbox{red!50}{#1}}{}}
+\newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{#1}}}
+
+\lstset{
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{blue}\ttfamily,
+    stringstyle=\color{magenta}\ttfamily,
+    commentstyle=\color{green}\ttfamily,
+    showstringspaces=false,
+    numbers=left,
+    keepspaces=true,
+    tabsize=4,
+    breaklines=true
+}
+
+\definecolor{cverbbg}{gray}{.7}
+\newenvironment{lcverbatim}
+ {\SaveVerbatim{cverb}}
+ {\endSaveVerbatim
+  \flushleft\fboxrule=0pt\fboxsep=.5em
+  \colorbox{cverbbg}{%
+    \makebox[\dimexpr\linewidth-2\fboxsep][l]{\BUseVerbatim{cverb}}%
+  }
+  \endflushleft
+}

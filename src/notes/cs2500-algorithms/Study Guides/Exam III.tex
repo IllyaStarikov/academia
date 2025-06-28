@@ -1,0 +1,116 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsmath}
+\usepackage{listings}
+\begin{document}
+\section{Notes}
+\begin{itemize}
+    \item A shortest may not exist when:
+    \begin{itemize}
+        \item Negative weight cycle
+        \item The graph is not connected
+    \end{itemize}
+
+    \item Two Properties of The Shortest Path
+    \begin{itemize}
+    \item The optimal substructure of dynamic shortest path: A subpath of a shortest path itself is a shortest path
+
+    \item Triangle inequality
+    \begin{itemize}
+        \item For all $u, v, x \in V$ we have $\delta (u, v) \leq \delta (u, x) + \delta (x, v) $
+        \item Shortest path from $u$ to $v$ is at most any particular path, e.g., the blue chain.
+    \end{itemize}
+    \end{itemize}
+
+    \item Tractable Problems
+    \begin{itemize}
+        \item Problems solvable in a polynomial time
+    \end{itemize}
+    \item $P \subset NP$
+    \item NPC: If any other problem (i.e., NP-Hard problems) $p$ in NP is polynomial reducible to problem q
+\end{itemize}
+
+\section{Psuedocode}
+\subsection{Dijkstra(G,s)}
+\begin{lstlisting}[
+  mathescape,
+  columns=fullflexible,
+  basicstyle=\fontfamily{lmvtt}\selectfont,
+]
+d[s] = 0
+for each vertex v in V-{s}
+    d[v] = infinity
+    S = emptySet
+    Q = V
+
+while Q is not empty
+    u = Extract_Min(Q)
+    S = S $\cup$ {u}
+    for each vertex v adjacent to u
+        if  d[v] > d[u] + w(u,v)
+            d[v] = d[u] + w(u,v)
+\end{lstlisting}
+
+\subsection{Bellman-Ford}
+\begin{lstlisting}[
+  mathescape,
+  columns=fullflexible,
+  basicstyle=\fontfamily{lmvtt}\selectfont,
+]
+Given G=(V,E,w) and source vertex s
+d[x] = distance estimate from s to x
+
+Bellman-Ford(G,s)
+d[s] = 0
+for each vertex v in V-{s}
+    d[v] = infinity
+
+for i=1 to |V|-1
+    for each edge (u,v) in E
+        if d[v] > d[u] + w(u,v)
+        d[v] = d[u] + w(u, v)
+
+for each edge (u, v) in E
+    if d[v] > d[u] + w(u, v)
+        report that a negative-weight cycle exists
+\end{lstlisting}
+
+\subsection{Floyd-Warshall}
+\begin{lstlisting}[
+  mathescape,
+  columns=fullflexible,
+  basicstyle=\fontfamily{lmvtt}\selectfont,
+]
+D^(0) = W
+for k = 1 to n do
+    for i = 1 to n do
+        for j = 1 to n do
+    $d_{ij}(k) = \text{min}\{ d_{ij}^{(k-1)}, d_{ik}^{(k-1)} + d_{kj} ^{(k-1)} \};$
+
+Return D^(n)
+\end{lstlisting}
+
+\subsection{Ford Fulkerson}
+\begin{lstlisting}
+FORD-FULKERSON(G, s, t)
+    for each edge (u,v) in E(G)
+        do f[u, v] = 0
+           f[v, u] = 0
+    while there is a path p from s to t in the residual network Gf
+        cf(p) = min{cf(u, v)-f[u, v]: (u, v) is in p}
+            for each edge (u, v) on p
+                if (u, v) in E
+                    f[u, v] = f[u, v] + cf(p)
+                else f[v, u] = f[v, u] - cf(p)
+\end{lstlisting}
+
+\section{Complexities}
+\begin{description}
+    \item [Dijkstra's] $\Theta (V) \times T_{\text{Extract-Min}} + \Theta(E) \times T_{\text{Decrease-Key}} $
+    \item [Bellman-Ford] $\mathcal{O}(VE)$
+    \item [Floyd Warshall] $\mathcal{O}(V^3)$
+    \item [Ford-Fulkerson] $\mathcal{O}(E|f^*|)$
+    \item [Edmond Carp] $\mathcal{O}(VE^2) = \mathcal{O}(V^5)$
+\end{description}
+
+\end{document}

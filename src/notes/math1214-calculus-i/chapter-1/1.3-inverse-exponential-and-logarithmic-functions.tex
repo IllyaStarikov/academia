@@ -1,0 +1,58 @@
+%
+%  1.3-inverse-exponential-and-logarithmic-functions.tex
+%  chapter-1
+%
+%  Created by Illya Starikov on 05/17/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\subsection{Inverse, Exponential, and Logarithmic Functions}
+\subsubsection{The Natural Exponential Function}
+The \textbf{natural exponential function} is $f(x) = e^x$, which as the base $e = 2.718281828459\ldots$.
+
+\subsubsection{Inverse Function}
+Given a function $f$, its inverse (if it exists) is a function $f^{-1}$ such that whenever $y = f(x)$, then $f^{-1}(y) = x$.
+
+\subsubsection{One-to-One Functions and the Horizontal Line Test}
+A function $f$ is \textbf{one-to-one} on a domain $D$ if each value of $f(x)$ corresponds to exactly one value of $x$ in $D$. More precisely, $f$ is one-to-one on $D$ is $y(x_1) \neq f(x_2)$ whenever $x_1 \neq x_2$ for $x_1$ and $x_2$ in $D$. The \textbf{horizontal line test} says that every horizontal line intersects the graph of a one-to-one function at most once.
+
+\subsubsection{Existence of Inverse Functions}
+Let $f$ be one-to-one function on a domain $D$ with a range $R$. Then $f$ has a unique inverse $f^{-1}$ with domain $R$ and range $D$ such that
+
+\begin{equation*}
+    f^{-1}(f(x)) = x \qquad \text{and} \qquad f(f^{-1}(y)) = y,
+\end{equation*}
+
+\noindent where $x$ is in $D$ and $y$ is in $R$.
+
+\subsubsection{Finding an Inverse Function}
+Suppose $f$ is one-to-one on an interval $I$. To find $f^{-1}$:
+
+\begin{itemize}
+    \item Solve $y = f(x)$ for $x$. If necessary, choose the function that corresponds to $I$.
+    \item Interchange $x$ and $y$ and write $y = f^{-1}(x)$.
+\end{itemize}
+
+\subsubsection{Logarithmic Function Base $b$}
+For any base $b > 0$, with $b \neq 1$, the \textbf{logarithmic function base $b$}, denoted $y = \log _b x$, is the inverse of the exponential function $y = b^x$. The inverse of the natural exponential function with base $b = e$ is the \textbf{natural logarithm function}, denoted $y = \ln x$.
+
+\subsubsection{Inverse Relations For Exponential and Logarithmic Functions}
+For any base $b > 0$, with $b \neq 1$, the following inverse relations hold:
+
+\begin{itemize}
+    \item $b^{\log _b x} = x$, for $x > 0$
+    \item $\log _b b^x = x$, for any real values of $x$
+\end{itemize}
+
+\subsubsection{Change-of-Base Rules}
+Let $b$ be a positive real number with $b \neq 1$. Then
+
+\begin{equation*}
+b^x = e^{x \ln b}, \text{for all $x$} \qquad \text{and} \qquad \log _b x = \frac{\ln x}{\ln b}, \text{for $x > 0$}
+\end{equation*}
+
+More generally, if $c$ is a positive real number with $c \neq 1$, then
+
+\begin{equation*}
+    b^x = c^{x \log _c b}, \text{for all $x$} \qquad \text{and} \qquad \log _b x = \frac{\log_c x}{\log_c b}, \text{for $x > 0$}
+\end{equation*}

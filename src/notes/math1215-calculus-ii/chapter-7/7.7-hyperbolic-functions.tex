@@ -1,0 +1,88 @@
+\subsection{Hyperbolic Functions}
+\subsubsection{Hyperbolic Functions}
+\textbf{Hyperbolic Cosine}
+\begin{equation}
+\cosh x = \frac{e^x + e^{-x}}{2}
+\end{equation}
+
+\noindent
+\textbf{Hyperbolic Sine}
+\begin{equation}
+\sinh x = \frac{e^x - e^{-x}}{2}
+\end{equation}
+
+\noindent
+\textbf{Hyperbolic Tangent}
+\begin{equation}
+\tanh x = \frac{\sinh x}{\cosh x} = \frac{e^x - e^{-x}}{e^x + e^{-x}}
+\end{equation}
+
+\noindent
+\textbf{Hyperbolic Cotangent}
+\begin{equation}
+\coth x = \frac{\cosh x}{\sinh x} = \frac{e^x + e^{-x}}{e^x - e^{-x}}
+\end{equation}
+
+\noindent
+\textbf{Hyperbolic Secant}
+\begin{equation}
+\sech x = \frac{1}{\cosh x} = \frac{2}{e^x + e^{-x}}
+\end{equation}
+
+\noindent
+\textbf{Hyperbolic Cosecant}
+\begin{equation}
+\csch x = \frac{1}{\sinh x} = \frac{2}{e^x - e^{-x}}
+\end{equation}
+
+\subsubsection{Hyperbolic Identities}
+\begin{tabular}{l l}
+$\cosh ^2 x - \sinh ^2 x = 1$ & $\cosh(-x) = \cosh x$ \\
+$1 - \tanh ^2 x = \sech ^2 x $ & $\sinh(-x) = - \sinh x$ \\
+$\coth ^2 x - 1 = \csch ^2 x$ & $\tanh(-x) = - \tanh x$ \\
+$\coth(x + y) = \cosh x \cosh y + \sinh x \sinh y $ \\
+$\sinh (x + y) = \sinh x \cosh y + \cosh x \sinh y$ \\
+$\cosh 2x = \cosh ^x + \sinh ^2$ & $\sinh 2x = 2 \sinh x \cosh x$ \\
+$\cosh ^2 x = \frac{\cosh 2x + 1}{2}$ & $\sinh ^2 x = \frac{\cosh 2x - 1}{2}$
+\end{tabular}
+
+\subsubsection{Derivatives and Integral Formulas}
+\begin{enumerate}
+\item $\frac{d}{dx} (\cosh x) = \sinh x \quad \Rightarrow \quad \int \sinh x \ dx = \cosh x + C$
+\item $\frac{d}{dx} (\sinh x) = \cosh x \quad \Rightarrow \quad \int \cosh x \ dx = \sinh x + C$
+\item $\frac{d}{dx} (\tanh x) = \sech ^2 x \quad \Rightarrow \quad \int \sech ^2 x \ dx = \tanh x + C$
+\item $\frac{d}{dx} (\coth x) = -\csch ^2 x  \quad \Rightarrow \quad \int \csch^2 x \ dx = -\coth x + C$
+\item $\frac{d}{dx} (\sech x) = -\sech x \tanh x \quad \Rightarrow \quad \int \sech x \tanh x \ dx = -\sech x + C$
+\item $\frac{d}{dx} (\csch x) = - \csch x \coth x \quad \Rightarrow \quad \int \csch x \coth x \ dx = -\csch x + C$
+\end{enumerate}
+
+\subsubsection{Integrals of Hyperbolic Functions}
+\begin{enumerate}
+\item $\int \tanh x\, dx = \ln \cosh x + C$
+\item $\int \coth x\, dx = \ln |\sinh x| + C$
+\item $\int \sech x\, dx = \tan^{-1}|\sinh x| + C$
+\item $\int \csch x\, dx = \ln|\tanh(x / 2)| + C$
+\end{enumerate}
+
+\subsubsection{Inverses of the Hyperbolic Functions Expressed as Logarithms}
+\begin{tabular}{l l}
+$\cosh ^{-1} x = \ln(x + \sqrt{x^2 - 1}) \ (x \geq 1)$ & $\sech ^{-1}x = \cosh ^{-1} \frac{1}{x} \ (0 < x \leq 1)$ \\
+$\sinh ^{-1} x = \ln(x + \sqrt{x^2 + 1})$ & $\csch ^{-1} x = \sinh ^{-1} \frac{1}{x} \ (x \neq 0)$ \\
+$\tanh ^{-1} x = \frac{1}{2} \ln(\frac{1 + x}{1-x}) \ (|x| < 1)$ & $\coth ^{-1} x = \tanh ^{-1} \frac{1}{x} \ (|x| > 1)$
+\end{tabular}
+
+\subsubsection{Derivatives of the Inverse Hyperbolic Functions}
+\begin{tabular}{l l}
+$\frac{d}{dx} (\cosh ^{-1} x) = \frac{1}{\sqrt{x^2 - 1}} \ (x > 1)$ & $\frac{d}{dx} (\sinh ^{-1} x) = \frac{1}{\sqrt{x^2 + 1}}$ \\
+$\frac{d}{dx} (\tanh ^{-1} x) = \frac{1}{1 - x^2} \ (|x| < 1)$ & $\frac{d}{dx} (\coth ^{-1} x) = \frac{1}{1 - x^2} \ (|x| > 1)$ \\
+$\frac{d}{dx} (\sech ^{-1} x) = -\frac{1}{x \sqrt{1 - x^2}}  \ (0 < x < 1)$ & $\frac{d}{dx} (\csch ^{-1} x) = - \frac{1}{|x| \sqrt{1 + x^2}} \ (x \neq 0)$
+\end{tabular}
+
+\subsubsection{Integral Formulas}
+\begin{enumerate}
+\item $\int \frac{dx}{\sqrt{x^2 - a^2}} = \cosh ^{-1} \frac{x}{a} + C, \ \text{for} \ x > a$
+\item $\int \frac{dx}{x^2 + a^2} = \sinh ^{-1} \frac{x}{a} + C, \ \text{for all} \ x$
+\item $\int \frac{dx}{a^2 - x^2} = \frac{1}{a} \tanh ^{-1} \frac{x}{a} + C, \ \text{for} |x| < a = \frac{1}{a} \coth ^{-1} \frac{x}{a} + C, \text{for} \ |x|> a$
+\item $\int \frac{dx}{x \sqrt{a^2 - x^2}} = -\frac{1}{a} \sech ^{-1} \frac{x}{a} + C, \ \text{for} \ 0 < x < a$
+\item $\int \frac{dx}{x \sqrt{a^2 + x^2}} = -\frac{1}{a} \csch ^{-1} \frac{|x|}{a} + C, \ \text{for} \ x \neq 0$
+\end{enumerate}

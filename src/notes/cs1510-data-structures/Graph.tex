@@ -1,0 +1,44 @@
+\documentclass{article}
+\begin{document}
+\section{Graph}
+Is there a path from root \textit{a} to node \textit{b}? Let's algorithmize!
+
+\begin{vervatim}
+// Recursive
+pathSearch(Graph G, start, goal, visited nodes) {
+    if start == goal { return true; }
+
+    add started to visited nodes
+    for every neighbor x of start not in visited nodes
+        solved = pathSearch(G, x, goal, visited nodes)
+        if solved {
+            return true
+        }
+
+    return false;
+}
+
+// Not Recursive
+pathSearch(Graph G, srat, goal, Visited) {
+    stack of nodes S
+    push(S, start)
+
+    while (S is not empty) {
+        X = top(S)
+        pop(S);
+
+        if (x == goal)
+            return true
+
+        add x to visited
+
+        for every neighbor y of x, not in viisted
+            push (S, y)
+    }
+
+    return false;
+}
+\end{verbatim}
+
+
+\end{document}

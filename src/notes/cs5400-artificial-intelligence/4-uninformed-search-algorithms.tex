@@ -1,0 +1,196 @@
+%
+%  4-uninformed-search-algorithms.tex
+%  Introduction To Artificial Intelligence
+%
+%  Created by Illya Starikov on 01/24/18.
+%  Copyright 2018. Illya Starikov. All rights reserved.
+%
+
+\section{Uninformed Search Algorithms}
+An uninformed (a.k.a.\ blind, brute-force) search algorithm generates the search tree without using any domain specific knowledge.
+
+\subsection{Breadth First Tree Search (BFTS)}
+\begin{itemize}
+    \item Frontier is a FIFO Queue
+    \item Complete if $b$ and $d$ are finite
+    \item Optimal if path-cost is non-decreasing function of depth
+    \item Time complexity is $\bigO{b^d}$
+    \item Space complexity is $\bigO{b^d}$
+\end{itemize}
+
+\begin{algorithmic}[1]
+    \Function{Breadth-First-Search}{problem}
+        \Let{node}{a node with \textsc{State} = problem.\textsc{Initial-State},\textsc{Path-Cost} = 0}
+
+        \State{}
+        \If{problem.\Call{Goal-Test}{node.\textsc{State}}}
+            \State{\Return{\Call{Solution}{node}}}
+        \EndIf{}
+
+        \State{}
+        \Let{frontier}{a FIFO queue with \textit{node} as the only element}
+        \Let{explored}{an empty set}
+        \State{}
+
+        \Loop{}
+            \If{\Call{Empty?}{frontier}}
+                \State{\Return{failure}}
+            \EndIf{}
+            \State{}
+
+            \Let{node}{\Call{Pop}{frontier}} \Comment{Chooses the shallowest node in frontier}
+            \Let{explored}{explored $\cup$ node.\textsc{State}}
+
+            \State{}
+            \ForAll{action $\in$ problem.\Call{Actions}{node.\textsc{State}}}
+                \Let{child}{\Call{Child-Node}{problem, node, action}}
+
+                \State{}
+                \If{child.\textsc{State} $\not\in$ explored, frontier}
+                    \If{problem.\Call{Goal-Test}{child.\textsc{State}}}
+                        \State{\Return{\Call{Solution}{child}}}
+                    \EndIf{}
+
+                    \State{}
+                    \Let{frontier}{\Call{Insert}{child, frontier}}
+                \EndIf{}
+            \EndFor{}
+        \EndLoop{}
+
+    \EndFunction{}
+\end{algorithmic}
+
+\subsection{Uniform Cost Search}
+\begin{itemize}
+    \item $g(n)$ is the lowest path-cost from start node to node $n$
+    \item Frontier is a priority queue ordered by $g(n)$
+\end{itemize}
+
+\begin{algorithmic}[1]
+    \Function{Uniform-Cost-Search}{problem}
+        \Let{node}{a node with \textsc{State} = problem.\textsc{Initial-State},\textsc{Path-Cost} = 0}
+        \Let{frontier}{a priority ordered by \textsc{Path-Cost}, with \textit{node} as the only element}
+        \Let{explored}{an empty set}
+        \State{}
+
+        \Loop{}
+            \If{\Call{Empty?}{frontier}}
+                \State{\Return{failure}}
+            \EndIf{}
+            \State{}
+
+            \Let{node}{\Call{Pop}{frontier}} \Comment{Chooses the shallowest node in frontier}
+            \Let{explored}{explored $\cup$ node.\textsc{State}}
+
+            \State{}
+            \ForAll{action $\in$ problem.\Call{Actions}{node.\textsc{State}}}
+                \Let{child}{\Call{Child-Node}{problem, node, action}}
+
+                \State{}
+                \If{child.\textsc{State} $\not\in$ explored, frontier}
+                    \If{problem.\Call{Goal-Test}{child.\textsc{State}}}
+                        \State{\Return{\Call{Solution}{child}}}
+                    \EndIf{}
+
+                    \State{}
+                    \Let{frontier}{\Call{Insert}{child, frontier}}
+                \EndIf{}
+            \EndFor{}
+        \EndLoop{}
+
+    \EndFunction{}
+\end{algorithmic}
+
+\subsection{Depth First Tree Search (DFTS)}
+\begin{itemize}
+    \item Frontier: LIFO queue (Stack)
+    \item Not Complete
+    \item Not Optimal
+    \item Time Complexity: $\bigO{b^m}$
+    \item Space complexity: $\bigO{bm}$
+    \item There exists a backtracking version
+        \begin{itemize}
+            \item Space Complexity: $\bigO{b^m}$
+            \item Modifies rather than copies state description.
+        \end{itemize}
+    \item The implementation is identical to Breath First Search, except the Frontier.
+\end{itemize}
+
+\subsection{Depth-Limited Tree Search (DLTS)}
+\begin{itemize}
+    \item Frontier: LIFO queue (Stack)
+    \item Not Complete When $l < d$
+    \item Not Optimal
+    \item Time Complexity: $\bigO{bl}$
+    \item Space complexity: $\bigO{bl}$
+    \item Diameter: Min number of steps to get from any state to any other state.
+\end{itemize}
+
+\begin{algorithmic}[1]
+    \Function{Depth-Limited-Search}{problem, limit}
+        \State{
+            \Return{\Call{Recursive-DLS}{\Call{Node}{problem.\textsc{Initial-State}}, problem, limit}}
+        }
+    \EndFunction{}
+
+    \State{}
+    \Function{Recursive-DLS}{node, problem, limit}
+        \If{problem.\Call{Goal-Test}{node.\textsc{State}}}
+            \State{\Return{\Call{Solution}{node}}}
+        \ElsIf{limit = 0}
+            \State{\Return{cutoff}}
+        \Else{}
+            \Let{cutoff occurred?}{false}
+
+            \State{}
+            \For{Action $\in$ problem.\Call{Actions}{node.\textsc{State}}}
+                \Let{child}{\Call{Child-Node}{problem, node, action}}
+                \Let{result}{\Call{Recursive-DLS}{child, problem, limit - 1}}
+
+                \State{}
+                \If{result = cutoff}
+                    \State{cutoff occurred?}{true}
+                \ElsIf{result $\neq$ failure}
+                    \State{\Return{result}}
+                \EndIf{}
+            \EndFor{}
+
+            \State{}
+            \If{cutoff occurred?}
+                \State{\Return{cutoff}}
+            \Else{}
+                \State{\Return{failure}}
+            \EndIf{}
+        \EndIf{}
+    \EndFunction{}
+\end{algorithmic}
+
+\subsection{Iterative-Deepening Depth-First Tree Search (ID-DFTS)}
+\begin{itemize}
+    \item Complete if $b$ is finite
+    \item Optimal if path-cost is non-decreasing function of depth
+    \item Time Complexity: $\bigO{b^d}$
+    \item Space Complexity: $\bigO(bd)$
+\end{itemize}
+
+
+\begin{algorithmic}[1]
+    \Function{Iterative-Deepening-Search}{problem}
+        \For{depth = 0 \textbf{to} $\infty$}
+            \Let{result}{\Call{Depth-Limited-Search}{problem, depth}}
+
+            \State{}
+            \If{result $\neq$ cutoff}
+                \State{\Return{result}}
+            \EndIf{}
+        \EndFor{}
+    \EndFunction{}
+\end{algorithmic}
+
+\subsection{Bidirectional Breath First Search (BiBFTS)}
+\begin{itemize}
+    \item Complete if $b$ is finite
+    \item Not optimal ``out of the box''
+    \item Time Complexity: $\bigO{b^{d/2}}$
+    \item Space Complexity: $\bigO{b^{d/2}}$
+\end{itemize}

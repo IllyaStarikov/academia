@@ -1,0 +1,28 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[11pt]{article}
+
+\newcommand{\chapterTitle}{Resistors in Series and Parallel, Kirchoff's Rules}
+\newcommand{\lectureNumber}{12}
+
+\input{macros.tex}
+
+\begin{document}
+\section{\chapterTitle}
+
+\subsection{Book Notes}
+For capacitors in series,
+
+\begin{align}
+    V_{ax} = IR_1 \quad\quad V_{xy} &= IR_2 \quad\quad V_{yb} = IR_3 \\
+    V_{ab} = V_{ax} + V_{xy} + V_{yb} &= I(R_1 + R_2 + R_3) \\
+    \frac{V_{ab}}{I} &= R_1 + R_2 + R_3 \\
+    R_{eq} = R_1 + R_2 + R_3
+\end{align}
+
+A similar argument can be made for resistors in parallel, except $I$ is unknown, which add.
+
+\begin{itemize}
+    \item A junction in a circuit is a point where three or more conductors meet. A loop is any closed conducting path.
+\end{itemize}
+
+\end{document}

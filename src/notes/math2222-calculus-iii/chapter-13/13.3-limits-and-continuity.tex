@@ -1,0 +1,65 @@
+\subsection{Limits and Continuity}
+\subsubsection{Limit of a Function of Two Variables}
+The function $f$ has the \textbf{limit} $L$ as $P(x,\, y)$ approaches $P_0(a,\, b)$ written
+
+\begin{equation}
+    \lim{(x,\, y) \rightarrow (a,\, b)} f(x,\, y) = \lim{P \rightarrow P_0} f(x,\, y) = L
+\end{equation}
+
+if, given any $\varepsilon > 0$, there exists a $\delta > 0$ such that
+
+\begin{equation}
+    |f(x,\, y) - L| < \varepsilon
+\end{equation}
+
+whenever $(x,\, y)$ is in the domain of $f$ and
+
+\begin{equation}
+    0 < |PP_0| = \sqrt{(x - a)^2 + (y - b)^2} < \delta
+\end{equation}
+
+\subsubsection{Limits of Constant and Linear Functions}
+Let $a, b,$ and $c$ be real numbers.
+
+\begin{enumerate}
+    \item Constant functions $f(x,\, y) = c: \limit{(x,\, y) \rightarrow (a,\, b)} c = c$
+    \item Linear function $f(x,\, y) = x: \limit{(x,\, y) \rightarrow (a,\, b)} x = a$
+    \item Linear function $f(x,\, y) = y: \limit{(x,\, y) \rightarrow (a,\, b)} y = b$
+\end{enumerate}
+
+\subsubsection{Limit Laws and Functions of Two Variables}
+Let $L$ and $M$ be real numbers and suppose that $\limit{(x,\, y) \rightarrow (a,\, b)} f(x,\, y) = L$ and $\limit{(x,\, y) \rightarrow (a,\, b)} g(x,\, y) = M$. Assume $c$ is a constant, and $\forall m, n \in \mathbb{Z}$.
+
+\begin{enumdescript}
+    \item [Sum] $\limit{(x,\, y) \rightarrow (a,\, b)} (f(x,\, y) + g(x,\, y)) = L + M$
+    \item [Difference] $\limit{(x,\, y) \rightarrow (a,\, b)} (f(x,\, y) - g(x,\, y)) = L - M$
+    \item [Constant multiple] $\limit{(x,\, y) \rightarrow (a,\, b)} cf(x,\, y)  = cL$
+    \item [Product] $\limit{(x,\, y) \rightarrow (a,\, b)} f(x,\, y) \cdot g(x,\, y) = L \cdot M$
+    \item [Quotient] $\limit{(x,\, y) \rightarrow (a,\, b)} \bigg[ \frac{f(x,\, y)}{g(x,\, y)} \bigg] = \frac{L}{M}$
+    \item [Power] $\limit{(x,\, y) \rightarrow (a,\, b)} (f(x,\, y))^n = L^n$
+    \item [$\nicefrac{m}{n}$ Power] If $m$ and $n$ have no common factors and $n \neq 0$, then $\limit{(x,\, y) \rightarrow (a,\, b)} [f(x,\, y)]^{\nicefrac{m}{n}} = L^{\nicefrac{m}{n}}$, where we assume $L > 0$ if $n$ is even.
+\end{enumdescript}
+
+\subsubsection{Interior and Boundary Points}
+Let $R$ be a region in $\mathbb{R}^2$. An \textbf{interior point} $P$ of $R$ lies entirely within $R$, which means it is possible to find a disk centered at $P$ that contains only points of $R$.
+
+A \textbf{boundary point} $Q$ of $R$ lies on the edge of $R$ in the sense that \textit{every} disk centered at $Q$ contains at least one point in $R$ and at least one point not in $R$.
+
+\subsubsection{Open and Closed Sets}
+A region is \textbf{open} if it consists entirely of interior points. A region is \textbf{closed} if it contains all its boundary points.
+
+\subsubsection{Two-Path Test for Nonexistence of Limits}
+If $f(x,\, y)$ approaches two different values as $(x,\, y)$ approaches $(a,\, b)$ along two different paths in the domain of $f$, then $\limit{(x,\, y)
+\rightarrow (a,\, b)} f(x,\, y)$ does not exist.
+
+\subsubsection{Continuity}
+A function $f$ is continuous at the point $(a,\, b)$ provided
+
+\begin{enumerate}
+    \item $f$ is defined at $(a,\, b)$.
+    \item $\limit{(x,\, y) \rightarrow (a,\, b)} f(x,\, y)$ exists.
+    \item $\limit{(x,\, y) \rightarrow (a,\, b)} f(x,\, y) = f(a,\, b)$.
+\end{enumerate}
+
+\subsubsection{Continuity of Composite Functions}
+If $u = g(x,\, y)$ is continuous at $(a,\, b)$ and $z = f(u)$ is continuous at $g(a,\, b)$, then the composite function $z = f(g(x,\, y))$ is continuous at $(a,\, b)$.

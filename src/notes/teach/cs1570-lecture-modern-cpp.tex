@@ -1,0 +1,330 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{scrartcl}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,listings,fancyvrb,newverbs,tcolorbox}
+\usepackage{xcolor}
+
+\newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{\strut#1}}}
+\newtcbox{\syntax}{nobeforeafter,colframe=blue,colback=blue!10!white,boxrule=0.5pt,arc=4pt,
+  boxsep=0pt,left=4pt,right=4pt,top=3pt,bottom=3pt,tcbox raise base}
+
+\lstdefinestyle{cC++}{%
+    language=C++,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{blue}\ttfamily,
+    stringstyle=\color{red}\ttfamily,
+    commentstyle=\color{gray}\ttfamily,
+    morecomment=[l][\color{magenta}]{\#},
+    showstringspaces=false,
+    numbers=left,
+    keepspaces=true,
+    tabsize=4,
+    breaklines=true,
+    morekeywords={string,NULL}
+}
+
+\lstset{%
+escapeinside={!*}{*!},%
+}
+
+\title{Modern C++ (The Good Parts)}
+\subtitle{CS1570 --- Introduction to Programming}
+\date{\today}
+\author{Illya Starikov}
+
+\begin{document}
+\maketitle
+
+Since its creation, C++ has gone through many different ``versions'' --- more formally, known as standards. With \shellcmd{fg++}, you've been using C++03\footnote{Yes, that is ``hella'' old}. Since then, there have been two major standards released: C++11 and C++14.
+
+C++11 introduced many modern programming paradigms from other programming languages, and C++14 built on these principles. Namely, some of these features are type inference, lambda expressions, constant expressions, \shellcmd{default} and \shellcmd{deleted} keywords, and much more!
+
+To compile C++11 or C++14 code, the \shellcmd{-std=c++11} or \shellcmd{-std=c++14} flags must be added (respectively). So, to compile with C++14, the command would be
+
+\begin{center}
+    \shellcmd{g++ -std=c++14 *.cpp}
+\end{center}
+
+\section{Type Inference (\shellcmd{auto})}
+Type inference is a way for a language to systematically ``choose'' the type you are trying to use. This can intuitively be thought of as you, the programmer, guessing the type of a math equation:
+
+\begin{equation}
+    \text{answer} = 42
+\end{equation}
+
+Mathematically, we know answer to be an integer --- subsequently, the compiler (GCC) should guess its type to be an \shellcmd{int}. Wouldn't it be great if C++ could just magically do that? Well, now it can.
+
+\begin{equation}
+    \text{\shellcmd{auto} answer} = 42\shellcmd{;}
+\end{equation}
+
+The actual syntax is
+
+\begin{lstlisting}[backgroundcolor=\color{lightgray},frame=single,basicstyle=\linespread{2}\ttfamily,emph={auto,inference},emphstyle={\syntax}]
+    auto variable = inference;
+\end{lstlisting}
+
+Now, we no longer have to type out those pesky return types (very useful if it's constantly changing). Let's do an example.
+
+\begin{lstlisting}[style=cC++]
+template <typename T>
+T oneUp(const T value) {
+	return value + 1;
+}
+
+int main(int argc, char *argv[]) {
+	auto integer = oneUp(1);
+	auto character = oneUp('P');
+	auto string = oneUp("vs NP");
+	auto boolean = oneUp(false);
+}
+\end{lstlisting}
+
+Compare \shellcmd{main} to it's pre-C++11/14 version.
+
+\begin{lstlisting}[style=cC++]
+template <typename T>
+T oneUp(const T value) {
+	return value + 1;
+}
+
+int main(int argc, char *argv[]) {
+	int integer = oneUp(1);
+	char character = oneUp('P');
+	string std_string = oneUp("vs NP");
+	bool boolean = oneUp(false);
+}
+\end{lstlisting}
+
+So there it is efficient for the programmer. How efficient is it for the program? Let's take another example.
+
+\begin{lstlisting}[style=cC++]
+	char charArray[42] = "Hello";
+	auto length = strlen(charArray);
+\end{lstlisting}
+
+Can you guess the type of \shellcmd{length}? Spoiler alert, it's not \shellcmd{int}. It's actually \shellcmd{size\_t}, a different type leftover from the C era. It's not vital knowing what \shellcmd{size\_t} is or how it works, it's just vital knowing \textit{it is not an }\shellcmd{int}. So, every time \shellcmd{strlen} it is used as an \shellcmd{int}, i.e.,
+
+\begin{lstlisting}[style=cC++]
+    for (int i = 0; i < strlen(charArray); i++) {
+        /* do something here */
+    }
+\end{lstlisting}
+
+this has a performance cost. Why? \shellcmd{size\_t} has to be downcast to an integer.
+
+A note, in C++14, \shellcmd{auto} can be used as the return type of a function.
+
+\subsection{Range Based For Loops (\shellcmd{for (auto)})}
+With \shellcmd{auto}, range based for loops are possible! What are these strange loops? They are just a way to iterate through all the element of a collection type (i.e., arrays).
+
+\begin{lstlisting}[style=cC++]
+    auto  coolTeachers = { "Illya", "Andrea", "Not Price" };
+
+	for (auto teacher : coolTeachers) {
+		cout << teacher << " ";
+	}
+\end{lstlisting}
+
+As you can guess, the output is ``\texttt{Illya Andrea Not Price}''. Raaad. Some reasons it might be useful.
+
+\begin{itemize}
+    \item Iterating through more complex data structures becomes much easier.
+    \item It's more readable.
+    \item You don't have to worry about proper indexing.
+\end{itemize}
+
+\section{Lambda Expressions}
+Such a scary name for a scary topic. The simplest definition that will make thinking about them easier:
+
+\begin{quote}
+    Functions as variables and types.
+\end{quote}
+
+That's it. Now, the syntax:
+
+\begin{lstlisting}[backgroundcolor=\color{lightgray},frame=single,basicstyle=\linespread{2}\ttfamily,emph={capture,parameters,functionBody},emphstyle={\syntax}]
+    [ capture ]( parameters ) { functionBody }
+\end{lstlisting}
+
+For now, ignore the \syntax{capture} part. We will not be using it for this course. But now here is where shit gets crazy. Let's do an example.
+
+\begin{lstlisting}[style=cC++]
+    std::function<bool(int, int)> lessThan = [](int x, int y) { return x < y; };
+\end{lstlisting}
+
+First, notice the ugly return type \shellcmd{std::function<bool(int, int)>} --- how can we get rid of it? \shellcmd{auto}! Second, it's not so bad! It sort of like a function but we are assigning it to a variable called \shellcmd{lessThan}.
+
+\begin{lstlisting}[style=cC++]
+    auto lessThan = [](int x, int y) { return x < y; };
+
+    cout << lessThan(128, 256); /* Prints 1 for true */
+\end{lstlisting}
+
+How else did we use variables? Functions!
+
+\begin{lstlisting}[style=cC++]
+auto sort(std::function<bool(int, int)> compare, int array[], const int size) {
+	// This is just a bubble sort
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size - i - 1; j++) {
+
+			// Here's where we use compare
+			if (compare(array[j], array[j + 1])) {
+				int temporary = array[j];
+				array[j] = array[j + 1];
+				array[j + 1] = temporary;
+			}
+		}
+	}
+}
+
+int main(int argc, char *argv[]) {
+	auto lessThan = [](int x, int y) { return x < y; };
+	int array[5] = { 1, 2, 3, 4, 5 };
+	sort(lessThan, array, 5);
+
+	for (auto element : array) {
+		cout << element << " ";
+	}
+}
+\end{lstlisting}
+
+We can also return lambda expressions! Don't mind the \shellcmd{[]}, again it's an advanced feature. For this, all you have to know is it signifies the variable is ``held'' in temporary memory.
+
+\begin{lstlisting}[style=cC++]
+auto counter(const int start, const int incrementor) {
+	return [=]() {
+		static auto x = start;
+		x += incrementor;
+
+		return x;
+	};
+}
+
+int main(int argc, char *argv[]) {
+	auto count = counter(42, 2);
+
+	cout << count() << "\n" << count() << "\n" << count();
+	/* prints 44, 46, 48 */
+}
+\end{lstlisting}
+
+We can use them exactly as we have used all variables --- hold them in arrays
+
+\begin{lstlisting}[style=cC++,escapechar=ä]
+    auto styleChecker = []() {
+        ä$\vdots$ä
+		std::cout << "Style Checking...\n";
+	};
+	auto plagarismChecker = []() {
+        ä$\vdots$ä
+		std::cout << "Checking For Plagarism (Caught 2)...\n";
+	};
+	auto inputOutputChecker = []() {
+        ä$\vdots$ä
+		std::cout << "Checking Input/Output...\n";
+	};
+
+	std::function<void()> graderStack[5] = { styleChecker, plagarismChecker, inputOutputChecker };
+
+	for (auto gradeFunction: graderStack) {
+		if (gradeFunction != NULL) {
+			gradeFunction();
+		}
+	}
+\end{lstlisting}
+
+Notice the checking of line \shellcmd{gradeFunction != NULL}. We have three functions in the array, but the size is five. If try to call the function, without a function in there, \textit{it will cause a runtime error}. So be careful.
+
+And finally, we can add them as variables to classes. I won't give an example here, because it's pretty straightforward.
+
+\section{Constant Expressions \shellcmd{constexpr}}
+\shellcmd{constexpr} is a way to move calculations from runtime to compile time. So, if you have a function that's going to compute \textbf{known} values ahead of time. So, if you're going to be calculating $\ln 2$ ahead of time often,
+
+\begin{lstlisting}[style=cC++,emph={constexpr},emphstyle={\color{blue}\textit}]
+constexpr double ln(const int x) {
+	double sum = 0;
+
+	for (int n = 1; n <= 100; n++) {
+		sum += 1.0/n/(4*n - 2);
+	}
+
+	return sum;
+}
+\end{lstlisting}
+
+Why might this be useful? Performance.
+
+\section{The \shellcmd{default} And \shellcmd{delete} Keywords}
+Remember when you implemented one constructor, and suddenly you lost the copy constructor and the assignment operator? Welp, it took roughly 30 years to figure out this was a pain in the ass for everyone. Now, if you overload the copy constructor, you can get the default constructor by prototyping it, then putting \shellcmd{= default}.
+
+\begin{lstlisting}[style=cC++]
+class Zombie {
+	string nameOfGradStudent;
+
+public:
+	Zombie(const string name) {
+		nameOfGradStudent = name;
+	}
+
+
+};
+
+int main(int argc, char *argv[]) {
+	Zombie Fred; // compiler error
+}
+\end{lstlisting}
+
+This won't compile, Fred doesn't have a default constructor. But, if did something like
+
+\begin{lstlisting}[style=cC++,escapechar=ä,emphstyle={\textit}]
+class Zombie {
+	string nameOfGradStudent;
+
+public:
+	Zombie(const string name) {
+		nameOfGradStudent = name;
+	}
+
+    ä\shellcmd{Zombie() = \textcolor{blue}{default};}ä
+};
+
+int main(int argc, char *argv[]) {
+	Zombie Fred; // compiler error
+}
+\end{lstlisting}
+
+\shellcmd{delete} works the same way, except the opposite. Instead of gaining the default, it simply deletes the function. So, if there is no way possible to have a default constructor for the \texttt{Zombie} class, something like this is possible:
+
+\begin{lstlisting}[style=cC++,escapechar=ä,emphstyle={\textit}]
+class Zombie {
+	string nameOfGradStudent;
+
+public:
+	Zombie(const string name) {
+		nameOfGradStudent = name;
+	}
+
+    ä\shellcmd{Zombie() = \textcolor{blue}{delete};}ä
+};
+
+int main(int argc, char *argv[]) {
+	Zombie Fred; // compiler error
+}
+\end{lstlisting}
+
+This is useful when you're creating a class for someone else to use. It makes the deletion of certain functionality more explicit.
+
+\section{Further Topics}
+If time permitted, some topics of further discussion:
+
+\begin{itemize}
+    \item Preventing Exception Propagation (\shellcmd{noexcept})
+    \item Smart Pointers
+    \item Move Semantics
+    \item Variadic Templates
+    \item There's no way we'd get here.
+\end{itemize}
+
+\end{document}

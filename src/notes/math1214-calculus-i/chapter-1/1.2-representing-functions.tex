@@ -1,0 +1,37 @@
+%
+%  1.2-representing-functions.tex
+%  chapter-1
+%
+%  Created by Illya Starikov on 05/17/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\subsection{Representing Functions}
+Some brief families of functions can include
+
+\begin{description}
+    \item[Polynomials] are functions of the form
+
+        \begin{equation*}
+            f(x) = a_n\, x^n\, + a_{n-1}\,x^{n-1} + \cdots + a_1\, x + a_0,
+        \end{equation*}
+
+        where the \textbf{coefficients} $a_0, a_1, \ldots, a_n$ are real numbers with $a_n \neq 0$ and the nonnegative integer $n$ is the \textbf{degree} of the polynomial. The domain of any polynomial is the  set of all real numbers. An $n$th-degree polynomial can have as many as $n$ real \textbf{zeros} or \textbf{roots} --- values of $x$.
+    \item[Rational Functions] are ratios of the form $f(x) = p(x) / q(x)$, where $p$ and $q$ are polynomials. Because division by zero is prohibited, the domain of a rational function is the set of all real numbers except those for which the denominator is zero.
+    \item[Algebriac Functions]  are constructed using the operations of algebra: addition, subtraction, multiplication, division, and roots. Examples of algebraic functions are $f(x) = \sqrt{2x^3 + 4}$ and $f(x) = x^{\nicefrac{1}{4}}(x^3 + 2)$. In general, if an even root (square root, fourth root, and so forth) appears, then the domain does not contain points at which the quantity under the root is negative (and perhaps other points).
+    \item[Exponential Functions] have the form $f(x) = b^x$, where the base $b \neq 1$ is a positive real number. Closely associated with exponential functions are logarithmic functions of the form $f(x) = \log _b x$, where $b > 0$ and $b \neq q$. An exponential function has a domain consisting of all real numbers. Logarithmic functions are defined for positive, real numbers.
+        The most important function is the \textbf{natural exponential function} $f(x) = e^x$, with base $b = e$, where $e \approx 2.71828\ldots$ is one of the fundamental constants of mathematics. Associated with the natural exponential function is the \textbf{natural logarithmic function} $f(x) = \ln x$, which also has the base $b = e$.
+    \item[Trigonometric Functions] are $\sin x$, $\cos x$, $\tan x$, $\sec x$, and $\cos x$; they are fundamental to mathematics and many areas of application. Also important are their relatives, the \textbf{inverse trigonometric functions}.
+    \item[Transcendental Functions] Trigonometric, exponential, and logarithmic functions are few examples of a large family called transcendental functions.
+
+\end{description}
+
+\subsubsection{Transformations}
+Given the real numbers $a$, $b$, $c$, and $d$ and the function $f$, the graph of $y = cf(a(x - b)) + d$ is obtained from the graph of $y = f(x)$ in the following steps.
+
+\begin{align*}
+    y = f(x) &\xrightarrow{\text{horizontal scaling by a factor of |$a$|}} y = f(ax) \\
+             &\xrightarrow{\text{horizontal shift by $b$ units}} y = f(a(x - b)) \\
+             &\xrightarrow{\text{vertical scaling by a factor of |$c$|}} y = cf(a(x - b)) \\
+             &\xrightarrow{\text{horizontal scaling by a factor of |a|}} y = cf(a(x - b)) + d \\
+\end{align*}

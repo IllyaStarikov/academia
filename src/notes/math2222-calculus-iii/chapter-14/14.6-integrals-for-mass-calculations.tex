@@ -1,0 +1,25 @@
+\subsection{Integrals for Mass Calculations}
+\subsubsection{Center of Mass in One Dimension}
+Let $\rho$ be an integrable density function on the interval $[a,\, b]$ (which represents a thin rod or wire). The \textbf{center of mass} is location at the point $\bar{x} = \frac{M}{m}$, where the \textbf{total moment} $M$ and mass $m$ are
+
+\begin{equation}
+    M = \int _a ^b x\rho(x) \, dx \quad \text{and} \quad m = \int _a ^b \rho(x)\, dx
+\end{equation}
+
+\subsubsection{Center of Mass in Two Dimensions}
+Let $\rho$ be integrable density function defined over a closed bounded region $R$ in $\mathbb{R}^2$. The coordinates of the center of mass of the object represented by $R$ are
+
+\begin{equation}
+    \bar{x} = \frac{M_y}{m} = \frac{1}{m} \iint \limits _R x\rho(x,\, y)\, dA \quad \text{and} \quad \bar{y} = \frac{M_x}{m} = \frac{1}{m} = \iint \limits _R y \rho(x,\, y)\, dA
+\end{equation}
+
+\subsubsection{Center of Mass in Three Dimensions}
+Let $\rho$ be integrable density function on a closed bounded region $D$ in $\mathbb{R}^3$. The coordinates of the center of mass of the region are
+
+\begin{align}
+    \bar{x} &= \frac{M_{yz}}{m} = \frac{1}{m} \iiint \limits _R x\rho(x,\, y,\, z)\, dV \\
+    \bar{y} &= \frac{M_{xz}}{m} = \frac{1}{m} \iiint \limits _R y\rho(x,\, y,\, z)\, dV \\
+    \bar{z} &= \frac{M_{xy}}{m} = \frac{1}{m} \iiint \limits _R z\rho(x,\, y,\, z)\, dV
+\end{align}
+
+where $m = \iiint _D \rho(x,\, y,\, z)\, dV$ is the mass, and $M_{yz},\, M_{xz}$ and $M_{xy}$ are the moments with respect to the coordinate planes.

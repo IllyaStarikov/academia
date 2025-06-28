@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+\section{Algorithms Introduction}
+\begin{itemize}
+\item Insertion Sort Example
+
+\begin{verbatim}
+Input: 503 87 512 61 908 170 897
+
+/* The brackets signify the sorted array */
+
+[503] 87 512 61 908 170 897
+[87 503] 512 61 908 170 897
+[87 503 512] 61 908 170 897
+[61 87 503 512] 908 170 897
+[61 87 503 512 908] 170 897
+[61 87 170 503 512 908] 897
+[61 87 170 503 512 908] 897
+[61 87 170 503 512 897 908]
+\end{verbatim}
+
+\item Do the take home examples.
+\end{itemize}
+
+\section{Asymptotic Analysis}
+\begin{itemize}
+\item Big-O
+\end{itemize}
+
+\begin{equation}
+O(g(n)) = \{ f(n) : \text{there exists positive constants $c$ and $n_0$ such that} \ 0 \leq f(n) \leq cg(n) \ \forall \ n \geq n_0  \}
+\end{equation}
+
+\end{document}

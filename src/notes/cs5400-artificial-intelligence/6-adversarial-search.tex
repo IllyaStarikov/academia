@@ -1,0 +1,147 @@
+%
+%  6-adversarial-search.tex
+%  Introduction To Artificial Intelligence
+%
+%  Created by Illya Starikov on 2/25/18.
+%  Copyright 2018. Illya Starikov. All rights reserved.
+%
+
+\section{Adversarial Search}
+
+An adversarial environment is characterized by:
+
+\begin{itemize}
+    \item Competitive multi-agent
+    \item Turn-taking
+\end{itemize}
+
+The simplest types are:
+
+\begin{itemize}
+    \item Discrete
+    \item Deterministic
+    \item Two-Player
+    \item Zero-Sum Games
+    \item Perfect Information
+\end{itemize}
+
+Now, the search problem is described by:
+
+\begin{description}[font=\normalfont\space]
+    \item[$S_0$] Initial State
+    \item[\textsc{Player(s)}] Which player has the move?
+    \item[\textsc{Actions(s)}] Set of legal moves.
+    \item[\textsc{Result(s, a)}] Defines transitional model.
+    \item[\textsc{Terminal-Test(s)}] Is this a game over state?
+    \item[\textsc{Utility(s)}] Associates player-dependent values with terminal states.
+\end{description}
+
+\subsection{Minimax}
+\begin{itemize}
+    \item Time complexity: $\bigO{b^m}$.
+    \item Space complexity: $\bigO{b\,m}$.
+\end{itemize}
+
+\begin{equation*}
+    \textsc{Minimax(s)} = \begin{cases}
+        \textsc{Max'sUtility(s)} & \leftrightarrow \textsc{Terminal-Test(s)} \\
+        \max_{a \in \textsc{Actions(s)}} \textsc{Minimax(Result(s, a))}  & \leftrightarrow \textsc{Player(s) = Max} \\
+        \min_{a \in \textsc{Actions(s)}} \textsc{Minimax(Result(s, a))}  & \leftrightarrow \textsc{Player(s) = Min}
+    \end{cases}
+\end{equation*}
+
+Just as there is Depth-Limited Depth First Search, there's Depth-Limited Minimax:
+
+\begin{itemize}
+    \item State Evaluation Heuristic estimates Minimax value of a node.
+    \item Note that the Minimax value of a node is always calculated for the Max player, even when the Min player is at move in that node.
+\end{itemize}
+
+\begin{equation*}
+    \textsc{Minimax(s, d)} = \begin{cases}
+        \textsc{Eval(s)} & \leftrightarrow \textsc{Cuttoff-Test(s)} \\
+        \max_{a \in \textsc{Actions(s)}} \textsc{H-Minimax(Result(s, a), d + 1)}  & \leftrightarrow \textsc{Player(s) = Max} \\
+        \min_{a \in \textsc{Actions(s)}} \textsc{H-Minimax(Result(s, a), d + 1)}  & \leftrightarrow \textsc{Player(s) = Min}
+    \end{cases}
+\end{equation*}
+
+\subsection{State Evaluation}
+A good state evaluation heuristic should:
+
+\begin{enumerate}
+    \item Order the terminal states in the same way as the utility function.
+    \item Be relatively quick to compute.
+    \item Strongly correlate non-terminal states with chance of winning.
+\end{enumerate}
+
+Also, to take the weighted linear state evaluation heuristic:
+
+\begin{equation}
+    \textsc{Eval(s)} = \sum _{i = 1} ^n w_i\, f_i(s)
+\end{equation}
+
+\subsection{Alpha-Beta Pruning}
+Some terminology:
+
+\begin{description}
+    \item[$\alpha$] Worst value that Max will accept at this point of the search tree.
+    \item[$\beta$] Worst value that Min will accept at this point of the search tree.
+    \item[Fail-Low] Encountered value $\leq \alpha$.
+    \item[Fail-High] Encountered value $\geq \beta$.
+    \item[Prune] If fail-low for Min-player or fail-high for Max-player.
+\end{description}
+
+With Alpha-Beta Pruning, we get the following complexities:
+
+\begin{itemize}
+    \item Worst-Case: $\bigO{b^d}$.
+    \item Best-Case: $\bigO{b^\nicefrac{d}{2}}$
+    \item Average-Case: $\bigO{b^\nicefrac{3d}{4}}$.
+\end{itemize}
+
+\subsection{Move Ordering}
+Some heuristics for move ordering:
+
+\begin{description}
+    \item[Knowledge Based] Try captures first in chess.
+    \item[Principal Variant (PV)] A sequence of moves that programs consider best and therefore expect to be played.
+    \item[Killer Move] The last move at a given depth that caused $\alpha\beta$-pruning or had best minimax value.
+    \item[History Table] Track how often a particular move at any depth caused $\alpha\beta$-pruning or had best minimax value.
+\end{description}
+
+\subsubsection{History Table}
+There are two options for history tables:
+
+\begin{enumerate}
+    \item Generate set of legal moves and use History Table value as $f$ value.
+    \item Keep moves with History Table values in a sort array and for a given state traverse the array to find the legal move with the highest History Table value.
+\end{enumerate}
+
+\subsection{Search Depth Heuristics}
+Some search depth heuristics can include:
+
+\begin{itemize}
+    \item Time-Based/State-Based
+    \item Horizontal Effect\footnote{The phenomenon of deciding on a non-optimal principal variant because an ultimately unavoidable damaging move seems to be avoided by blocking it till passed the search depth.}
+    \item Singular Extensions/Quiescence Search
+\end{itemize}
+
+When there is a time to move constraint, some plausible algorithms include:
+
+\begin{itemize}
+    \item Constant
+    \item Percentage of remaining time
+    \item State dependent
+    \item Hybrid
+\end{itemize}
+
+\subsection{Quiescence Search}
+Quiescence states are states that could have giant swings in the heuristic values. For these states,
+
+\begin{itemize}
+    \item When search depth reached, compute quiescence state evaluation heuristic.
+    \item If state quiescent, then proceed as usual; otherwise increase search depth if quiescence search depth not yet reached.
+\end{itemize}
+
+\subsection{Transition Tables}
+A transition table is a hash table of previously calculated state evaluation heuristic values. The speedup is particularly large for iterative deepening search algorithms.

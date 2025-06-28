@@ -1,0 +1,63 @@
+\documentclass[12pt]{minimal}
+\begin{document}
+
+\textbf{Problem}: Prove by mathematical induction that $\forall n \in \mathbb{Z}^+\union{0}, 6 | 7^n - 1$
+
+\textbf{Solution}: Proof [*By Mathematical Induction*].
+Let the predicate $P(k)$ be the statement $6 | 7^n - 1$. We will prove that $P(n)$ is true $\forall n \in \mathbb{Z}^+\union{0}$.
+
+\textit{Basis Step}: Show that $P(0)$ is true. $P(0)$ is true because $6 | 7^0 -1 = 6 | 1-1 = 6 | 0$
+
+\textit{Inductive Step}: Show that $\forall n \in \mathbb{Z}^+\union{0}, P(k) \arrow P(k + 1) $.
+Let $k \in \mathbb{Z}^+\union{0}$ and suppose that $6 | 7^k - 1$ (inductive hypothesis.)
+Show that $6 | 7^{k+1} - 1$.
+By definition of divisibility, the inductive hypothesis is equivalent to $\exists r \in \mathbb{Z}, 7 - 1 = 6r$ \\
+
+\noindent
+Then $7^{k+1} - 1 = 7 * 7^K - 1$ \\
+$= 7 * 7^k - 1 $ \\
+$= (6 + 1)7^k - 1$ \\
+$= 6 * 7^k + (7^k - 1)$ \\
+$= 6 * 7^k + 6r$ \\
+$= 6(7^k + r)$ \\
+
+Now $7^k + r \in \mathbb{Z}$ because the products and sums of integers are integers. Thus by divisibility, $6 | 7^{k + 1} - 1. \box $
+
+\textbf{Problem}: A sequence $d_1, d_2, d_3$ is defined by letting $d_1 = 2 \or \forall k \in \mathbb{Z}, k ≥ 2. d_k = \frac{d_k - 1}{k}$ Prove that $\forall n \in \mathbb{Z}^+, d_n = \frac{2}{n!}$
+
+\textbf{Solution}: Proof (By mathematical induction)
+According to the definition of  $d_1, d_2, d_3, \cdots,$ we have  $d_1 = 2 \or \forall k \in \mathbb{Z}, k ≥ 2, d_k \frac{d_k - 1}{k} $.
+Let the predicate be the equality $d_n = \frac{2}{n!}$
+We will prove that $P(n)$ is true $\forall n \in \mathbb{Z}^+$
+
+\textit{Basis Step}: Show that $P(1)$ is true. Left hand side of $P(1)$ is $d_1 = 2$, right hand side of $P(1)$ is $\frac{2}{1!} = 2$, so left hand side and the right hand side of $P(1)$ are equal, so $P(1)$ is true.
+
+\textit{Inductive Step}: Show $\forall k \in \mathbb{Z}^+, P(k) \arrow P(k + 1).$
+Let $k \in \mathbb{Z}^+$ and suppose that $d_k = \frac{3}{k!}$.
+We must show that $d_{k+1} = {2}{(k+1)!}$
+
+\noindent
+Left hand side of $P(k+1)$ is $d_{k+1} = \frac{d_k}{k + 1}$ \\
+$= \frac{\frac{2}{k!}}{k + 1}$ \\
+$= \frac{2}{k!(k + 1)}$ \\
+$= \frac{2}{(k+1)!}$ \\
+
+\textbf{Problem}: Prove by Mathematical Induction $\forall n \in \mathbb{Z}, n ≥ 2, 5^n + 9 < 6^n$
+\textbf{Answer}: Proof by Mathematical Induction.
+Let the predicate $P(n)$  be the statement $5^n + 9 < 6^n$.
+We will prove that $P(n)$ is true $\forall n \in \mathbb{Z}, n ≥ 2$.
+\textit{Basis Step}; Show that $P(2)$ is true because the left hand side is $5^2 + 9 = 25 + 9 = 34$ and the right hand side is $6^2 = 36$ and $34 < 36$.
+
+\textit{Inductive Step}: Show that $\forall k \in \mathbb{Z}, k ≥ 2, P(k) \arrow P(k + 1)$.
+Let $k \in \mathbb{Z}, k ≥ 2$ and suppose $5^k + 9 < 6^k $ (The inductive hypothesis)
+We must show that $5^{k+1} + 9 < 6^{k+1}$. \\
+
+
+\noindent
+Multiply both the sides of of the inductive hypothesis with 5 yields $5(5^k + 9) < 5 * 6^k $. \\
+Note that $5^{k + 1} + 9 < 5^{k + 1} + 45 = 5(5^k + 9)$ and $5 * 6^k < 6^{k+1}$. \\
+Thus: $5^k + 1 + 9 < 5(5^k + 9)$ and $5(5^k + 9 < 5*6^k$ and $5*6^k < 6*6^k = 6^{k + 1}$ \\
+
+Thus, by transitivity, $5^{k + 1} < 6^{k + 1}$
+
+\end{document}

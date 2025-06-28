@@ -1,0 +1,66 @@
+\documentclass{article}
+\begin{document}
+\subsubsection*{Example 9.6.3}
+A bakery produces 6 kinds of pastry, including eclairs. Assume a supple of 20 each.
+
+\begin{enumerate}
+    \item How many selections of 20 pastries? \textit{N(T)} = $20 + 6 - 1 \choose 20$ = $20 \choose 20$ = $\frac{25!}{20!5!} = 53,130$
+    \item How many selections of 20 pastries including at least 3 eclairs? $17 + 6 - 1 \choose 17$ = $22 \choose 17$ = $\frac{22!}{17!5!} = 26,334$
+    \item How many selections of 20 pastries contain at most 2 eclairs? $N(E \leq 2) = N(T) - N(E \geq 3) = 53,130 - 26,334 = 26,796$
+\end{enumerate}
+
+\subsubsection*{Example 9.6.9}
+\begin{verbatim}
+    for k = 1 to n
+        for j = k to n
+            for i = j to n
+\end{verbatim}
+
+Number of iterations of inner loops is the same as the number of integers triples (i, j, k) where $1 \leq k \leq j \leq i \leq n$. Triples can be represented as a string of \textit{n - 1} vertical bars and three crosses indicated which integers from \textit{1} to \textit{n} are included.
+
+\noindent
+$3 + n - 1 \choose 3$ = $n + 2 \choose 3$ = $\frac{n(n + 1)(n + 3)}{6}$
+
+
+\subsubsection*{Example 9.6.12}
+$y_1 + y_2 + y_3 + y_4 = 30$. How many selections? $30 + 4 - 1 \choose 30$
+
+\subsubsection*{Example 9.6.13}
+$y_1 + y_2 + y_3 + y_4 = 30, y_1 \geq 2, y_2 \geq 2, y_3 \geq 2, y_4 \geq 2$. $22 + 4 - 1 \choose 22$
+
+\subsubsection*{Example 9.6.18}
+A large pile of coins consist of pennies, nickels, dimes, and quarters.
+\begin{itemize}
+    \item How many different collections of 30 coins can be selected? \textit{N(T)} = $30 + 4 - 1 \choose 30)$ = $33 \choose 30$ = 5,456.
+    \item If the pile contains only 15 quarters, but 30 of each other kind of coin, how many collections of 30 can be chosen? $N(Q \geq 16)$ = %$$
+
+    Let T be the set of selections of 30 coins, $Q \leq 15$ the set without most 15 quarters, and $Q \geq 6$, The set without at least 16 quarters. Then: \\
+
+    \noindent
+    $T = Q \leq 15 \cup Q \geq 16$ \\
+    $Q \leq 15 \cap Q \geq 16 = \emptyset$ \\
+    $N(T) = N(Q \leq 15) + N(Q \geq 16) - \not N(Q \leq 15 \cap Q \geq 16) $ \\
+    $N(Q \geq 16)$ = $14 + 4 - 1 \choose 14$ = $17 \choose 14$ = 680. \\
+    $N(Q \leq 15) = 5,456 - 680 = 4,776$ \\
+
+    \item 20 Dimes, 30 of each of the rest. How many 30?
+    T = $D \leq 20  \cup D \geq 21$ \\
+    Thus: $N(T) = N(D \leq 20) + N(D \geq 21)$ \\
+    $N(D \geq 21)$ = $9 + 4 - 1 \choose 9$ = $12 \choose 9$ = 220 \\
+    $N(D leq 20) = N(T) - N(D\geq 21) = 5,456 - 220 = 5,236$ \\
+
+    \item 15 dimes, 15 quarters, 30 of each of the rest. How many 30?
+    $N(Q \leq 15 \wedge D \leq 20) = N(T) - N(Q \geq 16 \cup D \geq 21)$ \\
+    $= 5,456 - 900 = 4,556$ \\
+
+    $N(Q \geq 16 \wedge D \geq 21) = N(Q \geq 16) + N(D \geq 21) - N(Q \geq 16 \cup D \geq 21)$ \\
+    $= 680 + 220 - 0 = 900$ \\
+
+\end{itemize}
+\setcounter{section}{9}
+\subsection{Graph Theory}
+\subsection{Graph Theory I}
+
+
+
+\end{document}

@@ -1,0 +1,29 @@
+\subsection{Lagrange Multipliers}
+\subsubsection{Parallel Gradients (Ball Park Theorem)}
+Let $f$ be a differentiable function in a region of $\mathbb{R}^2$ that contains the smooth curve $C$ given by $g(x, y) = 0$. Assume that $f$ has a local extreme value (relative to values of $f$ on $C$) at a point $P(a, b)$ on $C$. Then $\nabla f(a, b)$ is orthogonal to the line tangent to $C$ at $P$. Assuming $\nabla g(a, b) \neq 0$, it follows that there is a real number $\lambda$ (called a \textbf{Lagrange multiplier}) such that $\nabla f(a, b) = \lambda \nabla g(a, b)$.
+
+\subsubsection{Method of Lagrange Multipliers in Two Variables}
+Let the objective function $f$ and the constraint function $g$ be differentiable on a region of $\mathbb{R}^2$ with $\lambda g(x, y) \neq 0$ on the curve $g(x, y) = 0$. To locate the maximum and minimum values of $f$ subject to the constraint $g(x, y) = 0$, carry out the following steps.
+
+\begin{enumerate}
+    \item Find the values of $x, y$ and $\lambda$ (if they exist) that satisfy the equations
+
+    \begin{equation}
+        \nabla f(x,\, y) = \lambda \nabla g(x,\, y) \quad \text{and} \quad g(x,\, y) = 0
+    \end{equation}
+
+    \item Among the values $(x,\, y)$ found in Step 1, select the largest and smallest corresponding function values, which are the maximum and minimum values of $f$ subject to the constraint.
+\end{enumerate}
+
+\subsubsection{Method of Lagrange Multipliers in Three Variables}
+Let $f$ and $g$ be differentiable on a region of $\mathbb{R}^3$ with $\nabla g(x,\, y,\, z) neq 0$ on the surface $g(x,\, y,\, z) = 0$. To locate the maximum and minimum values of $f$ subject to the constraint $g(x,\, y,\, z) = 0$, carry out the following steps.
+
+\begin{enumerate}
+    \item Find the values of $x,\, y,\, z$ and $\lambda$ that satisfy the equations
+
+    \begin{equation}
+        \nabla f(x,\, y,\, z) = \lambda \nabla g(x,\, y,\, z) \quad \text{and} \quad g(x,\, y,\, z) = 0
+    \end{equation}
+
+    \item Among the points $(x,\, y,\, z)$ found in Step 1, select the largest and smallest corresponding values of the objective function. These values are the maximum and minimum values of $f$ subject to the constraint.
+\end{enumerate}

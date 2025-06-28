@@ -1,0 +1,46 @@
+%
+%  3.8-derivatives-of-logarithmic-and-exponential-functions.tex
+%  chapter-3
+%
+%  Created by Illya Starikov on 06/22/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\subsection{Inverse Properties of $e^x$ and $\ln x$}
+\begin{enumerate}
+    \item $e^{\ln x} = x$, for $x > 0$ and $\ln (e^x) = x$, for all $x$.
+    \item $y = \ln x$ if and only if $x = e^y$.
+    \item For real numbers $x$ and $b > 0$, $b^x = e^{(\ln b^y) = e^{x \ln b}}$
+\end{enumerate}
+
+\subsubsection{Derivative of $\ln x$}
+\begin{equation}
+    \frac{d}{dx}(\ln x) = \frac{1}{x}\text{, for} x > 0 \qquad \frac{d}{dx}( \ln |x| ) = \frac{1}{x}\text{, for} x \neq 0
+\end{equation}
+
+\subsubsection{Derivatives of $b^x$}
+If $b > 0$, then for all $x$,
+
+\begin{equation}
+    \frac{d}{dx} \left( b^x \right) = b^x \ln b
+\end{equation}
+
+\subsubsection{General Power Rule}
+For real numbers $p$ and for $x > 0$,
+
+\begin{equation}
+    \frac{d}{dx} \left( x^p \right) = px^{p - 1}    
+\end{equation}
+
+Furthermore, if $u$ is a positive differentiable function on its domain, then
+
+\begin{equation}
+    \frac{d}{dx} \left( {u(x)}^p \right) = {p\left( u(x) \right)}^{p - 1} \cdot u'(x)
+\end{equation}
+
+\subsubsection{Derivative of $\log_b x$}
+If $h > 0$ with $b \neq 1$, then
+
+\begin{equation}
+    \frac{d}{dx} \left( \log_b x \right) = \frac{1}{x \ln b}\text{, for} x > 0 \quad\text{and}\quad \frac{d}{dx} \left( \log_b |x| \right) = \frac{1}{x \ln b}\text{, for} x \neq 0
+\end{equation}

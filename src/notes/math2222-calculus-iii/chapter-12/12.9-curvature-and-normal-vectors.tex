@@ -1,0 +1,79 @@
+\subsection{Curvature and Normal Vectors}
+\subsubsection{Curvature}
+Let \textbf{r} describe a smooth parameterized curve. If $s$ denotes arc length and $\mathbf{T} = \mathbf{\frac{r'}{|r'|}}$ is the unit tangent vector, the \textbf{curvature} is $\kappa(s) = |\frac{d\mathbf{T}}{ds}|$
+
+\subsubsection{Curvature Formula}
+Let $\mathbf{r}(t)$ describes a smooth parameterized curve, where $t$ is any parameter. If $\vvec = \mathbf{r}'$ is the velocity and \textbf{T} is the unit tangent vector, then the curvature is
+
+\begin{equation}
+    \kappa (t) = \frac{1}{|\mathbf{v}|}\Bigg|\frac{d \mathbf{T}}{dt}\Bigg| = \Bigg|\frac{\mathbf{T}'(t)}{\mathbf{r}'(t)}\Bigg|
+\end{equation}
+
+\subsubsection{Alternative Curvature Formula}
+Let \textbf{r} be the position of an object moving on a smooth curve. The \textbf{curvature} at a point on the curve is
+
+\begin{equation}
+    \kappa = \frac{|\mathbf{v \times a}|}{|\mathbf{v}|^3},
+\end{equation}
+
+where $\mathbf{v} = \mathbf{r}'$ is the velocity and $\mathbf{a} = \mathbf{v}'$ is the acceleration.
+
+\subsubsection{Principal Unit Normal Vector}
+Let \textbf{r} describe a smooth parameterized curve. The \textbf{principal unit normal vector} at a point $P$ on the curve at which $\kappa \neq 0$ is
+
+\begin{equation}
+    \mathbf{N}(s)
+    = \frac{ \nicefrac{d \mathbf{T}}{ds} }{| \nicefrac{d \mathbf{T}}{ds} |}
+    = \frac{1}{\kappa} \frac{d \mathbf{T}}{ds}
+\end{equation}
+
+In practice, we use the equivalent formula
+
+\begin{equation}
+    \mathbf{N}(t) = \frac{ \nicefrac{d \mathbf{T}}{dt} }{| \nicefrac{d \mathbf{T}}{dt} |}
+\end{equation}
+
+evaluated at the value of $t$ corresponding to $P$.
+
+\subsubsection{Properties of the Principal Unit Normal Vector}
+Let \textbf{r} describe a smooth parameterized curve with unit tangent vector \textbf{T} and principal unit normal vector \textbf{N}.
+
+\begin{enumerate}
+    \item \textbf{T} and \textbf{N} are orthogonal at all points of the curve; that is, $\mathbf{T}(t) \cdot \mathbf{N}(t) = 0$, at all points where \textbf{N} is defined.
+    \item The principal unit normal vector points to the inside of the curve---in the direction that the curve is turning.
+\end{enumerate}
+
+\subsubsection{Tangential and Normal Components of the Acceleration}
+The acceleration vector of an object moving in space along a smooth curve has the following representation in terms of its \textbf{tangential component} $a_T$ (in the direction of \textbf{T}) and its normal component $a_N$ (in the direction of \textbf{N}):
+
+\begin{equation}
+    \mathbf{a} = a_N \mathbf{N} + a_T \mathbf{T},
+\end{equation}
+
+where $a_N = \kappa |\vvec|^2 = \frac{|\mathbf{v \times a}|}{|\vvec|}$ and $a_T = \frac{d^2 s}{dt^2}$.
+
+\subsubsection{Unit Binormal Vector and Torsion}
+Let $C$ be a smooth parameterized curve with unit tangent and principal unit normal vectors \textbf{T} and \textbf{N}, respectively. Then, at each point of the curve at which the curvature is nonzero, the \textbf{unit binormal vector} is
+
+\begin{equation}
+    \mathbf{B} = \mathbf{T \times N}
+\end{equation}
+
+and the \textbf{torsion} is
+
+\begin{equation}
+    \tau = - \frac{d \textbf{B}}{ds} \cdot \mathbf{N}
+\end{equation}
+
+\subsubsection{Formulas for Curves in Space}
+\begin{enumerate}
+    \item Position function: $\quad \mathbf{r}(t) = \langle x(t),\, y(t),\, z(t) \rangle$
+    \item Velocity: $\quad \mathbf{v} = \mathbf{r}'$
+    \item Acceleration: $\quad \mathbf{a} = \mathbf{v}'$
+    \item Unit tangent vector: $\quad \mathbf{T} = \frac{\mathbf{v}}{|\mathbf{v}|}$
+    \item Principal unit normal vector: $\quad \mathbf{N} = \frac{ \nicefrac{d \mathbf{T}}{dt} }{| \nicefrac{d \mathbf{T}}{dt} |}$ (provided $\nicefrac{d \mathbf{T}}{dt} \neq \mathbf{0}$)
+    \item Curvature: $\quad \kappa = \frac{d \mathbf{T}}{ds} = \frac{1}{|\mathbf{v}|}|\frac{d \mathbf{T}}{dt}| = |\frac{\mathbf{T}'(t)}{\mathbf{r}'(t)}| = \frac{| \vvec \times \mathbf{a}|}{|\vvec|^3}$
+    \item Components of acceleration: $\quad \mathbf{a} = a_N \mathbf{N} + a_T \mathbf{T}$, where $a_N = \kappa |\mathbf{v}|^2 = \frac{|\vvec \times \mathbf{a}|}{|\mathbf{v}|}$ and $a_T = \frac{d^2 s}{dt^2} = \frac{\mathbf{v \cdot a}}{|\mathbf{v}|}$
+    \item Unit binormal vector: $\mathbf{B} = \mathbf{B \times N} = \frac{\mathbf{v \times a}}{|\mathbf{v \times a}|}$
+    \item Torsion $\quad \tau = -\frac{d \mathbf{B}}{ds} \cdot \mathbf{N} = \frac{ \mathbf{(v \times a)} \cdot \mathbf{a}' }{|\mathbf{v \times a}|^2} = \frac{\mathbf{(r' \times r'') \cdot r'''}}{(\mathbf{r}' \times \mathbf{r}'')^2}$
+\end{enumerate}

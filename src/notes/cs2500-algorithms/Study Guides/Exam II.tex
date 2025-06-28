@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+\begin{itemize}
+    \item Dynamic Programming Two Properties
+    \begin{description}
+        \item [Overlapping Subproblems] A recursive solution contains a small number of distinct subproblems repeated many times
+        \item [Expressed Recursively] An optimal solution to a problem contains optimal solution to subproblems
+    \end{description}
+    \item Subsequence: A sequence aIer deleting some elements
+    \item A algorithm always makes the choice that looks best at the moment
+    \begin{itemize}
+        \item Used for optimization
+        \item Make local optimal choices and hope to achieve global optimality (Greedy-choice property)
+        \item An optimal solution to the problem contains an optimal solution to subproblems (opCmal substructure)
+    \end{itemize}
+    \item Graph
+    \begin{itemize}
+        \item a symbolic representaBon of a network and of its connectivity
+    \end{itemize}
+    \item There are two ways to represent graphs
+    \begin{itemize}
+        \item Adjacency list
+        \item Adjacency matrix
+    \end{itemize}
+    \item Cut edge: Edge whose deletion will increase the number of connected components (Disconnect the graph)
+\end{itemize}
+
+\section{Complexities}
+\subsection{Space Requirements}
+\begin{description}
+    \item [Adjacency Lists] For directed and directed $\Theta(V + E)$
+    \item [Adjacency Matrix] For directed and undirected $\Theta(V^2)$
+\end{description}
+
+\subsection{Search Complexities}
+\begin{description}
+    \item [Breadth-First] $\mathcal{O}(V+E)$
+    \item [Depth-First] $\mathcal{O}(V+E)$
+\end{description}
+
+\section{Coloring Depth First Search}
+\begin{description}
+    \item [White] undiscovered
+    \item [Gray] discovered but not finished
+    \item [Black] finished (found every reachable vertex from it)
+\end{description}
+\end{document}

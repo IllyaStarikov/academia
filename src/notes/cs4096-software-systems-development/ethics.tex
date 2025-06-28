@@ -1,0 +1,43 @@
+%
+%  ethics.tex
+%  Desktop
+%
+%  Created by Illya Starikov on 12/13/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\RequirePackage[l2tabuorthodox]{nag}
+\documentclass[12pt,listof=totoc,toc=sectionentrywithdots]{scrartcl}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,xcolor}
+
+
+\title{Ethical, Security, Legal, and Social Impact}
+\subtitle{CS 4096, Dr. Morales}
+\date{\today}
+\author{Team Splatoonio\thanks{Adam Evans, Illya Starikov, Ian Howell, Deacon Seals, Michael Harrington, Luke Parton, Eric Michalak}}
+
+\begin{document}
+\maketitle
+
+
+War Paint is an augmented reality application that utilizes the player’s current geographic location as a stylus to compete against other users. As part of gameplay this application collects user data and displays some for other users to see. While applications that give others your current location exist (i.e., SnapChat or Find My Friends) none of these display your location to anonymous users. In order to play War Paint the user must accept that their current location is being shared with other users; this creates an ethical conundrum. First, it would be illegal to allow children 13 years or younger to use the application without parent permission. There is a legal gray area in sharing a user’s location from age 13 to 18, so to mitigate these ethical concerns, the application will likely be restricted to users 18 years or older.
+
+The creators of War Paint also have an ethical responsibility to preserve the security of user data. War Paint will likely collect user data for the purpose of targeted advertisement; however, this data will never be sent to the War Paint server. In other words, we do not permanently store user data for longer than is necessary to play the game, and the data we do collect is all anonymous. It is important that this, as well as user passwords and profile information, remain secure and confidential. Passwords are currently stored on the server in plaintext due to time constraints, but before release, the server would be switched over to using a standard salted hashing function to protect user data. Clients would also be forced to send communication over HTTPS ensuring their connections were not visible in transit. In addition, most, if not all, of our server endpoints are also vulnerable to SQL injection, and would be fixed before releasing to mobile app stores. We would also like to have someone perform a penetration test of our system to help verify its security.
+
+New users would be required to read and accept an End-User License Agreement stating that they are at least 18 years of age. It will clarify that the War Paint mobile app will collect user data and display the user’s current location anonymously to other players while the game is in session. It will state that the creators and owners of War Paint are not responsible for damages or risks incurred by sharing the user’s location.
+
+The EULA will also clarify that users are responsible for their own physical safety while playing. War Paint is a physically active game. The most successful way to play is to maintain the highest possible speed for the duration of a game session. This would encourage especially competitive users to take risks in order to succeed. To prevent people from using cars or other motorized vehicles, a strict speed limit of 20 miles per hour will be imposed on the players. If this speed limit is exceeded, the user will cease painting the map until their speed falls back to acceptable levels. Repeatedly violating the speed limit will result in a temporary ban. In addition, there will be a report system that allows players to indicate which players are participating in dangerous behaviors while playing.
+
+After witnessing the social impact Pok\'emon GO had on cities and parks, it is hard to estimate the potential impact of War Paint. On a smaller scale it could increase the number of people running on college campuses. Encouraging college students to exercise with their peers would be a positive social impact. On a larger scale this game could cause congestion in areas where it is the most popular. Matchmaking could keep track of the number of users in any specific area to prevent too many people from playing in too small a location.
+
+\clearpage
+\topskip0pt
+\vspace*{\fill}
+\centering
+This page is intentionally left blank.
+\vspace*{\fill}
+%
+
+\end{document}
+

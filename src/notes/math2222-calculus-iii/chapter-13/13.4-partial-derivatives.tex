@@ -1,0 +1,32 @@
+\subsection{Partial Derivatives}
+The \textbf{partial derivative of $f$ with respect to $x$ at the point (a, b)} is
+
+\begin{equation}
+    f_x (a, b) = \lim _{h \rightarrow 0} \frac{f(a + h, b) - f(a, b)}{h}.
+\end{equation}
+
+The \textbf{partial derivative of $f$ with respect to $y$ at the point (a, b)} is
+
+\begin{equation}
+    f_y (a, b) = \lim _{h \rightarrow 0} \frac{f(a, b + h) - f(a, b)}{h}.
+\end{equation}
+
+provided these limits exists.
+
+\subsubsection{Equality of Mixed Partial Derivatives}
+Assume that $f$ is defined on an open set $D$ of $\mathbb{R}^2$, and $f_{xy}$ and $f_{yx}$ are continuous throughout $D$. Then $f_{xy} = f_{yx}$ at all points of $D$.
+
+\subsubsection{Differentiability}
+The function $z = f(x,\, y)$ is \textbf{differentiable at $(a,\, b)$} provided $f_x(a,\, b)$ and $f_y(a,\, b)$ exist and the change $\Delta z = f(a + \Delta x,\, b + \Delta y) - f(a,\, b)$ equals
+
+\begin{equation}
+     \Delta z = f_x (a,\, b) \Delta x + f_y (a,\, b) \Delta y + \varepsilon_1 \Delta x + \varepsilon_2 \Delta y,
+\end{equation}
+
+where for fixed $a$ and $b$, $\varepsilon_1$ and $\varepsilon_2$ are functions that depend only on $\Delta x$ and $\Delta y$, with $(\varepsilon_1, \varepsilon_2) \rightarrow (0,\, 0)$ as $(\Delta x,\, \Delta y) \rightarrow (0,\, 0)$. A function is \textbf{differentiable} on an open set $R$ if it is differentiable at every point on $R$.
+
+\subsubsection{Conditions for Differentiability}
+Suppose the function $f$ has partial derivatives $f_x$ and $f_y$ defined on an open set containing $(a,\, b)$, with $f_x$ and $f_y$ continuous $(a,\, b)$. Then $f$ is differentiable at $(a,\, b)$.
+
+\subsubsection{Differentiability Implies Continuity}
+If a function $f$ is differentiable at $(a,\, b)$, then it is continuous at $(a,\, b)$

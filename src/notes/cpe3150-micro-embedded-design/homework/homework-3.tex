@@ -1,0 +1,111 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{article}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,enumitem,akkwidepage,multicol}
+\newcounter{map}
+\newcommand{\address}{
+    \textbf{000\themap}
+    \addtocounter{map}{1}
+}
+\newcommand{\contents}[1]{
+    \texttt{#1}
+}
+
+\title{Homework \#3}
+\date{Due Date: September 22, 2016}
+\author{Illya Starikov}
+
+\begin{document}
+\maketitle
+
+\section*{Problem \#1}
+\begin{enumerate}[label=(\alph*)]
+    \item Illegal (\textit{\texttt{ADD} only applies to A.})
+    \item Illegal (\textit{\texttt{255H} is too large})
+    \item Legal
+    \item Illegal (\textit{Same reasoning as (a)})
+    \item Legal
+    \item Illegal (\textit{\texttt{F5H} will be treated as a label instead of a number.})
+\end{enumerate}
+
+\section*{Problem \#2}
+\begin{verbatim}
+    MOV R4, #25H      ; Moves 37 into register 4.
+    MOV A, #1FH       ; Moves 31 into temporary register A
+    ADD A, R4         ; Adds register 4's value to register A's value
+\end{verbatim}
+
+It's a simple add operation, resulting in the value of $37_{10} + 31_{10} = 68_{10} = 44_{16}$; it's kept in ROM.
+
+\section*{Problem \#3}
+\begin{multicols}{2}
+\begin{verbatim}
+    ORG 0;
+    MOV R4, #0FH    ; Move 0F to register 4
+    MOV A, #0A2H    ; Move A2 to register A
+    ADD A, R4       ; Add R4 To A
+    MOV R7, A       ; Move the result to R7
+    END;
+\end{verbatim}
+
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Address} & \textbf{Contents} \\ \hline
+        \address & \contents{0F} \\ \hline
+        \address & \contents{A2} \\ \hline
+        \address & \contents{B1} \\ \hline
+        \address & \contents{B1} \\ \hline
+    \end{tabular}
+\end{center}
+
+\end{multicols}
+
+\section*{Problem \#4}
+\begin{verbatim}
+        ORG 0
+
+        MOV R0, #30H        ; Move the value 30H to R0
+LOOP:   MOV @R0, #0FFH      ; Move FFH at R0
+        INC R0              ; Increment R0
+        CJNE R0, #40H, LOOP
+
+        END
+\end{verbatim}
+
+\section*{Problem \#5}
+\begin{verbatim}
+    ORG 0;
+
+    SETB PSW.3      ; Switch to register bank 3
+    MOV R0, #0A5H   ; Load A5 into register 0
+    PUSH 0          ; Push R0 onto stack
+
+    SETB PSW.0      ; Switch to register bank 4
+    POP 5           ; Pop onto register 5
+
+    END;
+\end{verbatim}
+
+\section*{Problem \#6}
+Assuming A is the register to store results,
+
+\begin{verbatim}
+    ORG 0;
+
+    MOV R6, #5FH        ; Load 5F into R6
+    MOV R5, #01001001B  ; Load 01001001 into R5
+
+    /* Swap */
+    MOV A, R6;          ; temp (A) = R6
+    MOV 6, 5;           ; R6 = R5
+    MOV R5, A           ; R5 = Temp (A)
+
+    /* Add */
+    ADD A, R6;          ; A already had R6's values, just add original R5
+                        ; Which got switched.. so actually add R6
+    ADD A, #20;
+
+    END;
+\end{verbatim}
+\end{document}

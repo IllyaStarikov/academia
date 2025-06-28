@@ -1,0 +1,31 @@
+\subsection{L'Hôpital's Rule and Growth Rates of Functions}
+\subsubsection{Indeterminate forms $1^{\infty}, 0^0, \infty^0$}
+Assume $\limit{x \rightarrow a} f(x)^{g(x)}$ has the indeterminate form $1^{\infty}$, $0^0$, or $\infty^0$.
+
+\begin{enumerate}
+\item Evaluate $L = \limit{x \rightarrow a} g(x) \ln f(x)$. This limit can be put in the form $0 / 0$ or $\infty / \infty$, both of which are handled by l'Hôpital's rule.
+\item Then $\limit{x \rightarrow a} f(x) ^{g(x)} = e^L$
+\end{enumerate}
+
+
+\subsubsection{Growth Rates of Functions (as $x \rightarrow \infty$)}
+Suppose $f$ and $g$ are functions with $\limit{x \rightarrow \infty} f(x) = \limit{x \rightarrow \infty} g(x) = \infty$. Then \textbf{$f$ grows faster than g} as $x \rightarrow \infty$ if
+
+\begin{equation}
+\lim_{x \rightarrow \infty} \frac{g(x)}{f(x)} = 0 \quad \text{ or, quantitatively, if} \quad \lim _{x \rightarrow \infty} \frac{f(x)}{g(x)} = \infty
+\end{equation}
+
+The functions $f$ and $g$ have \textbf{comparable growth rates} if
+
+\begin{equation*}
+\lim _{x \rightarrow \infty} \frac{f(x)}{g(x)} = M
+\end{equation*}
+
+where $M \in \mathbb{R}^+.$
+
+\subsubsection{Ranking Growth Rates as $x \rightarrow \infty$}
+Let $f << g$ mean that $g$ grows faster than $f$ as $f \rightarrow \infty$. With positive real numbers $p, q, r, s$ and $b > 1$,
+
+\begin{equation}
+\ln ^q x << x^p << x^p \ln ^r x << x ^{p + s} << b^x << x^x
+\end{equation}

@@ -1,0 +1,28 @@
+\subsection{Green's Theorem}
+Let $C$ be a simple closed smooth curve, oriented counterclockwise, that encloses a connected and simply connected region $R$ in the plane. Assume $\mathbf{F} = \langle f,\, g \rangle$, where $f$ and $g$ have continuous first partial derivatives in $R$. Then
+
+\begin{equation}
+    \oint \limits _C \mathbf{F} \cdot d\mathbf{r} = \oint f \, dx + g \, dy = \iint \limits _R \left( \frac{\partial g}{\partial x} - \frac{\partial f}{\partial y} \right) dA.
+\end{equation}
+
+\subsubsection{Two-Dimensional Curl}
+The \textbf{two-dimensional curl} of the vector field $\mathbf{F} = \langle f,\, g \rangle$ is $\frac{\partial g}{\partial x} - \frac{\partial f}{\partial y}$. If the curl is zero throughout a region, the vector field is said to be \textbf{irrotational} on that region.
+
+\subsubsection{Area of a Plane Region by Line Integrals}
+Under the conditions of Green's Theorem, the area of a region $R$ enclosed by a curve $C$ is
+
+\begin{equation}
+    \oint \limits _C x \, dy = - \oint \limits _C y \, dx = \frac{1}{2} \oint \limits _C (x \, dy - y \, dx)
+\end{equation}
+
+\subsubsection{Green's Thoerem, Flux Form}
+Let $C$ be a simple closed smooth curve, oriented counterclockwise, that encloses a connected and simply connected region $R$ in the plane. Assume $\mathbf{F} = \langle f,\, g \rangle$, where $f$ and $g$ have continuous first partial derivatives in $R$. Then
+
+\begin{equation}
+    \oint \limits _C \mathbf{F \cdot n} \, ds = \oint \limits _C f \, dy - g \, dx = \iint \limits _R \left( \frac{\partial f}{\partial x} + \frac{\partial g}{\partial y} \right)
+\end{equation}
+
+where $\mathbf{n}$ is the outward unit normal vector on the curve.
+
+\subsubsection{Two-Dimensional Divergence}
+The \textbf{two-dimensional divergence} of the vector field $\mathbf{F} = \langle f,\, g \rangle$ is $\frac{\partial f}{\partial x} + \frac{\partial g}{\partial y}$. If the divergence is zero thoughout a region, the vector field is said to be \textbf{source free} on that region.

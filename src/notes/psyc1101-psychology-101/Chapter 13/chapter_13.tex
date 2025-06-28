@@ -1,0 +1,81 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass{article}
+
+\newcounter{chapter}
+\setcounter{chapter}{13} % Modify Counter To Chapter
+
+\setcounter{section}{\value{chapter}}
+\addtocounter{section}{-1}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,units,booktabs}
+\usepackage[margin=10pt, font=small, labelfont=bf, labelsep=endash]{caption}
+\usepackage[colorlinks=true, pdfborder={0 0 0}]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{pdfpages}
+
+\usepackage[left=0.75in, right=0.75in]{geometry}
+\usepackage{titleps}
+\newpagestyle{main}{
+    \setheadrule{.4pt}
+    \sethead{Chapter \thechapter: \sectiontitle}
+            {}
+            {Illya Starikov}
+}
+\pagestyle{main}
+
+\begin{document}
+\section{Stress, Coping, and Health}
+
+\subsection{Class Notes}
+\begin{itemize}
+    \item Four types of stress
+    \begin{itemize}
+        \item Frustration is when the pursuit of some goal is thwarted
+        \item Conflict
+        \item Change
+        \item Pressure
+    \end{itemize}
+
+    \item Three reactions to stress
+    \begin{itemize}
+        \item Emotional
+        \begin{itemize}
+            \item Annoyance
+            \item Sadness
+            \item Anxiety
+            \item Apprehension
+            \item Dejection
+            \item Rage
+            \item Fear
+            \item Anger
+            \item Grief
+        \end{itemize}
+        \item Physiologically
+        \begin{itemize}
+            \item Alarm $\rightarrow$ Resistance $\rightarrow$ Exhaustion
+        \end{itemize}
+        \item Behavioral
+        \begin{itemize}
+            \item Cortisol
+        \end{itemize}
+
+        \item Catharsis refers to release of emtional tension
+        \item Name five health imparing behvaiors
+        \begin{enumerate}
+            \item High caffeine intake (600 mg)
+            \item Smoking and drugs
+            \begin{itemize}
+                \item Increases chances of heart disease
+            \end{itemize}
+            \item Poor eating habits
+            \item Lack of exercise
+            \item Promiscuous behavior
+        \end{enumerate}
+    \end{itemize}
+\end{itemize}
+
+\subsection{Study Guide Material}
+\subsection{Book Notes}
+
+
+\end{document}

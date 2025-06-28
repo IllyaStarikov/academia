@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+\subsubsection*{Example 9.2.15}
+A combination lock requires 3 selections of numbers 1 - 30.
+\begin{itemize}
+\item How many combinations? $30^3$
+\item How many without repeats? $30 * 29 * 28$
+\end{itemize}
+
+
+\subsubsection*{Example 9.2.27}
+\begin{verbatim}
+for i = 5 to 50
+    for j = 10 to 20
+        myFunction();
+\end{verbatim}
+
+How many function calls? 506.
+
+\subsubsection*{Example 9.2.3}
+\begin{itemize}
+\item How many ways to rearrange the letters in Algorithm? $\frac{9!}{6!}$
+\end{itemize}
+
+\section*{9.3 Counting Elements of Disjoint Sets: The Addition Rule}
+\subsection{The Addition Rule}
+Let $ \{ A_1, A_2, \ldots, A_k \}$ be a partition of \textit{A}, then $N(A) = N(A_1) + N(A_2) + \ldots, N(A_k)$
+
+\subsubsection{Example 9.3.7}
+In some state all license plates consist of 4-6 symbols chosen form 26 letters and 10 digits.
+
+\begin{itemize}
+\item How many license plates without repetition? $36^4 + 36^5 + 36^6$
+\item No repetition? $\frac{36!}{32!} + \frac{36!}{31!} + \frac{36!}{30!}$
+\item How many license plates have repition? $36^4 + 36^5 + 36^6 - [\frac{36!}{32!} + \frac{36!}{31!} + \frac{36!}{30!}]$
+\item What is the probability that a random license plate has a repeat? $ \frac{36^4 + 36^5 + 36^6 - [\frac{36!}{32!} + \frac{36!}{31!} + \frac{36!}{30!}]}{36^4 + 36^5 + 36^6} $
+\end{itemize}
+
+\subsection{The Difference Rule}
+If $B \subset A \Rightarrow N(A - B) = N(A) - N(B)$
+
+\subsubsection*{Example 9.3.9b}
+\begin{verbatim}
+for i = 0 to 4
+    for j = 1 to i
+        printf("Hello, world");
+\end{verbatim}
+
+How many runs? $\frac{n(n + 1)}{2}$.
+
+\subsubsection{Probability of the Complement of an Event}
+If \textit{S} is a finite sample space and \textit{A} is an event in \textit{S}, then:
+
+\begin{equation*}
+P(A^c) = 1 - P(A)
+\end{equation*}
+
+Let \textit{A = Everyone Aces Exam III}, \\ $A^c$ \textit{= not everyone aces exam III}. \\ $P(A) = 1\% $ \\ $P(A^c) = 1 - 1\% = 99\% $
+
+Assuming all yeas have 365 days and all birthdays occur with equal probability, how large must \textit{n} be so that in any randomly chosen group of \textit{n} people, the profitability that two or more have the same birthday is $\geq \frac{1}{2}$
+
+\begin{itemize}
+\item Probability that no two people have same birthday = $\frac{365 \times 364 \times \ldots \times 365 - n + 1}{365^n}$
+\item Probability that two or more have same birthday = $1 - \frac{365 \times 364 \times \ldots \times 365 - n + 1}{365^n}$
+\end{itemize}
+
+\end{document}

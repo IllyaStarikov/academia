@@ -1,0 +1,253 @@
+%
+%  7-state-space-search.tex
+%  Introduction To Artificial Intelligence
+%
+%  Created by Illya Starikov on 2/25/18.
+%  Copyright 2018. Illya Starikov. All rights reserved.
+%
+
+\section{State-Space Search}
+State space search is a process in which successive configurations or states of an instance are considered, with the intention of finding a goal state with a desired property. Some concepts related to state-space search are:
+
+\begin{itemize}
+    \item Complete-state formulation
+    \item Objective function
+    \item Global optima
+    \item Local optima
+    \item Ridges, plateaus, and shoulders
+    \item Random search and local search
+\end{itemize}
+
+Some examples are included below.
+
+\subsection{Hill Climbing}
+\subsubsection{Steepest-Ascent Hill-Climbing}
+Steepest-Ascent Hill-Climbing is simply a loop that continually moves in the direction of increasing value; that is, uphill. It terminates when it reaches a ``peak'' where no neighbor has a higher value.
+
+\begin{algorithmic}[1]
+    \Function{Hill-Climbing}{problem}
+
+        \Let{current}{\Call{Make-Node}{problem.\textsc{Initial-State}}}
+
+        \State{}
+        \Loop{}
+            \Let{neighbor}{highest-valued successor of \textit{current}}
+
+            \If{neighbor.\textsc{Value} $\leq$ current.\textsc{Value}}
+                \State{\Return{current.\textsc{State}}}
+            \EndIf{}
+
+            \State{}
+            \Let{current}{neighbor}
+        \EndLoop{}
+
+    \EndFunction{}
+\end{algorithmic}
+
+\subsubsection{Stochastic Hill-Climbing}
+The Stochastic version is almost identical to Steepest-Ascent Hill-Climbing, except it chooses at random from among uphill moves. The probability of selection can vary with the steepness of the uphill move. It does show on average slower convergence, but also less chance of premature convergence
+
+\subsubsection{First-Choice Hill-Climbing}
+The First-Choice version is almost identical to Steepest-Ascent Hill-Climbing, except it chooses the first randomly generated uphill move. Although it is greedy, incomplete, and suboptimal, it's also very practical when the number of successors is large. It has an even slower convergence rate, but also a low chance of premature convergence as long as the move generation order is randomized
+
+\subsubsection{Random-Restart Hill-Climbing}
+The Random-Restart version is almost identical to all hill climbing, except it restarts until a goal is found. It's trivially complete. The expected number of restarts is:
+
+\begin{equation*}
+    \text{restarts} = \frac{1}{p}
+\end{equation*}
+
+where $p$ is the probability of a successful hill climb given a random initial state.
+
+\subsection{Simulated-Annealing}
+Simulated-Annealing is hill-climbing except instead of picking the best move, it picks a random move.  If the selected move improves the solution, then it is always accepted.  Otherwise, the algorithm makes the move anyway with some probability less than $1$.  The probability decreases exponentially with the ``badness'' of the move, which is the amount $\Delta E$ by which the solution is worsened (i.e., energy is increased.)
+
+\begin{algorithmic}[1]
+    \Function{Simulated-Annealing}{problem, schedule}
+
+        \Let{current}{\Call{Make-Node}{problem.\textsc{Initial-State}}}
+        \State{}
+
+        \For{$t = 1$ \textbf{to} $\infty$}
+            \Let{$T$}{\textit{schedule($t$)}}
+            \If{$T = 0$}
+                \State{\Return{current.\textsc{State}}}
+            \EndIf{}
+
+            \State{}
+            \Let{next}{random successor of \textit{current}}
+            \Let{$\Delta E$}{$\textit{next}.\textsc{Value} - \textit{current}.\textsc{Value}$}
+
+            \If{$\Delta E > 0$}
+                \Let{\textit{current}}{\textit{next}}
+            \Else{}
+                \Let{\textit{current}}{\textit{next} only with probability $e^\frac{\Delta E}{T}$}
+            \EndIf{}
+
+        \EndFor{}
+
+    \EndFunction{}
+\end{algorithmic}
+
+\subsection{Population Based Local Search}
+\subsubsection{Deterministic Local Beam Search}
+The local beam search is \textit{similar} to Steepest-Ascent Hill-Climbing. The algorithm keeps track of $k$ states rather than a single state. Although this may seem like Random-Restart Hill-Climbing with $k$ random restarts.
+
+In a random-restart search, each search process runs independently of the others. In a local beam search, useful information is passed among the parallel search threads. In effect, the states that generate the best successors say to the others, ``Come over here, the grass is greener!'' The algorithm quickly abandons unfruitful searches and moves its resources to where the most progress is being made.
+
+In its simplest form, local beam search can suffer from a lack of diversity among the k states—they can quickly become concentrated in a small region of the state space, making the search little more than an expensive version of hill climbing.
+
+\subsubsection{Stochastic Beam Search}
+Instead of choosing the best $k$ from the pool of candidate successors, stochastic beam search chooses $k$ successors at random, with the probability of choosing a given successor being an increasing function of its value.
+
+\subsubsection{Evolutionary Algorithms}
+A genetic algorithm (GA) is a variant of stochastic beam search in which successor states are generated by combining two parent states rather than by modifying a single state.
+
+\begin{algorithmic}[1]
+    \Function{Simulated-Annealing}{problem, \textsc{Fitness-Function}}
+        \While{some individual is fit enough, or enough tie has elapsed}
+            \Let{\textsc{new\_population}}{empty set}
+            \State{}
+
+            \For{$i = 1$ \textbf{to} \Call{Size}{\textit{population}}}
+                \Let{$x$}{\Call{Random-Selection}{\textit{population}, \textsc{Fitness-Function}}}
+                \Let{$y$}{\Call{Random-Selection}{\textit{population}, \textsc{Fitness-Function}}}
+
+                \Let{\textit{child}}{\Call{Reproduce}{$x,\, y$}}
+
+                \State{}
+                \If{small random probability}
+                    \Let{\textit{child}}{\Call{Mutate}{\textit{child}}}
+                \EndIf{}
+
+                \State{add \textit{child} to \textit{new\_population}}
+            \EndFoor{}
+        \EndWhile{}
+
+        \State{}
+        \State{\Return{the best individual in \textit{population}, according to \textsc{Fitness-Function}}}
+    \EndFunction{}
+
+
+    \Function{Reproduce}{x, y}
+        \Let{$n$}{\Call{Length}{$x$}}
+        \Let{$c$}{random number from 1 to $n$}
+        \State{}
+
+        \State{\Return{\Call{Append}{\Call{Substring}{$x,\, 1, c$}, \Call{Substring}{$y,\, c + 1, n$}}}}
+
+    \EndFunction{}
+\end{algorithmic}
+
+\subsubsection{Particle Swarm Optimization}
+Particle Swarm Optimization (PSO) is a stochastic population-based optimization technique which assigns velocities to population members encoding trial solutions. It acts according to the rule:
+\begin{equation*}
+    \overrightarrow{v}^+ = c_1 \cdot rand() \cdot (\overrightarrow{p_\text{best}} - \overrightarrow{p_\text{present}}) + c_2 \cdot rand() \cdot (\overrightarrow{g_\text{best}} - \overrightarrow{p_\text{present}})
+\end{equation*}
+
+\noindent and updating $\overrightarrow{p_\text{present}}$ as:
+\begin{equation*}
+    \overrightarrow{p_\text{present}} += \overrightarrow{v}
+\end{equation*}
+
+\subsubsection{Ant Colony Optimization}
+In Ant Colony Optimization (ACO), a set of software agents called artificial ants search for good solutions to a given optimization problem. To apply ACO, the optimization problem is transformed into the problem of finding the best path on a weighted graph. The artificial ants (hereafter ants) incrementally build solutions by moving on the graph. The solution construction process is stochastic and is biased by a pheromone model, that is, a set of parameters associated with graph components (either nodes or edges) whose values are modified at runtime by the ants.
+
+\subsection{Online Search}
+An online search problem must be solved by an agent executing actions, rather than by pure computation. We assume a deterministic and fully observable environment (Chapter 17 relaxes these assumptions), but we stipulate that the agent knows only the following:
+
+\begin{itemize}
+    \item \textsc{Actions(s)}
+    \item \textsc{c(s, a, s')}\footnote{This cannot be used until \textsc{Result(s, a)}.}
+    \item \textsc{Goal-Test(s)}
+\end{itemize}
+
+Online Search problems typically interleave computation and action. They environment is typically dynamic, non-deterministic, unknown domains. For the purposes of this section, we assume all exploration problems are safely explorable.
+
+We define the following terms for Online Search Agents:
+
+\begin{description}
+    \item[CR] Competitive Ration
+    \item[TAPC] Total Actual Path Cost
+    \item[C\textsuperscript{*}]A Optimal Path Cost
+\end{description}
+
+From this, we get the Competitive Ratio as follows
+
+\begin{equation*}
+    CR = \frac{TAPC}{C^*}
+\end{equation*}
+
+From this, we can see we have the best case of $CR = 1$ and the worst case of $CR = \infty$.
+
+To actually implement online agents, we introduce two new algorithms: \textsc{Online-DFS-Agent} and \textsc{LRTA\textsuperscript{*} Agent}.
+
+\subsubsection{Online-DFS-Agent}
+\begin{algorithmic}[1]
+    \Function{Online-DFS-Agent}{$s'$}
+        \If{\Call{Goal-Test}{s'}}
+            \State{\Return{stop}}
+        \EndIf{}
+
+        \State{}
+        \If{$s'$ is a new state (not in \textit{untried})}
+            \Let{\textit{untried}[$s'$]}{\Call{Actions}{$s'$}}
+        \EndIf{}
+
+        \State{}
+        \If{$s$ is not null}
+            \Let{\textit{result}[s, a]}{$s'$}
+            \State{add $s$ to the front of \textit{unbacktracked}[$s'$]}
+        \EndIf{}
+
+        \If{\textit{untried}[$s'$] is empty}
+            \If{\textit{unbacktracked}[$s'$] is empty}
+                \State{\Return{stop}}
+            \Else{}
+                \Let{$a$}{an action $b$ such that \textit{result}[$s',\, b$] = \Call{Pop}{\textit{unbacktracked}[$s'$]}}
+            \EndIf{}
+        \Else{}
+            \Let{a}{\Call{Pop}{\textit{untried}[$s'$]}}
+        \EndIf{}
+
+        \State{}
+        \Let{$s$}{$s'$}
+        \State{\Return{$a$}}
+    \EndFunction{}
+\end{algorithmic}
+
+\subsubsection{LRTA\textsuperscript{*}-Agent}
+\begin{algorithmic}[1]
+    \Function{LRTA\textsuperscript{*}}{$s'$}
+        \If{\Call{Goal-Test}{s'}}
+            \State{\Return{stop}}
+        \EndIf{}
+
+        \State{}
+        \If{$s'$ is a new state (not in \textit{H})}
+            \Let{\textit{H}[$s'$]}{$h(s')$}
+        \EndIf{}
+
+        \State{}
+        \If{$s$ is not null}
+            \Let{\textit{result}[s, a]}{$s'$}
+            \Let{$H[s]$}{$\min \left(\Call{LRTA\textsuperscript{*}-Cost}{s, b, \textit{result}[s,\, b], H}\, \forall b \in \Call{Actions}{s}\right)$}
+        \EndIf{}
+
+        \State{}
+        \Let{a}{an action $b$ in \Call{Actions}{s'} that minimizes $\Call{LRTA\textsuperscript{*}-Cost}{s', b, \textit{result}[s',\, b], H}$}
+
+        \Let{$s$}{$s'$}
+        \State{\Return{$a$}}
+    \EndFunction{}
+    \State{}
+
+    \Function{LRTA\textsuperscript{*}-Cost}{$s, a, s', H$}
+        \If{$s'$ is undefined}
+            \State{\Return{$h(s)$}}
+        \EndIf{}
+
+        \State{}
+        \State{\Return{$c(s, a, s') + H[s']$}}
+    \EndFunction{}
+\end{algorithmic}

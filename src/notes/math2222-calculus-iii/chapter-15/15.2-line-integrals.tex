@@ -1,0 +1,73 @@
+\subsection{Line Integrals}
+\subsubsection{Scalar Line Integral in the Plane, Arc Length Parameter}
+Suppose the scalar-valued function $f$ is defined on the smooth curve $C: \mathbf{r}(s) = \langle x(s),\, y(s) \rangle$, parameterized by the arc length $s$. The \textbf{line integral of $f$ over $C$} is
+
+\begin{equation}
+    \int \limits _C f(x(s) ,\, y(s)) \, ds = \lim _{\Delta \rightarrow 0} \sum _{k = 1} ^{n} f(x(s_k ^*),\, y(s_k ^*)) \Delta s_k,
+\end{equation}
+
+provided this limit exists over all partitions of $C$. When the limit exists, $f$ is said to be \textbf{integrable} on $C$.
+
+\subsubsection{Evaluating Scalar Line Integrals in $\mathbb{R}^2$}
+Let $f$ be continuous on a region containing a smooth curve $C: \mathbf{r}(t) = \langle x(t),\, y(t) \rangle$, for $a \leq t \leq b$. Then
+
+\begin{align}
+    \int \limits _C f \, ds &= \int _a ^b f(x(t),\, y(t))|\mathbf{r}'(t)| \, dt \\
+    &= \int _a ^b f(x(t),\, y(t))\sqrt{x'(t)^2 + y'(t)^2} \, dt
+\end{align}
+
+\subsubsection{Evaluating the Line Integral $\int \limits _C f \, ds$}
+\begin{enumerate}
+    \item Find a parametric description of $C$ in the form $\mathbf{r}(t) = \langle x(t),\, y(t) \rangle$, for $a \leq t \leq b$
+    \item Computer $|\mathbf{r}'(t)| = \sqrt{x'(t)^2 + y'(t)^2}$
+    \item Make substitutions for $x$ and $y$ in the integrand and evaluate an ordinary integral
+
+    \begin{equation}
+        \int \limits _C f \, ds = \int _a ^b f(x(t),\, y(t)) |\mathbf{r}'(t)| \, dt
+    \end{equation}
+\end{enumerate}
+
+\subsubsection{Evaluating Scalar Line Integrals in $\mathbb{R}^3$}
+Let $f$ be continuous on a region containing a smooth curve $C: \mathbf{r}(t) = \langle x(t),\, y(t),\, z(t) \rangle$, for $a \leq t \leq b$. Then
+
+\begin{align}
+    \int f \, ds &= \int _a ^b f(x(t),\, y(t),\, z(t))|\mathbf{r}'(t)| \, dt \\
+    &= \int _a ^b f(x(t),\, y(t),\, z(t))\sqrt{x'(t)^2 + y'(t)^2 + z'(t)^2} \, dt
+\end{align}
+
+\subsubsection{Line Integral of a Vector Field}
+Let $\mathbf{F}$ be a vector field that is continuous on a region containing a smooth oriented curve $C$ parameterized by arc length. Let $\mathbf{T}$ be the unit tangent vector at each point of $C$ consistent with the orientation. The line integral of $\mathbf{F}$ over $C$ is $\int _C \mathbf{F \cdot T} \, ds$.
+
+\subsubsection{Different Forms of Line Integrals of Vector Fields}
+The line integral $\int _C \mathbf{F \cdot T} \, ds$ may be expressed in the following forms, where $\mathbf{F} = \langle f,\, g,\, h \rangle$, for $a \leq t \leq b$:
+
+\begin{align}
+    \int _a ^b \mathbf{F \cdot r}'(t) \, dt &= \int _a ^b (f\,x'(t),\, g\,y'(t),\, h\,z'(t)) \, dt \\
+    &= \int \limits _C f \, dx + g \, dy + h \, dz \\
+    &= \int \limits _C \mathbf{F} \cdot  d\mathbf{r}
+\end{align}
+
+For line integrals in the plane, we let $\mathbf{F} = \langle f,\, g \rangle$ and assume $C$ is parameterized in the form $\mathbf{r}(t) = \langle x(t),\, y(t) \rangle$, for $a \leq t \leq b$. Then
+
+\begin{equation}
+    \int \limits _C \mathbf{F \cdot T} \, ds = \int _a ^b (f \, x'(t) + g \, y'(t)) \, dt = \int \limits _C f \, dx + g \, dy = \int _C \mathbf{F} \cdot d\mathbf{r}
+\end{equation}
+
+\subsubsection{Work Done in a Force Field}
+Let $\mathbf{F}$ be a continuous force field in a region $D$ of $\mathbb{R}^3$ and let $C: \mathbf{r}(t) = \langle x(t),\, y(t),\, z(t) \rangle$, for $a \leq t \leq b$, be a smooth curve in $D$ with a unit tangent vector $\mathbf{T}$ consistent with the orientation. The work done in moving an object $C$ in the positive direction is
+
+\begin{equation}
+    W = \int \limits _C \mathbf{F \cdot T} \, ds = \int _a ^b \mathbf{F \cdot r'(t)} \, dt
+\end{equation}
+
+\subsubsection{Circulation}
+Let $\mathbf{F}$ be a continuous vector field on a region $D$ of $\mathbb{R}^3$ and let $C$ be a closed smooth oriented curve in $D$. The \textbf{circulation} of $\mathbf{F}$ on $C$ is $\int _C \mathbf{F \cdot T} \, ds$, where $\mathbf{T}$ is the unit vector tangent to $C$ consistent with the orientation.
+
+\subsubsection{Flux}
+Let $F = \langle f, g \rangle$ be continuous vector field on a region $R$ of $\mathbb{R}^2$. Let $C: \mathbf{r}(t) = \langle x(t),\, y(t) \rangle$, for $a \leq t \leq b$, be a smooth oriented curve in $R$ that does not intersect itself. The \textbf{flux} of the vector field across $C$ is
+
+\begin{equation}
+    \int \limits _C \mathbf{F \cdot n} \, ds = \int _a ^b (f\, y'(t) - g \, x'(t)) \, dt,
+\end{equation}
+
+where $n = \mathbf{T} \times \khat$ is the unit normal vector and $\mathbf{T}$ is the unit tangent vector consistent with the orientation. If $C$ is a closed curve with counterclockwise orientation, \textbf{n} is the outward normal vector and the flux integral gives the \textbf{outward flux} across $C$.

@@ -1,0 +1,28 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{article}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,multicol,xcolor,listings}
+\usepackage{amsthm, enumitem}
+
+\date{Last Modified: \today}
+\author{Robert Roe, Illya Starikov}
+
+\newcommand{\solution}[1]{\subsection*{Class Solution ({#1})}}
+\newcommand{\solutionAlt}[0]{\subsection*{Class Solution}}
+
+\newtheorem{theorem}{Theorem}
+
+\newcommand{\chapterNumber}[1]{%
+    \setcounter{section}{#1}
+    \addtocounter{section}{-1}
+}
+
+\newcommand{\todo}[2]{\textbf{\colorbox{red!50}{#1}}{}}
+
+\let\oldemptyset\emptyset%
+\let\emptyset\varnothing%
+
+\newcommand{\problem}{%
+    \addtocounter{section}{1}
+    \section*{Problem \#\thesection}
+}

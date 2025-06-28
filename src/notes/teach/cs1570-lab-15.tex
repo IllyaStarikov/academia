@@ -1,0 +1,304 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{article}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,listings,siunitx,fancyvrb,newverbs}
+\usepackage[margin=10pt, font=small, labelfont=bf, labelsep=endash]{caption}
+\usepackage[colorlinks=true, pdfborder={0 0 0}]{hyperref}
+\usepackage[utf8]{inputenc}
+
+\usepackage{xcolor}
+\newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{#1}}}
+
+\makeatletter
+\renewcommand{\boxed}[1]{\text{\fboxsep=.2em\fbox{\m@th$\displaystyle#1$}}}
+\makeatother
+
+\lstdefinestyle{cC++}{
+    language=C++,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{blue}\ttfamily,
+    stringstyle=\color{red}\ttfamily,
+    commentstyle=\color{gray}\ttfamily,
+    morecomment=[l][\color{magenta}]{\#},
+    showstringspaces=false,
+    numbers=left,
+    keepspaces=true,
+    tabsize=4,
+    breaklines=true,
+    morekeywords={string}
+}
+
+\definecolor{cverbbg}{gray}{.7}
+\newenvironment{lcverbatim}
+ {\SaveVerbatim{cverb}}
+ {\endSaveVerbatim
+  \flushleft\fboxrule=0pt\fboxsep=.5em
+  \colorbox{cverbbg}{%
+    \makebox[\dimexpr\linewidth-2\fboxsep][l]{\BUseVerbatim{cverb}}%
+  }
+  \endflushleft
+}
+
+\title{Lab \#15: Vectors}
+\date{Due Date: December 7\textsuperscript{th}, 2016}
+\author{Maria Bosco}
+
+\begin{document}
+\maketitle
+
+It's holidays, and some of the Teaching Assistants and Professors decide to get together for a holiday extravaganza. Seeing as your star student, you decide to have them over. With the assistance of a newly-learned topic (vectors), your job is to write a C++ program to invite the guests, welcome them to your home, exchange gifts, and kick them out.
+
+\section{Preliminaries}
+Fundamentally, a vector is a C++ array. Meaning everything you did with an array to this point, you can do with a vector. After including the vector header (\shellcmd{\#include <vector>}) and specifying a type (\shellcmd{vector<type>}, where \texttt{type} can be primitives like \shellcmd{char} or \shellcmd{double} or even classes like \shellcmd{string}). We see they're not much different from arrays.
+
+\begin{lstlisting}[style=cC++]
+    vector<int> vector = { 1, 2, 3, 4, 5, 6 };
+	int array[6] = { 1, 2, 3, 4, 5, 6 };
+
+	/* Both print 2 */
+	cout << "Vector: " << vector[1] << " Array: " << array[1];
+
+	/* answer = 42 */
+	int answer = vector[5]*array[5] + vector[5];
+
+	/* walking off array */
+	answer = vector[42];
+	answer = array[42];
+\end{lstlisting}
+
+Note that we never specified a size; this is not a mistake. Vectors are \textbf{dynamic}, meaning as you use them, they grow larger. No more guessing how large your array might have to be! So something like this is perfectly legal.
+
+\begin{lstlisting}[style=cC++]
+    vector<double> someDoubles = { 1.1, 2.2, 3.3, 4.4, 5.5 };
+
+	someDoubles.push_back(6.6);
+	someDoubles.push_back(7.7);
+
+	for (int i = 0; i < rand(); i++) {
+		someDoubles.push_back(i + i/10.0);
+	}
+\end{lstlisting}
+
+We started with \shellcmd{someDoubles} being of size \num{5} and growing up to sizes greater than \num{10000}. Below I will list some of the more important parts of vectors. This won't be comprehensize; for more information you can check documenation
+\href{http://www.cplusplus.com/reference/vector/vector/}{here},
+\href{http://en.cppreference.com/w/cpp/container/vector}{here}, or
+\href{https://www.tutorialspoint.com/cplusplus/cpp_stl_tutorial.htm}{here}.
+
+\subsection{Accessing Elements}
+As we have already seen, accessing an element in a vector can be done with the accessor (the \texttt{[]} operator). Alternatively, you can use the \shellcmd{at(i)} method\footnote{Method means member function; it's more object-oriented way of saying it.} instead.
+
+In addition, there are two methods that might come in handy: \shellcmd{front()} and \shellcmd{back()}. They return the front element and the back element, respectively.
+
+\begin{lstlisting}[style=cC++]
+    vector<string> assistants = { "Ian", "Illya", "Grant" };
+
+	cout << "The front assistant is " << assistants.front() << "\n"; // Ian
+	cout << "The back assistant is " << assistants.back() << "\n"; // Grant
+	cout << "The middle assistant is " << assistants.at(1) << "\n"; // Illya
+\end{lstlisting}
+
+\subsection{Adding Elements}
+We have already seen \shellcmd{push\_back(element)}, and for the purposes of this lab, this will suffice.
+
+\begin{lstlisting}[style=cC++]
+    vector<string> assistants;
+
+	assistants.push_back("Illya");
+	assistants.push_back("Grant");
+	assistants.push_back("Ian");
+
+	for (int i = 0; i < 3; i++) {
+		// prints Illya Grant Ian
+		cout << assistants.at(i) << " ";
+	}
+\end{lstlisting}
+\subsection{Removing Elements}
+There are only two ways we are going to talk about removing elements: \shellcmd{pop\_back()} and \shellcmd{erase()}. \shellcmd{pop\_back()} is relatively straightforward; it deletes the last element (exact opposite of \shellcmd{push\_back()}).
+
+\begin{lstlisting}[style=cC++]
+    vector<string> assistants = { "Illya", "Ian", "Grant" };
+
+    /* Removes Grant from assistants. */
+    assistants.pop_back();
+
+    /* Array now contains [Illya, Ian] */
+\end{lstlisting}
+
+This is useful, but it doesn't allow for arbitrary deletion. To do this, we use \texttt{erase}; however, there is a catch. In true C++ fashion, you cannot say \shellcmd{erase(index)} or \shellcmd{erase(element)}. To delete \textit{by index}, the syntax is \shellcmd{erase(vector.begin() + index)} \textbf{where vector is the name of your vector variable.}
+
+\begin{lstlisting}[style=cC++]
+    vector<string> assistants = { "Illya", "Ian", "Grant" };
+
+    /* Erase Grant */
+    assistants.erase(assistants.begin() + 2);
+
+    /* Erase Ian */
+    assistants.erase(assistants.begin() + 1);
+
+    /* Erase Illya */
+    assistants.erase(assistants.begin());
+\end{lstlisting}
+
+Note the order is important! If we did this in reverse, we would get very different results.
+
+\begin{lstlisting}[style=cC++]
+    vector<string> assistants = { "Illya", "Ian", "Grant" };
+
+	/* Erase Illya */
+	assistants.erase(assistants.begin());
+
+	/* Erase Grant */
+	assistants.erase(assistants.begin() + 1);
+
+	/* segfault! There's only one element, Ian */
+	assistants.erase(assistants.begin() + 2);
+\end{lstlisting}
+
+Last, we can clear all the contents of the array with \shellcmd{clear}.
+
+\begin{lstlisting}[style=cC++]
+    vector<string> assistants = { "Illya", "Ian", "Grant" };
+	string newAssistant;
+	/* Erase Grant */
+	assistants.erase(assistants.begin() + 2);
+
+	for (int i = 0; i < 1000; i++) {
+		/* Assistants size is 1002 */
+		newAssistant = getInferiorTA();
+		assistants.push_back(newAssistant);
+	}
+
+	/* Assistant size is now 0 */
+	assistants.clear();
+\end{lstlisting}
+
+For deleting all occurrences, that's a more advanced topic. You can read about it \href{http://www.cplusplus.com/forum/beginner/7392/}{here}.
+
+\subsection{Size and Max Size}
+In addition, there are two methods that are quite useful: \shellcmd{size()} and \shellcmd{max\_size()}. So, if you had the following vector
+$\boxed{1}
+\boxed{2}
+\boxed{3}
+\boxed{4}
+\boxed{5}
+\boxed{ \phantom{0} }
+\boxed{ \phantom{0} }
+\boxed{ \phantom{0} }
+\boxed{ \phantom{0} }
+\boxed{ \phantom{0} }$
+, calling \shellcmd{size()} would return \num{5}, but \shellcmd{max\_size()} would return \num{10}. For the purposes of this lab, you should not need \shellcmd{max\_size()}.
+
+
+\section{The Assignment}
+For this assignment, you will be required to implement four functions:
+
+\begin{enumerate}
+    \item Invite Guests
+    \item Welcome Guests
+    \item Exchange Presents
+    \item Kick Out
+\end{enumerate}
+
+\noindent Any maintenance or helper functions you might want/need are up to you.
+
+\subsection{Invite Guests}
+Invite guests should \textbf{take no input and return a vector of type string}.
+
+First, print out a string to signify you are taking in guests, and have \shellcmd{q} stop the input. Do not stop until you have input two guests. Simply take in strings (you can assume no spaces, using \shellcmd{cout}) that signify the guest's names.
+
+Because the postal service is.. super fast.. on the holidays, one person might not get the invitation in time. At random, decide if the invitation is lost\footnote{hint, hint: check the Hints section.} and print out that the person's invitation (\shellcmd{cout} the name) was lost, but the other $x$ number of people got their invitation (\shellcmd{cout} the number of people that got the invitation). If the invitation didn't get lost, just output something like ``Everyone got the invitation!''.
+
+Return the guests's name vector.
+
+\subsection{Welcome Guests}
+Welcome guests should \textbf{take in the guests vector and return a vector of type string}.
+
+Similarly to invite guests, this will take also take input; however, for every guest, there will be one gift. Continuously take in strings to signify the present's names into its own vector \textit{in the order of the guests}\footnote{As in, ``Starikov'''s gift is ``Socks'' and ``Ian'''s gift is a ``Tesla'', the arrays should be $\boxed{\text{Starikov}}\boxed{\text{Ian}}$ and $\boxed{\text{Socks}}\boxed{\text{Tesla}}$}. Return it after every guest has input their presents.
+
+For iterating through all the guests, \textbf{you must use size}\footnote{As in, you can't pass in counters from input, no global variables, etc. You will solely rely on the vector's information size to iterate through the guests.}.
+
+\subsection{Exchange Presents}
+Exchange guests should \textbf{take in the guests vector and the presents vector by value, and not return anything}.
+
+You will generate two random numbers, \shellcmd{from} and \shellcmd{to}, ranging from \num{0} to $\text{the number of presents} - 1$. You will use these values to determine the gift-giving relationship. \shellcmd{from} will be giving the gift, \shellcmd{to} will be receiving a gift. Afterward, erase \shellcmd{from} from the presents and gifts vector\footnote{hint, hint: actually use \shellcmd{erase}}.
+
+And yes, you must use size.
+
+\subsection{Kick Out}
+Kick out should \textbf{take in the guests vector and the presents vector by reference, and not return anything}.
+
+Announce you are kicking people out individually (iterating through all of them), and clear\footnote{hint, hint: use \shellcmd{clear}} both the arrays.
+
+\subsection{Main}
+In main, simply call these functions in the order of
+
+\begin{enumerate}
+    \item Invite Guests
+    \item Welcome Guests
+    \item Exchange Presents
+    \item Kick Out
+\end{enumerate}
+
+\noindent so that the program acts as expected.
+
+\section{Deliverables}
+Please submit your file(s) with \shellcmd{cssubmit} using the provided sample input; you may check up against the sample output if you so wish.
+
+\subsection{Sample Input}
+\begin{lcverbatim}
+    q
+    Jarus
+    q
+    Price
+    Leopold
+    Wisely
+    Armita
+    Rhodes
+    q
+    Beer
+    Cow
+    AppleWatch
+    MoreBeer
+    Nothing
+    HandGrenade
+\end{lcverbatim}
+
+\subsection{Sample Output}
+\begin{lcverbatim}
+    Wisely gave Jarus a MoreBeer
+    Rhodes gave Armita a HandGrenade
+    Armita gave Price a Nothing
+    Leopold gave Jarus a AppleWatch
+    Jarus gave Price a Beer
+    Price gave Price a Cow
+    You kicked Jarus out!
+    You kicked Price out!
+    You kicked Leopold out!
+    You kicked Wisely out!
+    You kicked Armita out!
+    You kicked Rhodes out!
+\end{lcverbatim}
+
+\section{Hints}
+\begin{itemize}
+    \item Because it's not the point of the lab, random value generation is given. Don't forget \shellcmd{srand(time(NULL))} at the top of main and the relevant header files.
+\end{itemize}
+
+\begin{lstlisting}[style=cC++]
+    template<typename T, typename S>
+    T randomArbitrary(const T lower, const S upper) {
+        return lower > upper ? 0 : lower + rand() % (upper - lower + 1);
+    }
+\end{lstlisting}
+
+\begin{itemize}
+    \item \shellcmd{randomArbitrary(false, true)} will return either true or false; however it must be in the order \texttt{false, true}.
+
+    \item The solution contains \num{58} lines of C++ code and \num{16} lines of template/header code (excluding comments, blank lines, etc.). If you solution is significantly more (or less!), there may be a problem.
+\end{itemize}
+
+\begin{center}
+\noindent\Huge Happy Holidays from the Computer Science Department!
+\end{center}
+
+\end{document}

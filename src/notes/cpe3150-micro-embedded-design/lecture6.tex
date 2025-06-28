@@ -1,0 +1,117 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{article}
+
+\input{macros}
+\chapterNumber{6}
+
+\begin{document}
+\section{Arithmetic and Logic Instructions}
+\begin{itemize}
+    \item Unpacked = 4 0s out front
+    \item Packed = no 0s out front, more effecient.
+    \begin{itemize}
+        \item However, there are reasons for having 0000s out front
+        \item Could process nibble, instead of byte by byte
+        \item Makes processing easier
+    \end{itemize}
+
+    \item BCD addition \textbf{does not} work.. kind of.
+    \item \texttt{DA} takes into account the \texttt{AC} as well.
+    \begin{itemize}
+        \item If $\texttt{AC} = 1$ or $> 9$, add $06H$
+        \item If $\texttt{CY} = 1$ or $> 9$, add $60H$.
+    \end{itemize}
+
+    \item The extra \texttt{B} in \texttt{SUBB} mean subtracted with borrow.
+    \begin{itemize}
+        \item Make sure to set clear \texttt{CY} before using \texttt{SUBB}
+    \end{itemize}
+
+    \item One special case, divide by zero: $\texttt{OV} = 1$, values remain the same.
+    \begin{itemize}
+        \item Division example: $\texttt{A} = 9, \texttt{B} = 5$
+    \end{itemize}
+
+    \item \texttt{XRL} only works for 8 bits.
+    \begin{itemize}
+        \item Same addressing modes as for \texttt{ANL}
+    \end{itemize}
+
+    \item Compliment works for \texttt{A}, \texttt{C} or \textit{anything} that is bit addressable.
+
+    \item \texttt{CJNE} \textbf{changes the CY flag}
+    \item Serial Communication example (we use RLC because we want to use the Carry flag for transmitting data)
+\end{itemize}
+
+\begin{verbatim}
+    ORG 0
+
+    MOV A, #35H
+    MOV P2, #0
+    MOV R0, #8
+
+    SETB P2.1
+    SETB P2.1
+
+TX: RLC A
+    MOV P2.1, C
+    DJNZ R0, TX
+
+    SETB P2.1
+    SETB P2.1
+
+    END
+\end{verbatim}
+
+\begin{itemize}
+    \item Same example, backwards
+\end{itemize}
+
+\begin{verbatim}
+    ORG 0
+
+    MOV R0, #8
+
+RX: MOV C, P2.5
+    RRC A
+    DJNZ R0, RX
+
+    MOV R2, A
+
+    END
+\end{verbatim}
+
+ \begin{itemize}
+    Number of `$1$''s example
+ \end{itemize}
+
+\begin{verbatim}
+    ORG 0
+    MOV R0, #0  ; Counter for 1s
+    MOV R1, #8  ; Counter for loop
+
+    MOV A, P2
+
+LP: RRC A
+
+    DJNE
+\end{verbatim}
+
+
+\begin{equation}
+    n \text{bit} \cdot n \text{bit} = 2n \text{bit}
+\end{equation}
+
+\begin{verbatim}
+    ORG 0
+    MOV R0, #30H
+    MOV @R0, #0
+
+    XCHD A, @R0     ; M[30] = 07, A = 30H
+    SWAP A          ; A = 30H
+    ORL A, #30H
+\end{verbatim}
+
+
+
+\end{document}

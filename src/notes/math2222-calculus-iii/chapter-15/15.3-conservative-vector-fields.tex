@@ -1,0 +1,44 @@
+\subsection{Conservative Vector Fields}
+
+\subsubsection{Simple and Closed Curves}
+Suppose a curve $C$ (in $\mathbb{R}^2$ and $\mathbb{R}^3$) is described parametrically by $\mathbf{r}(t)$, where $a \leq t \leq b$. Then $C$ is a \textbf{simple curve} if $\mathbf{r}(t_1) \neq \mathbf{r}(t_2)$ for all $t_1$ and $t_2$, with $a < t_1 < t_2 < b$; that is, $C$ never intersects itself between its endpoints. The curve $C$ is \textbf{closed} if $\mathbf{r}(a) = \mathbf{r}(b)$; that is, the initial and terminal points of $C$ are the same.
+
+\subsubsection{Connected and Simply Connected Regions}
+An open region $R$ in $\mathbb{R}^2$ (or $D$ in $\mathbb{R}^3$) is \textbf{connected} if it possible to connect any two points of $R$ by a continuous curve lying in $R$. An open region $R$ is \textbf{simply connected} if every closed simple curve in $R$ can be deformed and contracted to a point in $R$.
+
+\subsubsection{Conservative Vector Field}
+A vector field $F$ is said to be \textbf{conservative} on a region (in $\mathbb{R}^2$ or $\mathbb{R}^3$) if there exists a scalar function $\varphi$ such that $\mathbf{F} = \nabla \varphi$ on that region.
+
+\subsubsection{Test for Conservative Vector Fields}
+Let $\mathbf{F} = \langle f,\, g,\, h \rangle$ be a vector field defined on a connected and simply connected region $D$ of $\mathbb{R}^3$, where $f$, $g$, and $h$ have continuous first partial derivatives on $D$. Then $\mathbf{F}$ is a conservative vector field on $D$ (there is a potential function $\varphi$ such that $\mathbf{F} = \nabla \varphi$) if and only if
+
+\begin{equation}
+    \frac{\partial f}{\partial y} = \frac{\partial g}{\partial x}, \quad \frac{\partial f}{\partial z} = \frac{\partial h}{\partial x}, \quad\text{and}\quad \frac{\partial g}{\partial z} = \frac{\partial h}{\partial y}
+\end{equation}
+
+For vector fields in $\mathbb{R}^2$, we have the single condition $\frac{\partial f}{\partial y} = \frac{\partial g}{\partial x}$.
+
+
+\subsubsection{Finding Potential Functions in $\mathbb{R}^3$}
+Suppose $\mathbf{F} = \langle f,\, g,\, h \rangle$ is a conservative vector field. To find $\varphi$ such that $\mathbf{F} = \nabla \varphi$, take the following steps:
+
+\begin{enumerate}
+    \item Integral $\varphi _x = f$ with respect to $x$ to obtain $\varphi$, which includes an arbitrary function $c(y,\, z)$.
+    \item Compute $\varphi _y$ and equate it to $g$ to obtain an expression for $c_y (y,\, z)$.
+    \item Integrate $c_y (y,\, z)$ with respect to $y$ to obtain $c(y,\, z)$, including an arbitrary function $d(z)$.
+    \item Compute $\varphi _z$ and equate it to $h$ to get $d(z)$.
+\end{enumerate}
+
+Beginning the procedure with $\varphi _y = g$ or $\varphi _z = h$ maybe be easier in some cases.
+
+\subsubsection{Fundamental Theorem for Line Integrals}
+Let $\mathbf{F}$ be a continuous vector field on an open connected region $R$ in $\mathbb{R}^2$ (or $D$ in $\mathbb{R}^3$). There exists a potential function $\varphi$ with $\mathbf{F = \nabla \varphi}$ (which means that $\mathbf{F}$ is conservative) if and only if
+
+\begin{equation}
+    \int \limits _C \mathbf{F \cdot T} \, ds = \int \limits _C \mathbf{F} \cdot d\mathbf{r} = \varphi (B) - \varphi(A)
+\end{equation}
+
+for all points $A$ and $B$ in $R$ and all smooth oriented curves $C$ from $A$ to $B$.
+
+\subsubsection{Line Integrals on Closed Curves}
+Let $R$ in $\mathbb{R}^2$ (or $D$ in $\mathbb{R}^3$) be an open region. Then $\mathbf{F}$ is a conservative vector field on $R$ if and only if $\oint _C \mathbf{F} \cdot d\mathbf{r} = 0$ on all simple closed smooth oriented curves $C$ in $R$.

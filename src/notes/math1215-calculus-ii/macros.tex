@@ -1,0 +1,46 @@
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,units,booktabs,pdfpages,tabularx,pdfpages,multicol,siunitx,textcomp,array,multirow,lscape,changepage,afterpage}
+\usepackage{multicol,graphics,units,ifthen}
+\usepackage{tikz,tikz-3dplot,forest,esint}
+\usepackage[utf8]{inputenc}
+
+\DeclareUnicodeCharacter{00A0}{ }
+
+\newboolean{teacher}
+\setboolean{teacher}{true}
+
+\setlength\parindent{0pt}
+
+\newcommand{\limit}[1]{\raisebox{0.5ex}{\scalebox{0.8}{$\displaystyle \lim_{#1}\;$}}}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\newcolumntype{s}{>{\hsize=.5\hsize}X}
+
+\setcounter{errorcontextlines}{1000}
+
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{2}
+
+\usepackage{enumitem}
+\newcounter{descriptcount}
+\newlist{enumdescript}{description}{2}
+\setlist[enumdescript,1]{%
+  before={\setcounter{descriptcount}{0}%
+          \renewcommand*\thedescriptcount{\arabic{descriptcount}}}
+  ,font=\bfseries\stepcounter{descriptcount}\thedescriptcount~
+}
+\setlist[enumdescript,2]{%
+  before={\setcounter{descriptcount}{0}%
+          \renewcommand*\thedescriptcount{\roman{descriptcount}}}
+  ,font=\bfseries\stepcounter{descriptcount}\thedescriptcount~
+}
+
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}

@@ -1,0 +1,41 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{article}
+
+\input{macros}
+\chapterNumber{2}
+
+\begin{document}
+\section{Error Tolerance}
+
+\begin{itemize}
+    \item There will be $15\%$ extra credit.
+    \item Two important terms, accuracy \& precision.
+    \begin{itemize}
+        \item Accuracy refers to how close the computed value is to the true value.
+        \item Precision means how close the values are together.
+    \end{itemize}
+
+    \item Because we want everything relative, we calculate with two different errors.
+    \begin{itemize}
+        \item Absolute error = $e_a = |\text{True value} - \text{Approximation}|$
+        \item Relative error = $\epsilon_t = \frac{\text{True value} - \text{Approximation}}{\text{true}} \times 100$
+    \end{itemize}
+
+    \item These equations can be used for precision as well.
+    \begin{itemize}
+        \item $e_a = |\text{previous} - \text{current}|$
+        \item $\epsilon_t = \frac{\text{previous} - \text{current}}{\text{current}} \times 100$
+    \end{itemize}
+
+    \item Stopping point is when it's below a certain threshold.
+    \item If true value is 0, shift over by 1.
+    \item For a result to be accurate or precise, should be $< 0.5 \times 10^{2-n}$, where $n$ is the number of significant digits.
+
+    \item the function of $e^x$ can be represented as $e^x = 1 + x + \frac{x^2}{2} + \frac{x^3}{3!} + \cdots + \frac{x^n}{n!}$
+    \begin{itemize}
+        \item for $x = 1$, $e^1 = 2.71828$
+        \item for $x = -1$, $a = 1 - 1 = 0$
+    \end{itemize}
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,180 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{article}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,xcolor,fancyvrb,newverbs,textcomp}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=10pt, font=small, labelfont=bf, labelsep=endash]{caption}
+\usepackage[
+            colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
+
+
+\definecolor{cverbbg}{gray}{.7}
+\newenvironment{lcverbatim}
+ {\SaveVerbatim{cverb}}
+ {\endSaveVerbatim
+  \flushleft\fboxrule=0pt\fboxsep=.5em
+  \scriptsize
+  \colorbox{cverbbg}{%
+    \makebox[\dimexpr\linewidth-2\fboxsep][l]{\BUseVerbatim{cverb}}%
+  }
+  \endflushleft
+}
+
+
+\newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{#1}}}
+
+\title{Fundamentals of Git}
+\date{\today}
+\author{Illya Starikov}
+
+\begin{document}
+\maketitle
+
+These are the show notes of how to use Git for Missouri S\&T Satellite Team. This accompany the lecture slides, and each section corresponds to where the words ``Demo'' appear.
+
+There is some maintenance that we have to take care of before we can begin. It is as follows.
+
+\begin{enumerate}
+    \item Copy the directory \texttt{git-tac-toe}\footnote{\texttt{demo} \textrightarrow \ \texttt{tic-tac-toe}} to a temporary location (Desktop should work fine).
+    \item Navigate to said directory in you terminal emulator of choice.
+    \item Run the commands \\ \shellcmd{git reset --hard 79686d3ae905dc01b1015bd9387dcbadbf6826da} followed by \shellcmd{git branch -D bug-fixes}. 
+\end{enumerate}
+
+\section{\texorpdfstring{\shellcmd{Git}ting} \ \ Good}
+Let's start with a blank directory\footnote{We don't always have to do this, especially if we already have a git repository somewhere else.}. After opening your terminal emulator of choice,
+
+\begin{enumerate}
+    \item Navigate to your desktop directory via \shellcmd{cd}.
+    \item Make a new directory named \texttt{git-tac-toe} for your git repository (\shellcmd{mkdir git-tac-toe}) and change into said directory (\shellcmd{cd git-tac-toe}).
+    \item Create a git repository within this directory (\shellcmd{git init}).
+\end{enumerate}
+
+\noindent We are now ready to start using Git! \texttt{Initialized empty Git repository in $\cdots$} or something of that nature should appear. If you receive a warning/error message, changes are git was not set up correctly.
+
+A common convention is to have a \texttt{README.md} file in your directory. We will create one now.
+
+\begin{enumerate}
+    \item Create a new file named \texttt{README.md} with your text editor of choice (for this demo, I will be using \href{http://www.vim.org}{vim}).
+    \item Insert the following text into the file --- if you're not familiar with Markdown, the syntax is easy. Check it out \href{https://guides.github.com/features/mastering-markdown/}{here}.
+\end{enumerate}
+
+\begin{lcverbatim}
+# Git Tac Toe
+
+This is just a demonstration on the fundamentals of git!
+\end{lcverbatim}
+
+\begin{enumerate}
+    \setcounter{enumi}{2}
+    \item Save your changes. At this point, we have enough to commit our changes. Add the markdown file with \shellcmd{git add README.md}.
+    \item Commit your files with \shellcmd{git commit}. A text editor should appear asking you for your commit message (if you've never used Git nor done anything with your environmental variables, it will probably be nano).
+    \begin{itemize}
+        \item If you want to change the Git text editor, \\ \shellcmd{git config --global core.editor "EDITOR"}.
+        \item If you want to change the global text editor, \shellcmd{export VISUAL=vim} followed by \shellcmd{export EDITOR="\$VISUAL"}.
+    \end{itemize}
+
+    \item You commit message should appear like so:
+\end{enumerate}
+
+\begin{lcverbatim}
+Added a read me to describe project
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#       new file:   README.md
+\end{lcverbatim}
+
+\noindent Note the commit message isn't particularly long; that's because the intent is very clear.
+
+\section{Branching And Merging}
+Now we'll discuss the branching and merging. Please be sure to complete the instructions at the top of this document.
+
+Let's create our game, Git-Tac-Toe.
+
+\begin{enumerate}
+    \item Switch to the branch \texttt{game} via \shellcmd{git checkout game}. As you can see, it's already finished! All we have to do is merge!
+    \item Re-checkout the master branch via \shellcmd{git checkout master}. Merge with \shellcmd{git merge game}.
+    \item Uh-oh! Merge conflict. Reading the message, we notice it's in \texttt{README.md}. We can fix it by deleting one of the two lines; either one is fine.
+\end{enumerate}
+
+\begin{lcverbatim}
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
+\end{lcverbatim}
+
+\begin{enumerate}
+    \setcounter{enumi}{3}
+    \item Re-add \texttt{README.md} and commit. Notice the fancy commit message.
+\end{enumerate}
+
+\begin{lcverbatim}
+Merge branch 'game'
+
+# Conflicts:
+#       README.md
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#       .git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#       new file:   .gitignore
+#       modified:   README.md
+#       new file:   board.cpp
+#       new file:   board.hpp
+#       new file:   functions.cpp
+#       new file:   functions.hpp
+#       new file:   main.cpp
+\end{lcverbatim}
+
+\begin{enumerate}
+    \setcounter{enumi}{4}
+    \item Compile and run the code (\shellcmd{g++ *.cpp -std=c++14}). Notice after a move, it breaks. Time for debugging.
+    \item Create a new branch (\shellcmd{git branch bug-fixes}) and checkout said branch (\shellcmd{git checkout bug-fixes}).
+    \item Open \texttt{functions.hpp} and search for ``error''; two results should appear.
+\end{enumerate}
+
+\begin{lcverbatim}
+    for (const auto& subarray: toFlatten) {
+        // This will definitely cause an error
+        // result.insert(result.end(), subarray.begin(), subarray.end());
+    }
+\end{lcverbatim}
+
+\begin{lcverbatim}
+    for (int i = 0; i < std::max(vectorT.size(), vectorS.size()); i++) {
+        // subtract 1 because size is not 0-indexed
+        
+        /* This will also definitely cause an error
+        if (vectorS.size() - 1 < i) {
+            result.push_back(std::make_tuple(vectorT.at(i), defaultS));
+        } else if (vectorT.size() - 1 < i) {
+            result.push_back(std::make_tuple(defaultT, vectorS.at(i)));
+        } else {*/
+            result.push_back(std::make_tuple(vectorT.at(i), vectorS.at(i)));
+        //}
+    }
+\end{lcverbatim}
+
+\begin{enumerate}
+    \setcounter{enumi}{7}
+    \item Fix these errors one a time, committing in between. Recompile to verify that it works.
+    \item Checkout the master branch (\shellcmd{git checkout master}) and merge \\ (\shellcmd{git merge bug-fixes}).
+\end{enumerate}
+
+\end{document}
