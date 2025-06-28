@@ -1,0 +1,38 @@
+/*
+ostream& operator<< (ostream& out, ArrayQueue& q)
+{
+    out << "[" << q.max << " " << q.frontOfQueue << " " << q.backOfQueue;
+    out << " [ ";
+    for (int i = q.frontOfQueue; i != q.backOfQueue; i=(i+1)%q.max ) {
+        cout << q.customers[i].name << ", ";
+    }
+    out << "]";
+    out << endl;
+    return out;
+}
+*/
+
+    void printOutQueue() {
+        cout << "| ";
+
+        for (int i = 0; i < max; i++) {
+            cout << customers[i].name << " |";
+        }
+
+        cout << endl;
+    }
+
+
+    /*
+ ostream& operator<< (ostream& out, Customer& c)
+ {
+ out << "(";
+ out << c.name;
+ out << c.timeOfArrival;
+ out << c.numberOfTickets;
+ out << c.timeStartedProcess;
+ out << ")";
+ return out;
+ }
+
+ */
