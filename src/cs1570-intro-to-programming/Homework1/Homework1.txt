@@ -1,0 +1,41 @@
+# 1. The Shuffle Deck 5000
+1. Get a deck.
+2. Take said deck, and cut it into two stacks — 26 cards each.
+3. Place each in alternating hand, face down.
+4. Place the stacks relatively close together, enough to merge them with no
+friction, but not to the point it's impossible to shuffle.
+5. Place thumb on topmost part, while holding relatively lower part parts of
+the deck. 
+6. Release one card from your right hand, by shift cards back a little.
+7. Do so with your left hand.
+8. Repeat steps 6-7 26 times.
+9. Repeat steps 2-8 3 times.
+
+# 2. Matrix Extravaganza 
+1. Looking for two letter words, start searching vertically from bottom to
+# top. 
+2. Upon reaching the end of the matrix, shift to the next row/column.
+3. When you reach the end of the block, start with a different orientation.
+Start with top to down, left to right, right to left, and then diagonals.
+4. If successful, skip to step 6.
+5. Repeat steps 1-5, this time search by adding one more letter to your
+memory. The first time reaching this step, look for three. Then four. And
+repeat.
+6. You are finished.
+
+# 3. Basic Subtraction
+1. Write the first set of digits (let's refer to them by abcd), followed by
+# an aligned set of digits (zyxv). Then draw a line underneath. They should
+# align vertically, like so:
+abcd
+zyxv
+2. Take the bottom right most value and subtract it from the top most value.
+You should be doing subtracting the "v" value from "d" value at this point.
+3. Do so, shifting from right to left at the top tier and the bottom tier,
+simultaneously. Example: instead of subtracting "d" from "v", subtract "x"
+from "c"
+4. Repeat steps 2 and 3 until reaching the end.
+5. If what is being subtracted is larger than what is subtracting, then
+write a negative.
+6. Congratulations, you have successfully subtracted 4 digits. Go hang it on
+the fridge! 

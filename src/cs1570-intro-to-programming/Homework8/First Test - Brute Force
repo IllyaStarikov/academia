@@ -1,0 +1,17 @@
+    for (int j = 0; j < intSizeOfMissingCows; j++) {
+        intLargestAccuracyOfSingleArrayItem = 0;
+        for (int i = 0; i < intSizeOfMissingCowDNA - intSizeOfMatchingCowDNA; i++) {
+                intAccuracyCounter = 1;
+                do {
+                    if (scowToMatch.m_charDNA[intAccuracyCounter - 1] == scowMissingCows[j].m_charDNA[i+intAccuracyCounter - 1]) {
+                        boolMatch = true;
+                        intAccuracyCounter++;
+                    } else {
+                        boolMatch = false;
+                    }
+                    intLargestAccuracyOfSingleArrayItem = (intAccuracyCounter > intLargestAccuracyOfSingleArrayItem) ? intAccuracyCounter: intLargestAccuracyOfSingleArrayItem;
+                } while (boolMatch == true);
+        }
+        intAccuracy[j] = intLargestAccuracyOfSingleArrayItem;
+        cout <<intLargestAccuracyOfSingleArrayItem;
+    }

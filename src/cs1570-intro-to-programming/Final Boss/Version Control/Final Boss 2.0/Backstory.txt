@@ -1,0 +1,13 @@
+The year is 2020. You are a Computer Science Major at the university of Missouri S&T (that showers, of course) in Clayton Price's Introduction To Computer Science class. However, over last five years, Introduction To Computer Science has been.. different.
+
+The semester starts, and so does Mr. Price's shenanigans. Your class begins with C++ basics, operations, decision branching, etc. Then, we get to C-Strings. Then, classes. Oh, did I mention this is all in one day? The second day, he wraps up the class with enumerations, namespaces, overloading operators, and pit falls. Third day you learn about all of the data structures of C++, and the class is given their first assignment. Rewrite the Standard Template Library.
+
+As the semester progresses, the students lose their sanity. 
+
+Now, we jump to the end of the semester. Mr. Price has assigned his last assignment, creating a system of Artificial Intelligence. The students retaliate, saying that it is near impossible with current technology — Mr. Price does not budge. His response is "Deal with it". So the students that remained get to work.
+
+Mr. Price accepts that the assignment is *slightly* too difficult, so he has given a stipulation. He extends the deadline to the end of summer, and he was ever so gracious to allow any two students to meet in his office up to four times a day. Or, if they liked, he would meet with them. 
+
+These are true stories. 
+These events really happened. 
+These meetings *are real*.
