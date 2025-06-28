@@ -1,0 +1,208 @@
+%
+%  exercise-1.tex
+%  artificial intelligence
+%
+%  Created by Illya Starikov on 01/17/18.
+%  Copyright 2018. Illya Starikov. All rights reserved.
+%
+
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{scrartcl}
+
+\newcommand{\exercisenumber}{2}
+\newcommand{\duedate}{July 10\textsuperscript{th}, 2018}
+\input{../macros.tex}
+\usepackage{multicol}
+
+\begin{document}
+\maketitle
+
+\section{Association Rules}
+\begin{statement}
+    Compute the coverage (i.e., support) of each item set listed below.
+\end{statement}
+
+\begin{description}
+    \item[drinkPref = pepsi] 2
+    \item[married = no, pet = dog] 3
+    \item[sportPref = football, musicPref = classical, drinkPref = tea] 0
+\end{description}
+
+\begin{statement}
+    Write down every association rule that could be generated from the item set listed below, regardless of whether or not there are actually any instances of that rule in our given dataset.
+\end{statement}
+\begin{alignat*}{3}
+    & \text{\textbf{married} = no} &&\implies \text{\textbf{pet} = dog} \\
+    & \text{\textbf{pet} = dog}    &&\implies \text{\textbf{married} = no} \\
+    & \text{\_}                    &&\implies \text{\textbf{married} = no and \textbf{pet} = dog} \\
+\end{alignat*}
+
+\begin{statement}
+Compute the accuracy (i.e., confidence) of each rule listed below. Express accuracy as a fraction (e.g., 2/3, 2/2, etc.), NOT as a decimal number (e.g., 0.67, 1.0, etc.).
+\end{statement}
+
+With the case \textit{If pet = dog then income = middle}, we get as follows:
+
+\begin{equation*}
+    \text{Accuracy} = \frac{1}{4}
+\end{equation*}
+
+With the case \textit{If married = no and sportPref = football, then pet = dog and musicPref = rock}, we get as follows:
+
+\begin{equation*}
+    \text{Accuracy} = \frac{2}{3}
+\end{equation*}
+
+With the case \textit{If \_, then drinkPref = coke and married = yes}, we get as follows:
+
+\begin{equation*}
+    \text{Accuracy} = 0
+\end{equation*}
+
+\begin{statement}
+    In each rule listed below, specify whether any condition(s) in the antecedent (i.e., the “if’ part) can be dropped.
+\end{statement}
+
+\begin{description}
+    \item[If married = no and sportPref = football then pet = dog and drinkPref = coke] No.
+    \item[If married = yes and pet = cat then musicPref = country] Yes, \textbf{married} = yes can be dropped.
+\end{description}
+
+\section{RICO}
+\begin{statement}
+    Using the Rule Induction from Coverings algorithm discussed in class, find each of the partitions specified below.
+\end{statement}
+\begin{align*}
+    {\{a\}}^*      & = \{ \{x_1, x_5\}, \{x_2, x_3, x_4\} \} \\
+    {\{c\}}^*      & = \{ \{x_1\}, \{x_2, x_3\}, \{x_4\}, \{x_5\}  \} \\
+    {\{d\}}^*      & = \{ \{x_1, x_2\}, \{x_3, x_4\}, \{x_5\} \} \\
+    {\{d,\, e\}}^* & = \{ \{x_1\}, \{x_2\}, \{x_3, x_4\}, \{x_5\} \}
+\end{align*}
+
+\begin{statement}
+    Suppose that we are looking for a covering for decision attribute f which has partition \{f\}* = \{\{x1, x2\}, \{x3, x4, x5\}\}.
+\end{statement}
+
+\begin{itemize}
+    \item No, the block $\{x_1, x_5\}$ is not a subset of any blocks in ${\{f\}}^*$.
+    \item No, the block $\{x_2, x_3\}$ is not a subset of any blocks in ${\{f\}}^*$.
+    \item Yes, all blocks are subsets of all blocks in ${\{f\}}^*$.
+    \item No, because ${\{d,\, e\}}^*$ is not minimal.
+\end{itemize}
+
+\begin{statement}
+    Find a covering for f. If you found one in part b that worked, just use one of those. Using your covering, give a set of rules for decision attribute f.
+\end{statement}
+\begin{alignat*}{3}
+    &\text{$d$ = 0}  &&\implies \text{$f = True$} \\
+    &\text{$d$ = 1}  &&\implies \text{$f = False$} \\
+    &\text{$d$ = 2}  &&\implies \text{$f = False$} \\
+\end{alignat*}
+
+\section{KD-Tree}
+\begin{statement}
+    Consider the dataset given below where the decision attribute is the one labeled decision. Build a kd-tree where k = 3. No partial credit will be given unless you show your work!
+\end{statement}
+\small
+Sorting the tuples by $x$, we get as follows:
+
+\begin{equation*}
+    [(1,\, 7,\, 9),\, (2,\, 5,\, 8),\, (3,\, 6,\, 7),\, (4,\, 4,\, 0),\, (5,\, 3,\, 4),\, (6,\, 1,\, 6),\, (7,\, 2,\, 2)]
+\end{equation*}
+
+Seeing a our median = $4$, we partition as follows:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cc}
+        $[(1,\, 7,\, 9),\, (2,\, 5,\, 8),\, (3,\, 6,\, 7)]$ & $[(4,\, 4,\, 0),\, (5,\, 3,\, 4),\, (6,\, 1,\, 6),\, (7,\, 2,\, 2)]$
+    \end{tabular}
+\end{table}
+
+Sorting these tuples by $y$, we get as follows:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ll}
+        $[(2,\, 5,\, 8),\, (3,\, 6,\, 7),\, (1,\, 7,\, 9)]$ & $[(6,\, 1,\, 6),\, (7,\, 2,\, 2),\, (5,\, 3,\, 4),\, (4,\, 4,\, 0)]$ \\
+    \end{tabular}
+\end{table}
+
+With our medians as follows, we get as follows:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{llll}
+        median = 6    &                          & median = 2.5             &                          \\
+        $[(2,\, 5,\, 8)]$ & $[(3,\, 6,\, 7),\, (1,\, 7,\, 9)]$ & $[(6,\, 1,\, 6),\, (7,\, 2,\, 2)]$ & $[(5,\, 3,\, 4),\, (4,\, 4,\, 0)]$ \\
+    \end{tabular}
+\end{table}
+
+Sorting these tuples by $z$, we get as follows:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{llll}
+        $[(2,\, 5,\, 8)]$ & $[(3,\, 6,\, 7),\, (1,\, 7,\, 9)]$ & $[(7,\, 2,\, 2),\, (6,\, 1,\, 6)]$ & $[(4,\, 4,\, 0),\, (5,\, 3,\, 4)]$ \\
+    \end{tabular}
+\end{table}
+
+With our medians as follows, we get as follows:
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{llllllll}
+        median = 8        & median = 8        &                   & median = 4        &                   & median = 2        &               \\
+        $[(2,\, 5,\, 8)]$ & $[(3,\, 6,\, 7)]$ & $[(1,\, 7,\, 9)]$ & $[(7,\, 2,\, 2)]$ & $[(6,\, 1,\, 6)]$ & $[(4,\, 4,\, 0)]$ & $[(5,\, 3,\, 4)]$ \\
+    \end{tabular}
+\end{table}
+
+To produce the following KD-Tree:
+
+\begin{center}
+    \begin{forest}
+        for tree={%
+            l sep=2cm,
+        s sep=0.1cm,
+        minimum height=0.8cm,
+        minimum width=2cm
+        }
+        [x
+            [y, edge label={node[midway,fill=white]{$< 4$}}
+                [, edge label={node[midway,fill=white]{$< 6$}}
+                    [{$(2,\, 5,\, 8)$}]
+                ]
+                [z, edge label={node[midway,fill=white]{$\geq 6$}}
+                    [{$(3,\, 6,\, 7)$}, edge label={node[midway,fill=white]{$< 8$}}]
+                    [{$(1,\, 7,\, 9)$}, edge label={node[midway,fill=white]{$\geq 8$}}]
+                ]
+            ]
+            [y, edge label={node[midway,fill=white]{$\geq 4$}}
+                [z, edge label={node[midway,fill=white]{$< 2.5$}}
+                    [{$(7,\, 2,\, 2)$}, edge label={node[midway,fill=white]{$< 4$}}]
+                    [{$(6,\, 1,\, 6)$}, edge label={node[midway,fill=white]{$\geq 4$}}]
+                ]
+                [z, edge label={node[midway,fill=white]{$\geq 2.5$}}
+                    [{$(4,\, 4,\, 0)$}, edge label={node[midway,fill=white]{$< 2$}}]
+                    [{$(5,\, 3,\, 4)$}, edge label={node[midway,fill=white]{$\geq 2$}}]
+                ]
+            ]
+        ]
+    \end{forest}
+\end{center}
+
+\section{Winnow}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|c|c|l|}\hline
+        \textbf{Instance} & \textbf{Calculation}                            & \textbf{Predicted} & \textbf{Actual} & \textbf{Resultant Weights} \\\hline
+        $x_1$             & 2 \times 1 + 2 \times 0 + 2 \times 1 = 4 > 2    & 1                  & 0               & $w_a=1, w_b=2, w_c=1$ \\\hline
+        $x_2$             & 1 \times 0 + 2 \times 1 + 1 \times 0 = 2 \leq 2 & 0                  & 1               & $w_a=1, w_b=4, w_c=1$ \\\hline
+        $x_3$             & 2 \times 1 + 4 \times 1 + 2 \times 0 = 6 > 2    & 1                  & 1               & $w_a=1, w_b=4, w_c=1$ \\\hline
+        $x_4$             & 1 \times 1 + 4 \times 0 + 1 \times 1 = 2 \leq 2 & 0                  & 0               & $w_a=1, w_b=4, w_c=1$ \\\hline
+    \end{tabular}
+\end{table}
+
+
+\end{document}

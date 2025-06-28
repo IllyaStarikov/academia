@@ -1,0 +1,11 @@
+dumpSiteIsNearby, abnormalColor, badTaste, pH, odor
+TRUE, absent, present, akaline, absent
+TRUE, present, absent, acidic, present
+FALSE, absent, present, acidic, present
+TRUE, present, absent, acidic, present
+FALSE, absent, present, neutral, absent
+FALSE, present, absent, acidic, present
+TRUE, present, absent, acidic, present
+FALSE, absent, present, neutral, absent
+TRUE, present, absent, acidic, present
+FALSE, absent, present, akaline, absent

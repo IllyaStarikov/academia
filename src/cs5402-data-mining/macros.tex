@@ -1,0 +1,49 @@
+%
+%  macros.tex
+%
+%  Created by Illya Starikov on 10/05/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,microtype,upquote,units,booktabs,siunitx,enumitem,listings,graphics,inputenc,amsthm,float,booktabs,float,mathtools,xcolor,colortbl,caption,spverbatim}
+
+\usepackage{algpseudocode,algorithm,algorithmicx}
+\newcommand*\Let[2]{\State{#1 $\gets$ #2}}
+\algrenewcommand\algorithmicrequire{\textbf{Precondition:}}
+\algrenewcommand\algorithmicensure{\textbf{Postcondition:}}
+
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
+\usepackage[linguistics,edges]{forest}
+
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox[cmyk]{0.43, 0.35, 0.35,0.01}{\parbox{\textwidth}{\hspace{15pt}#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white, singlelinecheck=false, margin=0pt, font={bf,footnotesize}}
+
+\let\emptyset\varnothing%
+\newtheorem{theorem}{Theorem}
+\newtheorem*{statement}{Problem Statement}
+
+\title{Homework \#\exercisenumber}
+\subtitle{CS5402 --- Intro To Data Mining}
+\date{Due Date: \duedate}
+\author{Illya Starikov}
+
+\renewcommand*\pagemark{{\usekomafont{pagenumber}Page\nobreakspace\thepage}}
+\addtokomafont{pageheadfoot}{\upshape}
+
+\setlength{\columnsep}{25pt}
+\setlength{\columnseprule}{0.4pt}
+\setlength{\parindent}{0pt}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\newcommand{\bigO}[1]{\mathcal{O}\left(#1\right)}
+\newcommand{\bigTheta}[1]{\Theta\left(#1\right)}
+\newcommand{\bigOmega}[1]{\Omega\left(#1\right)}
+
+\newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{\strut#1}}}
+\newcommand{\todo}[1]{\textbf{\colorbox{red!50}{\strut#1}}}

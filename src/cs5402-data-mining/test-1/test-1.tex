@@ -1,0 +1,318 @@
+%
+%  test-1.tex
+%  artificial intelligence
+%
+%  Created by Illya Starikov on Saturday, July 15, 2018.
+%  Copyright 2018. Illya Starikov. All rights reserved.
+%
+
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt]{scrartcl}
+
+\newcommand{\exercisenumber}{2}
+\newcommand{\duedate}{July 15\textsuperscript{th}, 2018}
+\input{../macros.tex}
+\usepackage{multicol}
+\usepackage[shortlabels]{enumerate}
+
+\title{Test \#1}
+
+\begin{document}
+\maketitle
+
+\section*{Multiple Choice}
+\begin{enumerate}
+    \item \textbf{e. None of the above}
+    \item \textbf{c. Remove any attribute that has missing values.}
+    \item \textbf{b. $\frac{1}{2}$}
+    \item \textbf{b. wt}
+    \item \textbf{d. Spearman’s rank correlation coefficient}
+    \item \textbf{c. Healthland}
+    \item \textbf{b. slice for Time = Q1}
+    \item \textbf{d. roll up on Location = Beijing or Tokyo  (i.e., from city to country)}
+    \item \textbf{c. drill down on Time = Q1  (i.e., from quarter to month)}
+    \item \textbf{a. dice for (location = Beijing or Tokyo) and (product = Chain or bracelet) and (time = Q1 or Q2)}
+\end{enumerate}
+
+\setcounter{section}{10}
+\section{Short Answer}
+Method \#1 is the most accurate, because the true positive ($y$-axis) correctly identified the values, while the false positive ($x$-axis) incorrectly identified the values. Method \#1 had the fastest growing function (with respect to $y$).
+
+\section{1-R Method}
+\begin{table}[H]
+    \resizebox{\columnwidth}{!}{%
+        \begin{tabular}{l|l|l|l|l|l}
+            \hline
+            \multicolumn{1}{|l|}{\textbf{Attribute}} & \textbf{Attribute Value} & \textbf{\# Rows With Attribute Value} & \textbf{Most Frequent Value For sportPref} & \textbf{Errors} & \multicolumn{1}{l|}{\textbf{Total Errors}} \\ \hline
+            \multicolumn{1}{|l|}{ageGroup}           & youngAdult               & 3                                   & football (2)                           & 1               & \multicolumn{1}{l|}{3}                     \\ \hline
+                                         & middleAge                & 3                                   & football/hockey/baseball (1/1/1)       & 2               &                                            \\ \cline{2-5}
+                                         & senior                   & 2                                   & baseball (2)                           & 0               &                                            \\ \hline
+            \multicolumn{1}{|l|}{gender}             & M                        & 5                                   & baseball/football (2/2)                & 3               & \multicolumn{1}{l|}{5}                     \\ \hline
+                                         & F                        & 3                                   & football/hockey/baseball (1/1/1)       & 2               &                                            \\ \hline
+            \multicolumn{1}{|l|}{petPreference}      & dog                      & 5                                   & football (3)                           & 2               & \multicolumn{1}{l|}{3}                     \\ \hline
+                                         & cat                      & 3                                   & baseball (2)                           & 1               &                                            \\ \cline{2-5}
+        \end{tabular}
+        }
+\end{table}
+
+The rules are as follows:
+\begin{alignat*}{3}
+    &\text{ageGroup $=$ \textbf{youngAdult}} &&\implies \text{football} \\
+    &\text{ageGroup $=$ \textbf{middleAge}}  &&\implies \text{football} \\
+    &\text{ageGroup $=$ \textbf{senior}}     &&\implies \text{baseball} \\
+\end{alignat*}
+
+
+\section{Prism}
+For football, we get the following table:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        gender & pet & drink & sport    \\\hline
+        M      & dog & beer  & football \\
+        F      & dog & beer  & football \\\hline
+    \end{tabular}
+\end{table}
+
+For our P and T values:
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|ccc|}
+        \hline
+                     & T & P   & T/P \\\hline
+        gender = M   & 3 & 1   & 1/3 \\
+        gender = F   & 4 & 1   & 1/4 \\
+        pet = dog    & 3 & 2   & 2/3 \\
+        drink = beer & 3 & 2   & 3/4 \\\hline
+    \end{tabular}
+\end{table}
+
+Seeing as not T/P values are 1, we must add a clause. We choose pet = dog as the base.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|ccc|}
+        \hline
+                     & T & P   & T/P \\\hline
+        gender = M   & 1 & 0 & 0 \\
+        gender = F   & 1 & 0 & 0 \\
+        drink = beer & 2 & 2 & 1 \\\hline
+    \end{tabular}
+\end{table}
+
+\begin{alignat*}{3}
+    &\text{pet $=$ \textbf{dog} and drink $=$ \textbf{beer}} &&\implies \text{football} \\
+\end{alignat*}
+
+\section{Statistical Modeling}
+The likelihood would be as follows:
+
+\begin{equation*}
+    \text{likelihood} =
+    \nicefrac{4}{9} \times
+    \nicefrac{2}{9} \times
+    \nicefrac{6}{9} \times % lol
+    \nicefrac{3}{9} \times
+    \nicefrac{9}{14}
+\end{equation*}
+
+\section{Entropy}
+\begin{enumerate}[(a)]
+    \item entropyBeforeSplit would be as follows:
+        \begin{equation*}
+            -\nicefrac{1}{6}\,\log_2\left(\nicefrac{1}{6}\right)
+            -\nicefrac{2}{6}\,\log_2\left(\nicefrac{2}{6}\right)
+            -\nicefrac{3}{6}\,\log_2\left(\nicefrac{3}{6}\right)
+        \end{equation*}
+
+    \item entropyPoor would be as follows:
+        \begin{equation*}
+            -\nicefrac{2}{4}\,\log_2\left(\nicefrac{2}{4}\right)
+            -\nicefrac{2}{4}\,\log_2\left(\nicefrac{2}{4}\right)
+        \end{equation*}
+
+    \item infoGain would be determined as follows:
+        \begin{align*}
+            \text{entropyAfterSplit} &=
+            \nicefrac{3}{6}\, \text{entropyShort} +
+            \nicefrac{2}{6}\, \text{entropyMed} +
+            \nicefrac{1}{6}\, \text{entropyLong} \\
+            \text{infoGain} &= \text{entropyBeforeSplit} - \text{entropyAfterSplit} \\
+        \end{align*}
+\end{enumerate}
+
+\section{Rule Induction}
+\begin{enumerate}[(a)]
+    \item The partitions would be as follows:
+        \begin{align*}
+            {\{d\}}^*      & = \{ \{x_1\}, \{x_2, x_3\}, \{x_5\}, \{x_5\} \}     \\
+            {\{e\}}^*      & = \{ \{x_1, x_2, x_5\}, \{x_3, x_4\} \}             \\
+            {\{d,\, e\}}^* & = \{ \{x_1\}, \{x_2\}, \{x_3\}, \{x_4\}, \{x_5\} \} \\
+        \end{align*}
+
+    \item The coverings are as follows:
+        \begin{itemize}
+            \item ${\{d\}}^*$ would not work, because every block in the partition is not a subset of a block in ${\{f\}}^*$.
+            \item ${\{d, e\}}^*$ would work, because every block in the partition is a subset of a block in ${\{f\}}^*$.
+            \item ${\{a, d, e\}}^*$ would not work, because although every block in the partition is a subset of a block in ${\{f\}}^*$, it is not minimal.
+        \end{itemize}
+
+    \item The rules would be as follows:
+        \begin{alignat*}{3}
+            &\text{$d$ = X and $e = 4$}  &&\implies \text{$f = T$} \\
+            &\text{$d$ = S and $e = 4$}  &&\implies \text{$f = T$} \\
+            &\text{$d$ = S and $e = 3$}  &&\implies \text{$f = F$} \\
+            &\text{$d$ = H and $e = 3$}  &&\implies \text{$f = F$} \\
+            &\text{$d$ = M and $e = 4$}  &&\implies \text{$f = F$} \\
+        \end{alignat*}
+\end{enumerate}
+
+\section{KD-Tree}
+Sorting, we get the following: [(2, 10), (4, 20), (6, 10), (8, 20), (10, 30)].
+
+With a median of 6...
+
+\begin{itemize}
+    \item $x < 6$ group: [(2, 10), (4, 20)]
+    \item $x \geq 6$ group: [(6, 10), (8, 20), (10, 30)]
+\end{itemize}
+
+Sorting, we get the following: [(2, 10), (4, 20)] [(6, 10), (8, 20), (10, 30)]
+
+With a median of 15 for the first group:
+
+\begin{itemize}
+    \item $y < 15$ group: [(2, 10)]
+    \item $y \geq 15$ group: [(4, 20)]
+\end{itemize}
+
+With a median of 20 for the second group:
+
+\begin{itemize}
+    \item $y < 20$ group: (6, 10)
+    \item $y \geq 20$ group: [(8, 20), (10, 30)]
+\end{itemize}
+
+(Using a shortcut for the final block), Sorting, and using a median of 9, our last block looks like as follows:
+
+\begin{itemize}
+    \item $x < 9$ group: [(8, 20)]
+    \item $y \geq 9$ group: [(10, 30)]
+\end{itemize}
+
+\begin{center}
+    \begin{forest}
+        for tree={%
+            l sep=2cm,
+        s sep=0.1cm,
+        minimum height=0.8cm,
+        minimum width=2cm
+        }
+        [x
+            [y, edge label={node[midway,fill=white]{$< 6$}}
+                [{$(2,\, 10)$}, edge label={node[midway,fill=white]{$< 15$}}]
+                [{$(4,\, 20)$}, edge label={node[midway,fill=white]{$\geq 15$}}]
+            ]
+            [y, edge label={node[midway,fill=white]{$\geq 6$}}
+                [{$(6,\, 10)$}, edge label={node[midway,fill=white]{$< 20$}}]
+                [x, edge label={node[midway,fill=white]{$\geq 20$}}
+                    [{$(8,\, 20)$}, edge label={node[midway,fill=white]{$< 9$}}]
+                    [{$(10,\, 30)$}, edge label={node[midway,fill=white]{$\geq 9$}}]
+                ]
+            ]
+        ]
+    \end{forest}
+\end{center}
+
+\section{Clustering}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        x & y  & distance to (2, 4) & distance to (5, 6) & distance to (8, 1) \\\hline
+        2 & 4  & 0                  & 5                  & 9 \\
+        5 & 6  & 5                  & 0                  & 8 \\
+        8 & 1  & 9                  & 8                  & 0 \\
+        7 & 3  & 6                  & 5                  & 3 \\
+        4 & 10 & 8                  & 5                  & 13 \\
+        3 & 0  & 5                  & 8                  & 6 \\
+        9 & 8  & 11                 & 6                  & 8 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Our clusters would be as follows:
+
+\begin{description}
+    \item[Cluster Center (2, 4)] (2, 4), (3, 0)
+    \item[Cluster Center (5, 6)] (5, 6), (4, 10), (9, 8)
+    \item[Cluster Center (8, 1)] (8, 1), (7, 3)
+\end{description}
+
+With means as follows:
+
+\begin{description}
+    \item[Cluster Mean of (2, 4), (3, 0)] (2.5, 2) $\approx$ (3, 2)
+    \item[Cluster Mean of (5, 6), (4, 10), (9, 8)] (6, 8)
+    \item[Cluster Center of (8, 1), (7, 3)] (7.5, 2) $\approx$ (8, 2)
+\end{description}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        x & y  & distance to (3, 2) & distance to (6, 8) & distance to (8, 2) \\\hline
+        2 & 4  & 3                  & 8                  & 8 \\
+        5 & 6  & 6                  & 3                  & 7 \\
+        8 & 1  & 6                  & 9                  & 1 \\
+        7 & 3  & 5                  & 6                  & 2 \\
+        4 & 10 & 9                  & 4                  & 12 \\
+        3 & 0  & 2                  & 11                 & 7 \\
+        9 & 8  & 12                 & 3                  & 7 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\begin{description}
+    \item[Cluster Center (3, 2)] (2, 4), (3, 0)
+    \item[Cluster Center (6, 8)] (5, 6), (4, 10), (9, 8)
+    \item[Cluster Center (8, 2)] (8, 1), (7, 3)
+\end{description}
+
+\textit{Clusters haven't changed!} Final cluster centers and instances are as follows:
+
+\begin{description}
+    \item[Cluster Center (3, 2)] (2, 4, 11, yes), (3, 0, 3, yes)
+    \item[Cluster Center (6, 8)] (5, 6, 5, no), (4, 10, 8, yes), (9, 8, 1, no)
+    \item[Cluster Center (8, 2)] (8, 1, 7, no), (7, 3, 4, yes)
+\end{description}
+
+\section{Confusion Table}
+\begin{enumerate}[(a)]
+    \item For a randomly produced results, there were 8 values that we predicted to be B, when they were actually G.
+    \item For a classifier produced results, there were 30 values that we predicted to be B, and were actually B.
+    \item The non-random classifier, 90 were predicted correctly. For the random classifier, 39 were predicted correctly. Therefore, 51 more were predicted correctly.
+    \item Kappa Statistic would be
+
+        \begin{equation*}
+            \frac{
+                \text{Non-Random Correct - Random Correct}
+            }{
+                \text{Total}
+            }
+        \end{equation*}
+
+        Which would be as follows:
+
+        \begin{equation*}
+            \frac{90 - 39}{100}
+        \end{equation*}
+\end{enumerate}
+
+
+\end{document}
