@@ -1,0 +1,76 @@
+\usetheme[logo=template-presentation/logo,faculty=ped]{fibeamer}
+
+\usepackage{amssymb,amsmath,verbatim,graphicx,pdfpages,microtype,units,booktabs,upquote,xcolor,siunitx,csquotes,fancyvrb,newverbs,wrapfig,multicol,tikz,textcomp,wrapfig,cutwin}
+\usepackage{fontawesome,setspace,rotchiffre,lipsum,listings,animate,listings}
+\usepackage[xspace]{ellipsis}
+
+\hypersetup{%
+            colorlinks = true,
+            linkcolor = orange,
+            urlcolor  = orange,
+            citecolor = orange,
+            anchorcolor = orange}
+
+\newcommand{\hugeslide}[1]{%
+\begin{frame}[plain,c]
+    \centering {\usebeamerfont*{frametitle} \usebeamercolor[fg]{frametitle}{\fontsize{40}{50}\selectfont\textit{#1}}}
+\end{frame}
+}
+
+\newcommand{\presentby}[2]{%
+    \note{%
+        \topskip0pt
+        \vspace*{\fill}
+        \huge \textbf{#1, \textit{#2} Minute(s)}
+        \vspace*{\fill}
+    }
+}
+
+\newcommand{\presentaddcount}[1]{\addtocounter{#1}{1}\Roman{#1}}
+\newcommand{\presentcount}[1]{\Roman{#1}}
+\newcommand{\shellcmd}[1]{\texttt{\colorbox{gray!30}{#1}}}
+
+\lstdefinelanguage{swift}
+{%
+  morekeywords={%
+    func,if,then,else,for,in,while,do,switch,case,default,where,break,continue,fallthrough,return,
+    typealias,struct,class,enum,protocol,var,func,let,get,set,willSet,didSet,inout,init,deinit,extension,
+    subscript,prefix,operator,infix,postfix,precedence,associativity,left,right,none,convenience,dynamic,
+    final,lazy,mutating,nonmutating,optional,override,required,static,unowned,safe,weak,internal,
+    private,public,is,as,self,unsafe,dynamicType,true,false,nil,Type,Protocol,print
+  },
+  morecomment=[l]{//}, % l is for line comment
+  morecomment=[s]{/*}{*/}, % s is for start and end delimiter
+  morestring=[b]" % defines that strings are enclosed in double quotes
+}
+
+\definecolor{keyword}{HTML}{BA2CA3}
+\definecolor{string}{HTML}{D12F1B}
+\definecolor{comment}{HTML}{008400}
+\definecolor{type}{HTML}{66B9AA}
+
+\lstdefinestyle{Swift}{%
+  language=swift,
+  basicstyle=\ttfamily,
+  showstringspaces=false, % lets spaces in strings appear as real spaces
+  columns=fixed,
+  keepspaces=true,
+  keywordstyle=\color{keyword},
+  stringstyle=\color{string},
+  commentstyle=\color{comment},
+  emph={Int,Character,Double,Float,Unsigned},
+  emphstyle={\color{type}},
+  morestring=[b]",
+  escapeinside={(*}{*)}
+}
+
+\newcommand\syntaxbox[2][fill=orange!80]{%
+    \tikz[baseline]\node[%
+        inner ysep=0pt,
+        inner xsep=2pt,
+        anchor=text,
+        rectangle,
+        rounded corners=1mm,
+        #1] {\strut#2};%
+}
+

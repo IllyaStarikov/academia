@@ -1,0 +1,143 @@
+%
+%  progress-presentation.tex
+%  src
+%
+%  Created by Illya Starikov on 09/16/17.
+%  Copyright 2017. Illya Starikov. All rights reserved.
+%
+
+% \documentclass[notes,xcolor=dvipsnames]{beamer}       % print frame + notes
+% \documentclass[notes=only,xcolor=dvipsnames]{beamer}  % only notes
+\documentclass[xclolor=dvipsnames]{beamer}            % only frames
+%\documentclass[handout,xclolor=dvipsnames]{beamer}    % only frames, no pauses
+\usepackage{soul,graphics}
+
+\input{template-presentation/macros.tex}
+\title{Unit Tests (Presentation \#2)}
+\subtitle{Special Topics (CS3001)}
+\author{Illya Starikov}
+\date{Sometimes In The Future}
+\institute{Missouri University of Science and Technology}
+
+\begin{document}
+\begin{darkframes}
+    \maketitle
+
+    \begin{frame}
+        \frametitle{A Brief Introduction}
+
+        \begin{itemize}
+            \item Good code is broken into many functions.
+            \item In a perfect world, these functions would always produce the right results.
+            \item Unfortunately, this isn't a perfect world.
+            \item Unit tests allow to test all these blocks to guarantee correctness.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Prior Knowledge}
+
+        \begin{itemize}
+            \item I started writing unit tests last semester for my internship (in C\#).
+            \item However, they were small and minimal.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Goals}
+
+        \begin{itemize}
+            \item To become fluent in several unit testing frameworks.
+            \item To become better at penetration testing of functions.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Tangible Evidence}
+        \framesubtitle{Python Unit Tests (AI)}
+
+        \footnotesize
+        \begin{lstlisting}[language=Python]
+def test_grid_size(self):
+    not_long_enough = [list(range(2)), list(range(2)), list(range(2))]
+
+    rows, columns = 5, 7
+    just_right = [list(range(columns)) for i in range(rows)]
+
+    self.assertRaises(AssertionError, MechanicalMatch.grid_size, not_tall_enough)
+
+    grid_rows, grid_columns = MechanicalMatch.grid_size(just_right)
+    self.assertEqual(grid_rows, rows)
+    self.assertEqual(grid_columns, columns)
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Tangible Evidence}
+        \framesubtitle{C++ Unit Tests (Numerical Modeling)}
+
+        \footnotesize
+        \begin{lstlisting}[language=C++]
+SECTION("Stream Operator") {
+    auto polarPair = PolarPair<R, Theta>(defaultModulus, defaultArgument);
+    std::stringstream expected, actual;
+
+    polarPair.setPrecision(6);
+
+    expected << std::setprecision(6) << std::fixed << "(" << defaultModulus << ", " << defaultArgument << ")";
+    actual << polarPair;
+
+    REQUIRE(expected.str() == actual.str());
+}
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Tangible Evidence}
+        \framesubtitle{C\# Unit Tests (Work)}
+
+        I can't shared source code from my work because of security reasons/non disclosure agreements.
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Resources}
+
+        \begin{itemize}
+            \item Online resources.
+                \begin{itemize}
+                    \item \href{https://github.com/catchorg/Catch2}{C++ Unit Tests.}
+                    \item \href{https://msdn.microsoft.com/en-us/library/hh694602.aspx}{C\# Unit Tests.}
+                    \item \href{https://docs.python.org/2/library/unittest.html}{Python Unit Tests.}
+                \end{itemize}
+
+            \item Looking at other people's source code.
+            \item Discussing ideas with boss and coworkers.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Goal Accomplishment}
+
+        \begin{itemize}
+            \item Since the beginning of the semester, I have drastically become better at writing unit tests.
+            \item I am fluent in writing unit tests in C++, C\#, and Python.
+            \item Although I have gotten better at writing unit tests, I could progress a lot more.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{In Closing}
+
+        Thank you for having me! All question, comments, and insults can be directed towards me:
+
+        \begin{center}
+            \begin{description}
+                \item[\faComment] \href{mailto:starikov@mst.edu}{starikov@mst.com}
+                \item[\faLinkedin] \href{https://www.linkedin.com/in/illyastarikov/}{Illya Starikov}
+                \item[\faGithub] \href{https://github.com/IllyaStarikov/}{Illya Starikov}
+                \item[\faRss] \href{https://freneticarray.com/}{FreneticArray.com}
+            \end{description}
+        \end{center}
+    \end{frame}
+\end{darkframes}
+\end{document}
