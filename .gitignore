@@ -273,3 +273,7 @@ Carthage/
 !Gemfile.lock
 !poetry.lock
 !composer.lock
+
+# Claude files
+.claude/
+CLAUDE.md
