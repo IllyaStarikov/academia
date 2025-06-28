@@ -1,0 +1,5 @@
+Dial-a-joke 408 255 6666
+Jenny 573 867 5309
+Archimedes 314 159 2654
+Jeff 636 588 6284
+Euler 271 828 1828

@@ -1,0 +1,24 @@
+\documentclass{article}
+\begin{document}
+
+\section{That filter problem, AGAIN}
+\begin{enumerate}
+    \item \begin{verbatim} grep \# -v story-plain.txt \end{verbatim}
+    \item \begin{verbatim} grep -v "[\#]" story-space.txt \end{verbatim}
+\end{enumerate}
+
+\section{Lk m, n vwls!}
+\begin{enumerate}
+    \item \begin{verbatim} sed s/[aeuio]//gi story-plain.txt \end{verbatim}
+\end{enumerate}
+
+\section{Counting Lines}
+\begin{enumerate}
+    \item \begin{verbatim} grep -P "\d{4}-01" numbers.log | wc -l \end{verbatim}
+\end{enumerate}
+
+\section{Phone numbers}
+\begin{enumerate}
+    \item \begin{verbatim} grep -Po "[(]?\d{3}[)\s-]?\d{3}[\s-]?\d{4}" phonebook.txt \end{verbatim}
+\end{enumerate}
+\end{document}

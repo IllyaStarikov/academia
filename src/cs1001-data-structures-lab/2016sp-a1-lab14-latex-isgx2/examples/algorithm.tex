@@ -1,0 +1,22 @@
+\documentclass{article}
+\usepackage{algorithm}
+% Using algorithmicx; see http://mirror.hmc.edu/ctan/macros/latex/contrib/algorithmicx/algorithmicx.pdf
+\usepackage{algpseudocode}
+
+\begin{document}
+\begin{algorithm}
+  \caption{Binary Search}
+  \begin{algorithmic}
+    \Function{binsearch}{$A$, $low$, $high$, $target$}
+    \State $mid = (low + high)/2$
+    \If{$target == A[mid]$}
+      \State \textbf{return} $mid$
+    \ElsIf{$target > A[mid]$}
+      \State \textbf{return} \textsc{binsearch}$(A, mid, high, target)$
+    \Else
+      \State \textbf{return} \textsc{binsearch}$(A, low, mid, target)$
+    \EndIf
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
+\end{document}

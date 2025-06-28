@@ -1,0 +1,46 @@
+
+[editor]
+line_wrapping=false
+line_break_column=72
+auto_continue_multiline=true
+
+[file_prefs]
+final_new_line=true
+ensure_convert_new_lines=false
+strip_trailing_spaces=false
+replace_tabs=false
+
+[indentation]
+indent_width=4
+indent_type=1
+indent_hard_tab_width=8
+detect_indent=false
+detect_indent_width=false
+indent_mode=2
+
+[project]
+name=Lab 2
+base_path=S:\\CS1001\\Lab-2\\2016sp-b-lab06-isgx2
+description=
+file_patterns=
+
+[long line marker]
+long_line_behaviour=1
+long_line_column=72
+
+[files]
+current_page=2
+FILE_NAME_0=0;C++;0;EUTF-8;1;1;0;S%3A%5CCS1001%5CLab-2%5C2016sp-b-lab06-isgx2%5Cfuncs.cpp;0;4
+FILE_NAME_1=0;C;0;EUTF-8;1;1;0;S%3A%5CCS1001%5CLab-2%5C2016sp-b-lab06-isgx2%5Cfuncs.h;0;4
+FILE_NAME_2=101;C++;0;EUTF-8;1;1;0;S%3A%5CCS1001%5CLab-2%5C2016sp-b-lab06-isgx2%5Cmain.cpp;0;4
+FILE_NAME_3=0;C++;0;EUTF-8;1;1;0;S%3A%5CCS1001%5CLab-2%5C2016sp-b-lab06-isgx2%5CTrianglePrinter.cpp;0;4
+FILE_NAME_4=107;C;0;EUTF-8;1;1;0;S%3A%5CCS1001%5CLab-2%5C2016sp-b-lab06-isgx2%5CTrianglePrinter.h;0;4
+
+[build-menu]
+CFT_01_LB=_Build
+CFT_01_CM=g++ -Wall -o "%e" *.cpp
+CFT_01_WD=
+filetypes=C;
+CFT_00_LB=_Compile
+CFT_00_CM=g++ -Wall -c "%f"
+CFT_00_WD=

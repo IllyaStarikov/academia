@@ -1,0 +1,29 @@
+\documentclass{article}
+\title{Lab \#9}
+\author{Illya Starikov}
+\date{March 21, 2016}
+\begin{document}
+\maketitle
+
+\section{Drip, Drip, Drip, Drip}
+\begin{enumerate}
+    \item Memory leak, \texttt{indirectly lost: 80 bytes in 5 blocks} and \texttt{definitely lost: 16 bytes in 1 blocks}
+    \item Because a \texttt{pointer} to a list is being created, but not freed.
+    \item Done!
+\end{enumerate}
+
+\section{Imagine the possibilities!}
+\begin{enumerate}
+    \item \texttt{possibly lost, still reachable, suppressed}.
+    \item I was.. I knew it.
+    \item There is a destructor in \texttt{dtor} and \texttt{plain} only has the default (which does not take care of manual memory allocation).
+\end{enumerate}
+
+\section{Use wisely}
+\begin{enumerate}
+    \item Memory Leak.
+    \item You have a memory address assigned to an memory address.
+    \item Done.
+\end{enumerate}
+
+\end{document}
