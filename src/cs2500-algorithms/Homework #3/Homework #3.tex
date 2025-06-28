@@ -1,0 +1,106 @@
+\documentclass{article}
+\title{Homework \#3}
+\author{Illya Starikov}
+\date{Due Date: February 28, 2016}
+
+\usepackage{forest,amsmath,amssymb}
+
+\let\emptyset\varnothing
+
+\begin{document}
+
+\maketitle
+
+\section{Matrix Multiplication}
+\begin{tabular}{ c|c|c|c|c| }
+  & 1 & 2 & 3 & 4 \\ \hline
+1 & 0 & $20 ^{[1]}$ & $35^{[2]}$ & $65^{[3]}$  \\ \hline
+2 & X & 0 & $12 ^{[2]}$ & $28^{[3]}$ \\ \hline
+3 & X & X & 0 & $6^{[3]}$ \\ \hline
+4 & X & X & X & 0  \\ \hline
+\end{tabular}
+
+\noindent
+Therefore, the minimum scalar operations can be achieved via $(((A_1 \times A_2) \times A_3) \times A_4)$
+
+\section{Longest Common Subsequence}
+\subsection{Recursion Tree}
+\begin{forest}
+[$\binom{\text{AMBE}}{\text{ACME}}$ \textbf{E}
+    [$\binom{\text{AMB}}{\text{ACM}}$
+        [$\binom{\text{AM}}{\text{ACM}}$ \textbf{M}
+            [$\binom{\text{A}}{\text{AC}}$
+                [$\binom{\emptyset}{\text{AC}}$
+                    [$\binom{\emptyset}{\text{A}}$
+                        [$\emptyset$]
+                    ]
+                ]
+                [$\binom{\text{A}}{\text{A}}$ \textbf{A}
+                    [$\emptyset$]
+                ]
+            ]
+        ]
+        [$\binom{\text{AMB}}{\text{AC}}$
+            [$\binom{\text{AM}}{\text{AC}}$
+                [$\binom{\text{A}}{\text{AC}}$
+                    [$\binom{\emptyset}{\text{AC}}$
+                        [$\binom{\emptyset}{\text{A}}$
+                            [$\emptyset$]
+                        ]
+                    ]
+                    [$\binom{\text{A}}{\text{A}}$ \textbf{A}
+                        [$\emptyset$]
+                    ]
+                ]
+                [$\binom{\text{AM}}{\text{A}}$
+                    [$\binom{\text{A}}{\text{A}}$ \textbf{A}
+                        [$\emptyset$]
+                    ]
+                    [$\binom{\text{AM}}{\emptyset}$
+                        [$\binom{\text{A}}{\emptyset}$
+                            [$\emptyset$]
+                        ]
+                    ]
+                ]
+            ]
+            [$\binom{\text{AMB}}{\text{A}}$
+                [$\binom{\text{AM}}{\text{A}}$
+                    [$\binom{\text{A}}{\text{A}}$ \textbf{A}
+                        [$\emptyset$]
+                    ]
+                    [$\binom{\text{AM}}{\emptyset}$
+                        [$\binom{\text{A}}{\emptyset}$
+                            [$\emptyset$]
+                        ]
+                    ]
+                ]
+                [$\binom{\text{AMB}}{\emptyset}$
+                    [$\binom{\text{AM}}{\emptyset}$
+                        [$\binom{\text{A}}{\emptyset}$
+                            [$\emptyset$]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    ]
+]
+\end{forest}
+
+\noindent
+Therefore, the longest common substring is AME.
+
+\subsubsection{Trace Table}
+\begin{tabular}{ |c|c|c|c|c|c| }
+ \hline
+ & $\emptyset$ & A & M & B & E \\ \hline
+$\emptyset$ & 0 & \textbf{0} & 0 & 0 & 0 \\ \hline
+A & 0 & 1 & \textbf{1} & 1 & 1 \\ \hline
+C & 0 & 1 & \textbf{2} & 1 & 1 \\ \hline
+M & 0 & 1 & \textbf{2} & \textbf{2} & 2 \\ \hline
+E & 0 & 1 & 2 & 2 & \textbf{3} \\ \hline
+\end{tabular}
+
+\noindent
+Therefore, the longest common substring is AME.
+\end{document}

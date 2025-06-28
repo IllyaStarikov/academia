@@ -1,0 +1,138 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\begin{document}
+
+\author{Illya Starikov}
+\title{Homework \#1}
+\date{Due Date: February 3, 2016}
+\maketitle
+
+\section{Insertion Sort}
+\subsection{Operations of Insertion Sort}
+\begin{eqnarray*}
+\textbf{3} \ \underline{41} \ 52 \ 26 \ 38 \ 57 \ 9 \ 49  & & \text{1 Comparison(s).} \\
+\textbf{3 41} \ \underline{52} \ 26 \ 38 \ 57 \ 9 \ 49  & & \text{1 Comparison(s).} \\
+\textbf{3 41 52} \ \underline{26} \ 38 \ 57 \ 9 \ 49  & & \text{3 Comparison(s).} \\
+\textbf{3 26 41 52} \ \underline{38} \ 57 \ 9 \ 49  & & \text{3 Comparison(s).} \\
+\textbf{3 26 38 41 52} \ \underline{57} \ 9 \ 49  & & \text{1 Comparison(s).} \\
+\textbf{3 26 38 41 52 57} \ \underline{9} \ 49  & & \text{6 Comparison(s).} \\
+\textbf{3 9 26 38 41 52 57} \ \underline{49}  & & \text{3 Comparison(s).} \\
+\textbf{3 9 26 38 41 49 52 57} & & \text{0 Comparison(s).}
+\end{eqnarray*}
+
+\subsection{Number of Comparisons}
+18 total operations.
+
+\section{Question 2}
+\begin{center}
+\begin{tabular}{| l | l | c | c | c | c | c |}
+ \hline
+B & A & O & o & $\Omega$ & $\omega$ & $\Theta$ \\ \hline
+$2^n$ & $2^\frac{n}{2}$ & no & no & yes & yes & no \\ \hline
+$n^{\lg c}$ & $c^{\lg n}$ & yes & no & yes & no & yes \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{Justification}
+To determine larger asymptotic growth, take the limit of one function over the other. Arbitrarily choosing $2^n$ for the numerator, we see that:
+
+\begin{equation}
+\lim _{n \rightarrow \infty} \frac{2^n}{2^{\frac{n}{2}}} = \lim _{n \rightarrow \infty} 2^{\frac{n}{2}} = \infty
+\end{equation}
+
+Alternatively, if we chose $2^n$ as the denominator, we notice that $\lim _{n \rightarrow \infty} \frac{2^{\frac{n}{2}}}{2^n} = 0$, so we know that the condition $2^n > 2^{\frac{n}{2}}$ holds, and for certain conditions the functions are equal (take $n = 0, 2^{0} = 2^{\frac{0}{2}}$).
+
+$\therefore$ $2^n$ is $\omega(2^\frac{n}{2})$ and $\Omega(2^\frac{n}{2})$. QED.
+
+\subsection{Justification II}
+By the properties of logarithms, we will show that $n^{\lg c} = c^{\lg n}$.
+
+\begin{eqnarray}
+n^{\lg c} & = & c^{\lg n} \\
+& = & c^{\log _2 n} \\
+& = & c^\frac{\ln n}{\ln 2} \\
+& = & e^{\ln c \times \frac{\ln n}{\ln 2}} \\
+& = & e^{\frac{\ln c}{\ln 2} \times \ln n} \\
+& = & e^{\lg c \ln n} \\
+& = & n^{\lg c}
+\end{eqnarray}
+
+$\therefore n^{\lg c}$ is $O(c^{\lg n}), \ \Omega(c^{\lg n})$ and $\Theta(c^{\lg n})$. QED.
+
+\section{Big-$O$ Implies Big-$\Omega$}
+\textbf{Theorem: } Let f(n) and g(n) be asymptotically positive functions, $O(g(n))$ be the set $\{ f(n) : \exists c, n_0 \in \mathbb{R}^+, \forall n, n_0 \in \mathbb{R}, 0 \leq f(n) \leq c \ g(n) \wedge n > n_0  \}$, and $\Omega(g(n))$ be the set $\{ f(n) : \exists c, n_0 \in \mathbb{R}^+, \forall n, n_0 \in \mathbb{R}^+, 0 \leq cg(n) \leq f(n) \wedge n > n_0 \}$ Then,
+
+\begin{equation}
+f(n) = O(g(n)) \Rightarrow g(n) = \Omega (f(n))
+\end{equation}
+
+[\textit{We will prove so by contradiction.}]
+
+\noindent
+\textbf{Proof: } Suppose not. That is, suppose
+
+\begin{eqnarray}
+\sim [f(n) = O(g(n)) & \Rightarrow & g(n) = \Omega (f(n))] \\
+f(n) = O(g(n)) & \wedge & \sim [g(n) = \Omega (f(n))]
+\end{eqnarray}
+
+Using the formal definition of $\Omega(g(n))$, we can see the negation is as follows:
+
+\begin{equation}
+\sim \Omega(g(n)) = \{ f(n) : \forall c, n_0 \in \mathbb{R}^+, \exists n, n_0 \in \mathbb{R}^+ 0, > cg(n) > f(n) \wedge n \leq n_0 \}
+\end{equation}
+
+This is a contradiction, for there are no $c, n_0$ such that $0 \leq c g(n) \leq f(n) \wedge 0 > cf(n) > g(n)$ because $c, n_0$ are defined as \textit{positive} constants, and $f(n), g(n)$ are defined as \textit{positive} functions. Because no such positive function and positive constants exists to satisfy
+
+\begin{equation}
+0 > cf(n) > g(n)
+\end{equation}
+
+This has led us to a contradiction. QED.
+
+\section{Asymptotic Proofs}
+\subsection{Proof I}
+Assuming $n > 1$,
+
+\begin{eqnarray}
+n^2 & \leq & 20n^2 + 2n + 5 \\
+& \leq & 20n^2 + 2n^2 + 5 \\
+& \leq & 27n^2
+\end{eqnarray}
+
+$\therefore$ For $C = 27, n_0 = 1$, $20n^2 + 2n + 5 = O(n^2)$. QED.
+
+\subsection{Proof II}
+Assume $C = 1, n_0 = 1$. $\therefore $This satisfies the condition that
+$c$ and $n_0$ are positive constants such that $0 \leq Cn^2 \leq 5n^2 - 15n + 100 \ \forall n \geq n_0$. QED.
+
+\subsection{Proof III}
+\subsubsection{Lower Bound}
+Assume $C = 1, n_0 = 1$. $\therefore $This satisfies the condition that
+$c$ and $n_0$ are positive constants such that $0 \leq Cn^2 \leq 5n^2 + 2n \ \forall n \geq n_0$. QED.
+
+\subsubsection{Upper Bound}
+Assuming $n > 1$,
+
+\begin{eqnarray}
+n^2 & \leq & 5n^2 + 2 \\
+& \leq & 5n^2 + 2n^2 \\
+& \leq & 7n^2
+\end{eqnarray}
+
+$\therefore C = 7, n_0 = 1, 5n^2 + 2n = \Theta(n^2)$. QED.
+
+\subsection{Proof IV}
+To prove that $5n+7 = o(n^2)$ we must show that $\exists c, n_0 \in \mathbb{R}^+, 0 \leq f(n) < Cg(n) \wedge n > n_0$. We do so by showing that $\lim _{n \rightarrow \infty} \frac{f(n)}{g(n)} = 0$. [\textit{with the help of L'H\^{o}pital's Rule}]
+
+\begin{eqnarray}
+& & \lim _{n \rightarrow \infty} \frac{5n+ 1}{n^2} \\
+& = & \lim _{n \rightarrow \infty} \frac{5}{2n} \\
+& = & 0
+\end{eqnarray}
+
+QED.
+\end{document}
