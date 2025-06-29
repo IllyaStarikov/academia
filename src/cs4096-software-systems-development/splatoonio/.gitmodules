@@ -1,6 +1,3 @@
-[submodule "ios"]
-	path = ios
-	url = https://git-classes.mst.edu/ane3md/splatoonio-ios.git
 [submodule "android"]
 	path = android
 	url = https://git-classes.mst.edu/ane3md/splatoonio-android.git
