@@ -43,10 +43,9 @@ where,
 For the major search search algorithms:
 
 \begin{align*}
-    \text{UCS}: f(n) &= g(n)
-    \text{GBeFS}: f(n) &= h(n)
+    \text{UCS}: f(n) &= g(n) \\
+    \text{GBeFS}: f(n) &= h(n) \\
     \text{A*S}: f(n) &= g(n) + h(n)
-
 \end{align*}
 
 \subsection{$A^*$ Proof}
@@ -115,7 +114,7 @@ which is the definition of admissibility.
 \begin{itemize}
     \item $f(n) = g(n) + h(n)$.
     \item $f(n)$ is estimated cost of optimal solution through node $n$
-    \item If $h(n)$ satisfies certain conditions, $A*$ Search is complete & optimal
+    \item If $h(n)$ satisfies certain conditions, $A*$ Search is complete and optimal
     \item Is Optimally efficient for consistent heuristics.
     \item Run-time is a function of the heuristic error.
     \item $A^*$ Graph Search not scalable due to memory requirements.
