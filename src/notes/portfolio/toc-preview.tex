@@ -1,0 +1,167 @@
+%
+% Table of Contents Preview for Master Portfolio
+% Shows complete structure without PDF inclusion
+%
+
+\documentclass[12pt,oneside]{scrbook}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{bookmark}
+
+\geometry{letterpaper,left=1.25in,right=1.25in,top=1.25in,bottom=1.25in}
+
+% Counters
+\newcounter{documentcounter}
+\setcounter{documentcounter}{0}
+
+% Command to include only TOC entries without PDF content
+\newcommand{\includepdftoc}[2]{%
+    \stepcounter{documentcounter}%
+    \phantomsection%
+    \addcontentsline{toc}{section}{#1}%
+    \bookmark[level=3,dest=\theHsection]{#1}%
+}
+
+\begin{document}
+
+\title{Academic Portfolio - Table of Contents Preview}
+\author{Missouri S\&T Student}
+\date{\today}
+\maketitle
+
+\tableofcontents
+
+% Introduction
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+
+\part{Computer Science}
+
+\chapter{CS 1510 - Data Structures}
+\includepdftoc{Graph Algorithms}
+\includepdftoc{Heap Data Structure}
+\includepdftoc{Tree Data Structure}
+\includepdftoc{Recursion}
+
+\chapter{CS 3800 - Operating Systems}
+\includepdftoc{OS Lecture 1}
+\includepdftoc{OS Lecture 2}
+\includepdftoc{OS Exam 2 Cheatsheet}
+
+\chapter{CPE 2210 - Introduction to Computer Engineering}
+\includepdftoc{Lab \#1}
+\includepdftoc{Template}
+
+\chapter{CPE 3150 - Micro Embedded Design}
+\includepdftoc{Homework 2}
+\includepdftoc{Homework 3}
+\includepdftoc{Homework 4}
+\includepdftoc{Homework 5}
+\includepdftoc{Homework 6}
+\includepdftoc{Homework 7}
+\includepdftoc{Homework 8}
+\includepdftoc{Microcontroller Paper}
+\includepdftoc{Lecture 3}
+\includepdftoc{Lecture 4}
+\includepdftoc{Lecture 6}
+\includepdftoc{Lecture 7}
+\includepdftoc{Lecture 9}
+\includepdftoc{Project 1}
+
+\chapter{CS 2200 - Theory of Computer Science}
+\includepdftoc{Lecture 1}
+\includepdftoc{Lecture 2}
+\includepdftoc{Lecture 3}
+\includepdftoc{Lecture 4}
+\includepdftoc{Lecture 7}
+\includepdftoc{Lecture 8}
+\includepdftoc{Lecture 9}
+\includepdftoc{Lecture 10}
+\includepdftoc{Quiz 10}
+\includepdftoc{Quiz 11}
+
+\chapter{CS 3200 - Numerical Methods}
+\includepdftoc{Cribsheet}
+\includepdftoc{Homework 9}
+\includepdftoc{Homework 10}
+\includepdftoc{Lecture 1}
+\includepdftoc{Lecture 2}
+\includepdftoc{Lecture 4}
+\includepdftoc{Numerical Methods Equations}
+
+\chapter{CS 4096 - Software Systems Development}
+\includepdftoc{Ethics}
+\includepdftoc{Reflection Essay}
+
+\chapter{CS 5201 - Object Oriented Numerical Modeling}
+\includepdftoc{Master Notes}
+\includepdftoc{Ninjas Notes}
+
+\chapter{CS 5400 - Artificial Intelligence}
+\includepdftoc{AI Master}
+
+\part{Mathematics}
+
+\chapter{MATH 1214 - Calculus I}
+\includepdftoc{Calculus I Master}
+
+\chapter{MATH 1215 - Calculus II}
+\includepdftoc{Chapter 6}
+\includepdftoc{Chapter 7}
+\includepdftoc{Chapter 8}
+\includepdftoc{Chapter 9}
+\includepdftoc{Chapter 10}
+\includepdftoc{Chapter 11}
+
+\chapter{MATH 2100 - Foundations of Mathematics}
+\includepdftoc{Homework 1}
+
+\chapter{MATH 2222 - Calculus III}
+\includepdftoc{Chapter 12}
+\includepdftoc{Chapter 14}
+\includepdftoc{Chapter 15}
+
+\part{Engineering Sciences}
+
+\chapter{PHYS 2305 - Modern Physics}
+\includepdftoc{Modern Physics Review}
+
+\chapter{PHYS 1135 - Physics I}
+\includepdftoc{Interference}
+
+\chapter{PHYS 2135 - Physics II}
+\includepdftoc{Exam 1}
+\includepdftoc{Exam 2}
+\includepdftoc{Lecture 1}
+\includepdftoc{Lecture 2}
+\includepdftoc{Lecture 3}
+\includepdftoc{Lecture 4}
+\includepdftoc{Lecture 5}
+\includepdftoc{Lecture 6}
+\includepdftoc{Lecture 7}
+\includepdftoc{Lecture 9}
+\includepdftoc{Lecture 10}
+\includepdftoc{Lecture 11}
+\includepdftoc{Lecture 12}
+\includepdftoc{Lecture 13}
+
+\part{Liberal Arts \& General Education}
+
+\chapter{PSYC 1101 - Psychology 101}
+\includepdftoc{Steven Pinker Assignment}
+
+\chapter{PHIL 3225 - Business Ethics}
+\includepdftoc{Essay 1}
+\includepdftoc{Paper 1}
+\includepdftoc{Paper 2}
+\includepdftoc{Paper 3}
+\includepdftoc{Paper 4}
+\includepdftoc{Portfolio}
+\includepdftoc{Test 2}
+
+\end{document}

@@ -1,0 +1,473 @@
+%
+% Master Academic Portfolio
+% Aggregates all academic documents from subdirectories
+%
+% Created by Claude Code
+% Copyright 2025. All rights reserved.
+%
+
+\documentclass[12pt,oneside]{book}
+
+% Essential packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{bookmark}
+\usepackage{hyperref}
+\usepackage{pdfpages}
+\usepackage{ifthen}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{newpxtext,newpxmath}
+
+% Page setup
+\geometry{
+    letterpaper,
+    left=1.5in,
+    right=1in,
+    top=1.25in,
+    bottom=1.25in,
+    headheight=15pt
+}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    bookmarksopen=true,
+    bookmarksdepth=3,
+    pdfborder={0 0 0}
+}
+
+% Header/footer setup
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[LO,RE]{Academic Portfolio - Missouri S\&T}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Chapter and section formatting
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries\color{blue}}
+{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+
+\titleformat{\section}
+{\normalfont\Large\bfseries\color{blue}}
+{\thesection}{1em}{}
+
+% Custom commands for document inclusion
+\newcounter{documentcounter}
+\setcounter{documentcounter}{0}
+
+% Command to include a PDF with a title page
+\newcommand{\includedocument}[3][]{%
+    \stepcounter{documentcounter}%
+    \cleardoublepage%
+    \phantomsection%
+    \addcontentsline{toc}{section}{#2}%
+    \bookmark[level=2,dest=\theHsection]{#2}%
+    
+    % Create a title page for the document
+    \begin{center}
+        \vspace*{2cm}
+        {\Huge\bfseries #2}\\[1cm]
+        {\Large Course: #3}\\[0.5cm]
+        {\large Document \thedocumentcounter}\\[1cm]
+        \ifthenelse{\equal{#1}{}}{}{\textit{#1}\\[0.5cm]}
+        \rule{\textwidth}{0.4pt}\\[1cm]
+        {\normalsize Included from: \texttt{#3}}
+    \end{center}
+    \vfill
+    \newpage
+}
+
+% Command to include PDF pages
+\newcommand{\includepdfdoc}[3][]{%
+    \includedocument[#1]{#2}{#3}%
+    \ifthenelse{\equal{#1}{}}%
+        {\includepdf[pages=-,pagecommand={\thispagestyle{empty}}]{#3}}%
+        {\includepdf[pages=-,pagecommand={\thispagestyle{empty}}]{#1}}%
+}
+
+% Command to include LaTeX source (theoretical - would need compilation)
+\newcommand{\includelatexdoc}[3][]{%
+    \includedocument[#1]{#2}{#3}%
+    % Note: This would require external compilation of the LaTeX file
+    % For now, we'll include a placeholder
+    \begin{center}
+        \vspace{2cm}
+        {\large\textit{LaTeX source document}}\\[1cm]
+        {\normalsize Source file: \texttt{#3}}\\[0.5cm]
+        {\small To view this document, compile the source file directly.}
+    \end{center}
+}
+
+% Document metadata
+\title{Academic Portfolio\\Missouri University of Science \& Technology}
+\author{Academic Coursework Collection}
+\date{Compiled: \today}
+
+\begin{document}
+
+% Custom cover page
+\begin{titlepage}
+\newgeometry{margin=0in}
+\pagecolor{blue!85!black}
+\color{white}
+
+% Background geometric pattern
+\begin{tikzpicture}[remember picture, overlay]
+  % Grid pattern
+  \foreach \x in {0,2,...,20}
+    \foreach \y in {0,2,...,28}
+      \node[opacity=0.1] at (\x,\y) {\Large $\diamond$};
+  
+  % Large decorative elements
+  \node[opacity=0.15, scale=3] at (2,25) {$\int$};
+  \node[opacity=0.15, scale=2.5] at (18,24) {$\Sigma$};
+  \node[opacity=0.15, scale=2] at (1,5) {$\lambda$};
+  \node[opacity=0.15, scale=2.5] at (19,6) {$\nabla$};
+  \node[opacity=0.15, scale=2] at (10,2) {$\pi$};
+  
+  % Circuit elements
+  \draw[white, opacity=0.2, line width=2pt] (15,20) -- (17,20) -- (17,18) -- (15,18) -- cycle;
+  \draw[white, opacity=0.2, line width=1.5pt] (3,15) circle (1);
+  \draw[white, opacity=0.2, line width=1.5pt] (16,8) -- (18,10) -- (16,12) -- (14,10) -- cycle;
+\end{tikzpicture}
+
+\vspace*{3cm}
+
+% Main title
+\begin{center}
+{\fontsize{48}{58}\selectfont\bfseries
+\textcolor{white}{\textsf{ACADEMIC}}}\\[0.5cm]
+{\fontsize{54}{65}\selectfont\bfseries
+\textcolor{yellow!90}{\textsf{PORTFOLIO}}}\\[1.5cm]
+
+% Subtitle with modern styling
+{\fontsize{24}{30}\selectfont\bfseries
+\textcolor{white}{\textsf{Computer Science \& Engineering}}}\\[0.5cm]
+
+% University name with elegant font
+{\fontsize{18}{22}\selectfont
+\textcolor{cyan!80}{\textit{Missouri University of Science \& Technology}}}\\[2cm]
+
+% Decorative line
+\textcolor{white}{\rule{12cm}{2pt}}\\[1cm]
+
+% Description
+{\fontsize{14}{18}\selectfont
+\textcolor{white}{%
+\textbf{Comprehensive Academic Journey}\\[0.3cm]
+\textit{A curated collection of coursework, projects, and research\\
+spanning foundations through advanced graduate studies}}}\\[2cm]
+
+% Modern info box
+\colorbox{white!10}{%
+\begin{minipage}{10cm}
+\centering
+\textcolor{white}{%
+{\large\bfseries Course Coverage}\\[0.5cm]
+\begin{tabular}{ll}
+\textcolor{cyan!80}{Foundations:} & CS 1000-2000 Level \\
+\textcolor{cyan!80}{Systems:} & Algorithms, OS, Databases \\
+\textcolor{cyan!80}{Advanced:} & AI, Numerical Modeling \\
+\textcolor{cyan!80}{Mathematics:} & Calculus through Differential Equations \\
+\textcolor{cyan!80}{Engineering:} & Embedded Systems, Physics
+\end{tabular}
+}
+\end{minipage}
+}\\[2cm]
+
+% Compilation info
+{\fontsize{12}{15}\selectfont
+\textcolor{white!80}{\textbf{Compiled:} \today}}\\[0.5cm]
+{\fontsize{10}{12}\selectfont
+\textcolor{white!70}{\textit{Generated with XeLaTeX \& Claude Code}}}
+
+\end{center}
+
+\restoregeometry
+\end{titlepage}
+
+% Reset page color for rest of document
+\pagecolor{white}
+\color{black}
+
+% Table of contents
+\cleardoublepage
+\tableofcontents
+\cleardoublepage
+
+% Introduction
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+
+This document represents a comprehensive academic portfolio from Missouri University of Science \& Technology, containing coursework across multiple computer science and related disciplines. The repository was consolidated from separate course repositories using a custom git consolidation script that preserves commit history.
+
+\section*{Repository Structure}
+The academic work is organized by course using the pattern \texttt{\{department\}\{number\}-\{course-name\}}. Each course contains assignments, projects, lecture notes, and other academic materials in their original formats and styles.
+
+\section*{About This Compilation}
+This master document aggregates individual academic documents while preserving their original formatting and styles. Each included document maintains its own headers, styling, and content structure as originally created.
+
+% Main content sections organized by academic area
+
+\chapter{Computer Science Foundations}
+
+\section*{CS 1200 - Discrete Mathematics}
+\includepdfdoc{Discrete Math Test II Study Guide}{../cs1200-discrete-math/Tests/Test II/Study Guide.pdf}
+\includepdfdoc{Discrete Math Test III Master}{../cs1200-discrete-math/Tests/Test III/Master.pdf}
+
+\section*{CS 1510 - Data Structures}
+\includepdfdoc{Graph Algorithms}{../cs1510-data-structures/Graph.pdf}
+\includepdfdoc{Heap Data Structure}{../cs1510-data-structures/Heap.pdf}
+\includepdfdoc{Tree Data Structure}{../cs1510-data-structures/Tree.pdf}
+\includepdfdoc{Recursion}{../cs1510-data-structures/Recurrsion.pdf}
+
+\section*{CS 2200 - Theory of Computer Science}
+\includepdfdoc{Theory Lecture 1}{../cs2200-theory-of-computer-science/lecture1.pdf}
+\includepdfdoc{Theory Lecture 2}{../cs2200-theory-of-computer-science/lecture2.pdf}
+\includepdfdoc{Theory Quiz 10}{../cs2200-theory-of-computer-science/quizzes/quiz-10.pdf}
+
+\chapter{Advanced Computer Science}
+
+\section*{CS 3200 - Numerical Methods}
+\includepdfdoc{Numerical Methods Equations}{../cs3200-numerical-methods/numerical-methods-equations.pdf}
+\includepdfdoc{Numerical Methods Cribsheet}{../cs3200-numerical-methods/cribsheet.pdf}
+\includepdfdoc{Homework 9}{../cs3200-numerical-methods/homework/homework-9.pdf}
+
+\section*{CS 3800 - Operating Systems}
+\includepdfdoc{OS Lecture 1}{../cs3800-operating-systems/lecture-1.pdf}
+\includepdfdoc{OS Lecture 2}{../cs3800-operating-systems/lecture-2.pdf}
+\includepdfdoc{OS Exam 1 Cheatsheet}{../cs3800-operating-systems/exams/exam-1/cheatsheet.pdf}
+\includepdfdoc{OS Exam 2 Cheatsheet}{../cs3800-operating-systems/exams/exam-2/cheatsheet.pdf}
+
+\section*{CS 4096 - Software Systems Development}
+\includepdfdoc{Ethics in Software Development}{../cs4096-software-systems-development/ethics.pdf}
+\includepdfdoc{Reflection Essay}{../cs4096-software-systems-development/reflection-essay.pdf}
+
+\section*{CS 5400 - Artificial Intelligence}
+\includepdfdoc{AI Master Document}{../cs5400-artificial-intelligence/master.pdf}
+
+\section*{CS 5200 - Analysis of Algorithms}
+\includepdfdoc{Final Study Guide}{../cs5200-analysis-of-algorithms/final-study-guide/study-guide.pdf}
+
+\chapter{Mathematics}
+
+\section*{MATH 1214 - Calculus I}
+\includepdfdoc{Calculus I Master}{math1214-calculus-i/master.pdf}
+
+\section*{MATH 1215 - Calculus II}
+\includepdfdoc{Calculus II Chapter 6}{math1215-calculus-ii/chapter-6/chapter-6.pdf}
+\includepdfdoc{Calculus II Chapter 7}{math1215-calculus-ii/chapter-7/chapter-7.pdf}
+\includepdfdoc{Calculus II Chapter 8}{math1215-calculus-ii/chapter-8/chapter-8.pdf}
+\includepdfdoc{Calculus II Chapter 9}{math1215-calculus-ii/chapter-9/chapter-9.pdf}
+
+\section*{MATH 2100 - Foundations of Mathematics}
+\includepdfdoc{Foundations Homework 1}{math2100-foundations-of-mathematics/homeworks/homework-1.pdf}
+
+\section*{MATH 2222 - Calculus III}
+\includepdfdoc{Calculus III Chapter 12}{math2222-calculus-iii/chapter-12/chapter-12.pdf}
+\includepdfdoc{Calculus III Chapter 14}{math2222-calculus-iii/chapter-14/chapter-14.pdf}
+\includepdfdoc{Calculus III Chapter 15}{math2222-calculus-iii/chapter-15/chapter-15.pdf}
+\includepdfdoc{Calculus III Master}{math2222-calculus-iii/master.pdf}
+
+\chapter{Engineering \& Physics}
+
+\section*{CPE 2210 - Introduction to Computer Engineering}
+\includepdfdoc{CPE Lab Template}{../cpe2210-introduction-to-computer-engineering/Lab/Template.pdf}
+
+\section*{CPE 3150 - Micro Embedded Design}
+\includepdfdoc{Embedded Homework 2}{../cpe3150-micro-embedded-design/homework/homework-2.pdf}
+\includepdfdoc{Embedded Project 1}{../cpe3150-micro-embedded-design/projects/project-1.pdf}
+
+\section*{PHYS 1135 - Physics I}
+\includepdfdoc{Interference}{../phys1135-physics-i/Intereferance.pdf}
+
+\section*{PHYS 2135 - Physics II}
+\includepdfdoc{Physics II Exam 1}{../phys2135-physics-ii/exam-1.pdf}
+\includepdfdoc{Physics II Exam 2}{../phys2135-physics-ii/exam-2.pdf}
+
+\section*{PHYS 2305 - Modern Physics}
+\includepdfdoc{Modern Physics Review}{../phys2305-modern-physics/review.pdf}
+
+\chapter{Liberal Arts \& General Education}
+
+\section*{PHIL 3225 - Business Ethics}
+\includepdfdoc{Business Ethics Paper 1}{../phil3225-business-ethics/paper-1.pdf}
+\includepdfdoc{Business Ethics Portfolio}{../phil3225-business-ethics/portfolio.pdf}
+\includepdfdoc{Business Ethics Test 2}{../phil3225-business-ethics/test-2.pdf}
+
+\section*{PSYC 1101 - Psychology 101}
+\includepdfdoc{Sleep States Assignment}{../psyc1101-psychology-101/Assignments/sleep_states.pdf}
+\includepdfdoc{Steven Pinker Assignment}{../psyc1101-psychology-101/Assignments/steven_pinker.pdf}
+
+\section*{STAT 3117 - Statistics}
+\includepdfdoc{Statistics Final Report}{../stat3117-statistics/Final Report/final-report.pdf}
+\includepdfdoc{Statistics Exam I Cribsheet}{../stat3117-statistics/Exam I/cribsheet.pdf}
+
+\chapter{Teaching Materials}
+
+\section*{Teaching Documents}
+\includepdfdoc{CS 1570 Lab 08}{../teach/cs1570-lab-08.pdf}
+\includepdfdoc{CS 1570 Modern C++ Lecture}{../teach/cs1570-lecture-modern-cpp.pdf}
+\includepdfdoc{Git Tutorial Demo}{../teach/msat-git-tutorial/source/demo.pdf}
+\includepdfdoc{Teaching Rubric}{../teach/rubric.pdf}
+
+\chapter{Additional Coursework from Parent Directory}
+
+\section*{CS 1001 - Data Structures Lab}
+\includepdfdoc{Lab 14 Assignment}{../cs1001-data-structures-lab/2016sp-a1-lab14-latex-isgx2/14-assignment.pdf}
+\includepdfdoc{LaTeX Algorithm Example}{../cs1001-data-structures-lab/2016sp-a1-lab14-latex-isgx2/examples/algorithm.pdf}
+\includepdfdoc{LaTeX Figure Example}{../cs1001-data-structures-lab/2016sp-a1-lab14-latex-isgx2/examples/figure.pdf}
+\includepdfdoc{LaTeX Hyperref Example}{../cs1001-data-structures-lab/2016sp-a1-lab14-latex-isgx2/examples/hyperref.pdf}
+\includepdfdoc{LaTeX Sections Example}{../cs1001-data-structures-lab/2016sp-a1-lab14-latex-isgx2/examples/sections.pdf}
+\includepdfdoc{LaTeX Simple Example}{../cs1001-data-structures-lab/2016sp-a1-lab14-latex-isgx2/examples/simple.pdf}
+\includepdfdoc{LaTeX Title Example}{../cs1001-data-structures-lab/2016sp-a1-lab14-latex-isgx2/examples/title.pdf}
+\includepdfdoc{LaTeX Verbatim Example}{../cs1001-data-structures-lab/2016sp-a1-lab14-latex-isgx2/examples/verbatim.pdf}
+\includepdfdoc{Lab 5}{../cs1001-data-structures-lab/2016sp-b-lab05-isgx2/Lab \#5.pdf}
+\includepdfdoc{Lab 8}{../cs1001-data-structures-lab/2016sp-b-lab08-isgx2/Lab \#8.pdf}
+\includepdfdoc{Lab 9}{../cs1001-data-structures-lab/2016sp-b-lab09-isgx2/Lab \#9.pdf}
+\includepdfdoc{Lab 10}{../cs1001-data-structures-lab/2016sp-b-lab10-isgx2/Lab 10.pdf}
+\includepdfdoc{Project 1}{../cs1001-data-structures-lab/2016sp-b-project-1-isgx2/Project.pdf}
+\includepdfdoc{Lab 1 Report}{../cs1001-data-structures-lab/Lab \#2/Lab 1.pdf}
+
+\section*{CS 1200 - Discrete Mathematics (Additional)}
+\includepdfdoc{Homework 4 Readme}{../cs1200-discrete-math/Homework \#4/Homework \#4/readme.pdf}
+\includepdfdoc{Homework 5 Readme}{../cs1200-discrete-math/Homework \#5/Homework \#5/readme.pdf}
+
+\section*{CS 2300 - Databases}
+\includepdfdoc{Database Homework 1}{../cs2300-databases/Archive/Homework/Homework \#1/Homework \#1.pdf}
+\includepdfdoc{Database Homework 1 Part 2}{../cs2300-databases/Archive/Homework/Homework \#1/2.pdf}
+\includepdfdoc{Database Homework 1 Part 4}{../cs2300-databases/Archive/Homework/Homework \#1/4.pdf}
+\includepdfdoc{Database Homework 2}{../cs2300-databases/Archive/Homework/Homework \#2/Homework \#2.pdf}
+\includepdfdoc{Database Homework 4}{../cs2300-databases/Archive/Homework/Homework \#4/Homework \#4.pdf}
+\includepdfdoc{Conceptual Database Design}{../cs2300-databases/Archive/Phases/Project Phase I/Conceptual Database Design.pdf}
+\includepdfdoc{EER Diagram Phase I}{../cs2300-databases/Archive/Phases/Project Phase I/EER Diagram (Phase I).pdf}
+\includepdfdoc{Logical and Physical Database Design}{../cs2300-databases/Archive/Phases/Project Phase II/Logical and Physical Database Design.pdf}
+\includepdfdoc{Database Final Report}{../cs2300-databases/Final Report/master.pdf}
+\includepdfdoc{Database Wireframe}{../cs2300-databases/Notes/General/Wireframe.pdf}
+
+\section*{CS 2500 - Algorithms}
+\includepdfdoc{Algorithms Project 1 Graphs}{../cs2500-algorithms/CS2500-Project1/Graphs.pdf}
+\includepdfdoc{Algorithms Project 1 Description}{../cs2500-algorithms/CS2500-Project1/Miscellaneous/Description.pdf}
+\includepdfdoc{Algorithms Project 1 Meeting}{../cs2500-algorithms/CS2500-Project1/Miscellaneous/Meeting.pdf}
+\includepdfdoc{Algorithms Project 1 Report I}{../cs2500-algorithms/CS2500-Project1/Report I/Report I.pdf}
+\includepdfdoc{Algorithms Project 1 Report II}{../cs2500-algorithms/CS2500-Project1/Report II.pdf}
+\includepdfdoc{Algorithms Project 2 Description}{../cs2500-algorithms/CS2500-Project2/Archive/Description.pdf}
+\includepdfdoc{Algorithms Project 2 Report I}{../cs2500-algorithms/CS2500-Project2/Report I/Report I.pdf}
+\includepdfdoc{Algorithms Project 2 Report II}{../cs2500-algorithms/CS2500-Project2/Report II.pdf}
+\includepdfdoc{Algorithms Homework 1}{../cs2500-algorithms/Homework \#1/Homework \#1.pdf}
+\includepdfdoc{Algorithms Homework 2}{../cs2500-algorithms/Homework \#2/Homework \#2.pdf}
+\includepdfdoc{Algorithms Homework 3}{../cs2500-algorithms/Homework \#3/Homework \#3.pdf}
+\includepdfdoc{Algorithms Homework 4}{../cs2500-algorithms/Homework \#4/Homework \#4.pdf}
+
+\section*{CS 3001 - Skills Development}
+\includepdfdoc{Skills Development Assignment Grade}{../cs3001-skills-development/deliverables/assignment-grade.pdf}
+\includepdfdoc{Skills Presentation 1}{../cs3001-skills-development/presentation-1.pdf}
+\includepdfdoc{Skills Presentation 2}{../cs3001-skills-development/presentation-2.pdf}
+\includepdfdoc{Skills Presentation 3}{../cs3001-skills-development/presentation-3.pdf}
+\includepdfdoc{Skills Presentation 4}{../cs3001-skills-development/presentation-4.pdf}
+\includepdfdoc{Skills Presentation 5}{../cs3001-skills-development/presentation-5.pdf}
+\includepdfdoc{Skills Presentation 7}{../cs3001-skills-development/presentation-7.pdf}
+\includepdfdoc{Skills Presentation 8}{../cs3001-skills-development/presentation-8.pdf}
+\includepdfdoc{Skills Presentation 9}{../cs3001-skills-development/presentation-9.pdf}
+\includepdfdoc{Skills Presentation 10}{../cs3001-skills-development/presentation-10.pdf}
+
+\section*{CS 3100 - Software Engineering I (Additional)}
+\includepdfdoc{Camelot Final Summary}{../cs3100-software-engineering-i/camelot/documentation/final-summary.pdf}
+\includepdfdoc{Camelot Protocol Description}{../cs3100-software-engineering-i/camelot/documentation/protocol-description.pdf}
+\includepdfdoc{Camelot Requirements}{../cs3100-software-engineering-i/camelot/documentation/requirements.pdf}
+\includepdfdoc{Camelot Final Presentation}{../cs3100-software-engineering-i/camelot/presentations/final-presentation.pdf}
+\includepdfdoc{Camelot Progress Presentation}{../cs3100-software-engineering-i/camelot/presentations/progress-presentation.pdf}
+
+\section*{CS 3200 - Numerical Methods (Additional)}
+\includepdfdoc{Numerical Methods Homework 5 Output}{../cs3200-numerical-methods/Homework \#5/output.pdf}
+
+\section*{CS 3800 - Operating Systems (Additional)}
+\includepdfdoc{OS Crib Sheet Exam 1 (Alt)}{../cs3800-operating-systems/crib-sheets/exam-1.pdf}
+\includepdfdoc{OS Crib Sheet Exam 2 (Alt)}{../cs3800-operating-systems/crib-sheets/exam-2.pdf}
+\includepdfdoc{OS Homework 2 Report}{../cs3800-operating-systems/homework-2/report.pdf}
+
+\section*{CS 4096 - Software Systems Development (Additional)}
+\includepdfdoc{Splatoonio Communication Protocol}{../cs4096-software-systems-development/splatoonio/documents/communication-protocol.pdf}
+\includepdfdoc{Splatoonio Feature List}{../cs4096-software-systems-development/splatoonio/documents/feature-list.pdf}
+\includepdfdoc{Splatoonio Progress Presentation}{../cs4096-software-systems-development/splatoonio/documents/progress-presentation.pdf}
+\includepdfdoc{Splatoonio Progress Presentation 2}{../cs4096-software-systems-development/splatoonio/documents/progress-presentation-2.pdf}
+\includepdfdoc{Splatoonio Progress Presentation 3}{../cs4096-software-systems-development/splatoonio/documents/progress-presentation-3.pdf}
+
+\section*{CS 5200 - Analysis of Algorithms}
+\includepdfdoc{Analysis Final Exam}{../cs5200-analysis-of-algorithms/final-exam/final-exam.pdf}
+\includepdfdoc{Analysis Homework 1}{../cs5200-analysis-of-algorithms/homework-1/homework-1.pdf}
+\includepdfdoc{Analysis Homework 2}{../cs5200-analysis-of-algorithms/homework-2/homework-2.pdf}
+\includepdfdoc{Analysis Homework 3}{../cs5200-analysis-of-algorithms/homework-3/homework-3.pdf}
+\includepdfdoc{Analysis Homework 4}{../cs5200-analysis-of-algorithms/homework-4/homework-4.pdf}
+\includepdfdoc{Analysis Homework 5}{../cs5200-analysis-of-algorithms/homework-5/homework-5.pdf}
+\includepdfdoc{Analysis Homework 6}{../cs5200-analysis-of-algorithms/homework-6/homework-6.pdf}
+\includepdfdoc{Analysis Homework 7}{../cs5200-analysis-of-algorithms/homework-7/homework-7.pdf}
+\includepdfdoc{Analysis Homework 8}{../cs5200-analysis-of-algorithms/homework-8/homework-8.pdf}
+
+\section*{CS 5400 - Artificial Intelligence (Additional)}
+\includepdfdoc{AI Exercise 1}{../cs5400-artificial-intelligence/exercises/exercise-1.pdf}
+\includepdfdoc{AI Exercise 2}{../cs5400-artificial-intelligence/exercises/exercise-2.pdf}
+\includepdfdoc{AI Exercise 4}{../cs5400-artificial-intelligence/exercises/exercise-4.pdf}
+\includepdfdoc{AI Exercise 5}{../cs5400-artificial-intelligence/exercises/exercise-5.pdf}
+\includepdfdoc{AI Exercise 6}{../cs5400-artificial-intelligence/exercises/exercise-6.pdf}
+\includepdfdoc{AI Exercise 8}{../cs5400-artificial-intelligence/exercises/exercise-8.pdf}
+\includepdfdoc{AI Puzzle 3 Bonus 1}{../cs5400-artificial-intelligence/puzzle-series/2018-sp-a-puzzle_3-isgx2/bonus/bonus-1.pdf}
+
+\section*{CS 5402 - Data Mining}
+\includepdfdoc{Data Mining Homework 1}{../cs5402-data-mining/homework-1/homework-1.pdf}
+\includepdfdoc{Data Mining Homework 2}{../cs5402-data-mining/homework-2/homework-2.pdf}
+\includepdfdoc{Data Mining Homework 3}{../cs5402-data-mining/homework-3/homework-3.pdf}
+\includepdfdoc{Data Mining Homework 5}{../cs5402-data-mining/homework-5/homework-5.pdf}
+\includepdfdoc{Data Mining Homework 6}{../cs5402-data-mining/homework-6/homework-6.pdf}
+\includepdfdoc{Data Mining Test 1}{../cs5402-data-mining/test-1/test-1.pdf}
+\includepdfdoc{Data Mining Test 2}{../cs5402-data-mining/test-2/test-2.pdf}
+
+\section*{CPE 3150 - Micro Embedded Design (Additional)}
+\includepdfdoc{Embedded Project 1 Report}{../cpe3150-micro-embedded-design/cpe3150-project-1/report/report.pdf}
+\includepdfdoc{Embedded Project 3 Report}{../cpe3150-micro-embedded-design/cpe3150-project-3/report/report.pdf}
+
+\section*{MATH 3304 - Differential Equations}
+\includepdfdoc{MATLAB Plotter Sample Output}{../math3304-differential-equations/plotter/sample-output.pdf}
+
+% Appendices
+\appendix
+
+\chapter{Build System Documentation}
+This portfolio was compiled using a custom build system that:
+\begin{itemize}
+    \item Uses XeLaTeX for modern font support
+    \item Automatically discovers and builds LaTeX documents
+    \item Excludes incomplete templates and problematic files
+    \item Preserves original document formatting and styles
+    \item Supports both PDF inclusion and LaTeX compilation
+\end{itemize}
+
+The build system makefile identifies 91 buildable LaTeX documents across the academic portfolio while maintaining the integrity of each individual document's styling and content.
+
+\chapter{Course Categories}
+\section*{Foundational Courses (CS 1000-2000)}
+Basic programming, discrete mathematics, and computer science foundations.
+
+\section*{Systems \& Algorithms (CS 2000-4000)}  
+Data structures, algorithms, operating systems, and software engineering.
+
+\section*{Advanced \& Graduate (CS 5000+)}
+Advanced topics in artificial intelligence, numerical modeling, and algorithm analysis.
+
+\section*{Mathematics}
+Calculus sequence, foundations of mathematics, and applied mathematics.
+
+\section*{Engineering \& Physics}
+Computer engineering, embedded systems, and physics coursework.
+
+\end{document}

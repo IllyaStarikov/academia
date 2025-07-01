@@ -1,0 +1,32 @@
+\@doanenote {1}
+macro:->\url
+{https://www-fars.nhtsa.dot.gov/Main/index.aspx}
+\@endanenote 
+\@doanenote {2}
+macro:->\url
+{https://www-fars.nhtsa.dot.gov/Main/index.aspx}
+\@endanenote 
+\@doanenote {3}
+macro:->\url
+{https://www.cdc.gov/drugoverdose/data/heroin.html}
+\@endanenote 
+\@doanenote {4}
+macro:->\url
+{http://www.nfpa.org/news-and-research/fire-statistics-and-reports/fire-statistics/fire-causes/arson-and-juvenile-firesetting/intentional-fires}
+\@endanenote 
+\@doanenote {5}
+macro:->\url
+{https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/812115}
+\@endanenote 
+\@doanenote {6}
+macro:->\url
+{https://engineering.cmu.edu/alumni/magazine/2015_spring/self-driving_cars.html}
+\@endanenote 
+\@doanenote {7}
+macro:->\url
+{http://bigthink.com/ideafeed/googles-self-driving-car-is-ridiculously-safe}
+\@endanenote 
+\@doanenote {8}
+macro:->\url
+{http://asirt.org/initiatives/informing-road-users/road-safety-facts/road-crash-statistics}
+\@endanenote 

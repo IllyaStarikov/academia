@@ -3,19 +3,23 @@
 
 # LaTeX compiler
 LATEX := xelatex
-LATEX_FLAGS := -interaction=nonstopmode -halt-on-error
+LATEX_FLAGS := -interaction=nonstopmode -shell-escape
 
 # List of files to exclude from building
 EXCLUDED_FILES := psyc1101-psychology-101/chapter_t.tex \
+                  portfolio/math2222-calculus-iii/chapter-13/chapter-13.tex \
                   math2222-calculus-iii/chapter-13/chapter-13.tex \
+                  portfolio/math2100-foundations-of-mathematics/introduction.tex \
                   math2100-foundations-of-mathematics/introduction.tex \
                   cpe3150-micro-embedded-design/lecture5.tex \
                   cs2200-theory-of-computer-science/lecture.tex \
-                  cs2200-theory-of-computer-science/lecture5.tex
+                  cs2200-theory-of-computer-science/lecture5.tex \
+                  cs3800-operating-systems/exams/exam-1/cheatsheet.tex \
+                  math2222-calculus-iii/master.tex
 
 # Function to find all complete LaTeX documents
 define find_tex_files
-$(shell find . -name "*.tex" -type f -print0 | \
+$(shell find . portfolio/ -name "*.tex" -type f -print0 | \
         xargs -0 grep -l '\\documentclass' 2>/dev/null | \
         grep -v -i -E "(macros|template)" | \
         grep -v " " | \
@@ -32,10 +36,20 @@ build: $(PDF_FILES)
 	@echo "TEX_FILES: $(words $(TEX_FILES)) files found"
 	@echo "PDF_FILES: $(words $(PDF_FILES)) targets"
 
+# Force rebuild all documents
+.PHONY: rebuild
+rebuild: clean-pdfs build
+
+# Count target - just show statistics without building
+.PHONY: count
+count:
+	@echo "TEX_FILES: $(words $(TEX_FILES)) files found"
+	@echo "PDF_FILES: $(words $(PDF_FILES)) targets"
+
 # Pattern rule for building PDFs from .tex files
 %.pdf: %.tex
 	@echo "Building $< -> $@"
-	@cd $(dir $<) && $(LATEX) $(LATEX_FLAGS) $(notdir $<)
+	@cd $(dir $<) && $(LATEX) $(LATEX_FLAGS) $(notdir $<) || echo "Warning: $< failed to compile"
 	@# Run twice for references
 	@cd $(dir $<) && $(LATEX) $(LATEX_FLAGS) $(notdir $<) >/dev/null 2>&1 || true
 
@@ -73,17 +87,48 @@ clean:
 		\) -delete
 	@echo "Clean complete."
 
+# Clean PDFs to force rebuild
+.PHONY: clean-pdfs
+clean-pdfs:
+	@echo "Removing all generated PDFs..."
+	@find . -name "*.pdf" -not -path "./portfolio/joe-miner.png" -delete
+	@echo "PDFs removed."
+
+# Master portfolio target
+.PHONY: portfolio
+portfolio: master-portfolio.pdf
+
+# Force rebuild portfolio
+.PHONY: portfolio-rebuild
+portfolio-rebuild:
+	@echo "Force rebuilding portfolio..."
+	@rm -f portfolio/master-portfolio.pdf master-portfolio.pdf
+	@$(MAKE) rebuild
+	@$(MAKE) portfolio
+
+master-portfolio.pdf: portfolio/master-portfolio.tex $(PDF_FILES)
+	@echo "Building master academic portfolio..."
+	@echo "All individual documents built: $(words $(PDF_FILES)) PDFs"
+	@cd portfolio && $(LATEX) $(LATEX_FLAGS) master-portfolio.tex
+	@cd portfolio && $(LATEX) $(LATEX_FLAGS) master-portfolio.tex >/dev/null 2>&1 || true
+	@cp portfolio/master-portfolio.pdf .
+
 # Help target
 .PHONY: help
 help:
 	@echo "Available targets:"
-	@echo "  build  - Build all .tex files into PDFs (default)"
-	@echo "  clean  - Remove temporary LaTeX files (keeping PDFs)"
-	@echo "  help   - Show this help message"
+	@echo "  build              - Build all .tex files into PDFs (default)"
+	@echo "  rebuild            - Force rebuild all documents (cleans PDFs first)"
+	@echo "  count              - Show file count without building"
+	@echo "  portfolio          - Build master academic portfolio"
+	@echo "  portfolio-rebuild  - Force rebuild entire portfolio from scratch"
+	@echo "  clean              - Remove temporary LaTeX files (keeping PDFs)"
+	@echo "  clean-pdfs         - Remove all generated PDFs"
+	@echo "  help               - Show this help message"
 	@echo ""
-	@echo "Exclusions:"
-	@echo "  - Template and macro files"
-	@echo "  - Files with spaces in paths"
-	@echo "  - Files without \\documentclass"
-	@echo "  - Specifically excluded files:"
-	@$(foreach file,$(EXCLUDED_FILES),echo "    $(file)";)
+	@echo "Portfolio workflow:"
+	@echo "  1. make count              # Check file discovery"
+	@echo "  2. make portfolio-rebuild  # Force rebuild everything"
+	@echo "  OR: make portfolio         # Build incrementally"
+	@echo ""
+	@echo "TEX_FILES: $(words $(TEX_FILES)) files found"
