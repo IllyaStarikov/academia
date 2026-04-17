@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Academia · Illya Starikov</title>
+  <meta name="description" content="850 pages of academic notes — four years of Missouri S&T, typeset in LaTeX.">
+  <meta property="og:title" content="Academia · Illya Starikov">
+  <meta property="og:description" content="850 pages of academic notes — four years of Missouri S&T, typeset in LaTeX.">
+  <meta property="og:url" content="https://academia.starikov.io/">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://academia.starikov.io/">
+  <style>
+    :root {
+      --bg: #0b0b0c;
+      --fg: #f5f5f7;
+      --muted: #8a8a90;
+      --border: rgba(255, 255, 255, 0.12);
+      --hover: rgba(255, 255, 255, 0.06);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #fafafa;
+        --fg: #111;
+        --muted: #555;
+        --border: rgba(0, 0, 0, 0.12);
+        --hover: rgba(0, 0, 0, 0.04);
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.55;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+    main {
+      width: 100%;
+      max-width: 640px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 0 0 0.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .tagline {
+      color: var(--muted);
+      margin: 0 0 2.5rem;
+      font-size: 1.05rem;
+    }
+    ul.docs {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem;
+      display: grid;
+      gap: 0.5rem;
+    }
+    ul.docs a {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--fg);
+      transition: background 0.15s, border-color 0.15s;
+    }
+    ul.docs a:hover {
+      background: var(--hover);
+      border-color: var(--fg);
+    }
+    .name { font-weight: 600; font-size: 1.1rem; }
+    .meta { color: var(--muted); font-size: 0.9rem; }
+    footer {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--fg); }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Academia</h1>
+    <p class="tagline">850 pages of academic notes — four years of Missouri S&amp;T, typeset in LaTeX.</p>
+
+    <ul class="docs">
+      <li><a href="curated.pdf"><span class="name">Curated</span><span class="meta">224 pages · 8.2 MB</span></a></li>
+      <li><a href="assignments.pdf"><span class="name">Assignments</span><span class="meta">276 pages · 6.4 MB</span></a></li>
+      <li><a href="notes.pdf"><span class="name">Notes</span><span class="meta">450 pages · 5.2 MB</span></a></li>
+      <li><a href="complete.pdf"><span class="name">Complete</span><span class="meta">850 pages · 15 MB</span></a></li>
+    </ul>
+
+    <footer>
+      Source: <a href="https://github.com/IllyaStarikov/academia">github.com/IllyaStarikov/academia</a> ·
+      Writeup: <a href="https://starikov.co/academia-notes/">starikov.co/academia-notes</a>
+    </footer>
+  </main>
+</body>
+</html>
